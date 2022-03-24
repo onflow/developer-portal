@@ -10,6 +10,7 @@
   },
   "dependencies": {
     "@analytics/google-analytics": "^0.5.3",
+    "@happykit/flags": "^2.0.5",
     "analytics": "^0.8.1",
     "next": "12.1.0",
     "next-seo": "^5.2.0",

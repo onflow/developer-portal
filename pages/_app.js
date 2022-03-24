@@ -1,8 +1,9 @@
 import App from "next/app";
 
 import { DefaultSeo } from "next-seo";
-import SEO from "../next-seo.config";
 
+import "../configs/flags.config";
+import SEO from "../configs/seo.config";
 import "../styles/globals.css";
 
 export default class MyApp extends App {
