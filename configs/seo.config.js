@@ -1,4 +1,6 @@
 const defaultSeo = {
+  title: "Next Flow Docs",
+  description: "Documentation for the Flow",
   openGraph: {
     type: "website",
     locale: "en_IE",
