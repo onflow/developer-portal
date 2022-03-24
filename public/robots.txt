@@ -1,0 +1,9 @@
+# *
+User-agent: *
+Allow: /
+
+# Host
+Host: https://docs.onflow.org
+
+# Sitemaps
+Sitemap: https://docs.onflow.org/sitemap.xml

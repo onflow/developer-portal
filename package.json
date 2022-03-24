@@ -12,6 +12,7 @@
   "dependencies": {
     "@analytics/google-analytics": "^0.5.3",
     "@happykit/flags": "^2.0.5",
+    "@sentry/nextjs": "^6.19.2",
     "analytics": "^0.8.1",
     "next": "12.1.0",
     "next-pwa": "^5.4.6",
