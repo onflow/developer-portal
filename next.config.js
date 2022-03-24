@@ -3,22 +3,22 @@ const withPWA = require("next-pwa");
 const { withSentryConfig } = require("@sentry/nextjs");
 
 const nextConfig = {
-  reactStrictMode: true
+  reactStrictMode: true,
+  i18n: {
+    locales: ["en-US"],
+    defaultLocale: "en-US"
+  },
+  pwa: {
+    dest: "public",
+    disable: process.env.NODE_ENV === "development"
+  }
 };
 
 const sentryWebpackPluginOptions = {
-  silent: true // Suppresses all logs
+  silent: true
 };
 
 module.exports = withSentryConfig(
-  withPWA(
-    {
-      ...nextConfig,
-      pwa: {
-        dest: "public",
-        disable: process.env.NODE_ENV === "development"
-      }
-    },
-    sentryWebpackPluginOptions
-  )
+  withPWA(nextConfig),
+  sentryWebpackPluginOptions
 );
