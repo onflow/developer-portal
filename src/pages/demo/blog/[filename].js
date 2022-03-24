@@ -27,14 +27,6 @@ const BlogPage = (props) => {
 
   return (
     <>
-      <Head>
-        {/* Marked CDN */}
-        <script
-          type="text/javascript"
-          crossOrigin="anonymous"
-          src="https://cdnjs.cloudflare.com/ajax/libs/marked/4.0.0/marked.min.js"
-        />
-      </Head>
       <div>
         <div
           style={{
@@ -47,7 +39,7 @@ const BlogPage = (props) => {
           {/* Convert markdown to html in the browser only */}
           {typeof window !== "undefined" && (
             <ContentSection
-              content={window.marked.parse(data.getPostsDocument.data.body)}
+              content={JSON.stringify(data.getPostsDocument.data.body)}
             ></ContentSection>
           )}
         </div>
