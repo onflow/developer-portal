@@ -22,13 +22,34 @@
           ]
         },
         {
-          "type": "string",
+          "type": "rich-text",
           "label": "Blog Post Body",
           "name": "body",
           "isBody": true,
-          "ui": {
-            "component": "textarea"
-          },
+          "templates": [
+            {
+              "name": "Cta",
+              "label": "Call to Action",
+              "fields": [
+                {
+                  "type": "string",
+                  "name": "heading",
+                  "label": "Heading",
+                  "namespace": [
+                    "posts",
+                    "body",
+                    "Cta",
+                    "heading"
+                  ]
+                }
+              ],
+              "namespace": [
+                "posts",
+                "body",
+                "Cta"
+              ]
+            }
+          ],
           "namespace": [
             "posts",
             "body"
