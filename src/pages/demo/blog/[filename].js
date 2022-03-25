@@ -30,7 +30,7 @@ export default function MyPage(props) {
 export const getStaticPaths = async () => {
   const tinaProps = await staticRequest({
     query: `{
-        getPostsList{
+        getPostList{
           edges {
             node {
               sys {
@@ -43,8 +43,8 @@ export const getStaticPaths = async () => {
     variables: {}
   });
 
-  const paths = tinaProps.getPostsList.edges.map((x) => {
-    return { params: { slug: x.node.sys.filename } };
+  const paths = tinaProps.getPostList.edges.map((x) => {
+    return { params: { filename: x.node.sys.filename } };
   });
 
   return {
@@ -55,7 +55,7 @@ export const getStaticPaths = async () => {
 
 export const getStaticProps = async (ctx) => {
   const query = `query BlogPostQuery($relativePath: String!) {
-    getPostsDocument(relativePath: $relativePath) {
+    getPostDocument(relativePath: $relativePath) {
       data {
         title
         body
@@ -64,7 +64,7 @@ export const getStaticProps = async (ctx) => {
   }
   `;
   const variables = {
-    relativePath: ctx.params.slug + ".mdx"
+    relativePath: ctx.params.filename + ".mdx"
   };
   let data = {};
 

@@ -4,7 +4,7 @@ export default defineSchema({
   collections: [
     {
       label: "Blog Posts",
-      name: "posts",
+      name: "post",
       path: "content/posts",
       fields: [
         {

@@ -9,7 +9,7 @@
   "collections": [
     {
       "label": "Blog Posts",
-      "name": "posts",
+      "name": "post",
       "path": "content/posts",
       "fields": [
         {
@@ -17,7 +17,7 @@
           "label": "Title",
           "name": "title",
           "namespace": [
-            "posts",
+            "post",
             "title"
           ]
         },
@@ -36,7 +36,7 @@
                   "name": "heading",
                   "label": "Heading",
                   "namespace": [
-                    "posts",
+                    "post",
                     "body",
                     "Cta",
                     "heading"
@@ -44,20 +44,20 @@
                 }
               ],
               "namespace": [
-                "posts",
+                "post",
                 "body",
                 "Cta"
               ]
             }
           ],
           "namespace": [
-            "posts",
+            "post",
             "body"
           ]
         }
       ],
       "namespace": [
-        "posts"
+        "post"
       ]
     }
   ]
