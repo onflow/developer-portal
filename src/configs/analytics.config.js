@@ -8,7 +8,7 @@ const analytics = Analytics({
   version: 100,
   plugins: [
     googleAnalytics({
-      trackingId: "UA-000000000"
+      trackingId: process.env.NEXT_PUBLIC_GOOGLE_ANALYTICS_TRACKING_ID
     })
   ]
 });
