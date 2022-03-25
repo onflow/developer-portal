@@ -153,7 +153,7 @@ export type DocumentNode = PostsDocument;
 export type Posts = {
   __typename?: 'Posts';
   title?: Maybe<Scalars['String']>;
-  body?: Maybe<Scalars['String']>;
+  body?: Maybe<Scalars['JSON']>;
 };
 
 export type PostsDocument = Node & Document & {
@@ -227,22 +227,22 @@ export type DocumentMutation = {
 
 export type PostsMutation = {
   title?: InputMaybe<Scalars['String']>;
-  body?: InputMaybe<Scalars['String']>;
+  body?: InputMaybe<Scalars['JSON']>;
 };
 
-export type PostsPartsFragment = { __typename?: 'Posts', title?: string | null, body?: string | null };
+export type PostsPartsFragment = { __typename?: 'Posts', title?: string | null, body?: any | null };
 
 export type GetPostsDocumentQueryVariables = Exact<{
   relativePath: Scalars['String'];
 }>;
 
 
-export type GetPostsDocumentQuery = { __typename?: 'Query', getPostsDocument: { __typename?: 'PostsDocument', id: string, sys: { __typename?: 'SystemInfo', filename: string, basename: string, breadcrumbs: Array<string>, path: string, relativePath: string, extension: string }, data: { __typename?: 'Posts', title?: string | null, body?: string | null } } };
+export type GetPostsDocumentQuery = { __typename?: 'Query', getPostsDocument: { __typename?: 'PostsDocument', id: string, sys: { __typename?: 'SystemInfo', filename: string, basename: string, breadcrumbs: Array<string>, path: string, relativePath: string, extension: string }, data: { __typename?: 'Posts', title?: string | null, body?: any | null } } };
 
 export type GetPostsListQueryVariables = Exact<{ [key: string]: never; }>;
 
 
-export type GetPostsListQuery = { __typename?: 'Query', getPostsList: { __typename?: 'PostsConnection', totalCount: number, edges?: Array<{ __typename?: 'PostsConnectionEdges', node?: { __typename?: 'PostsDocument', id: string, sys: { __typename?: 'SystemInfo', filename: string, basename: string, breadcrumbs: Array<string>, path: string, relativePath: string, extension: string }, data: { __typename?: 'Posts', title?: string | null, body?: string | null } } | null } | null> | null } };
+export type GetPostsListQuery = { __typename?: 'Query', getPostsList: { __typename?: 'PostsConnection', totalCount: number, edges?: Array<{ __typename?: 'PostsConnectionEdges', node?: { __typename?: 'PostsDocument', id: string, sys: { __typename?: 'SystemInfo', filename: string, basename: string, breadcrumbs: Array<string>, path: string, relativePath: string, extension: string }, data: { __typename?: 'Posts', title?: string | null, body?: any | null } } | null } | null> | null } };
 
 export const PostsPartsFragmentDoc = gql`
     fragment PostsParts on Posts {

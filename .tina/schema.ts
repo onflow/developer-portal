@@ -1,4 +1,3 @@
-
 import { defineSchema, defineConfig } from "tinacms";
 
 export default defineSchema({
@@ -11,34 +10,41 @@ export default defineSchema({
         {
           type: "string",
           label: "Title",
-          name: "title",
+          name: "title"
         },
         {
-          type: "string",
+          type: "rich-text",
           label: "Blog Post Body",
           name: "body",
           isBody: true,
-          ui: {
-            component: "textarea"
-          },
-        },
-      ],
-    },
-  ],
+          templates: [
+            {
+              name: "Cta",
+              label: "Call to Action",
+              fields: [
+                {
+                  type: "string",
+                  name: "heading",
+                  label: "Heading"
+                }
+              ]
+            }
+          ]
+        }
+      ]
+    }
+  ]
 });
-
-
-
 
 // Your tina config
 // ==============
-const branch = 'main'
+const branch = "main";
 // When working locally, hit our local filesystem.
 // On a Vercel deployment, hit the Tina Cloud API
 const apiURL =
-  process.env.NODE_ENV == 'development'
-    ? 'http://localhost:4001/graphql'
-    : `https://content.tinajs.io/content/${process.env.NEXT_PUBLIC_TINA_CLIENT_ID}/github/${branch}`
+  process.env.NODE_ENV == "development"
+    ? "http://localhost:4001/graphql"
+    : `https://content.tinajs.io/content/${process.env.NEXT_PUBLIC_TINA_CLIENT_ID}/github/${branch}`;
 
 export const tinaConfig = defineConfig({
   apiURL,
@@ -63,5 +69,5 @@ export const tinaConfig = defineConfig({
     });
 
     return cms;
-  },
+  }
 });
