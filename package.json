@@ -13,6 +13,7 @@
   },
   "dependencies": {
     "@analytics/google-analytics": "^0.5.3",
+    "@docsearch/js": "^3.0.0",
     "@happykit/flags": "^2.0.5",
     "@sentry/nextjs": "^6.19.2",
     "analytics": "^0.8.1",
