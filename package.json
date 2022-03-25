@@ -2,6 +2,7 @@
   "name": "next-docs",
   "version": "0.1.0",
   "private": true,
+  "license": "Apache2",
   "scripts": {
     "dev": "tinacms server:start -c \"next dev\"",
     "build": "tinacms server:start -c \"next build\"",
