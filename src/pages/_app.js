@@ -9,6 +9,10 @@ import SEO from "../configs/seo.config";
 import "../styles/globals.css";
 import TinaProvider from "../../.tina/components/TinaDynamicProvider.js";
 
+export function reportWebVitals(metric) {
+  console.log(metric);
+}
+
 export default class MyApp extends App {
   render() {
     const { Component, pageProps } = this.props;

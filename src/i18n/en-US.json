@@ -2,5 +2,8 @@
     "Home": {
         "title": "Hello Flow Documentation",
         "description": "This is the home page."
+    },
+    "404": {
+        "message": "Page not found."
     }
 }

@@ -2,8 +2,8 @@
 // This is a demo file once you have tina setup feel free to delete this file
 
 import { staticRequest } from "tinacms";
-
 import { TinaMarkdown } from "tinacms/dist/rich-text";
+import { useTina } from "tinacms/dist/edit-state";
 
 // The `props` here are based off our custom "Cta" MDX component
 const Cta = (props) => {
@@ -16,11 +16,16 @@ const components = {
 };
 
 export default function MyPage(props) {
+  const { data } = useTina({
+    query: props.query,
+    variables: props.variables,
+    data: props.data
+  });
   return (
     <div>
       <TinaMarkdown
         components={components}
-        content={props.data.getPostDocument.data.body}
+        content={data.getPostDocument.data.body}
       />
     </div>
   );
