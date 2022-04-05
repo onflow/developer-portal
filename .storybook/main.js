@@ -6,6 +6,16 @@ module.exports = {
   addons: [
     "@storybook/addon-links",
     "@storybook/addon-essentials",
-    "@storybook/addon-postcss"
+    "@storybook/addon-postcss",
+   {
+      name: 'storybook-addon-swc',
+      options: {
+        enable: true,
+        enableSwcLoader: true,
+        enableSwcMinify: true,
+        swcLoaderOptions: {},
+        swcMinifyOptions: {},
+      },
+    },
   ]
 };
