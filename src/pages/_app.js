@@ -10,6 +10,7 @@ import "../configs/flags.config";
 import SEO from "../configs/seo.config";
 import "../styles/globals.css";
 import TinaProvider from "../../.tina/components/TinaDynamicProvider.js";
+import MainLayout from "layouts/main";
 
 if (typeof window !== "undefined" && process.env.NODE_ENV !== "production") {
   const ReactDOM = require("react-dom");
@@ -25,14 +26,14 @@ export default class MyApp extends App {
   render() {
     const { Component, pageProps } = this.props;
     return (
-      <>
-        <DefaultSeo {...SEO} />
-        <TinaProvider>
-          <NextIntlProvider messages={pageProps.messages}>
+      <MainLayout>
+        <NextIntlProvider messages={pageProps.messages}>
+          <DefaultSeo {...SEO} />
+          <TinaProvider>
             <Component {...pageProps} />
-          </NextIntlProvider>
-        </TinaProvider>
-      </>
+          </TinaProvider>
+        </NextIntlProvider>
+      </MainLayout>
     );
   }
 }
