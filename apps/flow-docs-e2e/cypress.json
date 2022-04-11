@@ -1,0 +1,11 @@
+{
+  "fileServerFolder": ".",
+  "fixturesFolder": "./src/fixtures",
+  "integrationFolder": "./src/integration",
+  "modifyObstructiveCode": false,
+  "supportFile": "./src/support/index.ts",
+  "pluginsFile": false,
+  "video": false,
+  "screenshots": false,
+  "chromeWebSecurity": false
+}

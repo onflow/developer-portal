@@ -1,0 +1,42 @@
+{
+  "root": "libs/cms-tools",
+  "sourceRoot": "libs/cms-tools/src",
+  "targets": {
+    "build": {
+      "executor": "@nrwl/js:tsc",
+      "outputs": [
+        "{options.outputPath}"
+      ],
+      "options": {
+        "outputPath": "libs/cms-tools/dist",
+        "main": "libs/cms-tools/src/index.ts",
+        "tsConfig": "libs/cms-tools/tsconfig.lib.json",
+        "assets": [
+          "libs/cms-tools/*.md"
+        ]
+      }
+    },
+    "lint": {
+      "executor": "@nrwl/linter:eslint",
+      "outputs": [
+        "{options.outputFile}"
+      ],
+      "options": {
+        "lintFilePatterns": [
+          "libs/cms-tools/**/*.ts"
+        ]
+      }
+    },
+    "test": {
+      "executor": "@nrwl/jest:jest",
+      "outputs": [
+        "coverage/libs/cms-tools"
+      ],
+      "options": {
+        "jestConfig": "libs/cms-tools/jest.config.js",
+        "passWithNoTests": true
+      }
+    }
+  },
+  "tags": []
+}
