@@ -15,11 +15,11 @@
     "strict": true,
     "baseUrl": ".",
     "paths": {
-      "~/*": ["./app/*"]
+      "~/*": ["./app/*"],
+      "@flow-docs/ui": ["../../libs/design-system/src"],
+      "@flow-docs/cms": ["../../libs/cms-tools/dist/src"]
     },
     "skipLibCheck": true,
-
-    // Remix takes care of building everything in `remix build`.
     "noEmit": true
   }
 }

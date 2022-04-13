@@ -1,1 +1,2 @@
-export * from './components/test-component';
+export * from './lib/another-component/another-component';
+export * from './lib/test-component/test-component';

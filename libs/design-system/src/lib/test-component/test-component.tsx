@@ -4,7 +4,7 @@ export interface TestComponentProps {}
 export function TestComponent(props: TestComponentProps) {
   return (
     <div>
-      <h1>Welcome to TestComponent!</h1>
+      <h1 className="text-2xl">This is the TestComponent! Great!</h1>
     </div>
   );
 }

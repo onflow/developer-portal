@@ -13,11 +13,7 @@
     "lib": ["es2017", "dom"],
     "skipLibCheck": true,
     "skipDefaultLibCheck": true,
-    "baseUrl": ".",
-    "paths": {
-      "@flow-docs/cms-tools": ["libs/cms-tools/src/index.ts"],
-      "@flow-docs/ui": ["libs/design-system/src/index.ts"]
-    }
+    "baseUrl": "."
   },
   "exclude": ["node_modules", "tmp"]
 }
