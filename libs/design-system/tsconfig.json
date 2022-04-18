@@ -12,6 +12,9 @@
     "noImplicitReturns": true,
     "noFallthroughCasesInSwitch": true
   },
+  "paths" : {
+
+  },
   "files": [],
   "include": [],
   "references": [

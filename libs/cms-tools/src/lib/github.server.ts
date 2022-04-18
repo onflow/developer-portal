@@ -158,7 +158,7 @@ async function downloadFile(path: string, repo: string) {
     );
   }
 
-  //                                lol
+  //lol
   const encoding = data.encoding as Parameters<typeof Buffer.from>['1'];
   return Buffer.from(data.content, encoding).toString();
 }
