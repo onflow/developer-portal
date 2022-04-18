@@ -2,38 +2,36 @@ import { Link } from "@remix-run/react";
 
 import { useOptionalUser } from "~/utils";
 
-import { TestComponent } from "@flow-docs/ui";
-import { cmsTools } from "@flow-docs/cms";
-
-cmsTools();
-
 export default function Index() {
   const user = useOptionalUser();
   return (
     <main className="relative min-h-screen bg-white sm:flex sm:items-center sm:justify-center">
-      <TestComponent />
       <div className="relative sm:pb-16 sm:pt-8">
         <div className="mx-auto max-w-7xl sm:px-6 lg:px-8">
           <div className="relative shadow-xl sm:overflow-hidden sm:rounded-2xl">
             <div className="absolute inset-0">
               <img
                 className="object-cover w-full h-full"
-                src="https://user-images.githubusercontent.com/1500684/157774694-99820c51-8165-4908-a031-34fc371ac0d6.jpg"
-                alt="Sonic Youth On Stage"
+                src="https://user-images.githubusercontent.com/1500684/158276320-c46b661b-8eff-4a4d-82c6-cf296c987a12.jpg"
+                alt="BB King playing blues on his Les Paul guitar"
               />
-              <div className="absolute inset-0 bg-[color:rgba(254,204,27,0.5)] mix-blend-multiply" />
+              <div className="absolute inset-0 bg-[color:rgba(27,167,254,0.5)] mix-blend-multiply" />
             </div>
             <div className="relative px-4 pt-16 pb-8 lg:pb-18 sm:px-6 sm:pt-24 sm:pb-14 lg:px-8 lg:pt-32">
               <h1 className="text-6xl font-extrabold tracking-tight text-center sm:text-8xl lg:text-9xl">
-                <span className="block text-yellow-500 uppercase drop-shadow-md">
-                  Indie Stack
+                <span className="block text-blue-500 uppercase drop-shadow-md">
+                  Blues Stack
                 </span>
               </h1>
+              <p className="max-w-lg mx-auto mt-6 text-xl text-center text-white sm:max-w-3xl">
+                Check the README.md file for instructions on how to get this
+                project deployed.
+              </p>
               <div className="max-w-sm mx-auto mt-10 sm:flex sm:max-w-none sm:justify-center">
                 {user ? (
                   <Link
                     to="/notes"
-                    className="flex items-center justify-center px-4 py-3 text-base font-medium text-yellow-700 bg-white border border-transparent rounded-md shadow-sm hover:bg-yellow-50 sm:px-8"
+                    className="flex items-center justify-center px-4 py-3 text-base font-medium text-blue-700 bg-white border border-transparent rounded-md shadow-sm hover:bg-blue-50 sm:px-8"
                   >
                     View Notes for {user.email}
                   </Link>
@@ -41,13 +39,13 @@ export default function Index() {
                   <div className="space-y-4 sm:mx-auto sm:inline-grid sm:grid-cols-2 sm:gap-5 sm:space-y-0">
                     <Link
                       to="/join"
-                      className="flex items-center justify-center px-4 py-3 text-base font-medium text-yellow-700 bg-white border border-transparent rounded-md shadow-sm hover:bg-yellow-50 sm:px-8"
+                      className="flex items-center justify-center px-4 py-3 text-base font-medium text-blue-700 bg-white border border-transparent rounded-md shadow-sm hover:bg-blue-50 sm:px-8"
                     >
                       Sign up
                     </Link>
                     <Link
                       to="/login"
-                      className="flex items-center justify-center px-4 py-3 font-medium text-white bg-yellow-500 rounded-md hover:bg-yellow-600 "
+                      className="flex items-center justify-center px-4 py-3 font-medium text-white bg-blue-500 rounded-md hover:bg-blue-600 "
                     >
                       Log In
                     </Link>
@@ -74,9 +72,9 @@ export default function Index() {
                 href: "https://fly.io",
               },
               {
-                src: "https://user-images.githubusercontent.com/1500684/157764395-137ec949-382c-43bd-a3c0-0cb8cb22e22d.svg",
-                alt: "SQLite",
-                href: "https://sqlite.org",
+                src: "https://user-images.githubusercontent.com/1500684/158238105-e7279a0c-1640-40db-86b0-3d3a10aab824.svg",
+                alt: "PostgreSQL",
+                href: "https://www.postgresql.org/",
               },
               {
                 src: "https://user-images.githubusercontent.com/1500684/157764484-ad64a21a-d7fb-47e3-8669-ec046da20c1f.svg",
