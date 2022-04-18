@@ -9,7 +9,7 @@ import * as React from "react";
 
 import { createUserSession, getUserId } from "~/session.server";
 import { verifyLogin } from "~/models/user.server";
-import { validateEmail } from "~/utils";
+import { validateEmail } from "~/utils/misc";
 
 export const loader: LoaderFunction = async ({ request }) => {
   const userId = await getUserId(request);
