@@ -1,8 +1,6 @@
-const { execSync } = require("child_process");
 const crypto = require("crypto");
 const fs = require("fs/promises");
 const path = require("path");
-const inquirer = require("inquirer");
 
 const toml = require("@iarna/toml");
 const sort = require("sort-package-json");
@@ -23,7 +21,7 @@ async function main({ rootDirectory }) {
   const ENV_PATH = path.join(rootDirectory, ".env");
   const PACKAGE_JSON_PATH = path.join(rootDirectory, "package.json");
 
-  const REPLACER = "indie-stack-template";
+  const REPLACER = "blues-stack-template";
 
   const DIR_NAME = path.basename(rootDirectory);
   const SUFFIX = getRandomString(2);
@@ -70,44 +68,23 @@ async function main({ rootDirectory }) {
     fs.writeFile(PACKAGE_JSON_PATH, newPackageJson),
   ]);
 
-  execSync(`npm run setup`, { stdio: "inherit", cwd: rootDirectory });
-
-  // TODO: There is currently an issue with the test cleanup script that results
-  // in an error when running Cypress in some cases. Add this question back
-  // when this is fixed.
-  // await askSetupQuestions({ rootDirectory }).catch((error) => {
-  //   if (error.isTtyError) {
-  //     // Prompt couldn't be rendered in the current environment
-  //   } else {
-  //     throw error;
-  //   }
-  // });
-
   console.log(
-    `Setup is complete. You're now ready to rock and roll 🤘
+    `
+Setup is almost complete. Follow these steps to finish initialization:
 
-Start development with \`npm run dev\`
+- Start the database:
+  npm run docker
+
+- Run setup (this updates the database):
+  npm run setup
+
+- Run the first build (this generates the server you will run):
+  npm run build
+
+- You're now ready to rock and roll 🤘
+  npm run dev
     `.trim()
   );
-}
-
-async function askSetupQuestions({ rootDirectory }) {
-  const answers = await inquirer.prompt([
-    {
-      name: "validate",
-      type: "confirm",
-      default: false,
-      message:
-        "Do you want to run the build/tests/etc to verify things are setup properly?",
-    },
-  ]);
-
-  if (answers.validate) {
-    console.log(
-      `Running the validate script to make sure everything was set up properly`
-    );
-    execSync(`npm run validate`, { stdio: "inherit", cwd: rootDirectory });
-  }
 }
 
 module.exports = main;

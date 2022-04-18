@@ -93,7 +93,7 @@ export default function LoginPage() {
   return (
     <div className="flex min-h-full flex-col justify-center">
       <div className="mx-auto w-full max-w-md px-8">
-        <Form method="post" className="space-y-6">
+        <Form method="post" className="space-y-6" noValidate>
           <div>
             <label
               htmlFor="email"

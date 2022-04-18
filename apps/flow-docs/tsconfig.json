@@ -20,6 +20,8 @@
       "@flow-docs/cms": ["../../libs/cms-tools/dist/src"]
     },
     "skipLibCheck": true,
+
+    // Remix takes care of building everything in `remix build`.
     "noEmit": true
   }
 }
