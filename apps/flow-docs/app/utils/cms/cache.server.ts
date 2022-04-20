@@ -1,16 +1,16 @@
-import LRU from 'lru-cache';
-import { formatDuration, intervalToDuration } from 'date-fns';
-import type { Timings } from './metrics.server';
-import { time } from './metrics.server';
+import LRU from "lru-cache";
+import { formatDuration, intervalToDuration } from "date-fns";
+import type { Timings } from "./metrics.server";
+import { time } from "./metrics.server";
 // import { getUser } from './session.server';
 
 function niceFormatDuration(milliseconds: number) {
   const duration = intervalToDuration({ start: 0, end: milliseconds });
-  const formatted = formatDuration(duration, { delimiter: ', ' });
+  const formatted = formatDuration(duration, { delimiter: ", " });
   const ms = milliseconds % 1000;
   return [formatted, ms ? `${ms.toFixed(3)}ms` : null]
     .filter(Boolean)
-    .join(', ');
+    .join(", ");
 }
 
 declare global {
@@ -31,8 +31,8 @@ function createLruCache() {
     max: 1000,
     maxAge: 1000 * 60 * 60, // 1 hour
   });
-  Object.assign(newCache, { name: 'LRU' });
-  return newCache as typeof newCache & { name: 'LRU' };
+  Object.assign(newCache, { name: "LRU" });
+  return newCache as typeof newCache & { name: "LRU" };
 }
 
 type CacheMetadata = {
@@ -88,7 +88,7 @@ async function cachified<
     checkValue = (value) => Boolean(value),
     fallbackToCache = true,
     timings,
-    timingType = 'getting fresh value',
+    timingType = "getting fresh value",
     maxAge,
   } = options;
 
@@ -97,8 +97,8 @@ async function cachified<
   // to the shouldForceFresh function on the request if the request is provided
   // otherwise it's false.
   const forceFresh =
-    typeof options.forceFresh === 'string'
-      ? options.forceFresh.split(',').includes(key)
+    typeof options.forceFresh === "string"
+      ? options.forceFresh.split(",").includes(key)
       : options.forceFresh ??
         (request ? await shouldForceFresh(request, key) : false);
 
@@ -106,17 +106,17 @@ async function cachified<
     metadata: CacheMetadata;
     value: Value;
   } {
-    if (typeof entry !== 'object' || entry === null) {
+    if (typeof entry !== "object" || entry === null) {
       throw new Error(
         `Cache entry for ${key} is not a cache entry object, it's a ${typeof entry}`
       );
     }
-    if (!('metadata' in entry)) {
+    if (!("metadata" in entry)) {
       throw new Error(
         `Cache entry for ${key} does not have a metadata property`
       );
     }
-    if (!('value' in entry)) {
+    if (!("value" in entry)) {
       throw new Error(`Cache entry for ${key} does not have a value property`);
     }
   }
@@ -125,7 +125,7 @@ async function cachified<
     try {
       const cached = await time({
         name: `cache.get(${key})`,
-        type: 'cache read',
+        type: "cache read",
         fn: () => cache.get(key),
         timings,
       });
@@ -150,7 +150,7 @@ async function cachified<
               // eslint-disable-next-line prefer-object-spread
               void cachified(Object.assign({}, options, { forceFresh: true }))
                 .catch((e) => {
-                  console.log(e);
+                  console.log("Got error:", e);
                 })
                 .finally(() => {
                   keysRefreshing.delete(key);
@@ -163,7 +163,7 @@ async function cachified<
           return cached.value;
         } else {
           const reason =
-            typeof valueCheck === 'string' ? valueCheck : 'unknown';
+            typeof valueCheck === "string" ? valueCheck : "unknown";
           console.warn(
             `check failed for cached value of ${key}\nReason: ${reason}.\nDeleting the cache key and trying to get a fresh value.`,
             cached
@@ -214,9 +214,9 @@ async function cachified<
         `Updating the cache value for ${key}.`,
         `Getting a fresh value for this took ${niceFormatDuration(totalTime)}.`,
         `Caching for a minimum of ${
-          typeof maxAge === 'number'
+          typeof maxAge === "number"
             ? `${niceFormatDuration(maxAge)}`
-            : 'forever'
+            : "forever"
         } in ${cache.name}.`
       );
       await cache.set(key, { metadata, value });
@@ -224,7 +224,7 @@ async function cachified<
       console.error(`error setting cache: ${key}`, error);
     }
   } else {
-    const reason = typeof valueCheck === 'string' ? valueCheck : 'unknown';
+    const reason = typeof valueCheck === "string" ? valueCheck : "unknown";
     console.error(
       `check failed for cached value of ${key}\nReason: ${reason}.\nDeleting the cache key and trying to get a fresh value.`,
       value
@@ -235,13 +235,13 @@ async function cachified<
 }
 
 async function shouldForceFresh(request: Request, key: string) {
-  const fresh = new URL(request.url).searchParams.get('fresh');
-  if (typeof fresh !== 'string') return false;
+  const fresh = new URL(request.url).searchParams.get("fresh");
+  if (typeof fresh !== "string") return false;
   // TODO: Add admin role to user.
   // if ((await getUser(request))?.role !== 'ADMIN') return false;
-  if (fresh === '') return true;
+  if (fresh === "") return true;
 
-  return fresh.split(',').includes(key);
+  return fresh.split(",").includes(key);
 }
 
 export { cachified, lruCache };

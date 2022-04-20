@@ -1,7 +1,6 @@
 {
   "version": 2,
   "projects": {
-    "cms-tools": "libs/cms-tools",
     "design-system": "libs/design-system",
     "flow-docs": "apps/flow-docs",
     "flow-docs-e2e": "apps/flow-docs-e2e"

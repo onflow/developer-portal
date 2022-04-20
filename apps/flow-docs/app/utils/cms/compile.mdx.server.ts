@@ -1,20 +1,20 @@
 // TODO: Replace this with Prism post MVP
-import { remarkCodeBlocksShiki } from '@kentcdodds/md-temp';
+import { remarkCodeBlocksShiki } from "@kentcdodds/md-temp";
 
-import remarkEmbedder from '@remark-embedder/core';
-import oembedTransformer from '@remark-embedder/transformer-oembed';
+import remarkEmbedder from "@remark-embedder/core";
+import oembedTransformer from "@remark-embedder/transformer-oembed";
 
-import { bundleMDX } from 'mdx-bundler';
+import { bundleMDX } from "mdx-bundler";
 
-import type * as U from 'unified';
+import type * as U from "unified";
 
-import type * as H from 'hast';
+import type * as H from "hast";
 
-import calculateReadingTime from 'reading-time';
+import calculateReadingTime from "reading-time";
 
-import type TPQueue from 'p-queue';
+import type TPQueue from "p-queue";
 
-import type { GitHubFile } from '../../types';
+import type { GitHubFile } from "./github.server";
 
 function handleEmbedderError({ url }: { url: string }) {
   return `<p>Error embedding <a href="${url}">${url}</a>.`;
@@ -22,13 +22,13 @@ function handleEmbedderError({ url }: { url: string }) {
 
 function removePreContainerDivs() {
   return async function preContainerDivsTransformer(tree: H.Root) {
-    const { visit } = await import('unist-util-visit');
+    const { visit } = await import("unist-util-visit");
     visit(
       tree,
-      { type: 'element', tagName: 'pre' },
+      { type: "element", tagName: "pre" },
       function visitor(node, index, parent) {
-        if (parent?.type !== 'element') return;
-        if (parent.tagName !== 'div') return;
+        if (parent?.type !== "element") return;
+        if (parent.tagName !== "div") return;
         if (parent.children.length !== 1 && index === 0) return;
         Object.assign(parent, node);
       }
@@ -55,25 +55,26 @@ async function compileMdx<FrontmatterType extends Record<string, unknown>>(
   githubFiles: Array<GitHubFile>
 ) {
   const { default: remarkAutolinkHeadings } = await import(
-    'remark-autolink-headings'
+    "remark-autolink-headings"
   );
-  const { default: remarkSlug } = await import('remark-slug');
-  const { default: gfm } = await import('remark-gfm');
+  const { default: remarkSlug } = await import("remark-slug");
+  const { default: gfm } = await import("remark-gfm");
 
   const indexRegex = new RegExp(`${slug}\\/index.mdx?$`);
   const indexFile = githubFiles.find(({ path }) => indexRegex.test(path));
+
   if (!indexFile) return null;
 
-  const rootDir = indexFile.path.replace(/index.mdx?$/, '');
+  const rootDir = indexFile.path.replace(/index.mdx?$/, "");
   const relativeFiles: Array<GitHubFile> = githubFiles.map(
     ({ path, content }) => ({
-      path: path.replace(rootDir, './'),
+      path: path.replace(rootDir, "./"),
       content,
     })
   );
   const files = arrayToObj(relativeFiles, {
-    keyName: 'path',
-    valueName: 'content',
+    keyName: "path",
+    valueName: "content",
   });
 
   try {
@@ -85,7 +86,7 @@ async function compileMdx<FrontmatterType extends Record<string, unknown>>(
         options.remarkPlugins = [
           ...(options.remarkPlugins ?? []),
           remarkSlug,
-          [remarkAutolinkHeadings, { behavior: 'wrap' }],
+          [remarkAutolinkHeadings, { behavior: "wrap" }],
           gfm,
           ...remarkPlugins,
         ];
@@ -116,7 +117,7 @@ function arrayToObj<ItemType extends Record<string, unknown>>(
   const obj: Record<string, ItemType[keyof ItemType]> = {};
   for (const item of array) {
     const key = item[keyName];
-    if (typeof key !== 'string') {
+    if (typeof key !== "string") {
       throw new Error(`${keyName} of item must be a string`);
     }
     const value = item[valueName];
@@ -127,9 +128,8 @@ function arrayToObj<ItemType extends Record<string, unknown>>(
 
 let _queue: TPQueue | null = null;
 async function getQueue() {
-  const { default: PQueue } = await import('p-queue');
+  const { default: PQueue } = await import("p-queue");
   if (_queue) return _queue;
-
   _queue = new PQueue({ concurrency: 1 });
   return _queue;
 }
@@ -144,4 +144,54 @@ async function queuedCompileMdx<
   return result;
 }
 
+type MdxPage = {
+  code: string;
+  slug: string;
+  // editLink: string;
+  readTime?: ReturnType<typeof calculateReadingTime>;
+
+  /**
+   * It's annoying that all these are set to optional I know, but there's
+   * no great way to ensure that the MDX files have these properties,
+   * especially when a common use case will be to edit them without running
+   * the app or build. So we're going to force you to handle situations when
+   * these values are missing to avoid runtime errors.
+   */
+  frontmatter: {
+    // archived?: boolean;
+    draft?: boolean;
+    title?: string;
+    description?: string;
+    date?: string;
+    // meta?: {
+    //   keywords?: Array<string>;
+    // };
+
+    // Post meta
+    // categories?: Array<string>;
+    // bannerBlurDataUrl?: string;
+    // bannerCloudinaryId?: string;
+    // bannerCredit?: string;
+    // bannerAlt?: string;
+    // bannerTitle?: string;
+    // socialImageTitle?: string;
+    // socialImagePreTitle?: string;
+    // translations?: Array<{
+    //   language: string;
+    //   link: string;
+    //   author?: {
+    //     name: string;
+    //     link?: string;
+    //   };
+    // }>;
+  };
+};
+
+/**
+ * This is a separate type from MdxPage because the code string is often
+ * pretty big and the pages that simply list the pages shouldn't include the code.
+ */
+type MdxListItem = Omit<MdxPage, "code">;
+
 export { queuedCompileMdx as compileMdx };
+export type { MdxPage, MdxListItem };
