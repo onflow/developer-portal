@@ -26,7 +26,7 @@ export const meta: MetaFunction = () => ({
   viewport: "width=device-width,initial-scale=1",
 });
 
-type LoaderData = {
+export type LoaderData = {
   user: Awaited<ReturnType<typeof getUser>>;
 };
 

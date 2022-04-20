@@ -1,7 +1,7 @@
 // @ts-expect-error
-import redis from 'redis';
+import redis from "redis";
 
-import { getRequiredServerEnvVar } from '../utils';
+import { getRequiredServerEnvVar } from "./helpers";
 
 declare global {
   // This prevents us from making multiple connections to the db when the
@@ -11,25 +11,25 @@ declare global {
     primaryClient: redis.RedisClient | undefined;
 }
 
-const REDIS_URL = getRequiredServerEnvVar('REDIS_URL');
+const REDIS_URL = getRequiredServerEnvVar("REDIS_URL");
 const replica = new URL(REDIS_URL);
-const isLocalHost = replica.hostname === 'localhost';
-const isInternal = replica.hostname.includes('.internal');
+const isLocalHost = replica.hostname === "localhost";
+const isInternal = replica.hostname.includes(".internal");
 
 const isMultiRegion = !isLocalHost && isInternal;
 
 const PRIMARY_REGION = isMultiRegion
-  ? getRequiredServerEnvVar('PRIMARY_REGION')
+  ? getRequiredServerEnvVar("PRIMARY_REGION")
   : null;
-const FLY_REGION = isMultiRegion ? getRequiredServerEnvVar('FLY_REGION') : null;
+const FLY_REGION = isMultiRegion ? getRequiredServerEnvVar("FLY_REGION") : null;
 
 if (FLY_REGION) {
   replica.host = `${FLY_REGION}.${replica.host}`;
 }
 
-const replicaClient = createClient('replicaClient', {
+const replicaClient = createClient("replicaClient", {
   url: replica.toString(),
-  family: isInternal ? 'IPv6' : 'IPv4',
+  family: isInternal ? "IPv6" : "IPv4",
 });
 
 let primaryClient: redis.RedisClient | null = null;
@@ -38,24 +38,24 @@ if (FLY_REGION !== PRIMARY_REGION) {
   if (!isLocalHost) {
     primary.host = `${PRIMARY_REGION}.${primary.host}`;
   }
-  primaryClient = createClient('primaryClient', {
+  primaryClient = createClient("primaryClient", {
     url: primary.toString(),
-    family: isInternal ? 'IPv6' : 'IPv4',
+    family: isInternal ? "IPv6" : "IPv4",
   });
 }
 
 function createClient(
-  name: 'replicaClient' | 'primaryClient',
+  name: "replicaClient" | "primaryClient",
   options: redis.ClientOpts
 ): redis.RedisClient {
   let client = global[name];
   if (!client) {
-    const url = new URL(options.url ?? 'http://no-redis-url.example.com?weird');
+    const url = new URL(options.url ?? "http://no-redis-url.example.com?weird");
     console.log(`Setting up redis client to ${url.host} for ${name}`);
     // eslint-disable-next-line no-multi-assign
     client = global[name] = redis.createClient(options);
 
-    client.on('error', (error: string) => {
+    client.on("error", (error: string) => {
       console.error(`REDIS ${name} (${url.host}) ERROR:`, error);
     });
   }
@@ -79,12 +79,12 @@ function get<Value = unknown>(key: string): Promise<Value | null> {
   });
 }
 
-function set<Value>(key: string, value: Value): Promise<'OK'> {
+function set<Value>(key: string, value: Value): Promise<"OK"> {
   return new Promise((resolve) => {
     replicaClient.set(
       key,
       JSON.stringify(value),
-      (err: Error | null, reply: 'OK') => {
+      (err: Error | null, reply: "OK") => {
         if (err)
           console.error(
             `REDIS replicaClient (${FLY_REGION}) ERROR with .set:`,
@@ -101,7 +101,7 @@ function del(key: string): Promise<string> {
     // fire and forget on primary, we only care about replica
     primaryClient?.del(key, (err: Error | null) => {
       if (err) {
-        console.error('Primary delete error', err);
+        console.error("Primary delete error", err);
       }
     });
     replicaClient.del(key, (err: Error | null, result: number | null) => {
@@ -110,7 +110,7 @@ function del(key: string): Promise<string> {
           `REDIS replicaClient (${FLY_REGION}) ERROR with .del:`,
           err
         );
-        resolve('error');
+        resolve("error");
       } else {
         resolve(`${key} deleted: ${result}`);
       }
@@ -118,5 +118,5 @@ function del(key: string): Promise<string> {
   });
 }
 
-const redisCache = { get, set, del, name: 'redis' };
+const redisCache = { get, set, del, name: "redis" };
 export { get, set, del, redisCache };
