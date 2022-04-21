@@ -146,9 +146,9 @@ async function queuedCompileMdx<
 
 type MdxPage = {
   code: string;
-  slug: string;
+  // slug: string;
   // editLink: string;
-  readTime?: ReturnType<typeof calculateReadingTime>;
+  // readTime?: ReturnType<typeof calculateReadingTime>;
 
   /**
    * It's annoying that all these are set to optional I know, but there's

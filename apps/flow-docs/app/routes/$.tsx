@@ -1,7 +1,6 @@
-import { useEffect, useRef } from "react";
-import type { LinksFunction, LoaderFunction, MetaFunction } from "remix";
+import type { LoaderFunction, MetaFunction } from "@remix-run/node";
 
-import { useActionData, useLoaderData, redirect } from "remix";
+import { useLoaderData } from "@remix-run/react";
 
 import { getMdxPage, useMdxComponent } from "~/utils/mdx";
 
@@ -36,10 +35,6 @@ export const loader: LoaderFunction = async ({ params, request }) => {
     { request }
   );
 
-  if (!page) {
-    return redirect("/");
-  }
-
   return {
     page,
   };
@@ -50,9 +45,9 @@ export default function () {
   const { code, frontmatter } = data.page;
   const Component = useMdxComponent(code);
   return (
-    <p>
+    <div className="container px-4 mx-auto">
       {JSON.stringify(frontmatter)}
       <Component />
-    </p>
+    </div>
   );
 }
