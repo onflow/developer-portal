@@ -10,43 +10,44 @@ RUN apt-get update && apt-get install -y openssl
 # Install all node_modules, including dev dependencies
 FROM base as deps
 
-WORKDIR /myapp
+WORKDIR /project
 
-ADD package.json package-lock.json ./
+ADD . .
+RUN npm install --production=false
+
+WORKDIR /project/apps/flow-docs
 RUN npm install --production=false
 
 # Setup production node_modules
 FROM base as production-deps
 
-WORKDIR /myapp
+WORKDIR /project
 
-COPY --from=deps /myapp/node_modules /myapp/node_modules
-ADD package.json package-lock.json ./
+COPY --from=deps /project .
+
+RUN npm install --production=false
+RUN npm prune --production
+
+WORKDIR /project/apps/flow-docs
+RUN npm install --production=false
 RUN npm prune --production
 
 # Build the app
 FROM base as build
 
-WORKDIR /myapp
+WORKDIR /project
 
-COPY --from=deps /myapp/node_modules /myapp/node_modules
+COPY --from=production-deps /project .
 
-ADD prisma .
+WORKDIR /project/apps/flow-docs
 RUN npx prisma generate
-
-ADD . .
-RUN npm run build
+RUN npx nx build flow-docs
 
 # Finally, build the production image with minimal footprint
 FROM base
 
-WORKDIR /myapp
-
-COPY --from=production-deps /myapp/node_modules /myapp/node_modules
-COPY --from=build /myapp/node_modules/.prisma /myapp/node_modules/.prisma
-
-COPY --from=build /myapp/build /myapp/build
-COPY --from=build /myapp/public /myapp/public
-ADD . .
+WORKDIR /project
+COPY --from=production-deps /project .
+WORKDIR /project/apps/flow-docs
 
 CMD ["npm", "start"]

@@ -31,6 +31,10 @@
     "@storybook/manager-webpack5": "~6.4.12",
     "@storybook/react": "~6.4.12",
     "@svgr/webpack": "^5.4.0",
+    "@tailwindcss/aspect-ratio": "^0.4.0",
+    "@tailwindcss/forms": "^0.5.0",
+    "@tailwindcss/line-clamp": "^0.3.1",
+    "@tailwindcss/typography": "^0.5.2",
     "@testing-library/react": "12.1.4",
     "@testing-library/react-hooks": "7.0.2",
     "@types/jest": "27.0.2",
@@ -76,3 +80,4 @@
     "tslib": "^2.0.0"
   }
 }
+

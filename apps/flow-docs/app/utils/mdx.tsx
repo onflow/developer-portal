@@ -1,4 +1,8 @@
-import * as mdxBundler from "mdx-bundler/client";
+import React from "react";
+
+import { getMDXComponent } from "mdx-bundler/client";
+
+import type { LoaderData as RootLoaderData } from "../root";
 
 import {
   cachified,
@@ -7,10 +11,7 @@ import {
   downloadDirList,
   downloadMdxFileOrDirectory,
 } from "~/utils/cms";
-
 import type { Timings, MdxPage, MdxListItem, GitHubFile } from "~/utils/cms";
-
-import type { LoaderData as RootLoaderData } from "../root";
 
 function typedBoolean<T>(
   value: T
@@ -84,16 +85,17 @@ async function getMdxPage(
 }
 
 async function getMdxPagesInDirectory(
-  contentDir: string,
+  repo: string,
+  fileOrDirPath: string,
   options: CachifiedOptions
 ) {
-  const dirList = await getMdxDirList(contentDir, options);
+  const dirList = await getMdxDirList(repo, fileOrDirPath, options);
 
   // our octokit throttle plugin will make sure we don't hit the rate limit
   const pageDatas = await Promise.all(
     dirList.map(async ({ slug }) => {
       return {
-        ...(await downloadMdxFilesCached(contentDir, slug, options)),
+        ...(await downloadMdxFilesCached(repo, fileOrDirPath, options)),
         slug,
       };
     })
@@ -101,7 +103,7 @@ async function getMdxPagesInDirectory(
 
   const pages = await Promise.all(
     pageDatas.map((pageData) =>
-      compileMdxCached({ contentDir, ...pageData, options })
+      compileMdxCached({ repo, fileOrDirPath, ...pageData, options })
     )
   );
   return pages.filter(typedBoolean);
@@ -109,15 +111,19 @@ async function getMdxPagesInDirectory(
 
 const getDirListKey = (contentDir: string) => `${contentDir}:dir-list`;
 
-async function getMdxDirList(contentDir: string, options?: CachifiedOptions) {
+async function getMdxDirList(
+  repo: string,
+  fileOrDirPath: string,
+  options?: CachifiedOptions
+) {
   return cachified({
     cache: redisCache,
     maxAge: defaultMaxAge,
     ...options,
-    key: getDirListKey(contentDir),
+    key: getDirListKey(fileOrDirPath),
     checkValue: (value: unknown) => Array.isArray(value),
     getFreshValue: async () => {
-      const fullContentDirPath = `content/${contentDir}`;
+      const fullContentDirPath = `docs/${fileOrDirPath}`;
       const dirList = (await downloadDirList(repo, fullContentDirPath))
         .map(({ name, path }) => ({
           name,
@@ -273,7 +279,7 @@ const mdxComponents = {};
  * @returns the component
  */
 function getMdxComponent(code: string) {
-  const Component = mdxBundler.getMDXComponent(code);
+  const Component = getMDXComponent(code);
   function MdxComponent({
     components,
     ...rest
