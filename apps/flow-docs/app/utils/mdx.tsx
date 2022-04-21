@@ -302,4 +302,5 @@ export {
   mapFromMdxPageToMdxListItem,
   mdxPageMeta,
   useMdxComponent,
+  getDirListKey,
 };
