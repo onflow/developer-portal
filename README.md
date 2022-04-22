@@ -6,16 +6,22 @@ Flow Documentaion CMS Monorepo
 
 ---
 
+## Before you start
+
+Be sure to look through the [[WIP] Design Document for this project](https://www.notion.so/dapperlabs/New-Docs-Site-Technical-Requirements-87d502531e484735853e88e02902de25#659da2b42ca840a980e951d85d5e93fa)
+
+---
+
 # Development
 
-### Install Dependencies
+### Install dependencies
 
 This project requires the following on your system for local development:
 -  Install [Docker](https://docs.docker.com/get-docker/)
 -  Install [NodeJS](https://nodejs.org/en/download/) v16.x or above
 -  Install [NX](https://nx.dev/) Monorepo tool: `npm install -g nx`
 
-## Up and Running
+## Up and running
 
 1) From the root of the project run `npm install --legacy-peer-deps`
 2) cd into `/apps/flow-docs` and run:
@@ -38,12 +44,12 @@ All the following `nx` commands in this doc should be run from the monorepo's **
 Remix is the full-stack JS framework used to develop the site.
 Read more here: https://remix.run/docs/en/v1
 
-## Writing UI Components in Storybook
+## Writing UI components in Storybook
 
 The UI is developed in a second project in the monrepo located at [`/libs/design-system`](https://github.com/onflow/next-docs-v1/tree/main/libs/design-system)
 - Run `nx run design-system:storybook` to launch the Storybook UI and begin developing components
 
-#### Using Components from the Design System Project
+#### Using components from the design system project
 
 
 To import components from the `design-system` into the `flow-docs` project:
