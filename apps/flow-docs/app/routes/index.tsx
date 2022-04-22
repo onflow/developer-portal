@@ -14,9 +14,7 @@ export default function Index() {
             </div>
             <div className="relative px-4 pt-16 pb-8 lg:pb-18 sm:px-6 sm:pt-24 sm:pb-14 lg:px-8 lg:pt-32">
               <h1 className="text-6xl font-extrabold tracking-tight text-center sm:text-8xl lg:text-9xl">
-                <span className="block text-blue-500 uppercase drop-shadow-md">
-                  Blues Stack
-                </span>
+                Blues Stack
               </h1>
               <p className="max-w-lg mx-auto mt-6 text-xl text-center text-white sm:max-w-3xl">
                 Check the README.md file for instructions on how to get this
