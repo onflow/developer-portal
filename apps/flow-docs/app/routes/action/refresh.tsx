@@ -7,8 +7,12 @@ import { getMdxPage } from "~/cms/utils/mdx";
 import { redisCache } from "~/cms/redis.server";
 
 type Body =
-  // | { keys: Array<string>; commitSha?: string }
-  { repo: string; contentPaths: Array<string>; commitSha?: string };
+  | { keys: Array<string>; commitSha?: string }
+  | {
+      repo: string;
+      contentPaths: Array<string>;
+      commitSha?: string;
+    };
 
 export const commitShaKey = `meta:last-refresh-commit-sha`;
 
@@ -35,19 +39,19 @@ export const action: ActionFunction = async ({ request }) => {
     }
   }
 
-  // if ("keys" in body && Array.isArray(body.keys)) {
-  //   for (const key of body.keys) {
-  //     void redisCache.del(key);
-  //   }
+  if ("keys" in body && Array.isArray(body.keys)) {
+    for (const key of body.keys) {
+      void redisCache.del(key);
+    }
 
-  //   setShaInRedis();
+    setShaInRedis();
 
-  //   return json({
-  //     message: "Deleting redis cache keys",
-  //     keys: body.keys,
-  //     commitSha: body.commitSha,
-  //   });
-  // }
+    return json({
+      message: "Deleting redis cache keys",
+      keys: body.keys,
+      commitSha: body.commitSha,
+    });
+  }
 
   if ("contentPaths" in body && Array.isArray(body.contentPaths)) {
     console.log("Refreshing content...");
