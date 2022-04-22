@@ -2,9 +2,9 @@ import path from "path";
 import * as React from "react";
 import { json, redirect } from "@remix-run/node";
 import type { ActionFunction } from "@remix-run/node";
-import { getMdxPage } from "~/utils/mdx";
+import { getMdxPage } from "~/cms/utils/mdx";
 // import { getRequiredServerEnvVar } from "~/utils/cms/helpers";
-import { redisCache } from "~/utils/cms/redis.server";
+import { redisCache } from "~/cms/redis.server";
 
 type Body =
   // | { keys: Array<string>; commitSha?: string }

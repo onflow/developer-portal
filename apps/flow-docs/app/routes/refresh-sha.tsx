@@ -1,5 +1,5 @@
 import type { LoaderFunction } from "remix";
-import { redisCache } from "~/utils/cms/redis.server";
+import { redisCache } from "~/cms/redis.server";
 import { commitShaKey as refreshCacheCommitShaKey } from "./action/refresh";
 
 export const loader: LoaderFunction = async ({ request, params }) => {
