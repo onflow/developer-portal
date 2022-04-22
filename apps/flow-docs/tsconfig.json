@@ -15,7 +15,8 @@
     "strict": true,
     "baseUrl": ".",
     "paths": {
-      "~/*": ["./app/*"]
+      "~/*": ["./app/*"],
+      "@flow-docs/ui": ["../../libs/design-system/src"],
     },
 
     "skipLibCheck": true,

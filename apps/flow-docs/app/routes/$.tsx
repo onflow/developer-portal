@@ -4,7 +4,7 @@ import { useLoaderData } from "@remix-run/react";
 
 import { getMdxPage, useMdxComponent } from "~/cms/utils/mdx";
 
-function getCOntentPathForSlug(slug: string | undefined): [string, string] {
+function getContentPathForSlug(slug: string | undefined): [string, string] {
   if (!slug) return ["", ""];
   const repo = slug.split("/")[0];
   const fileOrDirPath = slug.split("/").slice(1).join("/");
@@ -26,7 +26,7 @@ export const meta: MetaFunction = () => {
 // Use this function to provide data for the route.
 // - https://remix.run/api/conventions#loader
 export const loader: LoaderFunction = async ({ params, request }) => {
-  const [repo, fileOrDirPath] = getCOntentPathForSlug(params["*"]);
+  const [repo, fileOrDirPath] = getContentPathForSlug(params["*"]);
   const page = await getMdxPage(
     {
       repo,
@@ -45,7 +45,7 @@ export default function () {
   const { code, frontmatter } = data.page;
   const Component = useMdxComponent(code);
   return (
-    <div className="container mx-auto px-4">
+    <div className="container px-4 mx-auto">
       {JSON.stringify(frontmatter)}
       <Component />
     </div>
