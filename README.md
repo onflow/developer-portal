@@ -2,7 +2,7 @@
 
 # FlowDocs
 
-Flow Documentaion CMS Monorepo
+Flow Documentation Site CMS Monorepo
 
 ---
 
