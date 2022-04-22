@@ -2,7 +2,7 @@ import React from "react";
 
 import { getMDXComponent } from "mdx-bundler/client";
 
-import type { LoaderData as RootLoaderData } from "../root";
+import type { LoaderData as RootLoaderData } from "../../root";
 
 import {
   cachified,
@@ -10,8 +10,8 @@ import {
   compileMdx,
   downloadDirList,
   downloadMdxFileOrDirectory,
-} from "~/utils/cms";
-import type { Timings, MdxPage, MdxListItem, GitHubFile } from "~/utils/cms";
+} from "~/cms";
+import type { Timings, MdxPage, MdxListItem, GitHubFile } from "~/cms";
 
 function typedBoolean<T>(
   value: T

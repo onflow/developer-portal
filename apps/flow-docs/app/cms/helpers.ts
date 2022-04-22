@@ -1,4 +1,4 @@
-import type { getEnv } from './env.server';
+import type { getEnv } from "../env.server";
 
 function getRequiredEnvVarFromObj(
   obj: Record<string, string | undefined>,
@@ -10,7 +10,7 @@ function getRequiredEnvVarFromObj(
   const envVal = obj[key];
   if (envVal) {
     value = envVal;
-  } else if (obj['NODE_ENV'] === 'production') {
+  } else if (obj["NODE_ENV"] === "production") {
     throw new Error(`${key} is a required env variable`);
   }
   return value;
