@@ -59,6 +59,11 @@ module.exports = {
         },
       },
     },
+    extend: {
+      colors: {
+        primary: '#3B3CFF',
+      },
+    },
   },
   variants: {
     extend: {},
