@@ -1,17 +1,15 @@
-import React from "react";
-
+import { Heading, HeadingProps, Link } from "@flow-docs/ui";
 import { getMDXComponent } from "mdx-bundler/client";
-
-import type { LoaderData as RootLoaderData } from "../../root";
-
+import React from "react";
+import type { GitHubFile, MdxListItem, MdxPage, Timings } from "~/cms";
 import {
   cachified,
-  redisCache,
   compileMdx,
   downloadDirList,
   downloadMdxFileOrDirectory,
+  redisCache,
 } from "~/cms";
-import type { Timings, MdxPage, MdxListItem, GitHubFile } from "~/cms";
+import type { LoaderData as RootLoaderData } from "../../root";
 
 function typedBoolean<T>(
   value: T
@@ -272,7 +270,16 @@ function mapFromMdxPageToMdxListItem(page: MdxPage): MdxListItem {
   return mdxListItem;
 }
 
-const mdxComponents = {};
+const mdxComponents = {
+  a: Link,
+  h1: (props: HeadingProps) => <Heading type="h1" {...props} />,
+  h2: (props: HeadingProps) => <Heading type="h2" {...props} />,
+  h3: (props: HeadingProps) => <Heading type="h3" {...props} />,
+  h4: (props: HeadingProps) => <Heading type="h4" {...props} />,
+  h5: (props: HeadingProps) => <Heading type="h5" {...props} />,
+  h6: (props: HeadingProps) => <Heading type="h6" {...props} />,
+};
+
 /**
  * This should be rendered within a useMemo
  * @param code the code to get the component from
@@ -284,9 +291,7 @@ function getMdxComponent(code: string) {
     components,
     ...rest
   }: Parameters<typeof Component>["0"]) {
-    return (
-      <Component components={{ ...mdxComponents, ...components }} {...rest} />
-    );
+    return <Component components={mdxComponents} {...rest} />;
   }
   return MdxComponent;
 }

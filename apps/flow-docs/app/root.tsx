@@ -55,7 +55,7 @@ function App() {
   const [theme] = useTheme();
 
   return (
-    <html lang="en" className={clsx(theme ?? "", "h-full")}>
+    <html lang="en" className={clsx("h-fullaa", theme ?? "")}>
       <head>
         <Meta />
         <Links />
@@ -63,7 +63,7 @@ function App() {
       </head>
       <body
         className={clsx(
-          "h-full bg-white text-gray-800 dark:bg-gray-900 dark:text-gray-200"
+          "h-full bg-white text-gray-900 dark:bg-gray-900 dark:text-gray-200"
         )}
       >
         <MainNav />
