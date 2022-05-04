@@ -1,15 +1,15 @@
-import { Heading, HeadingProps, Link } from "@flow-docs/ui";
-import { getMDXComponent } from "mdx-bundler/client";
-import React from "react";
-import type { GitHubFile, MdxListItem, MdxPage, Timings } from "~/cms";
+import { Heading, HeadingProps, Link } from "@flow-docs/ui"
+import { getMDXComponent } from "mdx-bundler/client"
+import React from "react"
+import type { GitHubFile, MdxListItem, MdxPage, Timings } from "~/cms"
 import {
   cachified,
   compileMdx,
   downloadDirList,
   downloadMdxFileOrDirectory,
-  redisCache,
-} from "~/cms";
-import type { LoaderData as RootLoaderData } from "../../root";
+  redisCache
+} from "~/cms"
+import type { LoaderData as RootLoaderData } from "../../root"
 
 function typedBoolean<T>(
   value: T
@@ -308,4 +308,5 @@ export {
   mdxPageMeta,
   useMdxComponent,
   getDirListKey,
-};
+}
+
