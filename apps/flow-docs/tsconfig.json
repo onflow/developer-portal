@@ -16,7 +16,7 @@
     "baseUrl": ".",
     "paths": {
       "~/*": ["./app/*"],
-      "@flow-docs/ui": ["../../libs/design-system/src"],
+      "@flow-docs/ui": ["../../libs/design-system/src"]
     },
 
     "skipLibCheck": true,
