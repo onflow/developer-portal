@@ -701,10 +701,6 @@ select {
   margin-right: auto;
 }
 
-.mr-1 {
-  margin-right: 0.25rem;
-}
-
 .mt-6 {
   margin-top: 1.5rem;
 }
@@ -731,6 +727,18 @@ select {
 
 .mr-3 {
   margin-right: 0.75rem;
+}
+
+.ml-0\.5 {
+  margin-left: 0.125rem;
+}
+
+.ml-0 {
+  margin-left: 0px;
+}
+
+.mr-1 {
+  margin-right: 0.25rem;
 }
 
 .mt-16 {
@@ -815,6 +823,11 @@ select {
 
 .border-solid {
   border-style: solid;
+}
+
+.border-primary {
+  --tw-border-opacity: 1;
+  border-color: rgb(59 60 255 / var(--tw-border-opacity));
 }
 
 .bg-gray-100 {
@@ -921,6 +934,11 @@ select {
   letter-spacing: -0.025em;
 }
 
+.text-primary {
+  --tw-text-opacity: 1;
+  color: rgb(59 60 255 / var(--tw-text-opacity));
+}
+
 .text-gray-900 {
   --tw-text-opacity: 1;
   color: rgb(17 24 39 / var(--tw-text-opacity));
@@ -956,6 +974,38 @@ select {
   transition-property: color, background-color, border-color, text-decoration-color, fill, stroke, opacity, box-shadow, transform, filter, backdrop-filter, -webkit-text-decoration-color, -webkit-backdrop-filter;
   transition-timing-function: cubic-bezier(0.4, 0, 0.2, 1);
   transition-duration: 150ms;
+}
+
+@import './mdx';
+
+/* MDX styles. TODO: move to ./mdx.css and nest under .mdx-content */
+
+ul {
+  padding-left: 1rem;
+}
+
+ul li {
+  position: relative;
+}
+
+ul li::before {
+  content: '';
+  position: absolute;
+  left: -1rem;
+  top: 0.625rem;
+  height: 0.25rem;
+  width: 0.25rem;
+  --tw-bg-opacity: 1;
+  background-color: rgb(55 65 81 / var(--tw-bg-opacity));
+}
+
+ol {
+  list-style-type: decimal;
+  padding-left: 1rem;
+}
+
+p {
+  margin-bottom: 1rem;
 }
 
 .hover\:bg-gray-200:hover {
