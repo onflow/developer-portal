@@ -1,15 +1,15 @@
-import { Heading, HeadingProps, Link } from "@flow-docs/ui"
-import { getMDXComponent } from "mdx-bundler/client"
-import React from "react"
-import type { GitHubFile, MdxListItem, MdxPage, Timings } from "~/cms"
+import { Heading, HeadingProps, Link } from "@flow-docs/ui";
+import { getMDXComponent } from "mdx-bundler/client";
+import React from "react";
+import type { GitHubFile, MdxListItem, MdxPage, Timings } from "~/cms";
 import {
   cachified,
   compileMdx,
   downloadDirList,
   downloadMdxFileOrDirectory,
-  redisCache
-} from "~/cms"
-import type { LoaderData as RootLoaderData } from "../../root"
+  redisCache,
+} from "~/cms";
+import type { LoaderData as RootLoaderData } from "../../root";
 
 function typedBoolean<T>(
   value: T
@@ -58,7 +58,6 @@ async function getMdxPage(
         fileOrDirPath,
         options
       );
-
       const compiledPage = await compileMdxCached({
         repo,
         fileOrDirPath,
@@ -291,7 +290,11 @@ function getMdxComponent(code: string) {
     components,
     ...rest
   }: Parameters<typeof Component>["0"]) {
-    return <Component components={mdxComponents} {...rest} />;
+    return (
+      <div className="mdx-content">
+        <Component components={mdxComponents} {...rest} />
+      </div>
+    );
   }
   return MdxComponent;
 }
@@ -308,5 +311,4 @@ export {
   mdxPageMeta,
   useMdxComponent,
   getDirListKey,
-}
-
+};
