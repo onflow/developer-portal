@@ -1,13 +1,14 @@
 /// <reference types="node" />
 
-import { Octokit as createOctokit } from "@octokit/rest";
 import { throttling } from "@octokit/plugin-throttling";
-
+import { Octokit as createOctokit } from "@octokit/rest";
 import nodePath from "path";
 
 type GitHubFile = { path: string; content: string };
 
 const Octokit = createOctokit.plugin(throttling);
+
+const OWNER = process.env.GITHUB_REPO_OWNER || "onflow";
 
 type ThrottleOptions = {
   method: string;
@@ -139,7 +140,7 @@ async function downloadFileBySha(sha: string) {
   const { data } = await octokit.request(
     "GET /repos/{owner}/{repo}/git/blobs/{file_sha}",
     {
-      owner: "onflow",
+      owner: OWNER,
       repo: "cadence",
       file_sha: sha,
     }
@@ -153,7 +154,7 @@ async function downloadFile(path: string) {
   const { data } = (await octokit.request(
     "GET /repos/{owner}/{repo}/contents/{path}",
     {
-      owner: "onflow",
+      owner: OWNER,
       repo: "cadence",
       path,
     }
@@ -178,7 +179,7 @@ async function downloadFile(path: string) {
  */
 async function downloadDirList(repo: string, path: string) {
   const resp = await octokit.repos.getContent({
-    owner: "onflow",
+    owner: OWNER,
     repo,
     path,
   });
