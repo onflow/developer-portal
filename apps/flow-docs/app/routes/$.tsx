@@ -30,7 +30,7 @@ export const loader: LoaderFunction = async ({ params, request }) => {
       repo,
       fileOrDirPath,
     },
-    { request }
+    { request, forceFresh: process.env.FORCE_REFRESH === "true" }
   );
 
   return {
