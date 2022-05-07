@@ -2,18 +2,25 @@ import clsx from 'clsx';
 import ExternalLinkIcon from './ExternalLinkIcon';
 
 const defaultClasses =
-  'relative border-b border-b-1 border-primary border-solid text-primary inline-flex items-center hover:opacity-75';
+  'relative text-primary inline-flex items-center hover:opacity-75';
 
 type LinkProps = React.DetailedHTMLProps<
   React.HTMLAttributes<HTMLAnchorElement> & {
     href?: string;
+    'data-footnote-ref'?: boolean;
   },
   HTMLAnchorElement
 >;
 
-export function Link({ children, className, href, ...props }: LinkProps) {
+export function Link({ children, className, id, href, ...props }: LinkProps) {
   const isExternal = href?.match(/^(www|http)/i);
-  const classes = clsx(defaultClasses, className);
+  const isFootnote = !!props['data-footnote-ref'];
+
+  const classes = clsx(defaultClasses, className, {
+    'border-b border-b-1 border-primary border-solid': !isFootnote,
+    'ml-0.5': isFootnote,
+  });
+
   if (isExternal) {
     return (
       <a
@@ -35,7 +42,7 @@ export function Link({ children, className, href, ...props }: LinkProps) {
 
   return (
     <a href={href} {...props} className={classes}>
-      <span className="mr-1">{children}</span>
+      <span className="mr-1">{isFootnote ? <>[{children}]</> : children}</span>
     </a>
   );
 }
