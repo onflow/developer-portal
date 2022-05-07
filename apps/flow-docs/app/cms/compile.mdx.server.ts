@@ -1,19 +1,12 @@
 // TODO: Replace this with Prism post MVP
 import { remarkCodeBlocksShiki } from "@kentcdodds/md-temp";
-
 import remarkEmbedder from "@remark-embedder/core";
 import oembedTransformer from "@remark-embedder/transformer-oembed";
-
-import { bundleMDX } from "mdx-bundler";
-
-import type * as U from "unified";
-
 import type * as H from "hast";
-
-import calculateReadingTime from "reading-time";
-
+import { bundleMDX } from "mdx-bundler";
 import type TPQueue from "p-queue";
-
+import calculateReadingTime from "reading-time";
+import type * as U from "unified";
 import type { GitHubFile } from "./github.server";
 
 function handleEmbedderError({ url }: { url: string }) {
@@ -84,9 +77,8 @@ async function compileMdx<FrontmatterType extends Record<string, unknown>>(
       mdxOptions(options) {
         options.remarkPlugins = [
           ...(options.remarkPlugins ?? []),
-          remarkSlug,
-          [remarkAutolinkHeadings, { behavior: "wrap" }],
           gfm,
+          remarkSlug,
           ...remarkPlugins,
         ];
         options.rehypePlugins = [
