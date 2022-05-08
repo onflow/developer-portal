@@ -14,7 +14,7 @@ import {
   useLoaderData,
 } from "@remix-run/react";
 import clsx from "clsx";
-import { getThemeSession } from "~/utils/theme.server";
+import { getThemeSession } from "~/utils/Theme.server";
 import MainNav from "./components/MainNav";
 import { getUser } from "./session.server";
 import tailwindStylesheetUrl from "./styles/tailwind.css";
@@ -55,7 +55,7 @@ function App() {
   const [theme] = useTheme();
 
   return (
-    <html lang="en" className={clsx("h-fullaa", theme ?? "")}>
+    <html lang="en" className={clsx("h-full", theme ?? "")}>
       <head>
         <Meta />
         <Links />

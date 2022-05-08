@@ -1,4 +1,10 @@
-import { Heading, HeadingProps, Link } from "@flow-docs/ui";
+import {
+  getHeadingsFromMdxComponent,
+  Heading,
+  HeadingProps,
+  InternalToc,
+  Link,
+} from "@flow-docs/ui";
 import { getMDXComponent } from "mdx-bundler/client";
 import React from "react";
 import type { GitHubFile, MdxListItem, MdxPage, Timings } from "~/cms";
@@ -284,23 +290,28 @@ const mdxComponents = {
  * @param code the code to get the component from
  * @returns the component
  */
-function getMdxComponent(code: string) {
+function getMdxComponent({ code, frontmatter }: MdxPage) {
   const Component = getMDXComponent(code);
+  const headings = getHeadingsFromMdxComponent(Component);
+
   function MdxComponent({
     components,
     ...rest
   }: Parameters<typeof Component>["0"]) {
     return (
-      <div className="mdx-content">
-        <Component components={mdxComponents} {...rest} />
+      <div className="flex flex-row">
+        <div className="mdx-content ml-16 mr-8 w-auto">
+          <Component components={mdxComponents} {...rest} />
+        </div>
+        {frontmatter.showToc && <InternalToc headings={headings} />}
       </div>
     );
   }
   return MdxComponent;
 }
 
-function useMdxComponent(code: string) {
-  return React.useMemo(() => getMdxComponent(code), [code]);
+function useMdxComponent(page: MdxPage) {
+  return React.useMemo(() => getMdxComponent(page), [page]);
 }
 
 export {

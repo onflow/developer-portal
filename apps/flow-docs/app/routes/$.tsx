@@ -42,15 +42,12 @@ export const loader: LoaderFunction = async ({ params, request }) => {
 
 export default function () {
   const data = useLoaderData();
-  const { code, frontmatter } = data.page;
+  const { code } = data.page;
   const Component = useMdxComponent(code);
   return (
     <div className="flex flex-col md:flex-row">
       <InternalSidebar config={TEMP_SIDEBAR_CONFIG} />
-      <div className="ml-16 w-auto">
-        {JSON.stringify(frontmatter)}
-        <Component />
-      </div>
+      <Component />
     </div>
   );
 }
