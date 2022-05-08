@@ -736,6 +736,10 @@ select {
   margin-top: 4rem;
 }
 
+.mt-16 {
+  margin-top: 4rem;
+}
+
 .ml-16 {
   margin-left: 4rem;
 }
@@ -778,6 +782,10 @@ select {
 
 .h-8 {
   height: 2rem;
+}
+
+.h-auto {
+  height: auto;
 }
 
 .h-full {
@@ -1085,6 +1093,11 @@ select {
 .text-sm {
   font-size: 0.875rem;
   line-height: 1.25rem;
+}
+
+.text-2xs {
+  font-size: 0.625rem;
+  line-height: 1rem;
 }
 
 .text-2xs {
