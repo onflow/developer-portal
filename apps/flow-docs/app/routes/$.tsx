@@ -1,6 +1,8 @@
+import { InternalSidebar } from "@flow-docs/ui";
 import type { LoaderFunction, MetaFunction } from "@remix-run/node";
 import { useLoaderData } from "@remix-run/react";
 import { getMdxPage, useMdxComponent } from "~/cms/utils/mdx";
+import { TEMP_SIDEBAR_CONFIG } from "../../../../libs/design-system/src/lib/InternalSidebar/InternalSidebar";
 
 function getContentPathForSlug(slug: string | undefined): [string, string] {
   if (!slug) return ["", ""];
@@ -43,9 +45,12 @@ export default function () {
   const { code, frontmatter } = data.page;
   const Component = useMdxComponent(code);
   return (
-    <div className="container mx-auto px-4">
-      {JSON.stringify(frontmatter)}
-      <Component />
+    <div className="flex flex-col md:flex-row">
+      <InternalSidebar config={TEMP_SIDEBAR_CONFIG} />
+      <div className="ml-16 w-auto">
+        {JSON.stringify(frontmatter)}
+        <Component />
+      </div>
     </div>
   );
 }
