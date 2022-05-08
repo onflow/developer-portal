@@ -13,7 +13,7 @@ export default {
 
 const Template: Story<InternalSidebarProps> = (args) => (
   <MemoryRouter>
-    <InternalSidebar config={args['config']} />
+    <InternalSidebar {...args} />
   </MemoryRouter>
 );
 
