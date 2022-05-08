@@ -24,3 +24,11 @@ ol {
 p {
   @apply mb-4;
 }
+
+blockquote {
+  @apply border-l-4 border-l-gray-400 px-6 py-2 dark:border-l-gray-700;
+}
+
+blockquote p {
+  @apply m-0;
+}
