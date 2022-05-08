@@ -47,12 +47,8 @@ async function compileMdx<FrontmatterType extends Record<string, unknown>>(
   slug: string,
   githubFiles: Array<GitHubFile>
 ) {
-  const { default: remarkAutolinkHeadings } = await import(
-    "remark-autolink-headings"
-  );
   const { default: remarkSlug } = await import("remark-slug");
   const { default: gfm } = await import("remark-gfm");
-
   const indexRegex = new RegExp(`${slug}\\/index.mdx?$`);
   const indexFile = githubFiles.find(({ path }) => indexRegex.test(path));
 
@@ -135,6 +131,36 @@ async function queuedCompileMdx<
   return result;
 }
 
+export type MdxFrontmatter = {
+  // archived?: boolean;
+  draft?: boolean;
+  title?: string;
+  description?: string;
+  date?: string;
+  // meta?: {
+  //   keywords?: Array<string>;
+  // };
+
+  // Post meta
+  // categories?: Array<string>;
+  // bannerBlurDataUrl?: string;
+  // bannerCloudinaryId?: string;
+  // bannerCredit?: string;
+  // bannerAlt?: string;
+  // bannerTitle?: string;
+  // socialImageTitle?: string;
+  // socialImagePreTitle?: string;
+  showToc?: boolean;
+  // translations?: Array<{
+  //   language: string;
+  //   link: string;
+  //   author?: {
+  //     name: string;
+  //     link?: string;
+  //   };
+  // }>;
+};
+
 type MdxPage = {
   code: string;
   // slug: string;
@@ -148,34 +174,7 @@ type MdxPage = {
    * the app or build. So we're going to force you to handle situations when
    * these values are missing to avoid runtime errors.
    */
-  frontmatter: {
-    // archived?: boolean;
-    draft?: boolean;
-    title?: string;
-    description?: string;
-    date?: string;
-    // meta?: {
-    //   keywords?: Array<string>;
-    // };
-
-    // Post meta
-    // categories?: Array<string>;
-    // bannerBlurDataUrl?: string;
-    // bannerCloudinaryId?: string;
-    // bannerCredit?: string;
-    // bannerAlt?: string;
-    // bannerTitle?: string;
-    // socialImageTitle?: string;
-    // socialImagePreTitle?: string;
-    // translations?: Array<{
-    //   language: string;
-    //   link: string;
-    //   author?: {
-    //     name: string;
-    //     link?: string;
-    //   };
-    // }>;
-  };
+  frontmatter: MdxFrontmatter;
 };
 
 /**
