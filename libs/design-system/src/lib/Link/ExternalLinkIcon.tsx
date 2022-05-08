@@ -8,7 +8,6 @@ function ExternalLinkIcon() {
       viewBox="0 0 19 18"
     >
       <path
-        stroke="#3B3CFF"
         strokeLinecap="round"
         strokeLinejoin="round"
         strokeWidth="1.4"

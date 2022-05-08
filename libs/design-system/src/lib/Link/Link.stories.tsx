@@ -1,17 +1,26 @@
 import { Meta, Story } from '@storybook/react';
-import { Link } from './Link';
+import { MemoryRouter } from 'react-router';
+import { Link, LinkProps } from './Link';
 
 export default {
   component: Link,
   title: 'Link',
 } as Meta;
 
-const Template: Story = (args) => <Link {...args} />;
+const Template: Story<LinkProps> = (args) => (
+  <MemoryRouter>
+    <Link {...args} />
+  </MemoryRouter>
+);
 
-export const Primary = Template.bind({});
+export const ExternalLink = Template.bind({});
+ExternalLink.args = {
+  href: 'http://www.example.com',
+  children: 'External Link',
+};
 
-Primary.args = {
-  children: () => `- List item
-- List item
-- List item`,
+export const InternalLink = Template.bind({});
+InternalLink.args = {
+  href: '/internal-link',
+  children: 'Internal Link',
 };

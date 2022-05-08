@@ -1,5 +1,4 @@
 import { Meta, Story } from '@storybook/react';
-import { Paragraph } from '../Paragraph/Paragraph';
 import { Heading, HeadingProps } from './Heading';
 
 export default {
@@ -11,7 +10,7 @@ const Template: Story<HeadingProps> = (args) => {
   return (
     <div style={{ padding: 40 }}>
       <Heading {...args} />
-      <Paragraph>Paragraph</Paragraph>
+      <p>Paragraph</p>
     </div>
   );
 };

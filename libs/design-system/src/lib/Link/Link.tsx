@@ -1,10 +1,11 @@
+import { Link as RemixLink } from '@remix-run/react';
 import clsx from 'clsx';
 import ExternalLinkIcon from './ExternalLinkIcon';
 
 const defaultClasses =
-  'relative text-primary inline-flex items-center hover:opacity-75';
+  'relative text-primary inline-flex items-center dark:text-gray-200 hover:opacity-75';
 
-type LinkProps = React.DetailedHTMLProps<
+export type LinkProps = React.DetailedHTMLProps<
   React.HTMLAttributes<HTMLAnchorElement> & {
     href?: string;
     'data-footnote-ref'?: boolean;
@@ -17,17 +18,17 @@ export function Link({ children, className, id, href, ...props }: LinkProps) {
   const isFootnote = !!props['data-footnote-ref'];
 
   const classes = clsx(defaultClasses, className, {
-    'border-b border-b-1 border-primary border-solid': !isFootnote,
+    'border-b border-b-1 border-primary dark:border-gray-200 stroke-primary dark:stroke-gray-200 border-solid':
+      !isFootnote,
     'ml-0.5': isFootnote,
   });
 
   if (isExternal) {
     return (
-      <a
-        href={href}
+      <RemixLink
         target="blank"
         rel="noreferrer"
-        {...props}
+        to={href || ''}
         className={classes}
       >
         <span className="pr-3.5">{children}</span>
@@ -36,13 +37,13 @@ export function Link({ children, className, id, href, ...props }: LinkProps) {
             <ExternalLinkIcon />
           </span>
         )}
-      </a>
+      </RemixLink>
     );
   }
 
   return (
-    <a href={href} {...props} className={classes}>
+    <RemixLink className={classes} to={href || '/'}>
       <span className="mr-1">{isFootnote ? <>[{children}]</> : children}</span>
-    </a>
+    </RemixLink>
   );
 }

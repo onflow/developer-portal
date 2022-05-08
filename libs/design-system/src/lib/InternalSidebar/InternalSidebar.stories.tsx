@@ -1,0 +1,24 @@
+import { Meta, Story } from '@storybook/react';
+import { MemoryRouter } from 'react-router';
+import {
+  InternalSidebar,
+  InternalSidebarProps,
+  TEMP_SIDEBAR_CONFIG,
+} from './InternalSidebar';
+
+export default {
+  component: InternalSidebar,
+  title: 'InternalSidebar',
+} as Meta;
+
+const Template: Story<InternalSidebarProps> = (args) => (
+  <MemoryRouter>
+    <InternalSidebar config={args['config']} />
+  </MemoryRouter>
+);
+
+export const Primary = Template.bind({});
+
+Primary.args = {
+  config: TEMP_SIDEBAR_CONFIG,
+};
