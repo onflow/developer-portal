@@ -1139,6 +1139,25 @@ p {
   margin-bottom: 1rem;
 }
 
+blockquote {
+  border-left-width: 4px;
+  --tw-border-opacity: 1;
+  border-left-color: rgb(156 163 175 / var(--tw-border-opacity));
+  padding-left: 1.5rem;
+  padding-right: 1.5rem;
+  padding-top: 0.5rem;
+  padding-bottom: 0.5rem;
+}
+
+.dark blockquote {
+  --tw-border-opacity: 1;
+  border-left-color: rgb(55 65 81 / var(--tw-border-opacity));
+}
+
+blockquote p {
+  margin: 0px;
+}
+
 .last\:border-b-0:last-child {
   border-bottom-width: 0px;
 }
