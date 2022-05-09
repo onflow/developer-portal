@@ -1,6 +1,9 @@
 export { Attribution } from './lib/Components/Attribution/Attribution';
 export { Heading, HeadingProps } from './lib/Components/Heading/Heading';
-export { InternalSidebar } from './lib/Components/InternalSidebar/InternalSidebar';
+export {
+  InternalSidebar,
+  TEMP_SIDEBAR_CONFIG,
+} from './lib/Components/InternalSidebar/InternalSidebar';
 export {
   getHeadingsFromMdxComponent,
   InternalToc,
