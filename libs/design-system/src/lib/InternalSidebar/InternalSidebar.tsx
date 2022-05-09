@@ -72,9 +72,9 @@ export function InternalSidebar({ config }: InternalSidebarProps) {
                 key={item.label}
                 className={({ isActive }) =>
                   clsx(
-                    'mb-1 block rounded-md px-2 py-1.5 text-sm text-gray-600 hover:opacity-75 dark:text-gray-200',
+                    'text-brand-gray-400 mb-1 block rounded-md px-2 py-1.5 text-sm hover:opacity-75 dark:text-gray-200',
                     {
-                      'bg-gray-200 bg-opacity-50 text-primary dark:bg-gray-700 dark:text-gray-300':
+                      'bg-gray-200 bg-opacity-50 text-blue dark:bg-gray-700 dark:text-gray-300':
                         isActive,
                     }
                   )
