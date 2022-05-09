@@ -8,7 +8,7 @@ import {
 
 export default {
   component: InternalSidebar,
-  title: 'InternalSidebar',
+  title: 'Components/InternalSidebar',
 } as Meta;
 
 const Template: Story<InternalSidebarProps> = (args) => (

@@ -3,7 +3,7 @@ import { Attribution, AttributionProps } from './Attribution';
 
 export default {
   component: Attribution,
-  title: 'Attribution',
+  title: 'Components/Attribution',
 } as Meta;
 
 const Template: Story<AttributionProps> = (args) => <Attribution {...args} />;
