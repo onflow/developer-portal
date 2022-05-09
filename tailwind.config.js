@@ -35,7 +35,6 @@ module.exports = {
     },
     extend: {
       colors: {
-        primary: '#3B3CFF',
         green: '#00EF8B',
         blue: '#3B3CFF',
         purple: '#A269FF',
@@ -51,6 +50,13 @@ module.exports = {
         'pink-dark': '#F4C6FB',
         'red-error-dark': '#F67D65',
         'green-success-dark': '#7AFFC',
+        'brand-gray': {
+          50: '#F6F7F9',
+          100: '#DEE2E9',
+          200: '#ABB3BF',
+          300: '#69717E',
+          400: '#2F353F',
+        },
       },
     },
   },
