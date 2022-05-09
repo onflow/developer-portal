@@ -37,7 +37,7 @@ ul.contains-task-list {
   @apply pl-0;
 }
 
-ul li::before {
+ul.contains-task-list li::before {
   @apply invisible;
 }
 

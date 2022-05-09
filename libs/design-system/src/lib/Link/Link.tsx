@@ -25,19 +25,14 @@ export function Link({ children, className, id, href, ...props }: LinkProps) {
 
   if (isExternal) {
     return (
-      <RemixLink
-        target="blank"
-        rel="noreferrer"
-        to={href || ''}
-        className={classes}
-      >
+      <a target="blank" rel="noreferrer" href={href || ''} className={classes}>
         <span className="pr-3.5">{children}</span>
         {isExternal && (
           <span className="absolute -right-2">
             <ExternalLinkIcon />
           </span>
         )}
-      </RemixLink>
+      </a>
     );
   }
 
