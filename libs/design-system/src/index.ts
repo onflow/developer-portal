@@ -6,4 +6,8 @@ export {
   InternalToc,
 } from './lib/InternalToc/InternalToc';
 export { Link } from './lib/Link/Link';
+export {
+  InputProps,
+  StaticCheckbox,
+} from './lib/StaticCheckbox/StaticCheckbox';
 export * from './lib/test-component/test-component';
