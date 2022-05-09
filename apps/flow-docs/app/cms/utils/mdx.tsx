@@ -2,8 +2,10 @@ import {
   getHeadingsFromMdxComponent,
   Heading,
   HeadingProps,
+  InputProps,
   InternalToc,
   Link,
+  StaticCheckbox,
 } from "@flow-docs/ui";
 import { getMDXComponent } from "mdx-bundler/client";
 import React from "react";
@@ -277,6 +279,12 @@ function mapFromMdxPageToMdxListItem(page: MdxPage): MdxListItem {
 
 const mdxComponents = {
   a: Link,
+  input: (props: InputProps) =>
+    props.type === "checkbox" ? (
+      <StaticCheckbox {...props} />
+    ) : (
+      <input {...props} />
+    ),
   h1: (props: HeadingProps) => <Heading type="h1" {...props} />,
   h2: (props: HeadingProps) => <Heading type="h2" {...props} />,
   h3: (props: HeadingProps) => <Heading type="h3" {...props} />,

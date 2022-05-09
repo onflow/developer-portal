@@ -32,3 +32,19 @@ blockquote {
 blockquote p {
   @apply m-0;
 }
+
+ul.contains-task-list {
+  @apply pl-0;
+}
+
+ul li::before {
+  @apply invisible;
+}
+
+ul.contains-task-list {
+  @apply mb-3;
+}
+
+.task-list-item {
+  @apply relative mt-3 pl-8;
+}

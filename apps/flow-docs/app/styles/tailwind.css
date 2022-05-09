@@ -639,6 +639,10 @@ select {
   --tw-backdrop-sepia:  ;
 }
 
+.invisible {
+  visibility: hidden;
+}
+
 .absolute {
   position: absolute;
 }
@@ -656,6 +660,10 @@ select {
   top: 0px;
   right: 0px;
   bottom: 0px;
+  left: 0px;
+}
+
+.left-0 {
   left: 0px;
 }
 
@@ -1156,6 +1164,24 @@ blockquote {
 
 blockquote p {
   margin: 0px;
+}
+
+ul.contains-task-list {
+  padding-left: 0px;
+}
+
+ul li::before {
+  visibility: hidden;
+}
+
+ul.contains-task-list {
+  margin-bottom: 0.75rem;
+}
+
+.task-list-item {
+  position: relative;
+  margin-top: 0.75rem;
+  padding-left: 2rem;
 }
 
 .last\:border-b-0:last-child {
