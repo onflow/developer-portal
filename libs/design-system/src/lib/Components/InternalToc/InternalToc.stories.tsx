@@ -4,7 +4,7 @@ import { InternalToc, InternalTocProps } from './InternalToc';
 
 export default {
   component: InternalToc,
-  title: 'InternalToc',
+  title: 'Components/InternalToc',
 } as Meta;
 
 const Template: Story<InternalTocProps> = (args) => (
