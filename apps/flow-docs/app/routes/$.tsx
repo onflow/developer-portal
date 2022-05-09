@@ -2,7 +2,8 @@ import { InternalSidebar } from "@flow-docs/ui";
 import type { LoaderFunction, MetaFunction } from "@remix-run/node";
 import { useLoaderData } from "@remix-run/react";
 import { getMdxPage, useMdxComponent } from "~/cms/utils/mdx";
-import { TEMP_SIDEBAR_CONFIG } from "../../../../libs/design-system/src/lib/InternalSidebar/InternalSidebar";
+
+import { TEMP_SIDEBAR_CONFIG } from "@flow-docs/ui/lib/Components/InternalSidebar/InternalSidebar";
 
 import { TEMP_SIDEBAR_CONFIG } from "@flow-docs/ui";
 
