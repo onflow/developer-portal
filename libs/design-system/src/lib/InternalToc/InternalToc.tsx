@@ -44,9 +44,9 @@ export function InternalToc({ headings }: InternalTocProps) {
               <NavLink
                 to={path}
                 className={clsx(
-                  'mb-1 py-2 px-5 text-sm text-gray-600 hover:opacity-75 dark:text-gray-200',
+                  'text-brand-gray-400 mb-1 py-2 px-5 text-sm hover:opacity-75 dark:text-gray-200',
                   {
-                    'bg-gray-100 bg-opacity-75 font-semibold text-primary dark:bg-gray-800 dark:text-gray-300':
+                    'bg-gray-100 bg-opacity-75 font-semibold text-blue dark:bg-gray-800 dark:text-gray-300':
                       hash === path,
                   }
                 )}
