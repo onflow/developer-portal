@@ -38,10 +38,14 @@ ul.contains-task-list {
 }
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 ul.contains-task-list li::before {
 =======
 ul li::before {
 >>>>>>> Style task list
+=======
+ul.contains-task-list li::before {
+>>>>>>> Attribution component
   @apply invisible;
 }
 
