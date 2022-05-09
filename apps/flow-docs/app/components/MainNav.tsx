@@ -8,9 +8,11 @@ export default function MainNav() {
   };
 
   return (
-    <nav className="">
-      <div>flow docks</div>
-      <button onClick={toggleTheme}>Toggle Dark Mode</button>
+    <nav className="flex py-6 px-4">
+      <div>flow docs</div>
+      <button onClick={toggleTheme} className="ml-auto">
+        Toggle Dark Mode
+      </button>
     </nav>
   );
 }

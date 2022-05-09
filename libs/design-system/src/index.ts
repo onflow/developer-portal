@@ -1,4 +1,5 @@
 export * from './lib/another-component/another-component';
+export { Attribution } from './lib/Attribution/Attribution';
 export { Heading, HeadingProps } from './lib/Heading/Heading';
 export { InternalSidebar } from './lib/InternalSidebar/InternalSidebar';
 export {
