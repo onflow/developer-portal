@@ -3,7 +3,7 @@ import { InputProps, StaticCheckbox } from './StaticCheckbox';
 
 export default {
   component: StaticCheckbox,
-  title: 'StaticCheckbox',
+  title: 'Components/StaticCheckbox',
 } as Meta;
 
 const Template: Story<InputProps> = (args) => <StaticCheckbox {...args} />;
