@@ -1291,7 +1291,7 @@ ul.contains-task-list {
   background-color: rgb(55 65 81 / var(--tw-bg-opacity));
 }
 
-@media (min-width: 640px) {
+@media (min-width: 375px) {
   .sm\:flex {
     display: flex;
   }
@@ -1379,7 +1379,7 @@ ul.contains-task-list {
   }
 }
 
-@media (min-width: 1024px) {
+@media (min-width: 1440px) {
   .lg\:flex {
     display: flex;
   }
