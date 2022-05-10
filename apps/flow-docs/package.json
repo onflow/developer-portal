@@ -67,8 +67,8 @@
     "remark-gfm": "^3.0.1",
     "remark-parse": "^10.0.1",
     "remark-rehype": "^10.1.0",
-    "remix": "*",
     "remark-slug": "^7.0.1",
+    "remix": "*",
     "tiny-invariant": "^1.2.0",
     "unified": "^10.1.2",
     "unist-util-visit": "^4.1.0"
