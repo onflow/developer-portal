@@ -49,7 +49,7 @@ function createClient(
 
 function get<Value = unknown>(key: string): Promise<Value | null> {
   return new Promise((resolve) => {
-    primaryClient.get(key, (err: Error | null, result: string | null) => {
+    primaryClient.json.get(key, (err: Error | null, result: string | null) => {
       if (err) {
         console.error(`REDIS ERROR with .get:`, err);
       }
@@ -60,9 +60,10 @@ function get<Value = unknown>(key: string): Promise<Value | null> {
 
 function set<Value>(key: string, value: Value): Promise<"OK"> {
   return new Promise((resolve) => {
-    primaryClient.set(
+    primaryClient.json.set(
       key,
-      JSON.stringify(value),
+      "$",
+      value,
       (err: Error | null, reply: "OK") => {
         if (err) console.error(`REDIS ERROR with .set:`, err);
         resolve(reply);
