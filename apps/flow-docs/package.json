@@ -71,7 +71,8 @@
     "remix": "*",
     "tiny-invariant": "^1.2.0",
     "unified": "^10.1.2",
-    "unist-util-visit": "^4.1.0"
+    "unist-util-visit": "^4.1.0",
+    "@flow-docs/ui": "../../libs/design-system/dist"
   },
   "devDependencies": {
     "@faker-js/faker": "^6.1.1",
