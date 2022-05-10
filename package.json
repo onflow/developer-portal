@@ -24,6 +24,7 @@
     "@nrwl/workspace": "13.10.0",
     "@nxext/vitest": "^13.0.1",
     "@remix-run/dev": "^1.0.6",
+    "@remix-run/eslint-config": "^1.4.3",
     "@storybook/addon-essentials": "~6.4.12",
     "@storybook/addon-postcss": "^2.0.0",
     "@storybook/builder-webpack5": "~6.4.12",
@@ -71,10 +72,16 @@
     "libs/*"
   ],
   "dependencies": {
+    "@remix-run/express": "^1.4.3",
+    "@remix-run/node": "^1.4.3",
+    "@remix-run/react": "^1.4.3",
+    "@remix-run/serve": "^1.4.3",
+    "@remix-run/server-runtime": "^1.4.3",
     "core-js": "^3.6.5",
     "react": "^17.0.2",
     "react-dom": "^17.0.2",
     "regenerator-runtime": "0.13.7",
+    "remix": "^1.4.3",
     "tslib": "^2.0.0"
   }
 }

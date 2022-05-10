@@ -278,7 +278,7 @@ function mapFromMdxPageToMdxListItem(page: MdxPage): MdxListItem {
 }
 
 const mdxComponents = {
-  a: () => <Link />,
+  a: Link,
   input: (props: InputProps) =>
     props.type === "checkbox" ? (
       <StaticCheckbox {...props} />
