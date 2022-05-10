@@ -1,4 +1,4 @@
-import { NavLink } from '@remix-run/node';
+import { NavLink } from '@remix-run/react';
 import clsx from 'clsx';
 import ExternalLinkIcon from './ExternalLinkIcon';
 
@@ -37,8 +37,8 @@ export function Link({ children, className, id, href, ...props }: LinkProps) {
   }
 
   return (
-    <NavLink className={classes} to={href || '/'}>
-      <span className="mr-1">{isFootnote ? <>[{children}]</> : children}</span>
-    </NavLink>
+    // <NavLink className={classes} to={href || '/'}>
+    <span className="mr-1">{isFootnote ? <>[{children}]</> : children}</span>
+    // </NavLink>
   );
 }

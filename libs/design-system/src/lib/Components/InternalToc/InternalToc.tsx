@@ -25,11 +25,11 @@ export function getHeadingsFromMdxComponent(
 }
 
 export function InternalToc({ headings }: InternalTocProps) {
-  // const [hash, setHash] = useState('');
-  // const location = useLocation();
-  // useEffect(() => {
-  //   setHash(location.hash);
-  // }, [location.hash]);
+  const [hash, setHash] = useState('');
+  const location = useLocation();
+  useEffect(() => {
+    setHash(location.hash);
+  }, [location.hash]);
 
   return (
     <div className="sticky top-0 ml-auto hidden h-auto w-[220px] shrink-0 flex-col self-start pt-4 lg:flex">
@@ -47,7 +47,7 @@ export function InternalToc({ headings }: InternalTocProps) {
                   'mb-1 py-2 px-5 text-sm text-brand-gray-400 hover:opacity-75 dark:text-gray-200',
                   {
                     'bg-gray-100 bg-opacity-75 font-semibold text-blue dark:bg-gray-800 dark:text-gray-300':
-                      undefined === path,
+                      hash === path,
                   }
                 )}
               >
