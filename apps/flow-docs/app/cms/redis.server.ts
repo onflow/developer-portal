@@ -26,6 +26,10 @@ primaryClient = createClient("primaryClient", {
   family: isInternal ? "IPv6" : "IPv4",
 });
 
+primaryClient.on("connect", function () {
+  console.log("Connected Redis");
+});
+
 function createClient(
   name: "replicaClient" | "primaryClient",
   options: redis.ClientOpts
@@ -49,7 +53,7 @@ function createClient(
 
 function get<Value = unknown>(key: string): Promise<Value | null> {
   return new Promise((resolve) => {
-    primaryClient.json.get(key, (err: Error | null, result: string | null) => {
+    primaryClient.get(key, (err: Error | null, result: string | null) => {
       if (err) {
         console.error(`REDIS ERROR with .get:`, err);
       }
@@ -60,10 +64,9 @@ function get<Value = unknown>(key: string): Promise<Value | null> {
 
 function set<Value>(key: string, value: Value): Promise<"OK"> {
   return new Promise((resolve) => {
-    primaryClient.json.set(
+    primaryClient.set(
       key,
-      "$",
-      value,
+      JSON.stringify(value),
       (err: Error | null, reply: "OK") => {
         if (err) console.error(`REDIS ERROR with .set:`, err);
         resolve(reply);
