@@ -312,9 +312,6 @@ function getMdxComponent({ code, frontmatter }: MdxPage) {
           <Component components={mdxComponents} {...rest} />
         </div>
         {frontmatter.showToc && <InternalToc headings={headings} />}
-        <div className="mdx-content">
-          <Component components={mdxComponents} {...rest} />
-        </div>
       </div>
     );
   }

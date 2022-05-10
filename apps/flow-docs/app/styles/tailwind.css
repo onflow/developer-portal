@@ -609,6 +609,7 @@ select {
   --tw-ring-shadow: 0 0 #0000;
   --tw-shadow: 0 0 #0000;
   --tw-shadow-colored: 0 0 #0000;
+<<<<<<< HEAD
   --tw-blur: var(--tw-empty,/*!*/ /*!*/);
   --tw-brightness: var(--tw-empty,/*!*/ /*!*/);
   --tw-contrast: var(--tw-empty,/*!*/ /*!*/);
@@ -619,6 +620,26 @@ select {
   --tw-sepia: var(--tw-empty,/*!*/ /*!*/);
   --tw-drop-shadow: var(--tw-empty,/*!*/ /*!*/);
   --tw-filter: var(--tw-blur) var(--tw-brightness) var(--tw-contrast) var(--tw-grayscale) var(--tw-hue-rotate) var(--tw-invert) var(--tw-saturate) var(--tw-sepia) var(--tw-drop-shadow);
+=======
+  --tw-blur:  ;
+  --tw-brightness:  ;
+  --tw-contrast:  ;
+  --tw-grayscale:  ;
+  --tw-hue-rotate:  ;
+  --tw-invert:  ;
+  --tw-saturate:  ;
+  --tw-sepia:  ;
+  --tw-drop-shadow:  ;
+  --tw-backdrop-blur:  ;
+  --tw-backdrop-brightness:  ;
+  --tw-backdrop-contrast:  ;
+  --tw-backdrop-grayscale:  ;
+  --tw-backdrop-hue-rotate:  ;
+  --tw-backdrop-invert:  ;
+  --tw-backdrop-opacity:  ;
+  --tw-backdrop-saturate:  ;
+  --tw-backdrop-sepia:  ;
+>>>>>>> 34bcfa5032e972a60fe71effbe55ba552c100780
 }
 
 .invisible {
@@ -811,11 +832,19 @@ select {
 .scale-75 {
   --tw-scale-x: .75;
   --tw-scale-y: .75;
+<<<<<<< HEAD
   transform: var(--tw-transform);
 }
 
 .transform {
   transform: var(--tw-transform);
+=======
+  transform: translate(var(--tw-translate-x), var(--tw-translate-y)) rotate(var(--tw-rotate)) skewX(var(--tw-skew-x)) skewY(var(--tw-skew-y)) scaleX(var(--tw-scale-x)) scaleY(var(--tw-scale-y));
+}
+
+.transform {
+  transform: translate(var(--tw-translate-x), var(--tw-translate-y)) rotate(var(--tw-rotate)) skewX(var(--tw-skew-x)) skewY(var(--tw-skew-y)) scaleX(var(--tw-scale-x)) scaleY(var(--tw-scale-y));
+>>>>>>> 34bcfa5032e972a60fe71effbe55ba552c100780
 }
 
 .flex-row {
@@ -932,6 +961,10 @@ select {
 .object-cover {
   -o-object-fit: cover;
   object-fit: cover;
+}
+
+.p-8 {
+  padding: 2rem;
 }
 
 .p-8 {
@@ -1128,6 +1161,75 @@ select {
   transition-duration: 150ms;
 }
 
+@import './mdx';
+
+/* MDX styles. TODO: move to ./mdx.css and nest under .mdx-content */
+
+ul {
+  padding-left: 1rem;
+}
+
+ul li {
+  position: relative;
+}
+
+ul li::before {
+  content: '';
+  position: absolute;
+  left: -1rem;
+  top: 0.625rem;
+  height: 0.25rem;
+  width: 0.25rem;
+  --tw-bg-opacity: 1;
+  background-color: rgb(55 65 81 / var(--tw-bg-opacity));
+}
+
+ol {
+  list-style-type: decimal;
+  padding-left: 1rem;
+}
+
+p {
+  margin-bottom: 1rem;
+}
+
+blockquote {
+  border-left-width: 4px;
+  --tw-border-opacity: 1;
+  border-left-color: rgb(156 163 175 / var(--tw-border-opacity));
+  padding-left: 1.5rem;
+  padding-right: 1.5rem;
+  padding-top: 0.5rem;
+  padding-bottom: 0.5rem;
+}
+
+.dark blockquote {
+  --tw-border-opacity: 1;
+  border-left-color: rgb(55 65 81 / var(--tw-border-opacity));
+}
+
+blockquote p {
+  margin: 0px;
+}
+
+ul.contains-task-list {
+  padding-left: 0px;
+}
+
+ul.contains-task-list li::before {
+  visibility: hidden;
+}
+
+ul.contains-task-list {
+  margin-bottom: 0.75rem;
+}
+
+.task-list-item {
+  position: relative;
+  margin-top: 0.75rem;
+  padding-left: 2rem;
+}
+
 .last\:border-b-0:last-child {
   border-bottom-width: 0px;
 }
@@ -1149,6 +1251,35 @@ select {
 .focus\:grayscale-0:focus {
   --tw-grayscale: grayscale(0);
   filter: var(--tw-filter);
+}
+
+.group:hover .group-hover\:visible {
+  visibility: visible;
+}
+
+.dark .dark\:border-gray-200 {
+  --tw-border-opacity: 1;
+  border-color: rgb(229 231 235 / var(--tw-border-opacity));
+}
+
+.dark .dark\:border-b-gray-700 {
+  --tw-border-opacity: 1;
+  border-bottom-color: rgb(55 65 81 / var(--tw-border-opacity));
+}
+
+.dark .dark\:border-l-gray-800 {
+  --tw-border-opacity: 1;
+  border-left-color: rgb(31 41 55 / var(--tw-border-opacity));
+}
+
+.dark .dark\:bg-gray-800 {
+  --tw-bg-opacity: 1;
+  background-color: rgb(31 41 55 / var(--tw-bg-opacity));
+}
+
+.dark .dark\:bg-gray-700 {
+  --tw-bg-opacity: 1;
+  background-color: rgb(55 65 81 / var(--tw-bg-opacity));
 }
 
 .group:hover .group-hover\:visible {
@@ -1284,7 +1415,11 @@ select {
   .md\:scale-100 {
     --tw-scale-x: 1;
     --tw-scale-y: 1;
+<<<<<<< HEAD
     transform: var(--tw-transform);
+=======
+    transform: translate(var(--tw-translate-x), var(--tw-translate-y)) rotate(var(--tw-rotate)) skewX(var(--tw-skew-x)) skewY(var(--tw-skew-y)) scaleX(var(--tw-scale-x)) scaleY(var(--tw-scale-y));
+>>>>>>> 34bcfa5032e972a60fe71effbe55ba552c100780
   }
 
   .md\:flex-row {
