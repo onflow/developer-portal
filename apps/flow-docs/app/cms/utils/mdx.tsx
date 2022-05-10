@@ -307,22 +307,14 @@ function getMdxComponent({ code, frontmatter }: MdxPage) {
     ...rest
   }: Parameters<typeof Component>["0"]) {
     return (
-<<<<<<< HEAD
-<<<<<<< HEAD
-=======
->>>>>>> Internal table of contents
       <div className="flex flex-row">
         <div className="mdx-content ml-16 mr-8 w-auto">
           <Component components={mdxComponents} {...rest} />
         </div>
         {frontmatter.showToc && <InternalToc headings={headings} />}
-<<<<<<< HEAD
-=======
-      <div className="mdx-content">
-        <Component components={mdxComponents} {...rest} />
->>>>>>> Add mdx content styling, fix remark plugins
-=======
->>>>>>> Internal table of contents
+        <div className="mdx-content">
+          <Component components={mdxComponents} {...rest} />
+        </div>
       </div>
     );
   }

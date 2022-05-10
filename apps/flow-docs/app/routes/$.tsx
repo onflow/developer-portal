@@ -5,8 +5,6 @@ import { getMdxPage, useMdxComponent } from "~/cms/utils/mdx";
 
 import { TEMP_SIDEBAR_CONFIG } from "@flow-docs/ui";
 
-import { TEMP_SIDEBAR_CONFIG } from "@flow-docs/ui";
-
 function getContentPathForSlug(slug: string | undefined): [string, string] {
   if (!slug) return ["", ""];
   const repo = slug.split("/")[0];

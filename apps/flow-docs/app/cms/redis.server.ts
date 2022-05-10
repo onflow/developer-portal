@@ -26,10 +26,6 @@ primaryClient = createClient("primaryClient", {
   family: isInternal ? "IPv6" : "IPv4",
 });
 
-primaryClient.on("connect", function () {
-  console.log("Connected Redis");
-});
-
 function createClient(
   name: "replicaClient" | "primaryClient",
   options: redis.ClientOpts
