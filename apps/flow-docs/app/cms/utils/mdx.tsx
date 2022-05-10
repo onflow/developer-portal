@@ -1,3 +1,5 @@
+import { Link as RemixLink } from "@remix-run/react";
+import type { LinkProps } from "react-router-dom";
 import {
   getHeadingsFromMdxComponent,
   Heading,
@@ -18,6 +20,7 @@ import {
   redisCache,
 } from "~/cms";
 import type { LoaderData as RootLoaderData } from "../../root";
+import { LinkHTMLAttributes } from "react";
 
 function typedBoolean<T>(
   value: T
@@ -278,7 +281,11 @@ function mapFromMdxPageToMdxListItem(page: MdxPage): MdxListItem {
 }
 
 const mdxComponents = {
-  // a: Link,
+  a: (props: LinkProps & { href: string }) => (
+    <RemixLink to={props.href}>
+      <Link {...props} />
+    </RemixLink>
+  ),
   input: (props: InputProps) =>
     props.type === "checkbox" ? (
       <StaticCheckbox {...props} />
