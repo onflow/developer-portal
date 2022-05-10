@@ -1,10 +1,10 @@
 import { Theme, useTheme } from "~/utils/ThemeProvider";
 
 export default function MainNav() {
-  // const [, setTheme] = useTheme();
+  const [, setTheme] = useTheme();
 
   const toggleTheme = () => {
-    // setTheme((prev) => (prev === Theme.LIGHT ? Theme.DARK : Theme.LIGHT));
+    setTheme((prev) => (prev === Theme.LIGHT ? Theme.DARK : Theme.LIGHT));
   };
 
   return (
