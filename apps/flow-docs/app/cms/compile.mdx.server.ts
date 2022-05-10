@@ -81,8 +81,7 @@ async function compileMdx<FrontmatterType extends Record<string, unknown>>(
     const { frontmatter, code } = await bundleMDX({
       source: indexFile.content,
       files,
-      // @ts-expect-error
-      xdmOptions(options) {
+      mdxOptions(options) {
         options.remarkPlugins = [
           ...(options.remarkPlugins ?? []),
           remarkSlug,
