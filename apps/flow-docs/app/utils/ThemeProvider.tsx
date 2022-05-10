@@ -133,14 +133,12 @@ const themeStylesCode = `
       display: none;
     }
   }
-
   /* default light, and no app-preference */
   html:not(.dark) {
     dark-mode {
       display: none;
     }
   }
-
   @media (prefers-color-scheme: dark) {
     /* prefers dark, but app-preference is "light" */
     html.light {
@@ -148,7 +146,6 @@ const themeStylesCode = `
         display: none;
       }
     }
-
     /* prefers dark, and app-preference is "dark" */
     html.dark,
     /* prefers dark and no app-preference */
