@@ -5,7 +5,6 @@ import {
   Heading,
   HeadingProps,
   InputProps,
-  // InternalToc,
   Link,
   StaticCheckbox,
 } from "@flow-docs/ui";
@@ -20,7 +19,6 @@ import {
   redisCache,
 } from "~/cms";
 import type { LoaderData as RootLoaderData } from "../../root";
-import { LinkHTMLAttributes } from "react";
 
 function typedBoolean<T>(
   value: T
@@ -283,6 +281,7 @@ function mapFromMdxPageToMdxListItem(page: MdxPage): MdxListItem {
 const mdxComponents = {
   a: (props: LinkProps & { href: string }) => (
     <RemixLink to={props.href}>
+      {/* @ts-expect-error: We need to figure out how to type this */}
       <Link {...props} />
     </RemixLink>
   ),
@@ -316,6 +315,7 @@ function getMdxComponent({ code, frontmatter }: MdxPage) {
     return (
       <div className="flex flex-row">
         <div className="w-auto ml-16 mr-8 mdx-content">
+          {/* @ts-expect-error: We need to figure out how to type this */}
           <Component components={mdxComponents} {...rest} />
         </div>
         {frontmatter.showToc && JSON.stringify(headings)}
