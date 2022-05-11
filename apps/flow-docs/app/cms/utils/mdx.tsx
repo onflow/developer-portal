@@ -3,7 +3,6 @@ import {
   Heading,
   HeadingProps,
   InputProps,
-  // InternalToc,
   Link,
   StaticCheckbox,
 } from "@flow-docs/ui";
@@ -282,6 +281,7 @@ function mapFromMdxPageToMdxListItem(page: MdxPage): MdxListItem {
 const mdxComponents = {
   a: (props: LinkProps & { href: string }) => (
     <RemixLink to={props.href}>
+      {/* @ts-expect-error: We need to figure out how to type this */}
       <Link {...props} />
     </RemixLink>
   ),
@@ -314,7 +314,8 @@ function getMdxComponent({ code, frontmatter }: MdxPage) {
   }: Parameters<typeof Component>["0"]) {
     return (
       <div className="flex flex-row">
-        <div className="mdx-content ml-16 mr-8 w-auto">
+        <div className="w-auto ml-16 mr-8 mdx-content">
+          {/* @ts-expect-error: We need to figure out how to type this */}
           <Component components={mdxComponents} {...rest} />
         </div>
         {frontmatter.showToc && JSON.stringify(headings)}
