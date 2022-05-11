@@ -14,7 +14,7 @@ import {
   useLoaderData,
 } from "@remix-run/react";
 import clsx from "clsx";
-import { getThemeSession } from "~/utils/Theme.server";
+import { getThemeSession } from "~/utils/theme.server";
 import MainNav from "./components/MainNav";
 import { getUser } from "./session.server";
 import tailwindStylesheetUrl from "./styles/tailwind.css";

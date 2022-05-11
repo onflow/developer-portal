@@ -40,33 +40,6 @@
         }
       }
     },
-    "build": {
-      "executor": "@nrwl/web:rollup",
-      "outputs": [
-        "{options.outputPath}"
-      ],
-      "options": {
-        "outputPath": "libs/design-system/dist",
-        "tsConfig": "libs/design-system/tsconfig.lib.json",
-        "project": "libs/design-system/package.json",
-        "entryFile": "libs/design-system/src/index.ts",
-        "external": [
-          "react/jsx-runtime"
-        ],
-        "rollupConfig": "@nrwl/react/plugins/bundle-rollup",
-        "compiler": "babel",
-        "assets": [
-          {
-            "glob": "libs/design-system/README.md",
-            "input": ".",
-            "output": "."
-          }
-        ],
-        "format": [
-          "umd"
-        ]
-      }
-    },
     "build-storybook": {
       "executor": "@nrwl/storybook:build",
       "outputs": [
