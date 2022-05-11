@@ -675,22 +675,9 @@ select {
   left: 0px;
 }
 
-.my-4 {
-  margin-top: 1rem;
-  margin-bottom: 1rem;
-}
-
 .mx-auto {
   margin-left: auto;
   margin-right: auto;
-}
-
-.ml-16 {
-  margin-left: 4rem;
-}
-
-.mr-8 {
-  margin-right: 2rem;
 }
 
 .mr-1 {
@@ -745,20 +732,16 @@ select {
   margin-left: 0px;
 }
 
-.mr-12 {
-  margin-right: 3rem;
-}
-
-.mr-4 {
-  margin-right: 1rem;
-}
-
-.mt-2 {
-  margin-top: 0.5rem;
-}
-
 .mt-16 {
   margin-top: 4rem;
+}
+
+.ml-16 {
+  margin-left: 4rem;
+}
+
+.mr-8 {
+  margin-right: 2rem;
 }
 
 .block {
@@ -789,20 +772,16 @@ select {
   height: auto;
 }
 
-.h-16 {
-  height: 4rem;
-}
-
 .h-full {
   height: 100%;
 }
 
-.min-h-screen {
-  min-height: 100vh;
+.h-16 {
+  height: 4rem;
 }
 
-.w-auto {
-  width: auto;
+.min-h-screen {
+  min-height: 100vh;
 }
 
 .w-8 {
@@ -817,12 +796,12 @@ select {
   width: 220px;
 }
 
-.w-16 {
-  width: 4rem;
-}
-
 .w-32 {
   width: 8rem;
+}
+
+.w-auto {
+  width: auto;
 }
 
 .min-w-min {
@@ -901,10 +880,6 @@ select {
   border-radius: 0.375rem;
 }
 
-.rounded-sm {
-  border-radius: 0.125rem;
-}
-
 .border-b {
   border-bottom-width: 1px;
 }
@@ -937,11 +912,6 @@ select {
   border-left-color: rgb(243 244 246 / var(--tw-border-opacity));
 }
 
-.border-b-main-gray-100 {
-  --tw-border-opacity: 1;
-  border-bottom-color: rgb(222 226 233 / var(--tw-border-opacity));
-}
-
 .bg-gray-100 {
   --tw-bg-opacity: 1;
   background-color: rgb(243 244 246 / var(--tw-bg-opacity));
@@ -950,95 +920,6 @@ select {
 .bg-gray-200 {
   --tw-bg-opacity: 1;
   background-color: rgb(229 231 235 / var(--tw-bg-opacity));
-}
-
-.bg-green {
-  --tw-bg-opacity: 1;
-  background-color: rgb(0 239 139 / var(--tw-bg-opacity));
-}
-
-.bg-blue {
-  --tw-bg-opacity: 1;
-  background-color: rgb(59 60 255 / var(--tw-bg-opacity));
-}
-
-.bg-purple {
-  --tw-bg-opacity: 1;
-  background-color: rgb(162 105 255 / var(--tw-bg-opacity));
-}
-
-.bg-yellow {
-  --tw-bg-opacity: 1;
-  background-color: rgb(241 231 42 / var(--tw-bg-opacity));
-}
-
-.bg-pink {
-  --tw-bg-opacity: 1;
-  background-color: rgb(244 198 251 / var(--tw-bg-opacity));
-}
-
-.bg-red {
-  --tw-bg-opacity: 1;
-  background-color: rgb(246 125 101 / var(--tw-bg-opacity));
-}
-
-.bg-red-error {
-  --tw-bg-opacity: 1;
-  background-color: rgb(252 71 35 / var(--tw-bg-opacity));
-}
-
-.bg-green-success {
-  --tw-bg-opacity: 1;
-  background-color: rgb(5 206 122 / var(--tw-bg-opacity));
-}
-
-.bg-gray-400 {
-  --tw-bg-opacity: 1;
-  background-color: rgb(156 163 175 / var(--tw-bg-opacity));
-}
-
-.bg-gray-300 {
-  --tw-bg-opacity: 1;
-  background-color: rgb(209 213 219 / var(--tw-bg-opacity));
-}
-
-.bg-gray-50 {
-  --tw-bg-opacity: 1;
-  background-color: rgb(249 250 251 / var(--tw-bg-opacity));
-}
-
-.bg-blue-hover {
-  --tw-bg-opacity: 1;
-  background-color: rgb(48 49 209 / var(--tw-bg-opacity));
-}
-
-.bg-blue-hover-dark {
-  --tw-bg-opacity: 1;
-  background-color: rgb(161 131 224 / var(--tw-bg-opacity));
-}
-
-.bg-green-dark {
-  --tw-bg-opacity: 1;
-  background-color: rgb(71 255 178 / var(--tw-bg-opacity));
-}
-
-.bg-blue-dark {
-  --tw-bg-opacity: 1;
-  background-color: rgb(183 149 255 / var(--tw-bg-opacity));
-}
-
-.bg-pink-dark {
-  --tw-bg-opacity: 1;
-  background-color: rgb(244 198 251 / var(--tw-bg-opacity));
-}
-
-.bg-red-error-dark {
-  --tw-bg-opacity: 1;
-  background-color: rgb(246 125 101 / var(--tw-bg-opacity));
-}
-
-.bg-green-success-dark {
-  background-color: #7AFFC;
 }
 
 .bg-white {
@@ -1150,14 +1031,6 @@ select {
   padding-right: 0.75rem;
 }
 
-.pt-2 {
-  padding-top: 0.5rem;
-}
-
-.pb-4 {
-  padding-bottom: 1rem;
-}
-
 .pt-16 {
   padding-top: 4rem;
 }
@@ -1168,10 +1041,6 @@ select {
 
 .text-center {
   text-align: center;
-}
-
-.font-mono {
-  font-family: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, "Liberation Mono", "Courier New", monospace;
 }
 
 .text-xs {
@@ -1249,7 +1118,7 @@ select {
   color: rgb(17 24 39 / var(--tw-text-opacity));
 }
 
-.text-main-gray-400 {
+.text-brand-gray-400 {
   --tw-text-opacity: 1;
   color: rgb(47 53 63 / var(--tw-text-opacity));
 }
@@ -1257,11 +1126,6 @@ select {
 .text-blue {
   --tw-text-opacity: 1;
   color: rgb(59 60 255 / var(--tw-text-opacity));
-}
-
-.text-main-gray-300 {
-  --tw-text-opacity: 1;
-  color: rgb(105 113 126 / var(--tw-text-opacity));
 }
 
 .text-white {
@@ -1305,10 +1169,6 @@ select {
   transition-timing-function: cubic-bezier(0.4, 0, 0.2, 1);
   transition-duration: 150ms;
 }
-
-@import './fonts';
-
-@import './colors';
 
 @import './mdx';
 
