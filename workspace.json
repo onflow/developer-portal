@@ -3,6 +3,8 @@
   "projects": {
     "design-system": "libs/design-system",
     "flow-docs": "apps/flow-docs",
-    "flow-docs-e2e": "apps/flow-docs-e2e"
+    "flow-docs-e2e": "apps/flow-docs-e2e",
+    "nft-metadata": "apps/nft-metadata",
+    "nft-metadata-e2e": "apps/nft-metadata-e2e"
   }
 }

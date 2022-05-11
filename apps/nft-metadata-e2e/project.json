@@ -1,0 +1,28 @@
+{
+  "root": "apps/nft-metadata-e2e",
+  "sourceRoot": "apps/nft-metadata-e2e/src",
+  "projectType": "application",
+  "targets": {
+    "e2e": {
+      "executor": "@nrwl/cypress:cypress",
+      "options": {
+        "cypressConfig": "apps/nft-metadata-e2e/cypress.json",
+        "devServerTarget": "nft-metadata:serve"
+      },
+      "configurations": {
+        "production": {
+          "devServerTarget": "nft-metadata:serve:production"
+        }
+      }
+    },
+    "lint": {
+      "executor": "@nrwl/linter:eslint",
+      "outputs": ["{options.outputFile}"],
+      "options": {
+        "lintFilePatterns": ["apps/nft-metadata-e2e/**/*.{js,ts}"]
+      }
+    }
+  },
+  "tags": [],
+  "implicitDependencies": ["nft-metadata"]
+}
