@@ -1,4 +1,5 @@
 const { join } = require('path');
+const defaultTheme = require('tailwindcss/defaultTheme');
 
 module.exports = {
   darkMode: 'class',
@@ -34,6 +35,11 @@ module.exports = {
       xl: '1536px',
     },
     extend: {
+      fontFamily: {
+        sans: ['Acumin Pro', ...defaultTheme.fontFamily.sans],
+        display: 'Termina',
+        mono: 'IBM Plex Mono',
+      },
       colors: {
         green: '#00EF8B',
         blue: '#3B3CFF',
@@ -57,6 +63,17 @@ module.exports = {
           300: '#69717E',
           400: '#2F353F',
         },
+      },
+      spacing: {
+        micro: defaultTheme.spacing['1'],
+        xxs: defaultTheme.spacing['2'],
+        xs: defaultTheme.spacing['4'],
+        s: defaultTheme.spacing['6'],
+        m: defaultTheme.spacing['10'],
+        xl: defaultTheme.spacing['16'],
+        '2xl': defaultTheme.spacing['20'],
+        '3xl': '7.5rem',
+        '4xl': '12.5rem',
       },
     },
   },

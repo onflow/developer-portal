@@ -1,21 +1,60 @@
+@font-face {
+  font-family: 'Acumin Pro';
+  src: local('Acumin Pro'),
+    url(./fonts/acumin-pro/Acumin-RPro.otf) format('opentype');
+}
+
+@font-face {
+  font-family: 'Acumin Pro';
+  src: local('Acumin Pro'),
+    url(./fonts/acumin-pro/Acumin-RPro.otf) format('opentype');
+  font-style: italic;
+}
+
+@font-face {
+  font-family: 'Acumin Pro';
+  src: local('Acumin Pro'),
+    url(./fonts/acumin-pro/Acumin-BdPro.otf) format('opentype');
+  font-weight: 700;
+}
+
+@font-face {
+  font-family: 'Termina';
+  src: local('Termina'),
+    url(./fonts/termina/Termina-Regular.otf) format('opentype');
+}
+
+@font-face {
+  font-family: 'Termina';
+  src: local('Termina'),
+    url(./fonts/termina/Termina-Demi.otf) format('opentype');
+  font-weight: 700;
+}
+
+@font-face {
+  font-family: 'IBM Plex Mono';
+  src: local('IBM Plex Mono'),
+    url(./fonts/ibm-plex/IBMPlexMono-Regular.ttf) format('truetype');
+}
+
 .text-h1 {
-  @apply text-5xl leading-[3.5rem] md:text-7xl md:leading-[5rem];
+  @apply font-display text-5xl font-bold uppercase leading-[3.5rem] md:text-7xl md:leading-[5rem];
 }
 
 .text-h2 {
-  @apply text-2xl leading-[2.25rem] md:text-4xl md:leading-[2.375rem];
+  @apply font-display text-2xl font-bold leading-[2.25rem] md:text-4xl md:leading-[2.375rem];
 }
 
 .text-h3 {
-  @apply text-2xl leading-[2.25rem] md:text-4xl md:font-bold md:leading-[2.375rem];
+  @apply text-2xl font-bold leading-[2.25rem] md:text-4xl md:leading-[2.375rem];
 }
 
 .text-h4 {
-  @apply text-xl leading-[2rem] md:text-4xl md:leading-[2.5rem];
+  @apply font-display text-xl font-bold leading-[2rem] md:text-2xl md:leading-[2.5rem];
 }
 
 .text-h5 {
-  @apply text-xl leading-[2rem] md:text-2xl md:font-bold md:leading-[2rem];
+  @apply text-xl font-bold leading-[2rem] md:text-2xl md:font-semibold md:leading-[2rem];
 }
 
 .text-h6 {

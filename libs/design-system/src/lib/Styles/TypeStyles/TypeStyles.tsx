@@ -1,5 +1,5 @@
 const Section = ({ children }: { children: React.ReactNode }) => (
-  <div className="border-b-1 my-4 border-b border-b-main-gray-100 pt-2 pb-4">
+  <div className="pt-2 pb-4 my-4 border-b border-b-1 border-b-main-gray-100">
     {children}
   </div>
 );
@@ -36,12 +36,12 @@ export function TypeStyles() {
         <div className="text-h6">This is a featured article</div>
       </Section>
       <Section>
-        <Title>Body / Normal / Bold</Title>
-        <div className="font-bold">This is a body text</div>
+        <Title>Body / Normal / Regular</Title>
+        <div className="text-base">This is a body text</div>
       </Section>
       <Section>
         <Title>Body / Normal / Bold</Title>
-        <div className="text-base">This is a body text</div>
+        <div className="text-base font-bold">This is a body text</div>
       </Section>
       <Section>
         <Title>Body / Small / Bold</Title>
