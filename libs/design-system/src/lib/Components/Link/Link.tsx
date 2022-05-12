@@ -12,7 +12,8 @@ export type LinkProps = React.DetailedHTMLProps<
   HTMLAnchorElement
 >;
 
-export function Link({ children, className, id, href, ...props }: LinkProps) {
+//@ts-expect-error: We need to figure out how to type this
+export function Link({ children, className, id, href, ...props }) {
   const isExternal = href?.match(/^(www|http)/i);
   const isFootnote = !!props['data-footnote-ref'];
 

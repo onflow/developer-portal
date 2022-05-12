@@ -4,10 +4,7 @@ export {
   InternalSidebar,
   TEMP_SIDEBAR_CONFIG,
 } from './lib/Components/InternalSidebar/InternalSidebar';
-export {
-  getHeadingsFromMdxComponent,
-  InternalToc,
-} from './lib/Components/InternalToc/InternalToc';
+export { getHeadingsFromMdxComponent } from './lib/Components/InternalToc/InternalToc';
 export { Link } from './lib/Components/Link/Link';
 export {
   InputProps,

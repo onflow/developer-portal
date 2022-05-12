@@ -5,7 +5,7 @@ import {
   Heading,
   HeadingProps,
   InputProps,
-  InternalToc,
+  // InternalToc,
   Link,
   StaticCheckbox,
 } from "@flow-docs/ui";
@@ -315,10 +315,10 @@ function getMdxComponent({ code, frontmatter }: MdxPage) {
   }: Parameters<typeof Component>["0"]) {
     return (
       <div className="flex flex-row">
-        <div className="mdx-content ml-16 mr-8 w-auto">
+        <div className="w-auto ml-16 mr-8 mdx-content">
           <Component components={mdxComponents} {...rest} />
         </div>
-        {frontmatter.showToc && <InternalToc headings={headings} />}
+        {frontmatter.showToc && JSON.stringify(headings)}
       </div>
     );
   }
