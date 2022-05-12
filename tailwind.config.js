@@ -22,7 +22,7 @@ module.exports = {
       '4xl': ['2rem', { lineHeight: '2.25rem' }],
       '5xl': ['3rem', { lineHeight: '1' }],
       '6xl': ['3.75rem', { lineHeight: '1' }],
-      '7xl': ['4', { lineHeight: '1' }],
+      '7xl': ['4rem', { lineHeight: '1' }],
       '8xl': ['6rem', { lineHeight: '1' }],
       '9xl': ['8rem', { lineHeight: '1' }],
     },
@@ -50,7 +50,7 @@ module.exports = {
         'pink-dark': '#F4C6FB',
         'red-error-dark': '#F67D65',
         'green-success-dark': '#7AFFC',
-        'brand-gray': {
+        'main-gray': {
           50: '#F6F7F9',
           100: '#DEE2E9',
           200: '#ABB3BF',

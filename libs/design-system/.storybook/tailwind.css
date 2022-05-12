@@ -1,6 +1,8 @@
 @import 'tailwindcss/base';
 @import 'tailwindcss/components';
 @import 'tailwindcss/utilities';
+@import './fonts';
+@import './colors';
 @import './mdx';
 
 /* MDX styles. TODO: move to ./mdx.css and nest under .mdx-content */
