@@ -1,6 +1,6 @@
 import { Meta, Story } from '@storybook/react';
 import { MemoryRouter } from 'react-router';
-import { Link, LinkProps } from './Link';
+import { Link, LinkProps } from './';
 
 export default {
   component: Link,

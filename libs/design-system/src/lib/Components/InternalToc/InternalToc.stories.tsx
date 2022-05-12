@@ -1,6 +1,6 @@
 import { Meta, Story } from '@storybook/react';
 import { MemoryRouter } from 'react-router';
-import { InternalToc, InternalTocProps } from './InternalToc';
+import { InternalToc, InternalTocProps } from './';
 
 export default {
   component: InternalToc,
