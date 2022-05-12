@@ -9,7 +9,12 @@ module.exports = {
     join(__dirname, 'apps/flow-docs/app/**/!(*.stories|*.spec).{ts,tsx,html}'),
   ],
   theme: {
-    extend: {},
+    extend: {
+      colors: {
+        'grey-2': '#69717E',
+        'grey-3': '#ABB3BFbb',
+      },
+    },
   },
   variants: {
     extend: {},
