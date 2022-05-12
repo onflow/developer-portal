@@ -1,4 +1,3 @@
-import { NavLink } from '@remix-run/react';
 import clsx from 'clsx';
 import { useEffect, useState } from 'react';
 
@@ -42,8 +41,8 @@ export function InternalToc({ headings, location }: InternalTocProps) {
           const path = `#${id}`;
           return (
             <div className="flex" key={id}>
-              <NavLink
-                to={path}
+              <a
+                href={path}
                 className={clsx(
                   'mb-1 py-2 px-5 text-sm text-main-gray-400 hover:opacity-75 dark:text-gray-200',
                   {
@@ -53,7 +52,7 @@ export function InternalToc({ headings, location }: InternalTocProps) {
                 )}
               >
                 {value}
-              </NavLink>
+              </a>
             </div>
           );
         })}
