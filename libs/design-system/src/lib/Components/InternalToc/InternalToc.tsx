@@ -1,8 +1,6 @@
 import { NavLink } from '@remix-run/react';
 import clsx from 'clsx';
-import { MDXContentProps } from 'mdx-bundler/client';
 import { useEffect, useState } from 'react';
-import { useLocation } from 'react-router-dom';
 
 type InternalTocItem = {
   id: string;
@@ -11,10 +9,14 @@ type InternalTocItem = {
 
 export type InternalTocProps = {
   headings: InternalTocItem[];
+  location: URL;
 };
 
 export function getHeadingsFromMdxComponent(
-  Component: React.FunctionComponent<MDXContentProps>
+  Component: React.FunctionComponent<{
+    [props: string]: unknown;
+    components?: import('mdx/types').MDXComponents | undefined;
+  }>
 ) {
   return Component({})
     ?.props.children.filter((c: { type: string }) => c.type === 'h2')
@@ -24,19 +26,18 @@ export function getHeadingsFromMdxComponent(
     }));
 }
 
-export function InternalToc({ headings }: InternalTocProps) {
+export function InternalToc({ headings, location }: InternalTocProps) {
   const [hash, setHash] = useState('');
-  const location = useLocation();
   useEffect(() => {
     setHash(location.hash);
   }, [location.hash]);
 
   return (
     <div className="sticky top-0 ml-auto hidden h-auto w-[220px] shrink-0 flex-col self-start pt-4 lg:flex">
-      <div className="mb-6 px-5 text-2xs uppercase text-gray-500">
+      <div className="px-5 mb-6 text-gray-500 uppercase text-2xs">
         On this page
       </div>
-      <div className="border-l-1 border-l border-l-gray-100 bg-opacity-80 dark:border-l-gray-800">
+      <div className="border-l border-l-1 border-l-gray-100 bg-opacity-80 dark:border-l-gray-800">
         {headings.map(({ id, value }) => {
           const path = `#${id}`;
           return (
