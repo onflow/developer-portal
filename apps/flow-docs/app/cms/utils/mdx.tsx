@@ -1,5 +1,3 @@
-import { Link as RemixLink } from "@remix-run/react";
-import type { LinkProps } from "react-router-dom";
 import {
   getHeadingsFromMdxComponent,
   Heading,
@@ -9,8 +7,10 @@ import {
   Link,
   StaticCheckbox,
 } from "@flow-docs/ui";
+import { Link as RemixLink } from "@remix-run/react";
 import { getMDXComponent } from "mdx-bundler/client";
 import React from "react";
+import type { LinkProps } from "react-router-dom";
 import type { GitHubFile, MdxListItem, MdxPage, Timings } from "~/cms";
 import {
   cachified,
@@ -20,7 +20,6 @@ import {
   redisCache,
 } from "~/cms";
 import type { LoaderData as RootLoaderData } from "../../root";
-import { LinkHTMLAttributes } from "react";
 
 function typedBoolean<T>(
   value: T
@@ -288,7 +287,7 @@ const mdxComponents = {
   ),
   input: (props: InputProps) =>
     props.type === "checkbox" ? (
-      <StaticCheckbox {...props} />
+      <StaticCheckbox {...props} asInternalChecklist={true} />
     ) : (
       <input {...props} />
     ),
@@ -315,7 +314,7 @@ function getMdxComponent({ code, frontmatter }: MdxPage) {
   }: Parameters<typeof Component>["0"]) {
     return (
       <div className="flex flex-row">
-        <div className="w-auto ml-16 mr-8 mdx-content">
+        <div className="mdx-content ml-16 mr-8 w-auto">
           <Component components={mdxComponents} {...rest} />
         </div>
         {frontmatter.showToc && JSON.stringify(headings)}

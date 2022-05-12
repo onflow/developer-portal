@@ -1,5 +1,5 @@
 import { Meta, Story } from '@storybook/react';
-import { InputProps, StaticCheckbox } from './StaticCheckbox';
+import { InputProps, StaticCheckbox } from './';
 
 export default {
   component: StaticCheckbox,
