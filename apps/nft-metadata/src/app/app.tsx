@@ -1,10 +1,7 @@
 // eslint-disable-next-line @typescript-eslint/no-unused-vars
-import {
-  Route,
-  Link
-} from "react-router-dom";
-import Home from '../pages/home';
-import Verifier from '../pages/verifier';
+import '../flow/setup';
+import Home from './pages/home';
+import Verifier from './pages/verifier';
 
 const routes = [
   {

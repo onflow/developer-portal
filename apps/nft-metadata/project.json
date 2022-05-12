@@ -44,7 +44,7 @@
       "executor": "@nrwl/web:dev-server",
       "options": {
         "buildTarget": "nft-metadata:build",
-        "hmr": true
+        "hmr": false
       },
       "configurations": {
         "production": {
