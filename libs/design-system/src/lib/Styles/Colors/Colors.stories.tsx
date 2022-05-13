@@ -1,5 +1,5 @@
 import { Meta, Story } from '@storybook/react';
-import { Colors } from './Colors';
+import { Colors } from './';
 
 export default {
   component: Colors,
