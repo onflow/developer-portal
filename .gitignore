@@ -41,4 +41,6 @@ Thumbs.db
 # Remix files
 apps/**/build
 apps/**/.cache
-  
+
+# Generated Tailwind styles
+apps/flow-docs/app/styles/tailwind.css
