@@ -32,7 +32,7 @@ export function InternalToc({ headings, location }: InternalTocProps) {
   }, [location.hash]);
 
   return (
-    <div className="sticky top-0 ml-auto hidden h-auto w-[220px] shrink-0 flex-col self-start pt-4 lg:flex">
+    <div className="sticky top-0 ml-auto h-auto w-[220px] shrink-0 flex-col self-start pt-4">
       <div className="px-5 mb-6 text-gray-500 uppercase text-2xs">
         On this page
       </div>

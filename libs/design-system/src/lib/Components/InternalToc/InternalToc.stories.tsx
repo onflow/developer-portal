@@ -1,5 +1,4 @@
 import { Meta, Story } from '@storybook/react';
-import { MemoryRouter } from 'react-router';
 import { InternalToc, InternalTocProps } from './';
 
 export default {
@@ -7,11 +6,7 @@ export default {
   title: 'Components/InternalToc',
 } as Meta;
 
-const Template: Story<InternalTocProps> = (args) => (
-  <MemoryRouter>
-    <InternalToc {...args} />
-  </MemoryRouter>
-);
+const Template: Story<InternalTocProps> = (args) => <InternalToc {...args} />;
 
 export const Primary = Template.bind({});
 
@@ -25,4 +20,5 @@ Primary.args = {
     { id: 'table', value: 'Table' },
     { id: 'footnote', value: 'Footnote' },
   ],
+  location: new URL('localhost:4400/#introduction'),
 };
