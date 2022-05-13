@@ -2,7 +2,7 @@ import clsx from 'clsx';
 import ExternalLinkIcon from './ExternalLinkIcon';
 
 const defaultClasses =
-  'relative text-blue inline-flex items-center dark:text-gray-200 hover:opacity-75';
+  'relative text-primary-blue inline-flex items-center dark:text-gray-200 hover:opacity-75';
 
 export type LinkProps = React.DetailedHTMLProps<
   React.HTMLAttributes<HTMLAnchorElement> & {
@@ -18,7 +18,7 @@ export function Link({ children, className, id, href, ...props }) {
   const isFootnote = !!props['data-footnote-ref'];
 
   const classes = clsx(defaultClasses, className, {
-    'border-b border-b-1 border-blue dark:border-gray-200 stroke-blue dark:stroke-gray-200 border-solid':
+    'border-b border-b-1 border-primary-blue dark:border-gray-200 stroke-primary-blue dark:stroke-gray-200 border-solid':
       !isFootnote,
     'ml-0.5': isFootnote,
   });

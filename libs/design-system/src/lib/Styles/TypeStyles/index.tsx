@@ -1,11 +1,11 @@
 const Section = ({ children }: { children: React.ReactNode }) => (
-  <div className="pt-2 pb-4 my-4 border-b border-b-1 border-b-main-gray-100">
+  <div className="pt-2 pb-4 my-4 border-b border-b-1 border-b-primary-gray-100">
     {children}
   </div>
 );
 
 const Title = ({ children }: { children: React.ReactNode }) => (
-  <div className="text-xs text-main-gray-300">{children}</div>
+  <div className="text-xs text-primary-gray-300">{children}</div>
 );
 
 export function TypeStyles() {

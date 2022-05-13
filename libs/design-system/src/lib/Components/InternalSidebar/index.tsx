@@ -56,13 +56,13 @@ export const TEMP_SIDEBAR_CONFIG: InternalSidebarConfig = {
 
 export function InternalSidebar({ config }: InternalSidebarProps) {
   return (
-    <div className="mr-3 mb-8 w-full min-w-min shrink-0 bg-gray-100 bg-opacity-80 p-8 dark:bg-gray-800 md:mb-0 md:w-80">
+    <div className="w-full p-8 mb-8 mr-3 bg-gray-100 min-w-min shrink-0 bg-opacity-80 dark:bg-gray-800 md:mb-0 md:w-80">
       {config.sections.map((section) => (
         <div
-          className="border-b-1 mb-2 border-b border-b-gray-300 py-4 last:border-b-0 dark:border-b-gray-700"
+          className="py-4 mb-2 border-b border-b-1 border-b-gray-300 last:border-b-0 dark:border-b-gray-700"
           key={section.title}
         >
-          <div className="mb-4 text-xs uppercase text-gray-500 dark:text-gray-200">
+          <div className="mb-4 text-xs text-gray-500 uppercase dark:text-gray-200">
             {section.title}
           </div>
           <div className="px-4">
@@ -72,9 +72,9 @@ export function InternalSidebar({ config }: InternalSidebarProps) {
                 key={item.label}
                 className={({ isActive }) =>
                   clsx(
-                    'mb-1 block rounded-md px-2 py-1.5 text-sm text-main-gray-400 hover:opacity-75 dark:text-gray-200',
+                    'mb-1 block rounded-md px-2 py-1.5 text-sm text-primary-gray-400 hover:opacity-75 dark:text-gray-200',
                     {
-                      'bg-gray-200 bg-opacity-50 text-blue dark:bg-gray-700 dark:text-gray-300':
+                      'bg-gray-200 bg-opacity-50 text-primary-blue dark:bg-gray-700 dark:text-gray-300':
                         isActive,
                     }
                   )

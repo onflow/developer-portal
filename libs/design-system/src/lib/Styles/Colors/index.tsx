@@ -1,15 +1,15 @@
 const Section = ({ children }: { children: React.ReactNode }) => (
-  <div className="mb-6 mr-12 flex ">{children}</div>
+  <div className="flex mb-6 mr-12 ">{children}</div>
 );
 
 const Heading = ({ children }: { children: React.ReactNode }) => (
-  <div className="text-h5 mb-4">{children}</div>
+  <div className="mb-4 text-h5">{children}</div>
 );
 
 const Color = ({ name, className }: { name: string; className: string }) => (
-  <div className="mr-4">
-    <div className={`h-16 w-16 rounded-sm ${className}`} />
-    <div className="mt-2 text-main-gray-300">{name}</div>
+  <div className="mr-6">
+    <div className={`h-[6.5rem] w-[6.5rem] rounded-md ${className}`} />
+    <div className="mt-2 text-sm text-primary-gray-300">{name}</div>
   </div>
 );
 
@@ -18,12 +18,12 @@ export function Colors() {
     <div className="">
       <Heading>Primary</Heading>
       <Section>
-        <Color name="green" className="bg-green" />
-        <Color name="blue" className="bg-blue" />
-        <Color name="purple" className="bg-purple" />
-        <Color name="yellow" className="bg-yellow" />
-        <Color name="pink" className="bg-pink" />
-        <Color name="red" className="bg-red" />
+        <Color name="primary-green" className="bg-primary-green" />
+        <Color name="primary-blue" className="bg-primary-blue" />
+        <Color name="primary-purple" className="bg-primary-purple" />
+        <Color name="primary-yellow" className="bg-primary-yellow" />
+        <Color name="primary-pink" className="bg-primary-pink" />
+        <Color name="primary-red" className="bg-primary-red" />
       </Section>
       <Heading>Error/Success</Heading>
       <Section>
@@ -32,11 +32,11 @@ export function Colors() {
       </Section>
       <Heading>Neutrals</Heading>
       <Section>
-        <Color name="gray-400" className="bg-gray-400" />
-        <Color name="gray-300" className="bg-gray-300" />
-        <Color name="gray-200" className="bg-gray-200" />
-        <Color name="gray-100" className="bg-gray-100" />
-        <Color name="gray-50" className="bg-gray-50" />
+        <Color name="primary-gray-50" className="bg-primary-gray-50" />
+        <Color name="primary-gray-100" className="bg-primary-gray-100" />
+        <Color name="primary-gray-200" className="bg-primary-gray-200" />
+        <Color name="primary-gray-300" className="bg-primary-gray-300" />
+        <Color name="primary-gray-400" className="bg-primary-gray-400" />
       </Section>
       <Heading>Button Hovers</Heading>
       <Section>
