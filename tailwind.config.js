@@ -57,6 +57,7 @@ module.exports = {
           300: '#69717E',
           400: '#2F353F',
         },
+        'brand-purple': '#3B3CFF'
       },
     },
   },
