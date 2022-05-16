@@ -6,15 +6,6 @@ export default {
   title: 'Components/Heading',
 } as Meta;
 
-export const parameters = {
-  backgrounds: {
-    values: [
-      { name: 'red', value: '#f00' },
-      { name: 'green', value: '#0f0' },
-    ],
-  },
-};
-
 const Template: Story<HeadingProps> = (args) => {
   return (
     <div style={{ padding: 40 }}>
@@ -37,7 +28,7 @@ H1Mobile.args = {
 };
 H1Mobile.parameters = {
   viewport: {
-    defaultViewport: 'sm',
+    defaultViewport: 'xs',
   },
 };
 

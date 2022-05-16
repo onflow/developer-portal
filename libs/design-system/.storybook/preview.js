@@ -1,6 +1,8 @@
+import React from 'react';
 import '../styles/tailwind.css';
 
 export const parameters = {
+  layout: 'fullscreen',
   viewport: {
     viewports: {
       xs: {
@@ -41,3 +43,14 @@ export const parameters = {
     },
   },
 };
+
+export const decorators = [
+  (Story) => (
+    <div
+      className="text-gray-900 bg-white dark:bg-gray-900 dark:text-gray-200"
+      style={{ height: '100%', minHeight: '100vh', padding: '1rem' }}
+    >
+      <Story />
+    </div>
+  ),
+];
