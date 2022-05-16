@@ -1,10 +1,6 @@
 import { Meta, Story } from '@storybook/react';
 import { MemoryRouter } from 'react-router';
-import {
-  InternalSidebar,
-  InternalSidebarProps,
-  TEMP_SIDEBAR_CONFIG,
-} from './InternalSidebar';
+import { InternalSidebar, InternalSidebarProps, TEMP_SIDEBAR_CONFIG } from './';
 
 export default {
   component: InternalSidebar,
