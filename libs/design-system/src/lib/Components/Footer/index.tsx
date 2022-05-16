@@ -1,5 +1,3 @@
-import { Link } from 'react-router-dom';
-
 import { ReactComponent as FlowDocsLogo } from '../../Images/logos/flow-docs-logo-light.svg';
 import { ReactComponent as GithubIcon } from '../../Images/social/github-light.svg';
 import { ReactComponent as DiscordIcon } from '../../Images/social/discord-light.svg';
@@ -122,21 +120,21 @@ export function Footer() {
           <div>
             <FlowDocsLogo className="h-10 w-min object-contain" />
           </div>
-          <div className="flex items-center justify-start pt-8 lg:justify-center lg:pt-0">
-            <a href="#" className="px-3">
+          <div className="flex items-center justify-start gap-6 pt-8 md:pt-0 lg:justify-center">
+            <a href="#">
               <GithubIcon fill="red" height={32} width={32} />
             </a>
-            <a href="#" className="px-3">
+            <a href="#">
               <DiscordIcon fill="white" height={28} width={28} />
             </a>
-            <a href="#" className="px-3">
+            <a href="#">
               <ForumIcon fill="white" height={24} width={24} />
             </a>
-            <a href="#" className="px-3">
+            <a href="#">
               <OnFlowIcon height={28} width={28} />
             </a>
             <a href="#" className="pl-3">
-              <Link to="#">Eng</Link>
+              Eng
             </a>
           </div>
         </div>
