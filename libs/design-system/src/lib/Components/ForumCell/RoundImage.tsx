@@ -6,9 +6,7 @@ export type RoundImageProps = {
 };
 
 const RoundImage = ({ imageUri, altText }: RoundImageProps) => (
-  <div className="w-9">
-    <img className="rounded-full border-2 border-white" alt={altText} src={imageUri} width={40} height={40} />
-  </div>
+  <img className="rounded-full border-2 border-white" alt={altText} src={imageUri} width={40} height={40} />
 )
 
 export default RoundImage;
