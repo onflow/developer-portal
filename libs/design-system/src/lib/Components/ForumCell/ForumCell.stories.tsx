@@ -8,9 +8,7 @@ export default {
 
 const Template: Story<ForumCellProps> = (args) => {
   return (
-    <div style={{ padding: 40, backgroundColor: 'lightgrey' }}>
-      <ForumCell {...args} />
-    </div>
+    <ForumCell {...args} />
   );
 };
 
@@ -26,14 +24,14 @@ Primary.args = {
     },
     {
       profilePicture: 'https://github.githubassets.com/images/modules/logos_page/GitHub-Mark.png',
-      name: 'Marky Mark'
+      name: 'Marky Mark 2'
     },
     {
       profilePicture: 'https://github.githubassets.com/images/modules/logos_page/GitHub-Mark.png',
-      name: 'Marky Mark'
+      name: 'Marky Mark 3'
     }, {
       profilePicture: 'https://github.githubassets.com/images/modules/logos_page/GitHub-Mark.png',
-      name: 'Marky Mark'
+      name: 'Marky Mark 4'
     }
   ]
 };

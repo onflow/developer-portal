@@ -8,9 +8,7 @@ export default {
 
 const Template: Story<NetworkCardProps> = (args) => {
   return (
-    <div style={{ padding: 40, backgroundColor: 'lightgrey' }}>
-      <NetworkCard {...args} />
-    </div>
+    <NetworkCard {...args} />
   );
 };
 

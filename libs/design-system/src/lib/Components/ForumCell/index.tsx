@@ -16,16 +16,16 @@ export type ForumCellProps = {
 
 const ForumCell = ({ heading, subheading, participants, numComments }: ForumCellProps) => {
   return (
-    <div className="flex bg-white rounded-lg py-6 px-11 items-center space-x-8">
+    <div className="flex bg-white rounded-lg py-6 px-11 items-center space-x-8 dark:bg-gray-800">
       <div className='flex-1'>
         <p className="mb-2 text-xl font-semibold">{heading}</p>
-        <span className="text-brand-gray-300">{subheading}</span>
+        <span className="text-primary-gray-300">{subheading}</span>
       </div>
       <div className="flex w-28">
         {participants.map((participant) => <div className="overflow-hidden last:overflow-visible" key={participant.name}><RoundImage imageUri={participant.profilePicture} altText={participant.name} /></div>
         )}
       </div>
-      <div className="flex ml-3 text-brand-gray-300"><CommentIcon /> <span className="ml-3">{numComments}</span></div>
+      <div className="flex ml-3 text-primary-gray-300"><CommentIcon /> <span className="ml-3">{numComments}</span></div>
     </div >
   )
 }
