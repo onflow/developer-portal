@@ -32,7 +32,7 @@ export function Attribution({
   difficulty,
 }: AttributionProps) {
   return (
-    <div className="border-b-1 flex flex-col gap-2 border-b border-b-gray-400 py-3 text-xs text-gray-500 sm:flex-row sm:items-center sm:gap-4">
+    <div className="flex flex-col gap-2 py-3 text-xs text-gray-500 border-b border-b-1 border-b-gray-400 sm:flex-row sm:items-center sm:gap-4">
       <Section>
         <span className="mr-1">
           <CalendarIcon />
