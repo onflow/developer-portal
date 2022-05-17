@@ -17,7 +17,7 @@ export function Link({ children, className, id, href, ...props }) {
   const isExternal = href?.match(/^(www|http)/i);
   const isFootnote = !!props['data-footnote-ref'];
 
-  const classes = clsx(defaultClasses, className, {
+  const classes = clsx(defaultClasses, {
     'border-b border-b-1 border-primary-blue dark:border-gray-200 stroke-primary-blue dark:stroke-gray-200 border-solid':
       !isFootnote,
     'ml-0.5': isFootnote,
@@ -37,6 +37,6 @@ export function Link({ children, className, id, href, ...props }) {
   }
 
   return (
-    <span className="mr-1">{isFootnote ? <>[{children}]</> : children}</span>
+    <span className={`mr-1 ${className}`}>{isFootnote ? <>[{children}]</> : children}</span>
   );
 }

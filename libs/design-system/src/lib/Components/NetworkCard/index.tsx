@@ -1,6 +1,6 @@
 import clsx from 'clsx';
 import React from 'react';
-import ChevronIcon from '../icons/ChevronIcon';
+import RightChevronIcon from '../icons/RightChevronIcon';
 
 export type NetworkCardProps = {
   networkName: string;
@@ -25,7 +25,7 @@ const NetworkCard = ({ networkName, status, version, lastSporkDate, nextSporkDat
       <div><p className="text-primary-gray-200 uppercase text-sm mb-2">Version</p>{version}</div>
       <div><p className="text-primary-gray-200 uppercase text-sm mb-2">Last Spork Date</p>{lastSporkDate}</div>
       <div><p className="text-primary-gray-200 uppercase text-sm mb-2">Next Spork Date</p>{nextSporkDate}</div>
-      <a href={link}><ChevronIcon /></a>
+      <a href={link}><RightChevronIcon /></a>
     </div>
   )
 }

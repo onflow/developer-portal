@@ -63,7 +63,8 @@ module.exports = {
           300: '#69717E',
           400: '#2F353F',
         },
-        'brand-purple': '#3B3CFF'
+        'brand-purple': '#3B3CFF',
+        'accent-light-gray': '#F3F3F3'
       },
       spacing: {
         micro: defaultTheme.spacing['1'],
@@ -79,7 +80,9 @@ module.exports = {
     },
   },
   variants: {
-    extend: {},
+    extend: {
+      display: ["group-hover"],
+    },
   },
   plugins: [
     require('@tailwindcss/typography'),
