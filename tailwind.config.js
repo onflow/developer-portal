@@ -64,7 +64,12 @@ module.exports = {
           400: '#2F353F',
         },
         'brand-purple': '#3B3CFF',
-        'accent-light-gray': '#F3F3F3'
+        'accent-light-gray': '#F3F3F3',
+        misc: {
+          'yellow-lightest': '#FFFEEC',
+          'blue-neutral': '#4974A5',
+          'indigo-dark': '#000CE5',
+        },
       },
       spacing: {
         micro: defaultTheme.spacing['1'],
@@ -81,7 +86,7 @@ module.exports = {
   },
   variants: {
     extend: {
-      display: ["group-hover"],
+      display: ['group-hover'],
     },
   },
   plugins: [

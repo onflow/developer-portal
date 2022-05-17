@@ -62,8 +62,9 @@ export const parameters = {
 
 export const decorators = [
   (Story) => (
+    // TODO: Import classes from apps/flow-docs/app/root.tsx body
     <div
-      className="text-gray-900 bg-white dark:bg-black dark:text-gray-200"
+      className="text-gray-900 bg-white dark:bg-black dark:text-white"
       style={{ height: '100%', minHeight: '100vh', padding: '1rem' }}
     >
       <Story />

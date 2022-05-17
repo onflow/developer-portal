@@ -1,5 +1,5 @@
 import { Meta, Story } from '@storybook/react';
-import { Attribution, AttributionProps } from './Attribution';
+import { Attribution, AttributionProps } from './';
 
 export default {
   component: Attribution,

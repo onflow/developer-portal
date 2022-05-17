@@ -63,7 +63,7 @@ function App() {
       </head>
       <body
         className={clsx(
-          "h-full bg-white text-gray-900 dark:bg-black dark:text-gray-200"
+          "h-full bg-white text-gray-900 dark:bg-black dark:text-white"
         )}
       >
         <MainNav />
