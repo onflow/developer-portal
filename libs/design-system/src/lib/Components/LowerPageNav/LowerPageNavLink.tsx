@@ -12,7 +12,7 @@ export function LowerPageNavLink({ link, next }: LowerPageNavLinkProps) {
   return (
     <a
       className={clsx(
-        'flex items-center rounded-lg p-4 hover:bg-primary-gray-50/50 dark:stroke-white dark:hover:bg-primary-gray-400/50 md:min-w-[17rem] md:p-5',
+        'group flex items-center rounded-lg p-4 hover:bg-primary-gray-50/50 dark:stroke-white dark:hover:bg-primary-gray-400/50 md:min-w-[17rem] md:p-5',
         {
           'justify-end border border-primary-gray-200 text-right dark:border-primary-gray-300':
             next,
@@ -30,7 +30,7 @@ export function LowerPageNavLink({ link, next }: LowerPageNavLinkProps) {
           {next ? 'Next' : 'Prev'}
         </div>
         <div
-          className={clsx('font-bold', {
+          className={clsx('font-bold group-hover:text-primary-blue', {
             'text-black dark:text-white': next,
             'text-primary-gray-300 dark:text-primary-gray-50': !next,
           })}

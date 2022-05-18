@@ -82,6 +82,9 @@ module.exports = {
         '3xl': '7.5rem',
         '4xl': '12.5rem',
       },
+      boxShadow: {
+        '2xl': '0px 4px 40px rgba(0, 0, 0, 0.08)',
+      },
     },
   },
   variants: {

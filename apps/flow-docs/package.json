@@ -32,10 +32,12 @@
     "/public/build"
   ],
   "dependencies": {
+    "@flow-docs/ui": "../../libs/design-system/dist",
     "@kentcdodds/md-temp": "^1.1.0",
     "@octokit/plugin-throttling": "^3.6.2",
     "@octokit/rest": "^18.12.0",
     "@prisma/client": "^3.11.1",
+    "@reach/menu-button": "^0.17.0",
     "@redis/json": "^1.0.3",
     "@remark-embedder/core": "^2.0.0",
     "@remark-embedder/transformer-oembed": "^2.0.0",
@@ -71,8 +73,7 @@
     "remix": "*",
     "tiny-invariant": "^1.2.0",
     "unified": "^10.1.2",
-    "unist-util-visit": "^4.1.0",
-    "@flow-docs/ui": "../../libs/design-system/dist"
+    "unist-util-visit": "^4.1.0"
   },
   "devDependencies": {
     "@faker-js/faker": "^6.1.1",

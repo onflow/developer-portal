@@ -9,8 +9,8 @@ export default {
 const Template: Story = () => <TypeStyles />;
 export const Default = Template.bind({});
 
-export const DefaultMobile = Template.bind({});
-DefaultMobile.parameters = {
+export const mobile = Template.bind({});
+mobile.parameters = {
   viewport: {
     defaultViewport: 'xs',
   },
