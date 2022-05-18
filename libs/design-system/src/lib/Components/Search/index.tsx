@@ -1,18 +1,19 @@
 import { DocSearch } from '@docsearch/react';
-import '@docsearch/css';
+import '../../../../styles/docsearch.css';
 
 export type SearchProps = {
-    siteName: string,
-    apiKey: string,
-    indexName: string
-}
+  appId: string;
+  apiKey: string;
+  indexName: string;
+};
 
-export function Search({siteName, apiKey, indexName}: SearchProps) {
+export function Search({ appId, apiKey, indexName }: SearchProps) {
   return (
     <DocSearch
-      appId="R2IYF7ETH7"
-      indexName="docsearch"
-      apiKey="599cec31baffa4868cae4e79f180729b"
+      appId="QE0LM9XKDG"
+      indexName="search-index"
+      apiKey="74700aee1bcb782c019adc7bc92fde31"
+      placeholder="Search Documentation..."
     />
   );
 }
