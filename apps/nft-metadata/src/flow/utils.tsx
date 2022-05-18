@@ -12,18 +12,38 @@ export async function getAccount(address: string): Promise<any> {
 
 export async function retrieveContractInformation(address: string, name: string, code: string): Promise<any> {
   try {
-    const res = await fcl.query({
+    const publicPath = code.search(/\s+\/public\/.*\s+/gi)
+    const scriptResult = await fcl.query({
+      // mainnet nft and metadata address is 0x1d7e57aa55817448
       cadence: `
-        import FlowToken from 0x7e60df042a9c0868
+        import NonFungibleToken from 0x631e88ae7f1d7c20
+        import MetadataViews from 0x631e88ae7f1d7c20
+        import ${name} from ${fcl.withPrefix(address)}
 
-        pub fun main(): UFix64 { 
-          return FlowToken.totalSupply
+        pub fun main(): {String: AnyStruct} {
+          var isNFTContract = false
+          var collectionConformsToMetadata = false
+          var nftConformsToMetadata = false
+
+          isNFTContract = Type<${name}>().isSubtype(of: Type<NonFungibleToken>())
+          if (isNFTContract == true) {
+            collectionConformsToMetadata = Type<&${name}.Collection>().isSubtype(of: Type<&{MetadataViews.ResolverCollection}>())
+            nftConformsToMetadata = Type<&${name}.NFT>().isSubtype(of: Type<&{MetadataViews.Resolver}>())
+          }
+
+          return {
+            "isNFTContract": isNFTContract,
+            "collectionConformsToMetadata": collectionConformsToMetadata,
+            "nftConformsToMetadata": nftConformsToMetadata
+          }
         }
       `
     })
-    return res
-  } catch(e) {
-    console.error(e);
-    return null;
+    return scriptResult
+  } catch (e) {
+    // If this isn't an NFT contract, the templated types in the script will fail.
+    // We can assume an error from the script likely means the selected contract
+    // is not of type `NonFungibleToken`
+    return {"isNFTContract": false};
   }
 }
