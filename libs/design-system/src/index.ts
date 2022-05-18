@@ -7,3 +7,4 @@ export {
 export { getHeadingsFromMdxComponent } from './lib/Components/InternalToc';
 export { Link } from './lib/Components/Link';
 export { InputProps, StaticCheckbox } from './lib/Components/StaticCheckbox';
+export { Search, SearchProps } from './lib/Components/Search';
