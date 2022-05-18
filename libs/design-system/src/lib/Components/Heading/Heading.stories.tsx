@@ -1,5 +1,5 @@
 import { Meta, Story } from '@storybook/react';
-import { Heading, HeadingProps } from './Heading';
+import { Heading, HeadingProps } from './';
 
 export default {
   component: Heading,
@@ -19,6 +19,17 @@ export const H1 = Template.bind({});
 H1.args = {
   type: 'h1',
   children: 'This is a heading',
+};
+
+export const H1Mobile = Template.bind({});
+H1Mobile.args = {
+  type: 'h1',
+  children: 'This is a mobile heading',
+};
+H1Mobile.parameters = {
+  viewport: {
+    defaultViewport: 'xs',
+  },
 };
 
 export const H2 = Template.bind({});
