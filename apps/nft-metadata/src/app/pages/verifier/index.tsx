@@ -1,10 +1,8 @@
 // eslint-disable-next-line @typescript-eslint/no-unused-vars
 import * as fcl from "@onflow/fcl";
 import {
-  BrowserRouter,
   Route,
   Switch,
-  useParams
 } from "react-router-dom";
 import { useCurrentUser } from "../../hooks/use-current-user";
 import ContractInputs from '../../components/verifier/contract-inputs'

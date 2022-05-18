@@ -13,6 +13,18 @@ declare module "@onflow/fcl" {
   function sansPrefix(addr): any
   function config(args): any
   function query(args): any
+  function send(args: any)
+  function script(args: any)
+  function decode()
+  function args(args): any
+  function arg(arg1, arg2): any
+}
+
+declare module "@onflow/types" {
+  Address: string;
+  String: string;
+  function Address(): any
+  function String(): any
 }
 
 declare module "@onflow/transport-http" {

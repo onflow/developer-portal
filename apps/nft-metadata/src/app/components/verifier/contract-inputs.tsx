@@ -1,7 +1,8 @@
 import { Fragment, useEffect, useState } from "react"
-import { getAccount, retrieveContractInformation } from "apps/nft-metadata/src/flow/utils"
+import { getAccount, retrieveContractInformation, retrieveMetadataInformation } from "apps/nft-metadata/src/flow/utils"
 import { useInput } from "../../hooks/use-input"
 import { useHistory, useParams } from "react-router-dom"
+import { useQuery } from '../../hooks/use-query';
 
 function ContractSelect({
   contracts,
@@ -53,15 +54,22 @@ function NFTValidity({
 }
 
 function SampleNFTPrompt({
-  contractCode
+  contractCode,
+  defaultValues
 }: {
-  contractCode: string
+  contractCode: string,
+  defaultValues: any
 }) {
-  const [publicPath, setPublicPath] = useState<string>("")
-  const [sampleAddress, setSampleAddress] = useState<string>("")
+  const history = useHistory()
+  const [publicPath, setPublicPath] = useState<string>(defaultValues.publicPath || "")
+  const [sampleAddress, setSampleAddress] = useState<string>(defaultValues.sampleAddress || "")
   const possiblePublicPaths: Array<string> = contractCode.match(/\/public\/[A-Za-z0-9]*/gmi) || []
   return (
     <form onSubmit={(e) => {
+      history.push({
+        pathname: window.location.pathname,
+        search: `?path=${publicPath}&sampleAddress=${sampleAddress}`
+      })
       e.preventDefault();
       return false;
     }}>
@@ -86,7 +94,8 @@ function SampleNFTPrompt({
       <br />
       <br />
       <b>Enter an account address that holds this NFT</b>
-      <p>Sample account w/ a testnet topshot: <a onClick={() => { setSampleAddress("0xd80d84b4b0a88782") }}>0xd80d84b4b0a88782</a></p>
+      <p>Sample account w/ a testnet topshot NFT: <a onClick={() => { setSampleAddress("0xd80d84b4b0a88782") }}>0xd80d84b4b0a88782</a></p>
+      <p>Sample account w/ a testnet goatedgoat NFT: <a onClick={() => { setSampleAddress("0xe27bf406ede951f7") }}>0xe27bf406ede951f7</a></p>
       <input type="text" value={sampleAddress} onChange={(e) => { setSampleAddress(e.target.value) }} />
       <br />
       <input type="submit" value={"Next"}></input>
@@ -94,14 +103,56 @@ function SampleNFTPrompt({
   )
 }
 
+function SampleNFTView({
+  sampleAddress,
+  publicPath
+}: {
+  sampleAddress: string|null,
+  publicPath: string|null
+}) {
+  const [viewsImplemented, setViewsImplemented] = useState<any>([]);
+  const [error, setError] = useState<boolean|null>(null);
+
+  useEffect(() => {
+    const metadataViewInformation = async () => {
+      setError(false)
+      if (!publicPath || !sampleAddress) { return }
+      const res = await retrieveMetadataInformation(sampleAddress, publicPath)
+      if (!res) {
+        setError(true)
+        setViewsImplemented([])
+      } else {
+        setViewsImplemented(res);
+      }
+    }
+    metadataViewInformation()
+  }, [sampleAddress, publicPath])
+
+  if (!sampleAddress || !publicPath) {
+    return null;
+  }
+  return (
+    <>
+      {error && <p>It seems the sample NFT account is not linked properly, we weren't able to retrieve the metadataviews link from the public path.</p>}
+      {
+        !error && JSON.stringify(viewsImplemented, null, 4)
+      }
+    </>
+  )
+}
+
 export default function ({
 }: {
 }) {
+  const query = useQuery()
   const { selectedAddress, selectedContract } = useParams()
   const [contractAddress, setContractAddress] = useState<string>(selectedAddress || "");
   const [account, setAccount] = useState<any>({})
   const [contractInfo, setContractInfo] = useState<any>(null)
   const history = useHistory()
+
+  const publicPath = query.get("path")
+  const sampleAddress = query.get("sampleAddress")
 
   useEffect(() => {
     setContractAddress(selectedAddress!)
@@ -144,14 +195,16 @@ export default function ({
 
   return (
     <>
-      <h3>Step 1</h3>
-      Enter Address containing your NFT Contract:
+      <h3>Step 1 - Find your NFT Contract</h3>
+      <b>Enter Address containing your NFT Contract:</b>
       <br />
       <a onClick={() => { history.push(`/v/0xe223d8a629e49c68`) }}>Sample without nft</a>
       <br />
       <a onClick={() => { history.push(`/v/0x3277199d6c1eeaa4`) }}>Sample with nft and no metadata</a>
       <br />
-      <a onClick={() => { history.push(`/v/0x877931736ee77cff`) }}>Sample with nft and metadataviews</a>
+      <a onClick={() => { history.push(`/v/0x877931736ee77cff`) }}>Sample with nft and metadataviews and improper public link</a>
+      <br />
+      <a onClick={() => { history.push(`/v/0x386817f360a5c8df`) }}>Sample with nft and metadataviews and proper public link</a>
       <br />
       <input type="text" value={contractAddress || ""} onChange={(e) => { setContractAddress(e.target.value) }}></input>
       <button onClick={async () => {
@@ -159,29 +212,35 @@ export default function ({
       }}>Submit</button>
 
       <br />
-      <h3>Step 2</h3>
-      <p>Select your contract</p>
       {
         account && account.contracts &&
-        <ContractSelect
-          contracts={(account.contracts as { string: string })}
-          selectContract={(contractName: string) => { history.push(`/v/${selectedAddress}/${contractName}`); }}
-        />
+        <>
+          <br/>
+          <b>Select your contract</b><br />
+          <ContractSelect
+            contracts={(account.contracts as { string: string })}
+            selectContract={(contractName: string) => { history.push(`/v/${selectedAddress}/${contractName}`); }}
+          />
+        </>
       }
 
-      <h3>Step 3</h3>
-      Find a Sample NFT
+      <h3>Step 2 - Find a Sample NFT</h3>
       {selectedContract && <h4>Contract selected: {selectedContract}</h4>}
 
       <NFTValidity contractInfo={contractInfo} />
 
-      {isContractValid && selectedContract && <SampleNFTPrompt contractCode={account.contracts[selectedContract]} />}
+      {
+        isContractValid && selectedContract &&
+        <SampleNFTPrompt
+          contractCode={account.contracts[selectedContract]}
+          defaultValues={{sampleAddress: sampleAddress, publicPath: publicPath}}
+        />
+      }
 
-      <h3>Step 4</h3>
-      <p>Confirm the metadata looks good</p>
+      <h3>Step 3 - Review Metadata</h3>
+      <SampleNFTView sampleAddress={sampleAddress} publicPath={publicPath} />
 
-      <h3>Step 5</h3>
-      <p>Submit your collection to be added to the Flow NFT catalog.</p>
+      <h3>Step 4 - Submit to Catalog</h3>
     </>
   )
 }
