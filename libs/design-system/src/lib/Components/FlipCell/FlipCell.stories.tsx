@@ -8,7 +8,9 @@ export default {
 
 const Template: Story<FlipCellProps> = (args) => {
   return (
-    <FlipCell {...args} />
+    <div style={{ backgroundColor: '#f1f1f1', padding: '14px' }}>
+      <FlipCell {...args} />
+    </div>
   );
 };
 

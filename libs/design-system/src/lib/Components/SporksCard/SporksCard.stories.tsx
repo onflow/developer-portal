@@ -9,7 +9,9 @@ export default {
 
 const Template: Story<SporksCardProps> = (args) => {
   return (
-    <SporksCard {...args} />
+    <div style={{ backgroundColor: '#f1f1f1', padding: '14px' }}>
+      <SporksCard {...args} />
+    </div>
   );
 };
 
