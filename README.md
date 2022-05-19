@@ -38,6 +38,7 @@ NX is a build system an monorepo management tool that was used to scaffold this 
 Read more here: https://nx.dev/
 
 **`nx` commands**
+
 All the following `nx` commands in this doc should be run from the monorepo's **root directory**.
 
 ### What is Remix?
@@ -81,4 +82,3 @@ Run `nx graph` to see a diagram of the dependencies of your projects.
 ## Further help
 
 Visit the [Nx Documentation](https://nx.dev) to learn more.
-

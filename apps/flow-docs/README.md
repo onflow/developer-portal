@@ -1,17 +1,17 @@
-# Remix Indie Stack
+# Remix Blues Stack
 
-![The Remix Indie Stack](https://repository-images.githubusercontent.com/465928257/a241fa49-bd4d-485a-a2a5-5cb8e4ee0abf)
+![The Remix Blues Stack](https://repository-images.githubusercontent.com/461012689/37d5bd8b-fa9c-4ab0-893c-f0a199d5012d)
 
 Learn more about [Remix Stacks](https://remix.run/stacks).
 
 ```
-npx create-remix --template remix-run/indie-stack
+npx create-remix --template remix-run/blues-stack
 ```
 
 ## What's in the stack
 
-- [Fly app deployment](https://fly.io) with [Docker](https://www.docker.com/)
-- Production-ready [SQLite Database](https://sqlite.org)
+- [Multi-region Fly app deployment](https://fly.io/docs/reference/scaling/) with [Docker](https://www.docker.com/)
+- [Multi-region Fly PostgreSQL Cluster](https://fly.io/docs/getting-started/multi-region-databases/)
 - Healthcheck endpoint for [Fly backups region fallbacks](https://fly.io/docs/reference/configuration/#services-http_checks)
 - [GitHub Actions](https://github.com/features/actions) for deploy on merge to production and staging environments
 - Email/Password Authentication with [cookie-based sessions](https://remix.run/docs/en/v1/api/remix#createcookiesessionstorage)
@@ -28,10 +28,24 @@ Not a fan of bits of the stack? Fork it, change it, and use `npx create-remix --
 
 ## Development
 
-- Initial setup: _If you just generated this project, this step has been done for you._
+- Start the Postgres Database in [Docker](https://www.docker.com/get-started):
+
+  ```sh
+  npm run docker
+  ```
+
+  > **Note:** The npm script will complete while Docker sets up the container in the background. Ensure that Docker has finished and your container is running before proceeding.
+
+- Initial setup:
 
   ```sh
   npm run setup
+  ```
+
+- Run the first build:
+
+  ```sh
+  npm run build
   ```
 
 - Start dev server:
@@ -46,6 +60,8 @@ The database seed script creates a new user with some data you can use to get st
 
 - Email: `rachel@remix.run`
 - Password: `racheliscool`
+
+If you'd prefer not to use Docker, you can also use Fly's Wireguard VPN to connect to a development database (or even your production database). You can find the instructions to set up Wireguard [here](https://fly.io/docs/reference/private-networking/#install-your-wireguard-app), and the instructions for creating a development database [here](https://fly.io/docs/reference/postgres/).
 
 ### Relevant code:
 
@@ -74,11 +90,11 @@ Prior to your first deployment, you'll need to do a few things:
 - Create two apps on Fly, one for staging and one for production:
 
   ```sh
-  fly create indie-stack-template
-  fly create indie-stack-template-staging
+  fly create blues-stack-template
+  fly create blues-stack-template-staging
   ```
 
-  - Initialize Git.
+- Initialize Git.
 
   ```sh
   git init
@@ -95,28 +111,49 @@ Prior to your first deployment, you'll need to do a few things:
 - Add a `SESSION_SECRET` to your fly app secrets, to do this you can run the following commands:
 
   ```sh
-  fly secrets set SESSION_SECRET=$(openssl rand -hex 32) --app indie-stack-template
-  fly secrets set SESSION_SECRET=$(openssl rand -hex 32) --app indie-stack-template-staging
+  fly secrets set SESSION_SECRET=$(openssl rand -hex 32) --app blues-stack-template
+  fly secrets set SESSION_SECRET=$(openssl rand -hex 32) --app blues-stack-template-staging
   ```
+
+  > **Note:** When creating the staging secret, you may get a warning from the Fly CLI that looks like this:
+  >
+  > ```
+  > WARN app flag 'blues-stack-template-staging' does not match app name in config file 'blues-stack-template'
+  > ```
+  >
+  > This simply means that the current directory contains a config that references the production app we created in the first step. Ignore this warning and proceed to create the secret.
 
   If you don't have openssl installed, you can also use [1password](https://1password.com/generate-password) to generate a random secret, just replace `$(openssl rand -hex 32)` with the generated secret.
 
-- Create a persistent volume for the sqlite database for both your staging and production environments. Run the following:
+- Create a database for both your staging and production environments. Run the following:
 
   ```sh
-  fly volumes create data --size 1 --app indie-stack-template
-  fly volumes create data --size 1 --app indie-stack-template-staging
+  fly postgres create --name blues-stack-template-db
+  fly postgres attach --postgres-app blues-stack-template-db --app blues-stack-template
+
+  fly postgres create --name blues-stack-template-staging-db
+  fly postgres attach --postgres-app blues-stack-template-staging-db --app blues-stack-template-staging
   ```
 
-Now that everything is set up you can commit and push your changes to your repo. Every commit to your `main` branch will trigger a deployment to your production environment, and every commit to your `dev` branch will trigger a deployment to your staging environment.
+  > **Note:** You'll get the same warning for the same reason when attaching the staging database that you did in the `fly set secret` step above. No worries. Proceed!
 
-### Connecting to your database
+Fly will take care of setting the `DATABASE_URL` secret for you.
 
-The sqlite database lives at `/data/sqlite.db` in your deployed application. You can connect to the live database by running `fly ssh console -C database-cli`.
-
-### Getting Help with Deployment
+Now that every is set up you can commit and push your changes to your repo. Every commit to your `main` branch will trigger a deployment to your production environment, and every commit to your `dev` branch will trigger a deployment to your staging environment.
 
 If you run into any issues deploying to Fly, make sure you've followed all of the steps above and if you have, then post as many details about your deployment (including your app name) to [the Fly support community](https://community.fly.io). They're normally pretty responsive over there and hopefully can help resolve any of your deployment issues and questions.
+
+### Multi-region deploys
+
+Once you have your site and database running in a single region, you can add more regions by following [Fly's Scaling](https://fly.io/docs/reference/scaling/) and [Multi-region PostgreSQL](https://fly.io/docs/getting-started/multi-region-databases/) docs.
+
+Make certain to set a `PRIMARY_REGION` environment variable for your app. You can use `[env]` config in the `fly.toml` to set that to the region you want to use as the primary region for both your app and database.
+
+#### Testing your app in other regions
+
+Install the [ModHeader](https://modheader.com/) browser extension (or something similar) and use it to load your app with the header `fly-prefer-region` set to the region name you would like to test.
+
+You can check the `x-fly-region` header on the response to know which region your request was handled by.
 
 ## GitHub Actions
 

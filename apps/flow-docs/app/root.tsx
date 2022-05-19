@@ -11,10 +11,20 @@ import {
   Outlet,
   Scripts,
   ScrollRestoration,
+  useLoaderData,
 } from "@remix-run/react";
-
-import tailwindStylesheetUrl from "./styles/tailwind.css";
+import clsx from "clsx";
+import { getThemeSession } from "~/utils/theme.server";
+import MainNav from "./components/MainNav";
 import { getUser } from "./session.server";
+import tailwindStylesheetUrl from "./styles/tailwind.css";
+import {
+  Theme,
+  ThemeBody,
+  ThemeHead,
+  ThemeProvider,
+  useTheme,
+} from "./utils/ThemeProvider";
 
 export const links: LinksFunction = () => {
   return [{ rel: "stylesheet", href: tailwindStylesheetUrl }];
@@ -26,29 +36,53 @@ export const meta: MetaFunction = () => ({
   viewport: "width=device-width,initial-scale=1",
 });
 
-type LoaderData = {
+export type LoaderData = {
   user: Awaited<ReturnType<typeof getUser>>;
+  theme: Theme | null;
 };
 
 export const loader: LoaderFunction = async ({ request }) => {
+  const themeSession = await getThemeSession(request);
+
   return json<LoaderData>({
     user: await getUser(request),
+    theme: themeSession.getTheme(),
   });
 };
 
-export default function App() {
+function App() {
+  const data = useLoaderData<LoaderData>();
+  const [theme] = useTheme();
+
   return (
-    <html lang="en" className="h-full">
+    <html lang="en" className={clsx(theme ?? "", "h-full")}>
       <head>
         <Meta />
         <Links />
+        <ThemeHead ssrTheme={Boolean(data.theme)} />
       </head>
-      <body className="h-full">
+      <body
+        className={clsx(
+          "h-full bg-white text-gray-800 dark:bg-gray-900 dark:text-gray-200"
+        )}
+      >
+        <MainNav />
         <Outlet />
+        <ThemeBody ssrTheme={Boolean(data.theme)} />
         <ScrollRestoration />
         <Scripts />
         <LiveReload />
       </body>
     </html>
+  );
+}
+
+export default function AppWithProviders() {
+  const data = useLoaderData<LoaderData>();
+
+  return (
+    <ThemeProvider specifiedTheme={data.theme}>
+      <App />
+    </ThemeProvider>
   );
 }
