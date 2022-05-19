@@ -32,7 +32,7 @@ export function InternalVersionSelect({
             <ChevronDown />
           </div>
         </MenuButton>
-        <MenuList className="z-10 max-h-[15rem] min-w-[12rem] overflow-y-auto rounded-lg bg-white shadow-2xl">
+        <MenuList className="max-h-[15rem] min-w-[12rem] overflow-y-auto rounded-lg bg-white shadow-2xl">
           <MenuItems className="divide-y divide-solid">
             {versions.map((version) => {
               const isSelected = selectedVersionName === version.name;

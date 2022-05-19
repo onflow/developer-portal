@@ -1,5 +1,9 @@
 import { NavLink } from '@remix-run/react';
 import clsx from 'clsx';
+import {
+  InternalSidebarMenu,
+  InternalSidebarMenuProps,
+} from '../InternalSidebarMenu';
 
 type InternalSidebarSectionItem = {
   label: string;
@@ -17,7 +21,7 @@ export type InternalSidebarConfig = {
 
 export type InternalSidebarProps = {
   config: InternalSidebarConfig;
-};
+} & InternalSidebarMenuProps;
 
 export const TEMP_SIDEBAR_CONFIG: InternalSidebarConfig = {
   sections: [
@@ -54,27 +58,34 @@ export const TEMP_SIDEBAR_CONFIG: InternalSidebarConfig = {
   ],
 };
 
-export function InternalSidebar({ config }: InternalSidebarProps) {
+// TODO: Remove NavLink dependency
+export function InternalSidebar({
+  config,
+  selectedSectionType,
+}: InternalSidebarProps) {
   return (
-    <div className="w-full p-8 mb-8 mr-3 bg-gray-100 min-w-min shrink-0 bg-opacity-80 dark:bg-gray-800 md:mb-0 md:w-80">
+    <div className="w-full h-full p-8 mb-8 mr-3 min-w-min shrink-0 bg-misc-sidebar-gray bg-opacity-80 dark:bg-misc-off-black-bg md:mb-0 md:w-80">
+      <div className="mb-2">
+        <InternalSidebarMenu selectedSectionType={selectedSectionType} />
+      </div>
       {config.sections.map((section) => (
         <div
-          className="py-4 mb-2 border-b border-b-1 border-b-gray-300 last:border-b-0 dark:border-b-gray-700"
+          className="pt-6 pb-3 border-t border-t-1 border-t-gray-300 dark:border-t-primary-gray-300"
           key={section.title}
         >
-          <div className="mb-4 text-xs text-gray-500 uppercase dark:text-gray-200">
+          <div className="mb-4 text-xs uppercase text-primary-gray-300 dark:text-primary-gray-200">
             {section.title}
           </div>
-          <div className="px-4">
+          <div className="px-2">
             {section.items.map((item) => (
               <NavLink
                 to={item.href}
                 key={item.label}
                 className={({ isActive }) =>
                   clsx(
-                    'mb-1 block rounded-md px-2 py-1.5 text-sm text-primary-gray-400 hover:opacity-75 dark:text-gray-200',
+                    'mb-1 block rounded-md px-2 py-1.5 text-sm text-primary-gray-400 hover:opacity-75 dark:text-primary-gray-100',
                     {
-                      'bg-gray-200 bg-opacity-50 text-primary-blue dark:bg-gray-700 dark:text-gray-300':
+                      'bg-gray-200 bg-opacity-50 text-primary-blue dark:bg-gray-700 dark:text-primary-gray-300':
                         isActive,
                     }
                   )

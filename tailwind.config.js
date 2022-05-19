@@ -69,6 +69,8 @@ module.exports = {
           'yellow-lightest': '#FFFEEC',
           'blue-neutral': '#4974A5',
           'indigo-dark': '#000CE5',
+          'sidebar-gray': '#FAFAFA',
+          'off-black-bg': '#1A1A1A',
         },
       },
       spacing: {
@@ -84,6 +86,7 @@ module.exports = {
       },
       boxShadow: {
         '2xl': '0px 4px 40px rgba(0, 0, 0, 0.08)',
+        '2xl-dark': '0px 4px 40px 0px #FFFFFF14',
       },
     },
   },

@@ -6,7 +6,7 @@ export default {
   title: 'Components/InternalVersionSelect',
 } as Meta;
 
-export const VERSIONS = [
+const VERSIONS = [
   { name: '9.3', href: '#' },
   { name: '9.2', href: '#' },
   { name: '9.1', href: '#' },

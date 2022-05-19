@@ -1,4 +1,4 @@
-export { Attribution } from './lib/Components/Attribution/Attribution';
+export { Attribution } from './lib/Components/Attribution';
 export { Heading, HeadingProps } from './lib/Components/Heading';
 export {
   InternalSidebar,

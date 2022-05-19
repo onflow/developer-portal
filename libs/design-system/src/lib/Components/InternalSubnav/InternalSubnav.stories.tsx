@@ -1,6 +1,14 @@
 import { Meta, Story } from '@storybook/react';
 import { InternalSubnav, InternalSubnavProps } from '.';
-import { VERSIONS } from '../InternalVersionSelect/InternalVersionSelect.stories';
+
+const VERSIONS = [
+  { name: '9.3', href: '#' },
+  { name: '9.2', href: '#' },
+  { name: '9.1', href: '#' },
+  { name: '9.0', href: '#' },
+  { name: '8.9', href: '#' },
+  { name: '8.8', href: '#' },
+];
 
 export default {
   component: InternalSubnav,
