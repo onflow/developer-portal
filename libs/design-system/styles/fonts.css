@@ -38,7 +38,7 @@
 }
 
 .text-h1 {
-  @apply font-display text-5xl font-bold uppercase leading-[3.5rem] md:text-7xl md:leading-[5rem];
+  @apply font-display text-5xl font-bold leading-[3.5rem] md:text-7xl md:leading-[5rem];
 }
 
 .text-h2 {
