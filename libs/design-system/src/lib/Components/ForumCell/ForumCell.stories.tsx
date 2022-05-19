@@ -8,7 +8,9 @@ export default {
 
 const Template: Story<ForumCellProps> = (args) => {
   return (
-    <ForumCell {...args} />
+    <div style={{ backgroundColor: '#f1f1f1', padding: '14px' }}>
+      <ForumCell {...args} />
+    </div>
   );
 };
 
