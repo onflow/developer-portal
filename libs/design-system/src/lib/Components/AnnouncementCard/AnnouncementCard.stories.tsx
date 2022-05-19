@@ -9,7 +9,9 @@ export default {
 
 const Template: Story<AnnouncementCardProps> = (args) => {
   return (
-    <AnnouncementCard {...args} />
+    <div style={{ backgroundColor: '#f1f1f1', padding: '14px' }}>
+      <AnnouncementCard {...args} />
+    </div>
   );
 };
 

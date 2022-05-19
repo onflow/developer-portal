@@ -63,7 +63,6 @@ module.exports = {
           300: '#69717E',
           400: '#2F353F',
         },
-        'brand-purple': '#3B3CFF',
         'accent-light-gray': '#F3F3F3'
       },
       spacing: {
@@ -82,6 +81,9 @@ module.exports = {
   variants: {
     extend: {
       display: ["group-hover"],
+      shadow: {
+        '2xl': '0px 4px 40px rgba(0, 0, 0, 0.08);'
+      }
     },
   },
   plugins: [

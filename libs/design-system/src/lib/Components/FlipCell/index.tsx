@@ -19,7 +19,7 @@ export type FlipCellProps = {
 
 const FlipCell = ({ heading, tags, participant, numComments, date }: FlipCellProps) => {
   return (
-    <div className="flex md:flex-row bg-white rounded-lg py-6 px-11 justify-between items-center dark:bg-gray-800 sm:p-8 sm:flex-col">
+    <div className="flex items-center justify-between py-6 bg-white rounded-lg md:flex-row px-11 dark:bg-gray-800 sm:p-8 sm:flex-col hover:shadow-2xl">
       <div className='flex items-center'>
         <svg className="md:inline-flex sm:hidden" width="36" height="36" viewBox="0 0 36 36" fill="none" xmlns="http://www.w3.org/2000/svg">
           <circle cx="18" cy="18" r="17.5" stroke="#47FFB2" />
@@ -30,11 +30,11 @@ const FlipCell = ({ heading, tags, participant, numComments, date }: FlipCellPro
           <span className="text-primary-gray-300">{tags.map(tag => <Tag key={tag} name={tag} />)}</span>
         </div>
       </div>
-      <div className="flex sm:mt-12 md:mt-0 items-center">
+      <div className="flex items-center sm:mt-12 md:mt-0">
         <div className="w-28">
           <RoundImage imageUri={participant.profilePicture} altText={participant.name} />
         </div>
-        <div className="text-primary-gray-300 flex space-between"><CalendarIcon /> {date}</div>
+        <div className="flex text-primary-gray-300 space-between"><CalendarIcon /> {date}</div>
         <div className="flex ml-3 text-primary-gray-300"><CommentIcon /> <span className="ml-3">{numComments}</span></div>
       </div>
     </div >

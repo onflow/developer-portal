@@ -5,6 +5,6 @@ export type TagProps = {
 }
 
 const Tag = ({ name }: TagProps) =>
-  <span className="rounded py-px px-1 bg-primary-gray-50 text-brand-purple mr-2 dark:bg-primary-gray-200">#{name}</span>
+  <span className="rounded py-px px-1 bg-primary-gray-50 text-primary-blue mr-2 dark:bg-primary-gray-200">#{name}</span>
 
 export default Tag;
