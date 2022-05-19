@@ -34,8 +34,8 @@ const SporksCard = ({ heading, timestamp, sporkMetadata }: SporksCardProps) => {
   const [isExpanded, setIsExpanded] = useState(true);
 
   return (
-    <div className="flex-col items-center justify-between py-4 bg-white rounded-2xl px-11 dark:bg-gray-800 sm:px-2">
-      <div className="flex justify-between ease-in cursor-pointer sm:px-2 hover:shadow-2xl" tabIndex={0} role="button" aria-pressed="false" onClick={() => setIsExpanded(!isExpanded)}>
+    <div className="flex-col items-center justify-between py-4 bg-white rounded-2xl px-11 dark:bg-gray-800 sm:px-2 hover:shadow-2xl">
+      <div className="flex justify-between ease-in cursor-pointer sm:px-2" tabIndex={0} role="button" aria-pressed="false" onClick={() => setIsExpanded(!isExpanded)}>
         <div className="flex items-center">
           <span className="text-2xl font-bold sm:text-xl">{heading}</span>
           <span className="ml-12">{format(timestamp, "MMMM d")}</span>
@@ -43,7 +43,7 @@ const SporksCard = ({ heading, timestamp, sporkMetadata }: SporksCardProps) => {
         {isExpanded && <div className="sm:mt-2"><UpChevronIcon /></div>}
       </div>
       {
-        isExpanded && <div className="flex-col">
+        isExpanded && <div className="flex-col py-4">
           <CardItem label="Access Node" data={accessNode} />
           <CardItem label="Date" data={format(date, "LLL d, yyyy")} />
           <CardItem label="Root Height" data={rootHeight} />
