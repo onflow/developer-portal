@@ -2,12 +2,12 @@ import clsx from 'clsx';
 import { createElement } from 'react';
 import LinkIcon from './LinkIcon';
 
-type HeadingType = 'h1' | 'h2' | 'h3' | 'h4' | 'h5' | 'h6';
+type InternalHeadingType = 'h1' | 'h2' | 'h3' | 'h4' | 'h5' | 'h6';
 
-export type HeadingProps = React.DetailedHTMLProps<
+export type InternalHeadingProps = React.DetailedHTMLProps<
   React.HTMLAttributes<HTMLHeadingElement>,
   HTMLHeadingElement
-> & { type?: HeadingType };
+> & { type?: InternalHeadingType };
 
 const defaultClasses = 'mt-6 font-semibold';
 
@@ -27,12 +27,12 @@ function parameterize(string: string) {
     .replace(/ /g, '-');
 }
 
-export function Heading({
+export function InternalHeading({
   type = 'h1',
   children,
   className = '',
   ...props
-}: HeadingProps) {
+}: InternalHeadingProps) {
   const text = typeof children === 'string' ? children : '';
   const anchor = parameterize(text);
   return createElement(

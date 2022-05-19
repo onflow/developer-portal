@@ -1,8 +1,8 @@
 import {
   getHeadingsFromMdxComponent,
-  Heading,
-  HeadingProps,
   InputProps,
+  InternalHeading,
+  InternalHeadingProps,
   Link,
   StaticCheckbox,
 } from "@flow-docs/ui";
@@ -291,12 +291,12 @@ const mdxComponents = {
     ) : (
       <input {...props} />
     ),
-  h1: (props: HeadingProps) => <Heading type="h1" {...props} />,
-  h2: (props: HeadingProps) => <Heading type="h2" {...props} />,
-  h3: (props: HeadingProps) => <Heading type="h3" {...props} />,
-  h4: (props: HeadingProps) => <Heading type="h4" {...props} />,
-  h5: (props: HeadingProps) => <Heading type="h5" {...props} />,
-  h6: (props: HeadingProps) => <Heading type="h6" {...props} />,
+  h1: (props: InternalHeadingProps) => <InternalHeading type="h1" {...props} />,
+  h2: (props: InternalHeadingProps) => <InternalHeading type="h2" {...props} />,
+  h3: (props: InternalHeadingProps) => <InternalHeading type="h3" {...props} />,
+  h4: (props: InternalHeadingProps) => <InternalHeading type="h4" {...props} />,
+  h5: (props: InternalHeadingProps) => <InternalHeading type="h5" {...props} />,
+  h6: (props: InternalHeadingProps) => <InternalHeading type="h6" {...props} />,
 };
 
 /**

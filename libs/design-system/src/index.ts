@@ -1,5 +1,8 @@
 export { Attribution } from './lib/Components/Attribution';
-export { Heading, HeadingProps } from './lib/Components/Heading';
+export {
+  InternalHeading,
+  InternalHeadingProps,
+} from './lib/Components/InternalHeading';
 export {
   InternalSidebar,
   TEMP_SIDEBAR_CONFIG,

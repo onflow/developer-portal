@@ -1,15 +1,15 @@
 import { Meta, Story } from '@storybook/react';
-import { Heading, HeadingProps } from './';
+import { InternalHeading, InternalHeadingProps } from '.';
 
 export default {
-  component: Heading,
-  title: 'Components/Heading',
+  component: InternalHeading,
+  title: 'Components/InternalHeading',
 } as Meta;
 
-const Template: Story<HeadingProps> = (args) => {
+const Template: Story<InternalHeadingProps> = (args) => {
   return (
     <div style={{ padding: 40 }}>
-      <Heading {...args} />
+      <InternalHeading {...args} />
       <p>Paragraph</p>
     </div>
   );
