@@ -1,4 +1,5 @@
 const { join } = require('path');
+const defaultTheme = require('tailwindcss/defaultTheme');
 
 module.exports = {
   darkMode: 'class',
@@ -22,7 +23,7 @@ module.exports = {
       '4xl': ['2rem', { lineHeight: '2.25rem' }],
       '5xl': ['3rem', { lineHeight: '1' }],
       '6xl': ['3.75rem', { lineHeight: '1' }],
-      '7xl': ['4', { lineHeight: '1' }],
+      '7xl': ['4rem', { lineHeight: '1' }],
       '8xl': ['6rem', { lineHeight: '1' }],
       '9xl': ['8rem', { lineHeight: '1' }],
     },
@@ -34,13 +35,18 @@ module.exports = {
       xl: '1536px',
     },
     extend: {
+      fontFamily: {
+        sans: ['Acumin Pro', ...defaultTheme.fontFamily.sans],
+        display: 'Termina',
+        mono: 'IBM Plex Mono',
+      },
       colors: {
-        green: '#00EF8B',
-        blue: '#3B3CFF',
-        purple: '#A269FF',
-        yellow: '#F1E72A',
-        pink: '#F4C6FB',
-        red: '#F67D65',
+        'primary-green': '#00EF8B',
+        'primary-blue': '#3B3CFF',
+        'primary-purple': '#A269FF',
+        'primary-yellow': '#F1E72A',
+        'primary-pink': '#F4C6FB',
+        'primary-red': '#F67D65',
         'red-error': '#FC4723',
         'green-success': '#05CE7A',
         'blue-hover': '#3031D1',
@@ -49,19 +55,36 @@ module.exports = {
         'blue-dark': '#B795FF',
         'pink-dark': '#F4C6FB',
         'red-error-dark': '#F67D65',
-        'green-success-dark': '#7AFFC',
-        'brand-gray': {
+        'green-success-dark': '#7AFFC8',
+        'primary-gray': {
           50: '#F6F7F9',
           100: '#DEE2E9',
           200: '#ABB3BF',
           300: '#69717E',
           400: '#2F353F',
         },
+        'accent-light-gray': '#F3F3F3'
+      },
+      spacing: {
+        micro: defaultTheme.spacing['1'],
+        xxs: defaultTheme.spacing['2'],
+        xs: defaultTheme.spacing['4'],
+        s: defaultTheme.spacing['6'],
+        m: defaultTheme.spacing['10'],
+        xl: defaultTheme.spacing['16'],
+        '2xl': defaultTheme.spacing['20'],
+        '3xl': '7.5rem',
+        '4xl': '12.5rem',
       },
     },
   },
   variants: {
-    extend: {},
+    extend: {
+      display: ["group-hover"],
+      shadow: {
+        '2xl': '0px 4px 40px rgba(0, 0, 0, 0.08);'
+      }
+    },
   },
   plugins: [
     require('@tailwindcss/typography'),
