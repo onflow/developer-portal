@@ -26,6 +26,10 @@ Default.args = {
 };
 
 export const dark = Template.bind({});
+dark.args = {
+  versions: VERSIONS,
+  selectedVersionName: VERSIONS[0].name,
+};
 dark.parameters = {
   themes: {
     default: 'dark',
