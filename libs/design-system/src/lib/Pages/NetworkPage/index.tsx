@@ -2,6 +2,9 @@ import React from "react";
 import { startOfDay } from 'date-fns';
 import { NetworkCard } from "../../Components";
 import AnnouncementCard from "../../Components/AnnouncementCard";
+import { StatuspageApiResponse } from "../../interfaces";
+// @ts-ignore
+import data from './sample';
 
 const NetworkPage = () => {
   return (
@@ -11,31 +14,17 @@ const NetworkPage = () => {
           Network status
         </h1>
 
-        <div className="flex-col p-2 my-8 gap-y-2">
-          <NetworkCard
-            networkName="Mainnet"
-            status="Under Maintenance"
-            version="33"
-            lastSporkDate="April, 2022"
-            nextSporkDate="April, 2022"
-            link="https://google.com" />
-
-          <NetworkCard
-            networkName="Testnet"
-            status="Healthy"
-            version="33"
-            lastSporkDate="April, 2022"
-            nextSporkDate="April, 2022"
-            link="https://google.com" />
-
-          <NetworkCard
-            networkName="Canary"
-            status="Healthy"
-            version="33"
-            lastSporkDate="April, 2022"
-            nextSporkDate="April, 2022"
-            link="https://google.com"
-          />
+        <div className="flex-col">
+          {data.map(({ name, status }: StatuspageApiResponse) => {
+            return (<div className="py-6">
+              <NetworkCard
+                networkName={name}
+                status={status === "operational" ? "Healthy" : "Under Maintenance"}
+                version="33"
+                lastSporkDate="April, 2022"
+                nextSporkDate="April, 2022"
+                link="https://google.com" /></div>)
+          })}
         </div>
 
         <h3 className="text-h3">

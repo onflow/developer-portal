@@ -12,13 +12,13 @@ export type NetworkCardProps = {
 }
 
 const NetworkCard = ({ networkName, status, version, lastSporkDate, nextSporkDate, link }: NetworkCardProps) => {
-  const statusClasses = clsx('rounded-full w-11 h-11  md:mb-0 sm:mb-4', {
+  const statusClasses = clsx('rounded-full w-11 h-11 md:mb-0 sm:mb-4', {
     'bg-primary-red': status === 'Under Maintenance',
     'bg-primary-green': status === 'Healthy'
   });
 
   return (
-    <a href={link} className="flex items-center justify-around px-12 py-4 bg-white rounded-2xl md:flex-row hover:shadow-2xl dark:bg-gray-800 sm:flex-col sm:text-center">
+    <a href={link} className="flex items-center justify-around p-4 bg-white rounded-2xl md:flex-row hover:shadow-2xl dark:bg-gray-800 sm:flex-col sm:text-center">
       <div className={statusClasses} />
       <span className='text-xl font-bold md:mb-0 sm:mb-4'>{networkName}</span>
       <div className='md:mb-0 sm:mb-4'>

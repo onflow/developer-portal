@@ -9,8 +9,8 @@ export default {
 const Template: Story = () => <NetworkPage />;
 export const Default = Template.bind({});
 
-export const DefaultMobile = Template.bind({});
-DefaultMobile.parameters = {
+export const Mobile = Template.bind({});
+Mobile.parameters = {
   viewport: {
     defaultViewport: 'xs',
   },
