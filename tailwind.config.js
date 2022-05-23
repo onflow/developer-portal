@@ -63,7 +63,8 @@ module.exports = {
           300: '#69717E',
           400: '#2F353F',
         },
-        'accent-light-gray': '#F3F3F3'
+        'accent-light-gray': '#F3F3F3',
+        'primary-dark-gray': '#1A1A1A'
       },
       spacing: {
         micro: defaultTheme.spacing['1'],

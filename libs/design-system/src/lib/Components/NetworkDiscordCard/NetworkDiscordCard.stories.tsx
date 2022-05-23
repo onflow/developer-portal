@@ -18,6 +18,7 @@ const Template: Story<NetworkDiscordCardProps> = (args) => {
 export const Primary = Template.bind({});
 Primary.args = {
   message: 'Mainnet has been down for the past two hours',
-  source: '@john_flow',
+  username: '@john_flow',
   timestamp: endOfDay(new Date()),
+  messageLink: 'https://google.com'
 }

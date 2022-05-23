@@ -1,13 +1,13 @@
 import React from "react";
 import { startOfDay } from 'date-fns';
-import { NetworkCard, AnnouncementCard, Footer } from "../../Components";
+import { NetworkCard, AnnouncementCard, Footer, NetworkDiscordCard } from "../../Components";
 import { StatuspageApiResponse } from "../../interfaces";
 // @ts-ignore
 import data from './sample';
 
 const NetworkPage = () => {
   return (
-    <div>
+    <div className="w-full">
       <div className="flex-col">
         <h1 className="text-h1">
           Network status
@@ -30,14 +30,23 @@ const NetworkPage = () => {
         <h3 className="text-h3">
           Live updates
         </h3>
-        <div style={{ height: '260px' }}></div>
+        <div style={{ height: '260px' }} className="flex justify-between mt-6">
+          {[1, 2, 3].map(() => (
+            <NetworkDiscordCard
+              message='Mainnet has been down for the past two hours'
+              timestamp={startOfDay(new Date())}
+              messageLink='https://google.com'
+              username="@john_flow"
+            />
+          ))}
+        </div>
 
         <h3 className="text-h3">
           Announcements
         </h3>
         <div className="flex-col">
           {[1, 2, 3].map(() => (
-            <div className="py-6">
+            <div className="py-4">
               <AnnouncementCard sourceIcon='https://github.githubassets.com/images/modules/logos_page/GitHub-Mark.png'
                 sourceAltText='Github'
                 heading='Holy shit Github is down'

@@ -19,7 +19,7 @@ export type FlipCellProps = {
 
 const FlipCell = ({ heading, tags, participant, numComments, date }: FlipCellProps) => {
   return (
-    <div className="flex items-center justify-between py-6 bg-white rounded-lg md:flex-row px-11 dark:bg-gray-800 sm:p-8 sm:flex-col hover:shadow-2xl">
+    <div className="flex items-center justify-between py-6 bg-white rounded-lg md:flex-row px-11 dark:bg-primary-dark-gray sm:p-8 sm:flex-col hover:shadow-2xl">
       <div className='flex items-center'>
         <svg className="md:inline-flex sm:hidden" width="36" height="36" viewBox="0 0 36 36" fill="none" xmlns="http://www.w3.org/2000/svg">
           <circle cx="18" cy="18" r="17.5" stroke="#47FFB2" />

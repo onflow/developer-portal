@@ -56,7 +56,7 @@ export const TEMP_SIDEBAR_CONFIG: InternalSidebarConfig = {
 
 export function InternalSidebar({ config }: InternalSidebarProps) {
   return (
-    <div className="w-full p-8 mb-8 mr-3 bg-gray-100 min-w-min shrink-0 bg-opacity-80 dark:bg-gray-800 md:mb-0 md:w-80">
+    <div className="w-full p-8 mb-8 mr-3 bg-gray-100 min-w-min shrink-0 bg-opacity-80 dark:bg-primary-dark-gray md:mb-0 md:w-80">
       {config.sections.map((section) => (
         <div
           className="py-4 mb-2 border-b border-b-1 border-b-gray-300 last:border-b-0 dark:border-b-gray-700"

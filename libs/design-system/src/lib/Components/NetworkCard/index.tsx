@@ -18,7 +18,7 @@ const NetworkCard = ({ networkName, status, version, lastSporkDate, nextSporkDat
   });
 
   return (
-    <a href={link} className="flex items-center justify-around px-4 py-6 bg-white rounded-2xl md:flex-row hover:shadow-2xl dark:bg-gray-800 xs:flex-col xs:text-center">
+    <a href={link} className="flex items-center justify-around px-4 py-6 bg-white rounded-2xl md:flex-row hover:shadow-2xl dark:bg-primary-dark-gray xs:flex-col xs:text-center">
       <div className={statusClasses} />
       <span className='text-xl font-bold md:mb-0 xs:mb-4'>{networkName}</span>
       <div className='md:mb-0 xs:mb-4'>

@@ -34,7 +34,7 @@ const SporksCard = ({ heading, timestamp, sporkMetadata }: SporksCardProps) => {
   const [isExpanded, setIsExpanded] = useState(true);
 
   return (
-    <div className="flex-col items-center justify-between py-4 bg-white rounded-2xl px-11 dark:bg-gray-800 sm:px-2 hover:shadow-2xl">
+    <div className="flex-col items-center justify-between py-4 bg-white rounded-2xl px-11 dark:bg-primary-dark-gray sm:px-2 hover:shadow-2xl">
       <div className="flex justify-between ease-in cursor-pointer sm:px-2" tabIndex={0} role="button" aria-pressed="false" onClick={() => setIsExpanded(!isExpanded)}>
         <div className="flex items-center">
           <span className="text-2xl font-bold sm:text-xl">{heading}</span>
