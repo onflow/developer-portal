@@ -14,7 +14,7 @@ const Callout = ({ heading, description, ctaText, ctaLink }: CalloutProps) => {
       className="flex bg-white rounded-2xl dark:bg-primary-dark-gray sm:flex-col-reverse md:flex-row"
       style={{ maxWidth: '1140px' }}
     >
-      <div className="flex-1 pb-24 pl-16 pr-36 pt-36 sm:px-6 sm:py-8">
+      <div className="flex-1 sm:pl-6 sm:pr-6 sm:pt-10 sm:pb-16 md:pb-24 md:pl-16 md:pr-36 md:pt-36">
         <h3 className="text-h3">{heading}</h3>
         <p className="py-6 dark:text-primary-gray-100">{description}</p>
         <a
