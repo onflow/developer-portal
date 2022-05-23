@@ -10,10 +10,13 @@
     "noImplicitOverride": true,
     "noPropertyAccessFromIndexSignature": true,
     "noImplicitReturns": true,
-    "noFallthroughCasesInSwitch": true
+    "baseUrl": ".",
+    "paths": {
+      "~/*": ["./app/*"],
+      "@nft-metadata/ui": ["../../libs/design-system/src"]
+    },
   },
   "files": [],
-  "include": [],
   "references": [
     {
       "path": "./tsconfig.app.json"

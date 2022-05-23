@@ -1,5 +1,5 @@
 import { Fragment, useEffect, useState } from "react"
-import { getAccount, retrieveContractInformation, retrieveMetadataInformation } from "apps/nft-metadata/src/flow/utils"
+import { getAccount, retrieveContractInformation, retrieveMetadataInformation } from "../../../flow/utils"
 import { useInput } from "../../hooks/use-input"
 import { useHistory, useParams } from "react-router-dom"
 import { useQuery } from '../../hooks/use-query';

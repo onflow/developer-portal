@@ -40,6 +40,12 @@
         }
       }
     },
+    "tailwindcss" : {
+      "executor" : "@nrwl/workspace:run-commands",
+      "options" : {
+        "command": "tailwindcss -c tailwind.config.js -i libs/design-system/styles/tailwind.css -o apps/nft-metadata/sr/app/styles/tailwind.css"
+      }
+    },
     "serve": {
       "executor": "@nrwl/web:dev-server",
       "options": {
