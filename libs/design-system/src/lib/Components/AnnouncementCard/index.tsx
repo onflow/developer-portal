@@ -1,4 +1,3 @@
-import clsx from 'clsx';
 import React from 'react';
 import { formatDistance } from 'date-fns';
 import { RightChevronIcon, TimeIcon } from '../icons';
