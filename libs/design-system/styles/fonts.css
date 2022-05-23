@@ -27,8 +27,15 @@
 @font-face {
   font-family: 'Termina';
   src: local('Termina'),
-    url(./fonts/termina/Termina-Demi.otf) format('opentype');
+    url(./fonts/termina/Termina-Bold.otf) format('opentype');
   font-weight: 700;
+}
+
+@font-face {
+  font-family: 'Termina';
+  src: local('Termina'),
+    url(./fonts/termina/Termina-Heavy.otf) format('opentype');
+  font-weight: 800;
 }
 
 @font-face {
@@ -46,7 +53,7 @@
 }
 
 .text-h3 {
-  @apply text-2xl font-bold leading-[2.25rem] md:text-4xl md:leading-[2.375rem];
+  @apply font-display text-2xl font-extrabold leading-[2.25rem] md:text-4xl md:leading-[2.375rem];
 }
 
 .text-h4 {

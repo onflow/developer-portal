@@ -13,7 +13,7 @@ export type AnnouncementCardProps = {
 
 const AnnouncementCard = ({ heading, sourceIcon, sourceAltText, timestamp, link }: AnnouncementCardProps) => {
   return (
-    <a href={link} className="flex items-center justify-between px-8 py-4 bg-white rounded-2xl dark:bg-gray-800 sm:px-4 hover:shadow-2xl">
+    <a href={link} className="flex items-center justify-between px-8 py-6 bg-white rounded-2xl dark:bg-gray-800 sm:px-4 hover:shadow-2xl">
       <div className="mr-4 sm:mr-1">
         <img src={sourceIcon} alt={sourceAltText} width={50} height="auto" className="mr-4 rounded-full" />
       </div>
