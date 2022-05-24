@@ -73,7 +73,7 @@ const NetworkPage = () => {
           ctaLink="https://flow.com"
         />
       </div>
-      <div style={{ height: '653px' }}>
+      <div style={{ height: '653px' }} className="my-24">
         <SocialLinksSignup />
       </div>
       <Footer />
