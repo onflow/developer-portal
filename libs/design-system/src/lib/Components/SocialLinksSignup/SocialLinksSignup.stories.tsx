@@ -1,6 +1,5 @@
 import { Meta, Story } from '@storybook/react';
 import SocialLinksSignup, { SocialLinksSignupProps } from '.';
-import { endOfDay } from 'date-fns';
 
 export default {
   component: SocialLinksSignup,
@@ -12,3 +11,10 @@ const Template: Story<SocialLinksSignupProps> = (args) => {
 };
 
 export const Primary = Template.bind({});
+
+export const Mobile = Template.bind({});
+Mobile.parameters = {
+  viewport: {
+    defaultViewport: 'xs',
+  },
+};
