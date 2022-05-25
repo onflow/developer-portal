@@ -15,7 +15,8 @@
     "skipDefaultLibCheck": true,
     "baseUrl": ".",
     "paths": {
-      "@flow-docs/ui": ["libs/design-system/src/index.ts"]
+      "@flow-docs/ui": ["libs/design-system/src/index.ts"],
+      "@nft-metadata/ui": ["libs/design-system/src/index.ts"]
     }
   },
   "exclude": ["node_modules", "tmp"]

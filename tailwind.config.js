@@ -8,6 +8,7 @@ module.exports = {
       'libs/design-system/src/**/!(*.stories|*.spec).{ts,tsx,html}'
     ),
     join(__dirname, 'apps/flow-docs/app/**/!(*.stories|*.spec).{ts,tsx,html}'),
+    join(__dirname, 'apps/nft-metadata/src/app/**/!(*.stories|*.spec).{ts,tsx,html}'),
   ],
   theme: {
     fontSize: {

@@ -2,8 +2,9 @@
   "$schema": "./node_modules/nx/schemas/workspace-schema.json",
   "version": 2,
   "projects": {
-    "docs-e2e": "apps/docs-e2e",
     "design-system": "libs/design-system",
-    "flow-docs": "apps/flow-docs"
+    "docs-e2e": "apps/docs-e2e",
+    "flow-docs": "apps/flow-docs",
+    "nft-metadata": "apps/nft-metadata"
   }
 }
