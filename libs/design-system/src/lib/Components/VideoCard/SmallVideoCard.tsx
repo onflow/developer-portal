@@ -44,7 +44,6 @@ export function SmallVideoCard({
           ))}
         </div>
         <div className="flex items-end gap-1 pt-1 text-gray-500">
-          {/* <Time height={16} width={16} /> */}
           <TimeIcon />
           <div className="text-base leading-3">
             {minutes}:{seconds}
@@ -52,7 +51,6 @@ export function SmallVideoCard({
         </div>
       </div>
       <div>
-        {/* <ArrowTR /> */}
         <ContentExternalLinkIcon />
       </div>
     </a>
