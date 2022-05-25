@@ -22,7 +22,7 @@
     "setup": "prisma migrate dev && prisma db seed",
     "start": "cross-env NODE_ENV=production node ./build/server.js",
     "start:mocks": "cross-env NODE_ENV=production node --require ./mocks --require dotenv/config ./build/server.js",
-    "test": "vitest --coverage",
+    "test": "vitest",
     "typecheck": "tsc -b"
   },
   "prettier": {},
