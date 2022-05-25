@@ -3,6 +3,7 @@
   "version": "0.0.1",
   "license": "MIT",
   "scripts": {
+    "dev": "yarn nx run flow-docs:dev",
     "start": "yarn nx start flow-docs",
     "build": "yarn nx build flow-docs",
     "lint": "yarn nx run flow-docs:lint",
