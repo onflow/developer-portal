@@ -3,23 +3,22 @@
   "include": ["remix.env.d.ts", "**/*.ts", "**/*.tsx"],
   "extends": "../../tsconfig.base.json",
   "compilerOptions": {
-    "lib": ["DOM", "DOM.Iterable", "ES2019"],
+    "lib": ["DOM", "DOM.Iterable", "ES2021"],
     "types": ["vitest/globals"],
     "isolatedModules": true,
     "esModuleInterop": true,
     "jsx": "react-jsx",
-    "module": "CommonJS",
     "moduleResolution": "node",
     "resolveJsonModule": true,
-    "target": "ES2019",
     "strict": true,
+    "allowJs": true,
+    "forceConsistentCasingInFileNames": true,
     "baseUrl": ".",
     "paths": {
       "~/*": ["./app/*"],
-      "@flow-docs/ui": ["../../libs/design-system/src"],
-      "@flow-docs/cms": ["../../libs/cms-tools/dist/src"]
+      "@flow-docs/ui": ["../../libs/design-system/dist"]
     },
     "skipLibCheck": true,
-    "noEmit": true
+    "noEmit": true,
   }
 }

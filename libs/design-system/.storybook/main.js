@@ -1,25 +1,50 @@
-const path = require('path');
-const rootMain = require('../../../.storybook/main');
+// const { resolve } = require('path')
+// const TsconfigPathsPlugin = require('tsconfig-paths-webpack-plugin');
+
+const addons = [
+  // '@storybook/addon-essentials',
+  '@storybook/addon-links',
+  '@storybook/addon-actions',
+  '@storybook/addon-viewport',
+  {
+    name: '@storybook/addon-docs',
+    options: {
+      configureJSX: true,
+      babelOptions: {},
+      sourceLoaderOptions: null,
+      transcludeMarkdown: true,
+    },
+  },
+  '@storybook/addon-controls',
+  '@storybook/addon-backgrounds',
+  '@storybook/addon-toolbars',
+  '@storybook/addon-measure',
+  '@storybook/addon-outline',
+  'storybook-addon-themes',
+]
 
 module.exports = {
-  ...rootMain,
 
-  core: { ...rootMain.core, builder: 'webpack5' },
+  core: {  builder: 'webpack5' },
 
   stories: [
-    ...rootMain.stories,
     '../src/lib/**/*.stories.mdx',
     '../src/lib/**/*.stories.@(js|jsx|ts|tsx)',
   ],
-  addons: [...rootMain.addons, '@nrwl/react/plugins/storybook'],
-  webpackFinal: async (config, { configType }) => {
-    // apply any global webpack configs that might have been specified in .storybook/main.js
-    if (rootMain.webpackFinal) {
-      config = await rootMain.webpackFinal(config, { configType });
-    }
-
-    // add your own webpack tweaks if needed
-
-    return config;
-  },
+  addons: ['@nrwl/react/plugins/storybook', ...addons],
+  // webpackFinal: async (config, { configType }) => {
+  //   return { ...config, 
+  //     resolve: {
+  //     ...config.resolve,
+  //       plugins: [
+  //         ...config.resolve.plugins, 
+  //         new TsconfigPathsPlugin({ configFile: resolve(__dirname, '../tsconfig.json'),  
+  //           logLevel: "info",
+  //           extensions: [".ts", ".tsx"],
+  //           baseUrl: "./"
+  //         })
+  //       ]
+  //     } 
+  //   };
+  // }
 };

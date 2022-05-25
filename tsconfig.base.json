@@ -10,10 +10,13 @@
     "importHelpers": true,
     "target": "es2015",
     "module": "esnext",
-    "lib": ["es2017", "dom"],
+    "lib": ["es2021", "dom"],
     "skipLibCheck": true,
     "skipDefaultLibCheck": true,
-    "baseUrl": "."
+    "baseUrl": ".",
+    "paths": {
+      "@flow-docs/ui": ["libs/design-system/src/index.ts"]
+    }
   },
   "exclude": ["node_modules", "tmp"]
 }

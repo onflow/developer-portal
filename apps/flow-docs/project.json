@@ -1,17 +1,7 @@
 {
-  "root": "apps/flow-docs",
-  "sourceRoot": "apps/flow-docs/app",
-  "projectType": "application",
-  "tags": [],
-  "targets": {
-    "test": {
-      "executor": "@nrwl/workspace:run-commands",
-      "options": {
-        "cwd": "apps/flow-docs",
-        "commands": [
-          "npx vitest --run --config vitest.config.ts"
-        ]
-      }
-    }
+    "root": "apps/flow-docs",
+    "sourceRoot": "apps/flow-docs",
+    "projectType": "application",
+    "tags": []
   }
-}
+  

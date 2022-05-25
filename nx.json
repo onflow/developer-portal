@@ -1,4 +1,5 @@
 {
+  "$schema": "./node_modules/nx/schemas/nx-schema.json",
   "npmScope": "flow-docs",
   "affected": {
     "defaultBase": "main"

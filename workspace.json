@@ -1,9 +1,9 @@
 {
+  "$schema": "./node_modules/nx/schemas/workspace-schema.json",
   "version": 2,
   "projects": {
-    "cms-tools": "libs/cms-tools",
+    "docs-e2e": "apps/docs-e2e",
     "design-system": "libs/design-system",
-    "flow-docs": "apps/flow-docs",
-    "flow-docs-e2e": "apps/flow-docs-e2e"
+    "flow-docs": "apps/flow-docs"
   }
 }
