@@ -1,5 +1,6 @@
 import clsx from 'clsx';
 import ExternalLinkIcon from './ExternalLinkIcon';
+import { isLinkExternal } from './isLinkExternal';
 
 const defaultClasses =
   'relative text-primary-blue inline-flex items-center dark:text-gray-200 hover:opacity-75';
@@ -14,7 +15,7 @@ export type LinkProps = React.DetailedHTMLProps<
 
 //@ts-ignore: We need to figure out how to type this
 export function Link({ children, className, id, href, ...props }) {
-  const isExternal = href?.match(/^(www|http)/i);
+  const isExternal = isLinkExternal(href);
   const isFootnote = !!props['data-footnote-ref'];
 
   const classes = clsx(defaultClasses, {
