@@ -10,6 +10,7 @@ export type LandingHeaderProps = {
   title: string;
 };
 
+// !text-4xl md:!text-7xl
 export function LandingHeader({
   buttonText,
   buttonUrl,
