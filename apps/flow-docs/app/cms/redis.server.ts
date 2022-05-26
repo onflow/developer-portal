@@ -25,7 +25,7 @@ function createRedisClient(
   let client = global[name]
   if (!client) {
     const url = new URL(options.url ?? 'http://no-redis-url.example.com?weird')
-    console.log(`Setting up redis client to ${url.host} for ${name}`)
+    console.log(`Setting up redis client to ${url.host}`)
     // eslint-disable-next-line no-multi-assign
     client = global[name] = createClient({
       url: options.url
@@ -44,7 +44,7 @@ function createRedisClient(
 async function get<Value = unknown>(key: string): Promise<Value | null> {
   let result;  
   try {
-    result = await primaryClient.get(key);
+    result = await primaryClient?.get(key);
    
   } catch(e) {
     console.log('REDIS ERROR:', e)
@@ -56,7 +56,7 @@ async function get<Value = unknown>(key: string): Promise<Value | null> {
 
 async function set<Value>(key: string, value: Value): Promise<"OK"> {
   try {
-    await primaryClient.set(
+    await primaryClient?.set(
       key,
       JSON.stringify(value)
     );
@@ -69,7 +69,7 @@ async function set<Value>(key: string, value: Value): Promise<"OK"> {
 async function del(key: string): Promise<string> {
   let result;
   try {
-    result =  await primaryClient.del(key);
+    result =  await primaryClient?.del(key);
   } catch(e) {
     console.log('REDIS ERROR:', e) 
   }
