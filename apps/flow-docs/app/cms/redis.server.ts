@@ -1,40 +1,34 @@
 
-import { createClient, RedisClientType, RedisClientOptions } from "redis";
+import Redis from "ioredis";
 import { getRequiredServerEnvVar } from "./helpers";
 
 declare global {
   // This prevents us from making multiple connections to the db when the
   // require cache is cleared.
   // eslint-disable-next-line
-  var primaryClient: RedisClientType | undefined
+  var primaryClient: Redis | undefined
 }
 
 const REDIS_URL = getRequiredServerEnvVar("REDIS_URL");
 
-const primary = new URL(REDIS_URL);
-let primaryClient: RedisClientType | null = null
+const primaryURL = new URL(REDIS_URL);
+let primaryClient: Redis | null = null
 
-primaryClient = createRedisClient('primaryClient', {
-  url: primary.toString()
-})
+primaryClient = createRedisClient('primaryClient', primaryURL.toString())
 
 function createRedisClient(
   name: 'primaryClient',
-  options: RedisClientOptions,
-): RedisClientType {
+  url: string,
+): Redis {
   let client = global[name]
   if (!client) {
-    const url = new URL(options.url ?? 'http://no-redis-url.example.com?weird')
-    console.log(`Setting up redis client to ${url.host}`)
+    const dbURL = new URL(url ?? 'http://no-redis-url.example.com?weird')
+    console.log(`Setting up redis client to ${dbURL.host}`)
     // eslint-disable-next-line no-multi-assign
-    client = global[name] = createClient({
-      url: options.url
-    })
+    client = global[name] = new Redis(url)
 
-    client.connect()
-    
     client.on('error', (error: string) => {
-      console.error(`REDIS ${name} (${url.host}) ERROR:`, error)
+      console.error(`REDIS ${name} (${dbURL.host}) ERROR:`, error)
     })
   }
   return client

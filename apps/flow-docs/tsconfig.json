@@ -1,5 +1,4 @@
 {
-  "exclude": ["./cypress"],
   "include": ["remix.env.d.ts", "**/*.ts", "**/*.tsx"],
   "extends": "../../tsconfig.base.json",
   "compilerOptions": {
@@ -19,6 +18,6 @@
       "@flow-docs/ui": ["../../libs/design-system/dist"]
     },
     "skipLibCheck": true,
-    "noEmit": true,
+    "noEmit": true
   }
 }
