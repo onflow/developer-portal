@@ -49,12 +49,12 @@ export type ButtonLinkProps = React.ComponentPropsWithoutRef<'a'> &
   };
 
 export function ButtonLink({
+  children,
   className,
   variant = 'primary',
   ...props
 }: ButtonLinkProps) {
   return (
-    // eslint-disable-next-line jsx-a11y/anchor-has-content
     <a
       className={clsx(
         'rounded-lg border-2 hover:shadow-2xl',
@@ -62,6 +62,8 @@ export function ButtonLink({
         className
       )}
       {...props}
-    />
+    >
+      {children}
+    </a>
   );
 }

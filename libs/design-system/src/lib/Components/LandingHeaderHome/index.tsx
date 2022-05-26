@@ -2,15 +2,15 @@ import LandingImage from '../../../../images/misc/landing-home.png';
 import { LandingHeaderContainer } from '../LandingHeader/LandingHeaderContainer';
 
 export type LandingHeaderHomeProps = {
+  description: string;
   tag: string;
   title: string;
-  description: string;
 };
 
 export function LandingHeaderHome({
+  description,
   tag,
   title,
-  description,
 }: LandingHeaderHomeProps) {
   return (
     <LandingHeaderContainer className="flex justify-center" gradient="home">
