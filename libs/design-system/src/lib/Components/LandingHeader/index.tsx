@@ -10,6 +10,7 @@ export type LandingHeaderProps = {
   title: string;
 };
 
+// !text-4xl md:!text-7xl
 export function LandingHeader({
   buttonText,
   buttonUrl,
@@ -21,7 +22,7 @@ export function LandingHeader({
   return (
     <LandingHeaderContainer gradient={gradient}>
       <div className="container mx-auto flex flex-col justify-items-stretch px-4 py-12 md:px-20 md:py-20">
-        <h1 className="text-h1 mb-12 max-w-full overflow-hidden text-ellipsis !text-4xl md:!text-7xl">
+        <h1 className="text-h1 mb-12 max-w-full overflow-hidden text-ellipsis !text-4xl md:mt-20 md:!text-7xl md:!leading-tight">
           {title}
         </h1>
         <div className="flex flex-row items-stretch rounded-lg bg-primary-gray-100/30">

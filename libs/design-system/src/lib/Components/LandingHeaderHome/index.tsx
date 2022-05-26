@@ -14,8 +14,8 @@ export function LandingHeaderHome({
 }: LandingHeaderHomeProps) {
   return (
     <LandingHeaderContainer className="flex justify-center" gradient="home">
-      <div className="flex max-w-full flex-col items-center md:max-w-6xl md:flex-row">
-        <div className="flex max-w-full flex-1 basis-1/2 flex-col items-start self-start px-4 py-12 md:px-20 md:py-20">
+      <div className="container flex max-w-full flex-col items-center md:flex-row">
+        <div className="flex max-w-full flex-1 basis-1/2 flex-col items-start self-start px-4 py-6 md:mt-24 md:px-20 md:py-20">
           <p className="mb-1 font-display font-bold text-primary-gray-300 dark:text-primary-gray-200">
             #{tag}
           </p>

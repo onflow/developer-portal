@@ -21,7 +21,7 @@ export function LandingHeaderContainer({
 }: LandingHeaderContainerProps) {
   return (
     <header
-      className={clsx(`bg-gradient-${gradient} bg-cover`, className)}
+      className={clsx(`bg-gradient-${gradient} bg-cover bg-bottom`, className)}
       {...props}
     />
   );
