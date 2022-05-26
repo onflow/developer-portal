@@ -8,6 +8,7 @@ import Catalog from "./pages/catalog";
 import Home from './pages/home';
 import Proposals from "./pages/proposals";
 import Verifier from './pages/verifier';
+import Landing from './pages/landing';
 
 export function App() {
   return (
@@ -21,6 +22,9 @@ export function App() {
         </Route>
         <Route path="/v">
           <Verifier />
+        </Route>
+        <Route path="/landing">
+          <Landing />
         </Route>
         <Route path="/">
           <Home />

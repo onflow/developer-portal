@@ -10,6 +10,8 @@ export function Home() {
       <Link to={'/catalog'}>NFT Catalog</Link>
       <br />
       <Link to={'/proposals'}>NFT Catalog Proposals</Link>
+      <br />
+      <Link to={'/landing'}>Landing</Link>
     </>
   );
 }
