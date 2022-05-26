@@ -21,6 +21,7 @@ export const action: ActionFunction = async ({ request }) => {
   const body = (await request.json()) as Body;
   const repoCommitShaKey = `${commitShaKey}:${body.repo}`;
 
+
   // if (
   //   request.headers.get("auth") !==
   //   getRequiredServerEnvVar("REFRESH_CACHE_SECRET")
