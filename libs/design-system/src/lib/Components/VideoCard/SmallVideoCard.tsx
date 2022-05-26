@@ -21,7 +21,7 @@ export function SmallVideoCard({
   const url = new URL(link);
 
   if (url.hostname !== 'www.youtube.com') {
-    console.error('VideoCard only accepts youtube embeds');
+    throw new Error('VideoCard only accepts youtube embeds');
   }
 
   return (

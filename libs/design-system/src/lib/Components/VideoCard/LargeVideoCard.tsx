@@ -23,7 +23,7 @@ export function LargeVideoCard({ link, title, length }: LargeVideoCardProps) {
   const videoId = url.searchParams.get('v');
 
   if (url.hostname !== 'www.youtube.com') {
-    console.error('VideoCard only accepts youtube embeds');
+    throw new Error('VideoCard only accepts youtube embeds');
   }
 
   return (
