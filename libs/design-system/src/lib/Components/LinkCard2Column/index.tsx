@@ -1,7 +1,7 @@
 import {
-  LinkCard2ColumnLinkItem,
-  LinkCard2ColumnLinkItemProps,
-} from './LinkCard2ColumnLinkItem';
+  LinkCard2ColumnItem,
+  LinkCard2ColumnItemProps,
+} from './LinkCard2ColumnItem';
 import { ButtonLink } from '../Button';
 import Tag from '../Tag';
 
@@ -9,7 +9,7 @@ export type LinkCard2ColumnProps = {
   buttonText: string;
   buttonUrl: string;
   description: string;
-  items: LinkCard2ColumnLinkItemProps[];
+  items: LinkCard2ColumnItemProps[];
   tags?: string[];
   title: string;
 };
@@ -40,7 +40,7 @@ export function LinkCard2Column({
       </div>
       <div className="flex flex-1 flex-col items-stretch">
         {items.map((item) => (
-          <LinkCard2ColumnLinkItem key={item.title} {...item} />
+          <LinkCard2ColumnItem key={item.title} {...item} />
         ))}
       </div>
     </div>

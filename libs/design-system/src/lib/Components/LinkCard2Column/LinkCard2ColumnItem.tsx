@@ -3,21 +3,21 @@ import { ReactComponent as ExternalLinkIcon } from '../../../../images/content/e
 import { isLinkExternal } from '../Link/isLinkExternal';
 import { LinkCard2ColumnItemContainer } from './LinkCard2ColumnItemContainer';
 
-export type LinkCard2ColumnLinkItemBaseProps = {
+export type LinkCard2ColumnItemBaseProps = {
   description: string;
   icon?: string;
   iconAltText?: string;
   title: string;
 };
 
-export type LinkCard2ColumnLinkItemSingleLinkProps =
-  LinkCard2ColumnLinkItemBaseProps & {
+export type LinkCard2ColumnItemSingleLinkProps =
+  LinkCard2ColumnItemBaseProps & {
     href: string;
     links?: never;
   };
 
-export type LinkCard2ColumnLinkItemMultipleLinksProps =
-  LinkCard2ColumnLinkItemBaseProps & {
+export type LinkCard2ColumnItemMultipleLinksProps =
+  LinkCard2ColumnItemBaseProps & {
     href?: never;
     links: Array<{
       href: string;
@@ -25,18 +25,18 @@ export type LinkCard2ColumnLinkItemMultipleLinksProps =
     }>;
   };
 
-export type LinkCard2ColumnLinkItemProps =
-  | LinkCard2ColumnLinkItemSingleLinkProps
-  | LinkCard2ColumnLinkItemMultipleLinksProps;
+export type LinkCard2ColumnItemProps =
+  | LinkCard2ColumnItemSingleLinkProps
+  | LinkCard2ColumnItemMultipleLinksProps;
 
-export function LinkCard2ColumnLinkItem({
+export function LinkCard2ColumnItem({
   description,
   href,
   icon,
   iconAltText = '',
   links,
   title,
-}: LinkCard2ColumnLinkItemProps) {
+}: LinkCard2ColumnItemProps) {
   return (
     <LinkCard2ColumnItemContainer href={href}>
       {icon && (
