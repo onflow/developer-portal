@@ -1,1 +1,11 @@
 /* You can add global styles to this file, and also import other style files */
+/* TODO: Remove this once you figure out how to port over color.css from storybook */
+.internal-landing-card-green-bg {
+  background: linear-gradient(
+    85.22deg,
+    #00ef8b -26.3%,
+    rgba(0, 239, 139, 0.566845) 24.91%,
+    rgba(0, 239, 139, 0.566845) 24.92%,
+    rgba(193, 240, 220, 0) 91.91%
+  );
+}
