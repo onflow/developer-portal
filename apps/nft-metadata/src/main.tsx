@@ -2,6 +2,7 @@ import { StrictMode } from 'react';
 import * as ReactDOM from 'react-dom';
 import { BrowserRouter } from 'react-router-dom';
 import './app/styles/tailwind.css';
+import './styles.css';
 
 import App from './app/app';
 
