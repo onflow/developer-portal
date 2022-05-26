@@ -34,7 +34,7 @@ export function FAQ({ faqList, variation }: FAQProps) {
         return (
           <div
             onClick={() => toggleExpansion(i)}
-            className={`cursor-pointer p-7 ${
+            className={`cursor-pointer py-7 md:px-7 ${
               itemExpanded
                 ? 'my-1.5 rounded-lg bg-white'
                 : isLast || isAboveExpandedItem
@@ -49,8 +49,8 @@ export function FAQ({ faqList, variation }: FAQProps) {
             >
               <div
                 className={`${
-                  itemExpanded ? 'text-2xl' : 'text-base'
-                } font-semibold ${variation === 'large' ? 'md:text-2xl' : ''}`}
+                  itemExpanded ? 'text-2xl font-semibold' : 'text-base'
+                } md:font-semibold ${variation === 'large' ? 'md:text-2xl' : ''}`}
               >
                 {faq.question}
               </div>
