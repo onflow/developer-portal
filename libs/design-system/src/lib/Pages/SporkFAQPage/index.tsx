@@ -1,6 +1,6 @@
 import React from 'react';
 
-import { ReactComponent as LeftChevron} from '../../../../images/arrows/chevron-left.svg'
+import { ReactComponent as LeftChevron } from '../../../../images/arrows/chevron-left.svg';
 import { Footer } from '../../Components';
 import { Attribution } from '../../Components/Attribution/Attribution';
 import { FAQ } from '../../Components/FAQ/FAQ';
@@ -31,29 +31,36 @@ const faqList = [
 
 export function SporkFAQPage() {
   return (
-    <div className='bg-zinc-50 md:bg-white'>
-      <div className="relative z-20 h-24 w-full shadow-lg">header nav</div>
-      <InternalSubnav current='Spork FAQ'/>
-      <main className="container mx-auto md:pt-16 pb-48">
-        <div className="grid grid-cols-1 md:flex items-start pb-6 md:pb-12">
-          <div className="grow order-2">
-            <h1 className='text-h1 leading-snug font-bold font-termina pb-14 md:pb-6'>Spork FAQ</h1>
+    <div className="bg-zinc-50 md:bg-white">
+      <div className="relative z-20 h-24 w-full shadow-md">header nav</div>
+      <InternalSubnav current="Spork FAQ" />
+      <main className="container mx-auto px-4 pb-48 md:px-0 md:pt-16">
+        <div className="grid grid-cols-1 items-start pb-6 md:flex md:pb-12">
+          <div className="order-2 grow">
+            <h1 className="text-h1 font-termina pb-14 font-bold leading-snug md:pb-6 md:font-sans md:text-4xl">
+              Spork FAQ
+            </h1>
             <Attribution
               updatedDate="23/3/2022"
               authorIcon="https://avatars.githubusercontent.com/u/62387156?s=64&v=4"
               authorName="@maxxP"
               otherAuthorsCount={12}
               readMinutes={4}
-              difficulty='Beginners'
+              difficulty="Beginners"
             />
           </div>
-          <div className='order-1 md:order-2'>
-            <button className='flex items-center md:border border-primary-blue py-4 md:px-5 rounded-lg text-primary-blue'><span><LeftChevron className='stroke-primary-blue'/></span>Back to Network</button>
+          <div className="order-1 md:order-2">
+            <button className="mt-3 mb-2 flex items-center rounded-lg border-primary-blue py-4 text-primary-blue md:m-0 md:border md:px-5">
+              <span>
+                <LeftChevron className="stroke-primary-blue" />
+              </span>
+              Back to Network
+            </button>
           </div>
         </div>
         <FAQ faqList={faqList} variation="large" />
       </main>
-      <Footer/>
+      <Footer />
     </div>
   );
 }
