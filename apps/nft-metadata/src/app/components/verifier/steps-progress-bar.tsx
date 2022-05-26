@@ -17,7 +17,6 @@ export function StepsProgressBar({
         {steps.map((step, index) => (
           <div key={step.id} className="col-span-full sm:col-auto border-solid border-y-2">
 
-            {/* :STATUS COMPLETED */}
             {step.isComplete &&
               <a href={step.href} onClick={step.onClick} className="group p-4 flex flex-col items-start border-l-4 sm:border-l-0 sm:border-t-4 border-blue-500 hover:border-blue-900">
                 {/* ::Step number */}
@@ -27,7 +26,6 @@ export function StepsProgressBar({
               </a>
             }
 
-            {/* :STATUS CURRENT */}
             {step.isActive && !step.isComplete &&
               <a className="group p-4 flex flex-col items-start border-l-4 sm:border-l-0 sm:border-t-4 border-blue-500">
                 {/* ::Step number */}
@@ -37,7 +35,6 @@ export function StepsProgressBar({
               </a>
             }
 
-            {/* :STATUS UPCOMING */}
             {!step.isActive && !step.isComplete  &&
               <a className="group p-4 flex flex-col items-start border-l-4 sm:border-l-0 sm:border-t-4 border-gray-300 hover:border-gray-500">
                 {/* ::Step number */}
