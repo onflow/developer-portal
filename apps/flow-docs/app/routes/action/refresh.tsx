@@ -9,7 +9,7 @@ type Body = {
   keys: Array<string>; 
   commitSha?: string,  
   repo: string;
-  contentPaths: Array<string>; 
+  contentPaths: string; 
 }
 
 export const commitShaKey = `meta:last-refresh-commit-sha`;
@@ -21,7 +21,7 @@ export const action: ActionFunction = async ({ request }) => {
   const body = (await request.json()) as Body;
   const repoCommitShaKey = `${commitShaKey}:${body.repo}`;
 
-
+  console.log('Got refresh request:', body, repoCommitShaKey)
   // if (
   //   request.headers.get("auth") !==
   //   getRequiredServerEnvVar("REFRESH_CACHE_SECRET")
@@ -52,10 +52,10 @@ export const action: ActionFunction = async ({ request }) => {
     });
   }
 
-  if ("contentPaths" in body && Array.isArray(body.contentPaths)) {
+  if ("contentPaths" in body && Array.isArray(body.contentPaths.split(' '))) {
     console.log("Refreshing content...");
     const refreshingContentPaths: [string?] = [];
-    for (const contentPath of body.contentPaths) {
+    for (const contentPath of body.contentPaths.split(' ')) {
       if (typeof contentPath !== "string") continue;
       const [contentDir, dirOrFilename] = contentPath.split("/");
       if (!contentDir || !dirOrFilename) continue;

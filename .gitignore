@@ -44,3 +44,4 @@ apps/**/.cache
 
 .postgres-data
 .redis-data
+.vscode
