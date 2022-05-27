@@ -18,7 +18,8 @@ export type SporksCardProps = {
   heading: string;
   timestamp: Date;
   sporkMetadata: SporkMetadata;
-  upcoming: boolean;
+  upcoming?: boolean;
+  isDefaultExpanded?: boolean;
 };
 
 const CardItem = ({ label, data }: { label: string; data: any }) => (
@@ -37,7 +38,7 @@ const CardItem = ({ label, data }: { label: string; data: any }) => (
   </div>
 );
 
-const Spork = ({ heading, timestamp, sporkMetadata }) => {
+const Spork = ({ heading, timestamp, sporkMetadata, isDefaultExpanded }) => {
   const {
     accessNode,
     date,
@@ -48,7 +49,7 @@ const Spork = ({ heading, timestamp, sporkMetadata }) => {
     branchOrTag,
     dockerTag,
   } = sporkMetadata;
-  const [isExpanded, setIsExpanded] = useState(true);
+  const [isExpanded, setIsExpanded] = useState(isDefaultExpanded);
 
   return (
     <div className="flex-col items-center justify-between py-4 bg-white rounded-2xl px-11 hover:shadow-2xl dark:bg-primary-dark-gray xs:px-2">
@@ -87,20 +88,15 @@ const Spork = ({ heading, timestamp, sporkMetadata }) => {
 
 const UpcomingSpork = ({ heading, timestamp }) => {
   return (
-    <div className="flex-col items-center justify-between py-4 bg-white rounded-2xl px-11 dark:bg-primary-dark-gray xs:px-2">
-      <div
-        className="flex justify-between xs:px-2"
-        tabIndex={0}
-        role="button"
-        aria-pressed="false"
-      >
-        <div className="flex items-center">
-          <span className="text-2xl font-bold xs:text-xl">{heading}</span>
-          <span className="ml-12">
-            Coming in {formatDistanceToNow(timestamp)} (
-            {format(timestamp, 'MMMM d')} 8-9AM PST)
-          </span>
-        </div>
+    <div className="flex-col items-center justify-between py-6 bg-white rounded-2xl px-11 dark:bg-primary-dark-gray">
+      <div className="flex text-left xs:flex-col md:flex-row">
+        <span className="text-2xl font-bold xs:mb-4 xs:text-xl md:mb-0">
+          {heading}
+        </span>
+        <span className="xs:ml-0 md:ml-12">
+          Coming in {formatDistanceToNow(timestamp)} (
+          {format(timestamp, 'MMMM d')} 8-9AM PST)
+        </span>
       </div>
     </div>
   );
@@ -110,7 +106,8 @@ const SporksCard = ({
   heading,
   timestamp,
   sporkMetadata,
-  upcoming,
+  upcoming = false,
+  isDefaultExpanded = true,
 }: SporksCardProps) => {
   return upcoming ? (
     <UpcomingSpork heading={heading} timestamp={timestamp} />
@@ -119,6 +116,7 @@ const SporksCard = ({
       heading={heading}
       timestamp={timestamp}
       sporkMetadata={sporkMetadata}
+      isDefaultExpanded={isDefaultExpanded}
     />
   );
 };
