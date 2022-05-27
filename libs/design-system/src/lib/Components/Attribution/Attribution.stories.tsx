@@ -8,9 +8,9 @@ export default {
 
 const Template: Story<AttributionProps> = (args) => <Attribution {...args} />;
 
-export const Primary = Template.bind({});
+export const Default = Template.bind({});
 
-Primary.args = {
+Default.args = {
   updatedDate: '23/3/2022',
   authorIcon: 'https://avatars.githubusercontent.com/u/62387156?s=64&v=4',
   authorName: '@maxxP',

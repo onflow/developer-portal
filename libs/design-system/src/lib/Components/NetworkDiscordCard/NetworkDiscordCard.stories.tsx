@@ -15,10 +15,10 @@ const Template: Story<NetworkDiscordCardProps> = (args) => {
   );
 };
 
-export const Primary = Template.bind({});
-Primary.args = {
+export const Default = Template.bind({});
+Default.args = {
   message: 'Mainnet has been down for the past two hours',
   username: '@john_flow',
   timestamp: endOfDay(new Date()),
-  messageLink: 'https://google.com'
-}
+  messageLink: 'https://google.com',
+};

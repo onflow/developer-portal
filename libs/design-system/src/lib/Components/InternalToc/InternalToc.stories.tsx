@@ -8,9 +8,9 @@ export default {
 
 const Template: Story<InternalTocProps> = (args) => <InternalToc {...args} />;
 
-export const Primary = Template.bind({});
+export const Default = Template.bind({});
 
-Primary.args = {
+Default.args = {
   headings: [
     { id: 'introduction', value: 'Introduction' },
     { id: 'links', value: 'Links' },

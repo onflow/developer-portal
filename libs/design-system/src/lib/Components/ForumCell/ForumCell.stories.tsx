@@ -14,26 +14,41 @@ const Template: Story<ForumCellProps> = (args) => {
   );
 };
 
-export const Primary = Template.bind({});
-Primary.args = {
+export const Default = Template.bind({});
+const args = {
   numComments: 23,
-  heading: 'Error Subscribing to Events in Default Docs',
+  heading: 'Consensus Node Secrets Database',
   subheading: 'Flow Javascript SDK',
   participants: [
     {
-      profilePicture: 'https://github.githubassets.com/images/modules/logos_page/GitHub-Mark.png',
-      name: 'Marky Mark'
+      profilePicture:
+        'https://github.githubassets.com/images/modules/logos_page/GitHub-Mark.png',
+      name: 'Marky Mark',
     },
     {
-      profilePicture: 'https://github.githubassets.com/images/modules/logos_page/GitHub-Mark.png',
-      name: 'Marky Mark 2'
+      profilePicture:
+        'https://github.githubassets.com/images/modules/logos_page/GitHub-Mark.png',
+      name: 'Marky Mark 2',
     },
     {
-      profilePicture: 'https://github.githubassets.com/images/modules/logos_page/GitHub-Mark.png',
-      name: 'Marky Mark 3'
-    }, {
-      profilePicture: 'https://github.githubassets.com/images/modules/logos_page/GitHub-Mark.png',
-      name: 'Marky Mark 4'
-    }
-  ]
+      profilePicture:
+        'https://github.githubassets.com/images/modules/logos_page/GitHub-Mark.png',
+      name: 'Marky Mark 3',
+    },
+    {
+      profilePicture:
+        'https://github.githubassets.com/images/modules/logos_page/GitHub-Mark.png',
+      name: 'Marky Mark 4',
+    },
+  ],
+  forumLink: '#test',
+};
+
+Default.args = args;
+export const Mobile = Template.bind({});
+Mobile.args = args;
+Mobile.parameters = {
+  viewport: {
+    defaultViewport: 'xs',
+  },
 };

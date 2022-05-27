@@ -10,7 +10,7 @@ const Template: Story<SocialLinksSignupProps> = (args) => {
   return <SocialLinksSignup {...args} />;
 };
 
-export const Primary = Template.bind({});
+export const Default = Template.bind({});
 
 export const Mobile = Template.bind({});
 Mobile.parameters = {

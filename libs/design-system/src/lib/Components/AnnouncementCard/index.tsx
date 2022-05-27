@@ -1,6 +1,7 @@
 import React from 'react';
 import { formatDistance } from 'date-fns';
-import { RightChevronIcon, TimeIcon } from '../Icons';
+import { ReactComponent as ChevronRightIcon } from '../../../../images/arrows/chevron-right.svg';
+import { ReactComponent as TimeIcon } from '../../../../images/content/date.svg';
 
 export type AnnouncementCardProps = {
   sourceIcon: string;
@@ -20,9 +21,9 @@ const AnnouncementCard = ({
   return (
     <a
       href={link}
-      className="flex items-center justify-between px-8 py-6 bg-white rounded-2xl hover:shadow-2xl dark:bg-primary-dark-gray sm:px-4"
+      className="flex items-center justify-between bg-white rounded-2xl hover:shadow-2xl dark:bg-primary-dark-gray xs:px-4 xs:py-9 md:px-8 md:py-6"
     >
-      <div className="mr-4 sm:mr-1">
+      <div className="mr-4 xs:mr-1 xs:self-start">
         <img
           src={sourceIcon}
           alt={sourceAltText}
@@ -32,16 +33,16 @@ const AnnouncementCard = ({
         />
       </div>
       <div className="flex-1">
-        <h2 className="text-2xl font-bold sm:text-xl">{heading}</h2>
-        <div className="flex items-center text-primary-gray-300">
+        <div className="text-2xl font-bold xs:text-xl">{heading}</div>
+        <div className="flex items-center text-primary-gray-300 xs:mt-4">
           <TimeIcon />
           <span className="ml-2">
             {formatDistance(timestamp, new Date())} ago
           </span>
         </div>
       </div>
-      <div className="md:mt-0 lg:mt-0">
-        <RightChevronIcon />
+      <div className="md:mt-0">
+        <ChevronRightIcon />
       </div>
     </a>
   );
