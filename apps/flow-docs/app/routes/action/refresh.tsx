@@ -55,7 +55,8 @@ export const action: ActionFunction = async ({ request }) => {
   if ("contentPaths" in body && Array.isArray(body.contentPaths)) {
     console.log("Refreshing content...");
     const refreshingContentPaths: [string?] = [];
-    for (const contentPath of body.contentPaths) {
+    const paths: string[] = body.contentPaths[0].split(' ')
+    for (const contentPath of paths) {
       if (typeof contentPath !== "string") continue;
       const [contentDir, dirOrFilename] = contentPath.split("/");
       if (!contentDir || !dirOrFilename) continue;
