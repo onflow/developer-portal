@@ -42,7 +42,7 @@ export function LargeVideoCard({ link, title, length }: LargeVideoCardProps) {
             <PlayCircle width={48} height={64} />
           </div>
           <div className="pointer-events-none absolute bottom-0 left-0 w-full p-6 text-white md:w-3/4">
-            <div className="text-h4  line-clamp-2">{title}</div>
+            <div className="text-h4 line-clamp-2">{title}</div>
             <div className="items-align flex gap-2">
               <Time className="stroke-white" height={20} width={20} />
               <div className="text-base">
