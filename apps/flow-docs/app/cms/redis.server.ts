@@ -16,6 +16,7 @@ let primaryClient: Redis | null = null
 
 primaryClient = createRedisClient('primaryClient', primaryURL.toString())
 
+// Create Redis client instance
 function createRedisClient(
   name: 'primaryClient',
   url: string,
@@ -45,7 +46,6 @@ async function get<Value = unknown>(key: string): Promise<Value | null> {
   } 
 
   return result ? result = (JSON.parse(result) as Value) : null   
-
 }
 
 async function set<Value>(key: string, value: Value): Promise<"OK"> {
@@ -57,7 +57,7 @@ async function set<Value>(key: string, value: Value): Promise<"OK"> {
   } catch(e) {
     console.log("REDIS ERROR:", e)
   }
-    return "OK"
+  return "OK"
 }
 
 async function del(key: string): Promise<string> {
