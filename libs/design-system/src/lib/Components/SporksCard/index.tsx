@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import { format, formatDistanceToNow } from 'date-fns';
-import { ReactComponent as CopyIcon } from '../../../../images/actions/copy.svg';
+import { ReactComponent as CopyIcon } from '../../../../images/action/copy.svg';
 import { ReactComponent as ChevronUpIcon } from '../../../../images/arrows/chevron-up.svg';
 
 export type SporkMetadata = {
