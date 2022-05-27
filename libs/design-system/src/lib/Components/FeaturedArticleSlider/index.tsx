@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-
+import { ButtonLink } from '../Button';
 export type Article = {
   heading: string;
   description: string;
@@ -20,15 +20,15 @@ const FeaturedArticle = ({
   imageUrl,
 }) => (
   <div className="flex min-h-fit flex-col-reverse overflow-hidden rounded-2xl bg-white dark:bg-primary-dark-gray md:min-h-[30rem] md:flex-row">
-    <div className="min-w-[50%] self-center pl-6 pr-6 pt-10 pb-16 md:pr-32 md:pl-20">
+    <div className="min-w-[50%] self-center py-10 pl-6 pr-6 md:pr-32 md:pl-20">
       <h3 className="text-h3">{heading}</h3>
       <p className="py-6 dark:text-primary-gray-100">{description}</p>
-      <a
-        className="block w-full rounded-lg bg-black px-16 py-4 text-center text-white hover:cursor-pointer"
+      <ButtonLink
         href={ctaLink}
+        className="px-16 py-4 text-center text-white bg-black rounded-lg hover:cursor-pointer"
       >
         {ctaText}
-      </a>
+      </ButtonLink>
     </div>
     <div
       style={{
@@ -49,7 +49,7 @@ const FeaturedArticleSlider = ({ articles }: FeaturedArticleSliderProps) => {
     <div className="flex flex-col items-center justify-center">
       {ArticleComponents[currentArticleIndex]}
       {articles.length > 1 && (
-        <div className="mt-12 flex items-center justify-center md:hidden">
+        <div className="flex items-center justify-center mt-12 md:hidden">
           {articles.map((_, index) => {
             const backgroundClass =
               index === currentArticleIndex
