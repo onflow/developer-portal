@@ -1,5 +1,5 @@
 
-import { Redis } from '@upstash/redis'
+import Redis from 'ioredis'
 import { getRequiredServerEnvVar } from "./helpers";
 
 declare global {
@@ -10,7 +10,6 @@ declare global {
 }
 
 const REDIS_URL = getRequiredServerEnvVar("REDIS_URL");
-const REDIS_TOKEN = getRequiredServerEnvVar("REDIS_TOKEN")
 
 const primaryURL = new URL(REDIS_URL);
 let primaryClient: Redis | null = null
@@ -27,10 +26,7 @@ function createRedisClient(
     const dbURL = new URL(url ?? 'http://no-redis-url.example.com?weird')
     console.log(`Setting up redis client to ${dbURL.host}`)
     // eslint-disable-next-line no-multi-assign
-    client = global[name] = new Redis({
-      url: REDIS_URL,
-      token: REDIS_TOKEN,
-    })
+    client = global[name] = new Redis(REDIS_URL)
   }
   return client
 }
@@ -44,7 +40,7 @@ async function get<Value = unknown>(key: string): Promise<Value | null> {
     console.log('REDIS ERROR:', e)
   } 
 
-  return result ? result as Value : null   
+  return result ? JSON.parse(result) as Value : null   
 }
 
 async function set<Value>(key: string, value: Value): Promise<"OK"> {
