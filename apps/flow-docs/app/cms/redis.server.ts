@@ -39,13 +39,12 @@ function createRedisClient(
 async function get<Value = unknown>(key: string): Promise<Value | null> {
   let result;  
   try {
-    result = await primaryClient?.get(key);
-   
+    result = await primaryClient?.get(key);   
   } catch(e) {
     console.log('REDIS ERROR:', e)
   } 
 
-  return result ? result = (JSON.parse(result as string) as Value) : null   
+  return result ? result as Value : null   
 }
 
 async function set<Value>(key: string, value: Value): Promise<"OK"> {
