@@ -56,7 +56,7 @@ export async function retrieveMetadataInformation(sampleAddress: string, publicP
       fcl.script(`
         import MetadataViews from 0x631e88ae7f1d7c20
 
-        pub let RECOMMENDED_METADATA_VIEWS: [Type] = [Type<MetadataViews.Display>(), Type<MetadataViews.Royalties>()]
+        pub let RECOMMENDED_METADATA_VIEWS: [Type] = [Type<MetadataViews.Display>()]
 
         pub fun main(ownerAddress: Address, pubPath: String): {String: Bool} {
             let owner = getAccount(ownerAddress)

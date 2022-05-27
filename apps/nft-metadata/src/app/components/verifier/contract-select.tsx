@@ -13,7 +13,16 @@ export function ContractSelect({
 
   return (
     <>
-      <div className="text-2xl mb-6">Select NFT Contract</div>
+      <div className="text-l">
+        This tool will assist you in verifying the metadata on your NFTs and allow your collection to be added to the <b>NFT Catalog</b>.
+        <br />
+        <br />
+        This catalog will automatically allow applications and marketplaces such as <b>Alchemy, Rarible, Blocto, Find</b>, etc. to utilize your NFT collection on their platforms.
+        <br />
+        <br />
+        
+      </div>
+      <div className="text-2xl my-6">Select NFT Contract</div>
       <b>Enter Address containing your NFT Contract</b>
       <br />
       <SearchBar
