@@ -52,10 +52,10 @@ export const action: ActionFunction = async ({ request }) => {
     });
   }
 
-  if ("contentPaths" in body && Array.isArray(body.contentPaths.split(' '))) {
+  if ("contentPaths" in body && Array.isArray(body.contentPaths)) {
     console.log("Refreshing content...");
     const refreshingContentPaths: [string?] = [];
-    for (const contentPath of body.contentPaths.split(' ')) {
+    for (const contentPath of body.contentPaths) {
       if (typeof contentPath !== "string") continue;
       const [contentDir, dirOrFilename] = contentPath.split("/");
       if (!contentDir || !dirOrFilename) continue;
@@ -80,7 +80,7 @@ export const action: ActionFunction = async ({ request }) => {
       commitSha: body.commitSha,
     });
   }
-  return json({ message: "no action taken" }, { status: 400 });
+  return json({ message: "no action taken" }, { status: 200 });
 };
 
 export const loader = () => redirect("/", { status: 404 });
