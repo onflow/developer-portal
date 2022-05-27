@@ -21,9 +21,9 @@ const AnnouncementCard = ({
   return (
     <a
       href={link}
-      className="flex items-center justify-between bg-white rounded-2xl hover:shadow-2xl dark:bg-primary-dark-gray xs:px-4 xs:py-9 md:px-8 md:py-6"
+      className="flex items-center justify-between rounded-2xl bg-white px-4 py-9 hover:shadow-2xl dark:bg-primary-dark-gray md:px-8 md:py-6"
     >
-      <div className="mr-4 xs:mr-1 xs:self-start">
+      <div className="mr-4 mr-1 self-start">
         <img
           src={sourceIcon}
           alt={sourceAltText}
@@ -33,8 +33,8 @@ const AnnouncementCard = ({
         />
       </div>
       <div className="flex-1">
-        <div className="text-2xl font-bold xs:text-xl">{heading}</div>
-        <div className="flex items-center text-primary-gray-300 xs:mt-4">
+        <div className="text-2xl text-xl font-bold">{heading}</div>
+        <div className="mt-4 flex items-center text-primary-gray-300">
           <TimeIcon />
           <span className="ml-2">
             {formatDistance(timestamp, new Date())} ago

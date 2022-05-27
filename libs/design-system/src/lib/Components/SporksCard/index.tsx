@@ -28,7 +28,7 @@ const CardItem = ({ label, data }: { label: string; data: any }) => (
       {data}
     </div>
     <div
-      className="hidden xs:group-hover:hidden md:group-hover:block"
+      className="hidden group-hover:hidden md:group-hover:block"
       title={`Copy ${data}`}
       onClick={() => navigator.clipboard.writeText(data.toString())}
     >
@@ -51,20 +51,20 @@ const Spork = ({ heading, timestamp, sporkMetadata }) => {
   const [isExpanded, setIsExpanded] = useState(true);
 
   return (
-    <div className="flex-col items-center justify-between py-4 bg-white rounded-2xl px-11 hover:shadow-2xl dark:bg-primary-dark-gray xs:px-2">
+    <div className="flex-col items-center justify-between px-2 py-4 bg-white rounded-2xl px-11 hover:shadow-2xl dark:bg-primary-dark-gray">
       <div
-        className="flex justify-between ease-in cursor-pointer xs:px-2"
+        className="flex justify-between px-2 ease-in cursor-pointer"
         tabIndex={0}
         role="button"
         aria-pressed="false"
         onClick={() => setIsExpanded(!isExpanded)}
       >
         <div className="flex items-center">
-          <span className="text-2xl font-bold xs:text-xl">{heading}</span>
+          <span className="text-xl text-2xl font-bold">{heading}</span>
           <span className="ml-12">{format(timestamp, 'MMMM d')}</span>
         </div>
         {isExpanded && (
-          <div className="xs:mt-2">
+          <div className="mt-2">
             <ChevronUpIcon />
           </div>
         )}
@@ -87,15 +87,10 @@ const Spork = ({ heading, timestamp, sporkMetadata }) => {
 
 const UpcomingSpork = ({ heading, timestamp }) => {
   return (
-    <div className="flex-col items-center justify-between py-4 bg-white rounded-2xl px-11 dark:bg-primary-dark-gray xs:px-2">
-      <div
-        className="flex justify-between xs:px-2"
-        tabIndex={0}
-        role="button"
-        aria-pressed="false"
-      >
+    <div className="flex-col items-center justify-between px-2 py-4 bg-white rounded-2xl px-11 dark:bg-primary-dark-gray">
+      <div className="flex justify-between px-2">
         <div className="flex items-center">
-          <span className="text-2xl font-bold xs:text-xl">{heading}</span>
+          <span className="text-xl text-2xl font-bold">{heading}</span>
           <span className="ml-12">
             Coming in {formatDistanceToNow(timestamp)} (
             {format(timestamp, 'MMMM d')} 8-9AM PST)

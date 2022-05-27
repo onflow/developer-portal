@@ -19,15 +19,12 @@ const FeaturedArticle = ({
   ctaText,
   imageUrl,
 }) => (
-  <div
-    className="flex overflow-hidden rounded-2xl bg-white dark:bg-primary-dark-gray xs:min-h-fit xs:flex-col-reverse md:min-h-[30rem] md:flex-row"
-    style={{ maxWidth: '1140px' }}
-  >
-    <div className="min-w-[50%] self-center xs:pl-6 xs:pr-6 xs:pt-10 xs:pb-16 md:pr-32 md:pl-20">
+  <div className="flex min-h-fit flex-col-reverse overflow-hidden rounded-2xl bg-white dark:bg-primary-dark-gray md:min-h-[30rem] md:flex-row">
+    <div className="min-w-[50%] self-center pl-6 pr-6 pt-10 pb-16 md:pr-32 md:pl-20">
       <h3 className="text-h3">{heading}</h3>
       <p className="py-6 dark:text-primary-gray-100">{description}</p>
       <a
-        className="block px-16 py-4 text-center text-white bg-black rounded-lg hover:cursor-pointer xs:w-full"
+        className="block w-full rounded-lg bg-black px-16 py-4 text-center text-white hover:cursor-pointer"
         href={ctaLink}
       >
         {ctaText}
@@ -52,7 +49,7 @@ const FeaturedArticleSlider = ({ articles }: FeaturedArticleSliderProps) => {
     <div className="flex flex-col items-center justify-center">
       {ArticleComponents[currentArticleIndex]}
       {articles.length > 1 && (
-        <div className="flex items-center justify-center mt-12 xs:hidden">
+        <div className="mt-12 flex items-center justify-center md:hidden">
           {articles.map((_, index) => {
             const backgroundClass =
               index === currentArticleIndex
@@ -64,6 +61,9 @@ const FeaturedArticleSlider = ({ articles }: FeaturedArticleSliderProps) => {
                 key={`article-${index}`}
                 onClick={() => setCurrentArticleIndex(index)}
                 className={`${backgroundClass} mr-3 h-3 w-3 rounded-full hover:cursor-pointer`}
+                tabIndex={0}
+                role="button"
+                aria-pressed="false"
               />
             );
           })}

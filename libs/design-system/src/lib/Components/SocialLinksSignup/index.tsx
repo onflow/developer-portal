@@ -31,7 +31,7 @@ const SocialLink = ({
   return (
     <a
       href={url}
-      className={`flex items-center justify-between py-6 hover:cursor-pointer xs:px-2 md:px-10 ${className}`}
+      className={`flex items-center justify-between py-6 px-2 hover:cursor-pointer md:px-10 ${className}`}
       style={{ borderColor: 'rgba(105, 113, 126, 0.2)' }}
     >
       <div className="flex items-center">
@@ -62,21 +62,21 @@ const SocialLinksSignup = () => {
     >
       <div className="w-full mb-20 md:px-28">
         <div
-          className="grid grid-flow-col rounded-lg xs:grid-rows-4 xs:px-4 md:grid-rows-2 md:px-0"
+          className="grid grid-flow-col grid-rows-4 px-4 rounded-lg md:grid-rows-2 md:px-0"
           style={{ background: 'rgba(213, 221, 233, 0.3)' }}
         >
           <SocialLink
             header="Title"
             description="One liner explaining this"
             logo={GithubLogo}
-            className="border-b xs:border-r-0 md:border-r"
+            className="border-b border-r-0 md:border-r"
             url={GITHUB_URL}
           />
           <SocialLink
             header="Title"
             description="One liner explaining this"
             logo={DiscourseLogo}
-            className="xs:border-b xs:border-r-0 md:border-r md:border-b-0"
+            className="border-b border-r-0 md:border-r md:border-b-0"
             url={DISCOURSE_URL}
           />
           <SocialLink
@@ -94,18 +94,18 @@ const SocialLinksSignup = () => {
           />
         </div>
 
-        <div className="flex items-center justify-between mt-8 bg-white rounded-lg dark:bg-primary-dark-gray xs:flex-col xs:px-4 xs:pt-24 xs:pb-9 md:flex-row md:p-20">
-          <h2 className="mr-8 text-h2 xs:mr-0 xs:mb-4">
+        <div className="flex flex-col items-center justify-between px-4 pt-24 mt-8 bg-white rounded-lg pb-9 dark:bg-primary-dark-gray md:flex-row md:p-20">
+          <h2 className="mb-4 mr-0 mr-8 text-h2">
             Subscribe to our newsletter
           </h2>
-          <div className="flex xs:w-full xs:flex-col md:flex-row">
+          <div className="flex flex-col md:flex-row">
             <input
               placeholder="Email"
-              className="h-14 min-w-[16rem] rounded-tl-lg rounded-bl-lg border-white p-4 text-primary-gray-300 focus:border-white xs:mb-4 xs:w-full xs:rounded-lg md:rounded-br-none md:rounded-tr-none"
+              className="mb-4 h-14 w-full min-w-[16rem] rounded-lg rounded-tl-lg rounded-bl-lg border-white p-4 text-primary-gray-300 focus:border-white md:rounded-br-none md:rounded-tr-none"
               style={{ boxShadow: '0px 4px 40px rgba(0, 0, 0, 0.08)' }}
             />
             <a
-              className="px-12 py-4 text-center text-white bg-black border-black rounded-tr-lg rounded-br-lg h-14 xs:rounded-lg md:rounded-tl-none md:rounded-bl-none"
+              className="px-12 py-4 text-center text-white bg-black border-black rounded-lg rounded-tr-lg rounded-br-lg h-14 md:rounded-tl-none md:rounded-bl-none"
               href="/foo"
             >
               Subscribe

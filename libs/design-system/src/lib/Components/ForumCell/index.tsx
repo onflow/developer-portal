@@ -25,14 +25,14 @@ const ForumCell = ({
   return (
     <a
       href={forumLink}
-      className="flex items-center py-6 bg-white rounded-lg px-11 hover:cursor-pointer hover:shadow-2xl dark:bg-primary-dark-gray xs:flex-col xs:items-start xs:justify-around xs:px-8 md:flex-row"
+      className="flex flex-col items-start items-center justify-around rounded-lg bg-white py-6 px-11 px-8 hover:cursor-pointer hover:shadow-2xl dark:bg-primary-dark-gray md:flex-row"
     >
       <div className="flex-1">
         <p className="mb-2 text-xl font-semibold">{heading}</p>
         <span className="text-primary-gray-300">{subheading}</span>
       </div>
-      <div className="flex justify-between xs:mt-8 xs:items-center md:mt-0">
-        <div className="relative h-12 w-[9rem] xs:left-0">
+      <div className="mt-8 flex items-center justify-between md:mt-0">
+        <div className="relative left-0 h-12 w-[9rem]">
           {participants.map((participant, index) => (
             <div
               className="absolute inset-y-0"
@@ -46,7 +46,7 @@ const ForumCell = ({
             </div>
           ))}
         </div>
-        <div className="flex items-center ml-3 text-primary-gray-300 dark:text-primary-gray-100 xs:ml-9">
+        <div className="ml-3 ml-9 flex items-center text-primary-gray-300 dark:text-primary-gray-100">
           <CommentIcon />
           <span className="ml-3">{numComments}</span>
         </div>
