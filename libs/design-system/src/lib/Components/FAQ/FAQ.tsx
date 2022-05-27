@@ -25,16 +25,17 @@ export function FAQ({ faqList, variation }: FAQProps) {
   };
 
   return (
-    <div className="bg-transparent">
+    <div>
       {faqList.map((faq, i) => {
         const itemExpanded = expanded[i];
         const isAboveExpandedItem = expanded.at(i + 1);
         const isLast = i === expanded.length - 1;
 
         return (
-          <div
+          <div // TODO: see https://github.com/onflow/next-docs-v1/pull/51#discussion_r883674775
             onClick={() => toggleExpansion(i)}
-            className={`cursor-pointer py-7 md:px-7 ${
+            role="button"
+            className={`md:px6 cursor-pointer py-7 px-4 md:px-7 ${
               itemExpanded
                 ? 'my-1.5 rounded-lg bg-white'
                 : isLast || isAboveExpandedItem
@@ -50,17 +51,19 @@ export function FAQ({ faqList, variation }: FAQProps) {
               <div
                 className={`${
                   itemExpanded ? 'text-2xl font-semibold' : 'text-base'
-                } md:font-semibold ${variation === 'large' ? 'md:text-2xl' : ''}`}
+                } md:font-semibold ${
+                  variation === 'large' ? 'md:text-2xl' : ''
+                }`}
               >
                 {faq.question}
               </div>
               {itemExpanded ? <ChevronDown /> : <ChevronRight />}
             </div>
-            {itemExpanded ? (
+            {itemExpanded && (
               <div className="whitespace-pre-wrap text-gray-700">
                 {faq.answer}
               </div>
-            ) : null}
+            )}
           </div>
         );
       })}
