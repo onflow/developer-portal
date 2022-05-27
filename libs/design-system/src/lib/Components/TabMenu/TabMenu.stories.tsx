@@ -14,7 +14,7 @@ Default.args = {
 
 export const Mobile = Template.bind({});
 Mobile.args = {
-  tabs: ['Mainnet', 'Testnet', 'Canary'],
+  tabs: ['Mainnet', 'Testnet', 'Canary', 'Foo', 'Bar'],
 };
 Mobile.parameters = {
   viewport: {

@@ -1,3 +1,11 @@
+export interface Article {
+  heading: string;
+  description: string;
+  ctaText: string;
+  ctaLink: string;
+  imageUrl: any;
+};
+
 export interface StatuspageApiResponse {
   id: string;
   page_id: string;

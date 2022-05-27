@@ -4,4 +4,5 @@ export { default as FeaturedArticleSlider } from './FeaturedArticleSlider';
 export { default as NetworkCard } from './NetworkCard';
 export { default as NetworkDiscordCard } from './NetworkDiscordCard';
 export { default as SocialLinksSignup } from './SocialLinksSignup';
+export { default as TabMenu } from './TabMenu';
 export { Footer } from './Footer';
