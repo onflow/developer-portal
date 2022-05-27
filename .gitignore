@@ -41,4 +41,7 @@ Thumbs.db
 # Remix files
 apps/**/build
 apps/**/.cache
-  
+
+.postgres-data
+.redis-data
+.vscode

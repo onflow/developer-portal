@@ -14,13 +14,13 @@ export function ContractSelect({
   return (
     <>
       <div className="text-l">
-        This tool will assist you in verifying the metadata on your NFTs and allow your collection to be added to the <b>NFT Catalog</b>.
+        This tool will assist you in verifying the metadata on your NFTs and allow your collection to be added to the <b>Flow NFT Catalog</b>.
         <br />
         <br />
-        This catalog will automatically allow applications and marketplaces such as <b>Alchemy, Rarible, Blocto, Find</b>, etc. to utilize your NFT collection on their platforms.
+        The <b>Flow NFT Catalog</b> will automatically allow applications and marketplaces such as <b>Alchemy, Rarible, Blocto, Find</b>, etc. to utilize your NFT collection on their platforms.
         <br />
         <br />
-        
+        You will be asked to provide your contract's information, to provide a sample account that holds this NFT, to review 
       </div>
       <div className="text-2xl my-6">Select NFT Contract</div>
       <b>Enter Address containing your NFT Contract</b>

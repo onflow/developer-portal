@@ -25,13 +25,13 @@ services:
       - POSTGRES_PASSWORD=flow_docs_pass
       - POSTGRES_DB=flow_docs_db
     volumes:
-      - ./apps/flow-docs/postgres-data:/var/lib/postgresql/data
+      - .postgres-data:/var/lib/postgresql/data
     ports:
       - '5432:5432'
   cache:
     image: 'redis:alpine'
     command: redis-server --requirepass flow_docs
     volumes:
-      - ./apps/flow-docs/.cache/redis:/data
+      - .redis-data:/data
     ports:
       - '6379:6379'

@@ -39,13 +39,13 @@ const octokit = new Octokit({
   },
 });
 
-async function downloadFirstMdxFile(
+async function downloadFirstMdxFile(repo: string,
   list: Array<{ name: string; type: string; path: string; sha: string }>
 ) {
   const filesOnly = list.filter(({ type }) => type === "file");
   for (const extension of [".mdx", ".md"]) {
     const file = filesOnly.find(({ name }) => name.endsWith(extension));
-    if (file) return downloadFileBySha(file.sha);
+    if (file) return downloadFileBySha(repo, file.sha);
   }
   return null;
 }
@@ -76,7 +76,7 @@ async function downloadMdxFileOrDirectory(
   );
   const dirPotential = potentials.find(({ type }) => type === "dir");
 
-  const content = await downloadFirstMdxFile(
+  const content = await downloadFirstMdxFile(repo, 
     exactMatch ? [exactMatch] : potentials
   );
 
@@ -115,7 +115,7 @@ async function downloadDirectory(
     dirList.map(async ({ path: fileDir, type, sha }) => {
       switch (type) {
         case "file": {
-          const content = await downloadFileBySha(sha);
+          const content = await downloadFileBySha(repo, sha);
           return { path: fileDir, content };
         }
         case "dir": {
@@ -136,12 +136,12 @@ async function downloadDirectory(
  * @param sha the hash for the file (retrieved via `downloadDirList`)
  * @returns a promise that resolves to a string of the contents of the file
  */
-async function downloadFileBySha(sha: string) {
+async function downloadFileBySha(repo: string, sha: string) {
   const { data } = await octokit.request(
     "GET /repos/{owner}/{repo}/git/blobs/{file_sha}",
     {
       owner: OWNER,
-      repo: "cadence",
+      repo,
       file_sha: sha,
     }
   );
@@ -150,18 +150,17 @@ async function downloadFileBySha(sha: string) {
   return Buffer.from(data.content, encoding).toString();
 }
 
-async function downloadFile(path: string) {
+async function downloadFile(repo: string, path: string) {
   const { data } = (await octokit.request(
     "GET /repos/{owner}/{repo}/contents/{path}",
     {
       owner: OWNER,
-      repo: "cadence",
+      repo,
       path,
     }
   )) as { data: { content?: string; encoding?: string } };
 
   if (!data.content || !data.encoding) {
-    console.error(data);
     throw new Error(
       `Tried to get ${path} but got back something that was unexpected. It doesn't have a content or encoding property`
     );
@@ -178,6 +177,7 @@ async function downloadFile(path: string) {
  * @returns a promise that resolves to a file ListItem of the files/directories in the given directory (not recursive)
  */
 async function downloadDirList(repo: string, path: string) {
+
   const resp = await octokit.repos.getContent({
     owner: OWNER,
     repo,

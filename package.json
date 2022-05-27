@@ -86,6 +86,9 @@
     "apps/*",
     "libs/*"
   ],
+  "engines": {
+    "node": ">=16"
+  },
   "dependencies": {
     "@docsearch/react": "^3.1.0",
     "@reach/menu-button": "^0.17.0",
