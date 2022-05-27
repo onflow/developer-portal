@@ -1,12 +1,6 @@
 import React, { useState } from 'react';
 import { ButtonLink } from '../Button';
-export type Article = {
-  heading: string;
-  description: string;
-  ctaText: string;
-  ctaLink: string;
-  imageUrl: any;
-};
+import { Article } from '../../interfaces';
 
 export type FeaturedArticleSliderProps = {
   articles: Article[];
