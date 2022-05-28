@@ -5,7 +5,6 @@ import {
   AnnouncementCard,
   Footer,
   NetworkDiscordCard,
-  Callout,
   SocialLinksSignup,
   FeaturedArticleSlider,
 } from '../../Components';

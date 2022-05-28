@@ -9,6 +9,7 @@ import {
   NetworkDetailsCard,
 } from '../../Components';
 import SporksCard from '../../Components/SporksCard';
+import { ReactComponent as ChevronLeftIcon } from '../../../../images/arrows/chevron-left.svg';
 import { Article } from '../../interfaces';
 // @ts-ignore
 import data from '../NetworkPage/sample';
@@ -34,11 +35,18 @@ const NetworkDetailPage = () => {
   return (
     <div className="w-full p-6 bg-primary-gray-50 dark:bg-black">
       <div className="flex-col items-center">
-        <TabMenu tabs={tabs} onTabChange={setSelectedNetworkIndex} />
-        <div className="text-h1 xs:font-md my-[100px] text-center">
-          {currentNetwork.name}
+        <div className="relative">
+          <a
+            href="/network"
+            className="dark:text-primary-blue-dark absolute top-[110px] right-0 flex max-w-fit text-primary-blue md:top-0 md:left-0"
+          >
+            <ChevronLeftIcon /> Network
+          </a>
+          <TabMenu tabs={tabs} onTabChange={setSelectedNetworkIndex} />
+          <div className="text-h3 md:text-h1 mt-[50px] mb-3 md:mt-[100px]  md:mb-[50px] md:text-center md:text-5xl">
+            {currentNetwork.name}
+          </div>
         </div>
-
         <NetworkDetailsCard
           status={
             currentNetwork.status === 'operational'
@@ -52,7 +60,9 @@ const NetworkDetailPage = () => {
           rssFeed="/link"
         />
 
-        <div className="text-h2 xs:font-md mt-[100px] mb-8">Upcoming Spork</div>
+        <div className="text-h2 xs:font-md mb-8 mt-[50px] md:mt-[100px]">
+          Upcoming Spork
+        </div>
         <SporksCard
           heading={currentNetwork.name}
           timestamp={endOfWeek(new Date())}
@@ -71,7 +81,9 @@ const NetworkDetailPage = () => {
           upcoming
         />
 
-        <div className="text-h2 xs:font-md mt-[100px] mb-8">Past Sporks</div>
+        <div className="text-h2 xs:font-md mt-[50px] mb-8 md:mt-[100px]">
+          Past Sporks
+        </div>
         <SporksCard
           heading={currentNetwork.name}
           timestamp={endOfWeek(new Date())}
