@@ -32,7 +32,7 @@ const NetworkDetailPage = () => {
   } as Article;
 
   return (
-    <div className="w-full p-6 bg-primary-gray-50">
+    <div className="w-full p-6 bg-primary-gray-50 dark:bg-black">
       <div className="flex-col items-center">
         <TabMenu tabs={tabs} onTabChange={setSelectedNetworkIndex} />
         <div className="text-h1 xs:font-md my-[100px] text-center">

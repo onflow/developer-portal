@@ -23,13 +23,13 @@ export type SporksCardProps = {
 };
 
 const CardItem = ({ label, data }: { label: string; data: any }) => (
-  <div className="flex items-center justify-between p-4 group hover:cursor-pointer hover:bg-gray-50 ">
+  <div className="flex items-center justify-between p-4 group hover:cursor-pointer hover:bg-gray-50 dark:hover:bg-black">
     <div className="break-all">
       <span className="block uppercase text-primary-gray-300">{label}</span>
       {data}
     </div>
     <div
-      className="hidden xs:group-hover:hidden md:group-hover:block"
+      className="hidden dark:fill-primary-gray-200 xs:group-hover:hidden md:group-hover:block"
       title={`Copy ${data}`}
       onClick={() => navigator.clipboard.writeText(data.toString())}
     >

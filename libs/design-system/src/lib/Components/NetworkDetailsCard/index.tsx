@@ -38,7 +38,9 @@ const NetworkDetailsCard = ({
           Status
         </p>
         {/* @ts-ignore */}
-        <Link href={statusLink}>{status}</Link>
+        <Link href={statusLink} className=" hover:cursor-pointer">
+          {status}
+        </Link>
       </div>
 
       <div className="px-8 py-4 border-accent-light-gray xs:border-0 md:border-r-2">
@@ -56,11 +58,13 @@ const NetworkDetailsCard = ({
       </div>
 
       <div className="px-8 py-4">
-        <p className="mb-2 text-xs uppercase text-primary-gray-200">RSS Feed</p>
+        <p className="mb-2 text-xs uppercase dark:text-primary-blue-dark text-primary-gray-200">
+          RSS Feed
+        </p>
         {/* @ts-ignore */}
         <Link
           href={rssFeed}
-          className="flex items-center text-sm text-primary-blue hover:cursor-pointer dark:text-primary-gray-50"
+          className="flex items-center text-sm hover:cursor-pointer"
         >
           <RssIcon />
           <span className="mx-2 mt-1">RSS Feed</span>
