@@ -29,11 +29,11 @@ const FlipCell = ({
   return (
     <a
       href={forumLink}
-      className="md;py-6 flex items-center justify-between rounded-lg bg-white hover:cursor-pointer hover:shadow-2xl dark:bg-primary-dark-gray xs:flex-col xs:p-8 md:flex-row md:px-11"
+      className="flex flex-col items-center justify-between p-6 bg-white rounded-lg hover:cursor-pointer hover:shadow-2xl dark:bg-primary-dark-gray md:flex-row md:p-8"
     >
       <div className="flex items-center">
         <svg
-          className="xs:hidden md:inline-flex"
+          className="hidden md:inline-flex"
           width="36"
           height="36"
           viewBox="0 0 36 36"
@@ -43,8 +43,8 @@ const FlipCell = ({
           <circle cx="18" cy="18" r="17.5" stroke="#47FFB2" />
           <circle cx="18" cy="18" r="5.5" fill="#47FFB2" stroke="#47FFB2" />
         </svg>
-        <div className="xs:ml-0 md:ml-4">
-          <p className="mb-1 text-xl font-semibold xs:text-lg">{heading}</p>
+        <div className="ml-0 md:ml-4">
+          <p className="mb-1 text-lg font-semibold md:text-xl">{heading}</p>
           <span className="text-primary-gray-300">
             {tags.map((tag) => (
               <Tag key={tag} name={tag} />
@@ -52,7 +52,7 @@ const FlipCell = ({
           </span>
         </div>
       </div>
-      <div className="flex items-center xs:mt-12 md:mt-0">
+      <div className="flex items-center mt-12 md:mt-0">
         <div className="w-28">
           <RoundImage
             imageUri={participant.profilePicture}

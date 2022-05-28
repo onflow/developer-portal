@@ -22,3 +22,11 @@ export interface StatuspageApiResponse {
   automation_email: string;
   start_date: string;
 }
+
+export interface Article {
+  heading: string;
+  description: string;
+  ctaText: string;
+  ctaLink: string;
+  imageUrl: any;
+}

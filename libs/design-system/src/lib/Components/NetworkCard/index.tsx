@@ -19,7 +19,7 @@ const NetworkCard = ({
   nextSporkDate,
   link,
 }: NetworkCardProps) => {
-  const statusClasses = clsx('rounded-full w-11 h-11 md:mb-0 xs:mb-4', {
+  const statusClasses = clsx('rounded-full w-11 h-11 md:mb-0 mb-4', {
     'bg-primary-red': status === 'Under Maintenance',
     'bg-green-success': status === 'Healthy',
   });
@@ -27,40 +27,40 @@ const NetworkCard = ({
   return (
     <a
       href={link}
-      className="flex items-center justify-around px-4 py-6 bg-white rounded-2xl hover:shadow-2xl dark:bg-primary-dark-gray xs:flex-col xs:text-center md:flex-row md:text-left"
+      className="flex flex-col items-center justify-around rounded-2xl bg-white px-4 py-6 text-center hover:shadow-2xl dark:bg-primary-dark-gray md:flex-row md:text-left"
     >
-      <div className="flex items-center xs:flex-col md:flex-row">
+      <div className="flex flex-col items-center md:flex-row">
         <div className={statusClasses} />
-        <span className="text-xl font-bold xs:ml-0 xs:mb-6 md:ml-6 md:mb-0">
+        <span className="ml-0 mb-6 text-xl font-bold md:ml-6 md:mb-0">
           {networkName}
         </span>
       </div>
 
-      <div className="xs:mb-4 md:mb-0">
+      <div className="mb-4 md:mb-0">
         <p className="mb-2 text-xs uppercase text-primary-gray-200">Status</p>
         {status}
       </div>
 
-      <div className="xs:mb-4 md:mb-0">
+      <div className="mb-4 md:mb-0">
         <p className="mb-2 text-xs uppercase text-primary-gray-200">Version</p>
         {version}
       </div>
 
-      <div className="xs:mb-4 md:mb-0">
+      <div className="mb-4 md:mb-0">
         <p className="mb-2 text-xs uppercase text-primary-gray-200">
           Last Spork Date
         </p>
         {lastSporkDate}
       </div>
 
-      <div className="xs:mb-4 md:mb-0">
+      <div className="mb-4 md:mb-0">
         <p className="mb-2 text-xs uppercase text-primary-gray-200">
           Next Spork Date
         </p>
         {nextSporkDate}
       </div>
 
-      <div className="xs:hidden md:inline-block">
+      <div className="hidden md:inline-block">
         <ChevronRightIcon />
       </div>
     </a>
