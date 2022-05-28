@@ -7,6 +7,7 @@ import {
   Callout,
   TabMenu,
   NetworkDetailsCard,
+  Pagination,
 } from '../../Components';
 import SporksCard from '../../Components/SporksCard';
 import { ReactComponent as ChevronLeftIcon } from '../../../../images/arrows/chevron-left.svg';
@@ -100,7 +101,7 @@ const NetworkDetailPage = () => {
             dockerTag: 'v0.22.9-patch-1-epoch-view-check-hotfix',
           }}
         />
-        {[1, 2, 3].map((_) => (
+        {[1, 2, 3, 4].map((_) => (
           <div className="my-6">
             <SporksCard
               heading={currentNetwork.name}
@@ -121,6 +122,12 @@ const NetworkDetailPage = () => {
             />
           </div>
         ))}
+        <Pagination
+          itemCount={40}
+          pageSize={4}
+          onPageChange={() => {}}
+          currentPage={1}
+        />
 
         <div className="self-center my-36">
           <FeaturedArticleSlider articles={[article]} />
