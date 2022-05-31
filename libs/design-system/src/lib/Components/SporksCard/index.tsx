@@ -1,3 +1,4 @@
+import clsx from 'clsx';
 import React, { useState } from 'react';
 import { format, formatDistanceToNow } from 'date-fns';
 import { ReactComponent as CopyIcon } from '../../../../images/action/copy.svg';
@@ -51,15 +52,21 @@ const Spork = ({ heading, timestamp, sporkMetadata, isDefaultExpanded }) => {
     dockerTag,
   } = sporkMetadata;
   const [isExpanded, setIsExpanded] = useState(isDefaultExpanded);
+  const cardStyles = clsx(
+    'flex-col items-center justify-between px-4 py-6 rounded-2xl hover:shadow-2xl md:px-8',
+    {
+      'bg-white dark:bg-primary-dark-gray': isExpanded,
+      'dark:bg-black': !isExpanded,
+    }
+  );
 
   return (
-    <div className="flex-col items-center justify-between px-4 py-6 bg-white rounded-2xl hover:shadow-2xl dark:bg-primary-dark-gray md:px-8">
+    <div className={cardStyles} onClick={() => setIsExpanded(!isExpanded)}>
       <div
         className="flex justify-between px-2 ease-in cursor-pointer"
         tabIndex={0}
         role="button"
         aria-pressed="false"
-        onClick={() => setIsExpanded(!isExpanded)}
       >
         <div className="flex items-center">
           <span className="pr-4 text-xl text-2xl font-bold">{heading}</span>
@@ -67,7 +74,9 @@ const Spork = ({ heading, timestamp, sporkMetadata, isDefaultExpanded }) => {
             {format(timestamp, 'MMMM d')}
           </span>
         </div>
-        {isExpanded ? <ChevronUpIcon /> : <ChevronDownIcon />}
+        <div className="dark:text-primary-gray-200">
+          {isExpanded ? <ChevronUpIcon /> : <ChevronDownIcon />}
+        </div>
       </div>
       {isExpanded && (
         <div className="flex-col pt-4 pb-2">
@@ -91,7 +100,7 @@ const UpcomingSpork = ({ heading, timestamp }) => {
       <div className="flex flex-col justify-start px-2 md:flex-row">
         <span className="text-xl text-2xl font-bold md:pr-4">{heading}</span>
         <hr className="inline-block w-6 my-4 md:hidden" />
-        <span className="border-l border-primary-gray-100 md:pl-4">
+        <span className="border-primary-gray-100 md:border-l md:pl-4">
           Coming in {formatDistanceToNow(timestamp)} (
           {format(timestamp, 'MMMM d')} 8-9AM PST)
         </span>
