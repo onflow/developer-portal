@@ -48,7 +48,7 @@ You'll need to acquire the project's `.env` file before continuing.
 - Use `yarn add <your-dep> -W` (`-W` flag is necessary for now, or you'll get an error).
 - All deps can be installed in project root.
 
-### Building the Deisgn System
+### Building the Design System
 
 - Do not import anything from `@remix/**` or any components/code form the `flow-docs` project into the design system. The design system is meant to be standalone, and re-usable shold we change application platforms.
 

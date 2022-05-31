@@ -1,70 +1,86 @@
+/* TODO: styles only work in storybook */
 .mdx-content {
-    & table {
-      @apply block overflow-x-auto border border-0 rounded-md whitespace-nowrap;
-      border-collapse: separate;
-      border-spacing: 0;
-      position: relative;
-    }
-  
-    & th {
-      @apply min-w-[9rem] border border-l-0 border-primary-gray-100 px-4 pt-3 pb-2 leading-6 first:rounded-tl-md first:border-l last:rounded-tr-md dark:border-primary-gray-400;
-    }
-  
-    & td {
-      @apply border-b border-r border-primary-gray-100 px-4 py-1.5 text-sm leading-6 text-primary-gray-400 first:border-l dark:border-primary-gray-400 dark:text-primary-gray-50;
-    }
-  
-    & tr {
-      @apply even:bg-primary-gray-50 dark:even:bg-neutral-900;
-    }
-  
-    & tr:last-child td {
-      @apply first:rounded-bl-md last:rounded-br-md;
-    }
-  
-    & ul {
-      @apply pl-4;
-    }
-  
-    & ul li {
-      @apply relative;
-    }
-  
-    & ul li::before {
-      content: '';
-      @apply absolute -left-4 top-2.5 h-1 w-1 bg-gray-700;
-    }
-  
-    & ol {
-      @apply pl-4 list-decimal;
-    }
-  
-    & p {
-      @apply mb-4;
-    }
-  
-    & blockquote {
-      @apply px-6 py-2 border-l-4 border-l-gray-400 dark:border-l-gray-700;
-    }
-  
-    & blockquote p {
-      @apply m-0;
-    }
-  
-    & ul.contains-task-list {
-      @apply pl-0;
-    }
-  
-    & ul.contains-task-list li::before {
-      @apply invisible;
-    }
-  
-    & ul.contains-task-list {
-      @apply mb-3;
-    }
-  
-    & .task-list-item {
-      @apply relative pl-8 mt-3;
-    }
+  & table {
+    @apply block overflow-x-auto border border-0 rounded-md whitespace-nowrap;
+    border-collapse: separate;
+    border-spacing: 0;
+    position: relative;
   }
-  
+
+  & th {
+    @apply min-w-[9rem] border border-l-0 border-primary-gray-100 px-4 pt-3 pb-2 leading-6 first:rounded-tl-md first:border-l last:rounded-tr-md dark:border-primary-gray-400;
+  }
+
+  & td {
+    @apply border-b border-r border-primary-gray-100 px-4 py-1.5 text-sm leading-6 text-primary-gray-400 first:border-l dark:border-primary-gray-400 dark:text-primary-gray-50;
+  }
+
+  & tr {
+    @apply even:bg-primary-gray-50 dark:even:bg-neutral-900;
+  }
+
+  & tr:last-child td {
+    @apply first:rounded-bl-md last:rounded-br-md;
+  }
+
+  & ul {
+    @apply pl-4;
+  }
+
+  & ul li {
+    @apply relative;
+  }
+
+  & ul li::before {
+    content: '';
+    @apply absolute -left-4 top-2.5 h-1 w-1 bg-gray-700;
+  }
+
+  & ol {
+    @apply pl-4 list-decimal;
+  }
+
+  & p {
+    @apply mb-4;
+  }
+
+  & blockquote {
+    @apply px-6 py-2 border-l-4 border-l-gray-400 dark:border-l-gray-700;
+  }
+
+  & blockquote p {
+    @apply m-0;
+  }
+
+  & ul.contains-task-list {
+    @apply pl-0;
+  }
+
+  & ul.contains-task-list li::before {
+    @apply invisible;
+  }
+
+  & ul.contains-task-list {
+    @apply mb-3;
+  }
+
+  & .task-list-item {
+    @apply relative pl-8 mt-3;
+  }
+
+  &:not(pre) > code {
+    @apply bg-[#ebeef0] text-[#2075d6] dark:bg-primary-gray-400 dark:text-white;
+    border-radius: 0.3em;
+    padding: 0.1em 0.3em;
+  }
+}
+
+body.dark .mdx-content {
+  & pre {
+    @apply !text-white;
+  }
+
+  & pre div {
+    @apply !text-white;
+  }
+}

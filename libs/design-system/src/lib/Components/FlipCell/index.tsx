@@ -1,8 +1,8 @@
 import React from 'react';
-import { ReactComponent as CommentIcon } from '../../../../images/arrows/message-circle.svg';
 import { ReactComponent as CalendarIcon } from '../../../../images/action/date-calendar.svg';
+import { ReactComponent as CommentIcon } from '../../../../images/arrows/message-circle.svg';
+import Tag from '../Tag';
 import RoundImage from './RoundImage';
-import Tag from './Tag';
 
 export type User = {
   profilePicture: string;
