@@ -10,7 +10,7 @@ const TabMenu = ({ tabs, onTabChange }: TabMenuProps) => {
   const [activeIndex, setActiveIndex] = useState(0);
 
   return (
-    <div className="flex justify-start overflow-x-scroll border-b border-primary-gray-200 dark:border-primary-gray-100 md:justify-center">
+    <div className="flex justify-start overflow-x-auto border-b border-primary-gray-200 dark:border-primary-gray-100 md:justify-center">
       {tabs.map((tab, index) => {
         const isCurrentIndex = activeIndex === index;
         const classes = clsx(
