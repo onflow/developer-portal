@@ -5,14 +5,12 @@ import {
   AnnouncementCard,
   Footer,
   NetworkDiscordCard,
-  Callout,
   SocialLinksSignup,
   FeaturedArticleSlider,
 } from '../../Components';
 import { StatuspageApiResponse } from '../../interfaces';
 import networkGradientPath from '../../../../images/gradients/network.svg';
 import { Article } from '../../interfaces';
-
 // @ts-ignore
 import data from './sample';
 
@@ -28,7 +26,7 @@ const NetworkPage = () => {
   } as Article;
 
   return (
-    <div className="w-full p-6 bg-primary-gray-50">
+    <div className="w-full p-6 bg-primary-gray-50 dark:bg-black">
       <div
         className="flex-col items-center bg-no-repeat"
         style={{ backgroundImage: `url(${networkGradientPath})` }}

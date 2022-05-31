@@ -1,29 +1,21 @@
+import clsx from 'clsx';
 import React, { useState } from 'react';
 import { format, formatDistanceToNow } from 'date-fns';
 import { ReactComponent as CopyIcon } from '../../../../images/action/copy.svg';
 import { ReactComponent as ChevronUpIcon } from '../../../../images/arrows/chevron-up.svg';
 import { ReactComponent as ChevronDownIcon } from '../../../../images/arrows/chevron-down.svg';
-
-export type SporkMetadata = {
-  accessNode: string;
-  date: Date;
-  rootHeight: string;
-  rootParentId: string;
-  rootStateCommit: string;
-  gitCommit: string;
-  branchOrTag: string;
-  dockerTag: string;
-};
+import { SporkMetadata } from '../../interfaces';
 
 export type SporksCardProps = {
   heading: string;
   timestamp: Date;
   sporkMetadata: SporkMetadata;
-  upcoming: boolean;
+  upcoming?: boolean;
+  isDefaultExpanded?: boolean;
 };
 
 const CardItem = ({ label, data }: { label: string; data: any }) => (
-  <div className="flex items-center justify-between p-4 group hover:cursor-pointer hover:bg-gray-50 ">
+  <div className="flex items-center justify-between p-4 group hover:cursor-pointer hover:bg-gray-50 dark:hover:bg-black">
     <div className="break-all">
       <span className="block uppercase text-primary-gray-300">{label}</span>
       {data}
@@ -38,7 +30,7 @@ const CardItem = ({ label, data }: { label: string; data: any }) => (
   </div>
 );
 
-const Spork = ({ heading, timestamp, sporkMetadata }) => {
+const Spork = ({ heading, timestamp, sporkMetadata, isDefaultExpanded }) => {
   const {
     accessNode,
     date,
@@ -49,16 +41,22 @@ const Spork = ({ heading, timestamp, sporkMetadata }) => {
     branchOrTag,
     dockerTag,
   } = sporkMetadata;
-  const [isExpanded, setIsExpanded] = useState(true);
+  const [isExpanded, setIsExpanded] = useState(isDefaultExpanded);
+  const cardStyles = clsx(
+    'flex-col items-center justify-between px-4 py-6 rounded-2xl hover:shadow-2xl cursor-pointer md:px-8',
+    {
+      'bg-white dark:bg-primary-dark-gray': isExpanded,
+      'dark:bg-black': !isExpanded,
+    }
+  );
 
   return (
-    <div className="flex-col items-center justify-between px-4 py-6 bg-white rounded-2xl hover:shadow-2xl dark:bg-primary-dark-gray md:px-8">
+    <div className={cardStyles} onClick={() => setIsExpanded(!isExpanded)}>
       <div
-        className="flex justify-between px-2 ease-in cursor-pointer"
+        className="flex justify-between px-2 ease-in"
         tabIndex={0}
         role="button"
         aria-pressed="false"
-        onClick={() => setIsExpanded(!isExpanded)}
       >
         <div className="flex items-center">
           <span className="pr-4 text-xl text-2xl font-bold">{heading}</span>
@@ -66,7 +64,9 @@ const Spork = ({ heading, timestamp, sporkMetadata }) => {
             {format(timestamp, 'MMMM d')}
           </span>
         </div>
-        {isExpanded ? <ChevronUpIcon /> : <ChevronDownIcon />}
+        <div className="dark:text-primary-gray-200">
+          {isExpanded ? <ChevronUpIcon /> : <ChevronDownIcon />}
+        </div>
       </div>
       {isExpanded && (
         <div className="flex-col pt-4 pb-2">
@@ -90,7 +90,7 @@ const UpcomingSpork = ({ heading, timestamp }) => {
       <div className="flex flex-col justify-start px-2 md:flex-row">
         <span className="text-xl text-2xl font-bold md:pr-4">{heading}</span>
         <hr className="inline-block w-6 my-4 md:hidden" />
-        <span className="border-l border-primary-gray-100 md:pl-4">
+        <span className="border-primary-gray-100 md:border-l md:pl-4">
           Coming in {formatDistanceToNow(timestamp)} (
           {format(timestamp, 'MMMM d')} 8-9AM PST)
         </span>
@@ -103,7 +103,8 @@ const SporksCard = ({
   heading,
   timestamp,
   sporkMetadata,
-  upcoming,
+  upcoming = false,
+  isDefaultExpanded = true,
 }: SporksCardProps) => {
   return upcoming ? (
     <UpcomingSpork heading={heading} timestamp={timestamp} />
@@ -112,6 +113,7 @@ const SporksCard = ({
       heading={heading}
       timestamp={timestamp}
       sporkMetadata={sporkMetadata}
+      isDefaultExpanded={isDefaultExpanded}
     />
   );
 };
