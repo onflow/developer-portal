@@ -1,6 +1,7 @@
 import React, { useState } from 'react';
 import { endOfWeek } from 'date-fns';
 import {
+  SporksCard,
   Footer,
   FeaturedArticleSlider,
   SocialLinksSignup,
@@ -9,7 +10,6 @@ import {
   NetworkDetailsCard,
   Pagination,
 } from '../../Components';
-import SporksCard from '../../Components/SporksCard';
 import { ReactComponent as ChevronLeftIcon } from '../../../../images/arrows/chevron-left.svg';
 import { Article } from '../../interfaces';
 // @ts-ignore
@@ -101,27 +101,29 @@ const NetworkDetailPage = () => {
             dockerTag: 'v0.22.9-patch-1-epoch-view-check-hotfix',
           }}
         />
-        {[1, 2, 3, 4].map((_) => (
-          <div className="my-6">
-            <SporksCard
-              heading={currentNetwork.name}
-              timestamp={endOfWeek(new Date())}
-              sporkMetadata={{
-                accessNode: 'access-001.mainnet15.nodes.onflow.org:9000',
-                date: new Date(),
-                rootHeight: '19050753',
-                rootParentId:
-                  'ac4dbf344ce96e39e15081f1dc3fbbf6dc80532e402de9a57af847d3b35df596',
-                rootStateCommit:
-                  '641eb088e3ce1a01ff56df2d3a14372c65a7fef44c08799eb92cd7759d1d1d2a',
-                gitCommit: 'f019c1dbd778ce9f92dea61349ca36003678a9ad',
-                branchOrTag: 'v0.22.9-patch-1-epoch-view-check-hotfix',
-                dockerTag: 'v0.22.9-patch-1-epoch-view-check-hotfix',
-              }}
-              isDefaultExpanded={false}
-            />
-          </div>
-        ))}
+        <div className="divide-y">
+          {[1, 2, 3, 4].map((_) => (
+            <div className="pt-4 my-4">
+              <SporksCard
+                heading={currentNetwork.name}
+                timestamp={endOfWeek(new Date())}
+                sporkMetadata={{
+                  accessNode: 'access-001.mainnet15.nodes.onflow.org:9000',
+                  date: new Date(),
+                  rootHeight: '19050753',
+                  rootParentId:
+                    'ac4dbf344ce96e39e15081f1dc3fbbf6dc80532e402de9a57af847d3b35df596',
+                  rootStateCommit:
+                    '641eb088e3ce1a01ff56df2d3a14372c65a7fef44c08799eb92cd7759d1d1d2a',
+                  gitCommit: 'f019c1dbd778ce9f92dea61349ca36003678a9ad',
+                  branchOrTag: 'v0.22.9-patch-1-epoch-view-check-hotfix',
+                  dockerTag: 'v0.22.9-patch-1-epoch-view-check-hotfix',
+                }}
+                isDefaultExpanded={false}
+              />
+            </div>
+          ))}
+        </div>
         <Pagination
           itemCount={40}
           pageSize={4}

@@ -4,17 +4,7 @@ import { format, formatDistanceToNow } from 'date-fns';
 import { ReactComponent as CopyIcon } from '../../../../images/action/copy.svg';
 import { ReactComponent as ChevronUpIcon } from '../../../../images/arrows/chevron-up.svg';
 import { ReactComponent as ChevronDownIcon } from '../../../../images/arrows/chevron-down.svg';
-
-export type SporkMetadata = {
-  accessNode: string;
-  date: Date;
-  rootHeight: string;
-  rootParentId: string;
-  rootStateCommit: string;
-  gitCommit: string;
-  branchOrTag: string;
-  dockerTag: string;
-};
+import { SporkMetadata } from '../../interfaces';
 
 export type SporksCardProps = {
   heading: string;
@@ -53,7 +43,7 @@ const Spork = ({ heading, timestamp, sporkMetadata, isDefaultExpanded }) => {
   } = sporkMetadata;
   const [isExpanded, setIsExpanded] = useState(isDefaultExpanded);
   const cardStyles = clsx(
-    'flex-col items-center justify-between px-4 py-6 rounded-2xl hover:shadow-2xl md:px-8',
+    'flex-col items-center justify-between px-4 py-6 rounded-2xl hover:shadow-2xl cursor-pointer md:px-8',
     {
       'bg-white dark:bg-primary-dark-gray': isExpanded,
       'dark:bg-black': !isExpanded,
@@ -63,7 +53,7 @@ const Spork = ({ heading, timestamp, sporkMetadata, isDefaultExpanded }) => {
   return (
     <div className={cardStyles} onClick={() => setIsExpanded(!isExpanded)}>
       <div
-        className="flex justify-between px-2 ease-in cursor-pointer"
+        className="flex justify-between px-2 ease-in"
         tabIndex={0}
         role="button"
         aria-pressed="false"

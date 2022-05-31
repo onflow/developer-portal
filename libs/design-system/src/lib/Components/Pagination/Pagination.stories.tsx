@@ -12,8 +12,11 @@ export const Default = Template.bind({});
 Default.args = {
   itemCount: 100,
   pageSize: 4,
-  currentPage: 1,
+  page: 1,
   onPageChange: (value) => {
     console.log(value);
+  },
+  setPage: () => {
+    console.log('adjusted page number');
   },
 };

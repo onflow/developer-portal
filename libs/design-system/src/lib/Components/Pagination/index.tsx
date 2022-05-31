@@ -1,21 +1,22 @@
-import React, { useState } from 'react';
+import React from 'react';
 import { ReactComponent as ArrowLeftIcon } from '../../../../images/arrows/arrow-left.svg';
 import { ReactComponent as ArrowRightIcon } from '../../../../images/arrows/arrow-right.svg';
 
 export type PaginationProps = {
-  currentPage: number;
+  page: number;
   itemCount: number;
   pageSize: number;
   onPageChange: Function;
+  setPage: Function;
 };
 
 const Pagination = ({
   itemCount,
   pageSize,
-  currentPage,
+  page,
+  setPage,
   onPageChange,
 }: PaginationProps) => {
-  const [page, setPage] = useState(currentPage);
   const pageCount = Math.ceil(itemCount / pageSize);
 
   return (
@@ -29,7 +30,7 @@ const Pagination = ({
       </div>
       <input
         type="text"
-        className="w-10 ml-4 mr-2 text-center border rounded-sm border-primary-gray-300 dark:bg-primary-gray-400 dark:text-white"
+        className="w-10 ml-4 mr-2 text-center border rounded-sm border-primary-gray-300 dark:bg-black dark:text-white"
         value={page}
         onChange={(e) => {
           const {

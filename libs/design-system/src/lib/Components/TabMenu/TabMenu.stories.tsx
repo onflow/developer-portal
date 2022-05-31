@@ -10,6 +10,7 @@ const Template: Story<TabMenuProps> = (args) => <TabMenu {...args} />;
 export const Default = Template.bind({});
 Default.args = {
   tabs: ['Mainnet', 'Testnet', 'Canary'],
+  onTabChange: () => {},
 };
 
 export const Mobile = Template.bind({});
