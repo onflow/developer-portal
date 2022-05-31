@@ -1,17 +1,16 @@
 // eslint-disable-next-line @typescript-eslint/no-unused-vars
-import { Link } from "react-router-dom";
+import { CardLayout } from '../../components/home/card-layout';
+import { HeaderLayout } from '../../components/home/header-layout';
+import { Footer } from '@nft-metadata/ui';
 
-export function Home() {
+function Home() {
   return (
     <>
-      <h2>Home</h2>
-      <Link to={'/v'}>NFT Metadata Verifier</Link>
-      <br />
-      <Link to={'/catalog'}>NFT Catalog</Link>
-      <br />
-      <Link to={'/proposals'}>NFT Catalog Proposals</Link>
-      <br />
-      <Link to={'/landing'}>Landing</Link>
+      <div className='h-screen'>
+        <HeaderLayout />
+        <CardLayout />
+      </div>
+      <Footer />
     </>
   );
 }
