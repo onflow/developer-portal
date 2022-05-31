@@ -14,8 +14,8 @@ const Template: Story<FlipCellProps> = (args) => {
   );
 };
 
-export const Primary = Template.bind({});
-Primary.args = {
+export const Default = Template.bind({});
+const args = {
   numComments: 23,
   heading: 'Error Subscribing to Events in Default Docs',
   tags: ['moo', 'crab', 'rangoon'],
@@ -25,4 +25,14 @@ Primary.args = {
     name: 'Marky Mark',
   },
   date: '23/3/22',
+  forumLink: '#test',
+};
+Default.args = args;
+
+export const Mobile = Template.bind({});
+Mobile.args = args;
+Mobile.parameters = {
+  viewport: {
+    defaultViewport: 'xs',
+  },
 };

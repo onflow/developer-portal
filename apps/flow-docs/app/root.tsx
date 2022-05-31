@@ -25,6 +25,10 @@ import {
   useTheme,
 } from "~/cms/utils/theme.provider";
 
+import {
+  Footer
+} from "@flow-docs/ui"
+
 export const links: LinksFunction = () => {
   return [{ rel: "stylesheet", href: styles }];
 };
@@ -85,6 +89,7 @@ function App() {
       >
         <MainNav />
         <Outlet />
+        <Footer/>
         <ThemeBody ssrTheme={Boolean(data.theme)} />
         <ScrollRestoration />
         <Scripts />

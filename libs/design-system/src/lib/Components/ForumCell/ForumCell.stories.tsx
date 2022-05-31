@@ -14,10 +14,10 @@ const Template: Story<ForumCellProps> = (args) => {
   );
 };
 
-export const Primary = Template.bind({});
-Primary.args = {
+export const Default = Template.bind({});
+const args = {
   numComments: 23,
-  heading: 'Error Subscribing to Events in Default Docs',
+  heading: 'Consensus Node Secrets Database',
   subheading: 'Flow Javascript SDK',
   participants: [
     {
@@ -41,4 +41,14 @@ Primary.args = {
       name: 'Marky Mark 4',
     },
   ],
+  forumLink: '#test',
+};
+
+Default.args = args;
+export const Mobile = Template.bind({});
+Mobile.args = args;
+Mobile.parameters = {
+  viewport: {
+    defaultViewport: 'xs',
+  },
 };

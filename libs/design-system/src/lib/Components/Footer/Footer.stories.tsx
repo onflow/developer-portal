@@ -9,4 +9,4 @@ export default {
 
 const Template = () => <Footer />;
 
-export const Primary = Template.bind({});
+export const Default = Template.bind({});

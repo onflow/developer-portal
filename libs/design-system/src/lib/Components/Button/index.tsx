@@ -9,6 +9,14 @@ const VARIANTS = {
     'dark:hover:border-white dark:hover:bg-black dark:hover:text-white',
     'dark:active:border-gray-500 dark:active:bg-black dark:active:text-gray-500',
   ],
+  'primary-inverse': [
+    'dark:bg-black dark:text-white dark:border-transparent',
+    'dark:hover:border-black dark:hover:bg-white dark:hover:text-black',
+    'dark:active:border-gray-500 dark:active:bg-white dark:active:text-gray-500',
+    'bg-white text-black',
+    'hover:border-white hover:bg-black hover:text-white',
+    'active:border-gray-500 active:bg-black active:text-gray-500',
+  ],
   secondary: [
     'bg-white text-primary-blue border-primary-blue',
     'hover:bg-primary-blue hover:text-white',

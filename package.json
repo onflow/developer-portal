@@ -6,6 +6,7 @@
     "dev": "yarn nx run flow-docs:dev",
     "start": "yarn nx start flow-docs",
     "build": "yarn nx build flow-docs",
+    "storybook": "yarn nx run design-system:storybook",
     "lint": "yarn nx run flow-docs:lint",
     "test": "yarn nx run flow-docs:test",
     "e2e": "yarn nx run docs-e2e:e2e",

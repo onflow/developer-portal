@@ -13,3 +13,4 @@ export { default as NetworkCard } from './lib/Components/NetworkCard';
 export { default as NetworkDetailsCard } from './lib/Components/NetworkDetailsCard';
 export { default as SporksCard } from './lib/Components/SporksCard';
 export { InputProps, StaticCheckbox } from './lib/Components/StaticCheckbox';
+export { Footer } from "./lib/Components/Footer";

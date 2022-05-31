@@ -1,6 +1,6 @@
 import React from 'react';
-import CommentIcon from '../Icons/CommentIcon';
-import RoundImage from './RoundImage';
+import { ReactComponent as CommentIcon } from '../../../../images/arrows/message-circle.svg';
+import RoundImage from '../RoundImage';
 
 export type User = {
   profileImage: string;
@@ -12,6 +12,7 @@ export type ForumCellProps = {
   heading: string;
   subheading: string;
   participants: User[];
+  forumLink: string;
 };
 
 const ForumCell = ({
@@ -19,15 +20,19 @@ const ForumCell = ({
   subheading,
   participants,
   numComments,
+  forumLink,
 }: ForumCellProps) => {
   return (
-    <div className="flex items-center rounded-lg bg-white py-6 px-11 hover:shadow-2xl dark:bg-primary-gray-dark sm:flex-col sm:px-8 md:flex-row">
+    <a
+      href={forumLink}
+      className="flex flex-col items-start items-center justify-around px-8 py-6 bg-white rounded-lg dark:bg-primary-dark-gray px-11 hover:cursor-pointer hover:shadow-2xl md:flex-row"
+    >
       <div className="flex-1">
         <p className="mb-2 text-xl font-semibold">{heading}</p>
         <span className="text-primary-gray-300">{subheading}</span>
       </div>
-      <div className="flex justify-between sm:mt-8 md:mt-0">
-        <div className="relative h-12 w-32">
+      <div className="flex items-center justify-between mt-8 md:mt-0">
+        <div className="relative left-0 h-12 w-[9rem]">
           {participants.map((participant, index) => (
             <div
               className="absolute inset-y-0"
@@ -41,11 +46,12 @@ const ForumCell = ({
             </div>
           ))}
         </div>
-        <div className="ml-3 flex items-center text-primary-gray-300 dark:text-primary-gray-100 sm:mt-2 md:mt-0">
-          <CommentIcon /> <span className="ml-3">{numComments}</span>
+        <div className="flex items-center ml-3 ml-9 text-primary-gray-300 dark:text-primary-gray-100">
+          <CommentIcon />
+          <span className="ml-3">{numComments}</span>
         </div>
       </div>
-    </div>
+    </a>
   );
 };
 
