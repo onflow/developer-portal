@@ -20,8 +20,9 @@ Primary.args = {
   heading: 'Error Subscribing to Events in Default Docs',
   tags: ['moo', 'crab', 'rangoon'],
   participant: {
-    profilePicture: 'https://github.githubassets.com/images/modules/logos_page/GitHub-Mark.png',
-    name: 'Marky Mark'
+    profileImage:
+      'https://github.githubassets.com/images/modules/logos_page/GitHub-Mark.png',
+    name: 'Marky Mark',
   },
-  date: '23/3/22'
+  date: '23/3/22',
 };

@@ -21,19 +21,24 @@ Primary.args = {
   subheading: 'Flow Javascript SDK',
   participants: [
     {
-      profilePicture: 'https://github.githubassets.com/images/modules/logos_page/GitHub-Mark.png',
-      name: 'Marky Mark'
+      profileImage:
+        'https://github.githubassets.com/images/modules/logos_page/GitHub-Mark.png',
+      name: 'Marky Mark',
     },
     {
-      profilePicture: 'https://github.githubassets.com/images/modules/logos_page/GitHub-Mark.png',
-      name: 'Marky Mark 2'
+      profileImage:
+        'https://github.githubassets.com/images/modules/logos_page/GitHub-Mark.png',
+      name: 'Marky Mark 2',
     },
     {
-      profilePicture: 'https://github.githubassets.com/images/modules/logos_page/GitHub-Mark.png',
-      name: 'Marky Mark 3'
-    }, {
-      profilePicture: 'https://github.githubassets.com/images/modules/logos_page/GitHub-Mark.png',
-      name: 'Marky Mark 4'
-    }
-  ]
+      profileImage:
+        'https://github.githubassets.com/images/modules/logos_page/GitHub-Mark.png',
+      name: 'Marky Mark 3',
+    },
+    {
+      profileImage:
+        'https://github.githubassets.com/images/modules/logos_page/GitHub-Mark.png',
+      name: 'Marky Mark 4',
+    },
+  ],
 };

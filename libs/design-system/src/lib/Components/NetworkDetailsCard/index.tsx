@@ -21,15 +21,15 @@ const NetworkDetailsCard = ({
 }: NetworkDetailsCardProps) => {
   return (
     <div
-      className="flex items-center text-center bg-white rounded-2xl dark:bg-primary-dark-gray sm:flex-col md:flex-row"
+      className="flex items-center rounded-2xl bg-white text-center dark:bg-primary-gray-dark sm:flex-col md:flex-row"
       style={{ width: 'fit-content' }}
     >
-      <div className="px-8 py-4 border-accent-light-gray sm:border-0 md:border-r-2">
+      <div className="border-accent-light-gray px-8 py-4 sm:border-0 md:border-r-2">
         <p className="mb-2 text-sm uppercase text-primary-gray-200">Version</p>
         {version}
       </div>
 
-      <div className="px-8 py-4 border-accent-light-gray sm:border-0 md:border-r-2 ">
+      <div className="border-accent-light-gray px-8 py-4 sm:border-0 md:border-r-2 ">
         <p
           className="mb-2 text-sm uppercase text-primary-gray-200"
           style={{ minWidth: '148px' }}
@@ -40,14 +40,14 @@ const NetworkDetailsCard = ({
         <Link href={statusLink}>{status}</Link>
       </div>
 
-      <div className="px-8 py-4 border-accent-light-gray sm:border-0 md:border-r-2">
+      <div className="border-accent-light-gray px-8 py-4 sm:border-0 md:border-r-2">
         <p className="mb-2 text-sm uppercase text-primary-gray-200">
           Last Spork Date
         </p>
         {lastSporkDate}
       </div>
 
-      <div className="px-8 py-4 border-accent-light-gray sm:border-0 md:border-r-2">
+      <div className="border-accent-light-gray px-8 py-4 sm:border-0 md:border-r-2">
         <p className="mb-2 text-sm uppercase text-primary-gray-200">
           Next Spork Date
         </p>

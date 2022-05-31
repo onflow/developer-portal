@@ -32,7 +32,7 @@ const SocialLink = ({
       <div className="md:scale-150">
         <Logo />
       </div>
-      <div className="items-center pt-2 ml-6">
+      <div className="ml-6 items-center pt-2">
         <h4 className="text-xl font-semibold">{header}</h4>
         <p>{description}</p>
       </div>
@@ -48,7 +48,7 @@ export type SocialLinksSignupProps = {};
 const SocialLinksSignup = () => {
   return (
     <div className="relative my-16">
-      <div className="absolute z-50 w-full mb-20 md:px-28">
+      <div className="absolute z-50 mb-20 w-full md:px-28">
         <div
           className="grid grid-flow-col rounded-lg xs:grid-rows-4 xs:px-4 md:grid-rows-2 md:px-0"
           style={{ background: 'rgba(213, 221, 233, 0.3)' }}
@@ -82,18 +82,18 @@ const SocialLinksSignup = () => {
           />
         </div>
 
-        <div className="flex items-center justify-between p-20 mt-8 bg-white rounded-lg xs:pb-22 dark:bg-primary-dark-gray xs:flex-col xs:px-4 md:flex-row md:p-20">
-          <h2 className="mr-8 text-h2 xs:mr-0 xs:mb-4">
+        <div className="xs:pb-22 mt-8 flex items-center justify-between rounded-lg bg-white p-20 dark:bg-primary-gray-dark xs:flex-col xs:px-4 md:flex-row md:p-20">
+          <h2 className="text-h2 mr-8 xs:mr-0 xs:mb-4">
             Subscribe to our newsletter
           </h2>
           <div className="flex h-14 xs:flex-col md:flex-row">
             <input
               placeholder="Email"
-              className="p-4 border-white rounded-tl-lg rounded-bl-lg md:rounded-tb-none h-14 text-primary-gray-300 focus:border-white xs:mb-4 xs:w-full xs:rounded-lg md:rounded-tr-none"
+              className="md:rounded-tb-none h-14 rounded-tl-lg rounded-bl-lg border-white p-4 text-primary-gray-300 focus:border-white xs:mb-4 xs:w-full xs:rounded-lg md:rounded-tr-none"
               style={{ boxShadow: '0px 4px 40px rgba(0, 0, 0, 0.08)' }}
             />
             <a
-              className="px-12 py-4 text-center text-white bg-black border-black rounded-tr-lg rounded-br-lg xs:rounded-lg md:rounded-tl-none md:rounded-bl-none"
+              className="rounded-tr-lg rounded-br-lg border-black bg-black px-12 py-4 text-center text-white xs:rounded-lg md:rounded-tl-none md:rounded-bl-none"
               href="/foo"
             >
               Subscribe

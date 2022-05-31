@@ -1,11 +1,10 @@
 import React from 'react';
 import CommentIcon from '../Icons/CommentIcon';
-import RoundImage from './RoundImage';
-import Tag from './Tag';
+import { RoundImage, Tag } from '../';
 import CalendarIcon from '../Icons/CalendarIcon';
 
 export type User = {
-  profilePicture: string;
+  profileImage: string;
   name: string;
 };
 
@@ -25,7 +24,7 @@ const FlipCell = ({
   date,
 }: FlipCellProps) => {
   return (
-    <div className="flex items-center justify-between py-6 bg-white rounded-lg px-11 hover:shadow-2xl dark:bg-primary-dark-gray sm:flex-col sm:p-8 md:flex-row">
+    <div className="flex items-center justify-between rounded-lg bg-white py-6 px-11 hover:shadow-2xl dark:bg-primary-gray-dark sm:flex-col sm:p-8 md:flex-row">
       <div className="flex items-center">
         <svg
           className="sm:hidden md:inline-flex"
@@ -50,14 +49,14 @@ const FlipCell = ({
       <div className="flex items-center sm:mt-12 md:mt-0">
         <div className="w-28">
           <RoundImage
-            imageUri={participant.profilePicture}
+            imageUri={participant.profileImage}
             altText={participant.name}
           />
         </div>
-        <div className="flex space-between text-primary-gray-300">
+        <div className="space-between flex text-primary-gray-300">
           <CalendarIcon /> {date}
         </div>
-        <div className="flex ml-3 text-primary-gray-300">
+        <div className="ml-3 flex text-primary-gray-300">
           <CommentIcon /> <span className="ml-3">{numComments}</span>
         </div>
       </div>

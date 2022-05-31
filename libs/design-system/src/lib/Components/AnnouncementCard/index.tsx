@@ -20,7 +20,7 @@ const AnnouncementCard = ({
   return (
     <a
       href={link}
-      className="flex items-center justify-between px-8 py-6 bg-white rounded-2xl hover:shadow-2xl dark:bg-primary-dark-gray sm:px-4"
+      className="flex items-center justify-between rounded-2xl bg-white px-8 py-6 hover:shadow-2xl dark:bg-primary-gray-dark sm:px-4"
     >
       <div className="mr-4 sm:mr-1">
         <img

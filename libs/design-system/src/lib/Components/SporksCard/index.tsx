@@ -20,7 +20,7 @@ export type SporksCardProps = {
 };
 
 const CardItem = ({ label, data }: { label: string; data: any }) => (
-  <div className="flex items-center justify-between p-4 group hover:bg-gray-50">
+  <div className="group flex items-center justify-between p-4 hover:bg-gray-50">
     <div>
       <span className="block uppercase text-primary-gray-300">{label}</span>
       {data}
@@ -49,9 +49,9 @@ const SporksCard = ({ heading, timestamp, sporkMetadata }: SporksCardProps) => {
   const [isExpanded, setIsExpanded] = useState(true);
 
   return (
-    <div className="flex-col items-center justify-between py-4 bg-white rounded-2xl px-11 hover:shadow-2xl dark:bg-primary-dark-gray sm:px-2">
+    <div className="flex-col items-center justify-between rounded-2xl bg-white py-4 px-11 hover:shadow-2xl dark:bg-primary-gray-dark sm:px-2">
       <div
-        className="flex justify-between ease-in cursor-pointer sm:px-2"
+        className="flex cursor-pointer justify-between ease-in sm:px-2"
         tabIndex={0}
         role="button"
         aria-pressed="false"
