@@ -74,9 +74,7 @@ export function ToolCard({
             width={18}
             height={18}
           />
-          <div className="text-sm leading-[1rem] text-gray-500 dark:text-gray-300">
-            {stars}
-          </div>
+          <div className="text-sm text-gray-500">{stars}</div>
         </div>
         {type === 'sdk' ? (
           <div className="align-center -mb-1 grid w-fit grid-cols-1 gap-x-4 justify-self-center pt-6 text-sm text-gray-500 md:grid-cols-2	">
