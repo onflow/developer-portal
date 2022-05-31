@@ -15,6 +15,7 @@ interface ToolCardCommonProps {
   toolIcon: 'https://cdn4.iconfinder.com/data/icons/logos-3/504/Swift-2-512.png';
 }
 
+// ensure that each type of tool card gets its required props and excludes its unused ones
 type ToolCardContentProps =
   | {
       type: 'sdk';
@@ -50,7 +51,7 @@ export function ToolCard({
       href={link}
     >
       <div>
-        <div className="min-w-16 h-16 w-16 rounded-lg p-3 shadow-[inset_-1.2px_-1.2px_3px_0_rgba(0,0,0,0.15)]">
+        <div className="min-w-16 h-16 w-16 rounded-lg p-3 shadow-tool-card-icon	backdrop-blur-2xl dark:bg-dark-tool-card-icon">
           <img src={toolIcon} />
         </div>
       </div>
@@ -60,10 +61,10 @@ export function ToolCard({
           <div className="mr-2 shrink-0">
             <img src={authorIcon} alt={authorName} width={24} height={24} />
           </div>
-          <div className="dark:gray-400 whitespace-nowrap pr-2.5 text-sm text-gray-600 md:pr-5">
+          <div className="dark:gray-400 whitespace-nowrap pr-2.5 text-sm text-gray-600 dark:text-gray-400 md:pr-5">
             {authorName}
           </div>
-          <div className="pr-1 md:pr-3">
+          <div className="pr-1 line-clamp-1 md:pr-3">
             {tags.map((tag, i) => (
               <Tag name={tag} key={i} />
             ))}
@@ -73,14 +74,16 @@ export function ToolCard({
             width={18}
             height={18}
           />
-          <div className="text-sm text-gray-500">{stars}</div>
+          <div className="text-sm leading-[1rem] text-gray-500 dark:text-gray-300">
+            {stars}
+          </div>
         </div>
         {type === 'sdk' ? (
           <div className="align-center -mb-1 grid w-fit grid-cols-1 gap-x-4 justify-self-center pt-6 text-sm text-gray-500 md:grid-cols-2	">
             <div className="flex items-center">
               <CalendarIcon
                 className="mr-3 stroke-gray-500"
-                width={18}
+                width={22}
                 height={18}
               />
               <div>{lastRelease} days ago</div>
@@ -96,7 +99,7 @@ export function ToolCard({
             </div>
           </div>
         ) : type === 'tool' ? (
-          <div className="pt-2 text-sm text-gray-800 line-clamp-2">
+          <div className="pt-2 text-sm text-gray-800 line-clamp-2 dark:text-gray-300">
             {description}
           </div>
         ) : null}
