@@ -10,6 +10,7 @@ export type TutorialCardProps = {
   lastUpdated: string;
   level: string;
   imageUri: string;
+  link: string;
 };
 
 const TutorialCard: React.FC<TutorialCardProps> = ({
@@ -19,9 +20,13 @@ const TutorialCard: React.FC<TutorialCardProps> = ({
   lastUpdated,
   level,
   imageUri,
+  link,
 }) => {
   return (
-    <div className="flex max-w-[316px] flex-col overflow-hidden rounded-lg bg-white hover:shadow-2xl dark:bg-primary-gray-dark">
+    <a
+      href={link}
+      className="flex max-w-[316px] flex-col overflow-hidden rounded-lg bg-white hover:shadow-2xl dark:bg-primary-gray-dark"
+    >
       <img src={imageUri} className="h-[141px] object-cover" />
       <div className="p-4">
         <div className="text-xl font-bold">{heading}</div>
@@ -42,7 +47,7 @@ const TutorialCard: React.FC<TutorialCardProps> = ({
           </div>
         </div>
       </div>
-    </div>
+    </a>
   );
 };
 

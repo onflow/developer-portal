@@ -20,6 +20,7 @@ const args = {
   level: 'Beginners',
   imageUri:
     'https://upload.wikimedia.org/wikipedia/commons/thumb/4/49/A_black_image.jpg/2560px-A_black_image.jpg',
+  link: '/tutorials',
 };
 
 export const Primary = Template.bind({});
