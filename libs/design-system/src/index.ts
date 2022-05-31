@@ -15,3 +15,4 @@ export { default as SporksCard } from './lib/Components/SporksCard';
 export { InputProps, StaticCheckbox } from './lib/Components/StaticCheckbox';
 export { InternalLandingCard } from './lib/Components/InternalLandingCard';
 export { Footer } from './lib/Components/Footer';
+export { LandingHeaderHome } from './lib/Components/LandingHeaderHome';
