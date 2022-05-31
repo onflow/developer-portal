@@ -33,6 +33,13 @@ module.exports = {
       lg: '1440px',
       xl: '1536px',
     },
+    container: {
+      center: true,
+      padding: '1rem',
+      screens: {
+        xs: '1140px',
+      },
+    },
     extend: {
       fontFamily: {
         sans: ['Acumin Pro', ...defaultTheme.fontFamily.sans],
