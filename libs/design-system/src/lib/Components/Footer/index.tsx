@@ -117,8 +117,8 @@ export const Footer = ({ sections = footerSections }) => {
     <footer className="px-6 text-white bg-black">
       <div className="container mx-auto">
         <div className="flex items-center justify-between block px-2 pt-8 pb-6 md:px-4 md:pt-16">
-          <div>
-            <FlowDocsLogo className="object-contain h-10 w-min" />
+          <div className="object-contain h-10 w-min">
+            <FlowDocsLogo />
           </div>
           <div className="flex items-center justify-start gap-6 pt-8 md:pt-0 lg:justify-center">
             <a href="#">

@@ -1,10 +1,9 @@
 import {
-  getHeadingsFromMdxComponent,
   InputProps,
   HeadingProps,
   Heading,
-  Link,
-  StaticCheckbox,
+  // Link,
+  // StaticCheckbox,
 } from "@flow-docs/ui";
 import { Link as RemixLink } from "@remix-run/react";
 import { getMDXComponent } from "mdx-bundler/client";
@@ -306,7 +305,7 @@ const mdxComponents = {
  */
 function getMdxComponent({ code, frontmatter }: MdxPage) {
   const Component = getMDXComponent(code);
-  const headings = getHeadingsFromMdxComponent(Component);
+  // const headings = getHeadingsFromMdxComponent(Component);
 
   function MdxComponent({
     components,
@@ -318,7 +317,6 @@ function getMdxComponent({ code, frontmatter }: MdxPage) {
           {/* @ts-expect-error: We need to figure out how to type this */}
           <Component components={mdxComponents} {...rest} />
         </div>
-        {frontmatter.showToc && JSON.stringify(headings)}
       </div>
     );
   }

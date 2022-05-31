@@ -3,10 +3,10 @@ export { Attribution } from './lib/Components/Attribution/Attribution';
 export { default as FlipCell } from './lib/Components/FlipCell';
 export { default as ForumCell } from './lib/Components/ForumCell';
 export { Heading, HeadingProps } from './lib/Components/Heading';
-export {
-  InternalSidebar,
-  TEMP_SIDEBAR_CONFIG,
-} from './lib/Components/InternalSidebar';
+// export {
+//   InternalSidebar,
+//   TEMP_SIDEBAR_CONFIG,
+// } from './lib/Components/InternalSidebar';
 export { getHeadingsFromMdxComponent } from './lib/Components/InternalToc';
 export { Link } from './lib/Components/Link';
 export { default as NetworkCard } from './lib/Components/NetworkCard';

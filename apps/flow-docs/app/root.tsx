@@ -87,13 +87,13 @@ function App() {
           "h-full bg-white text-gray-900 dark:bg-black dark:text-white"
         )}
       >
-        <MainNav />
-        <Outlet />
-        <Footer/>
         <ThemeBody ssrTheme={Boolean(data.theme)} />
+        <MainNav />
+          <Outlet />
+        <Footer/>
         <ScrollRestoration />
         <Scripts />
-        <LiveReload />
+        <LiveReload port={8002}/>
       </body>
     </html>
   );
