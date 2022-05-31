@@ -52,7 +52,7 @@ export function SmallVideoCard({
         </div>
       </div>
       <div>
-        <ExternalLinkIcon className="fill-primary-gray-400 stroke-white dark:fill-primary-gray-300 dark:stroke-primary-dark-gray" />
+        <ExternalLinkIcon className="text-gray-700 dark:text-gray-600" />
       </div>
     </a>
   );
