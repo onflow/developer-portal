@@ -12,7 +12,7 @@ interface ToolCardCommonProps {
   tags: string[];
   link: string;
   stars: number;
-  toolIcon: 'https://cdn4.iconfinder.com/data/icons/logos-3/504/Swift-2-512.png';
+  toolIcon: string;
 }
 
 // ensure that each type of tool card gets its required props and excludes its unused ones
@@ -58,26 +58,34 @@ export function ToolCard({
       <div className="grow">
         <h5 className="text-h5">{title}</h5>
         <div className="flex items-center">
-          <div className="mr-2 shrink-0">
-            <img src={authorIcon} alt={authorName} width={24} height={24} />
+          <div className="flex shrink-0 items-center gap-2 pr-3 md:pr-4">
+            <div>
+              <img src={authorIcon} alt={authorName} width={24} height={24} />
+            </div>
+            <div className="dark:gray-400 md:leading-1 whitespace-nowrap text-sm text-gray-600 dark:text-gray-400 md:text-xs">
+              {authorName}
+            </div>
           </div>
-          <div className="dark:gray-400 whitespace-nowrap pr-2.5 text-sm text-gray-600 dark:text-gray-400 md:pr-5">
-            {authorName}
-          </div>
-          <div className="pr-1 line-clamp-1 md:pr-3">
+
+          <div className="shrink-0 pr-1 line-clamp-1">
             {tags.map((tag, i) => (
               <Tag name={tag} key={i} />
             ))}
           </div>
-          <StarIcon
-            className="shrink-0 fill-amber-400 stroke-amber-400 pr-1"
-            width={18}
-            height={18}
-          />
-          <div className="text-sm text-gray-500">{stars}</div>
+
+          <div className="flex shrink-0 gap-1">
+            <StarIcon
+              className="h-fit fill-amber-400 stroke-amber-400"
+              width={14}
+              height={14}
+            />
+            <div className="md:leading-1 h-fit text-sm text-gray-500 dark:text-gray-300 md:text-xs">
+              {stars}
+            </div>
+          </div>
         </div>
         {type === 'sdk' ? (
-          <div className="align-center -mb-1 grid w-fit grid-cols-1 gap-x-4 justify-self-center pt-6 text-sm text-gray-500 md:grid-cols-2	">
+          <div className="align-center -mb-1 grid w-fit grid-cols-1 gap-x-4 justify-self-center pt-6 text-xs text-gray-500 md:grid-cols-2	">
             <div className="flex items-center">
               <CalendarIcon
                 className="mr-3 stroke-gray-500"
@@ -97,7 +105,7 @@ export function ToolCard({
             </div>
           </div>
         ) : type === 'tool' ? (
-          <div className="pt-2 text-sm text-gray-800 line-clamp-2 dark:text-gray-300">
+          <div className="pt-2 text-gray-700 line-clamp-2 dark:text-gray-300">
             {description}
           </div>
         ) : null}
