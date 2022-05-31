@@ -23,8 +23,8 @@ export function LinkCard2Column({
   title,
 }: LinkCard2ColumnProps) {
   return (
-    <div className="container flex flex-col items-start rounded-lg bg-primary-gray-100/30 p-10 px-4 py-12 md:flex-row md:px-20 md:py-20">
-      <div className="flex flex-1 flex-col items-start">
+    <div className="container flex flex-col items-start rounded-lg bg-primary-gray-100/30 p-10 px-4 py-12 dark:bg-primary-dark-gray md:flex-row md:px-20 md:py-20">
+      <div className="flex flex-1 flex-col items-start md:mr-20">
         <h2 className="text-h2 my-2 md:mb-3">{title}</h2>
         {tags && (
           <div className="mb-1">
@@ -33,8 +33,14 @@ export function LinkCard2Column({
             ))}
           </div>
         )}
-        <p>{description}</p>
-        <ButtonLink href={buttonUrl} className="mb-10 mt-2 px-8 py-3 md:mt-10">
+        <p className="max-w-[18rem] overflow-hidden text-ellipsis	text-primary-gray-400 dark:text-primary-gray-100 lg:max-w-[36rem] xl:max-w-[38rem]">
+          {description}
+        </p>
+        <ButtonLink
+          href={buttonUrl}
+          className="mb-10 mt-2 px-8 py-3 md:mt-10"
+          variant="primary-inverse"
+        >
           {buttonText}
         </ButtonLink>
       </div>
