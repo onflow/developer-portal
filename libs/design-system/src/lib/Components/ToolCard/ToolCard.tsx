@@ -62,7 +62,7 @@ export function ToolCard({
             <div>
               <img src={authorIcon} alt={authorName} width={24} height={24} />
             </div>
-            <div className="dark:gray-400 md:leading-1 whitespace-nowrap text-sm text-gray-600 dark:text-gray-400 md:text-xs">
+            <div className="dark:gray-400 md:leading-1 whitespace-nowrap text-sm text-gray-600 dark:text-gray-400">
               {authorName}
             </div>
           </div>
@@ -79,13 +79,13 @@ export function ToolCard({
               width={14}
               height={14}
             />
-            <div className="md:leading-1 h-fit text-sm text-gray-500 dark:text-gray-300 md:text-xs">
+            <div className="md:leading-1 h-fit text-sm text-gray-500 dark:text-gray-300">
               {stars}
             </div>
           </div>
         </div>
         {type === 'sdk' ? (
-          <div className="align-center -mb-1 grid w-fit grid-cols-1 gap-x-4 justify-self-center pt-6 text-xs text-gray-500 md:grid-cols-2	">
+          <div className="align-center -mb-1 grid w-fit grid-cols-1 gap-x-4 justify-self-center pt-6 text-gray-500 md:grid-cols-2	">
             <div className="flex items-center">
               <CalendarIcon
                 className="mr-3 stroke-gray-500"
