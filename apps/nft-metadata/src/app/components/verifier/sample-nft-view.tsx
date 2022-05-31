@@ -2,6 +2,9 @@ import { useEffect, useState } from "react";
 import { useHistory, useParams } from "react-router-dom";
 import { retrieveMetadataInformation } from "../../../flow/utils"
 import { Accordian } from "../shared/accordian";
+import { Alert } from "../shared/alert";
+import { Spinner } from "../shared/spinner";
+import { Button } from "../shared/button";
 
 export function SampleNFTView({
   sampleAddress,
@@ -14,6 +17,7 @@ export function SampleNFTView({
   const { selectedAddress, selectedContract } = useParams()
   const [viewsImplemented, setViewsImplemented] = useState<any>([]);
   const [error, setError] = useState<boolean|null>(null);
+  const [loading, setLoading] = useState<boolean>(true)
 
   useEffect(() => {
     const metadataViewInformation = async () => {
@@ -26,6 +30,7 @@ export function SampleNFTView({
       } else {
         setViewsImplemented(res);
       }
+      setLoading(false)
     }
     metadataViewInformation()
   }, [sampleAddress, publicPath])
@@ -59,7 +64,20 @@ export function SampleNFTView({
   return (
     <>
       <div className="text-2xl mb-6">Review Metadata</div>
-      {error && <p>It seems the sample NFT account is not linked properly, we weren't able to retrieve the metadataviews link from the public path.</p>}
+      { loading && <Spinner /> }
+      {
+        error &&
+          <Alert
+            status="error"
+            title="Failed to retrieve sample NFT"
+            body={
+              <>
+                We were unable to retrieve the MetadataViews.ResolverCollection capability from the public path and address provided.
+                Ensure your setup transactions link the MetadataViews.ResolverCollection interface on the given public path.
+              </>
+            }
+          />
+      }
       {
         !error &&
           <>
@@ -85,16 +103,15 @@ export function SampleNFTView({
             <br />
 
             {
-              invalidViews.length === 0 && (
+              !loading && invalidViews.length === 0 && (
                 <>
                   <p>This NFT contract, <b>{selectedContract}</b>, is implementing all of the recommended views!</p>
-                  <p>Review the metadata details above. If they all look good, click continue to add or update this collection in the NFT Catalog.</p>
-                  <button
-                    className="bg-white hover:bg-gray-100 text-gray-800 font-semibold py-2 px-4 border border-gray-400 rounded shadow"
-                    onClick={(e) => { history.push(`${window.location.pathname}${window.location.search}&confirmed=true`)
-                  }}>
-                    Continue
-                  </button>
+                  <p>Review the metadata details above. If they look good, click continue to add or update this collection in the NFT Catalog.</p>
+                  <form
+                    onSubmit={() => { history.push(`${window.location.pathname}${window.location.search}&confirmed=true`)}}
+                  >
+                    <Button value="Continue"/>
+                  </form>
                 </>
               )
             }

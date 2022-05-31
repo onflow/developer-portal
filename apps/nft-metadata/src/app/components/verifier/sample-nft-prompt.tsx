@@ -1,25 +1,37 @@
 import { useState } from 'react';
 import { useHistory } from 'react-router-dom';
 import { TextInput } from '../shared/text-input';
+import { withPrefix } from '@onflow/fcl';
 
 export function SampleNFTPrompt({
   contractCode,
-  defaultValues
+  defaultValues,
+  setError
 }: {
   contractCode: string,
-  defaultValues: any
+  defaultValues: any,
+  setError: any
 }) {
   const history = useHistory()
   const [publicPath, setPublicPath] = useState<string>(defaultValues.publicPath || "")
   const [sampleAddress, setSampleAddress] = useState<string>(defaultValues.sampleAddress || "")
   const possiblePublicPaths: Array<string> = contractCode.match(/\/public\/[A-Za-z0-9]*/gmi) || []
+
   return (
     <form onSubmit={(e) => {
+      e.preventDefault();
+      if (publicPath.indexOf("/public/") !== 0) {
+        setError("The public path must include the /public/ prefix")
+        return false
+      }
+      if (withPrefix(sampleAddress).length !== 18) {
+        setError("The provided address is not valid ")
+        return false
+      }
       history.push({
         pathname: window.location.pathname,
         search: `?path=${publicPath}&sampleAddress=${sampleAddress}`
       })
-      e.preventDefault();
       return false;
     }}>
       <p></p>

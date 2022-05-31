@@ -30,7 +30,7 @@ function Collapsible({item}: {item: any}) {
             }}
           >
             <svg height="20" width="20">
-              <circle cx="10" cy="10" r="8" stroke="black" stroke-width="3" fill={statusColor} />
+              <circle cx="10" cy="10" r="8" stroke="black" strokeWidth="3" fill={statusColor} />
             </svg>
             <span className="ml-4">
               {item.title}
@@ -56,8 +56,8 @@ export function Accordian({items}: {items: Array<any>}) {
   return (
     <div className="accordion" id="accordionExample">
       {
-        items && items.map((item) => {
-          return <Collapsible item={item} />
+        items && items.map((item, i) => {
+          return <Collapsible key={i} item={item} />
         })
       }
     </div>

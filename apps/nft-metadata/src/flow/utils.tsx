@@ -51,7 +51,6 @@ export async function retrieveContractInformation(address: string, name: string,
 
 export async function retrieveMetadataInformation(sampleAddress: string, publicPath: string): Promise<any> {
   try {
-    console.log('pub path is', publicPath);
     const scriptResult = await fcl.send([
       fcl.script(`
         import MetadataViews from 0x631e88ae7f1d7c20
@@ -82,7 +81,7 @@ export async function retrieveMetadataInformation(sampleAddress: string, publicP
         }
       `),
       fcl.args([
-        fcl.arg(sampleAddress, t.Address),
+        fcl.arg(fcl.withPrefix(sampleAddress), t.Address),
         fcl.arg(publicPath.replace('\/public\/', ''), t.String)
       ])
     ])

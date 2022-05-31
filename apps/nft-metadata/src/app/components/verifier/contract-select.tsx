@@ -2,6 +2,7 @@ import { Fragment, useState, useEffect } from 'react';
 import { retrieveContractInformation, getAccount } from "../../../flow/utils"
 import { useHistory, useParams } from 'react-router-dom';
 import { SearchBar } from '../shared/search-bar';
+import { Alert } from '../shared/alert';
 
 export function ContractSelect({
   selectContract
@@ -10,6 +11,7 @@ export function ContractSelect({
 }) {
   const [contractAddress, setContractAddress] = useState<string>("")
   const [account, setAccount] = useState<any>({})
+  const [error, setError] = useState<string|null>(null)
 
   return (
     <>
@@ -19,20 +21,24 @@ export function ContractSelect({
         <br />
         The <b>Flow NFT Catalog</b> will automatically allow applications and marketplaces such as <b>Alchemy, Rarible, Blocto, Find</b>, etc. to utilize your NFT collection on their platforms.
         <br />
-        <br />
-        You will be asked to provide your contract's information, to provide a sample account that holds this NFT, to review 
       </div>
-      <div className="text-2xl my-6">Select NFT Contract</div>
+      <hr className="my-6"/>
+      <div className="text-2xl mb-6">Select NFT Contract</div>
       <b>Enter Address containing your NFT Contract</b>
       <br />
       <SearchBar
         onSubmit={(address) => {
           if (!address) { return }
           const retrieveAccount = async () => {
+            setError(null)
             const res = await getAccount(String(address))
             if (res) {
               setAccount(res)
               setContractAddress(address)
+              setError(null)
+            } else {
+              setAccount({})
+              setError("Failed to retrieve address")
             }
           }
           retrieveAccount()
@@ -59,6 +65,12 @@ export function ContractSelect({
             })
           }
         </>
+      }
+
+      {
+        error && (
+          <Alert status='error' title={error} body={""} />
+        )
       }
 
       {/*
