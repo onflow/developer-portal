@@ -91,6 +91,8 @@
   },
   "dependencies": {
     "@docsearch/react": "^3.1.0",
+    "@onflow/fcl": "^1.0.0",
+    "@onflow/types": "^1.0.1",
     "@reach/menu-button": "^0.17.0",
     "@remix-run/react": "^1.0.6",
     "@remix-run/serve": "^1.0.6",
@@ -102,7 +104,6 @@
     "regenerator-runtime": "0.13.7",
     "remix": "^1.0.6",
     "tailwindcss": "^3.0.24",
-    "tslib": "^2.0.0",
-    "@onflow/fcl": "^1.0.0"
+    "tslib": "^2.0.0"
   }
 }
