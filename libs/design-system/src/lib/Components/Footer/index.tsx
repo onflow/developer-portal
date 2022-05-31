@@ -112,11 +112,11 @@ const footerSections = [
   },
 ];
 
-export function Footer() {
+export const Footer = ({ sections = footerSections }) => {
   return (
     <footer className="px-6 text-white bg-black">
       <div className="container mx-auto">
-        <div className="block px-2 pt-8 pb-6 md:flex md:items-center md:justify-between md:px-4 md:pt-16">
+        <div className="flex items-center justify-between block px-2 pt-8 pb-6 md:px-4 md:pt-16">
           <div>
             <FlowDocsLogo className="object-contain h-10 w-min" />
           </div>
@@ -139,15 +139,15 @@ export function Footer() {
           </div>
         </div>
         <div className="grid grid-cols-2 px-2 pb-6 border-y border-y-gray-500 pt-9 md:grid-cols-5 md:px-4">
-          {footerSections.map((footer, i) => (
+          {sections.map((section, i) => (
             <section key={i} className="pb-12 md:pb-0">
               <div className="pb-3">
                 <h3 className="text-base font-bold lg:text-2xl">
-                  {footer.header}
+                  {section.header}
                 </h3>
               </div>
               <ul>
-                {footer.links.map((link, j) => (
+                {section.links.map((link, j) => (
                   <li className="py-1 pl-0" key={j}>
                     <a
                       className="text-xs text-gray-400 lg:text-base"

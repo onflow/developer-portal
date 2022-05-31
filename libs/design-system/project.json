@@ -4,6 +4,28 @@
   "projectType": "library",
   "tags": [],
   "targets": {
+    "dev" : {
+      "executor": "@nrwl/web:rollup",
+      "outputs": ["{options.outputPath}"],
+      "options": {
+        "watch": true,
+        "outputPath": "libs/design-system/dist",
+        "tsConfig": "libs/design-system/tsconfig.lib.json",
+        "project": "libs/design-system/package.json",
+        "entryFile": "libs/design-system/src/index.ts",
+        "external": ["react/jsx-runtime"],
+        "rollupConfig": ["@nrwl/react/plugins/bundle-rollup", "libs/design-system/rollup.config.js"],
+        "compiler": "babel",
+        "assets": [
+          {
+            "glob": "libs/design-system/README.md",
+            "input": ".",
+            "output": "."
+          }
+        ],
+        "format": ["umd"]
+      }
+    },
     "build": {
       "executor": "@nrwl/web:rollup",
       "outputs": ["{options.outputPath}"],
