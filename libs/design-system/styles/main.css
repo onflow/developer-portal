@@ -53,3 +53,7 @@ ul.contains-task-list {
 .task-list-item {
   @apply relative pl-8 mt-3;
 }
+
+.link-card-3-column-link:hover + .link-card-3-column-link > span {
+  border-top-color: transparent;
+}
