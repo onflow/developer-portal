@@ -8,5 +8,5 @@ export default {
 
 const Template: Story<SearchProps> = (args) => <Search {...args} />;
 
-export const Primary = Template.bind({});
-Primary.args = {};
+export const Default = Template.bind({});
+Default.args = {};

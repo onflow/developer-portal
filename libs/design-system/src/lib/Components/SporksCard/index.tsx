@@ -1,6 +1,8 @@
 import React, { useState } from 'react';
-import { format } from 'date-fns';
-import { CopyIcon, UpChevronIcon } from '../Icons';
+import { format, formatDistanceToNow } from 'date-fns';
+import { ReactComponent as CopyIcon } from '../../../../images/action/copy.svg';
+import { ReactComponent as ChevronUpIcon } from '../../../../images/arrows/chevron-up.svg';
+import { ReactComponent as ChevronDownIcon } from '../../../../images/arrows/chevron-down.svg';
 
 export type SporkMetadata = {
   accessNode: string;
@@ -17,16 +19,17 @@ export type SporksCardProps = {
   heading: string;
   timestamp: Date;
   sporkMetadata: SporkMetadata;
+  upcoming: boolean;
 };
 
 const CardItem = ({ label, data }: { label: string; data: any }) => (
-  <div className="flex items-center justify-between p-4 group hover:bg-gray-50">
-    <div>
+  <div className="flex items-center justify-between p-4 group hover:cursor-pointer hover:bg-gray-50 ">
+    <div className="break-all">
       <span className="block uppercase text-primary-gray-300">{label}</span>
       {data}
     </div>
     <div
-      className="hidden hover:cursor-pointer group-hover:block"
+      className="hidden group-hover:hidden md:group-hover:block"
       title={`Copy ${data}`}
       onClick={() => navigator.clipboard.writeText(data.toString())}
     >
@@ -35,7 +38,7 @@ const CardItem = ({ label, data }: { label: string; data: any }) => (
   </div>
 );
 
-const SporksCard = ({ heading, timestamp, sporkMetadata }: SporksCardProps) => {
+const Spork = ({ heading, timestamp, sporkMetadata }) => {
   const {
     accessNode,
     date,
@@ -49,26 +52,24 @@ const SporksCard = ({ heading, timestamp, sporkMetadata }: SporksCardProps) => {
   const [isExpanded, setIsExpanded] = useState(true);
 
   return (
-    <div className="flex-col items-center justify-between py-4 bg-white rounded-2xl px-11 hover:shadow-2xl dark:bg-primary-dark-gray sm:px-2">
+    <div className="flex-col items-center justify-between px-4 py-6 bg-white rounded-2xl hover:shadow-2xl dark:bg-primary-dark-gray md:px-8">
       <div
-        className="flex justify-between ease-in cursor-pointer sm:px-2"
+        className="flex justify-between px-2 ease-in cursor-pointer"
         tabIndex={0}
         role="button"
         aria-pressed="false"
         onClick={() => setIsExpanded(!isExpanded)}
       >
         <div className="flex items-center">
-          <span className="text-2xl font-bold sm:text-xl">{heading}</span>
-          <span className="ml-12">{format(timestamp, 'MMMM d')}</span>
+          <span className="pr-4 text-xl text-2xl font-bold">{heading}</span>
+          <span className="pl-4 border-l border-primary-gray-100 text-primary-gray-300">
+            {format(timestamp, 'MMMM d')}
+          </span>
         </div>
-        {isExpanded && (
-          <div className="sm:mt-2">
-            <UpChevronIcon />
-          </div>
-        )}
+        {isExpanded ? <ChevronUpIcon /> : <ChevronDownIcon />}
       </div>
       {isExpanded && (
-        <div className="flex-col py-4">
+        <div className="flex-col pt-4 pb-2">
           <CardItem label="Access Node" data={accessNode} />
           <CardItem label="Date" data={format(date, 'LLL d, yyyy')} />
           <CardItem label="Root Height" data={rootHeight} />
@@ -80,6 +81,38 @@ const SporksCard = ({ heading, timestamp, sporkMetadata }: SporksCardProps) => {
         </div>
       )}
     </div>
+  );
+};
+
+const UpcomingSpork = ({ heading, timestamp }) => {
+  return (
+    <div className="flex-col items-center justify-between px-4 py-6 bg-white rounded-2xl dark:bg-primary-dark-gray md:px-8">
+      <div className="flex flex-col justify-start px-2 md:flex-row">
+        <span className="text-xl text-2xl font-bold md:pr-4">{heading}</span>
+        <hr className="inline-block w-6 my-4 md:hidden" />
+        <span className="border-l border-primary-gray-100 md:pl-4">
+          Coming in {formatDistanceToNow(timestamp)} (
+          {format(timestamp, 'MMMM d')} 8-9AM PST)
+        </span>
+      </div>
+    </div>
+  );
+};
+
+const SporksCard = ({
+  heading,
+  timestamp,
+  sporkMetadata,
+  upcoming,
+}: SporksCardProps) => {
+  return upcoming ? (
+    <UpcomingSpork heading={heading} timestamp={timestamp} />
+  ) : (
+    <Spork
+      heading={heading}
+      timestamp={timestamp}
+      sporkMetadata={sporkMetadata}
+    />
   );
 };
 

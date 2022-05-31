@@ -10,23 +10,23 @@ const Template: Story<InternalLandingCardProps> = (args) => {
   return <InternalLandingCard {...args} />;
 };
 
-export const Primary = Template.bind({});
-Primary.args = {
+export const Default = Template.bind({});
+Default.args = {
   title: 'Quick start',
   description: 'Values only need to be set once. We recommend doing this once',
-  isPrimary: true,
+  isDefault: true,
 };
 
-export const PrimaryMobile = Template.bind({});
-PrimaryMobile.args = Primary.args;
-PrimaryMobile.parameters = {
+export const DefaultMobile = Template.bind({});
+DefaultMobile.args = Default.args;
+DefaultMobile.parameters = {
   viewport: {
     defaultViewport: 'xs',
   },
 };
 
 export const primaryDark = Template.bind({});
-primaryDark.args = Primary.args;
+primaryDark.args = Default.args;
 primaryDark.parameters = {
   themes: {
     default: 'dark',
@@ -35,8 +35,8 @@ primaryDark.parameters = {
 
 export const Secondary = Template.bind({});
 Secondary.args = {
-  ...Primary.args,
-  isPrimary: false,
+  ...Default.args,
+  isDefault: false,
 };
 
 export const secondaryDark = Template.bind({});

@@ -1,6 +1,7 @@
 import React from 'react';
 import { formatDistance } from 'date-fns';
-import { ContentExternalLinkIcon, TimeIcon } from '../Icons';
+import { ReactComponent as ExternalLinkIcon } from '../../../../images/content/external-link.svg';
+import { ReactComponent as TimeIcon } from '../../../../images/content/date.svg';
 
 export type NetworkDiscordCardProps = {
   message: string;
@@ -17,11 +18,11 @@ const NetworkDiscordCard = ({
 }: NetworkDiscordCardProps) => {
   return (
     <a href={messageLink}>
-      <div className="flex-col bg-white sm:width-full rounded-xl hover:cursor-pointer hover:shadow-2xl dark:bg-primary-dark-gray md:w-96">
+      <div className="flex-col bg-white width-full rounded-xl hover:cursor-pointer hover:shadow-2xl dark:bg-primary-dark-gray md:w-96">
         <div className="flex-col px-6 pt-6 border-b border-b-1 border-b-primary-gray-100 dark:border-b-primary-gray-400">
           <div className="flex">
             <div className="mr-8 text-xl">&ldquo;{message}&rdquo;</div>
-            <ContentExternalLinkIcon />
+            <ExternalLinkIcon />
           </div>
           <div
             className="pb-2 text-sm text-primary-gray-300"

@@ -7,18 +7,26 @@ export default {
 } as Meta;
 
 const Template: Story<CalloutProps> = (args) => {
-  return (
-    <div style={{ backgroundColor: '#f1f1f1', padding: '14px' }}>
-      <Callout {...args} />
-    </div>
-  );
+  return <Callout {...args} />;
 };
 
-export const Primary = Template.bind({});
-Primary.args = {
-  heading: 'Node operator callout',
-  description:
-    'Everything you need to start building on Flow verything you need to start building on Flow everything you need to start building on Flow',
-  ctaText: 'Learn more',
+export const Default = Template.bind({});
+Default.args = {
+  heading: 'Spork FAQ',
+  description: 'Lorem ipsum dolor sit amet proin gravida lorem ipsum',
+  ctaText: 'View FAQ',
   ctaLink: 'https://google.com',
+};
+
+export const Mobile = Template.bind({});
+Mobile.args = {
+  heading: 'Spork FAQ',
+  description: 'Lorem ipsum dolor sit amet proin gravida lorem ipsum',
+  ctaText: 'View FAQ',
+  ctaLink: 'https://google.com',
+};
+Mobile.parameters = {
+  viewport: {
+    defaultViewport: 'xs',
+  },
 };
