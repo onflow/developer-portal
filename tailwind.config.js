@@ -33,6 +33,13 @@ module.exports = {
       lg: '1440px',
       xl: '1536px',
     },
+    container: {
+      center: true,
+      padding: '1rem',
+      screens: {
+        xs: '1140px',
+      },
+    },
     extend: {
       fontFamily: {
         sans: ['Acumin Pro', ...defaultTheme.fontFamily.sans],
@@ -63,7 +70,7 @@ module.exports = {
           400: '#2F353F',
         },
         'accent-light-gray': '#F3F3F3',
-        'primary-dark-gray': '#1A1A1A'
+        'primary-dark-gray': '#1A1A1A',
       },
       spacing: {
         micro: defaultTheme.spacing['1'],
@@ -80,10 +87,10 @@ module.exports = {
   },
   variants: {
     extend: {
-      display: ["group-hover"],
+      display: ['group-hover'],
       shadow: {
-        '2xl': '0px 4px 40px rgba(0, 0, 0, 0.08);'
-      }
+        '2xl': '0px 4px 40px rgba(0, 0, 0, 0.08);',
+      },
     },
   },
   plugins: [
