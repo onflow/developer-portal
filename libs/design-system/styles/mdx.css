@@ -73,6 +73,31 @@
     border-radius: 0.3em;
     padding: 0.1em 0.3em;
   }
+
+  & section.footnotes {
+    @apply pt-4 mt-4 text-sm border-t border-primary-gray-100 text-primary-gray-300 dark:border-primary-gray-300 dark:text-primary-gray-100;
+
+    & h2 {
+      @apply hidden;
+    }
+
+    & p {
+      @apply flex items-center mb-1;
+    }
+
+    & .data-footnote-backref {
+      @apply hidden;
+    }
+
+    & a {
+      @apply relative -top-[3px] inline-block h-6 w-6 bg-[url('../images/content/reference.svg')] bg-center bg-no-repeat opacity-100 hover:opacity-75 dark:invert;
+      background-size: 16px 16px;
+    }
+  }
+
+  & sup a {
+    @apply ml-[1px] text-primary-blue dark:text-blue-dark;
+  }
 }
 
 body.dark .mdx-content {
