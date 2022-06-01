@@ -1,8 +1,8 @@
-import { ReactComponent as FlowDocsLogo } from '../../../../images/logos/flow-docs-logo-light.svg';
-import { ReactComponent as GithubIcon } from '../../../../images/social/github-light.svg';
+import FlowDocsLogo from '../../../../images/logos/flow-docs-logo-light.svg';
+import { ReactComponent as OnFlowIcon } from '../../../../images/logos/flow-icon-bw-light.svg';
 import { ReactComponent as DiscordIcon } from '../../../../images/social/discord-light.svg';
 import { ReactComponent as ForumIcon } from '../../../../images/social/forum-light.svg';
-import { ReactComponent as OnFlowIcon } from '../../../../images/logos/flow-icon-bw-light.svg';
+import { ReactComponent as GithubIcon } from '../../../../images/social/github-light.svg';
 
 // reduce repetition of the section layout in Footer component
 const footerSections = [
@@ -117,9 +117,7 @@ export const Footer = ({ sections = footerSections }) => {
     <footer className="px-6 text-white bg-black">
       <div className="container mx-auto">
         <div className="flex items-center justify-between block px-2 pt-8 pb-6 md:px-4 md:pt-16">
-          <div className="object-contain h-10 w-min">
-            <FlowDocsLogo />
-          </div>
+          <img src={FlowDocsLogo} alt="Flow Docs" width="150" />
           <div className="flex items-center justify-start gap-6 pt-8 md:pt-0 lg:justify-center">
             <a href="#">
               <GithubIcon fill="red" height={32} width={32} />
@@ -165,4 +163,4 @@ export const Footer = ({ sections = footerSections }) => {
       </div>
     </footer>
   );
-}
+};
