@@ -10,7 +10,8 @@ import { getMdxPage, useMdxComponent } from "~/cms/utils/mdx";
 // TODO: MAP REPO TO INFO ARCH: EG "fcl-js repo" should redirect to '/sdks/fcl' ... etc
 // might add this repo mapping to json resource endpoint
 const repos = [
-  'cadence'
+  'cadence',
+  'fcl-js'
 ]
 
 const validRepo = (repo: string | undefined) => {
