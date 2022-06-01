@@ -1,9 +1,11 @@
 import React from 'react';
 
 import { ReactComponent as StarIcon } from '../../../../images/action/star.svg';
+import { ReactComponent as CalendarIcon } from '../../../../images/action/date-calendar.svg';
+import { ReactComponent as CommitIcon } from '../../../../images/content/commit.svg';
 import Tag from '../Tag';
 
-export interface ToolCardProps {
+export interface SDKCardProps {
   title: string;
   authorIcon: string;
   authorName: string;
@@ -11,10 +13,11 @@ export interface ToolCardProps {
   link: string;
   stars: number;
   toolIcon: string;
-  description: string;
+  lastCommit: string;
+  lastRelease: string;
 }
 
-export function ToolCard({
+export function SDKCard({
   title,
   authorIcon,
   authorName,
@@ -22,8 +25,9 @@ export function ToolCard({
   link,
   stars,
   toolIcon,
-  description,
-}: ToolCardProps) {
+  lastCommit,
+  lastRelease,
+}: SDKCardProps) {
   return (
     <a
       className="flex gap-4 rounded-lg bg-white py-6 px-8 dark:bg-primary-dark-gray"
@@ -63,10 +67,20 @@ export function ToolCard({
             </div>
           </div>
         </div>
-          <div className="pt-2 text-gray-700 line-clamp-2 dark:text-gray-300">
-            {description}
+        <div className="align-center -mb-1 grid w-fit grid-cols-1 gap-x-4 justify-self-center pt-6 text-gray-500 md:grid-cols-2	">
+          <div className="flex items-center">
+            <CalendarIcon
+              className="mr-3 stroke-gray-500"
+              width={22}
+              height={18}
+            />
+            <div>{lastRelease} days ago</div>
           </div>
-
+          <div className="flex items-center">
+            <CommitIcon className="mr-3 fill-gray-500" width={22} height={22} />
+            <div>{lastCommit}</div>
+          </div>
+        </div>
       </div>
     </a>
   );
