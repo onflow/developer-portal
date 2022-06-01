@@ -1,7 +1,10 @@
+import clsx from 'clsx';
 import { ButtonLink } from '../Button';
+import { MobileCarousel } from '../MobileCarousel';
 import Tag from '../Tag';
 
 export type EventCardProps = {
+  className?: string;
   ctaText: string;
   description: string;
   eventDate: string;
@@ -14,6 +17,7 @@ export type EventCardProps = {
 };
 
 export function EventCard({
+  className,
   ctaText,
   description,
   eventDate,
@@ -25,8 +29,13 @@ export function EventCard({
   title,
 }: EventCardProps) {
   return (
-    <div className="flex min-h-fit flex-col-reverse overflow-hidden rounded-2xl bg-white dark:bg-primary-dark-gray md:min-h-[30rem] md:flex-row">
-      <div className="min-w-[50%] flex-1 basis-1/2 self-center py-10 pl-6 pr-6 md:pr-32 md:pl-20">
+    <div
+      className={clsx(
+        'flex min-h-fit flex-col-reverse overflow-hidden rounded-2xl bg-white dark:bg-primary-dark-gray md:min-h-[30rem] md:flex-row',
+        className
+      )}
+    >
+      <div className="min-w-[50%] flex-none basis-1/2 self-center py-10 pl-6 pr-6 md:pr-32 md:pl-20">
         <div className="divide-x divide-solid divide-primary-gray-200 text-primary-gray-300">
           <span className="pr-2">{eventDate}</span>
           <span className="pl-2">{location}</span>
@@ -50,7 +59,7 @@ export function EventCard({
           {ctaText}
         </ButtonLink>
       </div>
-      <div className="flex-1 basis-1/2 self-stretch">
+      <div className="flex-none basis-1/2 self-stretch">
         <img
           src={imageSrc}
           alt={imageAlt}
@@ -58,5 +67,19 @@ export function EventCard({
         />
       </div>
     </div>
+  );
+}
+
+export type EventCardListProps = {
+  events: EventCardProps[];
+};
+
+export function EventCardList({ events }: EventCardListProps) {
+  return (
+    <MobileCarousel>
+      {events.map((event) => (
+        <EventCard key={`${event.title}-${event.href}`} {...event} />
+      ))}
+    </MobileCarousel>
   );
 }
