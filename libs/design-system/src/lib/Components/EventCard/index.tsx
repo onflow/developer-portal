@@ -2,36 +2,38 @@ import { ButtonLink } from '../Button';
 import Tag from '../Tag';
 
 export type EventCardProps = {
-  buttonText: string;
-  buttonUrl: string;
+  ctaText: string;
   description: string;
-  eventType: string;
+  eventDate: string;
+  href: string;
   imageAlt?: string;
   imageSrc: string;
+  location: string;
   tags?: string[];
   title: string;
-  eventDate: string;
 };
 
 export function EventCard({
-  buttonText,
-  buttonUrl,
+  ctaText,
   description,
+  eventDate,
+  href,
   imageAlt = '',
   imageSrc,
-  eventType = 'Online',
+  location = 'Online',
   tags,
   title,
-  eventDate,
 }: EventCardProps) {
   return (
     <div className="flex min-h-fit flex-col-reverse overflow-hidden rounded-2xl bg-white dark:bg-primary-dark-gray md:min-h-[30rem] md:flex-row">
       <div className="min-w-[50%] flex-1 basis-1/2 self-center py-10 pl-6 pr-6 md:pr-32 md:pl-20">
         <div className="divide-x divide-solid divide-primary-gray-200 text-primary-gray-300">
           <span className="pr-2">{eventDate}</span>
-          <span className="pl-2">{eventType}</span>
+          <span className="pl-2">{location}</span>
         </div>
-        <h3 className="text-h3 mb-2 md:mb-3">{title}</h3>
+        <h3 className="text-h3 mb-2 md:mb-3">
+          <a href={href}>{title}</a>
+        </h3>
         {tags && tags.length > 0 && (
           <div>
             {tags.map((tag) => (
@@ -41,11 +43,11 @@ export function EventCard({
         )}
         <p className="mt-3 pb-6 dark:text-primary-gray-100">{description}</p>
         <ButtonLink
-          href={buttonUrl}
+          href={href}
           variant="primary-inverse"
           className="whitespace-nowrap px-16 py-4 text-center"
         >
-          {buttonText}
+          {ctaText}
         </ButtonLink>
       </div>
       <div className="flex-1 basis-1/2 self-stretch">

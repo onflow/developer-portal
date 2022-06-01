@@ -16,14 +16,14 @@ const Template: Story<EventCardProps> = (args) => {
 
 export const Default = Template.bind({});
 Default.args = {
-  buttonText: 'CTA text',
-  buttonUrl: '#changeme',
+  ctaText: 'CTA text',
   description:
     'Everything you need to start building on Flow verything you need to start building on Flow everything you need to start building on Flow.',
-  eventType: 'Online',
+  eventDate: 'Mar 23',
+  href: '#changeme',
   imageSrc:
     'https://assets.website-files.com/5f6294c0c7a8cdf432b1c827/61689102d3325e237fd44b76_unnamed%20(8).png',
+  location: 'Online',
   tags: ['Flow official'],
   title: 'Event Title',
-  eventDate: 'Mar 23',
 };
