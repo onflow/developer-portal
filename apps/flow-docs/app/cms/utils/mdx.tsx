@@ -2,8 +2,8 @@ import {
   InputProps,
   HeadingProps,
   Heading,
-  // Link,
-  // StaticCheckbox,
+  Link,
+  StaticCheckbox,
 } from "@flow-docs/ui";
 import { Link as RemixLink } from "@remix-run/react";
 import { getMDXComponent } from "mdx-bundler/client";
