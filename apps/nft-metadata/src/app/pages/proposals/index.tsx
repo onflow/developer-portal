@@ -3,16 +3,20 @@ import {
   Route,
   Switch,
 } from "react-router-dom";
+import Catalog from "src/app/components/catalog";
+import { CatalogSelect } from "src/app/components/catalog/catalog-select";
 
-export function Proposals() {
+export default function Proposals() {
   return (
     <>
-      <h2>NFT Proposals</h2>
-      <p>View + Accept + Reject proposed additions and updates to the NFT Catalog</p>
       <Switch>
+        <Route path="/proposals/:proposalID">
+          <Catalog type="Proposals"></Catalog>
+        </Route>
+        <Route path="/proposals">
+          <Catalog type="Proposals"></Catalog>
+        </Route>
       </Switch>
     </>
   );
 }
-
-export default Proposals;

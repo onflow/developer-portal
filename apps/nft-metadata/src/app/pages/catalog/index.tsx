@@ -1,17 +1,22 @@
 // eslint-disable-next-line @typescript-eslint/no-unused-vars
 import {
+  Route,
   Switch,
 } from "react-router-dom";
+import Catalog from "src/app/components/catalog";
+import { CatalogSelect } from "src/app/components/catalog/catalog-select";
 
-export function Catalog() {
+export default function CatalogPage() {
   return (
     <>
-      <h2>NFT Catalog</h2>
-      <p>Browse all supported NFTs on the catalog.</p>
       <Switch>
+        <Route path="/catalog/:catalogID">
+          <Catalog type="Catalog"></Catalog>
+        </Route>
+        <Route path="/catalog">
+          <Catalog type="Catalog"></Catalog>
+        </Route>
       </Switch>
     </>
   );
 }
-
-export default Catalog;

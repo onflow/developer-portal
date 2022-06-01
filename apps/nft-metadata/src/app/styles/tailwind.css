@@ -786,6 +786,11 @@ select {
   margin-bottom: 1.5rem;
 }
 
+.my-8 {
+  margin-top: 2rem;
+  margin-bottom: 2rem;
+}
+
 .mr-4 {
   margin-right: 1rem;
 }
@@ -934,24 +939,12 @@ select {
   margin-left: 4rem;
 }
 
-.mb-0 {
-  margin-bottom: 0px;
-}
-
-.mt-24 {
-  margin-top: 6rem;
-}
-
-.mt-32 {
-  margin-top: 8rem;
-}
-
-.mt-48 {
-  margin-top: 12rem;
-}
-
 .mt-52 {
   margin-top: 13rem;
+}
+
+.mb-0 {
+  margin-bottom: 0px;
 }
 
 .block {
@@ -1124,6 +1117,14 @@ select {
   width: 1.25rem;
 }
 
+.w-80 {
+  width: 20rem;
+}
+
+.w-3\/4 {
+  width: 75%;
+}
+
 .min-w-min {
   min-width: -webkit-min-content;
   min-width: -moz-min-content;
@@ -1172,6 +1173,14 @@ select {
 
 .shrink-0 {
   flex-shrink: 0;
+}
+
+.flex-grow {
+  flex-grow: 1;
+}
+
+.grow {
+  flex-grow: 1;
 }
 
 .basis-1\/2 {
@@ -1412,6 +1421,14 @@ select {
   border-left-width: 4px;
 }
 
+.border-t-2 {
+  border-top-width: 2px;
+}
+
+.border-l-2 {
+  border-left-width: 2px;
+}
+
 .border-solid {
   border-style: solid;
 }
@@ -1460,14 +1477,14 @@ select {
   border-color: rgb(239 68 68 / var(--tw-border-opacity));
 }
 
-.border-gray-300 {
-  --tw-border-opacity: 1;
-  border-color: rgb(209 213 219 / var(--tw-border-opacity));
-}
-
 .border-gray-400 {
   --tw-border-opacity: 1;
   border-color: rgb(156 163 175 / var(--tw-border-opacity));
+}
+
+.border-gray-300 {
+  --tw-border-opacity: 1;
+  border-color: rgb(209 213 219 / var(--tw-border-opacity));
 }
 
 .border-blue-500 {
@@ -1479,6 +1496,12 @@ select {
   --tw-border-opacity: 1;
   border-top-color: rgb(107 114 128 / var(--tw-border-opacity));
   border-bottom-color: rgb(107 114 128 / var(--tw-border-opacity));
+}
+
+.border-x-blue-500 {
+  --tw-border-opacity: 1;
+  border-left-color: rgb(59 130 246 / var(--tw-border-opacity));
+  border-right-color: rgb(59 130 246 / var(--tw-border-opacity));
 }
 
 .border-b-gray-400 {
@@ -1732,14 +1755,6 @@ select {
   padding: 5rem;
 }
 
-.p-12 {
-  padding: 3rem;
-}
-
-.p-24 {
-  padding: 6rem;
-}
-
 .px-8 {
   padding-left: 2rem;
   padding-right: 2rem;
@@ -1845,6 +1860,11 @@ select {
   padding-right: 3rem;
 }
 
+.py-0 {
+  padding-top: 0px;
+  padding-bottom: 0px;
+}
+
 .px-0 {
   padding-left: 0px;
   padding-right: 0px;
@@ -1858,11 +1878,6 @@ select {
 .py-0\.5 {
   padding-top: 0.125rem;
   padding-bottom: 0.125rem;
-}
-
-.py-0 {
-  padding-top: 0px;
-  padding-bottom: 0px;
 }
 
 .pt-8 {
@@ -2301,6 +2316,11 @@ ul.contains-task-list {
   background-color: rgb(249 250 251 / var(--tw-bg-opacity));
 }
 
+.hover\:bg-gray-100:hover {
+  --tw-bg-opacity: 1;
+  background-color: rgb(243 244 246 / var(--tw-bg-opacity));
+}
+
 .hover\:bg-blue-800:hover {
   --tw-bg-opacity: 1;
   background-color: rgb(30 64 175 / var(--tw-bg-opacity));
@@ -2311,9 +2331,14 @@ ul.contains-task-list {
   background-color: rgb(191 219 254 / var(--tw-bg-opacity));
 }
 
-.hover\:bg-gray-100:hover {
+.hover\:bg-gray-600:hover {
   --tw-bg-opacity: 1;
-  background-color: rgb(243 244 246 / var(--tw-bg-opacity));
+  background-color: rgb(75 85 99 / var(--tw-bg-opacity));
+}
+
+.hover\:bg-gray-300:hover {
+  --tw-bg-opacity: 1;
+  background-color: rgb(209 213 219 / var(--tw-bg-opacity));
 }
 
 .hover\:text-primary-gray-400:hover {
@@ -3099,12 +3124,24 @@ ul.contains-task-list {
     border-bottom-left-radius: 0px;
   }
 
+  .md\:border-2 {
+    border-width: 2px;
+  }
+
   .md\:border-r-2 {
     border-right-width: 2px;
   }
 
   .md\:border-b-0 {
     border-bottom-width: 0px;
+  }
+
+  .md\:border-t-2 {
+    border-top-width: 2px;
+  }
+
+  .md\:border-b-2 {
+    border-bottom-width: 2px;
   }
 
   .md\:border-none {
