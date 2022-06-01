@@ -6,39 +6,31 @@ import { getMdxPage, useMdxComponent } from "~/cms/utils/mdx";
 
 // import { TEMP_SIDEBAR_CONFIG } from "@flow-docs/ui";
 
-// const pathedRoutes = (path: string) => {
-//   return true 
-// }
 
-function getContentPathForSlug(slug: string | undefined): [string, string] {
-  if (!slug) return ["", ""];
-  const repo = slug.split("/")[0];
-  const fileOrDirPath = slug.split("/").slice(1).join("/");
-  return [repo, fileOrDirPath];
+// TODO: MAP REPO TO INFO ARCH: EG "fcl-js repo" should redirect to '/sdks/fcl' ... etc
+// might add this repo mapping to json resource endpoint
+const repos = [
+  'cadence'
+]
+
+const validRepo = (repo: string | undefined) => {
+  return repos.includes(repo!)
 }
 
-// Provide meta tags for this page.
-// - https://remix.run/api/conventions#meta
 export const meta: MetaFunction = () => {
   return { title: "" };
 };
 
-// Provide stylesheet for this page.
-// - https://remix.run/api/conventions#links
-// export const links: LinksFunction = () => {
-//   return [{ rel: "stylesheet", href: stylesUrl }];
-// };
-
-// Use this function to provide data for the route.
-// - https://remix.run/api/conventions#loader
 export const loader: LoaderFunction = async ({ params, request }) => {
-  const [repo, fileOrDirPath] = getContentPathForSlug(params["*"]);
+  
+  // TODO: make this redirect to appropriate section for repo
+  // If no approapriate section, then fall through and try to get content 
+  // for the repo ... otherwise return Response and handle down the chain?
+  if (!params["repo"] || !validRepo(params["repo"])) {
+    return new Response()
+  }
 
-  // because this is our catch-all thing, we'll do an early return for anything
-  // that has a other route setup. The response will be handled there.
-  // if (pathedRoutes(new URL(request.url).pathname)) {
-  //   return new Response()
-  // }
+  const [repo, fileOrDirPath] = [params["repo"], params["*"]!];
 
   const page = await getMdxPage(
     {
@@ -64,7 +56,6 @@ export default function () {
 
   return (
     <div className="flex flex-col md:flex-row">
-      {/* <InternalSidebar config={TEMP_SIDEBAR_CONFIG} /> */}
       <Component />
     </div>
   );
