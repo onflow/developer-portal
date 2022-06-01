@@ -25,7 +25,7 @@ export function FAQ({ faqList, variation }: FAQProps) {
   };
 
   return (
-    <div>
+    <div className="dark:bg-black">
       {faqList.map((faq, i) => {
         const itemExpanded = expanded[i];
         const isAboveExpandedItem = expanded.at(i + 1);
@@ -37,10 +37,10 @@ export function FAQ({ faqList, variation }: FAQProps) {
             role="button"
             className={`md:px6 cursor-pointer py-7 px-4 md:px-7 ${
               itemExpanded
-                ? 'my-1.5 rounded-lg bg-white'
+                ? 'my-1.5 rounded-lg bg-white dark:bg-primary-dark-gray'
                 : isLast || isAboveExpandedItem
                 ? ''
-                : 'border-b border-gray-200'
+                : 'border-b border-gray-200 dark:border-primary-gray-400'
             }`}
           >
             <div
@@ -50,17 +50,21 @@ export function FAQ({ faqList, variation }: FAQProps) {
             >
               <div
                 className={`${
-                  itemExpanded ? 'text-2xl font-semibold' : 'text-base'
-                } md:font-semibold ${
-                  variation === 'large' ? 'md:text-2xl' : ''
+                  itemExpanded
+                    ? 'text-2xl font-semibold'
+                    : 'text-base dark:text-primary-gray-100'
+                } ${
+                  variation === 'large' ? 'md:text-2xl md:font-semibold' : ''
                 }`}
               >
                 {faq.question}
               </div>
-              {itemExpanded ? <ChevronDown /> : <ChevronRight />}
+              <div className="text-gray-800 dark:text-primary-gray-100">
+                {itemExpanded ? <ChevronDown /> : <ChevronRight />}
+              </div>
             </div>
             {itemExpanded && (
-              <div className="whitespace-pre-wrap text-gray-700">
+              <div className="whitespace-pre-wrap text-gray-700 dark:text-primary-gray-200">
                 {faq.answer}
               </div>
             )}
