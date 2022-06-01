@@ -10,7 +10,7 @@ export type EventCardProps = {
   imageSrc: string;
   tags?: string[];
   title: string;
-  when: string;
+  eventDate: string;
 };
 
 export function EventCard({
@@ -22,13 +22,13 @@ export function EventCard({
   eventType = 'Online',
   tags,
   title,
-  when,
+  eventDate,
 }: EventCardProps) {
   return (
     <div className="flex min-h-fit flex-col-reverse overflow-hidden rounded-2xl bg-white dark:bg-primary-dark-gray md:min-h-[30rem] md:flex-row">
       <div className="min-w-[50%] flex-1 basis-1/2 self-center py-10 pl-6 pr-6 md:pr-32 md:pl-20">
         <div className="divide-x divide-solid divide-primary-gray-200 text-primary-gray-300">
-          <span className="pr-2">{when}</span>
+          <span className="pr-2">{eventDate}</span>
           <span className="pl-2">{eventType}</span>
         </div>
         <h3 className="text-h3 mb-2 md:mb-3">{title}</h3>

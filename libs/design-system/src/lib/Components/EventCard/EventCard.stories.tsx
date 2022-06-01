@@ -25,5 +25,5 @@ Default.args = {
     'https://assets.website-files.com/5f6294c0c7a8cdf432b1c827/61689102d3325e237fd44b76_unnamed%20(8).png',
   tags: ['Flow official'],
   title: 'Event Title',
-  when: 'Mar 23',
+  eventDate: 'Mar 23',
 };
