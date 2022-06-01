@@ -42,7 +42,7 @@ module.exports = {
     },
     extend: {
       fontFamily: {
-        sans: ['Acumin Pro', ...defaultTheme.fontFamily.sans],
+        sans: ['Acumin Variable Concept', ...defaultTheme.fontFamily.sans],
         display: 'Termina',
         mono: 'IBM Plex Mono',
       },
