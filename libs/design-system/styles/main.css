@@ -54,6 +54,8 @@ ul.contains-task-list {
   @apply relative pl-8 mt-3;
 }
 
-.link-card-3-column-link:hover + .link-card-3-column-link > span {
-  border-top-color: transparent;
+/* Add .divided-item-hover to .divide-y children to hide borders on hover */
+.divided-item-hover:hover,
+.divided-item-hover:hover + .divided-item-hover {
+  @apply !border-transparent;
 }
