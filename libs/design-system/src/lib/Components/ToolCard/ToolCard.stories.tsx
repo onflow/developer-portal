@@ -1,5 +1,5 @@
 import { Meta, Story } from '@storybook/react';
-import { ToolCard, ToolCardProps } from './ToolCard';
+import { ToolCard, ToolCardProps } from '.';
 
 export default {
   component: ToolCard,
@@ -29,8 +29,8 @@ SDK.args = {
   lastRelease: '207',
 };
 
-export const Tool = Template.bind({});
-Tool.args = {
+export const Primary = Template.bind({});
+Primary.args = {
   title: 'Flow Port',
   authorIcon: 'https://avatars.githubusercontent.com/u/62387156?s=64&v=4',
   authorName: 'mini flow',
