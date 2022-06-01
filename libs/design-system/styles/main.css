@@ -7,3 +7,9 @@
 @import './colors';
 @import './mdx';
 @import './reach-ui.css';
+
+/* Add .divided-item-hover to .divide-y children to hide borders on hover */
+.divided-item-hover:hover,
+.divided-item-hover:hover + .divided-item-hover {
+  @apply !border-transparent;
+}
