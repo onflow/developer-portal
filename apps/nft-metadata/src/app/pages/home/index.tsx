@@ -6,10 +6,8 @@ import { Footer } from '@nft-metadata/ui';
 function Home() {
   return (
     <>
-      <div className='h-screen'>
-        <HeaderLayout />
-        <CardLayout />
-      </div>
+      <HeaderLayout />
+      <CardLayout />
       <Footer />
     </>
   );

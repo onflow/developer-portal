@@ -10,7 +10,7 @@ export default function CatalogPage() {
   return (
     <>
       <Switch>
-        <Route path="/catalog/:catalogID">
+        <Route path="/catalog/:identifier">
           <Catalog type="Catalog"></Catalog>
         </Route>
         <Route path="/catalog">

@@ -10,7 +10,7 @@ export default function Proposals() {
   return (
     <>
       <Switch>
-        <Route path="/proposals/:proposalID">
+        <Route path="/proposals/:identifier">
           <Catalog type="Proposals"></Catalog>
         </Route>
         <Route path="/proposals">
