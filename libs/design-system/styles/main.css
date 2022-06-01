@@ -53,3 +53,9 @@ ul.contains-task-list {
 .task-list-item {
   @apply relative pl-8 mt-3;
 }
+
+/* Add .divided-item-hover to .divide-y children to hide borders on hover */
+.divided-item-hover:hover,
+.divided-item-hover:hover + .divided-item-hover {
+  @apply !border-transparent;
+}
