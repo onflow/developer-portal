@@ -12,9 +12,9 @@ export default function Layout({
   const { identifier } = useParams()
 
   return (
-    <div className="mx-auto px-0 md:px-16 lg:px-64 pt-4">
+    <div className="mx-auto px-0 md:px-4 lg:px-32 pt-4">
       <div className="text-2xl sm:border-0 md:border-b-2 py-4">
-        NFT {type}
+        {type === 'Proposals' ? 'NFT Catalog Addition/Update Proposals' : 'NFT Catalog'}
       </div>
       <div
         className="flex w-full h-full items-center text-center bg-white rounded-2xl dark:bg-primary-dark-gray sm:flex-col md:flex-row"
@@ -25,7 +25,7 @@ export default function Layout({
             <CatalogSelect type={type} selected={identifier} />
           </div>
         </div>
-        <div className="px-10 w-3/4">
+        <div className="px-10 w-3/4 self-start py-10 justify-self-start text-left">
           {
             type === 'Proposals' && <ProposalContent proposalID={identifier} />
           }
