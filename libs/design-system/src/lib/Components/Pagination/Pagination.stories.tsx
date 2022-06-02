@@ -1,4 +1,4 @@
-import { Story, Meta } from '@storybook/react';
+import { Meta, Story } from '@storybook/react';
 import Pagination, { PaginationProps } from '.';
 
 export default {
@@ -13,10 +13,5 @@ Default.args = {
   itemCount: 100,
   pageSize: 4,
   page: 1,
-  onPageChange: (value) => {
-    console.log(value);
-  },
-  setPage: () => {
-    console.log('adjusted page number');
-  },
+  setPage: () => null,
 };

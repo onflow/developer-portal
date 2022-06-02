@@ -58,7 +58,7 @@ export function InternalPage() {
             <a
               href="#footnotes"
               title="Footnotes"
-              className="flex items-center justify-center w-8 h-8 mr-3 scale-75 bg-gray-100 rounded-md hover:bg-gray-200 group-hover:visible dark:bg-primary-dark-gray dark:hover:bg-gray-700 md:invisible md:scale-100"
+              className="flex items-center justify-center w-8 h-8 mr-3 scale-75 bg-gray-100 rounded-md hover:bg-gray-200 group-hover:visible dark:bg-primary-gray-dark dark:hover:bg-gray-700 md:invisible md:scale-100"
             >
               <svg
                 xmlns="http://www.w3.org/2000/svg"

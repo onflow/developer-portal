@@ -1,39 +1,51 @@
 import clsx from 'clsx';
-import React, { useState } from 'react';
+import { useState } from 'react';
 
 export type TabMenuProps = {
   tabs: string[];
-  onTabChange: Function;
+  onTabChange: (index: number) => void;
+  centered?: boolean;
 };
 
-const TabMenu = ({ tabs, onTabChange }: TabMenuProps) => {
+// TODO: Use links for tabs
+const TabMenu = ({ tabs, onTabChange, centered }: TabMenuProps) => {
   const [activeIndex, setActiveIndex] = useState(0);
 
   return (
-    <div className="flex justify-start overflow-x-scroll border-b border-primary-gray-200 dark:border-primary-gray-100 md:justify-center">
+    <div
+      className={clsx(
+        'flex justify-start gap-4 overflow-x-auto border-b border-primary-gray-100 text-sm dark:border-primary-gray-300 md:text-base',
+        {
+          'md:justify-center': centered,
+        }
+      )}
+    >
       {tabs.map((tab, index) => {
         const isCurrentIndex = activeIndex === index;
-        const classes = clsx(
-          'hover:cursor-pointer text-primary-gray-300 dark:text-primary-gray-200',
-          {
-            'font-bold text-black dark:text-white': isCurrentIndex,
-          }
-        );
+
         const indicatorClasses = clsx(
-          'bg-black rounded-tr-lg rounded-tl-lg h-2 mt-4 dark:bg-white',
+          'absolute bottom-0 w-full bg-black rounded-tr-lg rounded-tl-lg h-[6px] dark:bg-white',
           { block: isCurrentIndex, hidden: !isCurrentIndex }
         );
 
         return (
           <div
             key={tab}
-            className="min-w-[6rem] text-center md:min-w-[10rem]"
+            className="relative py-4 text-center text-black cursor-pointer hover:text-primary-gray-400 dark:text-white hover:dark:text-primary-gray-100 md:py-6"
+            role="button"
             onClick={() => {
               setActiveIndex(index);
               onTabChange(index);
             }}
           >
-            <span className={classes}>{tab}</span>
+            <span
+              className={clsx(
+                'px-4 md:px-6',
+                isCurrentIndex ? '-mx-[1px] font-bold' : ''
+              )}
+            >
+              {tab}
+            </span>
             <div className={indicatorClasses} />
           </div>
         );

@@ -1,6 +1,6 @@
 export { default as AnnouncementCard } from './lib/Components/AnnouncementCard';
 export { Attribution } from './lib/Components/Attribution/Attribution';
-export { default as FlipCell } from './lib/Components/FlipCell';
+export { default as Flips } from './lib/Components/Flips';
 export { Footer } from './lib/Components/Footer';
 export { default as ForumCell } from './lib/Components/ForumCell';
 export { Heading, HeadingProps } from './lib/Components/Heading';

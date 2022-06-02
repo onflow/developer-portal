@@ -1,5 +1,8 @@
 import clsx from 'clsx';
+import { ReactComponent as ChevronRightIcon } from '../../../../images/arrows/chevron-right-sm.svg';
 
+const BASE_CLASSES =
+  'inline-flex text-sm gap-3 items-center justify-center py-4 font-semibold min-w-[172px] text-center px-4 rounded-lg border hover:shadow-2xl';
 const VARIANTS = {
   primary: [
     'bg-black text-white border-transparent',
@@ -13,12 +16,12 @@ const VARIANTS = {
     'dark:bg-black dark:text-white dark:border-transparent',
     'dark:hover:border-black dark:hover:bg-white dark:hover:text-black',
     'dark:active:border-gray-500 dark:active:bg-white dark:active:text-gray-500',
-    'bg-white text-black',
+    'bg-white text-black border-black',
     'hover:border-white hover:bg-black hover:text-white',
     'active:border-gray-500 active:bg-black active:text-gray-500',
   ],
   secondary: [
-    'bg-white text-primary-blue border-primary-blue',
+    'text-primary-blue border-primary-blue',
     'hover:bg-primary-blue hover:text-white',
     'active:bg-blue-hover active:text-white',
     'dark:bg-black dark:text-blue-dark dark:border-blue-dark',
@@ -27,27 +30,48 @@ const VARIANTS = {
   ],
 };
 
+type ButtonContentProps = {
+  children: React.ReactNode;
+  prev?: boolean;
+  next?: boolean;
+};
+
 type ButtonBaseProps = {
   variant?: keyof typeof VARIANTS;
-};
+} & ButtonContentProps;
 
 export type ButtonProps = React.ComponentPropsWithoutRef<'button'> &
   ButtonBaseProps;
 
+function ButtonContent({ next, prev, children }: ButtonContentProps) {
+  return (
+    <>
+      {prev && (
+        <div className="relative -top-[1px] rotate-180">
+          <ChevronRightIcon />
+        </div>
+      )}
+      {children}
+      {next && <ChevronRightIcon />}
+    </>
+  );
+}
+
 export function Button({
   className,
   variant = 'primary',
+  prev,
+  next,
+  children,
   ...props
 }: ButtonProps) {
   return (
     <button
-      className={clsx(
-        'rounded-lg border-2 hover:shadow-2xl',
-        VARIANTS[variant],
-        className
-      )}
+      className={clsx(BASE_CLASSES, VARIANTS[variant], className)}
       {...props}
-    />
+    >
+      <ButtonContent prev={prev} next={next} children={children} />
+    </button>
   );
 }
 
@@ -57,21 +81,16 @@ export type ButtonLinkProps = React.ComponentPropsWithoutRef<'a'> &
   };
 
 export function ButtonLink({
-  children,
   className,
   variant = 'primary',
+  next,
+  prev,
+  children,
   ...props
 }: ButtonLinkProps) {
   return (
-    <a
-      className={clsx(
-        'rounded-lg border-2 hover:shadow-2xl',
-        VARIANTS[variant],
-        className
-      )}
-      {...props}
-    >
-      {children}
+    <a className={clsx(BASE_CLASSES, VARIANTS[variant], className)} {...props}>
+      <ButtonContent prev={prev} next={next} children={children} />
     </a>
   );
 }
