@@ -15,8 +15,7 @@ import { useEffect, useState } from 'react';
  * function with the following differences:
  * - The "start" date is always the current date.
  * - Days are the largest unit, omitting years, months, and weeks.
- * - If we are past the `end` date we just return an empty duration object
- *   instead of throwing a `RangeError`.
+ * - If we are past the `end` date we return `undefined` instead of throwing a `RangeError`.
  *
  * @see https://github.com/date-fns/date-fns/blob/master/src/intervalToDuration/index.ts
  */
@@ -25,7 +24,7 @@ const calculateDuration = (end: Date) => {
   const duration: Omit<Duration, 'years' | 'months' | 'weeks'> = {};
 
   if (start > end) {
-    return {};
+    return undefined;
   }
 
   duration.days = differenceInDays(end, start);
@@ -78,8 +77,17 @@ export function CountdownTimer({ end, ...props }: CountdownTimerProps) {
   const [duration, setDuration] = useState(calculateDuration(end));
 
   useEffect(() => {
+    // Ensures an immediate update when/if the `end` prop is changed.
+    setDuration(calculateDuration(end));
+
     const intervalId = setInterval(() => {
-      setDuration(calculateDuration(end));
+      const nextDuration = calculateDuration(end);
+      setDuration(nextDuration);
+
+      if (nextDuration === undefined) {
+        // No need to keep updating at this point - we've passed the end date.
+        clearInterval(intervalId);
+      }
     }, 1000);
 
     return () => clearInterval(intervalId);
@@ -87,10 +95,10 @@ export function CountdownTimer({ end, ...props }: CountdownTimerProps) {
 
   return (
     <span {...props}>
-      <CountdownSegment unit="days" value={duration.days} />{' '}
-      <CountdownSegment unit="hours" value={duration.hours} />{' '}
-      <CountdownSegment unit="mins" value={duration.minutes} />{' '}
-      <CountdownSegment unit="secs" value={duration.seconds} />
+      <CountdownSegment unit="days" value={duration?.days} />{' '}
+      <CountdownSegment unit="hours" value={duration?.hours} />{' '}
+      <CountdownSegment unit="mins" value={duration?.minutes} />{' '}
+      <CountdownSegment unit="secs" value={duration?.seconds} />
     </span>
   );
 }
