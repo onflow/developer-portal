@@ -14,20 +14,22 @@ export function App() {
   return (
     <>
       <div className="min-h-screen">
-        <Switch>
-          <Route path="/proposals">
-            <Proposals />
-          </Route>
-          <Route path="/catalog">
-            <Catalog />
-          </Route>
-          <Route path="/v">
-            <Verifier />
-          </Route>
-          <Route path="/">
-            <Home />
-          </Route>
-        </Switch>
+        <div className="pb-16">
+          <Switch>
+            <Route path="/proposals">
+              <Proposals />
+            </Route>
+            <Route path="/catalog">
+              <Catalog />
+            </Route>
+            <Route path="/v">
+              <Verifier />
+            </Route>
+            <Route path="/">
+              <Home />
+            </Route>
+          </Switch>
+        </div>
       </div>
       <Footer />
     </>

@@ -5,8 +5,9 @@ import { Accordian } from "../shared/accordian";
 import { Alert } from "../shared/alert";
 import { Spinner } from "../shared/spinner";
 import { Button } from "../shared/button";
-import { RoyaltiesViewWrapper } from "../shared/views/royalties-view-wrapper";
 import { GenericView } from "../shared/views/generic-view";
+import { CollectionDisplayView } from "../shared/views/collection-display-view";
+import { DisplayView } from "../shared/views/display-view";
 
 export function SampleNFTView({
   sampleAddress,
@@ -59,7 +60,7 @@ export function SampleNFTView({
     } else if (item.indexOf('MetadataViews.Display') >= 0) {
       title = 'Display View'
       content = viewData["Display"] ?
-        <GenericView view={viewData["Display"]} />
+        <DisplayView view={viewData["Display"]} />
         :
         <div>No display view was found.</div>
     } else if (item.indexOf('MetadataViews.NFTCollectionData') >= 0) {
@@ -71,7 +72,7 @@ export function SampleNFTView({
     } else if (item.indexOf('MetadataViews.NFTCollectionDisplay') >= 0) {
       title = 'NFT Collection Display View';
       content = viewData["NFTCollectionDisplay"] ?
-        <GenericView view={viewData["NFTCollectionDisplay"]} />
+        <CollectionDisplayView view={viewData["NFTCollectionDisplay"]} />
         :
         <div>No NFT Display view was found.</div>
     } else if (item.indexOf('MetadataViews.ExternalURL') >= 0) {
