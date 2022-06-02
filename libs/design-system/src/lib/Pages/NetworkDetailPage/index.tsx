@@ -1,18 +1,17 @@
-import React, { useState } from 'react';
 import { endOfWeek } from 'date-fns';
+import React, { useState } from 'react';
+import { ReactComponent as ChevronLeftIcon } from '../../../../images/arrows/chevron-left.svg';
 import {
-  SporksCard,
-  Footer,
-  FeaturedArticleSlider,
-  SocialLinksSignup,
   Callout,
-  TabMenu,
+  FeaturedArticleSlider,
+  Footer,
   NetworkDetailsCard,
   Pagination,
+  SocialLinksSignup,
+  SporksCard,
+  TabMenu,
 } from '../../Components';
-import { ReactComponent as ChevronLeftIcon } from '../../../../images/arrows/chevron-left.svg';
 import { Article } from '../../interfaces';
-// @ts-ignore
 import data from '../NetworkPage/sample';
 
 export type NetworkDetailPageProps = {
@@ -39,11 +38,15 @@ const NetworkDetailPage = () => {
         <div className="relative">
           <a
             href="/network"
-            className="dark:text-primary-blue-dark absolute top-[110px] right-0 flex max-w-fit text-primary-blue md:top-0 md:left-0"
+            className="absolute top-[110px] right-0 flex max-w-fit text-primary-blue hover:opacity-75 dark:text-blue-dark md:right-auto md:left-0 md:top-0 md:left-0 md:py-6"
           >
             <ChevronLeftIcon /> Network
           </a>
-          <TabMenu tabs={tabs} onTabChange={setSelectedNetworkIndex} />
+          <TabMenu
+            tabs={tabs}
+            onTabChange={setSelectedNetworkIndex}
+            centered={true}
+          />
           <div className="text-h3 md:text-h1 mt-[50px] mb-3 md:mt-[100px]  md:mb-[50px] md:text-center md:text-5xl">
             {currentNetwork.name}
           </div>
@@ -124,12 +127,7 @@ const NetworkDetailPage = () => {
             </div>
           ))}
         </div>
-        <Pagination
-          itemCount={40}
-          pageSize={4}
-          onPageChange={() => {}}
-          currentPage={1}
-        />
+        <Pagination itemCount={40} pageSize={4} page={1} setPage={() => null} />
 
         <div className="self-center my-36">
           <FeaturedArticleSlider articles={[article]} />

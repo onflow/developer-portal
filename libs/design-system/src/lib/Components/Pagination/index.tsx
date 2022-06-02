@@ -6,8 +6,7 @@ export type PaginationProps = {
   page: number;
   itemCount: number;
   pageSize: number;
-  onPageChange: Function;
-  setPage: Function;
+  setPage: (page: number) => null;
 };
 
 const Pagination = ({
@@ -15,7 +14,6 @@ const Pagination = ({
   pageSize,
   page,
   setPage,
-  onPageChange,
 }: PaginationProps) => {
   const pageCount = Math.ceil(itemCount / pageSize);
 
@@ -36,9 +34,7 @@ const Pagination = ({
           const {
             target: { value },
           } = e;
-
           setPage(+value);
-          onPageChange(+value);
         }}
       />
       of {pageCount}

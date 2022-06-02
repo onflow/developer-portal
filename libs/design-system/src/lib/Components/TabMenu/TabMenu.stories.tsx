@@ -7,17 +7,32 @@ export default {
 } as Meta;
 
 const Template: Story<TabMenuProps> = (args) => <TabMenu {...args} />;
+
 export const Default = Template.bind({});
 Default.args = {
   tabs: ['Mainnet', 'Testnet', 'Canary'],
-  onTabChange: () => {},
+  onTabChange: () => null,
 };
 
-export const Mobile = Template.bind({});
-Mobile.args = {
+export const centered = Template.bind({});
+centered.args = {
+  ...Default.args,
+  centered: true,
+};
+
+export const dark = Template.bind({});
+dark.args = Default.args;
+dark.parameters = {
+  themes: {
+    default: 'dark',
+  },
+};
+
+export const mobile = Template.bind({});
+mobile.args = {
   tabs: ['Mainnet', 'Testnet', 'Canary', 'Foo', 'Bar'],
 };
-Mobile.parameters = {
+mobile.parameters = {
   viewport: {
     defaultViewport: 'xs',
   },

@@ -1,21 +1,21 @@
 import { Meta, Story } from '@storybook/react';
-import FlipCell, { FlipCellProps } from '.';
+import { default as FlipCell, default as Flips, FlipsProps } from '.';
 
 export default {
   component: FlipCell,
-  title: 'Components/FlipCell',
+  title: 'Components/Flips',
 } as Meta;
 
-const Template: Story<FlipCellProps> = (args) => {
+const Template: Story<FlipsProps> = (args) => {
   return (
-    <div style={{ backgroundColor: '#f1f1f1', padding: '14px' }}>
-      <FlipCell {...args} />
+    <div style={{ padding: '1rem' }}>
+      <Flips {...args} />
     </div>
   );
 };
 
 export const Default = Template.bind({});
-const args = {
+const flip = {
   numComments: 23,
   heading: 'Error Subscribing to Events in Default Docs',
   tags: ['moo', 'crab', 'rangoon'],
@@ -27,11 +27,20 @@ const args = {
   date: '23/3/22',
   forumLink: '#test',
 };
+const args = { flips: [flip, flip, flip] };
 Default.args = args;
 
-export const Mobile = Template.bind({});
-Mobile.args = args;
-Mobile.parameters = {
+export const dark = Template.bind({});
+dark.args = Default.args;
+dark.parameters = {
+  themes: {
+    default: 'dark',
+  },
+};
+
+export const mobile = Template.bind({});
+mobile.args = args;
+mobile.parameters = {
   viewport: {
     defaultViewport: 'xs',
   },
