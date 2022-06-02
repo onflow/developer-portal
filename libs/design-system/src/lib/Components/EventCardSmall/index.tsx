@@ -24,7 +24,7 @@ export function EventCardSmall({
     <a
       href={href}
       rel="noreferrer"
-      className="mb-4 flex min-w-max max-w-sm items-start rounded-lg bg-white px-6 py-5 hover:shadow-2xl dark:bg-primary-dark-gray"
+      className="mb-4 flex min-w-max max-w-sm items-start rounded-lg bg-white px-6 py-5 hover:shadow-2xl dark:bg-primary-gray-dark"
     >
       <img
         src={imageSrc}

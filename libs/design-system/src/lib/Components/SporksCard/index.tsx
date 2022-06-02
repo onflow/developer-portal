@@ -15,7 +15,7 @@ export type SporksCardProps = {
 };
 
 const CardItem = ({ label, data }: { label: string; data: any }) => (
-  <div className="flex items-center justify-between p-4 group hover:cursor-pointer hover:bg-gray-50 dark:hover:bg-black">
+  <div className="group flex items-center justify-between p-4 hover:cursor-pointer hover:bg-gray-50 dark:hover:bg-black">
     <div className="break-all">
       <span className="block uppercase text-primary-gray-300">{label}</span>
       {data}
@@ -45,7 +45,7 @@ const Spork = ({ heading, timestamp, sporkMetadata, isDefaultExpanded }) => {
   const cardStyles = clsx(
     'flex-col items-center justify-between px-4 py-6 rounded-2xl hover:shadow-2xl cursor-pointer md:px-8',
     {
-      'bg-white dark:bg-primary-dark-gray': isExpanded,
+      'bg-white dark:bg-primary-gray-dark': isExpanded,
       'dark:bg-black': !isExpanded,
     }
   );
@@ -60,7 +60,7 @@ const Spork = ({ heading, timestamp, sporkMetadata, isDefaultExpanded }) => {
       >
         <div className="flex items-center">
           <span className="pr-4 text-xl text-2xl font-bold">{heading}</span>
-          <span className="pl-4 border-l border-primary-gray-100 text-primary-gray-300">
+          <span className="border-l border-primary-gray-100 pl-4 text-primary-gray-300">
             {format(timestamp, 'MMMM d')}
           </span>
         </div>
@@ -86,10 +86,10 @@ const Spork = ({ heading, timestamp, sporkMetadata, isDefaultExpanded }) => {
 
 const UpcomingSpork = ({ heading, timestamp }) => {
   return (
-    <div className="flex-col items-center justify-between px-4 py-6 bg-white dark:bg-primary-dark-gray rounded-2xl md:px-8">
+    <div className="flex-col items-center justify-between rounded-2xl bg-white px-4 py-6 dark:bg-primary-gray-dark md:px-8">
       <div className="flex flex-col justify-start px-2 md:flex-row">
         <span className="text-xl text-2xl font-bold md:pr-4">{heading}</span>
-        <hr className="inline-block w-6 my-4 md:hidden" />
+        <hr className="my-4 inline-block w-6 md:hidden" />
         <span className="border-primary-gray-100 md:border-l md:pl-4">
           Coming in {formatDistanceToNow(timestamp)} (
           {format(timestamp, 'MMMM d')} 8-9AM PST)

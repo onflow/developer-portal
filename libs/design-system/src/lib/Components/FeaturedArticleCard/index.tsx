@@ -10,13 +10,13 @@ export type FeaturedArticleCardProps = {
   ctaText: string;
 };
 
-const FeaturedArticleCard: React.FC<FeaturedArticleCardProps> = ({
+const FeaturedArticleCard = ({
   heading,
   tags,
   link,
   description,
   ctaText,
-}) => {
+}: FeaturedArticleCardProps) => {
   return (
     <div className="rounded-lg bg-white px-8 py-12 dark:bg-primary-gray-dark md:py-[122px] md:px-[80px]">
       {tags.map((tag) => (

@@ -27,7 +27,7 @@ const NetworkCard = ({
   return (
     <a
       href={link}
-      className="flex flex-col items-center justify-around px-4 py-6 text-center bg-white dark:bg-primary-dark-gray rounded-2xl hover:shadow-2xl md:flex-row md:text-left"
+      className="flex flex-col items-center justify-around rounded-2xl bg-white px-4 py-6 text-center hover:shadow-2xl dark:bg-primary-gray-dark md:flex-row md:text-left"
     >
       <div className="flex flex-col items-center md:flex-row">
         <div className={statusClasses} />

@@ -18,7 +18,7 @@ export type ProjectCardProps = {
   githubLink: string;
 };
 
-const ProjectCard: React.FC<ProjectCardProps> = ({
+const ProjectCard = ({
   projectImage,
   heading,
   description,
@@ -28,7 +28,7 @@ const ProjectCard: React.FC<ProjectCardProps> = ({
   numStars,
   twitterLink,
   githubLink,
-}) => {
+}: ProjectCardProps) => {
   return (
     <div className="flex max-w-[554px] flex-col rounded-lg bg-white px-8 py-6 hover:shadow-2xl dark:bg-primary-gray-dark md:flex-row">
       <img
@@ -64,7 +64,7 @@ const ProjectCard: React.FC<ProjectCardProps> = ({
         </div>
         <div className="mb-6">{description}</div>
         <a
-          className="flex justify-between font-bold dark:text-primary-blue-dark text-primary-blue"
+          className="flex justify-between font-bold text-primary-blue dark:text-blue-dark"
           href={projectLink}
         >
           This is a link

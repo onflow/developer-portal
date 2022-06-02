@@ -35,10 +35,10 @@ const SocialLink = ({
       style={{ borderColor: 'rgba(105, 113, 126, 0.2)' }}
     >
       <div className="flex items-center">
-        <div className="scale-150 md:scale-200 fill-black dark:fill-white">
+        <div className="md:scale-200 scale-150 fill-black dark:fill-white">
           <Logo />
         </div>
-        <div className="items-center pt-2 ml-6">
+        <div className="ml-6 items-center pt-2">
           <h4 className="text-xl font-semibold">{header}</h4>
           <p>{description}</p>
         </div>
@@ -60,9 +60,9 @@ const SocialLinksSignup = () => {
         backgroundSize: 'cover',
       }}
     >
-      <div className="w-full mb-20 md:px-28">
+      <div className="mb-20 w-full md:px-28">
         <div
-          className="grid grid-flow-col grid-rows-4 px-4 rounded-lg md:grid-rows-2 md:px-0"
+          className="grid grid-flow-col grid-rows-4 rounded-lg px-4 md:grid-rows-2 md:px-0"
           style={{ background: 'rgba(213, 221, 233, 0.3)' }}
         >
           <SocialLink
@@ -94,8 +94,8 @@ const SocialLinksSignup = () => {
           />
         </div>
 
-        <div className="flex flex-col items-center justify-between px-4 pt-24 mt-8 bg-white rounded-lg dark:bg-primary-dark-gray pb-9 md:flex-row md:p-20">
-          <h2 className="mb-4 mr-0 mr-8 text-h2">
+        <div className="mt-8 flex flex-col items-center justify-between rounded-lg bg-white px-4 pt-24 pb-9 dark:bg-primary-gray-dark md:flex-row md:p-20">
+          <h2 className="text-h2 mb-4 mr-0 mr-8">
             Subscribe to our newsletter
           </h2>
           <div className="flex flex-col md:flex-row">
@@ -105,7 +105,7 @@ const SocialLinksSignup = () => {
               style={{ boxShadow: '0px 4px 40px rgba(0, 0, 0, 0.08)' }}
             />
             <a
-              className="px-12 py-4 text-center text-white bg-black border-black rounded-lg rounded-tr-lg rounded-br-lg h-14 md:rounded-tl-none md:rounded-bl-none"
+              className="h-14 rounded-lg rounded-tr-lg rounded-br-lg border-black bg-black px-12 py-4 text-center text-white md:rounded-tl-none md:rounded-bl-none"
               href="/foo"
             >
               Subscribe

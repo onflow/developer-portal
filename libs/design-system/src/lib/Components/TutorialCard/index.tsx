@@ -13,7 +13,7 @@ export type TutorialCardProps = {
   link: string;
 };
 
-const TutorialCard: React.FC<TutorialCardProps> = ({
+const TutorialCard = ({
   heading,
   tags,
   description,
@@ -21,7 +21,7 @@ const TutorialCard: React.FC<TutorialCardProps> = ({
   level,
   imageUri,
   link,
-}) => {
+}: TutorialCardProps) => {
   return (
     <a
       href={link}
