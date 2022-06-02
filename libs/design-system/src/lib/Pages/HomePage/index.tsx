@@ -9,10 +9,10 @@ import {
 import { ReactComponent as UseCaseIcon } from '../../../../images/content/use-cases.svg';
 import { ReactComponent as EcosystemIcon } from '../../../../images/content/ecosystem.svg';
 import { ReactComponent as SDKIcon } from '../../../../images/content/sdk.svg';
-import { LinkCard3ColumnItemProps } from '../../Components/LinkCard3Column';
+import { LinkCard3ColumnProps } from '../../Components/LinkCard3Column';
 
 const HomePage = () => {
-  const threeColumnItems: LinkCard3ColumnItemProps[] = [
+  const threeColumnItems: LinkCard3ColumnProps = [
     {
       title: 'Quickstart',
       description:
