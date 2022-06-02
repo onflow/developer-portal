@@ -9,6 +9,8 @@ import { getMdxPage, useMdxComponent } from "~/cms/utils/mdx";
 
 // TODO: MAP REPO TO INFO ARCH: EG "fcl-js repo" should redirect to '/sdks/fcl' ... etc
 // might add this repo mapping to json resource endpoint
+// TODO: Allow specifying a specific branch, ideally dynamically (from publisher-land) 
+// ... but we can hardcode  master / main for MVP
 const repos = [
   'cadence',
   'fcl-js'
@@ -24,6 +26,8 @@ export const meta: MetaFunction = () => {
 
 export const loader: LoaderFunction = async ({ params, request }) => {
   
+
+
   // TODO: make this redirect to appropriate section for repo
   // If no approapriate section, then fall through and try to get content 
   // for the repo ... otherwise return Response and handle down the chain?
@@ -31,15 +35,21 @@ export const loader: LoaderFunction = async ({ params, request }) => {
     return new Response()
   }
 
-  const [repo, fileOrDirPath] = [params["repo"], params["*"]!];
+  const [repo, fileOrDirPath] = [params["repo"], params["*"] || 'index'];
 
-  const page = await getMdxPage(
-    {
-      repo,
-      fileOrDirPath,
-    },
-    { request, forceFresh: process.env.FORCE_REFRESH === "true" }
-  );
+  let page;
+  try {
+    page = await getMdxPage(
+      {
+        repo,
+        fileOrDirPath,
+      },
+      { request, forceFresh: process.env.FORCE_REFRESH === "true" }
+    );
+  } catch(e) {
+    throw json({ noPage: true }, {status: 500 })
+  }
+ 
 
   if (!page) {
     throw json({ noPage: true }, {status: 404 })
