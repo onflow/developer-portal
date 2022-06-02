@@ -31,14 +31,14 @@ const faqList = [
 
 export function SporkFAQPage() {
   return (
-    <div className="bg-zinc-50 md:bg-white">
-      <div className="relative z-20 h-24 w-full shadow-md">header nav</div>
+    <div className="bg-zinc-50 dark:bg-black md:bg-white">
       <InternalSubnav current="Spork FAQ" />
-      <main className="container mx-auto px-4 pb-48 md:px-0 md:pt-16">
+      <main className="px-4 pb-48 md:px-0 md:pt-16">
         <div className="grid grid-cols-1 items-start pb-6 md:flex md:pb-12">
           <div className="order-2 grow">
             <h1 className="text-h1 font-termina pb-14 font-bold leading-snug md:pb-6 md:font-sans md:text-4xl">
-              Spork FAQ
+              <span className="hidden md:block">Spork FAQ</span>
+              <span className="block md:hidden">FAQ</span>
             </h1>
             <Attribution
               updatedDate="23/3/2022"
@@ -50,9 +50,9 @@ export function SporkFAQPage() {
             />
           </div>
           <div className="order-1 md:order-2">
-            <button className="mt-3 mb-2 flex items-center rounded-lg border-primary-blue py-4 text-primary-blue md:m-0 md:border md:px-5">
+            <button className="mt-3 mb-2 flex items-center rounded-lg border-primary-blue py-4 text-primary-blue dark:border-primary-purple dark:text-primary-purple md:m-0 md:border md:px-5">
               <span>
-                <LeftChevron className="stroke-primary-blue" />
+                <LeftChevron className="stroke-primary-blue dark:stroke-primary-purple" />
               </span>
               Back to Network
             </button>
@@ -60,7 +60,6 @@ export function SporkFAQPage() {
         </div>
         <FAQ faqList={faqList} variation="large" />
       </main>
-      <Footer />
     </div>
   );
 }
