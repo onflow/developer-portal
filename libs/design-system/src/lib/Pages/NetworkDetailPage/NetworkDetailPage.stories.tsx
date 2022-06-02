@@ -15,3 +15,10 @@ Mobile.parameters = {
     defaultViewport: 'xs',
   },
 };
+
+export const dark = Template.bind({});
+dark.parameters = {
+  themes: {
+    default: 'dark',
+  },
+};
