@@ -20,22 +20,19 @@ export function LandingHeader({
 }: LandingHeaderProps) {
   return (
     <LandingHeaderContainer gradient={gradient}>
-      <div className="container mx-auto flex flex-col justify-items-stretch px-4 py-12 md:px-20 md:py-20">
-        <h1 className="text-h1 mb-12 max-w-full overflow-hidden text-ellipsis !text-4xl md:mt-20 md:!text-7xl md:!leading-tight">
+      <div className="container flex flex-col pt-16 mx-auto justify-items-stretch md:pt-20">
+        <h1 className="text-h1 mb-14 max-w-full overflow-hidden text-ellipsis !text-4xl md:mt-24 md:!text-7xl md:!leading-tight">
           {title}
         </h1>
         <div className="flex flex-row items-stretch rounded-lg bg-primary-gray-100/30">
-          <div className="px-5 py-3 md:basis-1/2 md:px-20 md:py-12">
-            <h2 className="text-h2 mb-2 md:mb-3">{callout}</h2>
+          <div className="px-5 py-10 md:basis-1/2 md:px-20 md:py-12">
+            <h2 className="mb-2 text-h2 md:mb-4">{callout}</h2>
             <p>{description}</p>
-            <ButtonLink
-              className="mb-4 mt-2 inline-block px-8 py-3 md:mt-6"
-              href={buttonUrl}
-            >
+            <ButtonLink className="mt-4 mb-4 md:mt-12" href={buttonUrl}>
               {buttonText}
             </ButtonLink>
           </div>
-          <div className="hidden basis-1/2 rounded-r-lg bg-white px-10 py-6 dark:bg-white/40 md:block md:px-20 md:py-12"></div>
+          <div className="hidden px-10 py-6 bg-white rounded-r-lg basis-1/2 dark:bg-white/40 md:block md:px-20 md:py-12"></div>
         </div>
       </div>
     </LandingHeaderContainer>

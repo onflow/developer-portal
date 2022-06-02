@@ -1,5 +1,5 @@
 import { Meta, Story } from '@storybook/react';
-import { ButtonProps, Button } from '.';
+import { Button, ButtonProps } from '.';
 
 export default {
   component: Button,
@@ -16,17 +16,35 @@ export default {
 } as Meta;
 
 const Template: Story<ButtonProps> = (args) => {
-  return <Button className="py-2 px-8" {...args} />;
+  return (
+    <div
+      style={{
+        gap: '1rem',
+        padding: '1rem',
+        display: 'inline-flex',
+        flexDirection: 'column',
+      }}
+    >
+      <Button variant="primary">Primary</Button>
+      <Button variant="primary-inverse">Primary Inverse</Button>
+      <Button variant="secondary">Secondary</Button>
+      <Button variant="secondary" prev={true}>
+        Secondary Prev
+      </Button>
+      <Button variant="secondary" next={true}>
+        Secondary Next
+      </Button>
+    </div>
+  );
 };
 
 export const Default = Template.bind({});
 Default.args = {
   children: 'Button',
 };
-
-export const dark = Template.bind({});
-dark.args = Default.args;
-dark.parameters = {
+export const defaultDark = Template.bind({});
+defaultDark.args = Default.args;
+defaultDark.parameters = {
   themes: {
     default: 'dark',
   },

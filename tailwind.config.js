@@ -87,7 +87,8 @@ module.exports = {
       backgroundImage: {
         'dark-tool-card-icon': "linear-gradient(141.81deg, rgba(255, 255, 255, 0.33) 2.2%, rgba(255, 255, 255, 0) 100%)"
       },
-      boxShadow: { 
+      boxShadow: {
+        '2xl': '0px 4px 40px 0px #00000014',
         'tool-card-icon': "inset -1.18px -1.18px 2px rgba(0, 0, 0, 0.15), inset 1.17782px 1.17782px 2px rgba(237, 250, 255, 0.26)"
       }
     },
@@ -95,9 +96,6 @@ module.exports = {
   variants: {
     extend: {
       display: ['group-hover'],
-      shadow: {
-        '2xl': '0px 4px 40px rgba(0, 0, 0, 0.08);',
-      },
     },
   },
   plugins: [
