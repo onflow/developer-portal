@@ -12,6 +12,6 @@ export function RoyaltiesViewWrapper({ cadenceView }: RoyaltiesWrapperProps) {
 export function ConvertCadenceToDisplayView(cadenceView: any): RoyaltiesViewType {
   let royaltiesCadenceView = cadenceView['Royalties'];
   return {
-    royalties: royaltiesCadenceView['royalties']
+    royalties: royaltiesCadenceView ? royaltiesCadenceView['royalties'] : null
   }
 }

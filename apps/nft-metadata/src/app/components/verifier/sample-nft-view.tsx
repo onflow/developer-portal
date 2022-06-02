@@ -5,8 +5,8 @@ import { Accordian } from "../shared/accordian";
 import { Alert } from "../shared/alert";
 import { Spinner } from "../shared/spinner";
 import { Button } from "../shared/button";
-import { DisplayViewWrapper } from "./views/display-view-wrapper";
-import { RoyaltiesViewWrapper } from "./views/royalties-view-wrapper";
+import { RoyaltiesViewWrapper } from "../shared/views/royalties-view-wrapper";
+import { GenericView } from "../shared/views/generic-view";
 
 export function SampleNFTView({
   sampleAddress,
@@ -47,25 +47,39 @@ export function SampleNFTView({
 
   let invalidViews: any = []
 
-
   const accordianItems = Object.keys(viewsImplemented).map((item) => {
     let title = item;
     let content = <div>Failed to load details</div>
     if (item.indexOf('MetadataViews.Royalties') >= 0) {
       title = 'Royalties View'
-      content = <RoyaltiesViewWrapper cadenceView={viewData} />
+      content = viewData["Royalties"] ?
+        <GenericView view={viewData["Royalties"]} />
+        :
+        <div>No royalties view was found.</div>
     } else if (item.indexOf('MetadataViews.Display') >= 0) {
       title = 'Display View'
-      content = <DisplayViewWrapper cadenceView={viewData} />
+      content = viewData["Display"] ?
+        <GenericView view={viewData["Display"]} />
+        :
+        <div>No display view was found.</div>
     } else if (item.indexOf('MetadataViews.NFTCollectionData') >= 0) {
       title = 'NFT Collection Data View';
-      content = <div>NFT Collection Data details here</div>
+      content = viewData["NFTCollectionData"] ?
+        <GenericView view={viewData["NFTCollectionData"]} />
+        :
+        <div>No NFT Collection Data view was found.</div>
     } else if (item.indexOf('MetadataViews.NFTCollectionDisplay') >= 0) {
       title = 'NFT Collection Display View';
-      content = <div>NFT Collection Display details here</div>
+      content = viewData["NFTCollectionDisplay"] ?
+        <GenericView view={viewData["NFTCollectionDisplay"]} />
+        :
+        <div>No NFT Display view was found.</div>
     } else if (item.indexOf('MetadataViews.ExternalURL') >= 0) {
       title = 'External URL View';
-      content = <div>External URL details here</div>
+      content = viewData["ExternalURL"] ?
+        <GenericView view={viewData["ExternalURL"]} />
+        :
+        <div>No ExternalURL view was found.</div>
     }
     if (!viewsImplemented[item]) {
       invalidViews.push(title)

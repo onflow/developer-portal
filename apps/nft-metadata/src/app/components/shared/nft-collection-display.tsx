@@ -1,10 +1,8 @@
 export function NFTCollectionDisplay({ display } : { display: any }) {
   return (
     <>
-      <div>
-        <span className="text-2xl">{display.name}</span>
-        <a className="ml-2 text-xs hover:underline text-blue-600" href={display.externalURL} target="_blank">Visit Website</a>
-      </div>
+      <div className="text-2xl">{display.name}</div>
+      <a className="text-xs hover:underline text-blue-600" href={display.externalURL} target="_blank">Visit Website</a>
       <div className="text-md mt-2">
         {display.description}
       </div>

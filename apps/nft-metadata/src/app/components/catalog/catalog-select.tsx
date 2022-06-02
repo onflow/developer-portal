@@ -32,7 +32,7 @@ export function CatalogSelect({
         {
           name: "Schmoes Prelaunch Token",
           subtext: "0x123456654321.SchmoesPrelaunchToken",
-          id: "catalog1"
+          id: "schmoes"
         }
       ])
     }

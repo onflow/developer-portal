@@ -218,7 +218,7 @@ export async function getNFTInAccount(sampleAddress: string, publicPath: string)
       }
     
       var externalURL : ExternalURLView? = nil
-      if displayView != nil {
+      if externalURLView != nil {
         externalURL = ExternalURLView(
           externalURL : externalURLView!.url,
         )
@@ -270,8 +270,7 @@ export async function getNFTInAccount(sampleAddress: string, publicPath: string)
         fcl.arg(sampleAddress, t.Address),
         fcl.arg(publicPath.replace('/public/', ''), t.String)
       ])
-    ])
-      .then(fcl.decode)
+    ]).then(fcl.decode)
     return scriptResult
   } catch (e) {
     return null;
