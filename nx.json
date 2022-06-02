@@ -35,12 +35,6 @@
         "projects": "dependencies"
       }
     ],
-    "dev": [
-      {
-        "target": "build",
-        "projects": "dependencies"
-      }
-    ],
     "start": [
       {
         "target": "build",
