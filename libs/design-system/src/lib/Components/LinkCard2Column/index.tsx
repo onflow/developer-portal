@@ -23,7 +23,7 @@ export function LinkCard2Column({
   title,
 }: LinkCard2ColumnProps) {
   return (
-    <div className="container flex flex-col items-start rounded-lg bg-primary-gray-100/30 p-10 px-4 py-12 dark:bg-primary-dark-gray md:flex-row md:px-20 md:py-20">
+    <div className="container flex flex-col items-start rounded-lg bg-primary-gray-100/30 p-10 px-4 py-12 dark:bg-primary-gray-dark md:flex-row md:px-20 md:py-20">
       <div className="flex flex-1 flex-col items-start md:mr-20">
         <h2 className="text-h2 my-2 md:mb-3">{title}</h2>
         {tags && (

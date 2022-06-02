@@ -3,7 +3,7 @@ import ExternalLinkIcon from './ExternalLinkIcon';
 import { isLinkExternal } from './isLinkExternal';
 
 const defaultClasses =
-  'relative text-primary-blue inline-flex items-center dark:text-primary-blue-dark hover:opacity-75 dark:border-primary-blue-dark dark:stroke-primary-blue-dark';
+  'relative text-primary-blue inline-flex items-center dark:text-blue-dark hover:opacity-75 dark:border-blue-dark dark:stroke-blue-dark';
 
 export type LinkProps = React.DetailedHTMLProps<
   React.HTMLAttributes<HTMLAnchorElement> & {

@@ -28,7 +28,7 @@ function Header({
   onCopy: () => void;
 }) {
   return (
-    <div className="flex min-h-[50px] items-center rounded-tl-lg rounded-tr-lg bg-white px-2 text-primary-gray-300 dark:bg-primary-dark-gray dark:text-primary-gray-200">
+    <div className="flex min-h-[50px] items-center rounded-tl-lg rounded-tr-lg bg-white px-2 text-primary-gray-300 dark:bg-primary-gray-dark dark:text-primary-gray-200">
       <div className="p-2">
         <HashIcon />
       </div>
@@ -38,7 +38,7 @@ function Header({
       <div className="ml-auto text-primary-blue">
         <button
           type="button"
-          className="p-2 ml-auto hover:opacity-75"
+          className="ml-auto p-2 hover:opacity-75"
           title="Copy to clipboard"
           aria-label="Copy to clipboard"
           onClick={onCopy}
@@ -46,7 +46,7 @@ function Header({
           <FileCopyIcon />
         </button>
         <button
-          className="p-2 cursor-pointer hover:opacity-75"
+          className="cursor-pointer p-2 hover:opacity-75"
           title={showDialog ? 'Collapse' : 'Expand'}
           onClick={showDialog ? closeDialog : openDialog}
         >
@@ -89,7 +89,7 @@ export function InternalCodeblock({
 
   return (
     <>
-      <div className="text-xs border rounded-lg border-primary-gray-100 dark:border-0">
+      <div className="rounded-lg border border-primary-gray-100 text-xs dark:border-0">
         <Header
           openDialog={openDialog}
           closeDialog={closeDialog}
@@ -118,7 +118,7 @@ export function InternalCodeblock({
           onCopy={onCopy}
         />
         {/* Modal is rendered in portal outside the original .mdx-content div */}
-        <div className="h-full mdx-content">
+        <div className="mdx-content h-full">
           <Code children={children} innerClasses="w-full h-full" />
         </div>
       </Dialog>

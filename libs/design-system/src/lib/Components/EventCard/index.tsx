@@ -31,7 +31,7 @@ export function EventCard({
   return (
     <div
       className={clsx(
-        'flex min-h-fit flex-col-reverse overflow-hidden rounded-2xl bg-white dark:bg-primary-dark-gray md:min-h-[30rem] md:flex-row',
+        'flex min-h-fit flex-col-reverse overflow-hidden rounded-2xl bg-white dark:bg-primary-gray-dark md:min-h-[30rem] md:flex-row',
         className
       )}
     >

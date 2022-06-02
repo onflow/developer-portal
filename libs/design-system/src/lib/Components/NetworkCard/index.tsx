@@ -27,11 +27,11 @@ const NetworkCard = ({
   return (
     <a
       href={link}
-      className="flex flex-col items-center justify-around rounded-2xl bg-white px-4 py-6 text-center hover:shadow-2xl dark:bg-primary-dark-gray md:flex-row md:text-left"
+      className="flex flex-col items-center justify-around rounded-2xl bg-white px-4 py-6 text-center hover:shadow-2xl dark:bg-primary-gray-dark md:flex-row md:text-left"
     >
       <div className="flex flex-col items-center md:flex-row">
         <div className={statusClasses} />
-        <span className="ml-0 mb-6 text-xl font-bold md:ml-6 md:mb-0">
+        <span className="mb-6 ml-0 text-xl font-bold md:ml-6 md:mb-0">
           {networkName}
         </span>
       </div>
