@@ -8,48 +8,8 @@
 @import './mdx';
 @import './reach-ui.css';
 
-/* MDX styles. TODO: move to ./mdx.css and nest under .mdx-content */
-/* ul {
-  @apply pl-4;
-} */
-
-ul li {
-  @apply relative;
-}
-
-/* ul li::before {
-  content: '';
-  @apply absolute -left-4 top-2.5 h-1 w-1 bg-gray-700;
-} */
-
-ol {
-  @apply pl-4 list-decimal;
-}
-
-p {
-  @apply mb-4;
-}
-
-blockquote {
-  @apply px-6 py-2 border-l-4 border-l-gray-400 dark:border-l-gray-700;
-}
-
-blockquote p {
-  @apply m-0;
-}
-
-ul.contains-task-list {
-  @apply pl-0;
-}
-
-ul.contains-task-list li::before {
-  @apply invisible;
-}
-
-ul.contains-task-list {
-  @apply mb-3;
-}
-
-.task-list-item {
-  @apply relative pl-8 mt-3;
+/* Add .divided-item-hover to .divide-y children to hide borders on hover */
+.divided-item-hover:hover,
+.divided-item-hover:hover + .divided-item-hover {
+  @apply !border-transparent;
 }

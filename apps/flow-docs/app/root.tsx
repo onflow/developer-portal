@@ -14,9 +14,6 @@ import {
   useLoaderData,
 } from "@remix-run/react";
 import clsx from "clsx";
-import { getThemeSession } from "./theme.server";
-import { getUser } from "./session.server";
-import styles from "./styles/main.css";
 import {
   Theme,
   ThemeBody,
@@ -24,6 +21,9 @@ import {
   ThemeProvider,
   useTheme,
 } from "~/cms/utils/theme.provider";
+import { getUser } from "./session.server";
+import styles from "./styles/main.css";
+import { getThemeSession } from "./theme.server";
 
 import {
   Footer
@@ -52,7 +52,6 @@ export const loader: LoaderFunction = async ({ request }) => {
     theme: themeSession.getTheme(),
   });
 };
-
 
 function MainNav() {
   const [, setTheme] = useTheme();
@@ -87,13 +86,13 @@ function App() {
           "h-full bg-white text-gray-900 dark:bg-black dark:text-white"
         )}
       >
-        <MainNav />
-        <Outlet />
-        <Footer/>
         <ThemeBody ssrTheme={Boolean(data.theme)} />
+        <MainNav />
+          <Outlet />
+        <Footer/>
         <ScrollRestoration />
         <Scripts />
-        <LiveReload />
+        <LiveReload port={8002}/>
       </body>
     </html>
   );

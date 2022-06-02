@@ -1,9 +1,9 @@
 import React from 'react';
 import { ReactComponent as CommentIcon } from '../../../../images/arrows/message-circle.svg';
-import RoundImage from './RoundImage';
+import RoundImage from '../RoundImage';
 
 export type User = {
-  profilePicture: string;
+  profileImage: string;
   name: string;
 };
 
@@ -25,7 +25,7 @@ const ForumCell = ({
   return (
     <a
       href={forumLink}
-      className="flex flex-col items-start items-center justify-around rounded-lg bg-white py-6 px-11 px-8 hover:cursor-pointer hover:shadow-2xl dark:bg-primary-dark-gray md:flex-row"
+      className="flex flex-col items-start items-center justify-around rounded-lg bg-white px-8 py-6 px-11 hover:cursor-pointer hover:shadow-2xl dark:bg-primary-gray-dark md:flex-row"
     >
       <div className="flex-1">
         <p className="mb-2 text-xl font-semibold">{heading}</p>
@@ -40,7 +40,7 @@ const ForumCell = ({
               key={participant.name}
             >
               <RoundImage
-                imageUri={participant.profilePicture}
+                imageUri={participant.profileImage}
                 altText={participant.name}
               />
             </div>

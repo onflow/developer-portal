@@ -14,7 +14,6 @@ export interface StatuspageApiResponse {
   automation_email: string;
   start_date: string;
 }
-
 export interface SporkMetadata {
   accessNode: string;
   date: Date;
@@ -32,4 +31,9 @@ export interface Article {
   ctaText: string;
   ctaLink: string;
   imageUrl: any;
+}
+
+export interface User {
+  name: string;
+  profileImage: string;
 }

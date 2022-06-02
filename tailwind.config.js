@@ -42,7 +42,7 @@ module.exports = {
     },
     extend: {
       fontFamily: {
-        sans: ['Acumin Pro', ...defaultTheme.fontFamily.sans],
+        sans: ['Acumin Variable Concept', ...defaultTheme.fontFamily.sans],
         display: 'Termina',
         mono: 'IBM Plex Mono',
       },
@@ -70,7 +70,8 @@ module.exports = {
           400: '#2F353F',
         },
         'accent-light-gray': '#F3F3F3',
-        'primary-dark-gray': '#1A1A1A',
+        'primary-gray-dark': '#1A1A1A',
+        'secondary-yellow': '#FFC700',
       },
       spacing: {
         micro: defaultTheme.spacing['1'],

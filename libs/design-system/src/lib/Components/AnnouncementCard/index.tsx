@@ -21,9 +21,9 @@ const AnnouncementCard = ({
   return (
     <a
       href={link}
-      className="flex items-center justify-between rounded-2xl bg-white px-4 py-9 hover:shadow-2xl dark:bg-primary-dark-gray md:px-8 md:py-6"
+      className="flex items-center justify-between rounded-2xl bg-white px-4 py-9 hover:shadow-2xl dark:bg-primary-gray-dark md:px-8 md:py-6"
     >
-      <div className="mr-4 mr-1 self-start">
+      <div className="mr-1 mr-4 self-start">
         <img
           src={sourceIcon}
           alt={sourceAltText}
@@ -33,7 +33,7 @@ const AnnouncementCard = ({
         />
       </div>
       <div className="flex-1">
-        <div className="text-2xl text-xl font-bold">{heading}</div>
+        <div className="text-xl text-2xl font-bold">{heading}</div>
         <div className="mt-4 flex items-center text-primary-gray-300">
           <TimeIcon />
           <span className="ml-2">

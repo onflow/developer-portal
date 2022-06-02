@@ -42,11 +42,11 @@ export function Heading({
       id: anchor,
       className: clsx(defaultClasses, headingClasses[type], className),
     },
-    <div className="flex group -ml-11">
+    <div className="group -ml-11 flex">
       <a
         href={`#${anchor}`}
         title={text}
-        className="flex items-center justify-center w-8 h-8 mr-3 scale-75 bg-gray-100 rounded-md hover:bg-gray-200 group-hover:visible dark:bg-primary-dark-gray dark:hover:bg-gray-700 md:invisible md:scale-100"
+        className="mr-3 flex h-8 w-8 scale-75 items-center justify-center rounded-md bg-gray-100 hover:bg-gray-200 group-hover:visible dark:bg-primary-gray-dark dark:hover:bg-gray-700 md:invisible md:scale-100"
       >
         <LinkIcon />
       </a>

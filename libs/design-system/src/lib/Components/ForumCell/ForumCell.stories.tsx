@@ -21,22 +21,22 @@ const args = {
   subheading: 'Flow Javascript SDK',
   participants: [
     {
-      profilePicture:
+      profileImage:
         'https://github.githubassets.com/images/modules/logos_page/GitHub-Mark.png',
       name: 'Marky Mark',
     },
     {
-      profilePicture:
+      profileImage:
         'https://github.githubassets.com/images/modules/logos_page/GitHub-Mark.png',
       name: 'Marky Mark 2',
     },
     {
-      profilePicture:
+      profileImage:
         'https://github.githubassets.com/images/modules/logos_page/GitHub-Mark.png',
       name: 'Marky Mark 3',
     },
     {
-      profilePicture:
+      profileImage:
         'https://github.githubassets.com/images/modules/logos_page/GitHub-Mark.png',
       name: 'Marky Mark 4',
     },

@@ -10,7 +10,7 @@ export type CalloutProps = {
 const Callout = ({ heading, description, ctaText, ctaLink }: CalloutProps) => {
   return (
     <div
-      className="flex flex-col items-start justify-between rounded-2xl p-10 dark:bg-primary-dark-gray md:flex-row md:items-center md:px-20 md:pt-16 md:pb-12"
+      className="flex flex-col items-start justify-between rounded-2xl p-10 dark:bg-primary-gray-dark md:flex-row md:items-center md:px-20 md:pt-16 md:pb-12"
       style={{ backgroundColor: 'rgba(222,226,233, 0.5)' }}
     >
       <div className="flex-1">

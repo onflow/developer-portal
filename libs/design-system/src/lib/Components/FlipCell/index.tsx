@@ -1,11 +1,11 @@
 import React from 'react';
-import { ReactComponent as CommentIcon } from '../../../../images/arrows/message-circle.svg';
 import { ReactComponent as CalendarIcon } from '../../../../images/action/date-calendar.svg';
-import RoundImage from './RoundImage';
-import Tag from './Tag';
+import { ReactComponent as CommentIcon } from '../../../../images/arrows/message-circle.svg';
+import Tag from '../Tag';
+import RoundImage from '../RoundImage';
 
 export type User = {
-  profilePicture: string;
+  profileImage: string;
   name: string;
 };
 
@@ -29,7 +29,7 @@ const FlipCell = ({
   return (
     <a
       href={forumLink}
-      className="flex flex-col items-center justify-between p-6 bg-white rounded-lg hover:cursor-pointer hover:shadow-2xl dark:bg-primary-dark-gray md:flex-row md:p-8"
+      className="flex flex-col items-center justify-between rounded-lg bg-white p-6 hover:cursor-pointer hover:shadow-2xl dark:bg-primary-gray-dark md:flex-row md:p-8"
     >
       <div className="flex items-center">
         <svg
@@ -52,17 +52,17 @@ const FlipCell = ({
           </span>
         </div>
       </div>
-      <div className="flex items-center mt-12 md:mt-0">
+      <div className="mt-12 flex items-center md:mt-0">
         <div className="w-28">
           <RoundImage
-            imageUri={participant.profilePicture}
+            imageUri={participant.profileImage}
             altText={participant.name}
           />
         </div>
-        <div className="flex space-between text-primary-gray-300">
+        <div className="space-between flex text-primary-gray-300">
           <CalendarIcon /> {date}
         </div>
-        <div className="flex ml-3 text-primary-gray-300">
+        <div className="ml-3 flex text-primary-gray-300">
           <CommentIcon /> <span className="ml-3">{numComments}</span>
         </div>
       </div>

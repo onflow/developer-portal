@@ -20,7 +20,7 @@ const args = {
   heading: 'Error Subscribing to Events in Default Docs',
   tags: ['moo', 'crab', 'rangoon'],
   participant: {
-    profilePicture:
+    profileImage:
       'https://github.githubassets.com/images/modules/logos_page/GitHub-Mark.png',
     name: 'Marky Mark',
   },

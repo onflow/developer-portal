@@ -1,7 +1,7 @@
 {
   "name": "@flow-docs/ui",
   "version": "0.0.1",
-  "main": "./dist/index.umd.js",
+  "main": "./dist/index.cjs.js",
   "typings": "./dist/index.d.ts",
   "scripts" : {
     "dev": "rollup -c -w"
