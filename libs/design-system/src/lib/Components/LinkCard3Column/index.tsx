@@ -25,7 +25,7 @@ export type LinkCard3ColumnProps = {
 
 export function LinkCard3Column({ items }: LinkCard3ColumnProps) {
   return (
-    <div className="grid grid-cols-1 pb-8 bg-white rounded-lg gap-x-4 dark:bg-primary-dark-gray md:grid-cols-3 md:flex-row">
+    <div className="grid grid-cols-1 pb-8 bg-white rounded-lg dark:bg-primary-dark-gray gap-x-4 md:grid-cols-3 md:flex-row">
       {items.map((item, index) => (
         <div
           key={`${item.title}-header`}

@@ -128,7 +128,8 @@ const NetworkDetailPage = () => {
           itemCount={40}
           pageSize={4}
           onPageChange={() => {}}
-          currentPage={1}
+          page={1}
+          setPage={() => {}}
         />
 
         <div className="self-center my-36">

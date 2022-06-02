@@ -1,31 +1,18 @@
-import { Meta, Story } from '@storybook/react';
-import { LinkCard3Column, LinkCard3ColumnProps } from '.';
+import React from 'react';
+import {
+  LandingHeaderHome,
+  SocialLinksSignup,
+  Footer,
+  LinkCard2Column,
+  LinkCard3Column,
+} from '../../Components';
 import { ReactComponent as UseCaseIcon } from '../../../../images/content/use-cases.svg';
 import { ReactComponent as EcosystemIcon } from '../../../../images/content/ecosystem.svg';
 import { ReactComponent as SDKIcon } from '../../../../images/content/sdk.svg';
+import { LinkCard3ColumnItemProps } from '../../Components/LinkCard3Column';
 
-export default {
-  component: LinkCard3Column,
-  title: 'Components/LinkCard3Column',
-} as Meta;
-
-const Template: Story<LinkCard3ColumnProps> = (args) => {
-  return (
-    <div style={{ backgroundColor: '#f1f1f1', padding: '14px' }}>
-      <LinkCard3Column {...args} />
-    </div>
-  );
-};
-
-export const Default = Template.bind({});
-Default.args = {
-  buttonText: 'Get Started',
-  buttonUrl: '#changeme',
-  description:
-    'Building on Flow is easy. Start building now with lorem ipsum et sigitus loranum prospitarius.',
-  title: 'Start Your Project',
-  tags: ['Tag', 'Lorem', 'Ipsum'],
-  items: [
+const HomePage = () => {
+  const threeColumnItems: LinkCard3ColumnItemProps[] = [
     {
       title: 'Quickstart',
       description:
@@ -84,7 +71,7 @@ Default.args = {
         {
           title: 'Name of a tutorial',
           href: '#tutorial2',
-          tegs: ['tag1', 'tag2', 'tag3', 'tag4'],
+          tags: ['tag1', 'tag2', 'tag3', 'tag4'],
         },
         {
           title: "View all SDK's",
@@ -92,21 +79,33 @@ Default.args = {
         },
       ],
     },
-  ],
+  ];
+
+  return (
+    <div>
+      <LandingHeaderHome
+        title="Developer Portal"
+        description="Understand the foundational concepts of Flow and its language, Cadence"
+        tag="onflow"
+      />
+
+      <LinkCard2Column
+        buttonText="Get started"
+        buttonUrl="#"
+        title="Start your project"
+        items={[]}
+        description="Everything you need to start building on Flow is lorem ipsum Everything you need to orem ipsum Everything you need to  "
+      />
+
+      <LinkCard3Column items={threeColumnItems} />
+
+      <div className="my-24">
+        <SocialLinksSignup />
+      </div>
+
+      <Footer />
+    </div>
+  );
 };
 
-export const DefaultMobile = Template.bind({});
-DefaultMobile.args = Default.args;
-DefaultMobile.parameters = {
-  viewport: {
-    defaultViewport: 'xs',
-  },
-};
-
-export const DefaultDark = Template.bind({});
-DefaultDark.args = Default.args;
-DefaultDark.parameters = {
-  themes: {
-    default: 'dark',
-  },
-};
+export default HomePage;
