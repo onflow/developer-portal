@@ -35,16 +35,28 @@ export function FAQ({ faqList, variation }: FAQProps) {
           <div // TODO: see https://github.com/onflow/next-docs-v1/pull/51#discussion_r883674775
             onClick={() => toggleExpansion(i)}
             role="button"
-            className={`md:px6 cursor-pointer py-7 px-4 md:px-7 ${
+            className={`cursor-pointer ${
+              variation === 'small' && !itemExpanded
+                ? 'py-3 pr-3 md:p-4'
+                : variation === 'small' && itemExpanded
+                ? 'px-6 py-7 pt-6 md:p-8'
+                : ''
+            } ${
+              variation === 'large' && !itemExpanded
+                ? 'py-3 pr-3 md:p-8'
+                : variation === 'large' && itemExpanded
+                ? 'px-6 py-7 pt-6 md:p-8'
+                : ''
+            } ${
               itemExpanded
-                ? 'my-1.5 rounded-lg bg-white dark:bg-primary-dark-gray'
+                ? 'my-1.5 rounded-lg bg-white dark:bg-primary-gray-dark'
                 : isLast || isAboveExpandedItem
                 ? ''
                 : 'border-b border-gray-200 dark:border-primary-gray-400'
             }`}
           >
             <div
-              className={`flex items-center justify-between ${
+              className={`flex items-center justify-between gap-4 ${
                 itemExpanded ? 'pb-3' : ''
               }`}
             >
