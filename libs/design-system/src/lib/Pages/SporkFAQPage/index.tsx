@@ -1,10 +1,9 @@
 import React from 'react';
 
 import { ReactComponent as LeftChevron } from '../../../../images/arrows/chevron-left.svg';
-import { Footer } from '../../Components';
 import { Attribution } from '../../Components/Attribution/Attribution';
+import { ButtonLink } from '../../Components/Button';
 import { FAQ } from '../../Components/FAQ/FAQ';
-import { InternalSubnav } from '../../Components/InternalSubnav';
 
 const faqList = [
   {
@@ -32,9 +31,15 @@ const faqList = [
 export function SporkFAQPage() {
   return (
     <main className="bg-zinc-50 px-4 pb-48 dark:bg-black md:bg-white md:px-0 md:pt-16">
+      <div>
+        <a className="mt-2 flex cursor-pointer items-center rounded-lg py-4 text-primary-blue dark:border-primary-purple dark:text-primary-purple md:hidden w-fit" href='#TODO'>
+          <LeftChevron />
+          Back to Network
+        </a>
+      </div>
       <div className="grid grid-cols-1 items-start pb-6 md:flex md:pb-12">
-        <div className="order-2 grow">
-          <h1 className="pb-14 font-display text-[44px] font-bold leading-snug md:pb-6 md:font-sans md:text-4xl">
+        <div className="grow">
+          <h1 className="pb-14 font-display text-4xl font-bold leading-snug md:pb-6 md:font-sans">
             <span className="hidden md:block">Spork FAQ</span>
             <span className="block md:hidden">FAQ</span>
           </h1>
@@ -47,13 +52,10 @@ export function SporkFAQPage() {
             difficulty="Beginners"
           />
         </div>
-        <div className="order-1 md:order-2">
-          <button className="mt-2 flex items-center rounded-lg border-primary-blue py-4 text-primary-blue dark:border-primary-purple dark:text-primary-purple md:m-0 md:border md:px-5">
-            <span>
-              <LeftChevron className="stroke-primary-blue dark:stroke-primary-purple" />
-            </span>
+        <div className="hidden md:block">
+          <ButtonLink variant="secondary" prev>
             Back to Network
-          </button>
+          </ButtonLink>
         </div>
       </div>
       <FAQ faqList={faqList} variation="large" />
