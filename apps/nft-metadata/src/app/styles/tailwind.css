@@ -739,6 +739,18 @@ select {
   bottom: 0.5rem;
 }
 
+.bottom-0 {
+  bottom: 0px;
+}
+
+.left-1\/2 {
+  left: 50%;
+}
+
+.left-1\/4 {
+  left: 25%;
+}
+
 .z-50 {
   z-index: 50;
 }
@@ -941,6 +953,10 @@ select {
 
 .mb-0 {
   margin-bottom: 0px;
+}
+
+.ml-24 {
+  margin-left: 6rem;
 }
 
 .block {
@@ -1313,6 +1329,10 @@ select {
   overflow: hidden;
 }
 
+.overflow-x-auto {
+  overflow-x: auto;
+}
+
 .overflow-y-auto {
   overflow-y: auto;
 }
@@ -1347,6 +1367,10 @@ select {
 
 .rounded-none {
   border-radius: 0px;
+}
+
+.rounded-sm {
+  border-radius: 0.125rem;
 }
 
 .rounded-r-lg {
@@ -1387,6 +1411,10 @@ select {
   border-width: 0px;
 }
 
+.border-4 {
+  border-width: 4px;
+}
+
 .border-y {
   border-top-width: 1px;
   border-bottom-width: 1px;
@@ -1395,6 +1423,11 @@ select {
 .border-y-2 {
   border-top-width: 2px;
   border-bottom-width: 2px;
+}
+
+.border-x-2 {
+  border-left-width: 2px;
+  border-right-width: 2px;
 }
 
 .border-b {
@@ -1482,6 +1515,16 @@ select {
 .border-blue-500 {
   --tw-border-opacity: 1;
   border-color: rgb(59 130 246 / var(--tw-border-opacity));
+}
+
+.border-gray-600 {
+  --tw-border-opacity: 1;
+  border-color: rgb(75 85 99 / var(--tw-border-opacity));
+}
+
+.border-gray-100 {
+  --tw-border-opacity: 1;
+  border-color: rgb(243 244 246 / var(--tw-border-opacity));
 }
 
 .border-y-gray-500 {
@@ -1872,6 +1915,11 @@ select {
   padding-bottom: 0.125rem;
 }
 
+.py-16 {
+  padding-top: 4rem;
+  padding-bottom: 4rem;
+}
+
 .pt-8 {
   padding-top: 2rem;
 }
@@ -1946,6 +1994,10 @@ select {
 
 .pt-16 {
   padding-top: 4rem;
+}
+
+.pb-32 {
+  padding-bottom: 8rem;
 }
 
 .text-left {
@@ -2135,6 +2187,11 @@ select {
 .text-gray-700 {
   --tw-text-opacity: 1;
   color: rgb(55 65 81 / var(--tw-text-opacity));
+}
+
+.text-blue-50 {
+  --tw-text-opacity: 1;
+  color: rgb(239 246 255 / var(--tw-text-opacity));
 }
 
 .underline {
@@ -3213,6 +3270,11 @@ ul.contains-task-list {
     padding-right: 4rem;
   }
 
+  .md\:px-32 {
+    padding-left: 8rem;
+    padding-right: 8rem;
+  }
+
   .md\:pb-24 {
     padding-bottom: 6rem;
   }
@@ -3298,9 +3360,9 @@ ul.contains-task-list {
     padding-right: 1rem;
   }
 
-  .lg\:px-32 {
-    padding-left: 8rem;
-    padding-right: 8rem;
+  .lg\:px-64 {
+    padding-left: 16rem;
+    padding-right: 16rem;
   }
 
   .lg\:px-12 {
@@ -3308,9 +3370,14 @@ ul.contains-task-list {
     padding-right: 3rem;
   }
 
-  .lg\:px-64 {
-    padding-left: 16rem;
-    padding-right: 16rem;
+  .lg\:px-32 {
+    padding-left: 8rem;
+    padding-right: 8rem;
+  }
+
+  .lg\:px-48 {
+    padding-left: 12rem;
+    padding-right: 12rem;
   }
 
   .lg\:text-2xl {

@@ -4,12 +4,13 @@
 
 import { useState } from "react"
 
-function Collapsible({item}: {item: any}) {
+function Collapsible({item, index}: {item: any, index: number}) {
   const [expand, setExpand] = useState(false)
   const statusColor = item.isValid ? "green" : "red"
+  const borderClass = index > 0 ? 'border-t-2' : ''
   return (
     <>
-      <div className="accordion-item bg-white border border-gray-200">
+      <div className={`accordion-item bg-white border-gray-300 ${borderClass}`}>
         <h2 className="accordion-header mb-0" id="headingOne">
           <button className="
             relative
@@ -21,7 +22,7 @@ function Collapsible({item}: {item: any}) {
             text-base text-gray-800 text-left
             bg-white
             border-0
-            rounded-none
+            rounded-md
             transition
             focus:outline-none
           " type="button"
@@ -54,10 +55,14 @@ function Collapsible({item}: {item: any}) {
 
 export function Accordian({items}: {items: Array<any>}) {
   return (
-    <div className="accordion" id="accordionExample">
+    <div className="accordion border-2 border-gray-400 rounded-sm" id="accordionExample">
       {
         items && items.map((item, i) => {
-          return <Collapsible key={i} item={item} />
+          return (
+            <>
+              <Collapsible key={i} item={item} index={i} />
+            </>
+          )
         })
       }
     </div>

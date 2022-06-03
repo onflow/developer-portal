@@ -54,11 +54,11 @@ export default function ({
   ]
 
   return (
-    <div className="mx-auto px-0 md:px-16 lg:px-64 pt-16">
+    <div className="mx-auto px-0 md:px-16 lg:px-64 py-16">
       <StepsProgressBar
         steps={steps}
       />
-      <div className="px-4 sm:px-8 md:px-16 lg:px-64 mt-8">
+      <div className="px-4 sm:px-8 md:px-16 lg:px-48 mt-8">
         {
           steps[0].isActive && !steps[0].isComplete && (
             <ContractSelect
