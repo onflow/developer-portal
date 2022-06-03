@@ -37,7 +37,7 @@ export function FAQ({ faqList, variation }: FAQProps) {
             role="button"
             className={`md:px6 cursor-pointer py-7 px-4 md:px-7 ${
               itemExpanded
-                ? 'my-1.5 rounded-lg bg-white dark:bg-primary-dark-gray'
+                ? 'my-1.5 rounded-lg bg-white dark:bg-primary-gray-dark'
                 : isLast || isAboveExpandedItem
                 ? ''
                 : 'border-b border-gray-200 dark:border-primary-gray-400'

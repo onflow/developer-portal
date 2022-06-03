@@ -30,7 +30,7 @@ export function SDKCard({
 }: SDKCardProps) {
   return (
     <a
-      className="flex gap-4 rounded-lg bg-white py-6 px-8 dark:bg-primary-dark-gray"
+      className="flex gap-4 rounded-lg bg-white py-6 px-8 dark:bg-primary-gray-dark"
       href={link}
     >
       <div>
