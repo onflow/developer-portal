@@ -1,6 +1,6 @@
 import clsx from 'clsx';
 import { ButtonLink } from '../Button';
-import { MobileCarousel } from '../MobileCarousel';
+import { Carousel } from '../Carousel';
 import Tag from '../Tag';
 
 export type EventCardProps = {
@@ -76,10 +76,10 @@ export type EventCardListProps = {
 
 export function EventCardList({ events }: EventCardListProps) {
   return (
-    <MobileCarousel>
+    <Carousel>
       {events.map((event) => (
         <EventCard key={`${event.title}-${event.href}`} {...event} />
       ))}
-    </MobileCarousel>
+    </Carousel>
   );
 }

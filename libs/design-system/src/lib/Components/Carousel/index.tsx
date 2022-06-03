@@ -1,7 +1,7 @@
 import clsx from 'clsx';
 import React, { useCallback, useRef, useState } from 'react';
 
-export type MobileCarouselProps = React.PropsWithChildren<{
+export type CarouselProps = React.PropsWithChildren<{
   /**
    * The breakpoint at which the view should switch to non-carousel mode.
    * If none, then carousel mode will always be used.
@@ -30,11 +30,11 @@ export type MobileCarouselProps = React.PropsWithChildren<{
  * individually, but in larger screens (md+) shows all children stacked
  * vertically.
  */
-export function MobileCarousel({
+export function Carousel({
   children,
   breakpoint = 'md',
   carouselItemWidth = 'w-10/12',
-}: MobileCarouselProps) {
+}: CarouselProps) {
   const [selectedIndex, setSelectedIndex] = useState(0);
   const scrollContainer = useRef<HTMLUListElement>();
   const childCount = React.Children.count(children);

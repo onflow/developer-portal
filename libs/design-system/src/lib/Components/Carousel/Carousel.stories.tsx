@@ -1,9 +1,9 @@
 import { Meta, Story } from '@storybook/react';
-import { MobileCarousel, MobileCarouselProps } from '.';
+import { Carousel, CarouselProps } from '.';
 
 export default {
-  component: MobileCarousel,
-  title: 'Components/MobileCarousel',
+  component: Carousel,
+  title: 'Components/Carousel',
   argTypes: {
     breakpoint: {
       options: ['none', 'sm', 'md', 'lg', 'xl'],
@@ -18,13 +18,13 @@ export default {
 
 const COLORS = ['#f00', '#0f0', '#00f', '#ff0', '#0ff', '#f0f'];
 
-const TemplateSingle: Story<MobileCarouselProps & { itemCount: number }> = ({
+const TemplateSingle: Story<CarouselProps & { itemCount: number }> = ({
   itemCount,
   ...args
 }) => {
   return (
     <div style={{ backgroundColor: '#f1f1f1', padding: '14px' }}>
-      <MobileCarousel {...args}>
+      <Carousel {...args}>
         {new Array(itemCount).fill(null).map((_, index) => (
           <div
             key={index}
@@ -37,7 +37,7 @@ const TemplateSingle: Story<MobileCarouselProps & { itemCount: number }> = ({
             Item {index}
           </div>
         ))}
-      </MobileCarousel>
+      </Carousel>
     </div>
   );
 };
