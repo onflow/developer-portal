@@ -5,6 +5,7 @@
 declare module '@onflow/fcl' {
   function currentUser(): any;
   function authenticate(): any;
+  function logIn(): any;
   function getAccount(address: any): any;
   function account(address: any): any;
   function script(): any;
@@ -29,6 +30,7 @@ declare module '@onflow/types' {
   function Address(): any;
   function String(): any;
   function Path(): any;
+  function UInt64(): any;
 }
 
 declare module '@onflow/transport-http' {

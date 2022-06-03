@@ -1,29 +1,43 @@
 import { GenericViewToggle } from "./generic-view-toggle"
 
 type GenericViewProps = {
-  view: any
+  view: any,
+  withRawView: boolean
 }
 
-export function CollectionDisplayView({ view }: GenericViewProps) {
+
+export function CollectionDisplayView({ view, withRawView }: GenericViewProps) {
+  const collectionSquareImage = view.squareImage && view.squareImage.file ? view.squareImage.file.url : view.collectionSquareImage
+  const collectionBannerImage = view.bannerImage && view.bannerImage.file ? view.bannerImage.file.url : view.collectionBannerImage
+
   return (
     <>
-      <div className="text-2xl">{view.collectionName}</div>
+      <div className="text-2xl">{view.collectionName || view.name}</div>
       <a className="text-xs hover:underline text-blue-600" href={view.externalURL} target="_blank">Visit Website</a>
       <div className="text-md mt-2">
         {view.collectionDescription}
       </div>
-      <img src={view.collectionSquareImage} width="80" height="80"></img>
-      <img src={view.collectionBannerImage} width="200" height="50"></img>      {
+      <img src={collectionSquareImage} width="80" height="80"></img>
+      <img src={collectionBannerImage} width="200" height="50"></img>
+      {
         view && view.socials && Object.keys(view.socials).map((social) => {
+          const socialLink = view.socials[social] && view.socials[social].url ? view.socials[social].url : view.socials[social]
           return (
-            <div>
-              {social} : {view.socials[social]}
+            <div key={social}>
+              {social} : {socialLink}
             </div>
           )
         })
       }
-      <hr className="my-2" />
-      <GenericViewToggle view={view} />
+      {
+        withRawView && (
+          <>
+            <hr className="my-2" />
+            <GenericViewToggle view={view} />
+          </>
+        )
+      }
+      
     </>
   )
 }

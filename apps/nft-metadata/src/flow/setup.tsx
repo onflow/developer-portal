@@ -1,6 +1,7 @@
 import { config } from "@onflow/fcl";
 import { send as httpSend } from "@onflow/transport-http";
 import * as json from "./c2j.json";
+import * as catalogJson from "./catalog_c2j.json"
 
 if (process.env["FLOW_ENVIRONMENT"] === "mainnet") {
   // TODO: Set correct endpoints.
@@ -21,12 +22,36 @@ if (process.env["FLOW_ENVIRONMENT"] === "mainnet") {
         );
     }
   );
+  Object.keys(catalogJson.vars["mainnet"]).forEach(
+    (contractAddressKey) => {
+        // eslint-disable-next-line @typescript-eslint/ban-ts-comment
+        // @ts-ignore
+        config.put(
+            contractAddressKey,
+            // eslint-disable-next-line @typescript-eslint/ban-ts-comment
+            // @ts-ignore
+            json.vars["testnet"][contractAddressKey]
+        );
+    }
+  );
 } else {
   config({
     "accessNode.api": "https://rest-testnet.onflow.org",
     "discovery.wallet": "https://fcl-discovery.onflow.org/testnet/authn"
   })
   Object.keys(json.vars["testnet"]).forEach(
+    (contractAddressKey) => {
+        // eslint-disable-next-line @typescript-eslint/ban-ts-comment
+        // @ts-ignore
+        config.put(
+            contractAddressKey,
+            // eslint-disable-next-line @typescript-eslint/ban-ts-comment
+            // @ts-ignore
+            json.vars["testnet"][contractAddressKey]
+        );
+    }
+  );
+  Object.keys(catalogJson.vars["testnet"]).forEach(
     (contractAddressKey) => {
         // eslint-disable-next-line @typescript-eslint/ban-ts-comment
         // @ts-ignore

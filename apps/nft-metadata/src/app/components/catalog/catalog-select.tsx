@@ -1,5 +1,6 @@
 import { useEffect, useState } from "react"
 import { useHistory } from "react-router-dom"
+import { getProposals } from "src/flow/utils"
 
 export function CatalogSelect({
   type,
@@ -13,38 +14,39 @@ export function CatalogSelect({
   const loading = !items
 
   useEffect(() => {
-    // retrieve list of proposals or 
-    if (type === 'Proposals') {
-      setItems([
-        {
-          name: "Proposal 1",
-          subtext: "This is proposal item 1",
-          id: "proposal1"
-        },
-        {
-          name: "Proposal 2",
-          subtext: "This is proposal item 2",
-          id: "proposal2"
-        }
-      ])
-    } else if (type === 'Catalog') {
-      setItems([
-        {
-          name: "Schmoes Prelaunch Token",
-          subtext: "0x123456654321.SchmoesPrelaunchToken",
-          id: "schmoes"
-        }
-      ])
+    const setup = async () => {
+      // retrieve list of proposals or 
+      if (type === 'Proposals') {
+        const proposals = await getProposals()
+        const items = Object.keys(proposals).map((proposalID) => {
+          const proposal = proposals[proposalID]
+          return {
+            name: `#${proposalID} - ${proposal.collectionName}`,
+            subtext: `Created ${(new Date(proposal.createdTime * 1000)).toLocaleDateString("en-US")} by ${proposal.proposer}`,
+            id: proposalID
+          }
+        })
+        setItems(items)
+      } else if (type === 'Catalog') {
+        setItems([
+          {
+            name: "Schmoes Prelaunch Token",
+            subtext: "0x123456654321.SchmoesPrelaunchToken",
+            id: "schmoes"
+          }
+        ])
+      }
     }
+    setup()
   }, [type])
 
   return (
     <a className="border-t-1 my-4">
       {
-        items && items.map((item) => {
+        items && items.map((item, i) => {
           const selectedStyle = selected && item.id === selected ? 'border-x-blue-500 border-l-4' : ''
           return (
-            <div className={`flex-col p-8 hover:bg-gray-300 cursor-pointer border-t-2 text-left ${selectedStyle}`} onClick={
+            <div key={i} className={`flex-col p-8 hover:bg-gray-300 cursor-pointer border-t-2 text-left ${selectedStyle}`} onClick={
               () => {
                 history.push(type === 'Proposals' ? `/proposals/${item.id}` : `/catalog/${item.id}`)
               }
@@ -57,9 +59,9 @@ export function CatalogSelect({
       }
 
       {
-        loading && [0,0,0,0,0,0,0,0,0].map((item) => {
+        loading && [0,0,0,0,0,0,0,0,0].map((item, i) => {
           return (
-            <div className={`flex-col p-8 cursor-pointer border-t-2`}>
+            <div key={i} className={`flex-col p-8 cursor-pointer border-t-2`}>
               <div className="font-semibold">{" "}</div>
               <div className="">{" "}</div>
             </div>

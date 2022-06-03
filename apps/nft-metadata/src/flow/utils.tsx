@@ -69,6 +69,34 @@ export async function retrieveMetadataInformation(sampleAddress: string, publicP
   }
 }
 
+export async function getProposals(): Promise<any> {
+  try {
+    const scriptResult = await fcl.send([
+      fcl.script(catalogJson.scripts.get_nft_catalog_proposals),
+      fcl.args([])
+    ]).then(fcl.decode)
+    return scriptResult
+  } catch (e) {
+    console.error(e)
+    return null;
+  }
+}
+
+export async function getProposal(proposalID: string): Promise<any> {
+  try {
+    const scriptResult = await fcl.send([
+      fcl.script(catalogJson.scripts.get_nft_proposal_for_id),
+      fcl.args([
+        fcl.arg(proposalID, t.UInt64)
+      ])
+    ]).then(fcl.decode)
+    return scriptResult
+  } catch (e) {
+    console.error(e)
+    return null;
+  }
+}
+
 export async function getNFTInAccount(sampleAddress: string, publicPath: string): Promise<any> {
   try {
     const scriptResult = await fcl.send([

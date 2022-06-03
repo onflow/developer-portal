@@ -8,7 +8,7 @@ import { Button } from "../shared/button";
 import { GenericView } from "../shared/views/generic-view";
 import { CollectionDisplayView } from "../shared/views/collection-display-view";
 import { DisplayView } from "../shared/views/display-view";
-import { CollectionDataView } from "../shared/views/collection-data-view copy";
+import { CollectionDataView } from "../shared/views/collection-data-view";
 
 export function SampleNFTView({
   sampleAddress,
@@ -67,13 +67,13 @@ export function SampleNFTView({
     } else if (item.indexOf('MetadataViews.NFTCollectionData') >= 0) {
       title = 'NFT Collection Data View';
       content = viewData["NFTCollectionData"] ?
-        <CollectionDataView view={viewData["NFTCollectionData"]} />
+        <CollectionDataView view={viewData["NFTCollectionData"]} withRawView={false} />
         :
         <div>No NFT Collection Data view was found.</div>
     } else if (item.indexOf('MetadataViews.NFTCollectionDisplay') >= 0) {
       title = 'NFT Collection Display View';
       content = viewData["NFTCollectionDisplay"] ?
-        <CollectionDisplayView view={viewData["NFTCollectionDisplay"]} />
+        <CollectionDisplayView view={viewData["NFTCollectionDisplay"]} withRawView={true} />
         :
         <div>No NFT Display view was found.</div>
     } else if (item.indexOf('MetadataViews.ExternalURL') >= 0) {
