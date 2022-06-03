@@ -1,8 +1,8 @@
 import { ButtonLink } from '../Button';
 import { Article } from '../../interfaces';
-import { Carousel } from '../Carousel';
+import { Carousel, CarouselProps } from '../Carousel';
 
-export type FeaturedArticleSliderProps = {
+export type FeaturedArticleSliderProps = CarouselProps & {
   articles: Article[];
 };
 
@@ -33,9 +33,18 @@ const FeaturedArticle = ({
   </div>
 );
 
-const FeaturedArticleSlider = ({ articles }: FeaturedArticleSliderProps) => {
+const FeaturedArticleSlider = ({
+  articles,
+  breakpoint = 'none',
+  carouselItemWidth = 'w-10/12 md:w-full',
+  ...carouselProps
+}: FeaturedArticleSliderProps) => {
   return (
-    <Carousel>
+    <Carousel
+      breakpoint={breakpoint}
+      carouselItemWidth={carouselItemWidth}
+      {...carouselProps}
+    >
       {articles.map((article) => (
         <FeaturedArticle
           key={`${article.heading}-${article.ctaLink}`}

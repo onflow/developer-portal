@@ -23,8 +23,6 @@ export type CarouselProps = React.PropsWithChildren<{
     | string;
 }>;
 
-// w-10/12 w-9/12 w-8/12
-
 /**
  * A Carousel that allows scrolling through it's children horizontally and
  * individually, but in larger screens (md+) shows all children stacked
@@ -68,7 +66,7 @@ export function Carousel({
             key={index}
             className={clsx('flex-none snap-start', {
               [carouselItemWidth]: childCount > 1,
-              'w-full': childCount <= 1,
+              'w-full ': childCount <= 1,
               'sm:w-full': breakpoint === 'sm',
               'md:w-full': breakpoint === 'md',
               'lg:w-full': breakpoint === 'lg',
@@ -79,7 +77,7 @@ export function Carousel({
           </li>
         ))}
       </ul>
-      <ul
+      <div
         className={clsx('flex list-none flex-row justify-center pt-3', {
           hidden: childCount <= 1,
           'sm:hidden': breakpoint === 'sm',
@@ -112,7 +110,7 @@ export function Carousel({
             }}
           />
         ))}
-      </ul>
+      </div>
     </section>
   );
 }
