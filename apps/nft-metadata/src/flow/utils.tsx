@@ -44,6 +44,7 @@ export async function retrieveContractInformation(address: string, name: string,
     })
     return scriptResult
   } catch (e) {
+    console.error(e);
     // If this isn't an NFT contract, the templated types in the script will fail.
     // We can assume an error from the script likely means the selected contract
     // is not of type `NonFungibleToken`
@@ -63,6 +64,7 @@ export async function retrieveMetadataInformation(sampleAddress: string, publicP
       .then(fcl.decode)
     return scriptResult
   } catch (e) {
+    console.error(e);
     return null;
   }
 }
@@ -78,6 +80,22 @@ export async function getNFTInAccount(sampleAddress: string, publicPath: string)
     ]).then(fcl.decode)
     return scriptResult
   } catch (e) {
+    console.error(e);
+    return null;
+  }
+}
+
+export async function getNFTMetadataForCollectionName(collectionName: string): Promise<any> {
+  try {
+    const scriptResult = await fcl.send([
+      fcl.script(catalogJson.scripts.get_nft_metadata_for_collection_name),
+      fcl.args([
+        fcl.arg(collectionName, t.String),
+      ])
+    ]).then(fcl.decode)
+    return scriptResult
+  } catch (e) {
+    console.error(e);
     return null;
   }
 }
