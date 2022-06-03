@@ -35,7 +35,7 @@ export function UpcomingEvents({
             events={primaryEvents}
             breakpoint="none"
             className="mb-4"
-            carouselItemWidth="w-full"
+            carouselItemWidth="w-10/12 md:w-full"
           />
           <ul className="flex list-none flex-row gap-6 overflow-x-auto">
             {secondaryEvents.map((event) => (
