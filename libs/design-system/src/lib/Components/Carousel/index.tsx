@@ -21,6 +21,8 @@ export type CarouselProps = React.PropsWithChildren<{
     | 'w-11/12'
     | 'w-full'
     | string;
+
+  className?: string;
 }>;
 
 /**
@@ -29,9 +31,10 @@ export type CarouselProps = React.PropsWithChildren<{
  * vertically.
  */
 export function Carousel({
-  children,
   breakpoint = 'md',
   carouselItemWidth = 'w-10/12',
+  children,
+  className,
 }: CarouselProps) {
   const [selectedIndex, setSelectedIndex] = useState(0);
   const scrollContainer = useRef<HTMLUListElement>();
@@ -47,7 +50,7 @@ export function Carousel({
   );
 
   return (
-    <section className="flex flex-col">
+    <section className={clsx('flex flex-col', className)}>
       <ul
         className={clsx(
           'flex min-h-fit snap-x snap-mandatory list-none flex-row gap-6 overflow-x-auto',
