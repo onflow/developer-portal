@@ -34,8 +34,9 @@ export function CatalogForm({ sampleAddress, publicPath }: CatalogProps) {
         if (!user.loggedIn) {
           fcl.authenticate()
         }
+        let proposalMessage = message + " This proposal was made via: " + window.location.href
         try {
-          await proposeNFTToCatalog(collectionName, sampleAddress, publicPath, selectedContract, selectedAddress, message);
+          await proposeNFTToCatalog(collectionName, sampleAddress, publicPath, selectedContract, selectedAddress, proposalMessage);
           setError(null);
         } catch (e) {
           setError("Error running Flow transaction.");
