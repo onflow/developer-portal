@@ -1,6 +1,6 @@
-import React, { useState } from 'react';
 import { ButtonLink } from '../Button';
 import { Article } from '../../interfaces';
+import { Carousel } from '../Carousel';
 
 export type FeaturedArticleSliderProps = {
   articles: Article[];
@@ -34,36 +34,15 @@ const FeaturedArticle = ({
 );
 
 const FeaturedArticleSlider = ({ articles }: FeaturedArticleSliderProps) => {
-  const [currentArticleIndex, setCurrentArticleIndex] = useState(0);
-  const ArticleComponents = articles.map((article) => (
-    <FeaturedArticle {...article} />
-  ));
-
   return (
-    <div className="flex flex-col items-center justify-center">
-      {ArticleComponents[currentArticleIndex]}
-      {articles.length > 1 && (
-        <div className="mt-12 flex items-center justify-center md:hidden">
-          {articles.map((_, index) => {
-            const backgroundClass =
-              index === currentArticleIndex
-                ? 'bg-green-success'
-                : 'bg-primary-gray-100';
-
-            return (
-              <div
-                key={`article-${index}`}
-                onClick={() => setCurrentArticleIndex(index)}
-                className={`${backgroundClass} mr-3 h-3 w-3 rounded-full hover:cursor-pointer`}
-                tabIndex={0}
-                role="button"
-                aria-pressed="false"
-              />
-            );
-          })}
-        </div>
-      )}
-    </div>
+    <Carousel>
+      {articles.map((article) => (
+        <FeaturedArticle
+          key={`${article.heading}-${article.ctaLink}`}
+          {...article}
+        />
+      ))}
+    </Carousel>
   );
 };
 
