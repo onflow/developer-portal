@@ -71,7 +71,7 @@ const NetworkPage = () => {
               <AnnouncementCard
                 sourceIcon="https://github.githubassets.com/images/modules/logos_page/GitHub-Mark.png"
                 sourceAltText="Github"
-                heading="Holy shit Github is down"
+                heading="Holy schnikes Github is down"
                 timestamp={startOfDay(new Date())}
                 link="https://google.com"
               />
