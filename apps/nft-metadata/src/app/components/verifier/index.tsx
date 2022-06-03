@@ -5,6 +5,7 @@ import { ContractSelect } from './contract-select';
 import { SampleNFTView } from './sample-nft-view';
 import { StepsProgressBar } from "./steps-progress-bar";
 import { AdditionalNftInfo } from "./additional-nft-info";
+import { AddToCatalog } from "./add-to-catalog";
 
 export default function ({
 }: {
@@ -31,23 +32,23 @@ export default function ({
       href: `/v/${selectedAddress}/${selectedContract}`,
       isActive: selectedAddress && selectedContract,
       isComplete: selectedAddress && selectedContract &&
-                  sampleAddress && publicPath
+        sampleAddress && publicPath
     },
     {
       id: "S3",
       title: "Review Metadata",
       href: `/v/${selectedAddress}/${selectedContract}?path=${publicPath}&sampleAddress=${sampleAddress}`,
       isActive: selectedAddress && selectedContract &&
-                sampleAddress && publicPath,
+        sampleAddress && publicPath,
       isComplete: selectedAddress && selectedContract &&
-                sampleAddress && publicPath && confirmed
+        sampleAddress && publicPath && confirmed
     },
     {
       id: "S4",
       title: "Add to Catalog",
-      onClick: () => {},
+      onClick: () => { },
       isActive: selectedAddress && selectedContract &&
-                sampleAddress && publicPath && confirmed,
+        sampleAddress && publicPath && confirmed,
       isComplete: false
     }
   ]
@@ -67,7 +68,7 @@ export default function ({
             />
           )
         }
-        
+
         {
           steps[1].isActive && !steps[1].isComplete && (
             <AdditionalNftInfo />
@@ -81,7 +82,7 @@ export default function ({
 
         {
           steps[3].isActive && !steps[3].isComplete && (
-            <div>{steps[3].title}</div>
+            <AddToCatalog sampleAddress={sampleAddress} publicPath={publicPath}/>
           )
         }
       </div>

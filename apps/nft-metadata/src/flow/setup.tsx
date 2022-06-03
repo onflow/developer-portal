@@ -24,8 +24,7 @@ if (process.env["FLOW_ENVIRONMENT"] === "mainnet") {
 } else {
   config({
     "accessNode.api": "https://rest-testnet.onflow.org",
-    "discovery.wallet": "https://staging.accounts.meetdapper.com/fcl/authn-restricted",
-    "sdk.transport": httpSend
+    "discovery.wallet": "https://fcl-discovery.onflow.org/testnet/authn"
   })
   Object.keys(json.vars["testnet"]).forEach(
     (contractAddressKey) => {

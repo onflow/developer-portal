@@ -13,6 +13,8 @@ declare module '@onflow/fcl' {
   function sansPrefix(addr): any;
   function config(args): any;
   function query(args): any;
+  function mutate(args): any;
+  function tx(args: any);
   function send(args: any);
   function script(args: any);
   function decode();

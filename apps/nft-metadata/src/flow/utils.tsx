@@ -277,3 +277,100 @@ export async function getNFTInAccount(sampleAddress: string, publicPath: string)
     return null;
   }
 }
+
+
+export async function proposeNFTToCatalog(
+  collectionName: string,
+  sampleAddress: string,
+  publicPath: string,
+  contractName: string,
+  contractAddress: string,
+  message: string
+): Promise<any> {
+  const cadence = `
+  import MetadataViews from 0x631e88ae7f1d7c20
+  import NFTCatalog from 0x0cb698d1315f5fa0
+  import ${contractName} from ${fcl.withPrefix(contractAddress)} 
+
+  transaction(
+    collectionName : String,
+    contractName: String,
+    contractAddress: Address,
+    addressWithNFT: Address,
+    publicPathIdentifier: String,
+    message: String
+  ) {
+
+    let nftCatalogProposalResourceRef : &NFTCatalog.NFTCatalogProposalManager
+    
+    prepare(acct: AuthAccount) {
+      
+      if acct.borrow<&NFTCatalog.NFTCatalogProposalManager>(from: NFTCatalog.ProposalManagerStoragePath) == nil {
+        let proposalManager <- NFTCatalog.createNFTCatalogProposalManager()
+        acct.save(<-proposalManager, to: NFTCatalog.ProposalManagerStoragePath)
+        acct.link<&NFTCatalog.NFTCatalogProposalManager{NFTCatalog.NFTCatalogProposalManagerPublic}>(NFTCatalog.ProposalManagerPublicPath, target: NFTCatalog.ProposalManagerStoragePath)
+      }
+
+      self.nftCatalogProposalResourceRef = acct.borrow<&NFTCatalog.NFTCatalogProposalManager>(from: NFTCatalog.ProposalManagerStoragePath)!
+    }
+    
+    execute {
+      let nftAccount = getAccount(addressWithNFT)
+      let pubPath = PublicPath(identifier: publicPathIdentifier)!
+      let collectionCap = nftAccount.getCapability<&AnyResource{MetadataViews.ResolverCollection}>(pubPath)
+      assert(collectionCap.check(), message: "MetadataViews Collection is not set up properly, ensure the Capability was created/linked correctly.")
+      let collectionRef = collectionCap.borrow()!
+      assert(collectionRef.getIDs().length > 0, message: "No NFTs exist in this collection, ensure the provided account has at least 1 NFTs.")
+      let testNftId = collectionRef.getIDs()[0]
+      let nftResolver = collectionRef.borrowViewResolver(id: testNftId)
+      
+      let metadataCollectionData = nftResolver.resolveView(Type<MetadataViews.NFTCollectionData>())! as! MetadataViews.NFTCollectionData
+      
+      let collectionData = NFTCatalog.NFTCollectionData(
+        storagePath: metadataCollectionData.storagePath,
+        publicPath: metadataCollectionData.publicPath,
+        privatePath: metadataCollectionData.providerPath,
+        publicLinkedType : metadataCollectionData.publicLinkedType,
+        privateLinkedType : metadataCollectionData.providerLinkedType
+      )
+
+      let collectionDisplay = nftResolver.resolveView(Type<MetadataViews.NFTCollectionDisplay>())! as! MetadataViews.NFTCollectionDisplay
+
+      let catalogData = NFTCatalog.NFTCatalogMetadata(
+        contractName: contractName,
+        contractAddress: contractAddress,
+        nftType: Type<@${contractName}.NFT>(),
+        collectionData: collectionData,
+        collectionDisplay : collectionDisplay
+      )
+
+      self.nftCatalogProposalResourceRef.setCurrentProposalEntry(name : collectionName)
+
+      NFTCatalog.proposeNFTMetadata(collectionName : collectionName, metadata : catalogData, message: message, proposer: self.nftCatalogProposalResourceRef.owner!.address)
+
+      self.nftCatalogProposalResourceRef.setCurrentProposalEntry(name : nil)
+    }
+  }
+`
+  try {
+    const txId = await fcl.mutate({
+      cadence: cadence,
+      limit: 9999,
+      args: (arg: any, t: any) => [
+        fcl.arg(collectionName, t.String),
+        fcl.arg(contractName, t.String),
+        fcl.arg(contractAddress, t.Address),
+        fcl.arg(sampleAddress, t.Address),
+        fcl.arg(publicPath.replace('/public/', ''), t.String),
+        fcl.arg(message, t.String)
+      ]
+    });
+
+    const transaction = await fcl.tx(txId).onceSealed()
+    return transaction;
+
+  } catch (e) {
+    console.error(e);
+    throw e;
+  }
+}
