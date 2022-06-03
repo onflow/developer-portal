@@ -2,6 +2,7 @@ export { default as AnnouncementCard } from './AnnouncementCard';
 export { default as Callout } from './Callout';
 export { default as FeaturedArticleSlider } from './FeaturedArticleSlider';
 export { Footer } from './Footer';
+export { default as Flips } from './Flips';
 export { LandingHeaderHome } from './LandingHeaderHome';
 export { LinkCard2Column } from './LinkCard2Column';
 export { LinkCard3Column } from './LinkCard3Column';

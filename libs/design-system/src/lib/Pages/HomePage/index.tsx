@@ -5,14 +5,19 @@ import {
   Footer,
   LinkCard2Column,
   LinkCard3Column,
+  Flips,
 } from '../../Components';
 import { ReactComponent as UseCaseIcon } from '../../../../images/content/use-cases.svg';
 import { ReactComponent as EcosystemIcon } from '../../../../images/content/ecosystem.svg';
 import { ReactComponent as SDKIcon } from '../../../../images/content/sdk.svg';
-import { LinkCard3ColumnProps } from '../../Components/LinkCard3Column';
+import { FlipCellProps } from '../../Components/FlipCell';
 
-const HomePage = () => {
-  const threeColumnItems: LinkCard3ColumnProps = [
+export type HomePageProps = {
+  flips: FlipCellProps[];
+};
+
+const HomePage = ({ flips }) => {
+  const threeColumnItems = [
     {
       title: 'Quickstart',
       description:
@@ -97,7 +102,9 @@ const HomePage = () => {
         description="Everything you need to start building on Flow is lorem ipsum Everything you need to orem ipsum Everything you need to  "
       />
 
-      <LinkCard3Column items={threeColumnItems} />
+      <LinkCard3Column items={threeColumnItems as any} />
+
+      <Flips flips={flips} />
 
       <div className="my-24">
         <SocialLinksSignup />
