@@ -28,7 +28,7 @@ export function SmallVideoCard({
   return (
     <a
       href={link}
-      className="flex gap-4 rounded-xl bg-white p-6 transition ease-in hover:shadow-lg dark:bg-primary-dark-gray"
+      className="flex gap-4 rounded-xl bg-white p-6 transition ease-in hover:shadow-lg dark:bg-primary-gray-dark"
     >
       <div className="aspect-square h-min rounded bg-gradient-to-br from-fuchsia-200 to-cyan-200 p-7">
         <PlayCircle />
