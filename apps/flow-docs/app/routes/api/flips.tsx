@@ -1,5 +1,6 @@
 import type { LoaderFunction } from "@remix-run/node";
 import flipSampleOutput from "./flipSampleOutput.json";
+import { useLoaderData } from "@remix-run/react";
 import type { FlipCellProps } from "../../../../../libs/design-system/dist/lib/Components/Flips/FlipCell";
 export type LoaderData = FlipCellProps[];
 
@@ -22,3 +23,22 @@ export const loader: LoaderFunction = async () => {
 
   return flipCellProps;
 };
+
+const FLIPs = () => {
+  const flips = useLoaderData<LoaderData>();
+  console.log("Logging flips", { flips });
+  return (
+    <div>
+      <h1>FLIPS</h1>
+      <div className="w-full">
+        {flips?.map((flip) => (
+          <li id="user-content-fn-1" key={flip.forumLink}>
+            {flip.heading} {flip.numComments}
+          </li>
+        ))}
+      </div>
+    </div>
+  );
+};
+
+export default FLIPs;
