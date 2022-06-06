@@ -1,6 +1,6 @@
 import { useState } from "react"
 import { useParams } from "react-router-dom";
-import { NetworkDropDown, NetworkValue } from "./network-dropdown";
+import { NetworkDropDown, Network } from "./network-dropdown";
 import { CatalogSelect } from "./catalog-select";
 import { Filter } from "./filter";
 import { NftCollectionContent } from "./nft-collection-content";
@@ -13,7 +13,7 @@ export default function Layout({
 }) {
   const { identifier } = useParams()
 
-  const [network, setNetwork] = useState<NetworkValue>("testnet")
+  const [network, setNetwork] = useState<Network>("testnet")
 
   return (
     <div className="mx-auto px-0 md:px-4 lg:px-32 pt-4">
