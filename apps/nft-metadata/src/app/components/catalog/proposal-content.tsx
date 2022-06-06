@@ -56,7 +56,7 @@ export function ProposalContent({proposalID}: {proposalID: string|undefined}) {
       <br />
       <div className="text-lg">Actions</div>
       <Box>
-        <ProposalActions />
+        <ProposalActions proposer={proposalData.proposer} />
       </Box>
     </>
   )

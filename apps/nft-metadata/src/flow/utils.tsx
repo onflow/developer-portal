@@ -158,6 +158,20 @@ export async function getIsAdmin(address: string) {
   }
 }
 
+export async function createAdminProxy() {
+  try {
+    const txId = await fcl.mutate({
+      cadence: catalogJson.transactions.setup_nft_catalog_admin_proxy,
+      limit: 9999,
+      args: (arg: any, t: any) => []
+    });
+    const transaction = await fcl.tx(txId).onceSealed()
+    return transaction
+  } catch (e) {
+    return null;
+  }
+}
+
 
 export async function proposeNFTToCatalog(
   collectionName: string,
