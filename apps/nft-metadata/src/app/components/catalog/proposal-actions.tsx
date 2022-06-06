@@ -38,7 +38,15 @@ export function ProposalActions({}: {}) {
   if (!loggedIn) {
     return (
       <>
-        <a className="cursor-pointer" onClick={() => {fcl.logIn()}}>Log In</a>
+        <a
+          className="cursor-pointer"
+          onClick={async () => {
+            await fcl.logIn()
+            setForceState(forceState + 1)
+          }}
+        >
+          Log In
+        </a>
       </>
     )
   }
