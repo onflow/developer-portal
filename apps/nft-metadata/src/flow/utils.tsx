@@ -128,6 +128,36 @@ export async function getNFTMetadataForCollectionName(collectionName: string): P
   }
 }
 
+export async function getAccountHasAdminProxy(address: string) {
+  try {
+    const scriptResult = await fcl.send([
+      fcl.script(catalogJson.scripts.has_admin_proxy),
+      fcl.args([
+        fcl.arg(address, t.Address),
+      ])
+    ]).then(fcl.decode)
+    return scriptResult
+  } catch (e) {
+    console.error(e);
+    return null;
+  }
+}
+
+export async function getIsAdmin(address: string) {
+  try {
+    const scriptResult = await fcl.send([
+      fcl.script(catalogJson.scripts.is_catalog_admin),
+      fcl.args([
+        fcl.arg(address, t.Address),
+      ])
+    ]).then(fcl.decode)
+    return scriptResult
+  } catch (e) {
+    console.error(e);
+    return null;
+  }
+}
+
 
 export async function proposeNFTToCatalog(
   collectionName: string,

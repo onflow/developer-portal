@@ -53,6 +53,12 @@ if (process.env["FLOW_ENVIRONMENT"] === "mainnet") {
   );
   Object.keys(catalogJson.vars["testnet"]).forEach(
     (contractAddressKey) => {
+        // @ts-ignore
+        if (contractAddressKey.indexOf("0xNFTCatalog") === -1) {
+          // eslint-disable-next-line @typescript-eslint/ban-ts-comment
+          // @ts-ignore
+          config.put("0xNFTCatalogAdmin", json.vars["testnet"][contractAddressKey])
+        }
         // eslint-disable-next-line @typescript-eslint/ban-ts-comment
         // @ts-ignore
         config.put(
