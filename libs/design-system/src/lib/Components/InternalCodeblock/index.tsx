@@ -1,5 +1,5 @@
 import { Dialog } from '@reach/dialog';
-//import '@reach/dialog/styles.css';
+// import '@reach/dialog/styles.css';
 import clsx from 'clsx';
 import React, { useState } from 'react';
 import { ReactComponent as CollapseIcon } from '../../../../images/content/collapse.svg';
