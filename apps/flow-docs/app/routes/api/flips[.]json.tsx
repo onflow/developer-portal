@@ -19,9 +19,10 @@ export const loader: LoaderFunction = async () => {
       .then((response) => response.data);
 
     // Filter only PRs with 'Flip' labels
-    return pullRequestResponse.filter((pr) =>
-      pr.labels.filter((label) => label.name == fetchLabel)
-    );
+    return pullRequestResponse.filter((pr) => {
+      const labelNames = pr.labels.map((label) => label.name);
+      return labelNames.includes(fetchLabel);
+    });
   };
 
   const getNumComments = async (fetchIssue: number): Promise<number> => {
