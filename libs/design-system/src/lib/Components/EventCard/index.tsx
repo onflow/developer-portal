@@ -40,7 +40,7 @@ export function EventCard({
           <span className="pr-2">{eventDate}</span>
           <span className="pl-2">{location}</span>
         </div>
-        <h3 className="text-h3 mb-2 md:mb-3">
+        <h3 className="text-h3 mb-2 !text-xl md:mb-3 md:!text-2xl">
           <a href={href}>{title}</a>
         </h3>
         {tags && tags.length > 0 && (
