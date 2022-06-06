@@ -1,8 +1,8 @@
-import React, { useState } from 'react';
 import { ButtonLink } from '../Button';
 import { Article } from '../../interfaces';
+import { Carousel, CarouselProps } from '../Carousel';
 
-export type FeaturedArticleSliderProps = {
+export type FeaturedArticleSliderProps = CarouselProps & {
   articles: Article[];
 };
 
@@ -33,37 +33,25 @@ const FeaturedArticle = ({
   </div>
 );
 
-const FeaturedArticleSlider = ({ articles }: FeaturedArticleSliderProps) => {
-  const [currentArticleIndex, setCurrentArticleIndex] = useState(0);
-  const ArticleComponents = articles.map((article) => (
-    <FeaturedArticle {...article} />
-  ));
-
+const FeaturedArticleSlider = ({
+  articles,
+  breakpoint = 'none',
+  carouselItemWidth = 'w-10/12 md:w-full',
+  ...carouselProps
+}: FeaturedArticleSliderProps) => {
   return (
-    <div className="flex flex-col items-center justify-center">
-      {ArticleComponents[currentArticleIndex]}
-      {articles.length > 1 && (
-        <div className="mt-12 flex items-center justify-center md:hidden">
-          {articles.map((_, index) => {
-            const backgroundClass =
-              index === currentArticleIndex
-                ? 'bg-green-success'
-                : 'bg-primary-gray-100';
-
-            return (
-              <div
-                key={`article-${index}`}
-                onClick={() => setCurrentArticleIndex(index)}
-                className={`${backgroundClass} mr-3 h-3 w-3 rounded-full hover:cursor-pointer`}
-                tabIndex={0}
-                role="button"
-                aria-pressed="false"
-              />
-            );
-          })}
-        </div>
-      )}
-    </div>
+    <Carousel
+      breakpoint={breakpoint}
+      carouselItemWidth={carouselItemWidth}
+      {...carouselProps}
+    >
+      {articles.map((article) => (
+        <FeaturedArticle
+          key={`${article.heading}-${article.ctaLink}`}
+          {...article}
+        />
+      ))}
+    </Carousel>
   );
 };
 

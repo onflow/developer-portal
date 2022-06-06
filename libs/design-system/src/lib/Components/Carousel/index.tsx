@@ -1,14 +1,41 @@
 import clsx from 'clsx';
 import React, { useCallback, useRef, useState } from 'react';
 
-export type MobileCarouselProps = React.PropsWithChildren<unknown>;
+export type CarouselProps = React.PropsWithChildren<{
+  /**
+   * The breakpoint at which the view should switch to non-carousel mode.
+   * If none, then carousel mode will always be used.
+   */
+  breakpoint?: 'none' | 'sm' | 'md' | 'lg' | 'xl';
+
+  /**
+   * The width of each item within the carousel
+   * (this could be anything, but they must be explicit so that tailwind's
+   * PurgeCSS doesn't remove the class from the final CSS)
+   */
+  carouselItemWidth?:
+    | 'w-6/12'
+    | 'w-8/12'
+    | 'w-9/12'
+    | 'w-10/12'
+    | 'w-11/12'
+    | 'w-full'
+    | string;
+
+  className?: string;
+}>;
 
 /**
  * A Carousel that allows scrolling through it's children horizontally and
  * individually, but in larger screens (md+) shows all children stacked
  * vertically.
  */
-export function MobileCarousel({ children }: MobileCarouselProps) {
+export function Carousel({
+  breakpoint = 'md',
+  carouselItemWidth = 'w-10/12',
+  children,
+  className,
+}: CarouselProps) {
   const [selectedIndex, setSelectedIndex] = useState(0);
   const scrollContainer = useRef<HTMLUListElement>();
   const childCount = React.Children.count(children);
@@ -23,31 +50,44 @@ export function MobileCarousel({ children }: MobileCarouselProps) {
   );
 
   return (
-    <section className="flex flex-col">
+    <section className={clsx('flex flex-col', className)}>
       <ul
-        className="flex min-h-fit snap-x snap-mandatory list-none flex-row gap-6 overflow-x-auto md:flex-col"
+        className={clsx(
+          'flex min-h-fit snap-x snap-mandatory list-none flex-row gap-6 overflow-x-auto',
+          {
+            'sm:flex-col': breakpoint === 'sm',
+            'md:flex-col': breakpoint === 'md',
+            'lg:flex-col': breakpoint === 'lg',
+            'xl:flex-col': breakpoint === 'xl',
+          }
+        )}
         onScroll={onScrollHandler}
         ref={scrollContainer}
       >
         {React.Children.map(children, (child, index) => (
           <li
             key={index}
-            className={clsx('flex-none snap-start md:w-full', {
-              'w-10/12': childCount > 1,
-              'w-full': childCount <= 1,
+            className={clsx('flex-none snap-start', {
+              [carouselItemWidth]: childCount > 1,
+              'w-full ': childCount <= 1,
+              'sm:w-full': breakpoint === 'sm',
+              'md:w-full': breakpoint === 'md',
+              'lg:w-full': breakpoint === 'lg',
+              'xl:w-full': breakpoint === 'xl',
             })}
           >
             {child}
           </li>
         ))}
       </ul>
-      <ul
-        className={clsx(
-          'flex list-none flex-row justify-center pt-3 md:hidden',
-          {
-            hidden: childCount <= 1,
-          }
-        )}
+      <div
+        className={clsx('flex list-none flex-row justify-center pt-3', {
+          hidden: childCount <= 1,
+          'sm:hidden': breakpoint === 'sm',
+          'md:hidden': breakpoint === 'md',
+          'lg:hidden': breakpoint === 'lg',
+          'xl:hidden': breakpoint === 'xl',
+        })}
         role="listbox"
       >
         {React.Children.map(children, (_, index) => (
@@ -73,7 +113,7 @@ export function MobileCarousel({ children }: MobileCarouselProps) {
             }}
           />
         ))}
-      </ul>
+      </div>
     </section>
   );
 }
