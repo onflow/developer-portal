@@ -20,7 +20,7 @@ function getContentPathForSlug(slug: string | undefined): [string, string] {
 // Provide meta tags for this page.
 // - https://remix.run/api/conventions#meta
 export const meta: MetaFunction = ({ data }) => {
-  return { title: data.page.frontmatter.title };
+  return { title: data ? data.page.frontmatter.title : `Page not found` };
 };
 
 // Provide stylesheet for this page.
