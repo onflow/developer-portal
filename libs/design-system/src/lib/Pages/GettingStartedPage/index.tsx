@@ -1,8 +1,10 @@
 import React from 'react';
+import { renderToStaticMarkup } from 'react-dom/server';
+
 import { LandingHeader } from '../../Components/LandingHeader';
 import { LinkCard2Column } from '../../Components/LinkCard2Column';
-import { ReactComponent as CadenceIcon } from '../../../../images/tools/tool-cadence-gradient.svg';
-import { renderToStaticMarkup } from 'react-dom/server';
+import { ReactComponent as CadenceIcon } from '../../../../images/tools/tool-cadence.svg';
+import { ReactComponent as FCLIcon } from '../../../../images/tools/tool-fcl.svg';
 import { SocialLinksSignup } from '../../Components';
 import { SDKCard } from '../../Components/SDKCard';
 import { Button } from '../../Components/Button';
@@ -10,6 +12,8 @@ import FeaturedArticleCard from '../../Components/FeaturedArticleCard';
 import { ToolCard } from '../../Components/ToolCard';
 import { ContentNavigation } from '../../Components/ContentNavigation';
 import { LinkCard3Column } from '../../Components/LinkCard3Column';
+import { ReactComponent as GitHubIcon } from '../../../../images/social/github.svg';
+import { ReactComponent as DiscordIcon } from '../../../../images/social/discord.svg';
 
 const svgToDataUri = (element: Parameters<typeof renderToStaticMarkup>[0]) => {
   const svgString = encodeURIComponent(renderToStaticMarkup(element));
@@ -112,8 +116,16 @@ const Icon3 = () => (
 
 export function GettingStartedPage() {
   return (
-    <div className="bg-slate-100 dark:bg-black">
+    <div className="bg-primary-gray-50 dark:bg-black">
       <div className="relative pb-16 md:border-b md:border-primary-gray-100 md:pb-28">
+        <div className="absolute right-0 hidden h-full flex-col justify-center gap-2 pr-11 lg:flex">
+          <a href="https://discord.com/invite/flow">
+            <DiscordIcon />
+          </a>
+          <a href="https://github.com/onflow">
+            <GitHubIcon />
+          </a>
+        </div>
         <LandingHeader
           buttonText="Button Text"
           buttonUrl="#changeme"
@@ -135,30 +147,45 @@ export function GettingStartedPage() {
             // tags={['Tag', 'Lorem', 'Ipsum']}
             items={[
               {
-                title: 'Quickstart',
+                title: 'Try Flow',
                 description:
                   'A package used to interact with user wallets and the Flow blockchain.',
                 icon: <Icon1 />,
                 links: [
                   {
-                    title: 'Quickstart tutorial',
+                    title: 'Online Playground',
                     href: '#tutorial1',
                     tags: ['tutorial'],
                   },
                   {
-                    title: 'Name of a tutorial',
+                    title: 'Kitty Items Tutorial',
                     href: '#tutorial2',
                     tags: ['tutorial'],
                   },
                   {
-                    title: 'Name of another tutorial',
+                    title: 'Crypto Dappy',
+                    href: '#tutorial3',
+                    tags: ['tutorial'],
+                  },
+                  {
+                    title: 'Flow Blockchain Explorer',
+                    href: '#tutorial3',
+                    tags: ['tutorial'],
+                  },
+                  {
+                    title: 'Sample Smart Contracts',
+                    href: '#tutorial3',
+                    tags: ['tutorial'],
+                  },
+                  {
+                    title: 'Flow Client Library',
                     href: '#tutorial3',
                     tags: ['tutorial'],
                   },
                 ],
               },
               {
-                title: 'Guides & Tutorials',
+                title: 'Learn',
                 description:
                   'An up to 3-line blurb here describing the section lorem ipsum dolor sit amet proin.',
                 icon: <Icon2 />,
@@ -180,7 +207,7 @@ export function GettingStartedPage() {
                 ],
               },
               {
-                title: 'Smart Contracts',
+                title: 'Start Building',
                 description: 'Smart contracts description.',
                 icon: <Icon3 />,
                 links: [
@@ -207,34 +234,34 @@ export function GettingStartedPage() {
 
       <div className="px-4 md:border-b md:border-primary-gray-100 md:pt-20 md:pb-28">
         <LinkCard2Column
-          buttonText="Get Started"
+          buttonText="View Concepts"
           buttonUrl="#changeme"
           description="Building on Flow is easy. Start building now with lorem ipsum et sigitus loranum prospitarius."
-          title="Start Your Project"
+          title="Core Concepts"
           tags={['Tag', 'Lorem', 'Ipsum']}
           items={[
             {
-              title: 'Title Here 1 Line Only',
+              title: 'Cadence',
               description:
                 'A package used to interact with user wallets and the Flow blockchain.',
               href: 'https://www.onflow.org',
               icon: svgToDataUri(<CadenceIcon />),
             },
             {
-              title: 'Internal single link example',
+              title: 'Flow Client Library',
               description:
-                'This is an example of an item with a single internal link.',
+                'A package used to interact with user wallets and the Flow blockchain.',
               href: '#create-non-fungible-token',
-              icon: '',
+              icon: svgToDataUri(<FCLIcon />),
             },
           ]}
         />
       </div>
 
       <div className="container pt-24 md:border-b md:border-primary-gray-100 md:pb-28">
-        <div className="mb-4 flex items-end justify-between">
+        <div className="mb-9 flex items-end justify-between">
           <h2 className="text-h2">SDK's</h2>
-          <Button next variant="secondary" className="hidden md:block">
+          <Button next variant="secondary" className="hidden md:inline-flex">
             View All SDK's
           </Button>
         </div>
@@ -294,17 +321,19 @@ export function GettingStartedPage() {
             lastCommit="22/3"
             lastRelease="207"
           />
-          <SDKCard
-            title="Flow Port"
-            authorIcon="https://avatars.githubusercontent.com/u/62387156?s=64&v=4"
-            authorName="mini flow"
-            tags={['Tags']}
-            link="#"
-            stars={52}
-            toolIcon="https://cdn4.iconfinder.com/data/icons/logos-3/504/Swift-2-512.png"
-            lastCommit="22/3"
-            lastRelease="207"
-          />
+          <div className="hidden md:block">
+            <SDKCard
+              title="Flow Port"
+              authorIcon="https://avatars.githubusercontent.com/u/62387156?s=64&v=4"
+              authorName="mini flow"
+              tags={['Tags']}
+              link="#"
+              stars={52}
+              toolIcon="https://cdn4.iconfinder.com/data/icons/logos-3/504/Swift-2-512.png"
+              lastCommit="22/3"
+              lastRelease="207"
+            />
+          </div>
         </div>
         <Button variant="primary" className="w-full md:hidden">
           View All SDK's
@@ -319,7 +348,7 @@ export function GettingStartedPage() {
 
           <div className="flex items-end justify-between md:items-center">
             <h4 className="text-h4">Recent Tools</h4>
-            <Button next variant="secondary" className="hidden md:block">
+            <Button next variant="secondary" className="hidden md:inline-flex">
               View All Tool's
             </Button>
           </div>
