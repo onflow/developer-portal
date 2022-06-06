@@ -38,13 +38,13 @@ export function UpcomingEvents({
             carouselItemWidth="w-10/12 md:w-full"
           />
           <ul className="flex list-none flex-row gap-6 overflow-x-auto">
-            {secondaryEvents.map((event) => (
-              <li key={event.href} className="">
+            {secondaryEvents.map((event, index) => (
+              <li key={index}>
                 <EventCardSmall {...event} />
               </li>
             ))}
           </ul>
-          <div className="mt-4 flex justify-items-stretch gap-8">
+          <div className="mt-4 flex flex-col justify-items-stretch gap-6 md:flex-row">
             <ButtonLink className="flex-1" href={submitEventHref}>
               Submit an Event
             </ButtonLink>
