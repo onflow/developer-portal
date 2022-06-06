@@ -58,8 +58,7 @@
     "morgan": "^1.10.0",
     "on-finished": "^2.4.1",
     "p-queue": "^7.2.0",
-    "react": "^17.0.2",
-    "react-dom": "^17.0.2",
+    "react": "^18.1.0",
     "react-router-dom": "^6.3.0",
     "reading-time": "^1.5.0",
     "rehype-document": "^6.0.1",
@@ -124,8 +123,7 @@
       "morgan",
       "compression",
       "body-parser",
-      "@remix-run/**",
-      "react-dom/**"
+      "@remix-run/**"
     ]
   },
   "prisma": {

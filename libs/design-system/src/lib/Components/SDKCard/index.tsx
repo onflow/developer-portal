@@ -1,4 +1,4 @@
-import React from 'react';
+ 
 
 import { ReactComponent as StarIcon } from '../../../../images/action/star.svg';
 import { ReactComponent as CalendarIcon } from '../../../../images/action/date-calendar.svg';

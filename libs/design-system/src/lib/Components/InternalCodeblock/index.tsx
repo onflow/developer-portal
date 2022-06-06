@@ -1,7 +1,6 @@
-import { Dialog } from '@reach/dialog';
-// import '@reach/dialog/styles.css';
+import Dialog from '@reach/dialog';
 import clsx from 'clsx';
-import React, { useState } from 'react';
+import { useState } from 'react';
 import { ReactComponent as CollapseIcon } from '../../../../images/content/collapse.svg';
 import { ReactComponent as FileCodeIcon } from '../../../../images/content/file-code.svg';
 import { ReactComponent as FileCopyIcon } from '../../../../images/content/file-copy.svg';
@@ -38,7 +37,7 @@ function Header({
       <div className="ml-auto text-primary-blue">
         <button
           type="button"
-          className="ml-auto p-2 hover:opacity-75"
+          className="p-2 ml-auto hover:opacity-75"
           title="Copy to clipboard"
           aria-label="Copy to clipboard"
           onClick={onCopy}
@@ -46,7 +45,7 @@ function Header({
           <FileCopyIcon />
         </button>
         <button
-          className="cursor-pointer p-2 hover:opacity-75"
+          className="p-2 cursor-pointer hover:opacity-75"
           title={showDialog ? 'Collapse' : 'Expand'}
           onClick={showDialog ? closeDialog : openDialog}
         >
@@ -89,7 +88,7 @@ export function InternalCodeblock({
 
   return (
     <>
-      <div className="rounded-lg border border-primary-gray-100 text-xs dark:border-0">
+      <div className="text-xs border rounded-lg border-primary-gray-100 dark:border-0">
         <Header
           openDialog={openDialog}
           closeDialog={closeDialog}
@@ -118,7 +117,7 @@ export function InternalCodeblock({
           onCopy={onCopy}
         />
         {/* Modal is rendered in portal outside the original .mdx-content div */}
-        <div className="mdx-content h-full">
+        <div className="h-full mdx-content">
           <Code children={children} innerClasses="w-full h-full" />
         </div>
       </Dialog>

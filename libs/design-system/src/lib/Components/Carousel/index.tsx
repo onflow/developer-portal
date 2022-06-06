@@ -1,5 +1,5 @@
 import clsx from 'clsx';
-import React, { useCallback, useRef, useState } from 'react';
+import   { useCallback, useRef, useState } from 'react';
 
 export type CarouselProps = React.PropsWithChildren<{
   /**

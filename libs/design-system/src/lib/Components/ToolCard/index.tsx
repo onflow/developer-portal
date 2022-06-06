@@ -1,4 +1,4 @@
-import React from 'react';
+ 
 
 import { ReactComponent as StarIcon } from '../../../../images/action/star.svg';
 import Tag from '../Tag';

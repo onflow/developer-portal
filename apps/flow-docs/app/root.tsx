@@ -23,6 +23,7 @@ import {
 } from "~/cms/utils/theme.provider";
 import { getUser } from "./session.server";
 import styles from "./styles/main.css";
+import reachStyles from "@reach/dialog/styles.css"
 import { getThemeSession } from "./theme.server";
 
 import {
@@ -30,7 +31,7 @@ import {
 } from "@flow-docs/ui"
 
 export const links: LinksFunction = () => {
-  return [{ rel: "stylesheet", href: styles }];
+  return [{ rel: "stylesheet", href: styles }, {rel: "stylesheet",  href: reachStyles}];
 };
 
 export const meta: MetaFunction = () => ({

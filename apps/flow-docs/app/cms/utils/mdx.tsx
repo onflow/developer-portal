@@ -7,7 +7,6 @@ import {
 } from "@flow-docs/ui";
 import { Link as RemixLink } from "@remix-run/react";
 import { getMDXComponent } from "mdx-bundler/client";
-import React from "react";
 import type { LinkProps } from "react-router-dom";
 import type { GitHubFile, MdxListItem, MdxPage, Timings } from "~/cms";
 import {

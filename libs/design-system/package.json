@@ -3,7 +3,10 @@
   "version": "0.0.1",
   "main": "./dist/index.cjs.js",
   "typings": "./dist/index.d.ts",
-  "scripts" : {
+  "scripts": {
     "dev": "rollup -c -w"
+  },
+  "dependencies": {
+    "react": "^18.1.0"
   }
 }

@@ -1,4 +1,4 @@
-import React from 'react';
+ 
 import { Tag } from '../';
 import { User } from '../../interfaces';
 import { ReactComponent as TwitterIcon } from '../../../../images/social/twitter.svg';

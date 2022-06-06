@@ -1,4 +1,4 @@
-import React from 'react';
+ 
 
 import { ReactComponent as PlayCircle } from '../../../../images/action/play-circle.svg';
 import Tag from '../Tag';
