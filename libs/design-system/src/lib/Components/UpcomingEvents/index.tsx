@@ -37,7 +37,7 @@ export function UpcomingEvents({
             className="mb-4"
             carouselItemWidth="w-10/12 md:w-full"
           />
-          <ul className="flex list-none flex-row gap-6 overflow-x-auto">
+          <ul className="hidden list-none flex-row gap-6 overflow-x-auto md:flex">
             {secondaryEvents.map((event, index) => (
               <li key={index}>
                 <EventCardSmall {...event} />
