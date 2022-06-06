@@ -31,7 +31,7 @@ const TabMenu = ({ tabs, onTabChange, centered }: TabMenuProps) => {
         return (
           <div
             key={tab}
-            className="relative py-4 text-center text-black cursor-pointer hover:text-primary-gray-400 dark:text-white hover:dark:text-primary-gray-100 md:py-6"
+            className="relative cursor-pointer py-4 text-center text-black hover:text-primary-gray-400 dark:text-white hover:dark:text-primary-gray-100 md:py-6"
             role="button"
             onClick={() => {
               setActiveIndex(index);
@@ -40,7 +40,7 @@ const TabMenu = ({ tabs, onTabChange, centered }: TabMenuProps) => {
           >
             <span
               className={clsx(
-                'px-4 md:px-6',
+                'whitespace-nowrap px-4 text-sm md:px-6 md:text-base',
                 isCurrentIndex ? '-mx-[1px] font-bold' : ''
               )}
             >
