@@ -1,4 +1,6 @@
+import { useState } from "react"
 import { useParams } from "react-router-dom";
+import { NetworkDropDown, NetworkValue } from "./network-dropdown";
 import { CatalogSelect } from "./catalog-select";
 import { Filter } from "./filter";
 import { NftCollectionContent } from "./nft-collection-content";
@@ -11,6 +13,8 @@ export default function Layout({
 }) {
   const { identifier } = useParams()
 
+  const [network, setNetwork] = useState<NetworkValue>("testnet")
+
   return (
     <div className="mx-auto px-0 md:px-4 lg:px-32 pt-4">
       <div className="text-2xl sm:border-0 md:border-b-2 py-4">
@@ -22,6 +26,7 @@ export default function Layout({
         <div className="flex-1 border-accent-light-gray sm:border-0 md:border-r-2 self-start">
           <div className="flex-col">
             <Filter />
+            <NetworkDropDown network={network} onNetworkChange={setNetwork} />
             <CatalogSelect type={type} selected={identifier} />
           </div>
         </div>
