@@ -1,10 +1,10 @@
 import React from 'react';
 import { Tag } from '../';
-import { User } from '../../interfaces';
-import { ReactComponent as TwitterIcon } from '../../../../images/social/twitter.svg';
-import { ReactComponent as GithubIcon } from '../../../../images/social/github.svg';
 import { ReactComponent as StarIcon } from '../../../../images/action/star.svg';
 import { ReactComponent as ChevronRightIcon } from '../../../../images/arrows/chevron-right.svg';
+import { ReactComponent as GithubIcon } from '../../../../images/social/github.svg';
+import { ReactComponent as TwitterIcon } from '../../../../images/social/twitter.svg';
+import { User } from '../../interfaces';
 
 export type ProjectCardProps = {
   projectImage: string;
@@ -30,7 +30,7 @@ const ProjectCard = ({
   githubLink,
 }: ProjectCardProps) => {
   return (
-    <div className="flex max-w-[554px] flex-col rounded-lg bg-white px-8 py-6 hover:shadow-2xl dark:bg-primary-gray-dark md:flex-row">
+    <div className="flex flex-col px-8 py-6 bg-white rounded-lg hover:shadow-2xl dark:bg-primary-gray-dark md:flex-row">
       <img
         src={projectImage}
         alt={heading}

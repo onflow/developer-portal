@@ -4,19 +4,24 @@ import CommunityMembers, {
 } from '../../Components/CommunityMembers';
 import Flips, { FlipsProps } from '../../Components/Flips';
 import { LandingHeader } from '../../Components/LandingHeader';
+import ProjectCards, { ProjectCardsProps } from '../../Components/ProjectCards';
+import { GITHUB_URL } from '../../constants';
+import GrayPage from '../shared/GrayPage';
 import PageSection from '../shared/PageSection';
 import PageSections from '../shared/PageSections';
 
-export type CommunityPageProps = FlipsProps & {
-  communityMembers: CommunityMembersProps;
-};
+export type CommunityPageProps = FlipsProps &
+  ProjectCardsProps & {
+    communityMembers: CommunityMembersProps;
+  };
 
 export default function CommunityPage({
   flips,
   communityMembers,
+  projects,
 }: CommunityPageProps) {
   return (
-    <div className="bg-primary-gray-50 dark:bg-black">
+    <GrayPage>
       <PageSections>
         <PageSection className="pt-0">
           <LandingHeader
@@ -36,8 +41,8 @@ export default function CommunityPage({
                 <div>Refined by the community</div>
               </div>
               <ButtonLink
-                next={true}
-                href="https://github.com/onflow"
+                rightIcon="right"
+                href={GITHUB_URL}
                 variant="secondary"
                 target="_blank"
                 rel="noreferrer"
@@ -52,8 +57,10 @@ export default function CommunityPage({
         <PageSection>
           <Flips flips={flips} />
         </PageSection>
-        <PageSection>#todo</PageSection>
+        <PageSection>
+          <ProjectCards projects={projects} />
+        </PageSection>
       </PageSections>
-    </div>
+    </GrayPage>
   );
 }

@@ -1,5 +1,6 @@
 import clsx from 'clsx';
 import { ReactComponent as ChevronRightIcon } from '../../../../images/arrows/chevron-right-sm.svg';
+import { ReactComponent as ExternalLinkIcon } from '../../../../images/content/external-link-variant.svg';
 
 const BASE_CLASSES =
   'inline-flex text-sm gap-3 items-center justify-center py-4 font-semibold min-w-[172px] text-center px-4 rounded-lg border hover:shadow-2xl';
@@ -32,8 +33,9 @@ const VARIANTS = {
 
 type ButtonContentProps = {
   children: React.ReactNode;
-  prev?: boolean;
-  next?: boolean;
+  leftIcon?: 'left';
+  rightIcon?: 'right' | 'external';
+  external?: boolean;
 };
 
 type ButtonBaseProps = {
@@ -43,16 +45,22 @@ type ButtonBaseProps = {
 export type ButtonProps = React.ComponentPropsWithoutRef<'button'> &
   ButtonBaseProps;
 
-function ButtonContent({ next, prev, children }: ButtonContentProps) {
+function ButtonContent({
+  leftIcon,
+  rightIcon,
+  external,
+  children,
+}: ButtonContentProps) {
   return (
     <>
-      {prev && (
+      {leftIcon === 'left' && (
         <div className="relative -top-[1px] rotate-180">
           <ChevronRightIcon />
         </div>
       )}
       {children}
-      {next && <ChevronRightIcon />}
+      {rightIcon === 'right' && <ChevronRightIcon />}
+      {rightIcon === 'external' && <ExternalLinkIcon />}
     </>
   );
 }
@@ -60,8 +68,8 @@ function ButtonContent({ next, prev, children }: ButtonContentProps) {
 export function Button({
   className,
   variant = 'primary',
-  prev,
-  next,
+  leftIcon,
+  rightIcon,
   children,
   ...props
 }: ButtonProps) {
@@ -70,7 +78,11 @@ export function Button({
       className={clsx(BASE_CLASSES, VARIANTS[variant], className)}
       {...props}
     >
-      <ButtonContent prev={prev} next={next} children={children} />
+      <ButtonContent
+        leftIcon={leftIcon}
+        rightIcon={rightIcon}
+        children={children}
+      />
     </button>
   );
 }
@@ -83,14 +95,18 @@ export type ButtonLinkProps = React.ComponentPropsWithoutRef<'a'> &
 export function ButtonLink({
   className,
   variant = 'primary',
-  next,
-  prev,
+  leftIcon,
+  rightIcon,
   children,
   ...props
 }: ButtonLinkProps) {
   return (
     <a className={clsx(BASE_CLASSES, VARIANTS[variant], className)} {...props}>
-      <ButtonContent prev={prev} next={next} children={children} />
+      <ButtonContent
+        leftIcon={leftIcon}
+        rightIcon={rightIcon}
+        children={children}
+      />
     </a>
   );
 }
