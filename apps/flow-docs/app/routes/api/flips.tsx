@@ -7,7 +7,7 @@ export type LoaderData = FlipCellProps[];
 
 export const loader: LoaderFunction = async () => {
   const octokit = new Octokit({
-    auth: process.env.PERSONAL_ACCESS_TOKEN,
+    auth: process.env.BOT_GITHUB_TOKEN,
   });
 
   const getPullRequests = async (fetchLabel: string) => {
