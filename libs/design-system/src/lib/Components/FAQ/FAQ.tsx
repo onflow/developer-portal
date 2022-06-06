@@ -1,4 +1,5 @@
 import React, { useState } from 'react';
+import clsx from 'clsx';
 
 import { ReactComponent as ChevronRight } from '../../../../images/arrows/chevron-right.svg';
 import { ReactComponent as ChevronDown } from '../../../../images/arrows/chevron-down.svg';
@@ -31,29 +32,21 @@ export function FAQ({ faqList, variation }: FAQProps) {
         const isAboveExpandedItem = expanded.at(i + 1);
         const isLast = i === expanded.length - 1;
 
+        const classes = clsx('cursor-pointer', {
+          'md:p-8': variation === 'large' && !itemExpanded,
+          'md:py-4 md:pl-3': variation === 'small' && !itemExpanded,
+          'py-3 pr-3': !itemExpanded,
+          'px-6 py-7 pt-6 my-1.5 rounded-lg bg-white dark:bg-primary-gray-dark':
+            itemExpanded,
+          'border-b border-gray-200 dark:border-primary-gray-400':
+            !itemExpanded && !isLast && !isAboveExpandedItem,
+        });
+
         return (
           <div // TODO: see https://github.com/onflow/next-docs-v1/pull/51#discussion_r883674775
             onClick={() => toggleExpansion(i)}
             role="button"
-            className={`cursor-pointer ${
-              variation === 'small' && !itemExpanded
-                ? 'py-3 pr-3 md:p-4'
-                : variation === 'small' && itemExpanded
-                ? 'px-6 py-7 pt-6 md:p-8'
-                : ''
-            } ${
-              variation === 'large' && !itemExpanded
-                ? 'py-3 pr-3 md:p-8'
-                : variation === 'large' && itemExpanded
-                ? 'px-6 py-7 pt-6 md:p-8'
-                : ''
-            } ${
-              itemExpanded
-                ? 'my-1.5 rounded-lg bg-white dark:bg-primary-gray-dark'
-                : isLast || isAboveExpandedItem
-                ? ''
-                : 'border-b border-gray-200 dark:border-primary-gray-400'
-            }`}
+            className={classes}
           >
             <div
               className={`flex items-center justify-between gap-4 ${
