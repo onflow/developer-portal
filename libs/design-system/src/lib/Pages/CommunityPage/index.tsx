@@ -6,7 +6,7 @@ import Flips, { FlipsProps } from '../../Components/Flips';
 import { LandingHeader } from '../../Components/LandingHeader';
 import ProjectCards, { ProjectCardsProps } from '../../Components/ProjectCards';
 import { GITHUB_URL } from '../../constants';
-import GrayPage from '../shared/GrayPage';
+import PageBackground from '../shared/PageBackground';
 import PageSection from '../shared/PageSection';
 import PageSections from '../shared/PageSections';
 
@@ -21,7 +21,7 @@ export default function CommunityPage({
   projects,
 }: CommunityPageProps) {
   return (
-    <GrayPage>
+    <PageBackground>
       <PageSections>
         <PageSection className="pt-0">
           <LandingHeader
@@ -61,6 +61,6 @@ export default function CommunityPage({
           <ProjectCards projects={projects} />
         </PageSection>
       </PageSections>
-    </GrayPage>
+    </PageBackground>
   );
 }

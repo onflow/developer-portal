@@ -1,6 +1,6 @@
 import { Meta, Story } from '@storybook/react';
 import ProjectCards, { ProjectCardsProps } from '.';
-import GrayPage from '../../Pages/shared/GrayPage';
+import PageBackground from '../../Pages/shared/PageBackground';
 import { Default as DefaultProjectCard } from '../ProjectCard/ProjectCard.stories';
 
 export default {
@@ -9,9 +9,9 @@ export default {
 } as Meta;
 
 const Template: Story<ProjectCardsProps> = (args) => (
-  <GrayPage className="py-4">
+  <PageBackground className="py-4">
     <ProjectCards {...args} />
-  </GrayPage>
+  </PageBackground>
 );
 
 const args = {
