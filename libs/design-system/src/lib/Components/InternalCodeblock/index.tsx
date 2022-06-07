@@ -1,4 +1,4 @@
-import Dialog from '@reach/dialog';
+import { Dialog } from '@headlessui/react';
 import clsx from 'clsx';
 import { useState, ReactNode } from 'react';
 import { ReactComponent as CollapseIcon } from '../../../../images/content/collapse.svg';
@@ -16,12 +16,12 @@ export type InternalCodeblockProps = {
 };
 
 function Header({
-  showDialog,
-  openDialog,
+  isOpen,
   closeDialog,
+  openDialog,
   onCopy,
 }: {
-  showDialog: boolean;
+  isOpen: boolean;
   openDialog: () => void;
   closeDialog: () => void;
   onCopy: () => void;
@@ -46,10 +46,10 @@ function Header({
         </button>
         <button
           className="p-2 cursor-pointer hover:opacity-75"
-          title={showDialog ? 'Collapse' : 'Expand'}
-          onClick={showDialog ? closeDialog : openDialog}
+          title={isOpen ? 'Collapse' : 'Expand'}
+          onClick={isOpen ? closeDialog : openDialog}
         >
-          {showDialog ? <CollapseIcon /> : <ScreenFullIcon />}
+          {isOpen ? <CollapseIcon /> : <ScreenFullIcon />}
         </button>
       </div>
     </div>
@@ -80,19 +80,16 @@ export function InternalCodeblock({
   rawText,
   children,
 }: InternalCodeblockProps) {
-  const [showDialog, setShowDialog] = useState(false);
-
-  const openDialog = () => setShowDialog(true);
-  const closeDialog = () => setShowDialog(false);
+  const [isOpen, setIsOpen] = useState(false);
   const onCopy = () => navigator.clipboard.writeText(rawText);
 
   return (
     <div>
       <div className="text-xs border rounded-lg border-primary-gray-100 dark:border-0">
         <Header
-          openDialog={openDialog}
-          closeDialog={closeDialog}
-          showDialog={showDialog}
+          isOpen={isOpen}
+          closeDialog={() => setIsOpen(false)}
+          openDialog={() => setIsOpen(true)}
           onCopy={onCopy}
         />
         <Code
@@ -100,22 +97,24 @@ export function InternalCodeblock({
           innerClasses={tall ? 'max-h-[280px]' : 'max-h-[130px]'}
         />
       </div>
+      <div>
+        <Dialog open={isOpen} onClose={() => setIsOpen(false)}>
+          <Dialog.Panel>
+            <Dialog.Title>Deactivate account</Dialog.Title>
+            <Dialog.Description>
+              This will permanently deactivate your account
+            </Dialog.Description>
 
-      {/* <Dialog
-        isOpen={showDialog}
-        onDismiss={closeDialog}
-        className="flex flex-col rounded-lg !p-0 dark:bg-[#111111]"
-        aria-label="codeblock"
-        style={{
-          height: '90vh',
-          width: '95vw',
-          margin: '5vh auto',
-        }}
-      >
-        <div className="h-full mdx-content">
-           <Code children={children} innerClasses="w-full h-full" /> 
-        </div>
-      </Dialog> */}
+            <p>
+              Are you sure you want to deactivate your account? All of your data
+              will be permanently removed. This action cannot be undone.
+            </p>
+
+            <button onClick={() => setIsOpen(true)}>Deactivate</button>
+            <button onClick={() => setIsOpen(false)}>Cancel</button>
+          </Dialog.Panel>
+        </Dialog>
+      </div>
     </div>
   );
 }

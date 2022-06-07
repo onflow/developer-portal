@@ -27,12 +27,9 @@ export const meta: MetaFunction = () => {
 export const loader: LoaderFunction = async ({ params, request }) => {
   
 
-<<<<<<< HEAD
   // Here we forward the request if the first URL segemnt does
   // not match a repo we know about ...
-=======
 
->>>>>>> 0c3f915e4ec39288983abbe23a097b4d27af50d9
   // TODO: make this redirect to appropriate section for repo
   // If no approapriate section, then fall through and try to get content 
   // for the repo ... otherwise return Response and handle down the chain?
