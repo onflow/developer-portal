@@ -331,7 +331,7 @@ export function GettingStartedPage() {
         </Button>
       </div>
 
-      <div className="pt-52 md:border md:border-primary-gray-100 md:pb-28 md:pt-20">
+      <div className="pt-52 md:border-b md:border-primary-gray-100 md:pb-28 md:pt-20">
         <div className="container mx-auto grid grid-cols-1 gap-x-10 gap-y-4 align-middle md:grid-cols-2">
           <div className="hidden items-center md:flex">
             <h4 className="text-h4">Recent Articles</h4>
@@ -354,7 +354,7 @@ export function GettingStartedPage() {
             />
           </div>
 
-          <div className="flex flex-col gap-4 grow justify-between">
+          <div className="flex flex-col grow justify-between gap-4">
             <ToolCard
               title="Flow Port"
               authorIcon="https://avatars.githubusercontent.com/u/62387156?s=64&v=4"
@@ -392,7 +392,7 @@ export function GettingStartedPage() {
         </div>
       </div>
 
-      <div className="pt-36 md:border md:border-primary-gray-100 md:pt-20 md:pb-32">
+      <div className="pt-36 md:border-b md:border-primary-gray-100 md:pt-20 md:pb-32">
         <div className="container mx-auto">
           <h4 className="text-h4 pb-5 md:pb-9">Explore More Content</h4>
           <div className="grid grid-cols-1 gap-4 md:grid-cols-3">
