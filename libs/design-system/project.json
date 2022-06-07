@@ -56,7 +56,7 @@
             "output": "."
           }
         ],
-        "format": ["umd"]
+        "format": ["cjs", "esm"]
       }
     },
     "lint": {
