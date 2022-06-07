@@ -15,7 +15,7 @@ Project requires:
 ⚠️ Must have [Docker](https://docs.docker.com/get-docker/) installed.
 
 ```
-git clone https://github.com/onflow/next-docs-v2.git
+git clone https://github.com/onflow/next-docs-v1.git
 ```
 
 You'll need to acquire the project's `.env` file before continuing. 
@@ -56,6 +56,18 @@ You'll need to acquire the project's `.env` file before continuing.
 
 - Any new environemnt variable added to `.env` in `flow-docs` should also be added to the `docker-compose.yml`
 
+## Documentation Sources
+The doc site pull the markdown files existing in various `onflow` repositories. To see the Github Actions that triggers processing of the markdown files (i.e. refreshing cache), go to any of the repos and click on the `Actions` tab.
+
+List of repository sources:
+- [/flow](https://github.com/onflow/flow)
+- [/cadence](https://github.com/onflow/cadence)
+- [/flow-cli](https://github.com/onflow/flow-cli)
+- [/flow-js-testing](https://github.com/onflow/flow-js-testing)
+- [/flow-go-sdk](https://github.com/onflow/flow-go-sdk)
+- [/fcl-js](https://github.com/onflow/fcl-js)
+- [/flow-emulator](https://github.com/onflow/flow-emulator)
+- [/flow-cadut](https://github.com/onflow/flow-cadut)
 
 ## Further help
 

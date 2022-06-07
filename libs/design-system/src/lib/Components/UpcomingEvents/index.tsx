@@ -25,6 +25,7 @@ export function UpcomingEvents({
 
   return (
     <div className="container">
+      <div className="mb-2 text-h2">Upcoming events</div>
       <TabMenu
         tabs={['Upcoming events', 'Working hours', 'Flow office hours']}
         onTabChange={setSelectedTab}
@@ -37,14 +38,14 @@ export function UpcomingEvents({
             className="mb-4"
             carouselItemWidth="w-10/12 md:w-full"
           />
-          <ul className="hidden list-none flex-row gap-6 overflow-x-auto md:flex">
+          <ul className="flex-row hidden gap-6 overflow-x-auto list-none md:flex">
             {secondaryEvents.map((event, index) => (
               <li key={index}>
                 <EventCardSmall {...event} />
               </li>
             ))}
           </ul>
-          <div className="mt-4 flex flex-col justify-items-stretch gap-6 md:flex-row">
+          <div className="flex flex-col gap-6 mt-4 justify-items-stretch md:flex-row">
             <ButtonLink className="flex-1" href={submitEventHref}>
               Submit an Event
             </ButtonLink>

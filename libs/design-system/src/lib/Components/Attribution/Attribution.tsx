@@ -1,5 +1,4 @@
 import clsx from 'clsx';
-import React from 'react';
 import CalendarIcon from './CalendarIcon';
 import ClockIcon from './ClockIcon';
 import DifficultyIcon from './DifficultyIcon';

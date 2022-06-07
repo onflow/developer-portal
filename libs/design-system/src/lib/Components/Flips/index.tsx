@@ -1,3 +1,4 @@
+import { GITHUB_URL } from '../../constants';
 import { ButtonLink } from '../Button';
 import TabMenu from '../TabMenu';
 import FlipCell, { FlipCellHeader, FlipCellProps } from './FlipCell';
@@ -12,8 +13,8 @@ export default function Flips({ flips }: FlipsProps) {
       <div className="flex items-center justify-between">
         <div className="text-h2">FLIPs</div>
         <ButtonLink
-          next={true}
-          href="https://github.com/onflow"
+          rightIcon="right"
+          href={GITHUB_URL}
           variant="secondary"
           target="_blank"
           rel="noreferrer"
@@ -28,7 +29,7 @@ export default function Flips({ flips }: FlipsProps) {
 
       <div className="mb-6">
         <TabMenu
-          tabs={['Open FLIPs', 'Good places to start']}
+          tabs={['Open FLIPS', ' Good places to start']}
           onTabChange={() => null}
         />
       </div>

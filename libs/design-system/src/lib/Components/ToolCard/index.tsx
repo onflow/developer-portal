@@ -33,16 +33,16 @@ export function ToolCard({
       <div className="grow">
         <h5 className="text-h5">{title}</h5>
         <div className="flex items-center">
-          <div className="flex shrink-0 items-center gap-2 pr-3 md:pr-4">
+          <div className="flex items-center gap-2 pr-3 shrink-0 md:pr-4">
             <div>
               <img src={authorIcon} alt={authorName} width={24} height={24} />
             </div>
-            <div className="dark:gray-400 md:leading-1 whitespace-nowrap text-sm text-gray-600 dark:text-gray-400">
+            <div className="text-sm text-gray-600 dark:gray-400 md:leading-1 whitespace-nowrap dark:text-gray-400">
               {authorName}
             </div>
           </div>
 
-          <div className="shrink-0 pr-1 line-clamp-1">
+          <div className="pr-1 shrink-0 line-clamp-1">
             {tags.map((tag, i) => (
               <Tag name={tag} key={i} />
             ))}
