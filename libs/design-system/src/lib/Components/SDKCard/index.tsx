@@ -1,4 +1,4 @@
-import React from 'react';
+ 
 
 import { ReactComponent as StarIcon } from '../../../../images/action/star.svg';
 import { ReactComponent as CalendarIcon } from '../../../../images/action/date-calendar.svg';
@@ -30,7 +30,7 @@ export function SDKCard({
 }: SDKCardProps) {
   return (
     <a
-      className="flex gap-4 rounded-lg bg-white py-6 px-8 dark:bg-primary-dark-gray"
+      className="flex gap-4 rounded-lg bg-white py-6 px-8 dark:bg-primary-gray-dark"
       href={link}
     >
       <div>

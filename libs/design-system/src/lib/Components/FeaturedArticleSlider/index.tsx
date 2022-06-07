@@ -19,7 +19,7 @@ const FeaturedArticle = ({
       <p className="py-6 dark:text-primary-gray-100">{description}</p>
       <ButtonLink
         href={ctaLink}
-        className="rounded-lg bg-black px-16 py-4 text-center text-white hover:cursor-pointer"
+        className="px-16 py-4 text-center text-white bg-black rounded-lg hover:cursor-pointer"
       >
         {ctaText}
       </ButtonLink>

@@ -1,5 +1,5 @@
 import { endOfWeek } from 'date-fns';
-import React, { useState } from 'react';
+import   { useState } from 'react';
 import { ReactComponent as ChevronLeftIcon } from '../../../../images/arrows/chevron-left.svg';
 import {
   Callout,
