@@ -173,6 +173,14 @@ const args = {
 export const Default = Template.bind({});
 Default.args = args;
 
+export const dark = Template.bind({});
+dark.args = args;
+dark.parameters = {
+  themes: {
+    default: 'dark',
+  },
+};
+
 export const mobile = Template.bind({});
 mobile.args = args;
 mobile.parameters = {
