@@ -1,4 +1,6 @@
 import { Meta, Story } from '@storybook/react';
+
+import { ReactComponent as CadenceIcon } from '../../../../images/tools/tool-cadence.svg';
 import { ToolCard, ToolCardProps } from '.';
 
 export default {
@@ -8,7 +10,7 @@ export default {
 
 const Template: Story<ToolCardProps> = (args) => {
   return (
-    <div style={{ backgroundColor: '#f1f1f1', padding: '14px' }}>
+    <div className="bg-gray-100 p-4 dark:bg-black">
       <ToolCard {...args} />
     </div>
   );
@@ -23,8 +25,7 @@ Primary.args = {
   link: '#',
   type: 'tool',
   stars: 52,
-  toolIcon:
-    'https://cdn4.iconfinder.com/data/icons/logos-3/504/Swift-2-512.png',
+  toolIcon: <CadenceIcon />,
   description:
     'Lorem ipsum text here can go a two liner sentence or a one liner',
 };

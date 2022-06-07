@@ -1,7 +1,6 @@
 import { TabMenu } from '../';
 import { ToolCard, ToolCardProps } from '../ToolCard';
 import { ButtonLink } from '../Button';
-import { ReactComponent as RightChevronIcon } from '../../../../images/arrows/chevron-right.svg';
 import { ReactComponent as ExternalLinkIcon } from '../../../../images/content/external-link.svg';
 
 export type ToolsAndConceptsProps = {
@@ -9,7 +8,7 @@ export type ToolsAndConceptsProps = {
 };
 
 const ToolsAndConcepts = ({ tools }) => (
-  <>
+  <div className="container">
     <div className="mb-2 text-h2">Tools and Concepts</div>
     <p>Core concepts and tools you’ll need to get started building on Flow</p>
     <TabMenu tabs={['Tools', 'Concepts']} onTabChange={() => null} />
@@ -30,11 +29,12 @@ const ToolsAndConcepts = ({ tools }) => (
         className="w-full mb-4 md:w-1/2"
         href="/tools"
         variant="secondary"
+        rightIcon="right"
       >
-        View all tools <RightChevronIcon />
+        View all tools
       </ButtonLink>
     </div>
-  </>
+  </div>
 );
 
 export default ToolsAndConcepts;
