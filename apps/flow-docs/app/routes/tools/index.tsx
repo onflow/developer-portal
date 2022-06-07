@@ -1,14 +1,9 @@
-import { LoaderFunction } from "@remix-run/server-runtime";
-
+import { LoaderFunction } from "@remix-run/server-runtime"
 
 export const loader: LoaderFunction = async () => {
   return {}
-};
+}
 
 export default function Page() {
-  return (
-    <div>
-    Tools Homepage
-    </div>
-  );
+  return <div>Tools Homepage</div>
 }

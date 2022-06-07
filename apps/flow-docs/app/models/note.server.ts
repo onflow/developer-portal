@@ -1,18 +1,18 @@
-import type { User, Note } from "@prisma/client";
+import type { User, Note } from "@prisma/client"
 
-import { prisma } from "~/db.server";
+import { prisma } from "~/db.server"
 
-export type { Note } from "@prisma/client";
+export type { Note } from "@prisma/client"
 
 export function getNote({
   id,
   userId,
 }: Pick<Note, "id"> & {
-  userId: User["id"];
+  userId: User["id"]
 }) {
   return prisma.note.findFirst({
     where: { id, userId },
-  });
+  })
 }
 
 export function getNoteListItems({ userId }: { userId: User["id"] }) {
@@ -20,7 +20,7 @@ export function getNoteListItems({ userId }: { userId: User["id"] }) {
     where: { userId },
     select: { id: true, title: true },
     orderBy: { updatedAt: "desc" },
-  });
+  })
 }
 
 export function createNote({
@@ -28,7 +28,7 @@ export function createNote({
   title,
   userId,
 }: Pick<Note, "body" | "title"> & {
-  userId: User["id"];
+  userId: User["id"]
 }) {
   return prisma.note.create({
     data: {
@@ -40,7 +40,7 @@ export function createNote({
         },
       },
     },
-  });
+  })
 }
 
 export function deleteNote({
@@ -49,5 +49,5 @@ export function deleteNote({
 }: Pick<Note, "id"> & { userId: User["id"] }) {
   return prisma.note.deleteMany({
     where: { id, userId },
-  });
+  })
 }
