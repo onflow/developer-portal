@@ -1,5 +1,3 @@
-import React from 'react';
-
 import { ReactComponent as Bug } from '../../../../images/page/bug.svg';
 import { ReactComponent as Community } from '../../../../images/page/community.svg';
 import { ReactComponent as Concepts } from '../../../../images/page/concepts.svg';

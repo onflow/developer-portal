@@ -1,4 +1,4 @@
-import { Story, Meta } from '@storybook/react';
+import { Meta, Story } from '@storybook/react';
 import ProjectCard, { ProjectCardProps } from '.';
 
 export default {
@@ -29,12 +29,20 @@ const args = {
   githubLink: 'github.com',
 };
 
-export const Primary = Template.bind({});
-Primary.args = args;
+export const Default = Template.bind({});
+Default.args = args;
 
-export const Mobile = Template.bind({});
-Mobile.args = args;
-Mobile.parameters = {
+export const dark = Template.bind({});
+dark.args = Default.args;
+dark.parameters = {
+  themes: {
+    default: 'dark',
+  },
+};
+
+export const mobile = Template.bind({});
+mobile.args = args;
+mobile.parameters = {
   viewport: {
     defaultViewport: 'xs',
   },

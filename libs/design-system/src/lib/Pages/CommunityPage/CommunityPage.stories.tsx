@@ -1,18 +1,21 @@
 import { Meta, Story } from '@storybook/react';
 import CommunityPage, { CommunityPageProps } from '.';
+import { Default as DefaultCommunityMembers } from '../../Components/CommunityMembers/CommunityMembers.stories';
 import { Default as DefaultFlips } from '../../Components/Flips/Flips.stories';
+import { Default as DefaultProjects } from '../../Components/ProjectCards/ProjectCards.stories';
 
 export default {
   component: CommunityPage,
   title: 'Pages/CommunityPage',
 } as Meta;
-
 const Template: Story<CommunityPageProps> = (args) => (
   <CommunityPage {...args} />
 );
 export const Default = Template.bind({});
 Default.args = {
-  ...DefaultFlips.args,
+  flips: DefaultFlips.args.flips,
+  communityMembers: DefaultCommunityMembers.args,
+  projects: DefaultProjects.args.projects,
 };
 
 export const dark = Template.bind({});

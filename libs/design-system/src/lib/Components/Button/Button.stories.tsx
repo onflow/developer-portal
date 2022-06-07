@@ -28,10 +28,10 @@ const Template: Story<ButtonProps> = (args) => {
       <Button variant="primary">Primary</Button>
       <Button variant="primary-inverse">Primary Inverse</Button>
       <Button variant="secondary">Secondary</Button>
-      <Button variant="secondary" prev={true}>
+      <Button variant="secondary" leftIcon="left">
         Secondary Prev
       </Button>
-      <Button variant="secondary" next={true}>
+      <Button variant="secondary" rightIcon="right">
         Secondary Next
       </Button>
     </div>

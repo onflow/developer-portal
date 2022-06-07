@@ -1,5 +1,5 @@
 import { endOfWeek } from 'date-fns';
-import React, { useState } from 'react';
+import   { useState } from 'react';
 import { ReactComponent as ChevronLeftIcon } from '../../../../images/arrows/chevron-left.svg';
 import {
   Callout,
@@ -42,11 +42,7 @@ const NetworkDetailPage = () => {
           >
             <ChevronLeftIcon /> Network
           </a>
-          <TabMenu
-            tabs={tabs}
-            onTabChange={setSelectedNetworkIndex}
-            centered
-          />
+          <TabMenu tabs={tabs} onTabChange={setSelectedNetworkIndex} centered />
           <div className="text-h3 md:text-h1 mt-[50px] mb-3 md:mt-[100px]  md:mb-[50px] md:text-center md:text-5xl">
             {currentNetwork.name}
           </div>

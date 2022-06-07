@@ -21,11 +21,22 @@ export type LinkCard3ColumnProps = {
     LinkCard3ColumnItemProps,
     LinkCard3ColumnItemProps
   ];
+  topRounded?: boolean;
 };
 
-export function LinkCard3Column({ items }: LinkCard3ColumnProps) {
+export function LinkCard3Column({
+  items,
+  topRounded = true,
+}: LinkCard3ColumnProps) {
+  const classes = clsx(
+    'container grid grid-cols-1 pb-8 bg-white rounded-lg gap-x-4 dark:bg-primary-gray-dark md:grid-cols-3 md:flex-row md:px-20',
+    {
+      'rounded-tr-none rounded-tl-none': !topRounded,
+    }
+  );
+
   return (
-    <div className="grid grid-cols-1 pb-8 bg-white rounded-lg gap-x-4 dark:bg-primary-gray-dark md:grid-cols-3 md:flex-row">
+    <div className={classes}>
       {items.map((item, index) => (
         <div
           key={`${item.title}-header`}

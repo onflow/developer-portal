@@ -1,5 +1,5 @@
-import React from 'react';
 import clsx from 'clsx';
+import React from 'react';
 
 export type RoundImageProps = {
   imageUri: string;
@@ -16,7 +16,14 @@ const RoundImage = ({ imageUri, altText, large = false }: RoundImageProps) => {
     }
   );
 
-  return <img className={imageClasses} alt={altText} src={imageUri} />;
+  return (
+    <img
+      className={imageClasses}
+      alt={altText}
+      title={altText}
+      src={imageUri}
+    />
+  );
 };
 
 export default RoundImage;

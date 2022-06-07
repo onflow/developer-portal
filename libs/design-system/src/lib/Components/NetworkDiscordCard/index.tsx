@@ -1,4 +1,4 @@
-import React from 'react';
+ 
 import { formatDistance } from 'date-fns';
 import { ReactComponent as ExternalLinkIcon } from '../../../../images/content/external-link.svg';
 import { ReactComponent as TimeIcon } from '../../../../images/content/date.svg';

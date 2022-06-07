@@ -8,6 +8,9 @@ export {
   InternalCodeblock,
   InternalCodeblockProps,
 } from './lib/Components/InternalCodeblock';
+export {
+  InternalLandingCard
+} from './lib/Components/InternalLandingCard'
 // export {
 //   InternalSidebar,
 //   TEMP_SIDEBAR_CONFIG,
