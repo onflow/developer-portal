@@ -8,7 +8,13 @@ export default {
 
 const Template: Story<CommunityMembersProps> = (args) => {
   return (
-    <div style={{ backgroundColor: '#f1f1f1', padding: '14px' }}>
+    <div
+      style={{
+        backgroundColor: '#f1f1f1',
+        paddingTop: '1rem',
+        paddingBottom: '1rem',
+      }}
+    >
       <CommunityMembers {...args} />
     </div>
   );
@@ -28,12 +34,12 @@ const args = {
   }),
 };
 
-export const Primary = Template.bind({});
-Primary.args = args;
+export const Default = Template.bind({});
+Default.args = args;
 
-export const Mobile = Template.bind({});
-Mobile.args = args;
-Mobile.parameters = {
+export const mobile = Template.bind({});
+mobile.args = args;
+mobile.parameters = {
   viewport: {
     defaultViewport: 'xs',
   },
