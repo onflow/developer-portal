@@ -1,6 +1,6 @@
 import { useEffect, useState } from "react"
 import { useHistory } from "react-router-dom"
-import { getProposals } from "src/flow/utils"
+import { getCollections, getProposals } from "src/flow/utils"
 import { Network } from "./network-dropdown";
 import { changeFCLEnvironment } from "src/flow/setup";
 
@@ -32,19 +32,23 @@ export function CatalogSelect({
           const proposal = proposals[proposalID]
           return {
             name: `#${proposalID} - ${proposal.collectionName}`,
-            subtext: `Created ${(new Date(proposal.createdTime * 1000)).toLocaleDateString("en-US")} by ${proposal.proposer}`,
-            id: proposalID
+            subtext: `Created ${(new Date(proposal.createdTime * 1000)).toLocaleDateString("en-US")}`,
+            id: proposalID,
+            status: proposal.status
           }
         })
         setItems(items)
       } else if (type === 'Catalog') {
-        setItems([
-          {
-            name: "Schmoes Prelaunch Token",
-            subtext: "0x123456654321.SchmoesPrelaunchToken",
-            id: "schmoes"
+        const catalogCollections = await getCollections()
+        const items = Object.keys(catalogCollections).map((catalogKey) => {
+          const catalog = catalogCollections[catalogKey]
+          return {
+            name: `${catalogKey}`,
+            subtext: `${catalog.nftType}`,
+            id: catalogKey,
           }
-        ])
+        })
+        setItems(items)
       }
     }
     setup()
@@ -62,6 +66,7 @@ export function CatalogSelect({
               }
             }>
               <div className="font-semibold">{item.name}</div>
+              <div>{item.status}</div>
               <div className="">{item.subtext}</div>
             </div>
           )

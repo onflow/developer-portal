@@ -1,14 +1,30 @@
 import { useEffect, useState } from "react"
+import { getCollections } from "src/flow/utils"
 import { NFTCollectionDisplay } from "../shared/nft-collection-display"
 import { Spinner } from "../shared/spinner"
 import { EmptyContent } from "./empty-content"
+import { Box } from "../shared/box"
+import { CollectionDataView } from "../shared/views/collection-data-view"
+import { CollectionDisplayView } from "../shared/views/collection-display-view"
 
 export function NftCollectionContent({collectionName}: {collectionName: string|undefined}) {
   const [collectionData, setCollectionData] = useState<any>()
+  const [error, setError] = useState<string|null>(null)
 
   useEffect(() => {
-    // TODO: Make call to retrieve this collection's information from the catalog
-    setCollectionData({})
+    setCollectionData(null)
+    setError(null)
+    if (!collectionName) { return }
+    const setup = async () => {
+      const res = await getCollections();
+      const collection = res[collectionName]
+      if (res) {
+        setCollectionData(collection)
+      } else {
+        setError(`Unable to find a catalog entry with name ${collectionName}`)
+      }
+    }
+    setup()
   }, [collectionName])
 
   if (!collectionName) {
@@ -18,19 +34,12 @@ export function NftCollectionContent({collectionName}: {collectionName: string|u
   if (!collectionData) {
     return <Spinner />
   }
+  console.log('collection data', collectionData)
   return (
     <>
-      <NFTCollectionDisplay
-        display={{
-          name: "Schmoes Prelaunch Token",
-          externalURL: "https://schmoes.io",
-          description: 'Description can go here. Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nunc nec vehicula felis. Donec non elit justo. Duis at maximus purus, vel auctor justo. Pellentesque a leo ligula. Curabitur mattis vel tellus elementum placerat. Morbi volutpat maximus volutpat. Sed tincidunt, velit imperdiet sagittis mollis, nulla felis efficitur libero, quis suscipit est metus non lectus. Proin diam turpis, blandit facilisis pulvinar vel, mollis ac justo.',
-          socials: {
-            'twitter': 'https://twitter.com/SchmoesNFT'
-          }
-        }}
-        
-      />
+      <CollectionDisplayView view={collectionData.collectionDisplay} withRawView={false} />
+      <br />
+      <CollectionDataView view={collectionData.collectionData} withRawView={false} />
     </>
   )
 }

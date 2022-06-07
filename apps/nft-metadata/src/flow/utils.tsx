@@ -69,6 +69,19 @@ export async function retrieveMetadataInformation(sampleAddress: string, publicP
   }
 }
 
+export async function getCollections(): Promise<any> {
+  try {
+    const scriptResult = await fcl.send([
+      fcl.script(catalogJson.scripts.get_nft_catalog),
+      fcl.args([])
+    ]).then(fcl.decode)
+    return scriptResult
+  } catch (e) {
+    console.error(e)
+    return null;
+  }
+}
+
 export async function getProposals(): Promise<any> {
   try {
     const scriptResult = await fcl.send([
@@ -172,6 +185,53 @@ export async function createAdminProxy() {
   }
 }
 
+export async function acceptProposal(proposalID: string) {
+  try {
+    const txId = await fcl.mutate({
+      cadence: catalogJson.transactions.approve_nft_catalog_proposal,
+      limit: 9999,
+      args: (arg: any, t: any) => [
+        fcl.arg(proposalID, t.UInt64)
+      ]
+    });
+    const transaction = await fcl.tx(txId).onceSealed()
+    return transaction
+  } catch (e) {
+    return null;
+  }
+}
+
+export async function rejectProposal(proposalID: string) {
+  try {
+    const txId = await fcl.mutate({
+      cadence: catalogJson.transactions.reject_nft_catalog_proposal,
+      limit: 9999,
+      args: (arg: any, t: any) => [
+        fcl.arg(proposalID, t.UInt64)
+      ]
+    });
+    const transaction = await fcl.tx(txId).onceSealed()
+    return transaction
+  } catch (e) {
+    return null;
+  }
+}
+
+export async function deleteProposal(proposalID: string) {
+  try {
+    const txId = await fcl.mutate({
+      cadence: catalogJson.transactions.remove_nft_catalog_proposal,
+      limit: 9999,
+      args: (arg: any, t: any) => [
+        fcl.arg(proposalID, t.UInt64)
+      ]
+    });
+    const transaction = await fcl.tx(txId).onceSealed()
+    return transaction
+  } catch (e) {
+    return null;
+  }
+}
 
 export async function proposeNFTToCatalog(
   collectionName: string,

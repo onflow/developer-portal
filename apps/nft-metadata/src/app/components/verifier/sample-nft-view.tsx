@@ -4,11 +4,11 @@ import { retrieveMetadataInformation, getNFTInAccount } from "../../../flow/util
 import { Accordian } from "../shared/accordian";
 import { Alert } from "../shared/alert";
 import { Spinner } from "../shared/spinner";
-import { Button } from "../shared/button";
 import { GenericView } from "../shared/views/generic-view";
 import { CollectionDisplayView } from "../shared/views/collection-display-view";
 import { DisplayView } from "../shared/views/display-view";
 import { CollectionDataView } from "../shared/views/collection-data-view";
+import { SubmitButton } from "../shared/submit-button";
 
 export function SampleNFTView({
   sampleAddress,
@@ -142,7 +142,7 @@ export function SampleNFTView({
                 <form
                   onSubmit={() => { history.push(`${window.location.pathname}${window.location.search}&confirmed=true`) }}
                 >
-                  <Button value="Continue" />
+                  <SubmitButton value="Continue" />
                 </form>
               </>
             )

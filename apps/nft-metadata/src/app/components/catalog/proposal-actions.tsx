@@ -2,14 +2,17 @@ import * as fcl from "@onflow/fcl"
 import { SocketAddress } from "net"
 import { useEffect, useState } from "react"
 import { useCurrentUser } from "src/app/hooks/use-current-user"
-import { createAdminProxy, getAccountHasAdminProxy, getIsAdmin } from "src/flow/utils"
+import { acceptProposal, createAdminProxy, deleteProposal, getAccountHasAdminProxy, getIsAdmin, rejectProposal } from "src/flow/utils"
+import { Button } from "../shared/button"
+import { Spinner } from "../shared/spinner"
 
-export function ProposalActions({ proposer }: {proposer: string|undefined}) {
-  const [address, setAddress] = useState<string|null>(null)
+export function ProposalActions({ proposal, proposalID }: { proposal: any, proposalID: string }) {
+  const proposer = proposal.proposer
+  const [loading, setLoading] = useState<boolean>(false)
+  const [address, setAddress] = useState<string | null>(null)
   const [hasAdminProxy, setHasAdminProxy] = useState<boolean>(false)
   const [isAdmin, setIsAdmin] = useState<boolean>(false)
   const [forceState, setForceState] = useState<number>(0)
-
 
   useEffect(() => {
     const setup = async () => {
@@ -32,7 +35,7 @@ export function ProposalActions({ proposer }: {proposer: string|undefined}) {
     }
     setupUser()
   }, [forceState])
-  
+
   const loggedIn = address !== null
 
   if (!loggedIn) {
@@ -51,36 +54,65 @@ export function ProposalActions({ proposer }: {proposer: string|undefined}) {
     )
   }
 
+  if (loading) {
+    return <Spinner />
+  }
+
   const buttons: Array<any> = []
-  
-  if (address !== null && proposer === address) {
+  if (!hasAdminProxy) {
     buttons.push(
-      <button key="delete">
-        Delete Proposal
-      </button>
+      <Button key="setup" onClick={async () => {
+        setLoading(true)
+        await createAdminProxy()
+        setForceState(forceState + 1)
+        setLoading(false)
+      }}>
+        Create Admin Proxy
+      </Button>
+    )
+  }
+  if (isAdmin && proposal.status === 'IN_REVIEW') {
+    buttons.push(
+      <Button
+        key="accept"
+        onClick={async () => {
+          setLoading(true)
+          await acceptProposal(proposalID)
+          setForceState(forceState + 1)
+          setLoading(false)
+        }}
+      >
+        Accept Proposal
+      </Button>
+    )
+    buttons.push(
+      <Button
+        key="reject"
+        onClick={async () => {
+          setLoading(true)
+          await rejectProposal(proposalID)
+          setForceState(forceState + 1)
+          setLoading(false)
+        }}
+      >
+        Reject Proposal
+      </Button>
     )
   }
 
-  if (!hasAdminProxy) {
+  if (address !== null && proposer === address || isAdmin) {
     buttons.push(
-      <button key="setup" onClick={async () => {
-        await createAdminProxy()
-        setForceState(forceState + 1)
-      }}>
-        Create Admin Proxy
-      </button>
-    )
-  }
-  if (isAdmin) {
-    buttons.push(
-      <button key="accept">
-        Accept Proposal
-      </button>
-    )
-    buttons.push(
-      <button key="reject">
-        Reject Proposal
-      </button>
+      <Button
+        key="delete"
+        onClick={async () => {
+          setLoading(true)
+          await deleteProposal(proposalID)
+          setForceState(forceState + 1)
+          setLoading(false)
+        }}
+      >
+        Delete Proposal
+      </Button>
     )
   }
 
