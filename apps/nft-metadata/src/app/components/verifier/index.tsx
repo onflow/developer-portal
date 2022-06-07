@@ -11,7 +11,7 @@ export default function ({
 }: {
 }) {
   const query = useQuery()
-  const { selectedAddress, selectedContract } = useParams()
+  const { selectedAddress, selectedContract } = useParams<any>()
   const history = useHistory()
 
   const publicPath = query.get("path")

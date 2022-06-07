@@ -18,7 +18,7 @@ export function SampleNFTView({
   publicPath: string | null,
 }) {
   const history = useHistory()
-  const { selectedAddress, selectedContract } = useParams()
+  const { selectedAddress, selectedContract } = useParams<any>()
   const [viewsImplemented, setViewsImplemented] = useState<any>([]);
   const [viewData, setViewData] = useState<{ [key: string]: Object }>({});
   const [error, setError] = useState<boolean | null>(null);

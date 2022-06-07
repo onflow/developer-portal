@@ -1,5 +1,5 @@
 {
-  "root": "apps/nft-metadata",
+  "$schema": "../../node_modules/nx/schemas/project-schema.json",
   "sourceRoot": "apps/nft-metadata/src",
   "projectType": "application",
   "targets": {
@@ -37,12 +37,18 @@
           "namedChunks": false,
           "extractLicenses": true,
           "vendorChunk": false
+        },
+        "development": {
+          "extractLicenses": false,
+          "optimization": false,
+          "sourceMap": true,
+          "vendorChunk": true
         }
       }
     },
-    "tailwindcss" : {
-      "executor" : "@nrwl/workspace:run-commands",
-      "options" : {
+    "tailwindcss": {
+      "executor": "@nrwl/workspace:run-commands",
+      "options": {
         "command": "tailwindcss -c tailwind.config.js -i libs/design-system/styles/main.css -o apps/nft-metadata/src/app/styles/tailwind.css --watch"
       }
     },
@@ -56,8 +62,12 @@
         "production": {
           "buildTarget": "nft-metadata:build:production",
           "hmr": false
+        },
+        "development": {
+          "buildTarget": "nft-metadata:build:development"
         }
-      }
+      },
+      "defaultConfiguration": "development"
     },
     "lint": {
       "executor": "@nrwl/linter:eslint",

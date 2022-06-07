@@ -10,7 +10,7 @@ import { SampleNFTPrompt } from "./sample-nft-prompt"
 export function AdditionalNftInfo({
 }: {
 }) {
-  const { selectedAddress, selectedContract } = useParams()
+  const { selectedAddress, selectedContract } = useParams<any>()
   const [account, setAccount] = useState<any>({})
   const [contractInfo, setContractInfo] = useState<any>(null)
   const [loading, setLoading] = useState<boolean>(false)
