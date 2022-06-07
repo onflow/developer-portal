@@ -2,6 +2,16 @@ import { Meta, Story } from '@storybook/react';
 import { GettingStartedPage, GettingStartedPageProps } from '.';
 import { ReactComponent as CadenceIcon } from '../../../../images/tools/tool-cadence.svg';
 import { ReactComponent as FCLIcon } from '../../../../images/tools/tool-fcl.svg';
+import { ReactComponent as FlowPortIcon } from '../../../../images/tools/tool-port.svg';
+import { ReactComponent as EmulatorIcon } from '../../../../images/tools/tool-emulator.svg';
+import { ReactComponent as FLOWCLIIcon } from '../../../../images/tools/tool-cli.svg';
+
+import { ReactComponent as ElixirIcon } from '../../../../images/sdk/elixir.svg';
+import { ReactComponent as GoIcon } from '../../../../images/sdk/go.svg';
+import { ReactComponent as RustIcon } from '../../../../images/sdk/rust.svg';
+import { ReactComponent as SwiftIcon } from '../../../../images/sdk/swift.svg';
+import { ReactComponent as NetIcon } from '../../../../images/sdk/net.svg';
+
 import { svgToDataUri } from '../../Components/LinkCard2Column/LinkCard2Column.stories';
 
 const Icon1 = () => (
@@ -219,74 +229,68 @@ const gettingStartedPageData = {
   },
   sdkCardItems: [
     {
-      title: 'Flow Port',
+      title: 'Swift',
       authorIcon: 'https://avatars.githubusercontent.com/u/62387156?s=64&v=4',
       authorName: 'mini flow',
       tags: ['Tags'],
       link: '#',
       stars: 52,
-      toolIcon:
-        'https://cdn4.iconfinder.com/data/icons/logos-3/504/Swift-2-512.png',
+      toolIcon: <SwiftIcon />,
       lastCommit: '22/3',
       lastRelease: '207',
     },
     {
-      title: 'Flow Port',
+      title: '.Net',
       authorIcon: 'https://avatars.githubusercontent.com/u/62387156?s=64&v=4',
       authorName: 'mini flow',
       tags: ['Tags'],
       link: '#',
       stars: 52,
-      toolIcon:
-        'https://cdn4.iconfinder.com/data/icons/logos-3/504/Swift-2-512.png',
+      toolIcon: <NetIcon />,
       lastCommit: '22/3',
       lastRelease: '207',
     },
     {
-      title: 'Flow Port',
+      title: 'Go',
       authorIcon: 'https://avatars.githubusercontent.com/u/62387156?s=64&v=4',
       authorName: 'mini flow',
       tags: ['Tags'],
       link: '#',
       stars: 52,
-      toolIcon:
-        'https://cdn4.iconfinder.com/data/icons/logos-3/504/Swift-2-512.png',
+      toolIcon: <GoIcon />,
       lastCommit: '22/3',
       lastRelease: '207',
     },
     {
-      title: 'Flow Port',
+      title: 'Rust',
       authorIcon: 'https://avatars.githubusercontent.com/u/62387156?s=64&v=4',
       authorName: 'mini flow',
       tags: ['Tags'],
       link: '#',
       stars: 52,
-      toolIcon:
-        'https://cdn4.iconfinder.com/data/icons/logos-3/504/Swift-2-512.png',
+      toolIcon: <RustIcon />,
       lastCommit: '22/3',
       lastRelease: '207',
     },
     {
-      title: 'Flow Port',
+      title: 'Elixir',
       authorIcon: 'https://avatars.githubusercontent.com/u/62387156?s=64&v=4',
       authorName: 'mini flow',
       tags: ['Tags'],
       link: '#',
       stars: 52,
-      toolIcon:
-        'https://cdn4.iconfinder.com/data/icons/logos-3/504/Swift-2-512.png',
+      toolIcon: <ElixirIcon />,
       lastCommit: '22/3',
       lastRelease: '207',
     },
     {
-      title: 'Flow Port',
+      title: 'Python',
       authorIcon: 'https://avatars.githubusercontent.com/u/62387156?s=64&v=4',
       authorName: 'mini flow',
       tags: ['Tags'],
       link: '#',
       stars: 52,
-      toolIcon:
-        'https://cdn4.iconfinder.com/data/icons/logos-3/504/Swift-2-512.png',
+      toolIcon: <SwiftIcon />,
       lastCommit: '22/3',
       lastRelease: '207',
     },
@@ -307,48 +311,45 @@ const gettingStartedPageData = {
       tags: ['Tags'],
       link: '#',
       stars: 52,
-      toolIcon:
-        'https://cdn4.iconfinder.com/data/icons/logos-3/504/Swift-2-512.png',
+      toolIcon: <FlowPortIcon />,
       description:
         'Lorem ipsum text here can go a two liner sentence or a one liner',
     },
     {
-      title: 'Flow Port',
+      title: 'Flow CLI',
       authorIcon: 'https://avatars.githubusercontent.com/u/62387156?s=64&v=4',
       authorName: 'mini flow',
       tags: ['Tags'],
       link: '#',
       stars: 52,
-      toolIcon:
-        'https://cdn4.iconfinder.com/data/icons/logos-3/504/Swift-2-512.png',
+      toolIcon: <FLOWCLIIcon />,
       description:
         'Lorem ipsum text here can go a two liner sentence or a one liner',
     },
     {
-      title: 'Flow Port',
+      title: 'Flow Emulator',
       authorIcon: 'https://avatars.githubusercontent.com/u/62387156?s=64&v=4',
       authorName: 'mini flow',
       tags: ['Tags'],
       link: '#',
       stars: 52,
-      toolIcon:
-        'https://cdn4.iconfinder.com/data/icons/logos-3/504/Swift-2-512.png',
+      toolIcon: <EmulatorIcon />,
       description:
         'Lorem ipsum text here can go a two liner sentence or a one liner',
     },
   ],
   contentNavigationItems: [
     {
-      title: 'Concepts',
+      title: 'Learn',
       text: 'Lorem ipsum dolor sit amet proin gravida lorem ipsum',
       link: '#',
-      icon: 'concepts',
+      icon: 'learn',
     },
     {
-      title: 'Concepts',
+      title: 'Tools',
       text: 'Lorem ipsum dolor sit amet proin gravida lorem ipsum',
       link: '#',
-      icon: 'concepts',
+      icon: 'tools',
     },
     {
       title: 'Concepts',
