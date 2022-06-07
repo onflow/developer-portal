@@ -1,4 +1,4 @@
-import React from 'react';
+ 
 import { ReactComponent as ChevronRightIcon } from '../../../../images/arrows/chevron-right.svg';
 import { ReactComponent as RssIcon } from '../../../../images/content/rss.svg';
 import { Link } from '../Link';

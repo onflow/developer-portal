@@ -1,4 +1,4 @@
-import React from 'react';
+ 
 import { ReactComponent as ArrowLeftIcon } from '../../../../images/arrows/arrow-left.svg';
 import { ReactComponent as ArrowRightIcon } from '../../../../images/arrows/arrow-right.svg';
 

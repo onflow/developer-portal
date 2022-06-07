@@ -23,19 +23,21 @@ import {
 } from "~/cms/utils/theme.provider";
 import { getUser } from "./session.server";
 import styles from "./styles/main.css";
+import reachStyles from "@reach/dialog/styles.css"
 import { getThemeSession } from "./theme.server";
 
 import {
-  Footer
+  Footer,
+  // /MainNav 
 } from "@flow-docs/ui"
 
 export const links: LinksFunction = () => {
-  return [{ rel: "stylesheet", href: styles }];
+  return [{ rel: "stylesheet", href: styles }, {rel: "stylesheet",  href: reachStyles}];
 };
 
 export const meta: MetaFunction = () => ({
   charset: "utf-8",
-  title: "Remix Notes",
+  title: "Flow Documentation",
   viewport: "width=device-width,initial-scale=1",
 });
 
@@ -53,23 +55,6 @@ export const loader: LoaderFunction = async ({ request }) => {
   });
 };
 
-function MainNav() {
-  const [, setTheme] = useTheme();
-
-  const toggleTheme = () => {
-    setTheme((prev) => (prev === Theme.LIGHT ? Theme.DARK : Theme.LIGHT));
-  };
-
-  return (
-    <nav className="flex px-4 py-6">
-      <div>flow docs</div>
-      <button onClick={toggleTheme} className="ml-auto">
-        Toggle Dark Mode
-      </button>
-    </nav>
-  );
-}
-
 function App() {
   const data = useLoaderData<LoaderData>();
   const [theme] = useTheme();
@@ -83,16 +68,16 @@ function App() {
       </head>
       <body
         className={clsx(
-          "h-full bg-white text-gray-900 dark:bg-black dark:text-white"
+          "h-full bg-white text-gray-900 dark:bg-black dark:text-white flex-col justify-between"
         )}
       >
         <ThemeBody ssrTheme={Boolean(data.theme)} />
-        <MainNav />
-          <Outlet />
+        {/* <MainNav /> */}
+          <Outlet/>
         <Footer/>
         <ScrollRestoration />
         <Scripts />
-        <LiveReload port={8002}/>
+        <LiveReload />
       </body>
     </html>
   );

@@ -1,4 +1,4 @@
-import React from 'react';
+ 
 import Tag from '../Tag';
 import { ReactComponent as CalendarIcon } from '../../../../images/action/date-calendar.svg';
 import { ReactComponent as TutorialIcon } from '../../../../images/content/drafting-tools.svg';

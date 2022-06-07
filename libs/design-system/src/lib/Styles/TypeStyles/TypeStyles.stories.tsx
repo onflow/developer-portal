@@ -1,5 +1,5 @@
 import { Meta, Story } from '@storybook/react';
-import { TypeStyles } from './';
+import { TypeStyles } from '.';
 
 export default {
   component: TypeStyles,

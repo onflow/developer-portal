@@ -1,7 +1,6 @@
-import { Dialog } from '@reach/dialog';
-// import '@reach/dialog/styles.css';
+import { Dialog } from '@headlessui/react';
 import clsx from 'clsx';
-import React, { useState } from 'react';
+import { useState, ReactNode } from 'react';
 import { ReactComponent as CollapseIcon } from '../../../../images/content/collapse.svg';
 import { ReactComponent as FileCodeIcon } from '../../../../images/content/file-code.svg';
 import { ReactComponent as FileCopyIcon } from '../../../../images/content/file-copy.svg';
@@ -17,12 +16,12 @@ export type InternalCodeblockProps = {
 };
 
 function Header({
-  showDialog,
-  openDialog,
+  isOpen,
   closeDialog,
+  openDialog,
   onCopy,
 }: {
-  showDialog: boolean;
+  isOpen: boolean;
   openDialog: () => void;
   closeDialog: () => void;
   onCopy: () => void;
@@ -38,7 +37,7 @@ function Header({
       <div className="ml-auto text-primary-blue">
         <button
           type="button"
-          className="ml-auto p-2 hover:opacity-75"
+          className="p-2 ml-auto hover:opacity-75"
           title="Copy to clipboard"
           aria-label="Copy to clipboard"
           onClick={onCopy}
@@ -46,11 +45,11 @@ function Header({
           <FileCopyIcon />
         </button>
         <button
-          className="cursor-pointer p-2 hover:opacity-75"
-          title={showDialog ? 'Collapse' : 'Expand'}
-          onClick={showDialog ? closeDialog : openDialog}
+          className="p-2 cursor-pointer hover:opacity-75"
+          title={isOpen ? 'Collapse' : 'Expand'}
+          onClick={isOpen ? closeDialog : openDialog}
         >
-          {showDialog ? <CollapseIcon /> : <ScreenFullIcon />}
+          {isOpen ? <CollapseIcon /> : <ScreenFullIcon />}
         </button>
       </div>
     </div>
@@ -62,7 +61,7 @@ function Code({
   children,
 }: {
   innerClasses: string;
-  children: React.ReactNode;
+  children: ReactNode;
 }) {
   return (
     <pre
@@ -81,19 +80,16 @@ export function InternalCodeblock({
   rawText,
   children,
 }: InternalCodeblockProps) {
-  const [showDialog, setShowDialog] = useState(false);
-
-  const openDialog = () => setShowDialog(true);
-  const closeDialog = () => setShowDialog(false);
+  const [isOpen, setIsOpen] = useState(false);
   const onCopy = () => navigator.clipboard.writeText(rawText);
 
   return (
-    <>
-      <div className="rounded-lg border border-primary-gray-100 text-xs dark:border-0">
+    <div>
+      <div className="text-xs border rounded-lg border-primary-gray-100 dark:border-0">
         <Header
-          openDialog={openDialog}
-          closeDialog={closeDialog}
-          showDialog={showDialog}
+          isOpen={isOpen}
+          closeDialog={() => setIsOpen(false)}
+          openDialog={() => setIsOpen(true)}
           onCopy={onCopy}
         />
         <Code
@@ -101,27 +97,24 @@ export function InternalCodeblock({
           innerClasses={tall ? 'max-h-[280px]' : 'max-h-[130px]'}
         />
       </div>
-      <Dialog
-        isOpen={showDialog}
-        onDismiss={closeDialog}
-        className="flex flex-col rounded-lg !p-0 dark:bg-[#111111]"
-        style={{
-          height: '90vh',
-          width: '95vw',
-          margin: '5vh auto',
-        }}
-      >
-        <Header
-          openDialog={openDialog}
-          closeDialog={closeDialog}
-          showDialog={showDialog}
-          onCopy={onCopy}
-        />
-        {/* Modal is rendered in portal outside the original .mdx-content div */}
-        <div className="mdx-content h-full">
-          <Code children={children} innerClasses="w-full h-full" />
-        </div>
-      </Dialog>
-    </>
+      <div>
+        <Dialog open={isOpen} onClose={() => setIsOpen(false)}>
+          <Dialog.Panel>
+            <Dialog.Title>Deactivate account</Dialog.Title>
+            <Dialog.Description>
+              This will permanently deactivate your account
+            </Dialog.Description>
+
+            <p>
+              Are you sure you want to deactivate your account? All of your data
+              will be permanently removed. This action cannot be undone.
+            </p>
+
+            <button onClick={() => setIsOpen(true)}>Deactivate</button>
+            <button onClick={() => setIsOpen(false)}>Cancel</button>
+          </Dialog.Panel>
+        </Dialog>
+      </div>
+    </div>
   );
 }

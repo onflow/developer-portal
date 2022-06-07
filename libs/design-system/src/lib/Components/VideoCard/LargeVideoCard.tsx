@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import   { useState } from 'react';
 
 import { ReactComponent as PlayCircle } from '../../../../images/action/play-circle.svg';
 import { ReactComponent as Time } from '../../../../images/content/date.svg';
