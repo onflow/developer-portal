@@ -5,7 +5,6 @@
     "defaultBase": "main"
   },
   "cli": {
-    "defaultCollection": "@nrwl/react",
     "packageManager": "yarn"
   },
   "implicitDependencies": {
