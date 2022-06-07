@@ -1,7 +1,6 @@
 {
-    "root": "apps/flow-docs",
-    "sourceRoot": "apps/flow-docs",
-    "projectType": "application",
-    "tags": []
-  }
-  
+  "$schema": "../../node_modules/nx/schemas/project-schema.json",
+  "sourceRoot": "apps/flow-docs",
+  "projectType": "application",
+  "tags": []
+}

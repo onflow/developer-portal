@@ -1,10 +1,10 @@
 {
-  "root": "libs/design-system",
+  "$schema": "../../node_modules/nx/schemas/project-schema.json",
   "sourceRoot": "libs/design-system/src",
   "projectType": "library",
   "tags": [],
   "targets": {
-    "dev" : {
+    "dev": {
       "executor": "@nrwl/web:rollup",
       "outputs": ["{options.outputPath}"],
       "options": {
@@ -14,7 +14,10 @@
         "project": "libs/design-system/package.json",
         "entryFile": "libs/design-system/src/index.ts",
         "external": ["react/jsx-runtime"],
-        "rollupConfig": ["@nrwl/react/plugins/bundle-rollup", "libs/design-system/rollup.config.js"],
+        "rollupConfig": [
+          "@nrwl/react/plugins/bundle-rollup",
+          "libs/design-system/rollup.config.js"
+        ],
         "compiler": "babel",
         "assets": [
           {
@@ -34,8 +37,17 @@
         "tsConfig": "libs/design-system/tsconfig.lib.json",
         "project": "libs/design-system/package.json",
         "entryFile": "libs/design-system/src/index.ts",
-        "external": ["@types/react", "@types/react-dom", "react", "react-dom", "react/jsx-runtime"],
-        "rollupConfig": ["@nrwl/react/plugins/bundle-rollup", "libs/design-system/rollup.config.js"],
+        "external": [
+          "@types/react",
+          "@types/react-dom",
+          "react",
+          "react-dom",
+          "react/jsx-runtime"
+        ],
+        "rollupConfig": [
+          "@nrwl/react/plugins/bundle-rollup",
+          "libs/design-system/rollup.config.js"
+        ],
         "compiler": "babel",
         "assets": [
           {
@@ -58,7 +70,7 @@
       "executor": "@nrwl/jest:jest",
       "outputs": ["coverage/libs/design-system"],
       "options": {
-        "jestConfig": "libs/design-system/jest.config.js",
+        "jestConfig": "libs/design-system/jest.config.ts",
         "passWithNoTests": true
       }
     },
