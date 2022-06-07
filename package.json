@@ -9,7 +9,8 @@
   ],
   "scripts": {
     "build": "yarn nx build flow-docs",
-    "dev": "yarn nx run flow-docs:dev",
+    "dev:site": "yarn nx run flow-docs:dev",
+    "dev:design-system": "yarn nx run design-system:dev",
     "e2e": "yarn nx run docs-e2e:e2e",
     "postinstall": "yarn remix setup node",
     "lint": "yarn nx run flow-docs:lint",
