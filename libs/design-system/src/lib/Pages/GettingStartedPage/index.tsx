@@ -24,8 +24,6 @@ import {
 import { ReactComponent as GitHubIcon } from '../../../../images/social/github.svg';
 import { ReactComponent as DiscordIcon } from '../../../../images/social/discord.svg';
 
-
-
 export interface GettingStartedPageProps {
   landingHeaderItems: LandingHeaderProps;
   linkCard3ColumnItems: LinkCard3ColumnProps;
@@ -99,7 +97,12 @@ export function GettingStartedPage({
         <div className="container">
           <div className="mb-9 flex items-end justify-between">
             <h2 className="text-h2">SDK's</h2>
-            <ButtonLink next variant="secondary" className="hidden md:inline-flex" href='#'>
+            <ButtonLink
+              next
+              variant="secondary"
+              className="hidden md:inline-flex"
+              href="#"
+            >
               View All SDKs
             </ButtonLink>
           </div>
@@ -119,7 +122,7 @@ export function GettingStartedPage({
               />
             ))}
           </div>
-          <ButtonLink variant="primary" className="w-full md:hidden" href='#'>
+          <ButtonLink variant="primary" className="w-full md:hidden" href="#">
             View All SDKs
           </ButtonLink>
         </div>
@@ -133,7 +136,12 @@ export function GettingStartedPage({
 
           <div className="flex items-end justify-between md:items-center ">
             <h4 className="text-h4">Recent Tools</h4>
-            <ButtonLink next variant="secondary" className="hidden md:inline-flex" href='#'>
+            <ButtonLink
+              next
+              variant="secondary"
+              className="hidden md:inline-flex"
+              href="#"
+            >
               View All Tools
             </ButtonLink>
           </div>
