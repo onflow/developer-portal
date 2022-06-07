@@ -1,7 +1,6 @@
 import { TabMenu } from '../';
 import { ToolCard, ToolCardProps } from '../ToolCard';
 import { ButtonLink } from '../Button';
-import { ReactComponent as RightChevronIcon } from '../../../../images/arrows/chevron-right.svg';
 import { ReactComponent as ExternalLinkIcon } from '../../../../images/content/external-link.svg';
 
 export type ToolsAndConceptsProps = {

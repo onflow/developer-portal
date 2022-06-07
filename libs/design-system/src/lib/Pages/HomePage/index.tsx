@@ -8,6 +8,9 @@ import {
   ToolsAndConcepts,
   UpcomingEvents,
 } from '../../Components';
+import PageSections from '../shared/PageSections';
+import PageSection from '../shared/PageSection';
+import PageBackground from '../shared/PageBackground';
 import { FlipCellProps } from '../../Components/FlipCell';
 import { ToolCardProps } from '../../Components/ToolCard';
 import { LinkCard3ColumnProps } from '../../Components/LinkCard3Column';
@@ -30,37 +33,38 @@ const HomePage = ({
   upcomingEvents,
 }: HomePageProps) => {
   return (
-    <div className="bg-primary-gray-50 dark:bg-black">
+    <PageBackground>
       <LandingHeaderHome
         title="Developer Resources"
         description="Understand the foundational concepts of Flow and its language, Cadence"
         tag="onflow"
       />
 
-      <LinkCard2Column {...startProjectItems} bottomRounded={false} />
+      <PageSections>
+        <PageSection>
+          <LinkCard2Column {...startProjectItems} bottomRounded={false} />
+          <LinkCard3Column items={threeColumnItems as any} topRounded={false} />
+        </PageSection>
 
-      <div className="mb-36">
-        <LinkCard3Column items={threeColumnItems as any} topRounded={false} />
-      </div>
+        <PageSection>
+          <ToolsAndConcepts tools={tools} />
+        </PageSection>
 
-      <div className="mb-20">
-        <ToolsAndConcepts tools={tools} />
-      </div>
+        <PageSection>
+          <Flips flips={flips} />
+        </PageSection>
 
-      <div className="mb-36">
-        <Flips flips={flips} />
-      </div>
-
-      <div className="mb-20">
-        <UpcomingEvents {...upcomingEvents} />
-      </div>
+        <PageSection>
+          <UpcomingEvents {...upcomingEvents} />
+        </PageSection>
+      </PageSections>
 
       <div className="my-24">
         <SocialLinksSignup />
       </div>
 
       <Footer />
-    </div>
+    </PageBackground>
   );
 };
 
