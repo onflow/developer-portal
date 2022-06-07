@@ -67,7 +67,7 @@ export default function () {
   const Component = useMdxComponent({ code, frontmatter });
 
   return (
-    <div className="flex flex-col md:flex-row">
+    <div className="flex flex-col py-8 md:flex-row">
       <Component />
     </div>
   );

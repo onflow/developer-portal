@@ -1,6 +1,6 @@
 import Dialog from '@reach/dialog';
 import clsx from 'clsx';
-import { useState } from 'react';
+import { useState, ReactNode } from 'react';
 import { ReactComponent as CollapseIcon } from '../../../../images/content/collapse.svg';
 import { ReactComponent as FileCodeIcon } from '../../../../images/content/file-code.svg';
 import { ReactComponent as FileCopyIcon } from '../../../../images/content/file-copy.svg';
@@ -61,7 +61,7 @@ function Code({
   children,
 }: {
   innerClasses: string;
-  children: React.ReactNode;
+  children: ReactNode;
 }) {
   return (
     <pre
@@ -87,7 +87,7 @@ export function InternalCodeblock({
   const onCopy = () => navigator.clipboard.writeText(rawText);
 
   return (
-    <>
+    <div>
       <div className="text-xs border rounded-lg border-primary-gray-100 dark:border-0">
         <Header
           openDialog={openDialog}
@@ -100,27 +100,22 @@ export function InternalCodeblock({
           innerClasses={tall ? 'max-h-[280px]' : 'max-h-[130px]'}
         />
       </div>
-      <Dialog
+
+      {/* <Dialog
         isOpen={showDialog}
         onDismiss={closeDialog}
         className="flex flex-col rounded-lg !p-0 dark:bg-[#111111]"
+        aria-label="codeblock"
         style={{
           height: '90vh',
           width: '95vw',
           margin: '5vh auto',
         }}
       >
-        <Header
-          openDialog={openDialog}
-          closeDialog={closeDialog}
-          showDialog={showDialog}
-          onCopy={onCopy}
-        />
-        {/* Modal is rendered in portal outside the original .mdx-content div */}
         <div className="h-full mdx-content">
-          <Code children={children} innerClasses="w-full h-full" />
+           <Code children={children} innerClasses="w-full h-full" /> 
         </div>
-      </Dialog>
-    </>
+      </Dialog> */}
+    </div>
   );
 }

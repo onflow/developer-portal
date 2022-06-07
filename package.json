@@ -1,19 +1,39 @@
 {
   "name": "flow-docs",
   "version": "0.0.1",
-  "license": "MIT",
-  "scripts": {
-    "dev": "yarn nx run flow-docs:dev",
-    "start": "yarn nx start flow-docs",
-    "build": "yarn nx build flow-docs",
-    "storybook": "yarn nx run design-system:storybook",
-    "lint": "yarn nx run flow-docs:lint",
-    "test": "yarn nx run flow-docs:test",
-    "e2e": "yarn nx run docs-e2e:e2e",
-    "typecheck": "yarn nx typecheck flow-docs",
-    "postinstall": "yarn remix setup node"
-  },
   "private": true,
+  "license": "MIT",
+  "workspaces": [
+    "apps/*",
+    "libs/*"
+  ],
+  "scripts": {
+    "build": "yarn nx build flow-docs",
+    "dev": "yarn nx run flow-docs:dev",
+    "e2e": "yarn nx run docs-e2e:e2e",
+    "postinstall": "yarn remix setup node",
+    "lint": "yarn nx run flow-docs:lint",
+    "start": "yarn nx start flow-docs",
+    "storybook": "yarn nx run design-system:storybook",
+    "test": "yarn nx run flow-docs:test",
+    "typecheck": "yarn nx typecheck flow-docs"
+  },
+  "dependencies": {
+    "@docsearch/react": "^3.1.0",
+    "@reach/dialog": "^0.17.0",
+    "@reach/menu-button": "^0.17.0",
+    "@remix-run/react": "^1.0.6",
+    "@remix-run/serve": "^1.0.6",
+    "core-js": "^3.6.5",
+    "npm-run-all": "^4.1.5",
+    "react": "^18.0.0",
+    "react-dom": "^18.0.0",
+    "regenerator-runtime": "0.13.7",
+    "remix": "^1.0.6",
+    "rollup-plugin-peer-deps-external": "^2.2.4",
+    "tailwindcss": "^3.0.24",
+    "tslib": "^2.0.0"
+  },
   "devDependencies": {
     "@babel/core": "7.12.13",
     "@babel/preset-typescript": "7.12.13",
@@ -52,8 +72,8 @@
     "@testing-library/react": "13.0.0",
     "@testing-library/react-hooks": "7.0.2",
     "@types/jest": "27.0.2",
-    "@types/react": "^17.0.24",
-    "@types/react-dom": "^17.0.9",
+    "@types/react": "^18.0.12",
+    "@types/react-dom": "^18.0.5",
     "@typescript-eslint/eslint-plugin": "~5.18.0",
     "@typescript-eslint/parser": "~5.18.0",
     "autoprefixer": "^10.4.7",
@@ -83,26 +103,7 @@
     "typescript": "~4.6.2",
     "url-loader": "^3.0.0"
   },
-  "workspaces": [
-    "apps/*",
-    "libs/*"
-  ],
   "engines": {
     "node": ">=16"
-  },
-  "dependencies": {
-    "@docsearch/react": "^3.1.0",
-    "@reach/dialog": "^0.17.0",
-    "@reach/menu-button": "^0.17.0",
-    "@remix-run/react": "^1.0.6",
-    "@remix-run/serve": "^1.0.6",
-    "core-js": "^3.6.5",
-    "npm-run-all": "^4.1.5",
-    "react": "^18.0.0",
-    "react-dom": "^18.0.0",
-    "regenerator-runtime": "0.13.7",
-    "remix": "^1.0.6",
-    "tailwindcss": "^3.0.24",
-    "tslib": "^2.0.0"
   }
 }
