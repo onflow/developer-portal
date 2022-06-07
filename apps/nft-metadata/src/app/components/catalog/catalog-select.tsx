@@ -1,20 +1,30 @@
 import { useEffect, useState } from "react"
 import { useHistory } from "react-router-dom"
 import { getProposals } from "src/flow/utils"
+import { Network } from "./network-dropdown";
+import { changeFCLEnvironment } from "src/flow/setup";
 
 export function CatalogSelect({
   type,
+  network,
   selected
 }: {
   type: "Catalog" | "Proposals",
-  selected: string|undefined
+  network: Network
+  selected: string | undefined
 }) {
   const history = useHistory()
-  const [items, setItems] = useState<null|Array<any>>(null)
+  const [items, setItems] = useState<null | Array<any>>(null)
   const loading = !items
 
   useEffect(() => {
     const setup = async () => {
+      if (network === 'mainnet') {
+        // TODO: Remove this once deployed to mainnet
+        setItems([]);
+        return;
+      }
+      changeFCLEnvironment(network);
       // retrieve list of proposals or 
       if (type === 'Proposals') {
         const proposals = await getProposals()
@@ -38,7 +48,7 @@ export function CatalogSelect({
       }
     }
     setup()
-  }, [type])
+  }, [type, network])
 
   return (
     <a className="border-t-1 my-4">
@@ -48,7 +58,7 @@ export function CatalogSelect({
           return (
             <div key={i} className={`flex-col p-8 hover:bg-gray-300 cursor-pointer border-t-2 text-left ${selectedStyle}`} onClick={
               () => {
-                history.push(type === 'Proposals' ? `/proposals/${item.id}` : `/catalog/${item.id}`)
+                history.push(type === 'Proposals' ? `/proposals/${network}/${item.id}` : `/catalog/${network}/${item.id}`)
               }
             }>
               <div className="font-semibold">{item.name}</div>
@@ -59,7 +69,7 @@ export function CatalogSelect({
       }
 
       {
-        loading && [0,0,0,0,0,0,0,0,0].map((item, i) => {
+        loading && [0, 0, 0, 0, 0, 0, 0, 0, 0].map((item, i) => {
           return (
             <div key={i} className={`flex-col p-8 cursor-pointer border-t-2`}>
               <div className="font-semibold">{" "}</div>
