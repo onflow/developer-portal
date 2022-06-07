@@ -5,18 +5,33 @@ on:
       - main
       - dev
   pull_request: {}
+
 permissions:
   actions: write
   contents: read
 
 jobs:
+  prettier:
+    name: Prettier
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v3
+      - uses: actions/setup-node@v3
+        with:
+          cache: 'yarn'
+      - name: Install modules
+        run: yarn install
+      - name: Formatting
+        working-directory: apps/flow-docs # TODO: format entire repo with prettier
+        run: yarn prettier:check
+
   lint:
     name: ⬣ ESLint
     runs-on: ubuntu-latest
     steps:
       - name: 🛑 Cancel Previous Runs
         uses: styfle/cancel-workflow-action@0.9.1
-      
+
       - name: ⎔ Setup node
         uses: actions/setup-node@v3
         with:
@@ -25,7 +40,7 @@ jobs:
       - name: ⬇️ Checkout repo
         uses: actions/checkout@v3
 
-      - name: Install deps 
+      - name: Install deps
         uses: borales/actions-yarn@v2.3.0
         with:
           cmd: install
@@ -34,7 +49,7 @@ jobs:
         uses: borales/actions-yarn@v2.3.0
         with:
           cmd: lint
-          
+
   typecheck:
     name: ʦ TypeScript
     runs-on: ubuntu-latest
@@ -50,12 +65,12 @@ jobs:
         with:
           node-version: 16
 
-      - name: Install deps 
+      - name: Install deps
         uses: borales/actions-yarn@v2.3.0
         with:
           cmd: install
 
-      - name: Build site 
+      - name: Build site
         uses: borales/actions-yarn@v2.3.0
         with:
           cmd: build
@@ -80,7 +95,7 @@ jobs:
         with:
           node-version: 16
 
-      - name: Install deps 
+      - name: Install deps
         uses: borales/actions-yarn@v2.3.0
         with:
           cmd: install
@@ -108,7 +123,7 @@ jobs:
   #       with:
   #         node-version: 16
 
-  #     - name: Install deps 
+  #     - name: Install deps
   #       uses: borales/actions-yarn@v2.3.0
   #       with:
   #         cmd: install
@@ -149,8 +164,8 @@ jobs:
         uses: SebRollen/toml-action@v1.0.0
         id: app_name
         with:
-          file: "fly.toml"
-          field: "app"
+          file: 'fly.toml'
+          field: 'app'
 
       - name: 🐳 Set up Docker Buildx
         uses: docker/setup-buildx-action@v1
@@ -210,14 +225,14 @@ jobs:
         uses: SebRollen/toml-action@v1.0.0
         id: app_name
         with:
-          file: "fly.toml"
-          field: "app"
+          file: 'fly.toml'
+          field: 'app'
 
       - name: 🚀 Deploy Staging
         if: ${{ github.ref == 'refs/heads/main' }}
         uses: superfly/flyctl-actions@1.3
         with:
-          args: "deploy --app ${{ steps.app_name.outputs.value }} --image registry.fly.io/${{ steps.app_name.outputs.value }}:${{ github.ref_name }}-${{ github.sha }}"
+          args: 'deploy --app ${{ steps.app_name.outputs.value }} --image registry.fly.io/${{ steps.app_name.outputs.value }}:${{ github.ref_name }}-${{ github.sha }}'
         env:
           FLY_API_TOKEN: ${{ secrets.FLY_API_TOKEN }}
 
