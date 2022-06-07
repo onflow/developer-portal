@@ -1,13 +1,13 @@
-import type { LoaderFunction } from "@remix-run/node";
-import type { FlipCellProps } from "../../../../../libs/design-system/dist/lib/Components/Flips/FlipCell";
-import { Octokit } from "@octokit/core";
+import type { LoaderFunction } from "@remix-run/node"
+import type { FlipCellProps } from "../../../../../libs/design-system/dist/lib/Components/Flips/FlipCell"
+import { Octokit } from "@octokit/core"
 
-export type LoaderData = FlipCellProps[];
+export type LoaderData = FlipCellProps[]
 
 export const loader: LoaderFunction = async () => {
   const octokit = new Octokit({
     auth: process.env.PERSONAL_ACCESS_TOKEN,
-  });
+  })
 
   const getPullRequests = async (fetchLabel: string) => {
     // Fetch PRs from onflow/flow repo
@@ -16,14 +16,14 @@ export const loader: LoaderFunction = async () => {
         owner: "onflow",
         repo: "flow",
       })
-      .then((response) => response.data);
+      .then((response) => response.data)
 
     // Filter only PRs with 'Flip' labels
     return pullRequestResponse.filter((pr) => {
-      const labelNames = pr.labels.map((label) => label.name);
-      return labelNames.includes(fetchLabel);
-    });
-  };
+      const labelNames = pr.labels.map((label) => label.name)
+      return labelNames.includes(fetchLabel)
+    })
+  }
 
   const getNumComments = async (fetchIssue: number): Promise<number> => {
     const comments = await octokit
@@ -32,12 +32,12 @@ export const loader: LoaderFunction = async () => {
         repo: "flow",
         issueNumber: fetchIssue,
       })
-      .then((response) => response.data);
+      .then((response) => response.data)
 
-    return comments.length;
-  };
+    return comments.length
+  }
 
-  const flipPullRequests = await getPullRequests("FLIP");
+  const flipPullRequests = await getPullRequests("FLIP")
 
   // Convert from github API output to FlipCellProp
   const flipCellProps: Promise<FlipCellProps>[] = flipPullRequests.map(
@@ -52,7 +52,7 @@ export const loader: LoaderFunction = async () => {
       date: pr.created_at,
       forumLink: pr.html_url,
     })
-  );
+  )
 
-  return await Promise.all(flipCellProps);
-};
+  return await Promise.all(flipCellProps)
+}
