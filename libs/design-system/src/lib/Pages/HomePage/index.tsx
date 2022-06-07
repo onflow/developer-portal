@@ -41,7 +41,7 @@ const HomePage = ({
       />
 
       <PageSections>
-        <PageSection>
+        <PageSection className="md:px-20">
           <LinkCard2Column {...startProjectItems} bottomRounded={false} />
           <LinkCard3Column items={threeColumnItems as any} topRounded={false} />
         </PageSection>
