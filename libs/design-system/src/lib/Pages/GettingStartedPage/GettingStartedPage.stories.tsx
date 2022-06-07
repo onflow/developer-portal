@@ -10,16 +10,16 @@ const Template: Story = (args) => {
   return <GettingStartedPage />;
 };
 
-export const Primary = Template.bind({});
-export const PrimaryDark = Template.bind({});
-PrimaryDark.parameters = {
+export const Default = Template.bind({});
+export const dark = Template.bind({});
+dark.parameters = {
   themes: {
     default: 'dark',
   },
 };
 
-export const PrimaryMobile = Template.bind({});
-PrimaryMobile.parameters = {
+export const mobile = Template.bind({});
+mobile.parameters = {
   viewport: {
     defaultViewport: 'xs',
   },
