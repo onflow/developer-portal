@@ -1,7 +1,7 @@
 // eslint-disable-next-line @typescript-eslint/no-unused-vars
 import {
   Route,
-  Switch,
+  Switch
 } from "react-router-dom";
 import '../flow/setup';
 import Catalog from "./pages/catalog";

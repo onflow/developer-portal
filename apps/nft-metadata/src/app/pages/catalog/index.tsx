@@ -2,19 +2,22 @@
 import {
   Route,
   Switch,
+  Redirect
 } from "react-router-dom";
 import Catalog from "src/app/components/catalog";
-import { CatalogSelect } from "src/app/components/catalog/catalog-select";
 
 export default function CatalogPage() {
   return (
     <>
       <Switch>
-        <Route path="/catalog/:identifier">
+        <Route path="/catalog/:network/:identifier">
+          <Catalog type="Catalog"></Catalog>
+        </Route>
+        <Route path="/catalog/:network/">
           <Catalog type="Catalog"></Catalog>
         </Route>
         <Route path="/catalog">
-          <Catalog type="Catalog"></Catalog>
+          <Redirect to="/catalog/mainnet" />
         </Route>
       </Switch>
     </>

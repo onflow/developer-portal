@@ -1,19 +1,29 @@
-import { useState } from "react"
+import { useCallback, useEffect, useState } from "react"
 import { useParams } from "react-router-dom";
 import { NetworkDropDown, Network } from "./network-dropdown";
 import { CatalogSelect } from "./catalog-select";
 import { Filter } from "./filter";
 import { NftCollectionContent } from "./nft-collection-content";
 import { ProposalContent } from "./proposal-content";
+import { useHistory } from "react-router-dom"
+
+type CatalogParams = {
+  network: Network;
+  identifier: string;
+};
 
 export default function Layout({
   type
 }: {
   type: "Catalog" | "Proposals",
 }) {
-  const { identifier } = useParams()
+  const { network = 'testnet', identifier } = useParams<CatalogParams>()
 
-  const [network, setNetwork] = useState<Network>("testnet")
+  const history = useHistory()
+
+  const onNetworkChange = useCallback((network: Network) => {
+    history.push(type === 'Proposals' ? `/proposals/${network}` : `/catalog/${network}`)
+  }, [])
 
   return (
     <div className="mx-auto px-0 md:px-4 lg:px-32 pt-4">
@@ -26,8 +36,8 @@ export default function Layout({
         <div className="flex-1 border-accent-light-gray sm:border-0 md:border-r-2 self-start">
           <div className="flex-col">
             <Filter />
-            <NetworkDropDown network={network} onNetworkChange={setNetwork} />
-            <CatalogSelect type={type} selected={identifier} />
+            <NetworkDropDown network={network} onNetworkChange={onNetworkChange} />
+            <CatalogSelect type={type} selected={identifier} network={network} />
           </div>
         </div>
         <div className="px-10 w-3/4 self-start py-10 justify-self-start text-left">
