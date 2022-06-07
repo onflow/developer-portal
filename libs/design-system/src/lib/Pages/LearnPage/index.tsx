@@ -1,11 +1,11 @@
 import { ReactComponent as Filter } from '../../../../images/action/filter2.svg';
 import { LandingHeader } from '../../Components/LandingHeader';
-import { SocialLinksSignup, Pagination } from '../../Components';
+import { SocialLinksSignup } from '../../Components';
 import { ButtonLink } from '../../Components/Button';
-import TutorialCard, { TutorialCardProps } from '../../Components/TutorialCard';
+import { TutorialCardProps } from '../../Components/TutorialCard';
 import PageSections from '../shared/PageSections';
 import PageSection from '../shared/PageSection';
-import { useCallback, useState } from 'react';
+import { useCallback, useMemo, useState } from 'react';
 import {
   LargeVideoCard,
   LargeVideoCardProps,
@@ -15,15 +15,13 @@ import {
   SmallVideoCardProps,
 } from '../../Components/VideoCard/SmallVideoCard';
 import { ToggleButton } from '../../Components/ToggleButton';
+import { PaginatedTutorialCardList } from '../../Components/TutorialCard/PaginatedTutorialCardList';
 
 export type LearnPageProps = {
-  featuredTutorials: Array<{
-    title: string;
-    href: string;
-    linkText: string;
-    tutorials: TutorialCardProps[];
-  }>;
   allTutorials: TutorialCardProps[];
+  cadenceHref: string;
+  cadenceTutorials: TutorialCardProps[];
+  nftTutorials: TutorialCardProps[];
   videos: {
     primary: LargeVideoCardProps;
     secondary: SmallVideoCardProps[];
@@ -31,28 +29,27 @@ export type LearnPageProps = {
 };
 
 export function LearnPage({
-  featuredTutorials = [],
   allTutorials = [],
+  cadenceHref,
+  cadenceTutorials,
+  nftTutorials,
   videos,
 }: LearnPageProps) {
-  const [filters, _setFilters] = useState<string[]>([]);
-  const [page, setPage] = useState(1);
+  const [filters, setFilters] = useState<string[]>([]);
 
-  const setFilters = useCallback((nextFilters) => {
-    _setFilters(nextFilters);
-    setPage(1);
-  }, []);
-
-  const filteredTutorials =
-    filters.length > 0
-      ? allTutorials.filter(({ tags }) =>
-          filters.some((filter) => tags.includes(filter))
-        )
-      : allTutorials;
+  const allTutorialsFiltered = useMemo(
+    () =>
+      filters.length > 0
+        ? allTutorials.filter(({ tags }) =>
+            filters.some((filter) => tags.includes(filter))
+          )
+        : allTutorials,
+    [allTutorials, filters]
+  );
 
   const tags = Array.from(
     new Set(allTutorials.reduce((acc, { tags }) => [...acc, ...tags], []))
-  );
+  ).sort();
 
   return (
     <div className="container w-full bg-primary-gray-50 p-6 dark:bg-black">
@@ -68,39 +65,34 @@ export function LearnPage({
           />
         </PageSection>
 
-        {featuredTutorials.map((section) => (
-          <PageSection key={section.title} className="flex-col items-stretch">
-            <div className="mb-6 flex items-baseline justify-between">
-              <h2 className="text-h2">{section.title}</h2>
-              <ButtonLink
-                variant="secondary"
-                className="hidden whitespace-nowrap md:flex"
-                href={section.href}
-                next
-                size="sm"
-              >
-                Go to Cadence
-              </ButtonLink>
-            </div>
-            <div className="flex flex-col flex-nowrap	gap-6 overflow-hidden md:flex-row">
-              {section.tutorials.map((tutorialProps, index) => (
-                <TutorialCard
-                  className="w-full md:min-w-[282px]"
-                  key={index}
-                  {...tutorialProps}
-                />
-              ))}
-            </div>
+        <PageSection className="flex-col items-stretch">
+          <div className="mb-6 flex items-baseline justify-between">
+            <h2 className="text-h2">Cadence</h2>
             <ButtonLink
-              className="mt-6 w-full whitespace-nowrap md:hidden"
-              href={section.href}
+              variant="secondary"
+              className="hidden whitespace-nowrap md:flex"
+              href={cadenceHref}
               next
               size="sm"
             >
               Go to Cadence
             </ButtonLink>
-          </PageSection>
-        ))}
+          </div>
+          <PaginatedTutorialCardList tutorials={cadenceTutorials} />
+          <ButtonLink
+            className="mt-6 w-full whitespace-nowrap md:hidden"
+            href={cadenceHref}
+            next
+            size="sm"
+          >
+            Go to Cadence
+          </ButtonLink>
+        </PageSection>
+
+        <PageSection className="flex-col items-stretch">
+          <h2 className="text-h2 f mb-6">NFTs</h2>
+          <PaginatedTutorialCardList tutorials={nftTutorials} />
+        </PageSection>
 
         <PageSection>
           <h2 className="text-h2 mb-6">Featured videos</h2>
@@ -146,44 +138,10 @@ export function LearnPage({
               </button>
             )}
           </div>
-          <div className="hidden md:block">
-            <div className="mb-6 grid grid-cols-4	gap-6">
-              {filteredTutorials
-                .slice((page - 1) * 12, page * 12)
-                .map((tutorialProps, index) => (
-                  <TutorialCard
-                    key={index}
-                    className="w-full"
-                    {...tutorialProps}
-                  />
-                ))}
-            </div>
-            <Pagination
-              itemCount={filteredTutorials.length}
-              page={page}
-              pageSize={12}
-              setPage={setPage}
-            />
-          </div>
-          <div className="block md:hidden">
-            <div className="mb-6 flex flex-col gap-6 overflow-hidden">
-              {filteredTutorials
-                .slice((page - 1) * 4, page * 4)
-                .map((tutorialProps, index) => (
-                  <TutorialCard
-                    key={index}
-                    className="w-full"
-                    {...tutorialProps}
-                  />
-                ))}
-            </div>
-            <Pagination
-              itemCount={filteredTutorials.length}
-              page={page}
-              pageSize={4}
-              setPage={setPage}
-            />
-          </div>
+          <PaginatedTutorialCardList
+            listId={filters}
+            tutorials={allTutorialsFiltered}
+          />
         </PageSection>
       </PageSections>
 

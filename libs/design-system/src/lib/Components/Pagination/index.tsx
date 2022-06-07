@@ -3,6 +3,7 @@ import { ReactComponent as ArrowLeftIcon } from '../../../../images/arrows/arrow
 import { ReactComponent as ArrowRightIcon } from '../../../../images/arrows/arrow-right.svg';
 
 export type PaginationProps = {
+  className?: string;
   page: number;
   itemCount: number;
   pageSize: number;
@@ -10,6 +11,7 @@ export type PaginationProps = {
 };
 
 const Pagination = ({
+  className,
   itemCount,
   pageSize,
   page,
@@ -18,7 +20,7 @@ const Pagination = ({
   const pageCount = Math.ceil(itemCount / pageSize);
 
   return (
-    <div className="flex items-center justify-end ">
+    <div className={clsx('flex items-center justify-end', className)}>
       <button
         type="button"
         className={clsx('py-4 px-2', {

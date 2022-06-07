@@ -12,20 +12,6 @@ const TUTORIAL_TEMPLATE: TutorialCardProps = {
 };
 
 export const data: LearnPageProps = {
-  featuredTutorials: [
-    {
-      title: 'Cadence',
-      href: '#todo',
-      linkText: 'Go To Cadence',
-      tutorials: Array(5).fill(TUTORIAL_TEMPLATE),
-    },
-    {
-      title: 'NFTs',
-      href: '#todo',
-      linkText: 'View Tutorials',
-      tutorials: Array(5).fill(TUTORIAL_TEMPLATE),
-    },
-  ],
   allTutorials: Array(99)
     .fill(TUTORIAL_TEMPLATE)
     .map((tutorial, index) => ({
@@ -36,6 +22,9 @@ export const data: LearnPageProps = {
         (index % 6) + 2
       ),
     })),
+  cadenceHref: '#todo',
+  cadenceTutorials: Array(5).fill(TUTORIAL_TEMPLATE),
+  nftTutorials: Array(5).fill(TUTORIAL_TEMPLATE),
   videos: {
     primary: {
       link: 'https://www.youtube.com/watch?v=pRz7EzrWchs',
