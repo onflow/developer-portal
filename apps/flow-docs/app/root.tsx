@@ -77,7 +77,7 @@ function App() {
         <Footer/>
         <ScrollRestoration />
         <Scripts />
-        <LiveReload />
+        <LiveReload/>
       </body>
     </html>
   );
