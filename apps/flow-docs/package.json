@@ -35,7 +35,9 @@
     "test": "vitest",
     "typecheck": "tsc -b"
   },
-  "prettier": {},
+  "prettier": {
+    "semi": false
+  },
   "eslintIgnore": [
     "/node_modules",
     "/build",
