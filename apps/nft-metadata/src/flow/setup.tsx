@@ -15,7 +15,9 @@ export function changeFCLEnvironment(input: Network) {
 function setupMainnet() {
   config({
     "accessNode.api": "https://rest-mainnet.onflow.org",
-    "discovery.wallet": "https://fcl-discovery.onflow.org/authn"
+    "discovery.wallet": "https://fcl-discovery.onflow.org/authn",
+    "app.detail.title": "NFT Metadata",
+    "app.detail.icon": "https://assets.website-files.com/5f734f4dbd95382f4fdfa0ea/62743866c2a1ff97d43bb844_Group%2010.svg"
   })
   Object.keys(json.vars["mainnet"]).forEach(
     (contractAddressKey) => {
@@ -46,7 +48,9 @@ function setupMainnet() {
 function setupTestnet() {
   config({
     "accessNode.api": "https://rest-testnet.onflow.org",
-    "discovery.wallet": "https://fcl-discovery.onflow.org/testnet/authn"
+    "discovery.wallet": "https://fcl-discovery.onflow.org/testnet/authn",
+    "app.detail.title": "NFT Metadata",
+    "app.detail.icon": "https://assets.website-files.com/5f734f4dbd95382f4fdfa0ea/62743866c2a1ff97d43bb844_Group%2010.svg"
   })
   Object.keys(json.vars["testnet"]).forEach(
     (contractAddressKey) => {
