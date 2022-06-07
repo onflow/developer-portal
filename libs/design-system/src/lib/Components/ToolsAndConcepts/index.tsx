@@ -30,8 +30,9 @@ const ToolsAndConcepts = ({ tools }) => (
         className="w-full mb-4 md:w-1/2"
         href="/tools"
         variant="secondary"
+        rightIcon="right"
       >
-        View all tools <RightChevronIcon />
+        View all tools
       </ButtonLink>
     </div>
   </div>
