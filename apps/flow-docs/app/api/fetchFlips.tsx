@@ -1,12 +1,14 @@
 import type { LoaderFunction } from "@remix-run/node";
-import type { FlipCellProps } from "../../../../../libs/design-system/dist/lib/Components/Flips/FlipCell";
+import { useLoaderData } from "@remix-run/react";
+// eslint-disable-next-line @nrwl/nx/enforce-module-boundaries
+import { FlipCellProps } from "../../../../libs/design-system/src/lib/Components/FlipCell";
 import { Octokit } from "@octokit/core";
 
 export type LoaderData = FlipCellProps[];
 
 export const loader: LoaderFunction = async () => {
   const octokit = new Octokit({
-    auth: process.env.PERSONAL_ACCESS_TOKEN,
+    auth: process.env.BOT_GITHUB_TOKEN,
   });
 
   const getPullRequests = async (fetchLabel: string) => {
@@ -56,3 +58,28 @@ export const loader: LoaderFunction = async () => {
 
   return await Promise.all(flipCellProps);
 };
+
+export const fetchFlipsCellProps = (): FlipCellProps[] => {
+  const flips = useLoaderData<LoaderData>();
+  return flips;
+};
+
+/*
+const FLIPs = () => {
+  const flips = useLoaderData<LoaderData>();
+  return (
+    <div>
+      <h1>FLIPS</h1>
+      <div className="w-full">
+        {flips.map((flip) => (
+          <li id="user-content-fn-1" key={flip.forumLink}>
+            Link: {flip.forumLink} - {flip.heading} - {flip.numComments}
+          </li>
+        ))}
+      </div>
+    </div>
+  );
+};
+
+export default FLIPs;
+*/
