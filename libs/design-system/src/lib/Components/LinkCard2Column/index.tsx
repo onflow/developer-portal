@@ -1,3 +1,4 @@
+import clsx from 'clsx';
 import {
   LinkCard2ColumnItem,
   LinkCard2ColumnItemProps,
@@ -12,6 +13,7 @@ export type LinkCard2ColumnProps = {
   items: LinkCard2ColumnItemProps[];
   tags?: string[];
   title: string;
+  bottomRounded?: boolean;
 };
 
 export function LinkCard2Column({
@@ -21,11 +23,18 @@ export function LinkCard2Column({
   items,
   tags,
   title,
+  bottomRounded = true,
 }: LinkCard2ColumnProps) {
+  const classes = clsx(
+    'container flex flex-col items-start px-4 py-12 rounded-lg bg-primary-gray-100/30 dark:bg-primary-gray-dark md:flex-row md:px-20 md:py-20',
+    {
+      'rounded-br-none rounded-bl-none': !bottomRounded,
+    }
+  );
+
   return (
-    <div className="container flex flex-col items-start rounded-lg bg-primary-gray-100/30 p-10 px-4 py-12 dark:bg-primary-gray-dark md:flex-row md:px-20 md:py-20">
-      <div className="flex flex-1 flex-col items-start md:mr-20">
-        <h2 className="text-h2 my-2 md:mb-3">{title}</h2>
+    <div className={classes}>
+      <div className="flex flex-col items-start flex-1 md:mr-20">
         {tags && (
           <div className="mb-1">
             {tags.map((tag) => (
@@ -33,18 +42,19 @@ export function LinkCard2Column({
             ))}
           </div>
         )}
+        <h2 className="my-2 text-h2 md:mb-3">{title}</h2>
         <p className="max-w-[18rem] overflow-hidden text-ellipsis	text-primary-gray-400 dark:text-primary-gray-100 lg:max-w-[36rem] xl:max-w-[38rem]">
           {description}
         </p>
         <ButtonLink
           href={buttonUrl}
-          className="mb-10 mt-2 px-8 py-3 md:mt-10"
+          className="px-8 py-3 mt-2 mb-10 md:mt-10"
           variant="primary-inverse"
         >
           {buttonText}
         </ButtonLink>
       </div>
-      <div className="flex flex-1 flex-col items-stretch">
+      <div className="flex flex-col items-stretch flex-1">
         {items.map((item) => (
           <LinkCard2ColumnItem key={item.title} {...item} />
         ))}

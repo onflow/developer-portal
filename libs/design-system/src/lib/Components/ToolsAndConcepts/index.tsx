@@ -9,7 +9,7 @@ export type ToolsAndConceptsProps = {
 };
 
 const ToolsAndConcepts = ({ tools }) => (
-  <>
+  <div className="container">
     <div className="mb-2 text-h2">Tools and Concepts</div>
     <p>Core concepts and tools you’ll need to get started building on Flow</p>
     <TabMenu tabs={['Tools', 'Concepts']} onTabChange={() => null} />
@@ -34,7 +34,7 @@ const ToolsAndConcepts = ({ tools }) => (
         View all tools <RightChevronIcon />
       </ButtonLink>
     </div>
-  </>
+  </div>
 );
 
 export default ToolsAndConcepts;

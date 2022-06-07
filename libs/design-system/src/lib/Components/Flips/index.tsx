@@ -27,7 +27,10 @@ export default function Flips({ flips }: FlipsProps) {
       </p>
 
       <div className="mb-6">
-        <TabMenu tabs={['Tools', ' Concepts']} onTabChange={() => null} />
+        <TabMenu
+          tabs={['Open FLIPS', ' Good places to start']}
+          onTabChange={() => null}
+        />
       </div>
 
       <FlipCellHeader />
