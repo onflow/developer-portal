@@ -340,7 +340,7 @@ export function GettingStartedPage() {
           <div className="flex items-end justify-between md:items-center">
             <h4 className="text-h4">Recent Tools</h4>
             <Button next variant="secondary" className="hidden md:inline-flex">
-              View All Tool's
+              View All Tools
             </Button>
           </div>
 
