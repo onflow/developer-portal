@@ -1,6 +1,6 @@
 import TutorialCard, { TutorialCardProps } from '.';
 import Pagination from '../Pagination';
-import { useEffect, useState } from 'react';
+import { useEffect, useLayoutEffect, useRef, useState } from 'react';
 
 export type PaginatedTutorialCardListProps = {
   className?: string;
@@ -22,7 +22,14 @@ export const PaginatedTutorialCardList = ({
   pageSize = 4,
   tutorials,
 }: PaginatedTutorialCardListProps) => {
+  const topRef = useRef<HTMLDivElement>();
   const [page, setPage] = useState(1);
+
+  // Whenever the page changes we want to scroll to the top of the list -- but
+  // only if the page change was triggered by the pagination component. So by
+  // incrementing this value any time the page is triggered there, we can
+  // trigger the scroll-to-top behavior only in those cases.
+  const [resetScroll, setResetScroll] = useState(0);
 
   useEffect(() => {
     // If the listId changes we reset to the first page.
@@ -32,9 +39,13 @@ export const PaginatedTutorialCardList = ({
     setPage(1);
   }, [listId]);
 
+  useLayoutEffect(() => {
+    topRef.current?.scrollIntoView({ behavior: 'smooth' });
+  }, [resetScroll]);
+
   return (
     <div className={className}>
-      <div className="mb-4 grid grid-cols-1 gap-6 md:grid-cols-4">
+      <div className="mb-4 grid grid-cols-1 gap-6 md:grid-cols-4" ref={topRef}>
         {tutorials
           .slice((page - 1) * pageSize, page * pageSize)
           .map((tutorialProps, index) => (
@@ -46,7 +57,12 @@ export const PaginatedTutorialCardList = ({
         itemCount={tutorials.length}
         page={page}
         pageSize={pageSize}
-        setPage={setPage}
+        setPage={(nextPage) => {
+          if (page !== nextPage) {
+            setResetScroll(resetScroll + 1);
+            setPage(nextPage);
+          }
+        }}
       />
     </div>
   );
