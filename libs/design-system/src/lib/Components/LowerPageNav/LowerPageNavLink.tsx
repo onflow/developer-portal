@@ -1,3 +1,4 @@
+import React from "react"
 import clsx from 'clsx';
 import { LowerPageNavLink as LowerPageNavLinkType } from '.';
 import { ReactComponent as ChevronLeft } from '../../../../images/arrows/chevron-left.svg';

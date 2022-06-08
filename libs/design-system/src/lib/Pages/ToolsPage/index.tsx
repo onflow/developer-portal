@@ -1,3 +1,4 @@
+import React from "react"
 import { LandingHeader } from '../../Components/LandingHeader';
 
 const ToolsPage = () => {

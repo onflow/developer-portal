@@ -1,3 +1,4 @@
+import React from "react"
 import React from 'react';
 
 import { ReactComponent as LeftChevron } from '../../../../images/arrows/chevron-left.svg';

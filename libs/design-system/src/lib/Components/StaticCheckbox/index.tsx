@@ -1,3 +1,4 @@
+import React from "react"
 import { ReactComponent as CheckboxChecked } from '../../../../images/toggles/checkbox-checked.svg';
 import { ReactComponent as CheckboxUnchecked } from '../../../../images/toggles/checkbox-unchecked.svg';
 

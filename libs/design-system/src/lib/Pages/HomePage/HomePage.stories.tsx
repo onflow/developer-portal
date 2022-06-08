@@ -1,3 +1,4 @@
+import React from "react"
 import { Meta, Story } from '@storybook/react';
 import HomePage, { HomePageProps } from '.';
 import { ReactComponent as UseCaseIcon } from '../../../../images/content/use-cases.svg';

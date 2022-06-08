@@ -1,3 +1,4 @@
+import React from "react"
 import LandingImage from '../../../../images/misc/landing-home.png';
 import { LandingHeaderContainer } from '../LandingHeader/LandingHeaderContainer';
 

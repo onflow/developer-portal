@@ -1,3 +1,4 @@
+import React from "react"
 const Section = ({ children }: { children: React.ReactNode }) => (
   <div className="flex mb-6 mr-12 ">{children}</div>
 );

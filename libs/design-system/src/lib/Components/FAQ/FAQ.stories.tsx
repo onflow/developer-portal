@@ -1,3 +1,4 @@
+import React from "react"
 import { Meta, Story } from '@storybook/react';
 import { FAQ, FAQProps } from './FAQ';
 

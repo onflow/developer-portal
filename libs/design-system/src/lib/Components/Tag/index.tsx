@@ -1,3 +1,4 @@
+import React from "react"
 // TODO: Merge with Tag in pr #1
 
 export type TagProps = {

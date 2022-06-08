@@ -1,3 +1,4 @@
+import React from "react"
  
 import { ReactComponent as CommentIcon } from '../../../../images/arrows/message-circle.svg';
 import RoundImage from '../RoundImage';

@@ -1,3 +1,4 @@
+import React from "react"
 
 import { formatDistance } from 'date-fns';
 import { ReactComponent as ChevronRightIcon } from '../../../../images/arrows/chevron-right.svg';

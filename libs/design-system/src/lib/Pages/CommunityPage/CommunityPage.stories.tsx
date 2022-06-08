@@ -1,3 +1,4 @@
+import React from "react"
 import { Meta, Story } from '@storybook/react';
 import CommunityPage, { CommunityPageProps } from '.';
 import { Default as DefaultCommunityMembers } from '../../Components/CommunityMembers/CommunityMembers.stories';

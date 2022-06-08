@@ -1,3 +1,4 @@
+import React from "react"
 import { DocSearch } from '@docsearch/react';
 import '../../../../styles/docsearch.css';
 

@@ -1,3 +1,4 @@
+import React from "react"
 import FlowDocsLogo from '../../../../images/logos/flow-docs-logo-light.svg';
 import { ReactComponent as OnFlowIcon } from '../../../../images/logos/flow-icon-bw-light.svg';
 import { ReactComponent as DiscordIcon } from '../../../../images/social/discord-light.svg';

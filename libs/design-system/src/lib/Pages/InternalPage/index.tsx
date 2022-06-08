@@ -1,3 +1,4 @@
+import React from "react"
 export function InternalPage() {
   return (
     <div className="mdx-content">

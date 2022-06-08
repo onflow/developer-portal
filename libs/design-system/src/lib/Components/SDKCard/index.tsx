@@ -1,3 +1,4 @@
+import React from "react"
 import { ReactElement } from 'react';
 
 import { ReactComponent as StarIcon } from '../../../../images/action/star.svg';

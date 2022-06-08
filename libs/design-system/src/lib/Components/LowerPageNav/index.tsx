@@ -1,3 +1,4 @@
+import React from "react"
 import { LowerPageNavLink } from './LowerPageNavLink';
 
 export type LowerPageNavLink = {

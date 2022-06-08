@@ -1,3 +1,4 @@
+import React from "react"
 import { ReactComponent as ExternalLinkIcon } from '../../../../images/content/external-link.svg';
 import Tag from '../Tag';
 

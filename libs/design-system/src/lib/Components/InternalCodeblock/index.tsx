@@ -1,4 +1,3 @@
-import { Dialog } from '@reach/dialog';
 import '@reach/dialog/styles.css';
 import clsx from 'clsx';
 import React, { useState } from 'react';
@@ -104,29 +103,6 @@ export function InternalCodeblock({
           )}
         />
       </div>
-      <Dialog
-        isOpen={showDialog}
-        onDismiss={closeDialog}
-        className="flex flex-col rounded-lg !p-0 dark:bg-[#111111]"
-        style={{
-          height: '75vh',
-          width: '95vw',
-          margin: '5vh auto',
-        }}
-      >
-        <div className="h-full">
-          <Header
-            openDialog={openDialog}
-            closeDialog={closeDialog}
-            showDialog={showDialog}
-            onCopy={onCopy}
-          />
-          {/* Modal is rendered in portal outside the original .mdx-content div */}
-          <div className="h-full mdx-content">
-            <Code children={children} innerClasses="w-full h-full" />
-          </div>
-        </div>
-      </Dialog>
     </>
   );
 }

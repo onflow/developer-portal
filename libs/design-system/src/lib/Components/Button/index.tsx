@@ -1,3 +1,4 @@
+import React from "react"
 import clsx from 'clsx';
 import { ReactComponent as ChevronRightIcon } from '../../../../images/arrows/chevron-right-sm.svg';
 import { ReactComponent as ExternalLinkIcon } from '../../../../images/content/external-link-variant.svg';

@@ -1,3 +1,4 @@
+import React from "react"
 import { ReactComponent as ChevronRight } from '../../../../images/arrows/chevron-right.svg';
 import {
   ContentNavigationIcon,

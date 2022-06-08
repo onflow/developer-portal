@@ -1,3 +1,4 @@
+import React from "react"
 export type CalloutProps = {
   heading: string;
   description: string;

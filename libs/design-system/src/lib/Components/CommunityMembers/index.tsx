@@ -1,3 +1,4 @@
+import React from "react"
 import { RoundImage } from '../';
 
 export type CommunityMembersProps = {

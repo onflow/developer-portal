@@ -1,3 +1,4 @@
+import React from "react"
 import clsx from 'clsx';
 import { ReactComponent as ExternalLinkIcon } from '../../../../images/content/external-link.svg';
 import RadarImg from '../../../../images/misc/radar.png';

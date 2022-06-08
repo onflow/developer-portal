@@ -1,3 +1,4 @@
+import React from "react"
  
 import { ReactComponent as GithubLogo } from '../../../../images/social/github.svg';
 import { ReactComponent as DiscordLogo } from '../../../../images/social/discord.svg';
