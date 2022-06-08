@@ -1,7 +1,7 @@
 type Timings = Record<
   string,
   Array<{ name: string; type: string; time: number }>
->;
+>
 
 async function time<ReturnType>({
   name,
@@ -9,24 +9,24 @@ async function time<ReturnType>({
   fn,
   timings,
 }: {
-  name: string;
-  type: string;
-  fn: () => ReturnType | Promise<ReturnType>;
-  timings?: Timings;
+  name: string
+  type: string
+  fn: () => ReturnType | Promise<ReturnType>
+  timings?: Timings
 }): Promise<ReturnType> {
-  if (!timings) return fn();
+  if (!timings) return fn()
 
-  const start = performance.now();
-  const result = await fn();
-  type = type.replaceAll(' ', '_');
-  let timingType = timings[type];
+  const start = performance.now()
+  const result = await fn()
+  type = type.replaceAll(" ", "_")
+  let timingType = timings[type]
   if (!timingType) {
     // eslint-disable-next-line no-multi-assign
-    timingType = timings[type] = [];
+    timingType = timings[type] = []
   }
 
-  timingType.push({ name, type, time: performance.now() - start });
-  return result;
+  timingType.push({ name, type, time: performance.now() - start })
+  return result
 }
 
 function getServerTimeHeader(timings: Timings) {
@@ -34,12 +34,12 @@ function getServerTimeHeader(timings: Timings) {
     .map(([key, timingInfos]) => {
       const dur = timingInfos
         .reduce((acc, timingInfo) => acc + timingInfo.time, 0)
-        .toFixed(1);
-      const desc = timingInfos.map((t) => t.name).join(' & ');
-      return `${key};dur=${dur};desc="${desc}"`;
+        .toFixed(1)
+      const desc = timingInfos.map((t) => t.name).join(" & ")
+      return `${key};dur=${dur};desc="${desc}"`
     })
-    .join(',');
+    .join(",")
 }
 
-export { time, getServerTimeHeader };
-export type { Timings };
+export { time, getServerTimeHeader }
+export type { Timings }

@@ -11,6 +11,8 @@ module.exports = (options) => ({
     svgr(),
     peerDepsExternal({
       includeDependencies: true,
+      dedupe: ['react', 'react-dom']
     })
   ],
+
 });

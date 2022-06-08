@@ -6,18 +6,14 @@
   "targets": {
     "dev": {
       "executor": "@nrwl/web:rollup",
-      "outputs": [
-        "{options.outputPath}"
-      ],
+      "outputs": ["{options.outputPath}"],
       "options": {
         "watch": true,
         "outputPath": "libs/design-system/dist",
         "tsConfig": "libs/design-system/tsconfig.lib.json",
         "project": "libs/design-system/package.json",
         "entryFile": "libs/design-system/src/index.ts",
-        "external": [
-          "react/jsx-runtime"
-        ],
+        "external": ["react/jsx-runtime"],
         "rollupConfig": [
           "@nrwl/react/plugins/bundle-rollup",
           "libs/design-system/rollup.config.js"
@@ -30,17 +26,12 @@
             "output": "."
           }
         ],
-        "format": [
-          "cjs",
-          "esm"
-        ]
+        "format": ["cjs", "esm"]
       }
     },
     "build": {
       "executor": "@nrwl/web:rollup",
-      "outputs": [
-        "{options.outputPath}"
-      ],
+      "outputs": ["{options.outputPath}"],
       "options": {
         "outputPath": "libs/design-system/dist",
         "tsConfig": "libs/design-system/tsconfig.lib.json",
@@ -65,29 +56,21 @@
             "output": "."
           }
         ],
-        "format": [
-          "umd"
-        ]
+        "format": ["cjs", "esm"]
       }
     },
     "lint": {
       "executor": "@nrwl/linter:eslint",
-      "outputs": [
-        "{options.outputFile}"
-      ],
+      "outputs": ["{options.outputFile}"],
       "options": {
-        "lintFilePatterns": [
-          "libs/design-system/**/*.{ts,tsx,js,jsx}"
-        ]
+        "lintFilePatterns": ["libs/design-system/**/*.{ts,tsx,js,jsx}"]
       }
     },
     "test": {
       "executor": "@nrwl/jest:jest",
-      "outputs": [
-        "coverage/libs/design-system"
-      ],
+      "outputs": ["coverage/libs/design-system"],
       "options": {
-        "jestConfig": "libs/design-system/jest.config.js",
+        "jestConfig": "libs/design-system/jest.config.ts",
         "passWithNoTests": true
       }
     },
@@ -108,9 +91,7 @@
     },
     "build-storybook": {
       "executor": "@nrwl/storybook:build",
-      "outputs": [
-        "{options.outputPath}"
-      ],
+      "outputs": ["{options.outputPath}"],
       "options": {
         "uiFramework": "@storybook/react",
         "outputPath": "dist/storybook/design-system",

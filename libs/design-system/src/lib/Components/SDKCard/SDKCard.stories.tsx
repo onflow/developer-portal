@@ -1,4 +1,6 @@
 import { Meta, Story } from '@storybook/react';
+
+import { ReactComponent as CadenceIcon } from '../../../../images/tools/tool-fcl.svg';
 import { SDKCard, SDKCardProps } from '.';
 
 export default {
@@ -8,7 +10,7 @@ export default {
 
 const Template: Story<SDKCardProps> = (args) => {
   return (
-    <div style={{ backgroundColor: '#f1f1f1', padding: '14px' }}>
+    <div className="bg-gray-100 p-4 dark:bg-black">
       <SDKCard {...args} />
     </div>
   );
@@ -23,8 +25,7 @@ Primary.args = {
   link: '#',
   type: 'sdk',
   stars: 52,
-  toolIcon:
-    'https://cdn4.iconfinder.com/data/icons/logos-3/504/Swift-2-512.png',
+  toolIcon: <CadenceIcon />,
   lastCommit: '22/3',
   lastRelease: '207',
 };

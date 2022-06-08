@@ -1,27 +1,27 @@
-import path from "path";
-import { json, redirect } from "@remix-run/node";
-import type { ActionFunction } from "@remix-run/node";
-import { getMdxPage } from "~/cms/utils/mdx";
+import path from "path"
+import { json, redirect } from "@remix-run/node"
+import type { ActionFunction } from "@remix-run/node"
+import { getMdxPage } from "~/cms/utils/mdx"
 // import { getRequiredServerEnvVar } from "~/utils/cms/helpers";
-import { redisCache } from "~/cms/redis.server";
+import { redisCache } from "~/cms/redis.server"
 
-type Body = { 
-  keys: Array<string>; 
-  commitSha?: string,  
-  repo: string;
-  contentPaths: string; 
+type Body = {
+  keys: Array<string>
+  commitSha?: string
+  repo: string
+  contentPaths: string
 }
 
-export const commitShaKey = `meta:last-refresh-commit-sha`;
+export const commitShaKey = `meta:last-refresh-commit-sha`
 
 export const action: ActionFunction = async ({ request }) => {
   // Everything in this function is fire and forget, so we don't need to await
   // anything.
 
-  const body = (await request.json()) as Body;
-  const repoCommitShaKey = `${commitShaKey}:${body.repo}`;
+  const body = (await request.json()) as Body
+  const repoCommitShaKey = `${commitShaKey}:${body.repo}`
 
-  console.log('Got refresh request:', body, repoCommitShaKey)
+  console.log("Got refresh request:", body, repoCommitShaKey)
   // if (
   //   request.headers.get("auth") !==
   //   getRequiredServerEnvVar("REFRESH_CACHE_SECRET")
@@ -34,58 +34,58 @@ export const action: ActionFunction = async ({ request }) => {
       void redisCache.set(repoCommitShaKey, {
         sha: body.commitSha,
         date: new Date(),
-      });
+      })
     }
   }
 
   if ("keys" in body && Array.isArray(body.keys)) {
     for (const key of body.keys) {
-      void redisCache.del(key);
+      void redisCache.del(key)
     }
 
-    setShaInRedis();
+    setShaInRedis()
 
     return json({
       message: "Deleting redis cache keys",
       keys: body.keys,
       commitSha: body.commitSha,
-    });
+    })
   }
 
   if ("contentPaths" in body && Array.isArray(body.contentPaths)) {
-    console.log("Refreshing content...");
-    const refreshingContentPaths: [string?] = [];
-    const paths: string[] = body.contentPaths[0].split(' ')
+    console.log("Refreshing content...")
+    const refreshingContentPaths: [string?] = []
+    const paths: string[] = body.contentPaths[0].split(" ")
     for (const contentPath of paths) {
-      if (typeof contentPath !== "string") continue;
-      const [contentDir, dirOrFilename] = contentPath.split("/");
-      if (!contentDir || !dirOrFilename) continue;
+      if (typeof contentPath !== "string") continue
+      const [contentDir, dirOrFilename] = contentPath.split("/")
+      if (!contentDir || !dirOrFilename) continue
 
-      const slug = path.parse(dirOrFilename).name;
+      const slug = path.parse(dirOrFilename).name
 
-      refreshingContentPaths.push(contentPath);
-      console.log(`Refreshing ${contentPath}...`);
+      refreshingContentPaths.push(contentPath)
+      console.log(`Refreshing ${contentPath}...`)
 
       void getMdxPage(
         { repo: body.repo, fileOrDirPath: slug },
         { forceFresh: true }
-      );
+      )
     }
 
-    setShaInRedis();
+    setShaInRedis()
 
     return json({
       message: "Refreshing cache for content paths",
       repo: body.repo,
       contentPaths: refreshingContentPaths,
       commitSha: body.commitSha,
-    });
+    })
   }
-  return json({ message: "no action taken" }, { status: 200 });
-};
+  return json({ message: "no action taken" }, { status: 200 })
+}
 
-export const loader = () => redirect("/", { status: 404 });
+export const loader = () => redirect("/", { status: 404 })
 
 export default function MarkRead() {
-  return <div>Oops... You should not see this.</div>;
+  return <div>Oops... You should not see this.</div>
 }
