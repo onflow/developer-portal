@@ -125,6 +125,14 @@ export function LearnPage({
                 ))}
               </div>
             </div>
+            <ButtonLink
+              className="mt-6 w-full whitespace-nowrap md:hidden"
+              href={youtubeHref}
+              rightIcon="external"
+              size="sm"
+            >
+              Go to Youtube
+            </ButtonLink>
           </div>
         </PageSection>
 
