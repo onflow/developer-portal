@@ -5,7 +5,7 @@ import { CatalogSelect } from "./catalog-select";
 import { Filter } from "./filter";
 import { NftCollectionContent } from "./nft-collection-content";
 import { ProposalContent } from "./proposal-content";
-import { useHistory } from "react-router-dom"
+import { useNavigate } from "react-router-dom"
 
 type CatalogParams = {
   network: Network;
@@ -19,10 +19,10 @@ export default function Layout({
 }) {
   const { network = 'testnet', identifier } = useParams<CatalogParams>()
 
-  const history = useHistory()
+  const navigate = useNavigate()
 
   const onNetworkChange = useCallback((network: Network) => {
-    history.push(type === 'Proposals' ? `/proposals/${network}` : `/catalog/${network}`)
+    navigate(type === 'Proposals' ? `/proposals/${network}` : `/catalog/${network}`)
   }, [])
 
   return (

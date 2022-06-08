@@ -1,5 +1,5 @@
 import { useEffect, useState } from "react";
-import { useHistory, useParams } from "react-router-dom";
+import { useNavigate, useParams } from "react-router-dom";
 import { retrieveMetadataInformation, getNFTInAccount } from "../../../flow/utils"
 import { Accordian } from "../shared/accordian";
 import { Alert } from "../shared/alert";
@@ -17,7 +17,7 @@ export function SampleNFTView({
   sampleAddress: string | null,
   publicPath: string | null,
 }) {
-  const history = useHistory()
+  const navigate = useNavigate()
   const { selectedAddress, selectedContract } = useParams<any>()
   const [viewsImplemented, setViewsImplemented] = useState<any>([]);
   const [viewData, setViewData] = useState<{ [key: string]: Object }>({});
@@ -140,7 +140,7 @@ export function SampleNFTView({
                 <p>This NFT contract, <b>{selectedContract}</b>, is implementing all of the recommended views!</p>
                 <p>Review the metadata details above. If they look good, click continue to add or update this collection in the NFT Catalog.</p>
                 <form
-                  onSubmit={() => { history.push(`${window.location.pathname}${window.location.search}&confirmed=true`) }}
+                  onSubmit={() => { navigate(`${window.location.pathname}${window.location.search}&confirmed=true`) }}
                 >
                   <SubmitButton value="Continue" />
                 </form>

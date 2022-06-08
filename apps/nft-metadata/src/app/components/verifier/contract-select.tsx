@@ -1,6 +1,5 @@
 import { Fragment, useState, useEffect } from 'react';
 import { retrieveContractInformation, getAccount } from "../../../flow/utils"
-import { useHistory, useParams } from 'react-router-dom';
 import { SearchBar } from '../shared/search-bar';
 import { Alert } from '../shared/alert';
 

@@ -1,5 +1,5 @@
 import { useState } from 'react';
-import { useHistory } from 'react-router-dom';
+import { useNavigate } from 'react-router-dom';
 import { TextInput } from '../shared/text-input';
 import { withPrefix } from '@onflow/fcl';
 
@@ -12,7 +12,7 @@ export function SampleNFTPrompt({
   defaultValues: any,
   setError: any
 }) {
-  const history = useHistory()
+  const navigate = useNavigate()
   const [publicPath, setPublicPath] = useState<string>(defaultValues.publicPath || "")
   const [sampleAddress, setSampleAddress] = useState<string>(defaultValues.sampleAddress || "")
   const possiblePublicPaths: Array<string> = contractCode.match(/\/public\/[A-Za-z0-9]*/gmi) || []
@@ -28,7 +28,7 @@ export function SampleNFTPrompt({
         setError("The provided address is not valid ")
         return false
       }
-      history.push({
+      navigate({
         pathname: window.location.pathname,
         search: `?path=${publicPath}&sampleAddress=${sampleAddress}`
       })

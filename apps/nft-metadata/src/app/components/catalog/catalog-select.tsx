@@ -1,5 +1,5 @@
 import { useEffect, useState } from "react"
-import { useHistory } from "react-router-dom"
+import { useNavigate } from "react-router-dom"
 import { getCollections, getProposals } from "src/flow/utils"
 import { Network } from "./network-dropdown";
 import { changeFCLEnvironment } from "src/flow/setup";
@@ -13,7 +13,7 @@ export function CatalogSelect({
   network: Network
   selected: string | undefined
 }) {
-  const history = useHistory()
+  const navigate = useNavigate()
   const [items, setItems] = useState<null | Array<any>>(null)
   const loading = !items
 
@@ -62,7 +62,7 @@ export function CatalogSelect({
           return (
             <div key={i} className={`flex-col p-8 hover:bg-gray-300 cursor-pointer border-t-2 text-left ${selectedStyle}`} onClick={
               () => {
-                history.push(type === 'Proposals' ? `/proposals/${network}/${item.id}` : `/catalog/${network}/${item.id}`)
+                navigate(type === 'Proposals' ? `/proposals/${network}/${item.id}` : `/catalog/${network}/${item.id}`)
               }
             }>
               <div className="font-semibold">{item.name}</div>

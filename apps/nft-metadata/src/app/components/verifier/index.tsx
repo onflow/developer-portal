@@ -1,5 +1,4 @@
-import { useEffect, useState } from "react"
-import { useHistory, useParams } from "react-router-dom"
+import { useNavigate, useParams } from "react-router-dom"
 import { useQuery } from '../../hooks/use-query';
 import { ContractSelect } from './contract-select';
 import { SampleNFTView } from './sample-nft-view';
@@ -12,7 +11,7 @@ export default function ({
 }) {
   const query = useQuery()
   const { selectedAddress, selectedContract } = useParams<any>()
-  const history = useHistory()
+  const navigate = useNavigate()
 
   const publicPath = query.get("path")
   const sampleAddress = query.get("sampleAddress")
@@ -63,7 +62,7 @@ export default function ({
           steps[0].isActive && !steps[0].isComplete && (
             <ContractSelect
               selectContract={(contractAddress: String, contractName: string) => {
-                history.push(`/v/${contractAddress}/${contractName}`);
+                navigate(`/v/${contractAddress}/${contractName}`);
               }}
             />
           )
