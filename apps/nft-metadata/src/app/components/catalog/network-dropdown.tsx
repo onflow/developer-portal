@@ -1,5 +1,4 @@
 import { DropDown } from "../shared/drop-down"
-import { useState } from "react";
 
 export type Network = "mainnet" | "testnet";
 

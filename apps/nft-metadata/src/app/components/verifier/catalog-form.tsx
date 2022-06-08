@@ -16,7 +16,7 @@ export function CatalogForm({ sampleAddress, publicPath }: CatalogProps) {
   const [collectionName, setCollectionName] = useState<string>("")
   const debouncedCollectionName: string = useDebounce<string>(collectionName, 500);
   const [message, setMessage] = useState<string>("")
-  const { selectedAddress, selectedContract } = useParams<any>()
+  const { selectedAddress, selectedContract, selectedNetwork } = useParams<any>()
   const [loading, setLoading] = useState<boolean>(false)
   const [error, setError] = useState<string | null>(null)
   const [warning, setWarning] = useState<string | null>(null);
