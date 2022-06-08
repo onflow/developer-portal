@@ -1,7 +1,7 @@
+import { LandingHeaderHome } from '@flow-docs/ui'
+
 export default function Index() {
   return (
-    <main className="relative bg-white dark:bg-black sm:flex sm:items-center sm:justify-center">
-      <div className="w-full p-10">Hello World</div>
-    </main>
+    <LandingHeaderHome description="The best docs ever." title="Developer Portal" tag="onflow" gradient="community"/>
   )
 }

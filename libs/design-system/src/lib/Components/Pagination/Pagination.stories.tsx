@@ -6,7 +6,11 @@ export default {
   title: 'Components/Pagination',
 } as Meta;
 
-const Template: Story<PaginationProps> = (args) => <Pagination {...args} />;
+const Template: Story<PaginationProps> = (args) => (
+  <div style={{ padding: '1em' }}>
+    <Pagination {...args} />
+  </div>
+);
 
 export const Default = Template.bind({});
 Default.args = {

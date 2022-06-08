@@ -2,13 +2,13 @@ import {
   Heading,
   HeadingProps,
   InputProps,
+  InternalCodeblock,
   Link,
   StaticCheckbox,
-  InternalCodeblock,
 } from "@flow-docs/ui"
-import React from "react"
 import { Link as RemixLink } from "@remix-run/react"
 import { getMDXComponent } from "mdx-bundler/client"
+import React from "react"
 import type { LinkProps } from "react-router-dom"
 import type { GitHubFile, MdxListItem, MdxPage, Timings } from "~/cms"
 import {
@@ -297,17 +297,11 @@ const mdxComponents = {
   h4: (props: HeadingProps) => <Heading type="h4" {...props} />,
   h5: (props: HeadingProps) => <Heading type="h5" {...props} />,
   h6: (props: HeadingProps) => <Heading type="h6" {...props} />,
-  pre: ({ children }: { children: React.ReactNode }) => {
-    // const [state, useState] = React.useState(0)
-
-    // return <div>
-    //   { state  }
-    // </div>
-    //  return <pre>{children}</pre>;
-    // TODO: pass code string as rawText for copy to clipboard functionality
-    // TODO: @reach/dialog raises error from remix
-    return <InternalCodeblock rawText="TODO" children={children} />
-  },
+  // pre: ({ children }: { children: React.ReactNode }) => {
+  //   // TODO: pass code string as rawText for copy to clipboard functionality
+  //   // TODO: @reach/dialog raises error from remix
+  //   // return <InternalCodeblock rawText="TODO" children={children} />
+  // },
 }
 
 /**
@@ -324,8 +318,8 @@ function getMdxComponent({ code, frontmatter }: MdxPage) {
     ...rest
   }: Parameters<typeof Component>["0"]) {
     return (
-      <div className="flex flex-row">
-        <div className="mdx-content ml-16 mr-8 w-auto">
+      <div className="container flex flex-row">
+        <div className="mdx-content">
           {/* @ts-expect-error: We need to figure out how to type this */}
           <Component components={mdxComponents} {...rest} />
         </div>

@@ -45,14 +45,19 @@ export function UpcomingEvents({
               </li>
             ))}
           </ul>
-          <div className="flex flex-col gap-6 mt-4 justify-items-stretch md:flex-row">
-            <ButtonLink className="flex-1" href={submitEventHref}>
+          <div className="flex flex-col gap-6 mt-10 justify-items-stretch md:flex-row">
+            <ButtonLink
+              className="flex-1"
+              href={submitEventHref}
+              rightIcon="right"
+            >
               Submit an Event
             </ButtonLink>
             <ButtonLink
               className="flex-1"
               variant="secondary"
               href={goToCommunityHref}
+              rightIcon="external"
             >
               Go to Community
             </ButtonLink>

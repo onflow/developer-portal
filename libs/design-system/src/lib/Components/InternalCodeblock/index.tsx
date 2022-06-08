@@ -1,6 +1,7 @@
-import { Dialog } from '@headlessui/react';
+// import { Dialog } from '@reach/dialog';
+// import '@reach/dialog/styles.css';
 import clsx from 'clsx';
-import { useState, ReactNode } from 'react';
+import React, { useState } from 'react';
 import { ReactComponent as CollapseIcon } from '../../../../images/content/collapse.svg';
 import { ReactComponent as FileCodeIcon } from '../../../../images/content/file-code.svg';
 import { ReactComponent as FileCopyIcon } from '../../../../images/content/file-copy.svg';
@@ -16,12 +17,12 @@ export type InternalCodeblockProps = {
 };
 
 function Header({
-  isOpen,
-  closeDialog,
+  showDialog,
   openDialog,
+  closeDialog,
   onCopy,
 }: {
-  isOpen: boolean;
+  showDialog: boolean;
   openDialog: () => void;
   closeDialog: () => void;
   onCopy: () => void;
@@ -46,10 +47,10 @@ function Header({
         </button>
         <button
           className="p-2 cursor-pointer hover:opacity-75"
-          title={isOpen ? 'Collapse' : 'Expand'}
-          onClick={isOpen ? closeDialog : openDialog}
+          title={showDialog ? 'Collapse' : 'Expand'}
+          onClick={showDialog ? closeDialog : openDialog}
         >
-          {isOpen ? <CollapseIcon /> : <ScreenFullIcon />}
+          {showDialog ? <CollapseIcon /> : <ScreenFullIcon />}
         </button>
       </div>
     </div>
@@ -61,7 +62,7 @@ function Code({
   children,
 }: {
   innerClasses: string;
-  children: ReactNode;
+  children: React.ReactNode;
 }) {
   return (
     <pre
@@ -80,41 +81,52 @@ export function InternalCodeblock({
   rawText,
   children,
 }: InternalCodeblockProps) {
-  const [isOpen, setIsOpen] = useState(false);
+  const [showDialog, setShowDialog] = useState(false);
+
+  const openDialog = () => setShowDialog(true);
+  const closeDialog = () => setShowDialog(false);
   const onCopy = () => navigator.clipboard.writeText(rawText);
 
   return (
-    <div>
+    <>
       <div className="text-xs border rounded-lg border-primary-gray-100 dark:border-0">
         <Header
-          isOpen={isOpen}
-          closeDialog={() => setIsOpen(false)}
-          openDialog={() => setIsOpen(true)}
+          openDialog={openDialog}
+          closeDialog={closeDialog}
+          showDialog={showDialog}
           onCopy={onCopy}
         />
         <Code
           children={children}
-          innerClasses={tall ? 'max-h-[280px]' : 'max-h-[130px]'}
+          innerClasses={clsx(
+            'w-full',
+            tall ? 'max-h-[280px]' : 'max-h-[130px]'
+          )}
         />
       </div>
-      <div>
-        <Dialog open={isOpen} onClose={() => setIsOpen(false)}>
-          <Dialog.Panel>
-            <Dialog.Title>Deactivate account</Dialog.Title>
-            <Dialog.Description>
-              This will permanently deactivate your account
-            </Dialog.Description>
+      {/* <Dialog
+        isOpen={showDialog}
+        onDismiss={closeDialog}
+        className="flex flex-col rounded-lg !p-0 dark:bg-[#111111]"
+        style={{
+          height: '75vh',
+          width: '95vw',
+          margin: '5vh auto',
+        }}
+      >
+        <div className="h-full">
+          <Header
+            openDialog={openDialog}
+            closeDialog={closeDialog}
+            showDialog={showDialog}
+            onCopy={onCopy}
+          />
 
-            <p>
-              Are you sure you want to deactivate your account? All of your data
-              will be permanently removed. This action cannot be undone.
-            </p>
-
-            <button onClick={() => setIsOpen(true)}>Deactivate</button>
-            <button onClick={() => setIsOpen(false)}>Cancel</button>
-          </Dialog.Panel>
-        </Dialog>
-      </div>
-    </div>
+          <div className="h-full mdx-content">
+            <Code children={children} innerClasses="w-full h-full" />
+          </div>
+        </div>
+      </Dialog> */}
+    </>
   );
 }

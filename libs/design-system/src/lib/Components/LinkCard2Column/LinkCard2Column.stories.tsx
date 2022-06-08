@@ -4,7 +4,9 @@ import { renderToStaticMarkup } from 'react-dom/server';
 import { ReactComponent as CadenceIcon } from '../../../../images/tools/tool-cadence-gradient.svg';
 import KittyItemsImg from '../../../../images/content/kitty-items@3x.png';
 
-const svgToDataUri = (element: Parameters<typeof renderToStaticMarkup>[0]) => {
+export const svgToDataUri = (
+  element: Parameters<typeof renderToStaticMarkup>[0]
+) => {
   const svgString = encodeURIComponent(renderToStaticMarkup(element));
   return `data:image/svg+xml,${svgString}`;
 };

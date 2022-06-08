@@ -114,11 +114,11 @@ const footerSections = [
 
 export const Footer = ({ sections = footerSections }) => {
   return (
-    <footer className="px-6 text-white bg-black">
+    <footer className="bg-black px-6 text-white">
       <div className="container mx-auto">
-        <div className="flex items-center justify-between block px-2 pt-8 pb-6 md:px-4 md:pt-16">
+        <div className="block items-center justify-between px-2 pt-8 pb-6 md:flex md:px-4 md:pt-16">
           <img src={FlowDocsLogo} alt="Flow Docs" width="150" />
-          <div className="flex items-center justify-start gap-6 pt-8 md:pt-0 lg:justify-center">
+          <div className="flex items-center gap-6 pt-8 md:pt-0">
             <a href="#">
               <GithubIcon fill="red" height={32} width={32} />
             </a>
@@ -131,16 +131,14 @@ export const Footer = ({ sections = footerSections }) => {
             <a href="#">
               <OnFlowIcon height={28} width={28} />
             </a>
-            <a href="#" className="pl-3">
-              Eng
-            </a>
+            <a href="#">Eng</a>
           </div>
         </div>
-        <div className="grid grid-cols-2 px-2 pb-6 border-y border-y-gray-500 pt-9 md:grid-cols-5 md:px-4">
+        <div className="grid auto-cols-min border-y border-y-primary-gray-400 px-2 pb-6 pt-9 xs:grid-cols-1 sm:grid-cols-2 gap-y-4 sm:gap-x-12 md:grid-cols-[fit-content(25%)_fit-content(25%)_fit-content(25%)_fit-content(25%)] md:gap-x-20 md:px-4">
           {sections.map((section, i) => (
-            <section key={i} className="pb-12 md:pb-0">
+            <section key={i} className="w-fit pb-12 md:pb-0">
               <div className="pb-3">
-                <h3 className="text-base font-bold lg:text-2xl">
+                <h3 className="whitespace-nowrap text-base font-bold lg:text-2xl">
                   {section.header}
                 </h3>
               </div>
@@ -148,7 +146,7 @@ export const Footer = ({ sections = footerSections }) => {
                 {section.links.map((link, j) => (
                   <li className="py-1 pl-0" key={j}>
                     <a
-                      className="text-xs text-gray-400 lg:text-base"
+                      className="whitespace-nowrap text-xs text-primary-gray-200 lg:text-base"
                       href={link.link}
                     >
                       {link.text}

@@ -28,7 +28,11 @@ export function LandingHeader({
           <div className="px-5 py-10 md:basis-1/2 md:px-20 md:py-12">
             <h2 className="mb-2 text-h2 md:mb-4">{callout}</h2>
             <p>{description}</p>
-            <ButtonLink className="mt-4 mb-4 md:mt-12" href={buttonUrl}>
+            <ButtonLink
+              className="mt-4 mb-4 md:mt-12"
+              href={buttonUrl}
+              variant="primary-no-darkmode"
+            >
               {buttonText}
             </ButtonLink>
           </div>
