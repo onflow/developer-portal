@@ -5,7 +5,7 @@ import { ButtonLink } from '../../Components/Button';
 import { TutorialCardProps } from '../../Components/TutorialCard';
 import PageSections from '../shared/PageSections';
 import PageSection from '../shared/PageSection';
-import { useCallback, useMemo, useState } from 'react';
+import { useMemo, useState } from 'react';
 import {
   LargeVideoCard,
   LargeVideoCardProps,
@@ -26,6 +26,7 @@ export type LearnPageProps = {
     primary: LargeVideoCardProps;
     secondary: SmallVideoCardProps[];
   };
+  youtubeHref: string;
 };
 
 export function LearnPage({
@@ -34,6 +35,7 @@ export function LearnPage({
   cadenceTutorials,
   nftTutorials,
   videos,
+  youtubeHref,
 }: LearnPageProps) {
   const [filters, setFilters] = useState<string[]>([]);
 
@@ -72,7 +74,7 @@ export function LearnPage({
               variant="secondary"
               className="hidden whitespace-nowrap md:flex"
               href={cadenceHref}
-              next
+              rightIcon="right"
               size="sm"
             >
               Go to Cadence
@@ -82,7 +84,7 @@ export function LearnPage({
           <ButtonLink
             className="mt-6 w-full whitespace-nowrap md:hidden"
             href={cadenceHref}
-            next
+            rightIcon="right"
             size="sm"
           >
             Go to Cadence
@@ -95,7 +97,18 @@ export function LearnPage({
         </PageSection>
 
         <PageSection>
-          <h2 className="text-h2 mb-6">Featured videos</h2>
+          <div className="mb-6 flex items-baseline justify-between">
+            <h2 className="text-h2">Featured videos</h2>
+            <ButtonLink
+              variant="secondary"
+              className="hidden whitespace-nowrap md:flex"
+              href={youtubeHref}
+              rightIcon="external"
+              size="sm"
+            >
+              Go to Youtube
+            </ButtonLink>
+          </div>
           <div className="flex flex-col items-stretch gap-4 md:basis-1/2 md:flex-row md:items-center">
             <div className="shrink-0 grow">
               <LargeVideoCard {...videos.primary} />

@@ -46,4 +46,5 @@ export const data: LearnPageProps = {
       },
     ],
   },
+  youtubeHref: 'https://www.youtube.com/c/FlowBlockchain',
 };
