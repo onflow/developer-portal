@@ -31,7 +31,7 @@ module.exports = {
     '../src/lib/**/*.stories.@(js|jsx|ts|tsx)',
   ],
   addons: ['@nrwl/react/plugins/storybook', ...addons],
-  staticDirs: [{ from: '../fonts', to: '/fonts' }]
+  staticDirs: [{ from: '../fonts', to: '/fonts' }, { from: '../images', to: '/images'}]
   // webpackFinal: async (config, { configType }) => {
   //   return {
   //     ...config,
