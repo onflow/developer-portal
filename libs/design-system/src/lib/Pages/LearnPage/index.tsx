@@ -3,6 +3,7 @@ import { LandingHeader } from '../../Components/LandingHeader';
 import { SocialLinksSignup } from '../../Components';
 import { ButtonLink } from '../../Components/Button';
 import { TutorialCardProps } from '../../Components/TutorialCard';
+import PageBackground from '../shared/PageBackground';
 import PageSections from '../shared/PageSections';
 import PageSection from '../shared/PageSection';
 import { useMemo, useState } from 'react';
@@ -54,7 +55,7 @@ export function LearnPage({
   ).sort();
 
   return (
-    <div className="container w-full bg-primary-gray-50 p-6 dark:bg-black">
+    <PageBackground>
       <PageSections>
         <PageSection className="pt-0">
           <LandingHeader
@@ -68,11 +69,22 @@ export function LearnPage({
         </PageSection>
 
         <PageSection className="flex-col items-stretch">
-          <div className="mb-6 flex items-baseline justify-between">
-            <h2 className="text-h2">Cadence</h2>
+          <div className="container">
+            <div className="mb-6 flex items-baseline justify-between">
+              <h2 className="text-h2">Cadence</h2>
+              <ButtonLink
+                variant="secondary"
+                className="hidden whitespace-nowrap md:flex"
+                href={cadenceHref}
+                rightIcon="right"
+                size="sm"
+              >
+                Go to Cadence
+              </ButtonLink>
+            </div>
+            <PaginatedTutorialCardList tutorials={cadenceTutorials} />
             <ButtonLink
-              variant="secondary"
-              className="hidden whitespace-nowrap md:flex"
+              className="mt-6 w-full whitespace-nowrap md:hidden"
               href={cadenceHref}
               rightIcon="right"
               size="sm"
@@ -80,81 +92,78 @@ export function LearnPage({
               Go to Cadence
             </ButtonLink>
           </div>
-          <PaginatedTutorialCardList tutorials={cadenceTutorials} />
-          <ButtonLink
-            className="mt-6 w-full whitespace-nowrap md:hidden"
-            href={cadenceHref}
-            rightIcon="right"
-            size="sm"
-          >
-            Go to Cadence
-          </ButtonLink>
         </PageSection>
 
-        <PageSection className="flex-col items-stretch">
-          <h2 className="text-h2 f mb-6">NFTs</h2>
-          <PaginatedTutorialCardList tutorials={nftTutorials} />
+        <PageSection className="flex-col items-stretch ">
+          <div className="container">
+            <h2 className="text-h2 f mb-6">NFTs</h2>
+            <PaginatedTutorialCardList tutorials={nftTutorials} />
+          </div>
         </PageSection>
 
         <PageSection>
-          <div className="mb-6 flex items-baseline justify-between">
-            <h2 className="text-h2">Featured videos</h2>
-            <ButtonLink
-              variant="secondary"
-              className="hidden whitespace-nowrap md:flex"
-              href={youtubeHref}
-              rightIcon="external"
-              size="sm"
-            >
-              Go to Youtube
-            </ButtonLink>
-          </div>
-          <div className="flex flex-col items-stretch gap-4 md:basis-1/2 md:flex-row md:items-center">
-            <div className="shrink-0 grow">
-              <LargeVideoCard {...videos.primary} />
+          <div className="container">
+            <div className="mb-6 flex items-baseline justify-between">
+              <h2 className="text-h2">Featured videos</h2>
+              <ButtonLink
+                variant="secondary"
+                className="hidden whitespace-nowrap md:flex"
+                href={youtubeHref}
+                rightIcon="external"
+                size="sm"
+              >
+                Go to Youtube
+              </ButtonLink>
             </div>
-            <div className="flex flex-col gap-4">
-              {videos.secondary.map((videoProps) => (
-                <SmallVideoCard key={videoProps.link} {...videoProps} />
+            <div className="flex flex-col items-stretch gap-4 md:basis-1/2 md:flex-row md:items-center">
+              <div className="shrink-0 grow">
+                <LargeVideoCard {...videos.primary} />
+              </div>
+              <div className="flex flex-col gap-4">
+                {videos.secondary.map((videoProps) => (
+                  <SmallVideoCard key={videoProps.link} {...videoProps} />
+                ))}
+              </div>
+            </div>
+          </div>
+        </PageSection>
+
+        <PageSection>
+          <div className="container">
+            <h2 className="text-h2 mb-6">All content</h2>
+            <div className="mb-6 flex flex-wrap gap-4">
+              <div className="flow flow-col inline-flex items-center justify-center py-2 text-center text-base font-semibold">
+                <Filter className="mr-2" /> Filter
+              </div>
+              {tags.map((tag) => (
+                <ToggleButton
+                  key={tag}
+                  onClick={() => {
+                    if (filters.includes(tag)) {
+                      setFilters(filters.filter((value) => value !== tag));
+                    } else {
+                      setFilters([...filters, tag]);
+                    }
+                  }}
+                  isSelected={filters.includes(tag)}
+                >
+                  {tag}
+                </ToggleButton>
               ))}
+              {filters.length > 0 && (
+                <button
+                  className="font-semibold text-primary-blue"
+                  onClick={() => setFilters([])}
+                >
+                  Clear all
+                </button>
+              )}
             </div>
+            <PaginatedTutorialCardList
+              listId={filters}
+              tutorials={allTutorialsFiltered}
+            />
           </div>
-        </PageSection>
-
-        <PageSection>
-          <h2 className="text-h2 mb-6">All content</h2>
-          <div className="mb-6 flex flex-wrap gap-4">
-            <div className="flow flow-col inline-flex items-center justify-center py-2 text-center text-base font-semibold">
-              <Filter className="mr-2" /> Filter
-            </div>
-            {tags.map((tag) => (
-              <ToggleButton
-                key={tag}
-                onClick={() => {
-                  if (filters.includes(tag)) {
-                    setFilters(filters.filter((value) => value !== tag));
-                  } else {
-                    setFilters([...filters, tag]);
-                  }
-                }}
-                isSelected={filters.includes(tag)}
-              >
-                {tag}
-              </ToggleButton>
-            ))}
-            {filters.length > 0 && (
-              <button
-                className="font-semibold text-primary-blue"
-                onClick={() => setFilters([])}
-              >
-                Clear all
-              </button>
-            )}
-          </div>
-          <PaginatedTutorialCardList
-            listId={filters}
-            tutorials={allTutorialsFiltered}
-          />
         </PageSection>
       </PageSections>
 
@@ -163,6 +172,6 @@ export function LearnPage({
           <SocialLinksSignup />
         </div>
       </div>
-    </div>
+    </PageBackground>
   );
 }

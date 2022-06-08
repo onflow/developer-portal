@@ -34,7 +34,7 @@ export const PaginatedTutorialCardList = ({
 
   return (
     <div className={className}>
-      <div className="grid grid-cols-1 gap-6 md:grid-cols-4">
+      <div className="mb-4 grid grid-cols-1 gap-6 md:grid-cols-4">
         {tutorials
           .slice((page - 1) * pageSize, page * pageSize)
           .map((tutorialProps, index) => (
