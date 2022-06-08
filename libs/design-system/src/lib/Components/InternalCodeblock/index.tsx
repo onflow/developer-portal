@@ -1,5 +1,5 @@
-import { Dialog } from '@reach/dialog';
-import '@reach/dialog/styles.css';
+// import { Dialog } from '@reach/dialog';
+// import '@reach/dialog/styles.css';
 import clsx from 'clsx';
 import React, { useState } from 'react';
 import { ReactComponent as CollapseIcon } from '../../../../images/content/collapse.svg';
@@ -104,7 +104,7 @@ export function InternalCodeblock({
           )}
         />
       </div>
-      <Dialog
+      {/* <Dialog
         isOpen={showDialog}
         onDismiss={closeDialog}
         className="flex flex-col rounded-lg !p-0 dark:bg-[#111111]"
@@ -121,12 +121,12 @@ export function InternalCodeblock({
             showDialog={showDialog}
             onCopy={onCopy}
           />
-          {/* Modal is rendered in portal outside the original .mdx-content div */}
+
           <div className="h-full mdx-content">
             <Code children={children} innerClasses="w-full h-full" />
           </div>
         </div>
-      </Dialog>
+      </Dialog> */}
     </>
   );
 }

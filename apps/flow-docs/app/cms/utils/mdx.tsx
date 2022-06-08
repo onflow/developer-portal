@@ -297,12 +297,11 @@ const mdxComponents = {
   h4: (props: HeadingProps) => <Heading type="h4" {...props} />,
   h5: (props: HeadingProps) => <Heading type="h5" {...props} />,
   h6: (props: HeadingProps) => <Heading type="h6" {...props} />,
-  pre: ({ children }: { children: React.ReactNode }) => {
-    // TODO: pass code string as rawText for copy to clipboard functionality
-    // TODO: @reach/dialog raises error from remix
-    // @ts-expect-error TODO: type error possibly caused by multiple instances of @types/react
-    return <InternalCodeblock rawText="TODO" children={children} />
-  },
+  // pre: ({ children }: { children: React.ReactNode }) => {
+  //   // TODO: pass code string as rawText for copy to clipboard functionality
+  //   // TODO: @reach/dialog raises error from remix
+  //   // return <InternalCodeblock rawText="TODO" children={children} />
+  // },
 }
 
 /**
