@@ -29,7 +29,7 @@ export function LinkCard3Column({
   topRounded = true,
 }: LinkCard3ColumnProps) {
   const classes = clsx(
-    'container grid grid-cols-1 pb-8 bg-white rounded-lg gap-x-4 dark:bg-primary-gray-dark md:grid-cols-3 md:flex-row md:px-20',
+    'container grid grid-cols-1 pb-8 bg-white rounded-lg gap-x-4 dark:bg-primary-gray-dark md:grid-cols-3 md:flex-row md:px-10',
     {
       'rounded-tr-none rounded-tl-none': !topRounded,
     }
