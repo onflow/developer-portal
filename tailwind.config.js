@@ -84,6 +84,9 @@ module.exports = {
         '3xl': '7.5rem',
         '4xl': '12.5rem',
       },
+      boxShadow: {
+        '2xl': '0px 4px 40px 0px #00000014',
+      },
     },
   },
   variants: {
@@ -96,5 +99,6 @@ module.exports = {
     require('@tailwindcss/forms'),
     require('@tailwindcss/line-clamp'),
     require('@tailwindcss/aspect-ratio'),
+    require('tailwind-scrollbar-hide'),
   ],
 };

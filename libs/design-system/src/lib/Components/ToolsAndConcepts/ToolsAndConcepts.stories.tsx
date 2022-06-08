@@ -22,8 +22,12 @@ const args = {
     tags: ['Tags'],
     link: '#',
     stars: 52,
-    toolIcon:
-      'https://cdn4.iconfinder.com/data/icons/logos-3/504/Swift-2-512.png',
+    toolIcon: (
+      <img
+        src="https://avatars.githubusercontent.com/u/62387156?s=64&v=4"
+        alt=""
+      />
+    ),
     description:
       'Lorem ipsum text here can go a two liner sentence or a one liner',
   }),

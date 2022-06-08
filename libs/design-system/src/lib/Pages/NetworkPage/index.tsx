@@ -1,18 +1,12 @@
- 
-import { startOfDay } from 'date-fns';
+
+import { startOfDay } from 'date-fns'
+import networkGradientPath from '../../../../images/gradients/network.svg'
 import {
-  NetworkCard,
-  AnnouncementCard,
-  Footer,
-  NetworkDiscordCard,
-  SocialLinksSignup,
-  FeaturedArticleSlider,
-} from '../../Components';
-import { StatuspageApiResponse } from '../../interfaces';
-import networkGradientPath from '../../../../images/gradients/network.svg';
-import { Article } from '../../interfaces';
-// @ts-ignore
-import data from './sample';
+  AnnouncementCard, FeaturedArticleSlider, Footer, NetworkCard, NetworkDiscordCard,
+  SocialLinksSignup
+} from '../../Components'
+import { Article, StatuspageApiResponse } from '../../interfaces'
+import data from './sample'
 
 const NetworkPage = () => {
   const article = {
