@@ -1,10 +1,12 @@
 import { Meta, Story } from '@storybook/react';
 import HomePage, { HomePageProps } from '.';
-import { ReactComponent as UseCaseIcon } from '../../../../images/content/use-cases.svg';
-import { ReactComponent as EcosystemIcon } from '../../../../images/content/ecosystem.svg';
-import { ReactComponent as SDKIcon } from '../../../../images/content/sdk.svg';
-import KittyItemsImg from '../../../../images/content/kitty-items@3x.png';
 import DappyImg from '../../../../images/content/dappy@3x.png';
+import { ReactComponent as EcosystemIcon } from '../../../../images/content/ecosystem.svg';
+import KittyItemsImg from '../../../../images/content/kitty-items@3x.png';
+import { ReactComponent as SDKIcon } from '../../../../images/content/sdk.svg';
+import { ReactComponent as UseCaseIcon } from '../../../../images/content/use-cases.svg';
+import { Default as DefaultToolsAndConcepts } from '../../Components/ToolsAndConcepts/ToolsAndConcepts.stories';
+import { Default as DefaultUpcomingEvents } from '../../Components/UpcomingEvents/UpcomingEvents.stories';
 
 export default {
   component: HomePage,
@@ -52,19 +54,6 @@ const flips = Array(3).fill({
   },
   date: '23/3/22',
   forumLink: '#test',
-});
-
-const tools = Array(6).fill({
-  title: 'Flow Port',
-  authorIcon: 'https://avatars.githubusercontent.com/u/62387156?s=64&v=4',
-  authorName: 'mini flow',
-  tags: ['Tags'],
-  link: '#',
-  stars: 52,
-  toolIcon:
-    'https://cdn4.iconfinder.com/data/icons/logos-3/504/Swift-2-512.png',
-  description:
-    'Lorem ipsum text here can go a two liner sentence or a one liner',
 });
 
 const threeColumnItems = [
@@ -135,40 +124,13 @@ const threeColumnItems = [
     ],
   },
 ];
-const upcomingEvents = {
-  officeHours: <p>[office hours placeholder]</p>,
-  workingHours: <p>[working hours placeholder]</p>,
-  goToCommunityHref: '#todo',
-  submitEventHref: '#todo',
-  primaryEvents: Array(3).fill({
-    ctaText: 'CTA Here',
-    description:
-      'Everything you need to start building on Flow verything you need to start building on Flow everything you need to start building on Flow',
-    eventDate: 'Mar 23',
-    href: '#todo',
-    imageSrc:
-      'https://assets.website-files.com/5f6294c0c7a8cdf432b1c827/61689102d3325e237fd44b76_unnamed%20(8).png',
-    location: 'Online',
-    tags: ['Flow official'],
-    title: 'Event Title',
-  }),
-  secondaryEvents: Array(5).fill({
-    href: 'https://www.onflow.org',
-    eventType: 'Online',
-    imageSrc:
-      'https://assets.website-files.com/5f6294c0c7a8cdf432b1c827/61410bc0c8d0522eea319058_Hack-blog_Flow.png',
-    tags: ['Flow official'],
-    title: 'FLIP contest',
-    when: 'May 5th, 5pm',
-  }),
-};
 
 const args = {
   startProjectItems,
   flips,
-  tools,
+  tools: DefaultToolsAndConcepts.args.tools,
   threeColumnItems,
-  upcomingEvents,
+  upcomingEvents: DefaultUpcomingEvents.args,
 };
 export const Default = Template.bind({});
 Default.args = args;

@@ -1,10 +1,10 @@
 import clsx from 'clsx';
+import { ButtonLink } from '../Button';
+import Tag from '../Tag';
 import {
   LinkCard2ColumnItem,
   LinkCard2ColumnItemProps,
 } from './LinkCard2ColumnItem';
-import { ButtonLink } from '../Button';
-import Tag from '../Tag';
 
 export type LinkCard2ColumnProps = {
   buttonText: string;
@@ -49,12 +49,12 @@ export function LinkCard2Column({
         <ButtonLink
           href={buttonUrl}
           className="px-8 py-3 mt-2 mb-10 md:mt-10"
-          variant="primary-inverse"
+          variant="primary-no-darkmode"
         >
           {buttonText}
         </ButtonLink>
       </div>
-      <div className="flex flex-col items-stretch flex-1">
+      <div className="flex flex-col items-stretch flex-1 w-full">
         {items.map((item) => (
           <LinkCard2ColumnItem key={item.title} {...item} />
         ))}

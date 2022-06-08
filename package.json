@@ -32,6 +32,7 @@
     "regenerator-runtime": "0.13.7",
     "remix": "^1.0.6",
     "rollup-plugin-peer-deps-external": "^2.2.4",
+    "tailwind-scrollbar-hide": "^1.1.7",
     "tailwindcss": "^3.0.24",
     "tslib": "^2.0.0"
   },
