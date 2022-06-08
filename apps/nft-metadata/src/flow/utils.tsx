@@ -2,8 +2,26 @@ import * as fcl from "@onflow/fcl"
 import * as t from "@onflow/types"
 import * as json from "./c2j.json";
 import * as catalogJson from "./catalog_c2j.json";
+import { changeFCLEnvironment } from "./setup";
+import { Network } from "src/app/components/catalog/network-dropdown";
 
-export async function getAccount(address: string): Promise<any> {
+type AccountsMap = { [network in Network]: any }
+
+export async function getAccounts(address: string): Promise<AccountsMap | null> {
+  const testnetAccount = await getAccount(address, 'testnet');
+  const mainnetAccount = await getAccount(address, 'mainnet');
+  if (testnetAccount == null && mainnetAccount == null) {
+    return null;
+  }
+  return {
+    'mainnet': mainnetAccount,
+    'testnet': testnetAccount
+  };
+
+}
+
+export async function getAccount(address: string, network: Network): Promise<any> {
+  changeFCLEnvironment(network)
   try {
     const account = await fcl.account(address);
     return account
@@ -13,14 +31,15 @@ export async function getAccount(address: string): Promise<any> {
   }
 }
 
-export async function retrieveContractInformation(address: string, name: string, code: string): Promise<any> {
+export async function retrieveContractInformation(address: string, name: string, code: string, network: Network): Promise<any> {
+  const nftStandardAddress = network === 'mainnet' ? '0x1d7e57aa55817448' : '0x631e88ae7f1d7c20';
   try {
     const publicPath = code.search(/\s+\/public\/.*\s+/gi)
     const scriptResult = await fcl.query({
       // mainnet nft and metadata address is 0x1d7e57aa55817448
       cadence: `
-        import NonFungibleToken from 0x631e88ae7f1d7c20
-        import MetadataViews from 0x631e88ae7f1d7c20
+        import NonFungibleToken from ${fcl.withPrefix(nftStandardAddress)}
+        import MetadataViews from ${fcl.withPrefix(nftStandardAddress)}
         import ${name} from ${fcl.withPrefix(address)}
 
         pub fun main(): {String: AnyStruct} {

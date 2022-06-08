@@ -5,13 +5,15 @@ import { SampleNFTView } from './sample-nft-view';
 import { StepsProgressBar } from "./steps-progress-bar";
 import { AdditionalNftInfo } from "./additional-nft-info";
 import { AddToCatalog } from "./add-to-catalog";
+import { changeFCLEnvironment } from "src/flow/setup";
+import { Network } from "../catalog/network-dropdown";
 
 export default function ({
 }: {
 }) {
   const query = useQuery()
-  const { selectedAddress, selectedContract } = useParams<any>()
   const navigate = useNavigate()
+  const { selectedAddress, selectedContract, selectedNetwork } = useParams<any>()
 
   const publicPath = query.get("path")
   const sampleAddress = query.get("sampleAddress")
@@ -22,31 +24,31 @@ export default function ({
       id: "S1",
       title: "Select NFT Contract",
       href: `/v`,
-      isActive: !selectedAddress || !selectedContract,
-      isComplete: selectedAddress && selectedContract
+      isActive: !selectedAddress || !selectedContract || !selectedNetwork,
+      isComplete: selectedAddress && selectedContract && selectedNetwork
     },
     {
       id: "S2",
       title: "Enter Additional Info",
-      href: `/v/${selectedAddress}/${selectedContract}`,
-      isActive: selectedAddress && selectedContract,
-      isComplete: selectedAddress && selectedContract &&
+      href: `/v/${selectedAddress}/${selectedContract}/${selectedNetwork}`,
+      isActive: selectedAddress && selectedContract && selectedNetwork,
+      isComplete: selectedAddress && selectedContract && selectedNetwork &&
         sampleAddress && publicPath
     },
     {
       id: "S3",
       title: "Review Metadata",
-      href: `/v/${selectedAddress}/${selectedContract}?path=${publicPath}&sampleAddress=${sampleAddress}`,
-      isActive: selectedAddress && selectedContract &&
+      href: `/v/${selectedAddress}/${selectedContract}/${selectedNetwork}?path=${publicPath}&sampleAddress=${sampleAddress}`,
+      isActive: selectedAddress && selectedContract && selectedNetwork &&
         sampleAddress && publicPath,
-      isComplete: selectedAddress && selectedContract &&
+      isComplete: selectedAddress && selectedContract && selectedNetwork &&
         sampleAddress && publicPath && confirmed
     },
     {
       id: "S4",
       title: "Add to Catalog",
       onClick: () => { },
-      isActive: selectedAddress && selectedContract &&
+      isActive: selectedAddress && selectedContract && selectedNetwork &&
         sampleAddress && publicPath && confirmed,
       isComplete: false
     }
@@ -61,8 +63,9 @@ export default function ({
         {
           steps[0].isActive && !steps[0].isComplete && (
             <ContractSelect
-              selectContract={(contractAddress: String, contractName: string) => {
-                navigate(`/v/${contractAddress}/${contractName}`);
+              selectContract={(contractAddress: String, contractName: string, network: string) => {
+                changeFCLEnvironment(network as Network)
+                navigate(`/v/${contractAddress}/${contractName}/${network}`);
               }}
             />
           )
@@ -81,7 +84,7 @@ export default function ({
 
         {
           steps[3].isActive && !steps[3].isComplete && (
-            <AddToCatalog sampleAddress={sampleAddress} publicPath={publicPath}/>
+            <AddToCatalog sampleAddress={sampleAddress} publicPath={publicPath} />
           )
         }
       </div>

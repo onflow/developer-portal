@@ -1,16 +1,17 @@
-import { Fragment, useState, useEffect } from 'react';
-import { retrieveContractInformation, getAccount } from "../../../flow/utils"
+import { useState } from 'react';
+import { getAccounts } from "../../../flow/utils"
 import { SearchBar } from '../shared/search-bar';
 import { Alert } from '../shared/alert';
+import { Badge } from '../shared/badge';
 
 export function ContractSelect({
   selectContract
 }: {
-  selectContract: (address: string, text: string) => void
+  selectContract: (address: string, text: string, network: string) => void
 }) {
   const [contractAddress, setContractAddress] = useState<string>("")
-  const [account, setAccount] = useState<any>({})
-  const [error, setError] = useState<string|null>(null)
+  const [accounts, setAccounts] = useState<any>({})
+  const [error, setError] = useState<string | null>(null)
 
   return (
     <>
@@ -21,7 +22,7 @@ export function ContractSelect({
         The <b>Flow NFT Catalog</b> will automatically allow applications and marketplaces such as <b>Alchemy, Rarible, Blocto, Find</b>, etc. to utilize your NFT collection on their platforms.
         <br />
       </div>
-      <hr className="my-6"/>
+      <hr className="my-6" />
       <div className="text-2xl mb-6">Select NFT Contract</div>
       <b>Enter Address containing your NFT Contract</b>
       <br />
@@ -30,13 +31,13 @@ export function ContractSelect({
           if (!address) { return }
           const retrieveAccount = async () => {
             setError(null)
-            const res = await getAccount(String(address))
+            const res = await getAccounts(String(address))
             if (res) {
-              setAccount(res)
+              setAccounts(res)
               setContractAddress(address)
               setError(null)
             } else {
-              setAccount({})
+              setAccounts({})
               setError("Failed to retrieve address")
             }
           }
@@ -45,22 +46,31 @@ export function ContractSelect({
       />
 
       {
-        account && account.contracts &&
+        accounts &&
         <>
           <b>Select Contract</b>
           {
-            Object.keys(account.contracts).map((contractName: string) => {
-              return (
-                <div key={contractName} className="mt-1">
-                  <a
-                    className="no-underline hover:underline cursor-pointer text-blue-600"
-                    onClick={() => { selectContract(contractAddress, contractName) }}
-                  >
-                    {contractName}
-                  </a>
-                  <br />
-                </div>
-              )
+            Object.keys(accounts).map((network: string) => {
+              const account = accounts[network];
+              if (account != null) {
+                return Object.keys(account.contracts).map((contractName: string) => {
+                  return (
+                    <div key={contractName} className="mt-1">
+                      <a
+                        className="no-underline hover:underline cursor-pointer text-blue-600"
+                        onClick={() => { selectContract(contractAddress, contractName, network) }}
+                      >
+                        {contractName}
+                      </a>
+                      <span className='ml-4'>
+                        <Badge text={network} color={network === 'mainnet' ? 'green' : 'yellow'} />
+                      </span>
+                      <br />
+                    </div>
+                  )
+                })
+              }
+              return null;
             })
           }
         </>
