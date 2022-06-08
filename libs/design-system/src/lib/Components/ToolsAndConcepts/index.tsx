@@ -1,7 +1,6 @@
 import { TabMenu } from '../';
-import { ToolCard, ToolCardProps } from '../ToolCard';
 import { ButtonLink } from '../Button';
-import { ReactComponent as ExternalLinkIcon } from '../../../../images/content/external-link.svg';
+import { ToolCard, ToolCardProps } from '../ToolCard';
 
 export type ToolsAndConceptsProps = {
   tools: ToolCardProps[];
@@ -21,9 +20,9 @@ const ToolsAndConcepts = ({ tools }) => (
       <ButtonLink
         href="https://google.com"
         className="w-full mb-4 md:mr-9 md:w-1/2"
+        rightIcon="external"
       >
         Submit a tool
-        <ExternalLinkIcon />
       </ButtonLink>
       <ButtonLink
         className="w-full mb-4 md:w-1/2"

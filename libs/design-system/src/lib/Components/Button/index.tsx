@@ -3,7 +3,8 @@ import { ReactComponent as ChevronRightIcon } from '../../../../images/arrows/ch
 import { ReactComponent as ExternalLinkIcon } from '../../../../images/content/external-link-variant.svg';
 
 const BASE_CLASSES =
-  'inline-flex text-sm gap-3 items-center justify-center py-4 font-semibold min-w-[172px] text-center px-4 rounded-lg border hover:shadow-2xl';
+  'inline-flex items-center justify-center font-semibold text-center border hover:shadow-2xl';
+
 const VARIANTS = {
   primary: [
     'bg-black text-white border-transparent',
@@ -13,13 +14,10 @@ const VARIANTS = {
     'dark:hover:border-white dark:hover:bg-black dark:hover:text-white',
     'dark:active:border-gray-500 dark:active:bg-black dark:active:text-gray-500',
   ],
-  'primary-inverse': [
-    'dark:bg-black dark:text-white dark:border-transparent',
-    'dark:hover:border-black dark:hover:bg-white dark:hover:text-black',
-    'dark:active:border-gray-500 dark:active:bg-white dark:active:text-gray-500',
-    'bg-white text-black border-black',
-    'hover:border-white hover:bg-black hover:text-white',
-    'active:border-gray-500 active:bg-black active:text-gray-500',
+  'primary-no-darkmode': [
+    'bg-black text-white border-transparent',
+    'hover:border-black hover:bg-white hover:text-black',
+    'active:border-gray-500 active:bg-white active:text-gray-500',
   ],
   secondary: [
     'text-primary-blue border-primary-blue',
@@ -31,6 +29,11 @@ const VARIANTS = {
   ],
 };
 
+const SIZES = {
+  sm: ['text-sm min-w-[172px] p-2 rounded-md gap-2'],
+  md: ['text-sm min-w-[172px] p-4 rounded-lg gap-3'],
+};
+
 type ButtonContentProps = {
   children: React.ReactNode;
   leftIcon?: 'left';
@@ -40,6 +43,7 @@ type ButtonContentProps = {
 
 type ButtonBaseProps = {
   variant?: keyof typeof VARIANTS;
+  size?: keyof typeof SIZES;
 } & ButtonContentProps;
 
 export type ButtonProps = React.ComponentPropsWithoutRef<'button'> &
@@ -67,6 +71,7 @@ function ButtonContent({
 
 export function Button({
   className,
+  size = 'md',
   variant = 'primary',
   leftIcon,
   rightIcon,
@@ -75,7 +80,7 @@ export function Button({
 }: ButtonProps) {
   return (
     <button
-      className={clsx(BASE_CLASSES, VARIANTS[variant], className)}
+      className={clsx(BASE_CLASSES, SIZES[size], VARIANTS[variant], className)}
       {...props}
     >
       <ButtonContent
@@ -94,6 +99,7 @@ export type ButtonLinkProps = React.ComponentPropsWithoutRef<'a'> &
 
 export function ButtonLink({
   className,
+  size = 'md',
   variant = 'primary',
   leftIcon,
   rightIcon,
@@ -101,7 +107,10 @@ export function ButtonLink({
   ...props
 }: ButtonLinkProps) {
   return (
-    <a className={clsx(BASE_CLASSES, VARIANTS[variant], className)} {...props}>
+    <a
+      className={clsx(BASE_CLASSES, SIZES[size], VARIANTS[variant], className)}
+      {...props}
+    >
       <ButtonContent
         leftIcon={leftIcon}
         rightIcon={rightIcon}

@@ -1,6 +1,5 @@
-import React from 'react'
 import clsx from 'clsx';
-import   { useCallback, useRef, useState } from 'react';
+import React, { useCallback, useRef, useState } from 'react';
 
 export type CarouselProps = React.PropsWithChildren<{
   /**
@@ -54,7 +53,7 @@ export function Carousel({
     <section className={clsx('flex flex-col', className)}>
       <ul
         className={clsx(
-          'flex min-h-fit snap-x snap-mandatory list-none flex-row gap-6 overflow-x-auto',
+          'flex min-h-fit snap-x snap-mandatory list-none flex-row gap-6 overflow-x-auto scrollbar-hide',
           {
             'sm:flex-col': breakpoint === 'sm',
             'md:flex-col': breakpoint === 'md',
@@ -98,7 +97,7 @@ export function Carousel({
             role="option"
             aria-selected={index === selectedIndex ? 'true' : 'false'}
             className={clsx(
-              'mr-3 h-3 h-4 w-3 w-4 rounded-full hover:cursor-pointer',
+              'mr-3 mt-4 h-4 w-4 cursor-pointer rounded-full md:mt-8',
               {
                 'bg-green-success': index === selectedIndex,
                 'bg-primary-gray-100': index !== selectedIndex,
