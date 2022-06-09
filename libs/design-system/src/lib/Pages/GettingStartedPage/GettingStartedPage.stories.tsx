@@ -357,7 +357,6 @@ const gettingStartedPageData = {
       link: '#',
       icon: 'concepts',
     },
-    ,
   ],
 };
 

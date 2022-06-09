@@ -1,12 +1,10 @@
-import type { LoaderFunction } from "@remix-run/node"
-import type { FlipCellProps } from "../../../../../libs/design-system/dist/lib/Components/Flips/FlipCell"
+// eslint-disable-next-line @nrwl/nx/enforce-module-boundaries
+import { FlipCellProps } from "../../../libs/design-system/src/lib/Components/FlipCell"
 import { Octokit } from "@octokit/core"
 
-export type LoaderData = FlipCellProps[]
-
-export const loader: LoaderFunction = async () => {
+export const fetchFlips = async () => {
   const octokit = new Octokit({
-    auth: process.env.PERSONAL_ACCESS_TOKEN,
+    auth: process.env.BOT_GITHUB_TOKEN,
   })
 
   const getPullRequests = async (fetchLabel: string) => {
@@ -54,5 +52,7 @@ export const loader: LoaderFunction = async () => {
     })
   )
 
-  return await Promise.all(flipCellProps)
+  const data: FlipCellProps[] = await Promise.all(flipCellProps)
+
+  return data
 }

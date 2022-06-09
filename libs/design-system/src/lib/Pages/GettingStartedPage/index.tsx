@@ -57,7 +57,7 @@ export function GettingStartedPage({
   return (
     <div className="bg-primary-gray-50 dark:bg-black">
       <div className="relative pb-16 dark:border-primary-gray-400 md:border-b md:border-primary-gray-100 md:pb-28">
-        <div className="absolute right-0 hidden h-full flex-col justify-center gap-2 pr-11 lg:flex">
+        <div className="absolute right-0 flex-col justify-center hidden h-full gap-2 pr-11 lg:flex">
           <a href="https://discord.com/invite/flow">
             <DiscordIcon />
           </a>
@@ -77,7 +77,7 @@ export function GettingStartedPage({
 
       <div className="pb-11 dark:border-primary-gray-400 md:border-b md:border-primary-gray-100 md:pt-20 md:pb-14">
         <div className="container">
-          <h2 className="text-h2 hidden pb-14 md:block">First Steps</h2>
+          <h2 className="hidden text-h2 pb-14 md:block">First Steps</h2>
           <LinkCard3Column items={linkCard3ColumnItems.items} />
         </div>
       </div>
@@ -93,12 +93,12 @@ export function GettingStartedPage({
         />
       </div>
 
-      <div className=" pt-24 dark:border-primary-gray-400 md:border-b md:border-primary-gray-100 md:pb-28">
+      <div className="pt-24 dark:border-primary-gray-400 md:border-b md:border-primary-gray-100 md:pb-28">
         <div className="container">
-          <div className="mb-9 flex items-end justify-between">
+          <div className="flex items-end justify-between mb-9">
             <h2 className="text-h2">SDK's</h2>
             <ButtonLink
-              next
+              rightIcon="right"
               variant="secondary"
               className="hidden md:inline-flex"
               href="#"
@@ -106,7 +106,7 @@ export function GettingStartedPage({
               View All SDKs
             </ButtonLink>
           </div>
-          <div className="mb-4 grid grid-cols-1 grid-rows-5 gap-4 md:grid-cols-2 md:grid-rows-3">
+          <div className="grid grid-cols-1 grid-rows-5 gap-4 mb-4 md:grid-cols-2 md:grid-rows-3">
             {sdkCardItems.map((sdkCard, i) => (
               <SDKCard
                 key={i}
@@ -129,15 +129,15 @@ export function GettingStartedPage({
       </div>
 
       <div className="pt-52 dark:border-primary-gray-400 md:border-b md:border-primary-gray-100 md:pb-28 md:pt-20">
-        <div className="container mx-auto grid grid-cols-1 gap-x-10 gap-y-4 align-middle md:grid-cols-2">
-          <div className="hidden items-center md:flex">
+        <div className="container grid grid-cols-1 mx-auto align-middle gap-x-10 gap-y-4 md:grid-cols-2">
+          <div className="items-center hidden md:flex">
             <h4 className="text-h4">Recent Articles</h4>
           </div>
 
           <div className="flex items-end justify-between md:items-center ">
             <h4 className="text-h4">Recent Tools</h4>
             <ButtonLink
-              next
+              rightIcon="right"
               variant="secondary"
               className="hidden md:inline-flex"
               href="#"
@@ -156,7 +156,7 @@ export function GettingStartedPage({
             />
           </div>
 
-          <div className="flex grow flex-col justify-between gap-4">
+          <div className="flex flex-col justify-between gap-4 grow">
             {recentToolItems.map((tool, i) => (
               <ToolCard
                 key={i}
@@ -172,7 +172,7 @@ export function GettingStartedPage({
             ))}
             <ButtonLink
               variant="secondary"
-              next
+              rightIcon="right"
               className="inline-flex md:hidden"
               href="#"
             >
@@ -184,7 +184,7 @@ export function GettingStartedPage({
 
       <div className="pt-36 dark:border-primary-gray-400 md:border-b md:border-primary-gray-100 md:pt-20 md:pb-32">
         <div className="container mx-auto">
-          <h4 className="text-h4 pb-5 md:pb-9">Explore More Content</h4>
+          <h4 className="pb-5 text-h4 md:pb-9">Explore More Content</h4>
           <div className="grid grid-cols-1 gap-4 md:grid-cols-3">
             {contentNavigationItems.map((contentNav, i) => (
               <ContentNavigation
@@ -199,7 +199,7 @@ export function GettingStartedPage({
         </div>
       </div>
 
-      <div className="container mx-auto pt-40 pb-32">
+      <div className="container pt-40 pb-32 mx-auto">
         <SocialLinksSignup />
       </div>
     </div>

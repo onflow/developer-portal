@@ -28,20 +28,20 @@ const TutorialCard = ({
     <a
       href={link}
       className={clsx(
-        'flex flex-col overflow-hidden rounded-lg bg-white hover:shadow-2xl dark:bg-primary-gray-dark',
+        'flex h-[300px] w-[272px] flex-col overflow-hidden rounded-lg bg-white hover:shadow-2xl dark:bg-primary-gray-dark',
         className
       )}
     >
-      <img src={imageUri} alt="" className="h-[141px] object-cover" />
+      <img src={imageUri} alt="" className="h-[110px] object-cover" />
       <div className="p-4">
-        <div className="text-xl font-bold">{heading}</div>
+        <div className="text-lg font-bold md:text-xl">{heading}</div>
         <div className="my-2">
           {tags.map((tag) => (
             <Tag key={tag} name={tag} />
           ))}
         </div>
         {description}
-        <div className="mt-6 flex justify-between text-sm text-primary-gray-300 dark:text-primary-gray-200">
+        <div className="flex justify-between mt-6 text-xs text-primary-gray-300 dark:text-primary-gray-200">
           <div className="flex items-center">
             <CalendarIcon className="mr-1 scale-75" />
             Updated: {lastUpdated}
