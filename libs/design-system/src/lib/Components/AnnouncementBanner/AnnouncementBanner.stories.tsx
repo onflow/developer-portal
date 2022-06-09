@@ -9,10 +9,12 @@ export default {
 const Template: Story = (args) => {
   return (
     <AnnouncementBanner {...args}>
-      <div className="text-center text-xs font-semibold md:text-sm">
+      <div>
         Permissionless deployment is coming to Flow! Read more{' '}
         <span style={{ textDecoration: 'underline' }}>
-          <a href="https://permissionless.onflow.org/">here</a>
+          <a href="https://permissionless.onflow.org/" target="_blank">
+            here
+          </a>
         </span>
       </div>
     </AnnouncementBanner>
