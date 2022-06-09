@@ -50,9 +50,14 @@ export function LearnPage({
     [allTutorials, filters]
   );
 
-  const tags = Array.from(
-    new Set(allTutorials.reduce((acc, { tags }) => [...acc, ...tags], []))
-  ).sort();
+  const tags: Array<string> = Array.from(
+    new Set(
+      allTutorials.reduce(
+        (acc, { tags }) => [...acc, ...tags],
+        [] as Array<string>
+      )
+    )
+  ).sort()
 
   return (
     <PageBackground>
