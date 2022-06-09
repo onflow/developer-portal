@@ -2,7 +2,7 @@ import type { LoaderFunction } from "@remix-run/node"
 import { useLoaderData } from "@remix-run/react"
 // eslint-disable-next-line @nrwl/nx/enforce-module-boundaries
 import { FlipCellProps } from "../../../../libs/design-system/src/lib/Components/FlipCell"
-import { fetchFlips } from "~/api/fetch-flips"
+import { fetchFlips } from "~/cms/utils/fetch-flips"
 
 export type LoaderData = FlipCellProps[]
 
