@@ -1,7 +1,7 @@
 import type { LoaderFunction } from "@remix-run/node"
 import { useLoaderData } from "@remix-run/react"
-import { FlipCellProps } from "../../libs/design-system/src/lib/Components/FlipCell"
 import { fetchFlips } from "~/cms/utils/fetch-flips"
+import { FlipCellProps } from "~/ui/lib/Components/FlipCell"
 
 export type LoaderData = FlipCellProps[]
 

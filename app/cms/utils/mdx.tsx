@@ -1,5 +1,3 @@
-import type { HeadingProps, InputProps } from "../../../libs/design-system/src"
-import { Heading, Link, StaticCheckbox } from "../../../libs/design-system/src"
 import { Link as RemixLink } from "@remix-run/react"
 import { getMDXComponent } from "mdx-bundler/client"
 import React from "react"
@@ -12,6 +10,7 @@ import {
   downloadMdxFileOrDirectory,
   redisCache,
 } from "~/cms"
+import { InputProps } from "~/libs/design-system"
 import type { LoaderData as RootLoaderData } from "../../root"
 
 function typedBoolean<T>(

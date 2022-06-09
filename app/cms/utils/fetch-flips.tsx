@@ -1,6 +1,5 @@
-// eslint-disable-next-line @nrwl/nx/enforce-module-boundaries
-import { FlipCellProps } from "../../../libs/design-system/src/lib/Components/FlipCell"
 import { Octokit } from "@octokit/core"
+import { FlipCellProps } from "~/libs/design-system/src/lib/Components/FlipCell"
 
 export const fetchFlips = async () => {
   const octokit = new Octokit({
