@@ -1,4 +1,4 @@
-import { useCallback, useEffect, useState } from "react"
+import { useCallback } from "react"
 import { useParams } from "react-router-dom";
 import { NetworkDropDown, Network } from "./network-dropdown";
 import { CatalogSelect } from "./catalog-select";
@@ -45,7 +45,7 @@ export default function Layout({
             type === 'Proposals' && <ProposalContent proposalID={identifier} />
           }
           {
-            type === 'Catalog' && <NftCollectionContent collectionName={identifier} />
+            type === 'Catalog' && <NftCollectionContent collectionIdentifier={identifier} />
           }
         </div>
       </div>
