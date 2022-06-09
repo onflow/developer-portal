@@ -1,23 +1,23 @@
 .bg-gradient-community {
-  background-image: url(/images/gradients/community.svg);
+  background-image: url(../images/gradients/community.svg);
 }
 
 .bg-gradient-concepts {
-  background-image: url(/images/gradients/concepts.svg);
+  background-image: url(../images/gradients/concepts.svg);
 }
 
 .bg-gradient-getting-started {
-  background-image: url(/images/gradients/getting-started.svg);
+  background-image: url(../images/gradients/getting-started.svg);
 }
 
 .bg-gradient-home {
-  background-image: url(/images/gradients/home.svg);
+  background-image: url(../images/gradients/home.svg);
 }
 
 .bg-gradient-network {
-  background-image: url(/images/gradients/network.svg);
+  background-image: url(../images/gradients/network.svg);
 }
 
 .bg-gradient-tools {
-  background-image: url(/images/gradients/tools.svg);
+  background-image: url(../images/gradients/tools.svg);
 }

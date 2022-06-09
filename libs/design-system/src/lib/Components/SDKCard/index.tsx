@@ -1,8 +1,8 @@
 import { ReactElement } from 'react';
 
-import { ReactComponent as StarIcon } from '../../../../images/action/star.svg';
-import { ReactComponent as CalendarIcon } from '../../../../images/action/date-calendar.svg';
-import { ReactComponent as CommitIcon } from '../../../../images/content/commit.svg';
+import { ReactComponent as StarIcon } from '../../../../images/action/star';
+import { ReactComponent as CalendarIcon } from '../../../../images/action/date-calendar';
+import { ReactComponent as CommitIcon } from '../../../../images/content/commit';
 import Tag from '../Tag';
 
 export interface SDKCardProps {

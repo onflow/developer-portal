@@ -45,3 +45,13 @@ apps/**/.cache
 .postgres-data
 .redis-data
 .vscode
+
+node_modules
+
+/.cache
+/build
+/public/build
+.env
+
+/app/tailwind.css
+libs/design-system/images/**/*.js

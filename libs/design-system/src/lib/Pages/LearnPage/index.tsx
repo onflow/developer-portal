@@ -1,4 +1,4 @@
-import { ReactComponent as Filter } from '../../../../images/action/filter2.svg';
+import { ReactComponent as Filter } from '../../../../images/action/filter2';
 import { LandingHeader } from '../../Components/LandingHeader';
 import { SocialLinksSignup } from '../../Components';
 import { ButtonLink } from '../../Components/Button';

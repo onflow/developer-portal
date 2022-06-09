@@ -1,5 +1,5 @@
-import { ReactComponent as CheckboxChecked } from '../../../../images/toggles/checkbox-checked.svg';
-import { ReactComponent as CheckboxUnchecked } from '../../../../images/toggles/checkbox-unchecked.svg';
+import { ReactComponent as CheckboxChecked } from '../../../../images/toggles/checkbox-checked';
+import { ReactComponent as CheckboxUnchecked } from '../../../../images/toggles/checkbox-unchecked';
 
 export type InputProps = React.DetailedHTMLProps<
   React.InputHTMLAttributes<HTMLInputElement>,

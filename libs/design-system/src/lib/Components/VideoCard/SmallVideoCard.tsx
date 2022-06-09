@@ -1,10 +1,10 @@
  
 
-import { ReactComponent as PlayCircle } from '../../../../images/action/play-circle.svg';
+import { ReactComponent as PlayCircle } from '../../../../images/action/play-circle';
 import Tag from '../Tag';
 import { LargeVideoCardProps } from './LargeVideoCard';
-import { ReactComponent as ExternalLinkIcon } from '../../../../images/content/external-link.svg';
-import { ReactComponent as TimeIcon } from '../../../../images/content/date.svg';
+import { ReactComponent as ExternalLinkIcon } from '../../../../images/content/external-link';
+import { ReactComponent as TimeIcon } from '../../../../images/content/date';
 
 export interface SmallVideoCardProps extends LargeVideoCardProps {
   tags: string[];

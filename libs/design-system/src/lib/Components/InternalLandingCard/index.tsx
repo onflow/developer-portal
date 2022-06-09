@@ -1,5 +1,5 @@
 import clsx from 'clsx';
-import { ReactComponent as ExternalLinkIcon } from '../../../../images/content/external-link.svg';
+import { ReactComponent as ExternalLinkIcon } from '../../../../images/content/external-link';
 import RadarImg from '../../../../images/misc/radar.png';
 import RadarImg2x from '../../../../images/misc/radar@2x.png';
 import RingsImg from '../../../../images/misc/rings.png';

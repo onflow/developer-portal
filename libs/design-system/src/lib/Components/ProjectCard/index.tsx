@@ -1,9 +1,9 @@
  
 import { Tag } from '../';
-import { ReactComponent as StarIcon } from '../../../../images/action/star.svg';
-import { ReactComponent as ChevronRightIcon } from '../../../../images/arrows/chevron-right.svg';
-import { ReactComponent as GithubIcon } from '../../../../images/social/github.svg';
-import { ReactComponent as TwitterIcon } from '../../../../images/social/twitter.svg';
+import { ReactComponent as StarIcon } from '../../../../images/action/star';
+import { ReactComponent as ChevronRightIcon } from '../../../../images/arrows/chevron-right';
+import { ReactComponent as GithubIcon } from '../../../../images/social/github';
+import { ReactComponent as TwitterIcon } from '../../../../images/social/twitter';
 import { User } from '../../interfaces';
 
 export type ProjectCardProps = {

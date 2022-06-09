@@ -1,7 +1,7 @@
 import clsx from 'clsx';
 import Tag from '../Tag';
-import { ReactComponent as CalendarIcon } from '../../../../images/action/date-calendar.svg';
-import { ReactComponent as TutorialIcon } from '../../../../images/content/drafting-tools.svg';
+import { ReactComponent as CalendarIcon } from '../../../../images/action/date-calendar';
+import { ReactComponent as TutorialIcon } from '../../../../images/content/drafting-tools';
 
 export type TutorialCardProps = {
   className?: string;

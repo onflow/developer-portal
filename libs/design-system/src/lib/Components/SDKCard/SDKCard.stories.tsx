@@ -1,6 +1,6 @@
 import { Meta, Story } from '@storybook/react';
 
-import { ReactComponent as CadenceIcon } from '../../../../images/tools/tool-fcl.svg';
+import { ReactComponent as CadenceIcon } from '../../../../images/tools/tool-fcl';
 import { SDKCard, SDKCardProps } from '.';
 
 export default {

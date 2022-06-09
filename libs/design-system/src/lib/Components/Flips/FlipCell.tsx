@@ -1,6 +1,6 @@
 import clsx from 'clsx';
-import { ReactComponent as CalendarIcon } from '../../../../images/action/date-calendar.svg';
-import { ReactComponent as CommentIcon } from '../../../../images/arrows/message-circle.svg';
+import { ReactComponent as CalendarIcon } from '../../../../images/action/date-calendar';
+import { ReactComponent as CommentIcon } from '../../../../images/arrows/message-circle';
 import Tag from '../Tag';
 import RoundImage from './RoundImage';
 

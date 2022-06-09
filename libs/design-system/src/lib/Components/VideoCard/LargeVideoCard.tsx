@@ -1,7 +1,7 @@
 import   { useState } from 'react';
 
-import { ReactComponent as PlayCircle } from '../../../../images/action/play-circle.svg';
-import { ReactComponent as Time } from '../../../../images/content/date.svg';
+import { ReactComponent as PlayCircle } from '../../../../images/action/play-circle';
+import { ReactComponent as Time } from '../../../../images/content/date';
 
 export interface LargeVideoCardProps {
   link: string; // NOTE: link should be in the format that youtubes site uses ie: https://www.youtube.com/watch?v=...

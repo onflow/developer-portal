@@ -1,6 +1,6 @@
 import clsx from 'clsx';
-import { ReactComponent as ArrowLeftIcon } from '../../../../images/arrows/arrow-left.svg';
-import { ReactComponent as ArrowRightIcon } from '../../../../images/arrows/arrow-right.svg';
+import { ReactComponent as ArrowLeftIcon } from '../../../../images/arrows/arrow-left';
+import { ReactComponent as ArrowRightIcon } from '../../../../images/arrows/arrow-right';
 
 export type PaginationProps = {
   className?: string;

@@ -21,8 +21,8 @@ import {
   LinkCard3Column,
   LinkCard3ColumnProps,
 } from '../../Components/LinkCard3Column';
-import { ReactComponent as GitHubIcon } from '../../../../images/social/github.svg';
-import { ReactComponent as DiscordIcon } from '../../../../images/social/discord.svg';
+import { ReactComponent as GitHubIcon } from '../../../../images/social/github';
+import { ReactComponent as DiscordIcon } from '../../../../images/social/discord';
 
 export interface GettingStartedPageProps {
   landingHeaderItems: LandingHeaderProps;

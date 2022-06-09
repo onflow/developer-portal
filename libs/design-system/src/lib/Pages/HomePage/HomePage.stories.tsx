@@ -1,10 +1,10 @@
 import { Meta, Story } from '@storybook/react';
 import HomePage, { HomePageProps } from '.';
 import DappyImg from '../../../../images/content/dappy@3x.png';
-import { ReactComponent as EcosystemIcon } from '../../../../images/content/ecosystem.svg';
+import { ReactComponent as EcosystemIcon } from '../../../../images/content/ecosystem';
 import KittyItemsImg from '../../../../images/content/kitty-items@3x.png';
-import { ReactComponent as SDKIcon } from '../../../../images/content/sdk.svg';
-import { ReactComponent as UseCaseIcon } from '../../../../images/content/use-cases.svg';
+import { ReactComponent as SDKIcon } from '../../../../images/content/sdk';
+import { ReactComponent as UseCaseIcon } from '../../../../images/content/use-cases';
 import { Default as DefaultToolsAndConcepts } from '../../Components/ToolsAndConcepts/ToolsAndConcepts.stories';
 import { Default as DefaultUpcomingEvents } from '../../Components/UpcomingEvents/UpcomingEvents.stories';
 

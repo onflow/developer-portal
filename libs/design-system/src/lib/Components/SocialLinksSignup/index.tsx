@@ -1,9 +1,9 @@
-import { ReactComponent as ContentExternalLinkIcon } from '../../../../images/content/external-link.svg';
-import socialLinksGradientPath from '../../../../images/gradients/social-links.svg';
-import { ReactComponent as DiscordLogo } from '../../../../images/social/discord.svg';
-import { ReactComponent as DiscourseLogo } from '../../../../images/social/forum.svg';
-import { ReactComponent as GithubLogo } from '../../../../images/social/github.svg';
-import { ReactComponent as TwitterLogo } from '../../../../images/social/twitter.svg';
+import { ReactComponent as ContentExternalLinkIcon } from '../../../../images/content/external-link';
+import socialLinksGradientPath from '../../../../images/gradients/social-links';
+import { ReactComponent as DiscordLogo } from '../../../../images/social/discord';
+import { ReactComponent as DiscourseLogo } from '../../../../images/social/forum';
+import { ReactComponent as GithubLogo } from '../../../../images/social/github';
+import { ReactComponent as TwitterLogo } from '../../../../images/social/twitter';
 import {
   DISCORD_URL,
   DISCOURSE_URL,

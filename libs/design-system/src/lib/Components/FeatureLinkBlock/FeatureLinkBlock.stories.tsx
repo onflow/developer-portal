@@ -1,6 +1,6 @@
 import { Meta, Story } from '@storybook/react';
 import { FeatureLinkBlock, FeatureLinkBlockProps } from '.';
-import { ReactComponent as FclIcon } from '../../../../images/tools/tool-fcl.svg';
+import { ReactComponent as FclIcon } from '../../../../images/tools/tool-fcl';
 
 export default {
   component: FeatureLinkBlock,

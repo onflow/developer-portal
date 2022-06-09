@@ -1,6 +1,6 @@
  
-import { ReactComponent as ChevronRightIcon } from '../../../../images/arrows/chevron-right.svg';
-import { ReactComponent as RssIcon } from '../../../../images/content/rss.svg';
+import { ReactComponent as ChevronRightIcon } from '../../../../images/arrows/chevron-right';
+import { ReactComponent as RssIcon } from '../../../../images/content/rss';
 import { Link } from '../Link';
 
 export type NetworkDetailsCardProps = {

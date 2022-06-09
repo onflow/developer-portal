@@ -1,9 +1,9 @@
 import clsx from 'clsx';
 import   { useState } from 'react';
 import { format, formatDistanceToNow } from 'date-fns';
-import { ReactComponent as CopyIcon } from '../../../../images/action/copy.svg';
-import { ReactComponent as ChevronUpIcon } from '../../../../images/arrows/chevron-up.svg';
-import { ReactComponent as ChevronDownIcon } from '../../../../images/arrows/chevron-down.svg';
+import { ReactComponent as CopyIcon } from '../../../../images/action/copy';
+import { ReactComponent as ChevronUpIcon } from '../../../../images/arrows/chevron-up';
+import { ReactComponent as ChevronDownIcon } from '../../../../images/arrows/chevron-down';
 import { SporkMetadata } from '../../interfaces';
 
 export type SporksCardProps = {

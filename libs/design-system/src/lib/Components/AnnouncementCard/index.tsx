@@ -1,7 +1,7 @@
 
 import { formatDistance } from 'date-fns';
-import { ReactComponent as ChevronRightIcon } from '../../../../images/arrows/chevron-right.svg';
-import { ReactComponent as TimeIcon } from '../../../../images/content/date.svg';
+import { ReactComponent as ChevronRightIcon } from '../../../../images/arrows/chevron-right';
+import { ReactComponent as TimeIcon } from '../../../../images/content/date';
 
 export type AnnouncementCardProps = {
   sourceIcon: string;

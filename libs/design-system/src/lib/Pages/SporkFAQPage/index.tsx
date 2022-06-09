@@ -1,6 +1,6 @@
 import React from 'react';
 
-import { ReactComponent as LeftChevron } from '../../../../images/arrows/chevron-left.svg';
+import { ReactComponent as LeftChevron } from '../../../../images/arrows/chevron-left';
 import { Attribution } from '../../Components/Attribution/Attribution';
 import { ButtonLink } from '../../Components/Button';
 import { FAQ } from '../../Components/FAQ/FAQ';

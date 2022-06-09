@@ -1,74 +1,41 @@
+# Welcome to Remix!
 
+- [Remix Docs](https://remix.run/docs)
 
-# FlowDocs
+## Fly Setup
 
-This project was generated using [Nx](https://nx.dev).
+1. [Install `flyctl`](https://fly.io/docs/getting-started/installing-flyctl/)
 
-## Get Started
+2. Sign up and log in to Fly
 
-Project requires: 
-- Node >= 16
-- Yarn >= 1.22.18
-
-### Local Development
-
-⚠️ Must have [Docker](https://docs.docker.com/get-docker/) installed.
-
-```
-git clone https://github.com/onflow/next-docs-v1.git
+```sh
+flyctl auth signup
 ```
 
-You'll need to acquire the project's `.env` file before continuing. 
-- Add the `.env` file to `/apps/flow-docs/.env`
+3. Setup Fly. It might ask if you want to deploy, say no since you haven't built the app yet.
 
+```sh
+flyctl launch
+```
 
-1) `yarn`
-2) `yarn prisma generate --schema ./apps/flow-docs/prisma/schema.prisma`
-4) `docker compose up -d` To start Redis and Postgres for the project. (use this when not running Postgres & Redis from your system)
-5) `cd apps/flow-docs` & `yarn prisma migrate dev`
-6) (From project root) `yarn nx run flow-docs:build`
+## Development
 
+From your terminal:
 
-### Running Storybook
+```sh
+npm run dev
+```
 
-1) `yarn nx run design-system:storybook`
+This starts your app in development mode, rebuilding assets on file changes.
 
-### Running the Docs Site
+## Deployment
 
-1) `yarn nx run flow-docs:dev`  
+If you've followed the setup instructions already, all you need to do is run this:
 
+```sh
+npm run deploy
+```
 
-# Development
+You can run `flyctl info` to get the url and ip address of your server.
 
-⚠️ Please use **Yarn** exclusively...
-- If you use `npm` by accident, remove any `package.lock` files and run `yarn` from the root.
-
-### Installing packages
-
-- Use `yarn add <your-dep> -W` (`-W` flag is necessary for now, or you'll get an error).
-- All deps can be installed in project root.
-
-### Building the Design System
-
-- Do not import anything from `@remix/**` or any components/code form the `flow-docs` project into the design system. The design system is meant to be standalone, and re-usable shold we change application platforms.
-
-### Environment Variables
-
-- Any new environemnt variable added to `.env` in `flow-docs` should also be added to the `docker-compose.yml`
-
-## Documentation Sources
-The doc site pull the markdown files existing in various `onflow` repositories. To see the Github Actions that triggers processing of the markdown files (i.e. refreshing cache), go to any of the repos and click on the `Actions` tab.
-
-List of repository sources:
-- [/flow](https://github.com/onflow/flow)
-- [/cadence](https://github.com/onflow/cadence)
-- [/flow-cli](https://github.com/onflow/flow-cli)
-- [/flow-js-testing](https://github.com/onflow/flow-js-testing)
-- [/flow-go-sdk](https://github.com/onflow/flow-go-sdk)
-- [/fcl-js](https://github.com/onflow/fcl-js)
-- [/flow-emulator](https://github.com/onflow/flow-emulator)
-- [/flow-cadut](https://github.com/onflow/flow-cadut)
-
-## Further help
-
-Visit the [Nx Documentation](https://nx.dev) to learn more.
+Check out the [fly docs](https://fly.io/docs/getting-started/node/) for more information.
