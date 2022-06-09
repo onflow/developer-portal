@@ -40,6 +40,10 @@ export function CatalogForm({ sampleAddress, publicPath }: CatalogProps) {
     }
   }, [debouncedCollectionIdentifier])
 
+  function validateIdentifier(collectionIdentifier: string): boolean {
+    return !/\s/.test(collectionIdentifier)
+  }
+
   return (
     <>
       {warning && <><Alert status="warning" title={warning} body="" /><br /></>}
@@ -54,6 +58,10 @@ export function CatalogForm({ sampleAddress, publicPath }: CatalogProps) {
         }
         if (!publicPath || !sampleAddress || !selectedAddress || !selectedContract) {
           setError("Missing Data");
+          return;
+        }
+        if (!validateIdentifier(collectionIdentifier)) {
+          setError("Invalid identifier, please make sure you don't include any spaces.")
           return;
         }
         if (!user.loggedIn) {
