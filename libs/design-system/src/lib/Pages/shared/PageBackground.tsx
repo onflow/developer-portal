@@ -1,6 +1,6 @@
 import clsx from 'clsx';
 
-export default function GrayPage({
+export default function PageBackground({
   className,
   children,
 }: {
