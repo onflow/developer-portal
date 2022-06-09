@@ -83,7 +83,6 @@ export async function retrieveMetadataInformation(sampleAddress: string, publicP
       .then(fcl.decode)
     return scriptResult
   } catch (e) {
-    console.error(e);
     return null;
   }
 }
@@ -140,7 +139,6 @@ export async function getNFTInAccount(sampleAddress: string, publicPath: string)
     ]).then(fcl.decode)
     return scriptResult
   } catch (e) {
-    console.error(e);
     return null;
   }
 }
@@ -181,6 +179,22 @@ export async function getIsAdmin(address: string) {
       fcl.script(catalogJson.scripts.is_catalog_admin),
       fcl.args([
         fcl.arg(address, t.Address),
+      ])
+    ]).then(fcl.decode)
+    return scriptResult
+  } catch (e) {
+    console.error(e);
+    return null;
+  }
+}
+
+export async function getAreLinksSetup(address: string, publicPath: string) {
+  try {
+    const scriptResult = await fcl.send([
+      fcl.script(json.scripts.check_for_links),
+      fcl.args([
+        fcl.arg(address, t.Address),
+        fcl.arg(publicPath, t.String)
       ])
     ]).then(fcl.decode)
     return scriptResult

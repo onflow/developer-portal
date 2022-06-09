@@ -19,7 +19,7 @@ export function ContractSelect({
         This tool will assist you in verifying the metadata on your NFTs and allow your collection to be added to the <b>Flow NFT Catalog</b>.
         <br />
         <br />
-        The <b>Flow NFT Catalog</b> will automatically allow applications and marketplaces such as <b>Alchemy, Rarible, Blocto, Find</b>, etc. to utilize your NFT collection on their platforms.
+        The <b>Flow NFT Catalog</b> will provide the needed context to applications and marketplaces to utilize your NFT collection on their platforms.
         <br />
       </div>
       <hr className="my-6" />
@@ -46,7 +46,7 @@ export function ContractSelect({
       />
 
       {
-        accounts &&
+        accounts && Object.keys(accounts).length > 0 &&
         <>
           <b>Select Contract</b>
           {

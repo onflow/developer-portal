@@ -1,6 +1,6 @@
 import { useEffect, useState } from "react";
 import { useNavigate, useParams } from "react-router-dom";
-import { retrieveMetadataInformation, getNFTInAccount } from "../../../flow/utils"
+import { retrieveMetadataInformation, getNFTInAccount, getAreLinksSetup } from "../../../flow/utils"
 import { Accordian } from "../shared/accordian";
 import { Alert } from "../shared/alert";
 import { Spinner } from "../shared/spinner";
@@ -9,6 +9,7 @@ import { CollectionDisplayView } from "../shared/views/collection-display-view";
 import { DisplayView } from "../shared/views/display-view";
 import { CollectionDataView } from "../shared/views/collection-data-view";
 import { SubmitButton } from "../shared/submit-button";
+import * as fcl from "@onflow/fcl"
 
 export function SampleNFTView({
   sampleAddress,
@@ -22,15 +23,23 @@ export function SampleNFTView({
   const [viewsImplemented, setViewsImplemented] = useState<any>([]);
   const [viewData, setViewData] = useState<{ [key: string]: Object }>({});
   const [error, setError] = useState<boolean | null>(null);
-  const [loading, setLoading] = useState<boolean>(true)
-
+  const [loading, setLoading] = useState<boolean>(true);
+  
   useEffect(() => {
     const metadataViewInformation = async () => {
       setError(false)
       if (!publicPath || !sampleAddress) { return }
-      const res = await retrieveMetadataInformation(sampleAddress, publicPath)
-      const nftData = await getNFTInAccount(sampleAddress, publicPath);
+      const res = await retrieveMetadataInformation(sampleAddress, publicPath);
+      let nftData = null;
+      if (res) {
+        nftData = await getNFTInAccount(sampleAddress, publicPath);
+      }
       if (!res || !nftData) {
+        const user = await fcl.currentUser().snapshot()
+        if (user.loggedIn) {
+          const linksSetup = await getAreLinksSetup(user.addr as unknown as string, publicPath)
+          console.log('links setup is', linksSetup);
+        }
         setError(true)
         setViewsImplemented([])
         setViewData({});

@@ -1,5 +1,6 @@
 import { useState } from "react"
 import { TextInput } from "./text-input"
+import { Button } from "./button"
 
 export function SearchBar({
   onSubmit
@@ -24,11 +25,11 @@ export function SearchBar({
         updateValue={setValue}
         placeholder={"e.g. 0x123456abcdefg"}
       />
-      <button
+      <Button
         type="submit"
-        className="text-white absolute right-2.5 bottom-2.5 bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-sm px-4 py-2 dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800">
+        className="absolute right-2.5 bottom-2.5 bg-white hover:bg-gray-100 text-gray-800 font-semibold font-medium border border-gray-400 rounded shadow text-sm px-4 py-2">
           Submit
-        </button>
+      </Button>
       </div>
     </form>
   )
