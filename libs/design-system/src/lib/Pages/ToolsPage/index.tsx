@@ -31,19 +31,26 @@ const ToolsPage = ({
 }: ToolsPageProps) => {
   return (
     <PageBackground>
-      <LandingHeader
-        buttonText="Button Text"
-        buttonUrl="#"
-        callout="Featured callout here two lines"
-        description="Lorem ipsum dolor sit amet proin gravida lorem ipsum dolor sit."
-        gradient="tools"
-        title="Tools"
-      />
-
       <PageSections className="p-4">
         <PageSection>
+          <LandingHeader
+            buttonText="Button Text"
+            buttonUrl="#"
+            callout="Featured callout here two lines"
+            description="Lorem ipsum dolor sit amet proin gravida lorem ipsum dolor sit."
+            gradient="tools"
+            title="Tools"
+          />
+        </PageSection>
+
+        <PageSection className="container">
           <div className="flex items-end justify-between mb-6 align-center">
-            <h2 className="mb-4 text-h2">Tools</h2>
+            <div>
+              <h2 className="mb-4 text-h2">Tools</h2>
+              <p className="text-primary-gray-300">
+                Blurb about tools and stuff
+              </p>
+            </div>
             <ButtonLink
               rightIcon="right"
               variant="secondary"
@@ -69,9 +76,14 @@ const ToolsPage = ({
           </ButtonLink>
         </PageSection>
 
-        <PageSection>
+        <PageSection className="container">
           <div className="flex items-end justify-between mb-6 align-center">
-            <h2 className="text-h2">SDKs</h2>
+            <div>
+              <h2 className="mb-4 text-h2">SDKs</h2>
+              <p className="text-primary-gray-300">
+                Blurb about SDKs and stuff
+              </p>
+            </div>
             <ButtonLink
               rightIcon="right"
               variant="secondary"
@@ -97,9 +109,9 @@ const ToolsPage = ({
           </ButtonLink>
         </PageSection>
 
-        <PageSection>
+        <PageSection className="container">
           <h2 className="mb-4 text-h2">APIs and Service</h2>
-          <p className="mb-6">
+          <p className="mb-6 text-primary-gray-300">
             Hosted APIs that provide access to the Flow network and related data
             (NFTs, events, etc).
           </p>
@@ -111,7 +123,7 @@ const ToolsPage = ({
           </div>
         </PageSection>
 
-        <PageSection>
+        <PageSection className="container">
           <h4 className="mb-4 text-h4">Explore More Content</h4>
           <div className="grid grid-cols-1 gap-4 md:grid-cols-3">
             {contentNavigationItems.map(
