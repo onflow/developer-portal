@@ -8,7 +8,7 @@ import {
 } from '../../Components/LinkCard2Column';
 import { SocialLinksSignup } from '../../Components';
 import { SDKCard, SDKCardProps } from '../../Components/SDKCard';
-import { Button, ButtonLink } from '../../Components/Button';
+import { ButtonLink } from '../../Components/Button';
 import FeaturedArticleCard, {
   FeaturedArticleCardProps,
 } from '../../Components/FeaturedArticleCard';

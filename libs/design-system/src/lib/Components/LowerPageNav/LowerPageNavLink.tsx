@@ -1,5 +1,5 @@
 import clsx from 'clsx';
-import { LowerPageNavLink as LowerPageNavLinkType } from '.';
+import { LowerPageNavLinkType } from '.';
 import { ReactComponent as ChevronLeft } from '../../../../images/arrows/chevron-left';
 import { ReactComponent as ChevronRight } from '../../../../images/arrows/chevron-right';
 

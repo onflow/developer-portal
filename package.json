@@ -79,7 +79,8 @@
     "generate:css": "postcss ./libs/design-system/styles/main.css -o app/tailwind.css",
     "start": "remix-serve build",
     "storybook": "start-storybook -p 6006",
-    "typecheck": "tsc --noEmit"
+    "typecheck": "tsc --noEmit",
+    "lint": "eslint --ext .js,.jsx,.ts,.tsx --max-warnings 0 app libs"
   },
   "sideEffects": false
 }

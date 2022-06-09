@@ -7,7 +7,7 @@ import {
 } from '../../Components'
 import { Article, StatuspageApiResponse } from '../../interfaces'
 import data from './sample'
-''
+
 const NetworkPage = () => {
   const article = {
     heading: "Node operator callout",

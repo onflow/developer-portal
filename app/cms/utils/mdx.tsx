@@ -1,3 +1,4 @@
+/* eslint-disable react/jsx-no-undef */
 import { Link as RemixLink } from "@remix-run/react"
 import { getMDXComponent } from "mdx-bundler/client"
 import React from "react"
@@ -10,7 +11,12 @@ import {
   downloadMdxFileOrDirectory,
   redisCache,
 } from "~/cms"
-import { Heading, HeadingProps, InputProps, StaticCheckbox } from "~/libs/design-system"
+import {
+  Heading,
+  HeadingProps,
+  InputProps,
+  StaticCheckbox,
+} from "~/libs/design-system"
 import type { LoaderData as RootLoaderData } from "../../root"
 
 function typedBoolean<T>(
@@ -228,9 +234,12 @@ function mdxPageMeta({
 }) {
   // const { requestInfo } = parentsData.root;
   if (data?.page) {
+    // eslint-disable-next-line @typescript-eslint/no-unused-vars
     const { keywords = [], ...extraMeta } = {}
     let title = data.page.frontmatter.title
     const isDraft = data.page.frontmatter.draft
+
+    // eslint-disable-next-line @typescript-eslint/no-unused-vars
     if (isDraft) title = `(DRAFT) ${title ?? ""}`
     return {
       ...(isDraft ? { robots: "noindex" } : null),
