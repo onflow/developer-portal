@@ -32,7 +32,6 @@ export function NftCollectionContent({collectionIdentifier}: {collectionIdentifi
   if (!collectionData) {
     return <Spinner />
   }
-  console.log('collection data', collectionData)
   return (
     <>
       <CollectionDisplayView view={collectionData.collectionDisplay} withRawView={false} />

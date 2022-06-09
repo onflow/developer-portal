@@ -21,6 +21,7 @@ declare module '@onflow/fcl' {
   function decode();
   function args(args): any;
   function arg(arg1, arg2): any;
+  function unauthenticate(): any;
 }
 
 declare module '@onflow/types' {

@@ -1,7 +1,9 @@
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { TextInput } from '../shared/text-input';
 import { withPrefix } from '@onflow/fcl';
+import { Button } from '../shared/button';
+import * as fcl from '@onflow/fcl'
 
 export function SampleNFTPrompt({
   contractCode,
@@ -15,22 +17,29 @@ export function SampleNFTPrompt({
   const navigate = useNavigate()
   const [publicPath, setPublicPath] = useState<string>(defaultValues.publicPath || "")
   const [sampleAddress, setSampleAddress] = useState<string>(defaultValues.sampleAddress || "")
+  const [showLogIn, setShowLogIn] = useState<boolean>(true)
   const possiblePublicPaths: Array<string> = contractCode.match(/\/public\/[A-Za-z0-9]*/gmi) || []
+  const [user, setUser] = useState({ loggedIn: null, addr: null })
+
+  useEffect(() => fcl.currentUser().subscribe(setUser), [])
+
+  console.log('user is', user);
 
   return (
     <form onSubmit={(e) => {
       e.preventDefault();
+      const address = showLogIn ? user.addr : sampleAddress
       if (publicPath.indexOf("/public/") !== 0) {
         setError("The public path must include the /public/ prefix")
         return false
       }
-      if (withPrefix(sampleAddress).length !== 18) {
+      if (withPrefix(address).length !== 18) {
         setError("The provided address is not valid ")
         return false
       }
       navigate({
         pathname: window.location.pathname,
-        search: `?path=${publicPath}&sampleAddress=${sampleAddress}`
+        search: `?path=${publicPath}&sampleAddress=${address}`
       })
       return false;
     }}>
@@ -62,19 +71,82 @@ export function SampleNFTPrompt({
         placeholder="e.g. /public/MomentsCollection"
       />
       <br />
-      <b>Enter an account address that holds this NFT</b>
-      <TextInput
-        value={sampleAddress}
-        updateValue={setSampleAddress}
-        placeholder="e.g. 0x123456abcdef"
-      />
-      <br />
-      <input
-        type="submit"
-        value={"Continue"}
-        className="bg-white hover:bg-gray-100 text-gray-800 font-semibold py-2 px-4 border border-gray-400 rounded shadow"
-      />
+      
+      {
+        showLogIn && (
+          <>
+            <b>Log In to an account that holds this NFT</b><br/>
+            <p className="text-xs">
+              <a className="cursor-pointer hover:underline" onClick={() => { setShowLogIn(!showLogIn) }}>Click here </a>
+              to enter a different account that holds this NFT.
+            </p>
+            {
+              user.loggedIn && (
+                <div>
+                  <div className="text-sm">
+                    Logged in as {user.addr}
+                    <a
+                      className="ml-2 text-xs cursor-pointer hover:underline text-blue-500"
+                      onClick={() => {
+                        fcl.unauthenticate()
+                      }}
+                    >
+                      Log Out
+                    </a>
+                  </div>
+                </div>
+              )
+              
+            }
+            {
+              !user.loggedIn && (
+                <>
+                  <Button onClick={async (e: any) => {
+                    e.preventDefault()
+                    const user = await fcl.logIn()
+                    setSampleAddress(user.addr)
+                    return false
+                  }}>Log In</Button>
+                </>
+              )
+            }
+          </>
+        )
+      }
 
+      {
+        !showLogIn && (
+            <>
+              <b>
+                Enter an account address that holds this NFT
+              </b>
+              <br/>
+              <p className="text-xs">
+                <a className="cursor-pointer hover:underline" onClick={() => { setShowLogIn(!showLogIn) }}>Click here </a>
+                to log in to an account that holds this NFT.
+              </p>
+                <TextInput
+                  value={sampleAddress}
+                  updateValue={setSampleAddress}
+                  placeholder="e.g. 0x123456abcdef"
+              />
+            </>
+          )
+      }
+
+      <br />
+
+      {
+        (!showLogIn || (showLogIn && user.loggedIn)) && (
+          <>
+            <input
+              type="submit"
+              value={"Continue"}
+              className="mt-2 bg-white hover:bg-gray-100 text-gray-800 font-semibold py-2 px-4 border border-gray-400 rounded shadow"
+            />
+          </>
+        )
+      }
 
       <br />
       {/*
