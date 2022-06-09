@@ -1,0 +1,37 @@
+version: "3.7"
+services:
+  # remix:
+  #   build:
+  #     context: .
+  #     args:
+  #       - progress=plain
+  #   environment:
+  #     - NODE_ENV=production
+  #     - SENTRY_DSN=${SENTRY_DSN}
+  #     - BOT_GITHUB_TOKEN=${BOT_GITHUB_TOKEN}
+  #     - SESSION_SECRET=${SESSION_SECRET}
+  #     - DATABASE_URL=postgresql://flow_docs_user:flow_docs_pass@database:5432/flow_docs_db?schema=public
+  #     - REDIS_URL=redis://:flow_docs@cache:6379
+  #     - REFRESH_CACHE_SECRET=${REFRESH_CACHE_SECRET}
+  #   ports:
+  #     - 3000:3000
+  #   depends_on:
+  #     - "database"
+  #     - "cache"
+  database:
+    image: 'postgres:13'
+    environment:
+      - POSTGRES_USER=flow_docs_user
+      - POSTGRES_PASSWORD=flow_docs_pass
+      - POSTGRES_DB=flow_docs_db
+    volumes:
+      - .postgres-data:/var/lib/postgresql/data
+    ports:
+      - '5432:5432'
+  cache:
+    image: 'redis:alpine'
+    command: redis-server --requirepass flow_docs
+    volumes:
+      - .redis-data:/data
+    ports:
+      - '6379:6379'
