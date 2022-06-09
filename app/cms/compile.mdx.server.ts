@@ -8,6 +8,7 @@ import type TPQueue from "p-queue"
 import calculateReadingTime from "reading-time"
 import type * as U from "unified"
 import type { GitHubFile } from "./github.server"
+import { visit } from "unist-util-visit"
 
 if (process.platform === "win32") {
   process.env.ESBUILD_BINARY_PATH = path.resolve(
@@ -27,7 +28,6 @@ function handleEmbedderError({ url }: { url: string }) {
 
 function removePreContainerDivs() {
   return async function preContainerDivsTransformer(tree: H.Root) {
-    const { visit } = await import("unist-util-visit")
     visit(
       tree,
       { type: "element", tagName: "pre" },

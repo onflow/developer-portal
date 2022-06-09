@@ -6,6 +6,7 @@ export default function Index() {
       description="The best docs ever."
       title="Developer Portal"
       tag="onflow"
+      // @ts-expect-error please fix
       gradient="community"
     />
   )
