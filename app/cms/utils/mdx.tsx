@@ -10,7 +10,7 @@ import {
   downloadMdxFileOrDirectory,
   redisCache,
 } from "~/cms"
-import { InputProps } from "~/libs/design-system"
+import { Heading, HeadingProps, InputProps, StaticCheckbox } from "~/libs/design-system"
 import type { LoaderData as RootLoaderData } from "../../root"
 
 function typedBoolean<T>(
