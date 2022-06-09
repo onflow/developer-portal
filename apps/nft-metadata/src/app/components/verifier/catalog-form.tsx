@@ -1,9 +1,9 @@
 import { TextInput } from '../shared/text-input';
 import { useState, useEffect } from 'react';
-import { useParams } from "react-router-dom";
+import { useParams, useNavigate } from "react-router-dom";
 import { Alert } from "../shared/alert"
 import { Spinner } from "../shared/spinner"
-import { proposeNFTToCatalog, getNFTMetadataForCollectionName } from "../../../flow/utils"
+import { proposeNFTToCatalog, getNFTMetadataForCollectionIdentifier } from "../../../flow/utils"
 import { useDebounce } from 'src/app/hooks/use-debounce';
 import * as fcl from "@onflow/fcl";
 
@@ -13,8 +13,9 @@ type CatalogProps = {
 }
 
 export function CatalogForm({ sampleAddress, publicPath }: CatalogProps) {
-  const [collectionName, setCollectionName] = useState<string>("")
-  const debouncedCollectionName: string = useDebounce<string>(collectionName, 500);
+  const navigate = useNavigate()
+  const [collectionIdentifier, setCollectionIdentifier] = useState<string>("")
+  const debouncedCollectionIdentifier: string = useDebounce<string>(collectionIdentifier, 500);
   const [message, setMessage] = useState<string>("")
   const { selectedNetwork, selectedAddress, selectedContract } = useParams<any>()
   const [loading, setLoading] = useState<boolean>(false)
@@ -26,18 +27,18 @@ export function CatalogForm({ sampleAddress, publicPath }: CatalogProps) {
 
   useEffect(() => {
     const metadataInformation = async () => {
-      const res = await getNFTMetadataForCollectionName(debouncedCollectionName);
+      const res = await getNFTMetadataForCollectionIdentifier(debouncedCollectionIdentifier);
       if (res != null) {
         setError(null)
-        setWarning("An entry for this collection name already exists in the catalog. This proposal will be proposing an update.")
+        setWarning("An entry with this collection identifier already exists in the catalog. This proposal will be proposing an update.")
       } else {
         setWarning(null);
       }
     }
-    if (debouncedCollectionName !== '') {
+    if (debouncedCollectionIdentifier !== '') {
       metadataInformation()
     }
-  }, [debouncedCollectionName])
+  }, [debouncedCollectionIdentifier])
 
   return (
     <>
@@ -47,7 +48,7 @@ export function CatalogForm({ sampleAddress, publicPath }: CatalogProps) {
         e.preventDefault();
         setError(null);
         setWarning(null);
-        if (collectionName === '' || collectionName == null || message === '' || message == null) {
+        if (collectionIdentifier === '' || collectionIdentifier == null || message === '' || message == null) {
           setError("Missing Data");
           return;
         }
@@ -59,20 +60,21 @@ export function CatalogForm({ sampleAddress, publicPath }: CatalogProps) {
           await fcl.logIn()
         }
         setLoading(true);
-        let proposalMessage = message + " This proposal was made via: " + window.location.href
+        let proposalMessage = message + " ( This proposal was made via: " + window.location.href + " )"
         try {
-          await proposeNFTToCatalog(collectionName, sampleAddress, publicPath, selectedContract, selectedAddress, proposalMessage);
+          await proposeNFTToCatalog(collectionIdentifier, sampleAddress, publicPath, selectedContract, selectedAddress, proposalMessage);
           setError(null);
+          navigate(`/proposals/${selectedNetwork}`);
         } catch (e) {
           setError("Error running Flow transaction.");
         }
         setLoading(false);
       }}>
-        <b>Enter a unique name to describe this collection</b>
+        <b>Enter a unique identifier to describe this collection</b>
         <TextInput
-          value={collectionName}
-          updateValue={setCollectionName}
-          placeholder="e.g. Goated Goats"
+          value={collectionIdentifier}
+          updateValue={setCollectionIdentifier}
+          placeholder="e.g. goated_goats"
         />
         <br />
         <b>Enter a message with any additional information</b>

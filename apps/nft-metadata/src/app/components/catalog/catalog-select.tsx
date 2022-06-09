@@ -31,7 +31,7 @@ export function CatalogSelect({
         const items = Object.keys(proposals).map((proposalID) => {
           const proposal = proposals[proposalID]
           return {
-            name: `#${proposalID} - ${proposal.collectionName}`,
+            name: `#${proposalID} - ${proposal.collectionIdentifier}`,
             subtext: `Created ${(new Date(proposal.createdTime * 1000)).toLocaleDateString("en-US")}`,
             id: proposalID,
             status: proposal.status

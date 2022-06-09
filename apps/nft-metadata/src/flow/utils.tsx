@@ -145,12 +145,12 @@ export async function getNFTInAccount(sampleAddress: string, publicPath: string)
   }
 }
 
-export async function getNFTMetadataForCollectionName(collectionName: string): Promise<any> {
+export async function getNFTMetadataForCollectionIdentifier(collectionIdentifier: string): Promise<any> {
   try {
     const scriptResult = await fcl.send([
-      fcl.script(catalogJson.scripts.get_nft_metadata_for_collection_name),
+      fcl.script(catalogJson.scripts.get_nft_metadata_for_collection_identifier),
       fcl.args([
-        fcl.arg(collectionName, t.String),
+        fcl.arg(collectionIdentifier, t.String),
       ])
     ]).then(fcl.decode)
     return scriptResult
@@ -253,20 +253,21 @@ export async function deleteProposal(proposalID: string) {
 }
 
 export async function proposeNFTToCatalog(
-  collectionName: string,
+  collectionIdentifier: string,
   sampleAddress: string,
   publicPath: string,
   contractName: string,
   contractAddress: string,
   message: string
 ): Promise<any> {
+  //TODO: Update this once secure cadence is deployed...
   const cadence = `
   import MetadataViews from 0x631e88ae7f1d7c20
-  import NFTCatalog from 0x0cb698d1315f5fa0
+  import NFTCatalog from 0x324c34e1c517e4db
   import ${contractName} from ${fcl.withPrefix(contractAddress)} 
 
   transaction(
-    collectionName : String,
+    collectionIdentifier : String,
     contractName: String,
     contractAddress: Address,
     addressWithNFT: Address,
@@ -277,7 +278,6 @@ export async function proposeNFTToCatalog(
     let nftCatalogProposalResourceRef : &NFTCatalog.NFTCatalogProposalManager
     
     prepare(acct: AuthAccount) {
-      
       if acct.borrow<&NFTCatalog.NFTCatalogProposalManager>(from: NFTCatalog.ProposalManagerStoragePath) == nil {
         let proposalManager <- NFTCatalog.createNFTCatalogProposalManager()
         acct.save(<-proposalManager, to: NFTCatalog.ProposalManagerStoragePath)
@@ -317,11 +317,11 @@ export async function proposeNFTToCatalog(
         collectionDisplay : collectionDisplay
       )
 
-      self.nftCatalogProposalResourceRef.setCurrentProposalEntry(name : collectionName)
+      self.nftCatalogProposalResourceRef.setCurrentProposalEntry(identifier : collectionIdentifier)
 
-      NFTCatalog.proposeNFTMetadata(collectionName : collectionName, metadata : catalogData, message: message, proposer: self.nftCatalogProposalResourceRef.owner!.address)
+      NFTCatalog.proposeNFTMetadata(collectionIdentifier : collectionIdentifier, metadata : catalogData, message: message, proposer: self.nftCatalogProposalResourceRef.owner!.address)
 
-      self.nftCatalogProposalResourceRef.setCurrentProposalEntry(name : nil)
+      self.nftCatalogProposalResourceRef.setCurrentProposalEntry(identifier : nil)
     }
   }
 `
@@ -330,7 +330,7 @@ export async function proposeNFTToCatalog(
       cadence: cadence,
       limit: 9999,
       args: (arg: any, t: any) => [
-        fcl.arg(collectionName, t.String),
+        fcl.arg(collectionIdentifier, t.String),
         fcl.arg(contractName, t.String),
         fcl.arg(contractAddress, t.Address),
         fcl.arg(sampleAddress, t.Address),

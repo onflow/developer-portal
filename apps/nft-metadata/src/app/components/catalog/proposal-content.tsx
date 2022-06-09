@@ -39,7 +39,7 @@ export function ProposalContent({proposalID}: {proposalID: string|undefined}) {
   }
   return (
     <>
-      <div> <span className="text-xl"><b>{proposalData.collectionName}</b></span> <span className="text-md ml-2">{proposalData.status}</span></div>
+      <div> <span className="text-xl"><b>{proposalData.collectionIdentifier}</b></span> <span className="text-md ml-2">{proposalData.status}</span></div>
       <br />
       <div className="text-md"><b>Submitted:</b> {proposalData.proposer} on {(new Date(proposalData.createdTime * 1000)).toLocaleDateString("en-US")}</div>
       <div className="text-md"><b>Message: </b>{proposalData.message}</div>
