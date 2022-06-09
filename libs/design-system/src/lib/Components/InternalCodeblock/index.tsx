@@ -1,5 +1,4 @@
-// import { Dialog } from '@reach/dialog';
-// import '@reach/dialog/styles.css';
+import { Dialog } from '@headlessui/react';
 import clsx from 'clsx';
 import React, { useState } from 'react';
 import { ReactComponent as CollapseIcon } from '../../../../images/content/collapse.svg';
@@ -76,6 +75,34 @@ function Code({
   );
 }
 
+function FullWidthDialog({
+  showDialog,
+  openDialog,
+  closeDialog,
+  children,
+}: {
+  showDialog: boolean;
+  openDialog: () => void;
+  closeDialog: () => void;
+  children: React.ReactNode;
+}) {
+  return (
+    <Dialog open={showDialog} onClose={closeDialog}>
+      <div className="fixed inset-0 bg-black/30" aria-hidden="true" />
+      <Dialog.Panel
+        className="fixed inset-0 flex"
+        style={{
+          height: '75vh',
+          width: '95vw',
+          margin: '5vh auto 10vh auto',
+        }}
+      >
+        <div className="w-full h-full">{children}</div>
+      </Dialog.Panel>
+    </Dialog>
+  );
+}
+
 export function InternalCodeblock({
   tall,
   rawText,
@@ -104,29 +131,21 @@ export function InternalCodeblock({
           )}
         />
       </div>
-      {/* <Dialog
-        isOpen={showDialog}
-        onDismiss={closeDialog}
-        className="flex flex-col rounded-lg !p-0 dark:bg-[#111111]"
-        style={{
-          height: '75vh',
-          width: '95vw',
-          margin: '5vh auto',
-        }}
+      <FullWidthDialog
+        openDialog={openDialog}
+        closeDialog={closeDialog}
+        showDialog={showDialog}
       >
-        <div className="h-full">
-          <Header
-            openDialog={openDialog}
-            closeDialog={closeDialog}
-            showDialog={showDialog}
-            onCopy={onCopy}
-          />
-
-          <div className="h-full mdx-content">
-            <Code children={children} innerClasses="w-full h-full" />
-          </div>
+        <Header
+          openDialog={openDialog}
+          closeDialog={closeDialog}
+          showDialog={showDialog}
+          onCopy={onCopy}
+        />
+        <div className="h-full mdx-content">
+          <Code children={children} innerClasses="w-full h-full" />
         </div>
-      </Dialog> */}
+      </FullWidthDialog>
     </>
   );
 }

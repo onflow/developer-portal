@@ -9,7 +9,10 @@ export default {
 
 const Template: Story<InternalCodeblockProps> = (args) => {
   return (
-    <div style={{ maxWidth: 720, fontSize: 12 }} className="mdx-content">
+    <div
+      style={{ maxWidth: 720, fontSize: 12, padding: '1rem' }}
+      className="mdx-content"
+    >
       <InternalCodeblock {...args}>
         <code
           className="language-cadence"
