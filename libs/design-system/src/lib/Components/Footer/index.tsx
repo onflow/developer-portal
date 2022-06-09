@@ -1,4 +1,4 @@
-import FlowDocsLogo from '../../../../images/logos/flow-docs-logo-light';
+import FlowDocsLogo from '../../../../images/logos/flow-docs-logo-light.svg';
 import { ReactComponent as OnFlowIcon } from '../../../../images/logos/flow-icon-bw-light';
 import { ReactComponent as DiscordIcon } from '../../../../images/social/discord-light';
 import { ReactComponent as ForumIcon } from '../../../../images/social/forum-light';
