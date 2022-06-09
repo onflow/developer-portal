@@ -24,12 +24,11 @@ You'll need to acquire the project's `.env` file before continuing.
 
 1) `yarn`
 4) `docker compose up -d` To start Redis and Postgres for the project. (use this when not running Postgres & Redis from your system)
-6) (From project root) `yarn nx run flow-docs:build`
 
 
 ### Running Storybook
 
-1) `yarn nx run design-system:storybook`
+1) `yarn run storybook`
 
 ### Running the Docs Site
 
