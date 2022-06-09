@@ -43,94 +43,102 @@ const ToolsPage = ({
           />
         </PageSection>
 
-        <PageSection className="container">
-          <div className="flex items-end justify-between mb-6 align-center">
-            <div>
-              <h2 className="mb-4 text-h2">Tools</h2>
-              <p className="text-primary-gray-300">
-                Blurb about tools and stuff
-              </p>
+        <PageSection>
+          <div className="container">
+            <div className="flex items-end justify-between mb-6 align-center">
+              <div>
+                <h2 className="mb-4 text-h2">Tools</h2>
+                <p className="text-primary-gray-300">
+                  Blurb about tools and stuff
+                </p>
+              </div>
+              <ButtonLink
+                rightIcon="right"
+                variant="secondary"
+                className="hidden md:inline-flex"
+                href="#"
+              >
+                View All Tools
+              </ButtonLink>
+            </div>
+            <div className="grid grid-cols-1 gap-x-6 gap-y-4 md:grid-cols-2">
+              {tools &&
+                tools.map((tool: ToolCardProps, index: number) => (
+                  <ToolCard key={index} {...tool} />
+                ))}
             </div>
             <ButtonLink
               rightIcon="right"
               variant="secondary"
-              className="hidden md:inline-flex"
+              className="w-full mt-6 md:hidden"
               href="#"
             >
               View All Tools
             </ButtonLink>
           </div>
-          <div className="grid grid-cols-1 gap-x-6 gap-y-4 md:grid-cols-2">
-            {tools &&
-              tools.map((tool: ToolCardProps, index: number) => (
-                <ToolCard key={index} {...tool} />
-              ))}
-          </div>
-          <ButtonLink
-            rightIcon="right"
-            variant="secondary"
-            className="w-full mt-6 md:hidden"
-            href="#"
-          >
-            View All Tools
-          </ButtonLink>
         </PageSection>
 
-        <PageSection className="container">
-          <div className="flex items-end justify-between mb-6 align-center">
-            <div>
-              <h2 className="mb-4 text-h2">SDKs</h2>
-              <p className="text-primary-gray-300">
-                Blurb about SDKs and stuff
-              </p>
+        <PageSection>
+          <div className="container">
+            <div className="flex items-end justify-between mb-6 align-center">
+              <div>
+                <h2 className="mb-4 text-h2">SDKs</h2>
+                <p className="text-primary-gray-300">
+                  Blurb about SDKs and stuff
+                </p>
+              </div>
+              <ButtonLink
+                rightIcon="right"
+                variant="secondary"
+                className="hidden md:inline-flex"
+                href="#"
+              >
+                View All SDKs
+              </ButtonLink>
+            </div>
+            <div className="grid grid-cols-1 gap-x-6 gap-y-4 md:grid-cols-2">
+              {sdks &&
+                sdks.map((sdk: SDKCardProps, index: number) => (
+                  <SDKCard key={index} {...sdk} />
+                ))}
             </div>
             <ButtonLink
               rightIcon="right"
               variant="secondary"
-              className="hidden md:inline-flex"
+              className="w-full mt-6 md:hidden"
               href="#"
             >
               View All SDKs
             </ButtonLink>
           </div>
-          <div className="grid grid-cols-1 gap-x-6 gap-y-4 md:grid-cols-2">
-            {sdks &&
-              sdks.map((sdk: SDKCardProps, index: number) => (
-                <SDKCard key={index} {...sdk} />
-              ))}
-          </div>
-          <ButtonLink
-            rightIcon="right"
-            variant="secondary"
-            className="w-full mt-6 md:hidden"
-            href="#"
-          >
-            View All SDKs
-          </ButtonLink>
         </PageSection>
 
-        <PageSection className="container">
-          <h2 className="mb-4 text-h2">APIs and Service</h2>
-          <p className="mb-6 text-primary-gray-300">
-            Hosted APIs that provide access to the Flow network and related data
-            (NFTs, events, etc).
-          </p>
-          <div className="grid grid-flow-col gap-4 pb-6 overflow-x-scroll">
-            {apis &&
-              apis.map((api: TutorialCardProps, index: number) => (
-                <TutorialCard {...api} key={index} />
-              ))}
+        <PageSection>
+          <div className="container">
+            <h2 className="mb-4 text-h2">APIs and Service</h2>
+            <p className="mb-6 text-primary-gray-300">
+              Hosted APIs that provide access to the Flow network and related data
+              (NFTs, events, etc).
+            </p>
+            <div className="grid grid-flow-col gap-4 pb-6 overflow-x-scroll">
+              {apis &&
+                apis.map((api: TutorialCardProps, index: number) => (
+                  <TutorialCard {...api} key={index} />
+                ))}
+            </div>
           </div>
         </PageSection>
 
-        <PageSection className="container">
-          <h4 className="mb-4 text-h4">Explore More Content</h4>
-          <div className="grid grid-cols-1 gap-4 md:grid-cols-3">
-            {contentNavigationItems.map(
-              (contentNav: ContentNavigationProps, index: number) => (
-                <ContentNavigation key={index} {...contentNav} />
-              )
-            )}
+        <PageSection>
+          <div className="container">
+            <h4 className="mb-4 text-h4">Explore More Content</h4>
+            <div className="grid grid-cols-1 gap-4 md:grid-cols-3">
+              {contentNavigationItems.map(
+                (contentNav: ContentNavigationProps, index: number) => (
+                  <ContentNavigation key={index} {...contentNav} />
+                )
+              )}
+            </div>
           </div>
         </PageSection>
       </PageSections>
