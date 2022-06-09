@@ -78,7 +78,10 @@
     "format:app": "prettier --write app",
     "generate:css": "postcss ./libs/design-system/styles/main.css -o app/tailwind.css",
     "start": "remix-serve build",
-    "storybook": "start-storybook -p 6006",
+    "storybook": "run-p storybook:*",
+    "storybook:css": "yarn dev:css",
+    "storybook:svg": "yarn dev:css",
+    "storybook:main": "start-storybook -p 6006",
     "typecheck": "tsc --noEmit",
     "lint": "eslint --ext .js,.jsx,.ts,.tsx --max-warnings 0 app libs"
   },
