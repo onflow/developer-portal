@@ -60,6 +60,9 @@
   "engines": {
     "node": ">=14"
   },
+  "prettier": {
+    "semi": false
+  },
   "private": true,
   "scripts": {
     "build": "run-s build:*",
@@ -70,6 +73,7 @@
     "dev:css": "yarn generate:css -- --watch",
     "dev:remix": "remix dev",
     "dev:svg": "yarn svgr --silent --template svgr/template.js --filename-case kebab --out-dir ./libs/design-system/images ./libs/design-system/images",
+    "format:app": "prettier --write app",
     "generate:css": "postcss ./libs/design-system/styles/main.css -o app/tailwind.css",
     "start": "remix-serve build",
     "storybook": "start-storybook -p 6006"

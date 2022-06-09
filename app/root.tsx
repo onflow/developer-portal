@@ -2,8 +2,8 @@ import type {
   LinksFunction,
   LoaderFunction,
   MetaFunction,
-} from "@remix-run/node";
-import { json } from "@remix-run/node";
+} from "@remix-run/node"
+import { json } from "@remix-run/node"
 import {
   Links,
   LiveReload,
@@ -12,48 +12,48 @@ import {
   Scripts,
   ScrollRestoration,
   useLoaderData,
-} from "@remix-run/react";
-import clsx from "clsx";
+} from "@remix-run/react"
+import clsx from "clsx"
 import {
   Theme,
   ThemeBody,
   ThemeHead,
   ThemeProvider,
   useTheme,
-} from "~/cms/utils/theme.provider";
-import { getUser } from "./session.server";
-import styles from "./styles/main.css";
-import { getThemeSession } from "./theme.server";
+} from "~/cms/utils/theme.provider"
+import { getUser } from "./session.server"
+import styles from "./styles/main.css"
+import { getThemeSession } from "./theme.server"
 
-import { Footer } from "../libs/design-system/src";
+import { Footer } from "../libs/design-system/src"
 
 export const links: LinksFunction = () => {
-  return [{ rel: "stylesheet", href: styles }];
-};
+  return [{ rel: "stylesheet", href: styles }]
+}
 
 export const meta: MetaFunction = () => ({
   charset: "utf-8",
   title: "Flow Documentation",
   viewport: "width=device-width,initial-scale=1",
-});
+})
 
 export type LoaderData = {
-  user: Awaited<ReturnType<typeof getUser>>;
-  theme: Theme | null;
-};
+  user: Awaited<ReturnType<typeof getUser>>
+  theme: Theme | null
+}
 
 export const loader: LoaderFunction = async ({ request }) => {
-  const themeSession = await getThemeSession(request);
+  const themeSession = await getThemeSession(request)
 
   return json<LoaderData>({
     user: await getUser(request),
     theme: themeSession.getTheme(),
-  });
-};
+  })
+}
 
 function App() {
-  const data = useLoaderData<LoaderData>();
-  const [theme] = useTheme();
+  const data = useLoaderData<LoaderData>()
+  const [theme] = useTheme()
 
   return (
     <html lang="en" className={clsx("h-full", theme ?? "")}>
@@ -76,15 +76,15 @@ function App() {
         <LiveReload />
       </body>
     </html>
-  );
+  )
 }
 
 export default function AppWithProviders() {
-  const data = useLoaderData<LoaderData>();
+  const data = useLoaderData<LoaderData>()
 
   return (
     <ThemeProvider specifiedTheme={data.theme}>
       <App />
     </ThemeProvider>
-  );
+  )
 }

@@ -1,4 +1,4 @@
-import { LandingHeaderHome } from "../../libs/design-system/src";
+import { LandingHeaderHome } from "../../libs/design-system/src"
 
 export default function Index() {
   return (
@@ -8,5 +8,5 @@ export default function Index() {
       tag="onflow"
       gradient="community"
     />
-  );
+  )
 }
