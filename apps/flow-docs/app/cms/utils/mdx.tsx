@@ -1,58 +1,57 @@
 import {
-  getHeadingsFromMdxComponent,
-  InputProps,
-  HeadingProps,
   Heading,
+  HeadingProps,
+  InputProps,
   Link,
   StaticCheckbox,
-} from "@flow-docs/ui";
-import { Link as RemixLink } from "@remix-run/react";
-import { getMDXComponent } from "mdx-bundler/client";
-import React from "react";
-import type { LinkProps } from "react-router-dom";
-import type { GitHubFile, MdxListItem, MdxPage, Timings } from "~/cms";
+} from "@flow-docs/ui"
+import { Link as RemixLink } from "@remix-run/react"
+import { getMDXComponent } from "mdx-bundler/client"
+import React from "react"
+import type { LinkProps } from "react-router-dom"
+import type { GitHubFile, MdxListItem, MdxPage, Timings } from "~/cms"
 import {
   cachified,
   compileMdx,
   downloadDirList,
   downloadMdxFileOrDirectory,
   redisCache,
-} from "~/cms";
-import type { LoaderData as RootLoaderData } from "../../root";
+} from "~/cms"
+import type { LoaderData as RootLoaderData } from "../../root"
 
 function typedBoolean<T>(
   value: T
 ): value is Exclude<T, "" | 0 | false | null | undefined> {
-  return Boolean(value);
+  return Boolean(value)
 }
 
 type CachifiedOptions = {
-  forceFresh?: boolean | string;
-  request?: Request;
-  timings?: Timings;
-  maxAge?: number;
-  expires?: Date;
-};
+  forceFresh?: boolean | string
+  request?: Request
+  timings?: Timings
+  maxAge?: number
+  expires?: Date
+}
 
-const defaultMaxAge = 1000 * 60 * 60 * 24 * 30;
+const defaultMaxAge = 1000 * 60 * 60 * 24 * 30
 
 const getCompiledKey = (contentDir: string, slug: string) =>
-  `${contentDir}:${slug}:compiled`;
+  `${contentDir}:${slug}:compiled`
 const checkCompiledValue = (value: unknown) =>
   typeof value === "object" &&
-  (value === null || ("code" in value && "frontmatter" in value));
+  (value === null || ("code" in value && "frontmatter" in value))
 
 async function getMdxPage(
   {
     repo,
     fileOrDirPath,
   }: {
-    repo: string;
-    fileOrDirPath: string;
+    repo: string
+    fileOrDirPath: string
   },
   options: CachifiedOptions
 ): Promise<MdxPage | null> {
-  const key = getCompiledKey(repo, fileOrDirPath);
+  const key = getCompiledKey(repo, fileOrDirPath)
   const page = await cachified({
     cache: redisCache,
     maxAge: defaultMaxAge,
@@ -66,7 +65,7 @@ async function getMdxPage(
         repo,
         fileOrDirPath,
         options
-      );
+      )
       const compiledPage = await compileMdxCached({
         repo,
         fileOrDirPath,
@@ -76,18 +75,18 @@ async function getMdxPage(
         console.error(`Failed to get a fresh value for mdx:`, {
           repo,
           fileOrDirPath,
-        });
-        return Promise.reject(err);
-      });
+        })
+        return Promise.reject(err)
+      })
 
-      return compiledPage;
+      return compiledPage
     },
-  });
+  })
   if (!page) {
     // if there's no page, let's remove it from the cache
-    void redisCache.del(key);
+    void redisCache.del(key)
   }
-  return page;
+  return page
 }
 
 async function getMdxPagesInDirectory(
@@ -95,7 +94,7 @@ async function getMdxPagesInDirectory(
   fileOrDirPath: string,
   options: CachifiedOptions
 ) {
-  const dirList = await getMdxDirList(repo, fileOrDirPath, options);
+  const dirList = await getMdxDirList(repo, fileOrDirPath, options)
 
   // our octokit throttle plugin will make sure we don't hit the rate limit
   const pageDatas = await Promise.all(
@@ -103,19 +102,19 @@ async function getMdxPagesInDirectory(
       return {
         ...(await downloadMdxFilesCached(repo, fileOrDirPath, options)),
         slug,
-      };
+      }
     })
-  );
+  )
 
   const pages = await Promise.all(
     pageDatas.map((pageData) =>
       compileMdxCached({ repo, fileOrDirPath, ...pageData, options })
     )
-  );
-  return pages.filter(typedBoolean);
+  )
+  return pages.filter(typedBoolean)
 }
 
-const getDirListKey = (contentDir: string) => `${contentDir}:dir-list`;
+const getDirListKey = (contentDir: string) => `${contentDir}:dir-list`
 
 async function getMdxDirList(
   repo: string,
@@ -129,7 +128,7 @@ async function getMdxDirList(
     key: getDirListKey(fileOrDirPath),
     checkValue: (value: unknown) => Array.isArray(value),
     getFreshValue: async () => {
-      const fullContentDirPath = `docs/${fileOrDirPath}`;
+      const fullContentDirPath = `docs/${fileOrDirPath}`
       const dirList = (await downloadDirList(repo, fullContentDirPath))
         .map(({ name, path }) => ({
           name,
@@ -137,21 +136,21 @@ async function getMdxDirList(
             .replace(`${fullContentDirPath}/`, "")
             .replace(/\.mdx$/, ""),
         }))
-        .filter(({ name }) => name !== "README.md");
-      return dirList;
+        .filter(({ name }) => name !== "README.md")
+      return dirList
     },
-  });
+  })
 }
 
 const getDownloadKey = (contentDir: string, slug: string) =>
-  `${contentDir}:${slug}:downloaded`;
+  `${contentDir}:${slug}:downloaded`
 
 async function downloadMdxFilesCached(
   repo: string,
   fileOrDirPath: string,
   options: CachifiedOptions
 ) {
-  const key = getDownloadKey(repo, fileOrDirPath);
+  const key = getDownloadKey(repo, fileOrDirPath)
   const downloaded = await cachified({
     cache: redisCache,
     maxAge: defaultMaxAge,
@@ -159,29 +158,29 @@ async function downloadMdxFilesCached(
     key,
     checkValue: (value: unknown) => {
       if (typeof value !== "object") {
-        return `value is not an object`;
+        return `value is not an object`
       }
       if (value === null) {
-        return `value is null`;
+        return `value is null`
       }
 
-      const download = value as Record<string, unknown>;
+      const download = value as Record<string, unknown>
       if (!Array.isArray(download.files)) {
-        return `value.files is not an array`;
+        return `value.files is not an array`
       }
       if (typeof download.entry !== "string") {
-        return `value.entry is not a string`;
+        return `value.entry is not a string`
       }
 
-      return true;
+      return true
     },
     getFreshValue: async () => downloadMdxFileOrDirectory(repo, fileOrDirPath),
-  });
+  })
   // if there aren't any files, remove it from the cache
   if (!downloaded.files.length) {
-    void redisCache.del(key);
+    void redisCache.del(key)
   }
-  return downloaded;
+  return downloaded
 }
 
 async function compileMdxCached({
@@ -191,13 +190,13 @@ async function compileMdxCached({
   files,
   options,
 }: {
-  repo: string;
-  fileOrDirPath: string;
-  entry: string;
-  files: Array<GitHubFile>;
-  options: CachifiedOptions;
+  repo: string
+  fileOrDirPath: string
+  entry: string
+  files: Array<GitHubFile>
+  options: CachifiedOptions
 }) {
-  const key = getCompiledKey(repo, fileOrDirPath);
+  const key = getCompiledKey(repo, fileOrDirPath)
   const page = await cachified({
     cache: redisCache,
     maxAge: defaultMaxAge,
@@ -208,37 +207,37 @@ async function compileMdxCached({
       const compiledPage = await compileMdx<MdxPage["frontmatter"]>(
         `docs/${fileOrDirPath}`,
         files
-      );
+      )
       if (compiledPage) {
         return {
           ...compiledPage,
           fileOrDirPath,
-        };
+        }
       } else {
-        return null;
+        return null
       }
     },
-  });
+  })
   // if there's no page, remove it from the cache
   if (!page) {
-    void redisCache.del(key);
+    void redisCache.del(key)
   }
-  return page;
+  return page
 }
 
 function mdxPageMeta({
   data,
   parentsData,
 }: {
-  data: { page: MdxPage | null } | null;
-  parentsData: { root: RootLoaderData };
+  data: { page: MdxPage | null } | null
+  parentsData: { root: RootLoaderData }
 }) {
   // const { requestInfo } = parentsData.root;
   if (data?.page) {
-    const { keywords = [], ...extraMeta } = {};
-    let title = data.page.frontmatter.title;
-    const isDraft = data.page.frontmatter.draft;
-    if (isDraft) title = `(DRAFT) ${title ?? ""}`;
+    const { keywords = [], ...extraMeta } = {}
+    let title = data.page.frontmatter.title
+    const isDraft = data.page.frontmatter.draft
+    if (isDraft) title = `(DRAFT) ${title ?? ""}`
     return {
       ...(isDraft ? { robots: "noindex" } : null),
       // ...getSocialMetas({
@@ -261,12 +260,12 @@ function mdxPageMeta({
       //   }),
       // }),
       ...extraMeta,
-    };
+    }
   } else {
     return {
       title: "Not found",
       description: "You landed on a page we could not find. Sorry!",
-    };
+    }
   }
 }
 
@@ -274,8 +273,8 @@ function mdxPageMeta({
  * This is useful for when you don't want to send all the code for a page to the client.
  */
 function mapFromMdxPageToMdxListItem(page: MdxPage): MdxListItem {
-  const { code, ...mdxListItem } = page;
-  return mdxListItem;
+  const { code, ...mdxListItem } = page
+  return mdxListItem
 }
 
 const mdxComponents = {
@@ -297,7 +296,11 @@ const mdxComponents = {
   h4: (props: HeadingProps) => <Heading type="h4" {...props} />,
   h5: (props: HeadingProps) => <Heading type="h5" {...props} />,
   h6: (props: HeadingProps) => <Heading type="h6" {...props} />,
-};
+  // pre: ({ children }: { children: React.ReactNode }) => {
+  //   // TODO: pass code string as rawText for copy to clipboard functionality
+  //   return <InternalCodeblock rawText="TODO" children={children} />
+  // },
+}
 
 /**
  * This should be rendered within a useMemo
@@ -305,28 +308,27 @@ const mdxComponents = {
  * @returns the component
  */
 function getMdxComponent({ code, frontmatter }: MdxPage) {
-  const Component = getMDXComponent(code);
-  const headings = getHeadingsFromMdxComponent(Component);
+  const Component = getMDXComponent(code)
+  // const headings = getHeadingsFromMdxComponent(Component);
 
   function MdxComponent({
     components,
     ...rest
   }: Parameters<typeof Component>["0"]) {
     return (
-      <div className="flex flex-row">
-        <div className="w-auto ml-16 mr-8 mdx-content">
+      <div className="container flex flex-row">
+        <div className="mdx-content">
           {/* @ts-expect-error: We need to figure out how to type this */}
           <Component components={mdxComponents} {...rest} />
         </div>
-        {frontmatter.showToc && JSON.stringify(headings)}
       </div>
-    );
+    )
   }
-  return MdxComponent;
+  return MdxComponent
 }
 
 function useMdxComponent(page: MdxPage) {
-  return React.useMemo(() => getMdxComponent(page), [page]);
+  return React.useMemo(() => getMdxComponent(page), [page])
 }
 
 export {
@@ -337,4 +339,4 @@ export {
   mdxPageMeta,
   useMdxComponent,
   getDirListKey,
-};
+}

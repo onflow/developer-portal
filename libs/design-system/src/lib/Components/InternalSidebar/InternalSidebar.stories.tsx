@@ -13,8 +13,8 @@ const Template: Story<InternalSidebarProps> = (args) => (
   </MemoryRouter>
 );
 
-export const Primary = Template.bind({});
+export const Default = Template.bind({});
 
-Primary.args = {
+Default.args = {
   config: TEMP_SIDEBAR_CONFIG,
 };

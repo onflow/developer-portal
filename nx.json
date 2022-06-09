@@ -4,6 +4,9 @@
   "affected": {
     "defaultBase": "main"
   },
+  "cli": {
+    "packageManager": "yarn"
+  },
   "implicitDependencies": {
     "package.json": {
       "dependencies": "*",
@@ -27,12 +30,6 @@
   },
   "targetDependencies": {
     "build": [
-      {
-        "target": "build",
-        "projects": "dependencies"
-      }
-    ],
-    "dev": [
       {
         "target": "build",
         "projects": "dependencies"

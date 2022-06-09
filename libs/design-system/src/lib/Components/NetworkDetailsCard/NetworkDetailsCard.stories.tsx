@@ -13,13 +13,22 @@ const Template: Story<NetworkDetailsCardProps> = (args) => {
     </div>
   );
 };
-
-export const Primary = Template.bind({});
-Primary.args = {
+const args = {
   status: 'Healthy',
   statusLink: 'https://google.com',
   version: '33',
   lastSporkDate: 'April, 2022',
   nextSporkDate: 'April, 2022',
-  rssFeed: '/feed'
+  rssFeed: '/feed',
+};
+
+export const Default = Template.bind({});
+Default.args = args;
+
+export const Mobile = Template.bind({});
+Mobile.args = args;
+Mobile.parameters = {
+  viewport: {
+    defaultViewport: 'xs',
+  },
 };

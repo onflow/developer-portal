@@ -61,7 +61,7 @@ export function AdditionalNftInfo({
 
   return (
     <>
-      <div className="text-2xl mb-6">Additional Contract Information</div>
+      <div className="text-h1 mb-6 max-w-full overflow-hidden text-ellipsis !text-2xl md:!text-4xl">Additional Contract Information</div>
       {loading && <Spinner />}
       {error && <><Alert status="error" title={error} body="" /><br /></>}
       <NFTValidity selectedContract={selectedContract} contractInfo={contractInfo} />
@@ -71,6 +71,7 @@ export function AdditionalNftInfo({
           <div>
             We need a bit more information about <b>{selectedContract}</b>
           </div>
+          <br />
           <SampleNFTPrompt
             contractCode={account.contracts[selectedContract]}
             defaultValues={{ sampleAddress: "", publicPath: "" }}

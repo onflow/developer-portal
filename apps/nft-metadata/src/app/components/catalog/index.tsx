@@ -27,8 +27,8 @@ export default function Layout({
 
   return (
     <div className="mx-auto px-0 md:px-4 lg:px-32 pt-4">
-      <div className="text-2xl sm:border-0 md:border-b-2 py-4">
-        {type === 'Proposals' ? 'NFT Catalog Addition/Update Proposals' : 'NFT Catalog'}
+      <div className="text-h1 p-2 mb-6 max-w-full overflow-hidden text-ellipsis !text-2xl md:!text-4xl sm:border-0 md:border-b-2">
+        {type === 'Proposals' ? 'NFT Catalog Proposals' : 'NFT Catalog'}
       </div>
       <div
         className="flex w-full h-full items-center text-center bg-white rounded-2xl dark:bg-primary-dark-gray sm:flex-col md:flex-row"

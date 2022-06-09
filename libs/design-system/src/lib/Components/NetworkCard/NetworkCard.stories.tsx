@@ -14,25 +14,27 @@ const Template: Story<NetworkCardProps> = (args) => {
   );
 };
 
-export const Primary = Template.bind({});
-Primary.args = {
+const args = {
   networkName: 'Mainnet',
   status: 'Healthy',
   version: '33',
   lastSporkDate: 'April, 2022',
   nextSporkDate: 'April, 2022',
-  link: 'https://google.com'
+  link: 'https://google.com',
 };
+export const Default = Template.bind({});
+Default.args = args;
 
 export const UnderMaintenance = Template.bind({});
 UnderMaintenance.args = {
-  networkName: 'Mainnet',
+  ...args,
   status: 'Under Maintenance',
-  version: '33',
-  lastSporkDate: 'April, 2022',
-  nextSporkDate: 'April, 2022',
-  link: 'https://google.com'
 };
 
-
-
+export const Mobile = Template.bind({});
+Mobile.args = args;
+Mobile.parameters = {
+  viewport: {
+    defaultViewport: 'xs',
+  },
+};

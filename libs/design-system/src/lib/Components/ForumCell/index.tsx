@@ -1,9 +1,9 @@
-import React from 'react';
-import CommentIcon from '../Icons/CommentIcon';
-import RoundImage from './RoundImage';
+ 
+import { ReactComponent as CommentIcon } from '../../../../images/arrows/message-circle.svg';
+import RoundImage from '../RoundImage';
 
 export type User = {
-  profilePicture: string;
+  profileImage: string;
   name: string;
 };
 
@@ -12,6 +12,7 @@ export type ForumCellProps = {
   heading: string;
   subheading: string;
   participants: User[];
+  forumLink: string;
 };
 
 const ForumCell = ({
@@ -19,15 +20,19 @@ const ForumCell = ({
   subheading,
   participants,
   numComments,
+  forumLink,
 }: ForumCellProps) => {
   return (
-    <div className="flex items-center py-6 bg-white rounded-lg px-11 hover:shadow-2xl dark:bg-primary-dark-gray sm:flex-col sm:px-8 md:flex-row">
+    <a
+      href={forumLink}
+      className="flex flex-col items-start items-center justify-around rounded-lg bg-white px-8 py-6 px-11 hover:cursor-pointer hover:shadow-2xl dark:bg-primary-gray-dark md:flex-row"
+    >
       <div className="flex-1">
         <p className="mb-2 text-xl font-semibold">{heading}</p>
         <span className="text-primary-gray-300">{subheading}</span>
       </div>
-      <div className="flex justify-between sm:mt-8 md:mt-0">
-        <div className="relative w-32 h-12">
+      <div className="mt-8 flex items-center justify-between md:mt-0">
+        <div className="relative left-0 h-12 w-[9rem]">
           {participants.map((participant, index) => (
             <div
               className="absolute inset-y-0"
@@ -35,17 +40,18 @@ const ForumCell = ({
               key={participant.name}
             >
               <RoundImage
-                imageUri={participant.profilePicture}
+                imageUri={participant.profileImage}
                 altText={participant.name}
               />
             </div>
           ))}
         </div>
-        <div className="flex items-center ml-3 text-primary-gray-300 dark:text-primary-gray-100 sm:mt-2 md:mt-0">
-          <CommentIcon /> <span className="ml-3">{numComments}</span>
+        <div className="ml-3 ml-9 flex items-center text-primary-gray-300 dark:text-primary-gray-100">
+          <CommentIcon />
+          <span className="ml-3">{numComments}</span>
         </div>
       </div>
-    </div>
+    </a>
   );
 };
 

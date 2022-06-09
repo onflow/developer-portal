@@ -1,6 +1,6 @@
 import clsx from 'clsx';
-import React from 'react';
-import RightChevronIcon from '../Icons/RightChevronIcon';
+ 
+import { ReactComponent as ChevronRightIcon } from '../../../../images/arrows/chevron-right.svg';
 
 export type NetworkCardProps = {
   networkName: string;
@@ -19,45 +19,49 @@ const NetworkCard = ({
   nextSporkDate,
   link,
 }: NetworkCardProps) => {
-  const statusClasses = clsx('rounded-full w-11 h-11 md:mb-0 xs:mb-4', {
+  const statusClasses = clsx('rounded-full w-11 h-11 md:mb-0 mb-4', {
     'bg-primary-red': status === 'Under Maintenance',
-    'bg-primary-green': status === 'Healthy',
+    'bg-green-success': status === 'Healthy',
   });
 
   return (
     <a
       href={link}
-      className="flex items-center justify-around px-4 py-6 bg-white rounded-2xl hover:shadow-2xl dark:bg-primary-dark-gray xs:flex-col xs:text-center md:flex-row"
+      className="flex flex-col items-center justify-around rounded-2xl bg-white px-4 py-6 text-center hover:shadow-2xl dark:bg-primary-gray-dark md:flex-row md:text-left"
     >
-      <div className={statusClasses} />
-      <span className="text-xl font-bold xs:mb-4 md:mb-0">{networkName}</span>
-      <div className="xs:mb-4 md:mb-0">
-        <p
-          className="mb-2 text-xs uppercase text-primary-gray-200"
-          style={{ minWidth: '148px' }}
-        >
-          Status
-        </p>
+      <div className="flex flex-col items-center md:flex-row">
+        <div className={statusClasses} />
+        <span className="mb-6 ml-0 text-xl font-bold md:ml-6 md:mb-0">
+          {networkName}
+        </span>
+      </div>
+
+      <div className="mb-4 md:mb-0">
+        <p className="mb-2 text-xs uppercase text-primary-gray-200">Status</p>
         {status}
       </div>
-      <div className="xs:mb-4 md:mb-0">
+
+      <div className="mb-4 md:mb-0">
         <p className="mb-2 text-xs uppercase text-primary-gray-200">Version</p>
         {version}
       </div>
-      <div className="xs:mb-4 md:mb-0">
+
+      <div className="mb-4 md:mb-0">
         <p className="mb-2 text-xs uppercase text-primary-gray-200">
           Last Spork Date
         </p>
         {lastSporkDate}
       </div>
-      <div className="xs:mb-4 md:mb-0">
+
+      <div className="mb-4 md:mb-0">
         <p className="mb-2 text-xs uppercase text-primary-gray-200">
           Next Spork Date
         </p>
         {nextSporkDate}
       </div>
-      <div className="xs:hidden md:inline-block">
-        <RightChevronIcon />
+
+      <div className="hidden md:inline-block">
+        <ChevronRightIcon />
       </div>
     </a>
   );

@@ -104,7 +104,7 @@ export function SampleNFTView({
 
   return (
     <>
-      <div className="text-2xl mb-6">Review Metadata</div>
+      <div className="text-h1 mb-6 max-w-full overflow-hidden text-ellipsis !text-2xl md:!text-4xl">Review Metadata</div>
       {loading && <Spinner />}
       {
         error &&

@@ -4,7 +4,7 @@ export type BreadcrumbsProps = {
 
 function Separator() {
   return (
-    <span className="mx-3 font-weight-semibold text-primary-gray-200 dark:text-primary-gray-300">
+    <span className="mx-3 font-semibold text-primary-gray-200 dark:text-primary-gray-300">
       /
     </span>
   );

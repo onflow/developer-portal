@@ -1,6 +1,7 @@
-import React from 'react';
+ 
+import { ReactComponent as ChevronRightIcon } from '../../../../images/arrows/chevron-right.svg';
+import { ReactComponent as RssIcon } from '../../../../images/content/rss.svg';
 import { Link } from '../Link';
-import { RightChevronIcon, RssFeedIcon } from '../Icons';
 
 export type NetworkDetailsCardProps = {
   status: 'Under Maintenance' | 'Healthy';
@@ -21,17 +22,17 @@ const NetworkDetailsCard = ({
 }: NetworkDetailsCardProps) => {
   return (
     <div
-      className="flex items-center text-center bg-white rounded-2xl dark:bg-primary-dark-gray sm:flex-col md:flex-row"
-      style={{ width: 'fit-content' }}
+      className="mx-auto flex flex-col items-center justify-center rounded-2xl bg-white py-4 text-center dark:bg-primary-gray-dark md:flex-row md:py-0"
+      style={{ maxWidth: '1140px' }}
     >
-      <div className="px-8 py-4 border-accent-light-gray sm:border-0 md:border-r-2">
-        <p className="mb-2 text-sm uppercase text-primary-gray-200">Version</p>
+      <div className="border-0 border-accent-light-gray px-8 py-4 md:border-r-2">
+        <p className="mb-2 text-xs uppercase text-primary-gray-200">Version</p>
         {version}
       </div>
 
-      <div className="px-8 py-4 border-accent-light-gray sm:border-0 md:border-r-2 ">
+      <div className="border-0 border-accent-light-gray px-8 py-4 md:border-r-2 ">
         <p
-          className="mb-2 text-sm uppercase text-primary-gray-200"
+          className="mb-2 text-xs uppercase text-primary-gray-200"
           style={{ minWidth: '148px' }}
         >
           Status
@@ -40,32 +41,29 @@ const NetworkDetailsCard = ({
         <Link href={statusLink}>{status}</Link>
       </div>
 
-      <div className="px-8 py-4 border-accent-light-gray sm:border-0 md:border-r-2">
-        <p className="mb-2 text-sm uppercase text-primary-gray-200">
+      <div className="border-0 border-accent-light-gray px-8 py-4 md:border-r-2">
+        <p className="mb-2 text-xs uppercase text-primary-gray-200">
           Last Spork Date
         </p>
         {lastSporkDate}
       </div>
 
-      <div className="px-8 py-4 border-accent-light-gray sm:border-0 md:border-r-2">
-        <p className="mb-2 text-sm uppercase text-primary-gray-200">
+      <div className="border-0 border-accent-light-gray px-8 py-4 md:border-r-2">
+        <p className="mb-2 text-xs uppercase text-primary-gray-200">
           Next Spork Date
         </p>
         {nextSporkDate}
       </div>
 
       <div className="px-8 py-4">
-        <p className="mb-2 text-sm uppercase text-primary-gray-200">RSS Feed</p>
+        <p className="mb-2 text-xs uppercase text-primary-gray-200 dark:text-blue-dark">
+          RSS Feed
+        </p>
         {/* @ts-ignore */}
-        <Link
-          href={rssFeed}
-          className="flex items-center text-sm text-primary-blue hover:cursor-pointer dark:text-primary-gray-50"
-        >
-          <div className="w-4">
-            <RssFeedIcon />
-          </div>
-          &nbsp;RSS Feed&nbsp;
-          <RightChevronIcon />
+        <Link href={rssFeed} className="flex items-center text-sm">
+          <RssIcon />
+          <span className="mx-2 mt-1">RSS Feed</span>
+          <ChevronRightIcon />
         </Link>
       </div>
     </div>

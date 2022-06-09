@@ -22,14 +22,14 @@ export default function ({
   const steps = [
     {
       id: "S1",
-      title: "Select NFT Contract",
+      title: "Select Contract",
       href: `/v`,
       isActive: !selectedNetwork || !selectedAddress || !selectedContract,
       isComplete: selectedNetwork && selectedAddress && selectedContract
     },
     {
       id: "S2",
-      title: "Enter Additional Info",
+      title: "Additional Info",
       href: `/v/${selectedNetwork}/${selectedAddress}/${selectedContract}`,
       isActive: selectedNetwork && selectedAddress && selectedContract,
       isComplete: selectedNetwork && selectedAddress && selectedContract &&

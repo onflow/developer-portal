@@ -15,6 +15,7 @@ export function ContractSelect({
 
   return (
     <>
+      <div className="text-h1 mb-6 max-w-full overflow-hidden text-ellipsis !text-2xl md:!text-4xl">Select NFT Contract</div>
       <div className="text-l">
         This tool will assist you in verifying the metadata on your NFTs and allow your collection to be added to the <b>Flow NFT Catalog</b>.
         <br />
@@ -23,7 +24,6 @@ export function ContractSelect({
         <br />
       </div>
       <hr className="my-6" />
-      <div className="text-2xl mb-6">Select NFT Contract</div>
       <b>Enter Address containing your NFT Contract</b>
       <br />
       <SearchBar

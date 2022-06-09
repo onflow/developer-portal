@@ -34,9 +34,16 @@ module.exports = {
       lg: '1440px',
       xl: '1536px',
     },
+    container: {
+      center: true,
+      padding: '1rem',
+      screens: {
+        xs: '1140px',
+      },
+    },
     extend: {
       fontFamily: {
-        sans: ['Acumin Pro', ...defaultTheme.fontFamily.sans],
+        sans: ['Acumin Variable Concept', ...defaultTheme.fontFamily.sans],
         display: 'Termina',
         mono: 'IBM Plex Mono',
       },
@@ -64,7 +71,8 @@ module.exports = {
           400: '#2F353F',
         },
         'accent-light-gray': '#F3F3F3',
-        'primary-dark-gray': '#1A1A1A'
+        'primary-gray-dark': '#1A1A1A',
+        'secondary-yellow': '#FFC700',
       },
       spacing: {
         micro: defaultTheme.spacing['1'],
@@ -77,14 +85,14 @@ module.exports = {
         '3xl': '7.5rem',
         '4xl': '12.5rem',
       },
+      boxShadow: {
+        '2xl': '0px 4px 40px 0px #00000014',
+      },
     },
   },
   variants: {
     extend: {
-      display: ["group-hover"],
-      shadow: {
-        '2xl': '0px 4px 40px rgba(0, 0, 0, 0.08);'
-      }
+      display: ['group-hover'],
     },
   },
   plugins: [
@@ -92,5 +100,6 @@ module.exports = {
     require('@tailwindcss/forms'),
     require('@tailwindcss/line-clamp'),
     require('@tailwindcss/aspect-ratio'),
+    require('tailwind-scrollbar-hide'),
   ],
 };

@@ -1,13 +1,13 @@
-import {
-  Menu,
-  MenuButton,
-  MenuItems,
-  MenuLink,
-  MenuList,
-} from '@reach/menu-button';
+// import {
+//   Menu,
+//   MenuButton,
+//   MenuItems,
+//   MenuLink,
+//   MenuList,
+// } from '@reach/menu-button';
 import { useRef } from 'react';
-import { ReactComponent as Close } from '../../../../images/action/close.svg';
-import { ReactComponent as ChevronDown } from '../../../../images/arrows/chevron-down.svg';
+// import { ReactComponent as Close } from '../../../../images/action/close.svg';
+// import { ReactComponent as ChevronDown } from '../../../../images/arrows/chevron-down.svg';
 import { ToolName, TOOLS } from '../Internal/tools';
 
 export type Version = {
@@ -40,7 +40,7 @@ function Group({ group }: { group: SectionGroup }) {
         const SelectedGroupSectionGradientIcon = TOOLS[section].gradientIcon;
         return (
           <div className="border-b border-b-primary-gray-100 last:border-none md:border-none md:p-0">
-            <MenuLink
+            {/* <MenuLink
               key={section}
               onSelect={() => null}
               href="#"
@@ -57,7 +57,7 @@ function Group({ group }: { group: SectionGroup }) {
               <div className="flex items-center justify-center font-bold text-primary-gray-400 dark:text-primary-gray-100 md:h-[2rem] md:text-sm md:font-normal">
                 {TOOLS[section].name}{' '}
               </div>
-            </MenuLink>
+            </MenuLink> */}
           </div>
         );
       })}
@@ -72,7 +72,7 @@ export function InternalSidebarMenu({
   const SelectedIcon = TOOLS[selectedTool].icon;
   return (
     <div className="flex items-center">
-      <Menu>
+      {/* <Menu>
         <MenuButton
           ref={parentRef}
           className="dark:shadow-2xl-dark mb-4 flex min-w-[15rem] items-center rounded-lg pr-3 text-sm  shadow-2xl hover:text-primary-gray-300 dark:bg-black dark:text-white dark:text-primary-gray-200 dark:hover:text-primary-gray-100"
@@ -110,7 +110,7 @@ export function InternalSidebarMenu({
             </div>
           ))}
         </MenuList>
-      </Menu>
+      </Menu> */}
     </div>
   );
 }

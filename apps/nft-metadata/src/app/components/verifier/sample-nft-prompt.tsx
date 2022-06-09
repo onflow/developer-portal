@@ -48,7 +48,7 @@ export function SampleNFTPrompt({
       {
         possiblePublicPaths.length > 0 &&
           <>
-            <p className="text-xs">We found some possible paths from your contract, you may click one to autofill</p>
+            <p className="text-xs pb-2">We found some possible paths from your contract, you may click one to autofill</p>
             {
               possiblePublicPaths.map((path) => {
                 return (
@@ -64,7 +64,7 @@ export function SampleNFTPrompt({
             }
           </>
       }
-      <p></p>
+      <p className="mt-2"></p>
       <TextInput
         value={publicPath}
         updateValue={setPublicPath}
@@ -76,7 +76,7 @@ export function SampleNFTPrompt({
         showLogIn && (
           <>
             <b>Log In to an account that holds this NFT</b><br/>
-            <p className="text-xs">
+            <p className="text-xs mb-4">
               <a className="cursor-pointer hover:underline" onClick={() => { setShowLogIn(!showLogIn) }}>Click here </a>
               to enter a different account that holds this NFT.
             </p>
@@ -84,7 +84,7 @@ export function SampleNFTPrompt({
               user.loggedIn && (
                 <div>
                   <div className="text-sm">
-                    Logged in as {user.addr}
+                    Logged in as <span className="font-semibold">{user.addr}</span>
                     <a
                       className="ml-2 text-xs cursor-pointer hover:underline text-blue-500"
                       onClick={() => {
