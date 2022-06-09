@@ -78,7 +78,8 @@
     "format:app": "prettier --write app",
     "generate:css": "postcss ./libs/design-system/styles/main.css -o app/tailwind.css",
     "start": "remix-serve build",
-    "storybook": "start-storybook -p 6006"
+    "storybook": "start-storybook -p 6006",
+    "typecheck": "tsc --noEmit"
   },
   "sideEffects": false
 }
