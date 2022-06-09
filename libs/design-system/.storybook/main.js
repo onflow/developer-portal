@@ -21,30 +21,27 @@ const addons = [
   '@storybook/addon-measure',
   '@storybook/addon-outline',
   'storybook-addon-themes',
-]
+];
 
 module.exports = {
-
-  core: {  builder: 'webpack5' },
+  core: { builder: 'webpack5' },
 
   stories: [
     '../src/lib/**/*.stories.mdx',
     '../src/lib/**/*.stories.@(js|jsx|ts|tsx)',
   ],
   addons: ['@nrwl/react/plugins/storybook', ...addons],
+  staticDirs: [{ from: '../fonts', to: '/fonts' }, { from: '../images', to: '/images'}]
   // webpackFinal: async (config, { configType }) => {
-  //   return { ...config, 
+  //   return {
+  //     ...config,
   //     resolve: {
-  //     ...config.resolve,
-  //       plugins: [
-  //         ...config.resolve.plugins, 
-  //         new TsconfigPathsPlugin({ configFile: resolve(__dirname, '../tsconfig.json'),  
-  //           logLevel: "info",
-  //           extensions: [".ts", ".tsx"],
-  //           baseUrl: "./"
-  //         })
-  //       ]
-  //     } 
+  //       ...config.resolve,
+  //       alias: {
+  //         ...config.resolve.alias, 
+  //         "/fonts": "../fonts"
+  //       },
+  //     },
   //   };
-  // }
+  // },
 };

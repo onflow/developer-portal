@@ -2,7 +2,7 @@
   "include": ["remix.env.d.ts", "**/*.ts", "**/*.tsx"],
   "extends": "../../tsconfig.base.json",
   "compilerOptions": {
-    "lib": ["DOM", "DOM.Iterable", "ES2021"],
+    "lib": ["DOM", "DOM.Iterable", "ES2019"],
     "types": ["vitest/globals"],
     "isolatedModules": true,
     "esModuleInterop": true,
@@ -15,8 +15,7 @@
     "forceConsistentCasingInFileNames": true,
     "baseUrl": ".",
     "paths": {
-      "~/*": ["./app/*"],
-      "@flow-docs/ui": ["../../libs/design-system/dist"]
+      "~/*": ["./app/*"]
     },
     "skipLibCheck": true,
     "noEmit": true
