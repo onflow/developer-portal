@@ -29,7 +29,7 @@ export function App() {
               />
               <Route path="v">
                 <Route index={true} element={<ContractInputs />}></Route>
-                <Route path=":selectedAddress/:selectedContract/:selectedNetwork" element={<ContractInputs />} />
+                <Route path=":selectedNetwork/:selectedAddress/:selectedContract" element={<ContractInputs />} />
               </Route>
             </Route>
             <Route path="proposals">

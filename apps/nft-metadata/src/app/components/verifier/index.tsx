@@ -13,7 +13,7 @@ export default function ({
 }) {
   const query = useQuery()
   const navigate = useNavigate()
-  const { selectedAddress, selectedContract, selectedNetwork } = useParams<any>()
+  const { selectedNetwork, selectedAddress, selectedContract } = useParams<any>()
 
   const publicPath = query.get("path")
   const sampleAddress = query.get("sampleAddress")
@@ -24,31 +24,31 @@ export default function ({
       id: "S1",
       title: "Select NFT Contract",
       href: `/v`,
-      isActive: !selectedAddress || !selectedContract || !selectedNetwork,
-      isComplete: selectedAddress && selectedContract && selectedNetwork
+      isActive: !selectedNetwork || !selectedAddress || !selectedContract,
+      isComplete: selectedNetwork && selectedAddress && selectedContract
     },
     {
       id: "S2",
       title: "Enter Additional Info",
-      href: `/v/${selectedAddress}/${selectedContract}/${selectedNetwork}`,
-      isActive: selectedAddress && selectedContract && selectedNetwork,
-      isComplete: selectedAddress && selectedContract && selectedNetwork &&
+      href: `/v/${selectedNetwork}/${selectedAddress}/${selectedContract}`,
+      isActive: selectedNetwork && selectedAddress && selectedContract,
+      isComplete: selectedNetwork && selectedAddress && selectedContract &&
         sampleAddress && publicPath
     },
     {
       id: "S3",
       title: "Review Metadata",
-      href: `/v/${selectedAddress}/${selectedContract}/${selectedNetwork}?path=${publicPath}&sampleAddress=${sampleAddress}`,
-      isActive: selectedAddress && selectedContract && selectedNetwork &&
+      href: `/v/${selectedNetwork}/${selectedAddress}/${selectedContract}?path=${publicPath}&sampleAddress=${sampleAddress}`,
+      isActive: selectedNetwork && selectedAddress && selectedContract &&
         sampleAddress && publicPath,
-      isComplete: selectedAddress && selectedContract && selectedNetwork &&
+      isComplete: selectedNetwork && selectedAddress && selectedContract &&
         sampleAddress && publicPath && confirmed
     },
     {
       id: "S4",
       title: "Add to Catalog",
       onClick: () => { },
-      isActive: selectedAddress && selectedContract && selectedNetwork &&
+      isActive: selectedNetwork && selectedAddress && selectedContract &&
         sampleAddress && publicPath && confirmed,
       isComplete: false
     }
@@ -65,7 +65,7 @@ export default function ({
             <ContractSelect
               selectContract={(contractAddress: String, contractName: string, network: string) => {
                 changeFCLEnvironment(network as Network)
-                navigate(`/v/${contractAddress}/${contractName}/${network}`);
+                navigate(`/v/${network}/${contractAddress}/${contractName}`);
               }}
             />
           )
