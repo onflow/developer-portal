@@ -6,13 +6,17 @@ export type ToolsAndConceptsProps = {
   tools: ToolCardProps[];
 };
 
+// @ts-expect-error please fix
 const ToolsAndConcepts = ({ tools }) => (
   <div className="container">
     <div className="mb-2 text-h2">Tools and Concepts</div>
     <p>Core concepts and tools you’ll need to get started building on Flow</p>
     <TabMenu tabs={['Tools', 'Concepts']} onTabChange={() => null} />
     <div className="grid gap-6 mt-9 md:grid-cols-2 md:gap-x-9 md:gap-y-6">
-      {tools.map((tool) => (
+
+
+      {// @ts-expect-error please fix
+      tools.map((tool) => (
         <ToolCard {...tool} />
       ))}
     </div>

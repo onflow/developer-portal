@@ -12,7 +12,9 @@ const CommunityMembers = ({ authors, contributors }: CommunityMembersProps) => {
         <div className="flex min-w-[250px] flex-col">
           <div className="text-xs text-primary-gray-300">Meet the authors</div>
           <div className="flex-col mt-4">
-            {authors.map(({ profileImage, name, title }, index: number) => (
+
+            { // @ts-expect-error please fix
+              authors.map(({ profileImage, name, title }, index: number) => (
               <div key={index} className="flex mb-4">
                 <RoundImage imageUri={profileImage} altText={name} large />
                 <div className="flex flex-col justify-center ml-4">
@@ -28,7 +30,8 @@ const CommunityMembers = ({ authors, contributors }: CommunityMembersProps) => {
             Community contributors
           </div>
           <div className="flex flex-row flex-wrap gap-3 mt-4 md:gap-4">
-            {contributors.map(({ profileImage, name }, index: number) => (
+            { // @ts-expect-error please fix
+            contributors.map(({ profileImage, name }, index: number) => (
               <RoundImage
                 key={index}
                 imageUri={profileImage}

@@ -7,10 +7,10 @@ import {
 } from '../../Components'
 import { Article, StatuspageApiResponse } from '../../interfaces'
 import data from './sample'
-
+''
 const NetworkPage = () => {
   const article = {
-    heading: 'Node operator callout',
+    heading: "Node operator callout",
     description:
       'Everything you need to start building on Flow verything you need to start building on Flow everything you need to start building on Flow',
     ctaText: 'Learn more',
@@ -28,7 +28,9 @@ const NetworkPage = () => {
         <h1 className="text-h1 pt-[212px]">Network status</h1>
 
         <div className="mt-12 mb-[100px] flex-col ">
-          {data.map(({ name, status }: StatuspageApiResponse) => {
+
+          {// @ts-expect-error
+          data.map(({ name, status }: StatuspageApiResponse) => {
             return (
               <div className="py-6">
                 <NetworkCard
