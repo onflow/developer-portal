@@ -10,30 +10,46 @@ permissions:
   actions: write
   contents: read
 
+jobs:
+  prettier:
+    name: Prettier
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v3
+      - uses: actions/setup-node@v3
+        with:
+          cache: 'yarn'
+      - name: Install modules
+        run: yarn install
+      - name: Formatting
+        working-directory: apps/flow-docs # TODO: format entire repo with prettier
+        run: yarn format:check
+
   lint:
     name: ⬣ ESLint
     runs-on: ubuntu-latest
     steps:
-      - name: 🛑 Cancel Previous Runs
-        uses: styfle/cancel-workflow-action@0.9.1
-
-      - name: ⎔ Setup node
-        uses: actions/setup-node@v3
+      - uses: actions/checkout@v3
+      - uses: actions/setup-node@v3
         with:
-          node-version: 16
+          cache: 'yarn'
+      - name: Install modules
+        run: yarn install
+      - name: Eslint
+        run: yarn lint
 
-      - name: ⬇️ Checkout repo
-        uses: actions/checkout@v3
-
-      - name: Install deps
-        uses: borales/actions-yarn@v2.3.0
+  typecheck:
+    name: ʦ TypeScript
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v3
+      - uses: actions/setup-node@v3
         with:
-          cmd: install
-
-      - name: Lint project
-        uses: borales/actions-yarn@v2.3.0
-        with:
-          cmd: lint
+          cache: 'yarn'
+      - name: Install modules
+        run: yarn install
+      - name: Typescript
+        run: yarn typescheck
 
   vitest:
     name: ⚡ Vitest
