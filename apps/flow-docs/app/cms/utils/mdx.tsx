@@ -2,7 +2,6 @@ import {
   Heading,
   HeadingProps,
   InputProps,
-  InternalCodeblock,
   Link,
   StaticCheckbox,
 } from "@flow-docs/ui"
@@ -299,8 +298,7 @@ const mdxComponents = {
   h6: (props: HeadingProps) => <Heading type="h6" {...props} />,
   // pre: ({ children }: { children: React.ReactNode }) => {
   //   // TODO: pass code string as rawText for copy to clipboard functionality
-  //   // TODO: @reach/dialog raises error from remix
-  //   // return <InternalCodeblock rawText="TODO" children={children} />
+  //   return <InternalCodeblock rawText="TODO" children={children} />
   // },
 }
 
