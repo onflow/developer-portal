@@ -1,6 +1,6 @@
 import { Meta, Story } from '@storybook/react';
 import ToolsPage, { ToolsPageProps } from '.';
-import { ReactComponent as CadenceIcon } from '../../../../images/tools/tool-cadence.svg';
+import { ReactComponent as CadenceIcon } from '../../../../images/tools/tool-cadence';
 
 export default {
   component: ToolsPage,
