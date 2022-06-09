@@ -23,9 +23,7 @@ You'll need to acquire the project's `.env` file before continuing.
 
 
 1) `yarn`
-2) `yarn prisma generate --schema ./apps/flow-docs/prisma/schema.prisma`
 4) `docker compose up -d` To start Redis and Postgres for the project. (use this when not running Postgres & Redis from your system)
-5) `cd apps/flow-docs` & `yarn prisma migrate dev`
 6) (From project root) `yarn nx run flow-docs:build`
 
 

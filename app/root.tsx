@@ -21,7 +21,6 @@ import {
   ThemeProvider,
   useTheme,
 } from "~/cms/utils/theme.provider"
-import { getUser } from "./session.server"
 import styles from "./styles/main.css"
 import { getThemeSession } from "./theme.server"
 
@@ -38,7 +37,6 @@ export const meta: MetaFunction = () => ({
 })
 
 export type LoaderData = {
-  user: Awaited<ReturnType<typeof getUser>>
   theme: Theme | null
 }
 
@@ -46,7 +44,6 @@ export const loader: LoaderFunction = async ({ request }) => {
   const themeSession = await getThemeSession(request)
 
   return json<LoaderData>({
-    user: await getUser(request),
     theme: themeSession.getTheme(),
   })
 }
