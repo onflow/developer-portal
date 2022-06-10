@@ -1,8 +1,8 @@
-import { ReactComponent as FclIcon } from "../../../../images/tools/tool-fcl.svg"
-import { ReactComponent as CadenceIcon } from "../../../../images/tools/tool-cadence.svg"
-import { ReactComponent as FlowPortIcon } from "../../../../images/tools/tool-port.svg"
-import { ReactComponent as EmulatorIcon } from "../../../../images/tools/tool-emulator.svg"
-import { ReactComponent as FLOWCLIIcon } from "../../../../images/tools/tool-cli.svg"
+import { ReactComponent as FclIcon } from "../../../../images/tools/tool-fcl"
+import { ReactComponent as CadenceIcon } from "../../../../images/tools/tool-cadence"
+import { ReactComponent as FlowPortIcon } from "../../../../images/tools/tool-port"
+import { ReactComponent as EmulatorIcon } from "../../../../images/tools/tool-emulator"
+import { ReactComponent as FLOWCLIIcon } from "../../../../images/tools/tool-cli"
 
 export const data = {
   landingHeaderItems: {
