@@ -4,7 +4,7 @@ module.exports = {
     "../app/ui/design-system/**/*.stories.mdx",
     "../app/ui/design-system/**/*.stories.@(js|jsx|ts|tsx)",
   ],
-  staticDirs: [{ from: '../fonts', to: '/fonts' }, { from: '../images', to: '/images'}],
+  staticDirs: [{ from: '../app/ui/design-system/fonts', to: '/fonts' }, { from: '../app/ui/design-system/images', to: '/images'}],
   addons: [
     "@storybook/addon-links",
     "@storybook/addon-essentials",
