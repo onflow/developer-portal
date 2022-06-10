@@ -1,16 +1,16 @@
 import { Meta, Story } from '@storybook/react';
 import { GettingStartedPage, GettingStartedPageProps } from '.';
-import { ReactComponent as CadenceIcon } from '../../../../images/tools/tool-cadence.svg';
-import { ReactComponent as FCLIcon } from '../../../../images/tools/tool-fcl.svg';
-import { ReactComponent as FlowPortIcon } from '../../../../images/tools/tool-port.svg';
-import { ReactComponent as EmulatorIcon } from '../../../../images/tools/tool-emulator.svg';
-import { ReactComponent as FLOWCLIIcon } from '../../../../images/tools/tool-cli.svg';
+import { ReactComponent as CadenceIcon } from '../../../../images/tools/tool-cadence';
+import { ReactComponent as FCLIcon } from '../../../../images/tools/tool-fcl';
+import { ReactComponent as FlowPortIcon } from '../../../../images/tools/tool-port';
+import { ReactComponent as EmulatorIcon } from '../../../../images/tools/tool-emulator';
+import { ReactComponent as FLOWCLIIcon } from '../../../../images/tools/tool-cli';
 
-import { ReactComponent as ElixirIcon } from '../../../../images/sdk/elixir.svg';
-import { ReactComponent as GoIcon } from '../../../../images/sdk/go.svg';
-import { ReactComponent as RustIcon } from '../../../../images/sdk/rust.svg';
-import { ReactComponent as SwiftIcon } from '../../../../images/sdk/swift.svg';
-import { ReactComponent as NetIcon } from '../../../../images/sdk/net.svg';
+import { ReactComponent as ElixirIcon } from '../../../../images/sdk/elixir';
+import { ReactComponent as GoIcon } from '../../../../images/sdk/go';
+import { ReactComponent as RustIcon } from '../../../../images/sdk/rust';
+import { ReactComponent as SwiftIcon } from '../../../../images/sdk/swift';
+import { ReactComponent as NetIcon } from '../../../../images/sdk/net';
 
 import { svgToDataUri } from '../../Components/LinkCard2Column/LinkCard2Column.stories';
 

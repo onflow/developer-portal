@@ -1,0 +1,31 @@
+{
+  "include": ["remix.env.d.ts", "**/*.ts", "**/*.tsx"],
+  "compilerOptions": {
+    "lib": ["DOM", "DOM.Iterable", "ES2021"],
+    "isolatedModules": true,
+    "esModuleInterop": true,
+    "jsx": "react-jsx",
+    "moduleResolution": "node",
+    "resolveJsonModule": true,
+    "target": "ES2019",
+    "strict": true,
+    "allowJs": true,
+    "forceConsistentCasingInFileNames": true,
+    "baseUrl": ".",
+    "paths": {
+      "~/libs/*": ["./libs/*"],
+      "~/*": ["./app/*"]
+    },
+
+    // Remix takes care of building everything in `remix build`.
+    "noEmit": true,
+    "skipLibCheck": true,
+    "skipDefaultLibCheck": true,
+
+    // is this ok?
+    "module": "esnext"
+  },
+
+  // TODO: fix type errors in storybook files
+  "exclude": ["libs/design-system/**/*.stories.tsx"]
+}

@@ -1,55 +1,60 @@
 # base node image
-#######################
-FROM node:16 as base
-#######################
-
-# set for base and all layer that inherit from it
-ENV NODE_ENV production
+FROM node:16-bullseye-slim as base
 
 # Install openssl for Prisma
 RUN apt-get update && apt-get install -y openssl
 
-#######################
+# Install all node_modules, including dev dependencies
 FROM base as deps
-#######################
 
-RUN mkdir -p /project/apps/flow-docs
+RUN mkdir /app
+WORKDIR /app
 
-WORKDIR /project/
+ADD package.json yarn.lock ./
+RUN yarn install --production=false
 
-WORKDIR /project/
-ADD package.json yarn.lock /app/
-RUN yarn
+# Setup production node_modules
+FROM base as production-deps
 
-WORKDIR /project/apps/flow-docs
-ADD ./apps/flow-docs/package.json /project/apps/flow-docs/
-RUN yarn --modules-folder ./node_modules
+RUN mkdir /app
+WORKDIR /app
 
+COPY --from=deps /app/node_modules /app/node_modules
+ADD package.json yarn.lock ./
+# RUN npm prune --production
 
-#######################
-FROM deps as build
-#######################
+# Build the app
+FROM base as build
 
-RUN mkdir -p /project/apps/flow-docs
+ENV NODE_ENV=production
 
-COPY --from=deps /project/node_modules /project/node_modules
-COPY --from=deps /project/apps/flow-docs/node_modules /project/apps/flow-docs/node_modules
+RUN mkdir /app
+WORKDIR /app
 
-ADD package.json /project/
-ADD ./apps/flow-docs/package.json  /project/apps/flow-docs/
+COPY --from=deps /app/node_modules /app/node_modules
 
-WORKDIR /project/
-
-#### Adds mising dependencies. Not sure why they are missing :(
-#### I suspect because we need to move all deps under "dependencies" in package.json
-#### These are the NX (monorepo) build tools, tailwind cli, remix cli, prisma cli.
-RUN yarn add prisma nx @nrwl/web @nrwl/react @types/react remix tailwindcss @remix-run/dev @rollup/plugin-url @svgr/rollup @tailwindcss/typography @tailwindcss/forms @tailwindcss/line-clamp @tailwindcss/aspect-ratio --dev -W
-####
+# If we're using Prisma, uncomment to cache the prisma schema
+# ADD prisma .
+# RUN npx prisma generate
 
 ADD . .
-RUN yarn nx run flow-docs:build
+RUN yarn run build
 
-WORKDIR /project/apps/flow-docs/
-RUN yarn prisma generate 
+# Finally, build the production image with minimal footprint
+FROM base
 
-CMD ["yarn", "start"]
+ENV NODE_ENV=production
+
+RUN mkdir /app
+WORKDIR /app
+
+COPY --from=production-deps /app/node_modules /app/node_modules
+
+# Uncomment if using Prisma
+# COPY --from=build /app/node_modules/.prisma /app/node_modules/.prisma
+
+COPY --from=build /app/build /app/build
+COPY --from=build /app/public /app/public
+ADD . .
+
+CMD ["yarn", "run", "start"]

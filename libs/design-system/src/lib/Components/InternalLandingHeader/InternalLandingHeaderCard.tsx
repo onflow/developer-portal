@@ -1,4 +1,4 @@
-import { ReactComponent as ChevronRight } from '../../../../images/arrows/chevron-right.svg';
+import { ReactComponent as ChevronRight } from '../../../../images/arrows/chevron-right';
 import Tag from '../Tag';
 
 export type InternalLandingHeaderCardProps = {

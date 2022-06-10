@@ -1,5 +1,5 @@
  
-import { ReactComponent as CommentIcon } from '../../../../images/arrows/message-circle.svg';
+import { ReactComponent as CommentIcon } from '../../../../images/arrows/message-circle';
 import RoundImage from '../RoundImage';
 
 export type User = {

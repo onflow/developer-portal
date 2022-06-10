@@ -1,5 +1,5 @@
 import clsx from 'clsx';
-import { ReactComponent as Close } from '../../../../images/action/close.svg';
+import { ReactComponent as Close } from '../../../../images/action/close';
 
 export type ToggleButtonProps = React.ComponentPropsWithoutRef<'button'> & {
   isSelected?: boolean;

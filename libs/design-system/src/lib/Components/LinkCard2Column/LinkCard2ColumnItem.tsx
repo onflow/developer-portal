@@ -1,5 +1,5 @@
-import { ReactComponent as ChevronRight } from '../../../../images/arrows/chevron-right.svg';
-import { ReactComponent as ExternalLinkIcon } from '../../../../images/content/external-link.svg';
+import { ReactComponent as ChevronRight } from '../../../../images/arrows/chevron-right';
+import { ReactComponent as ExternalLinkIcon } from '../../../../images/content/external-link';
 import { isLinkExternal } from '../Link/isLinkExternal';
 import { LinkCard2ColumnItemContainer } from './LinkCard2ColumnItemContainer';
 

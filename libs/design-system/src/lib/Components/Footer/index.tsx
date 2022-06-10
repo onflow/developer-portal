@@ -1,8 +1,8 @@
 import FlowDocsLogo from '../../../../images/logos/flow-docs-logo-light.svg';
-import { ReactComponent as OnFlowIcon } from '../../../../images/logos/flow-icon-bw-light.svg';
-import { ReactComponent as DiscordIcon } from '../../../../images/social/discord-light.svg';
-import { ReactComponent as ForumIcon } from '../../../../images/social/forum-light.svg';
-import { ReactComponent as GithubIcon } from '../../../../images/social/github-light.svg';
+import { ReactComponent as OnFlowIcon } from '../../../../images/logos/flow-icon-bw-light';
+import { ReactComponent as DiscordIcon } from '../../../../images/social/discord-light';
+import { ReactComponent as ForumIcon } from '../../../../images/social/forum-light';
+import { ReactComponent as GithubIcon } from '../../../../images/social/github-light';
 
 // reduce repetition of the section layout in Footer component
 const footerSections = [

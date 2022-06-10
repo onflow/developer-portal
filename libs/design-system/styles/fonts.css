@@ -3,7 +3,7 @@ Consider switching after we source the missing 600 weight */
 @font-face {
   font-family: 'Acumin Variable Concept';
   src: local('Acumin Variable Concept'),
-    url(/fonts/acumin-pro/AcuminVariableConcept.otf) format('opentype');
+    url(../fonts/acumin-pro/AcuminVariableConcept.otf) format('opentype');
   font-weight: 400 700;
 }
 
@@ -30,27 +30,27 @@ Consider switching after we source the missing 600 weight */
 @font-face {
   font-family: 'Termina';
   src: local('Termina'),
-    url(/fonts/termina/Termina-Regular.otf) format('opentype');
+    url(../fonts/termina/Termina-Regular.otf) format('opentype');
 }
 
 @font-face {
   font-family: 'Termina';
   src: local('Termina'),
-    url(/fonts/termina/Termina-Bold.otf) format('opentype');
+    url(../fonts/termina/Termina-Bold.otf) format('opentype');
   font-weight: 700;
 }
 
 @font-face {
   font-family: 'Termina';
   src: local('Termina'),
-    url(/fonts/termina/Termina-Heavy.otf) format('opentype');
+    url(../fonts/termina/Termina-Heavy.otf) format('opentype');
   font-weight: 800;
 }
 
 @font-face {
   font-family: 'IBM Plex Mono';
   src: local('IBM Plex Mono'),
-    url(/fonts/ibm-plex/IBMPlexMono-Regular.ttf) format('truetype');
+    url(../fonts/ibm-plex/IBMPlexMono-Regular.ttf) format('truetype');
 }
 
 .text-h1 {

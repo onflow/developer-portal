@@ -1,6 +1,13 @@
-// import {
-// import { ReactComponent as Check } from '../../../../images/action/check.svg';
-// import { ReactComponent as ChevronDown } from '../../../../images/arrows/chevron-down.svg';
+import {
+  Menu,
+  MenuButton,
+  MenuItem,
+  MenuItems,
+  MenuList,
+} from '@reach/menu-button';
+import clsx from 'clsx';
+import { ReactComponent as Check } from '../../../../images/action/check';
+import { ReactComponent as ChevronDown } from '../../../../images/arrows/chevron-down';
 
 export type Version = {
   name: string;
@@ -18,7 +25,7 @@ export function InternalVersionSelect({
 }: InternalVersionSelectProps) {
   return (
     <div className="flex items-center">
-      {/* <Menu>
+      <Menu>
         <MenuButton className="flex items-center text-sm text-primary-gray-300 hover:text-primary-gray-400 dark:text-primary-gray-200 dark:hover:text-primary-gray-100">
           Version {selectedVersionName}
           <div className="scale-75">
@@ -53,7 +60,7 @@ export function InternalVersionSelect({
             })}
           </MenuItems>
         </MenuList>
-      </Menu> */}
+      </Menu>
     </div>
   );
 }

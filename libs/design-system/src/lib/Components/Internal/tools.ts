@@ -1,18 +1,18 @@
-import { ReactComponent as CadenceGradientIcon } from '../../../../images/tools/tool-cadence-gradient.svg';
-import { ReactComponent as CadenceLandingIcon } from '../../../../images/tools/tool-cadence-landing.svg';
-import { ReactComponent as CadenceIcon } from '../../../../images/tools/tool-cadence.svg';
-import { ReactComponent as CliGradientIcon } from '../../../../images/tools/tool-cli-gradient.svg';
-import { ReactComponent as CliIcon } from '../../../../images/tools/tool-cli.svg';
-import { ReactComponent as EmulatorGradientIcon } from '../../../../images/tools/tool-emulator-gradient.svg';
-import { ReactComponent as EmulatorIcon } from '../../../../images/tools/tool-emulator.svg';
-import { ReactComponent as FclGradientIcon } from '../../../../images/tools/tool-fcl-gradient.svg';
-import { ReactComponent as FclIcon } from '../../../../images/tools/tool-fcl.svg';
-import { ReactComponent as PortGradientIcon } from '../../../../images/tools/tool-port-gradient.svg';
-import { ReactComponent as PortIcon } from '../../../../images/tools/tool-port.svg';
-import { ReactComponent as TestingGradientIcon } from '../../../../images/tools/tool-testing-gradient.svg';
-import { ReactComponent as TestingIcon } from '../../../../images/tools/tool-testing.svg';
-import { ReactComponent as VsCodeGradientIcon } from '../../../../images/tools/tool-vscode-gradient.svg';
-import { ReactComponent as VsCodeIcon } from '../../../../images/tools/tool-vscode.svg';
+import { ReactComponent as CadenceGradientIcon } from '../../../../images/tools/tool-cadence-gradient';
+import { ReactComponent as CadenceLandingIcon } from '../../../../images/tools/tool-cadence-landing';
+import { ReactComponent as CadenceIcon } from '../../../../images/tools/tool-cadence';
+import { ReactComponent as CliGradientIcon } from '../../../../images/tools/tool-cli-gradient';
+import { ReactComponent as CliIcon } from '../../../../images/tools/tool-cli';
+import { ReactComponent as EmulatorGradientIcon } from '../../../../images/tools/tool-emulator-gradient';
+import { ReactComponent as EmulatorIcon } from '../../../../images/tools/tool-emulator';
+import { ReactComponent as FclGradientIcon } from '../../../../images/tools/tool-fcl-gradient';
+import { ReactComponent as FclIcon } from '../../../../images/tools/tool-fcl';
+import { ReactComponent as PortGradientIcon } from '../../../../images/tools/tool-port-gradient';
+import { ReactComponent as PortIcon } from '../../../../images/tools/tool-port';
+import { ReactComponent as TestingGradientIcon } from '../../../../images/tools/tool-testing-gradient';
+import { ReactComponent as TestingIcon } from '../../../../images/tools/tool-testing';
+import { ReactComponent as VsCodeGradientIcon } from '../../../../images/tools/tool-vscode-gradient';
+import { ReactComponent as VsCodeIcon } from '../../../../images/tools/tool-vscode';
 
 // TODO: iconLanding icons are placeholders until we have the assets
 

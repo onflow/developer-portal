@@ -1,4 +1,4 @@
-import { ReactComponent as Filter } from '../../../../images/action/filter2.svg';
+import { ReactComponent as Filter } from '../../../../images/action/filter2';
 import { LandingHeader } from '../../Components/LandingHeader';
 import { SocialLinksSignup } from '../../Components';
 import { ButtonLink } from '../../Components/Button';
@@ -50,9 +50,14 @@ export function LearnPage({
     [allTutorials, filters]
   );
 
-  const tags = Array.from(
-    new Set(allTutorials.reduce((acc, { tags }) => [...acc, ...tags], []))
-  ).sort();
+  const tags: Array<string> = Array.from(
+    new Set(
+      allTutorials.reduce(
+        (acc, { tags }) => [...acc, ...tags],
+        [] as Array<string>
+      )
+    )
+  ).sort()
 
   return (
     <PageBackground>

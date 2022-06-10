@@ -1,6 +1,6 @@
 import clsx from 'clsx';
  
-import { ReactComponent as ChevronRightIcon } from '../../../../images/arrows/chevron-right.svg';
+import { ReactComponent as ChevronRightIcon } from '../../../../images/arrows/chevron-right';
 
 export type NetworkCardProps = {
   networkName: string;

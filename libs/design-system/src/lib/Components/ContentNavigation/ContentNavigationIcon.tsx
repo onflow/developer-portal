@@ -1,10 +1,10 @@
-import { ReactComponent as Bug } from '../../../../images/page/bug.svg';
-import { ReactComponent as Community } from '../../../../images/page/community.svg';
-import { ReactComponent as Concepts } from '../../../../images/page/concepts.svg';
-import { ReactComponent as Funding } from '../../../../images/page/funding.svg';
-import { ReactComponent as GettingStarted } from '../../../../images/page/get-started.svg';
-import { ReactComponent as Learn } from '../../../../images/page/learn.svg';
-import { ReactComponent as Tools } from '../../../../images/page/tools.svg';
+import { ReactComponent as Bug } from '../../../../images/page/bug';
+import { ReactComponent as Community } from '../../../../images/page/community';
+import { ReactComponent as Concepts } from '../../../../images/page/concepts';
+import { ReactComponent as Funding } from '../../../../images/page/funding';
+import { ReactComponent as GettingStarted } from '../../../../images/page/get-started';
+import { ReactComponent as Learn } from '../../../../images/page/learn';
+import { ReactComponent as Tools } from '../../../../images/page/tools';
 
 export type ContentNavigationIconProps = {
   icon:

@@ -1,7 +1,7 @@
 import { Meta, Story } from '@storybook/react';
 import { LinkCard2Column, LinkCard2ColumnProps } from '.';
 import { renderToStaticMarkup } from 'react-dom/server';
-import { ReactComponent as CadenceIcon } from '../../../../images/tools/tool-cadence-gradient.svg';
+import { ReactComponent as CadenceIcon } from '../../../../images/tools/tool-cadence-gradient';
 import KittyItemsImg from '../../../../images/content/kitty-items@3x.png';
 
 export const svgToDataUri = (

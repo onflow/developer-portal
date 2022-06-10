@@ -1,8 +1,8 @@
 import { useState } from 'react';
 import clsx from 'clsx';
 
-import { ReactComponent as ChevronRight } from '../../../../images/arrows/chevron-right.svg';
-import { ReactComponent as ChevronDown } from '../../../../images/arrows/chevron-down.svg';
+import { ReactComponent as ChevronRight } from '../../../../images/arrows/chevron-right';
+import { ReactComponent as ChevronDown } from '../../../../images/arrows/chevron-down';
 
 export interface IFAQ {
   question: string;

@@ -1,8 +1,8 @@
 import { Meta, Story } from '@storybook/react';
 import { LinkCard3Column, LinkCard3ColumnProps } from '.';
-import { ReactComponent as UseCaseIcon } from '../../../../images/content/use-cases.svg';
-import { ReactComponent as EcosystemIcon } from '../../../../images/content/ecosystem.svg';
-import { ReactComponent as SDKIcon } from '../../../../images/content/sdk.svg';
+import { ReactComponent as UseCaseIcon } from '../../../../images/content/use-cases';
+import { ReactComponent as EcosystemIcon } from '../../../../images/content/ecosystem';
+import { ReactComponent as SDKIcon } from '../../../../images/content/sdk';
 
 export default {
   component: LinkCard3Column,

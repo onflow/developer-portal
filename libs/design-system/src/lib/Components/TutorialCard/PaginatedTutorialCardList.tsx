@@ -45,7 +45,9 @@ export const PaginatedTutorialCardList = ({
 
   return (
     <div className={className}>
-      <div className="mb-4 grid grid-cols-1 gap-6 md:grid-cols-4" ref={topRef}>
+      <div className="mb-4 grid grid-cols-1 gap-6 md:grid-cols-4"
+      // @ts-expect-error please fix
+      ref={topRef}>
         {tutorials
           .slice((page - 1) * pageSize, page * pageSize)
           .map((tutorialProps, index) => (

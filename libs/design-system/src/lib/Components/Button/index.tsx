@@ -1,6 +1,6 @@
 import clsx from 'clsx';
-import { ReactComponent as ChevronRightIcon } from '../../../../images/arrows/chevron-right-sm.svg';
-import { ReactComponent as ExternalLinkIcon } from '../../../../images/content/external-link-variant.svg';
+import { ReactComponent as ChevronRightIcon } from '../../../../images/arrows/chevron-right-sm';
+import { ReactComponent as ExternalLinkIcon } from '../../../../images/content/external-link-variant';
 
 const BASE_CLASSES =
   'inline-flex items-center justify-center font-semibold text-center border hover:shadow-2xl';

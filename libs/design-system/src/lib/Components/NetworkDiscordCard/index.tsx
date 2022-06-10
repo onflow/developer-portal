@@ -1,7 +1,7 @@
  
 import { formatDistance } from 'date-fns';
-import { ReactComponent as ExternalLinkIcon } from '../../../../images/content/external-link.svg';
-import { ReactComponent as TimeIcon } from '../../../../images/content/date.svg';
+import { ReactComponent as ExternalLinkIcon } from '../../../../images/content/external-link';
+import { ReactComponent as TimeIcon } from '../../../../images/content/date';
 
 export type NetworkDiscordCardProps = {
   message: string;

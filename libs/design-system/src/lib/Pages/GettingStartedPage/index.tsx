@@ -8,7 +8,7 @@ import {
 } from '../../Components/LinkCard2Column';
 import { SocialLinksSignup } from '../../Components';
 import { SDKCard, SDKCardProps } from '../../Components/SDKCard';
-import { Button, ButtonLink } from '../../Components/Button';
+import { ButtonLink } from '../../Components/Button';
 import FeaturedArticleCard, {
   FeaturedArticleCardProps,
 } from '../../Components/FeaturedArticleCard';
@@ -21,8 +21,8 @@ import {
   LinkCard3Column,
   LinkCard3ColumnProps,
 } from '../../Components/LinkCard3Column';
-import { ReactComponent as GitHubIcon } from '../../../../images/social/github.svg';
-import { ReactComponent as DiscordIcon } from '../../../../images/social/discord.svg';
+import { ReactComponent as GitHubIcon } from '../../../../images/social/github';
+import { ReactComponent as DiscordIcon } from '../../../../images/social/discord';
 
 export interface GettingStartedPageProps {
   landingHeaderItems: LandingHeaderProps;

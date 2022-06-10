@@ -1,6 +1,6 @@
 import { ReactElement } from 'react';
 
-import { ReactComponent as StarIcon } from '../../../../images/action/star.svg';
+import { ReactComponent as StarIcon } from '../../../../images/action/star';
 import Tag from '../Tag';
 
 export interface ToolCardProps {

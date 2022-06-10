@@ -1,4 +1,4 @@
-import { ReactComponent as ExternalLinkIcon } from '../../../../images/content/external-link.svg';
+import { ReactComponent as ExternalLinkIcon } from '../../../../images/content/external-link';
 import clsx from 'clsx';
 import { isLinkExternal } from '../Link/isLinkExternal';
 

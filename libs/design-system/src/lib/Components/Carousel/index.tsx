@@ -62,6 +62,7 @@ export function Carousel({
           }
         )}
         onScroll={onScrollHandler}
+        // @ts-expect-error please fix
         ref={scrollContainer}
       >
         {React.Children.map(children, (child, index) => (
