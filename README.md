@@ -1,8 +1,4 @@
-
-
 # FlowDocs
-
-This project was generated using [Nx](https://nx.dev).
 
 ## Get Started
 
@@ -28,11 +24,11 @@ You'll need to acquire the project's `.env` file before continuing.
 
 ### Running Storybook
 
-1) `yarn run storybook`
+1) `yarn storybook`
 
 ### Running the Docs Site
 
-1) `yarn nx run flow-docs:dev`  
+1) `yarn dev`  
 
 
 # Development
@@ -47,11 +43,11 @@ You'll need to acquire the project's `.env` file before continuing.
 
 ### Building the Design System
 
-- Do not import anything from `@remix/**` or any components/code form the `flow-docs` project into the design system. The design system is meant to be standalone, and re-usable shold we change application platforms.
+- Do not import anything from `@remix/**` or any components/code form the app project into the design system. The design system is meant to be standalone, and re-usable shold we change application platforms.
 
 ### Environment Variables
 
-- Any new environemnt variable added to `.env` in `flow-docs` should also be added to the `docker-compose.yml`
+- Any new environemnt variable added to `.env` should also be added to the `docker-compose.yml`
 
 ## Documentation Sources
 The doc site pull the markdown files existing in various `onflow` repositories. To see the Github Actions that triggers processing of the markdown files (i.e. refreshing cache), go to any of the repos and click on the `Actions` tab.
