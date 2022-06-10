@@ -23,7 +23,7 @@ const NetworkPage = () => {
   } as Article
 
   return (
-    <div className="w-full p-6 bg-primary-gray-50 dark:bg-black">
+    <div className="w-full bg-primary-gray-50 p-6 dark:bg-black">
       <div
         className="flex-col items-center bg-no-repeat"
         style={{ backgroundImage: `url(${networkGradientPath})` }}

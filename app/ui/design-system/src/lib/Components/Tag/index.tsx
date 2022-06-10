@@ -5,7 +5,7 @@ export type TagProps = {
 }
 
 const Tag = ({ name }: TagProps) => (
-  <span className="px-1 py-1 mr-2 font-mono text-xs rounded bg-primary-gray-50 text-primary-blue dark:bg-black dark:text-blue-dark">
+  <span className="mr-2 rounded bg-primary-gray-50 px-1 py-1 font-mono text-xs text-primary-blue dark:bg-black dark:text-blue-dark">
     #{name}
   </span>
 )

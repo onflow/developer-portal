@@ -55,7 +55,7 @@ const FlipCell = ({
         PARENT_GRID
       )}
     >
-      <div className="justify-end hidden md:flex">
+      <div className="hidden justify-end md:flex">
         <svg
           className="hidden md:inline-flex"
           width="36"

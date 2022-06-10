@@ -1,7 +1,7 @@
 /* TODO: styles only work in storybook */
 .mdx-content {
   & table {
-    @apply block overflow-x-auto border border-0 rounded-md whitespace-nowrap;
+    @apply block overflow-x-auto whitespace-nowrap rounded-md border border-0;
     border-collapse: separate;
     border-spacing: 0;
     position: relative;
@@ -37,7 +37,7 @@
   }
 
   & ol {
-    @apply pl-4 list-decimal;
+    @apply list-decimal pl-4;
   }
 
   & p {
@@ -45,7 +45,7 @@
   }
 
   & blockquote {
-    @apply px-6 py-2 border-l-4 border-l-gray-400 dark:border-l-gray-700;
+    @apply border-l-4 border-l-gray-400 px-6 py-2 dark:border-l-gray-700;
   }
 
   & blockquote p {
@@ -65,7 +65,7 @@
   }
 
   & .task-list-item {
-    @apply relative pl-8 mt-3;
+    @apply relative mt-3 pl-8;
   }
 
   &:not(pre) > code {
@@ -75,14 +75,14 @@
   }
 
   & section.footnotes {
-    @apply pt-4 mt-4 text-sm border-t border-primary-gray-100 text-primary-gray-300 dark:border-primary-gray-300 dark:text-primary-gray-100;
+    @apply mt-4 border-t border-primary-gray-100 pt-4 text-sm text-primary-gray-300 dark:border-primary-gray-300 dark:text-primary-gray-100;
 
     & h2 {
       @apply hidden;
     }
 
     & p {
-      @apply flex items-center mb-1;
+      @apply mb-1 flex items-center;
     }
 
     & .data-footnote-backref {

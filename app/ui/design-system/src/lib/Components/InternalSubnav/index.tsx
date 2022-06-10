@@ -13,7 +13,7 @@ export function InternalSubnav({
 }: InternalSubnavProps) {
   return (
     <div className="flex flex-1 flex-wrap items-center border-b border-b-primary-gray-100 bg-white py-2 dark:border-b-primary-gray-300 dark:bg-black md:min-h-[4rem]">
-      <div className="pr-2 mr-auto ">
+      <div className="mr-auto pr-2 ">
         <Breadcrumbs current={current} />
       </div>
       <div>

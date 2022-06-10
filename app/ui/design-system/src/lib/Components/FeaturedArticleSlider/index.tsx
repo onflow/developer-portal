@@ -26,7 +26,7 @@ const FeaturedArticle = ({
       </p>
       <ButtonLink
         href={ctaLink}
-        className="px-16 py-4 text-center text-white bg-black rounded-lg hover:cursor-pointer"
+        className="rounded-lg bg-black px-16 py-4 text-center text-white hover:cursor-pointer"
         variant="primary-no-darkmode"
       >
         {ctaText}
@@ -49,7 +49,7 @@ const FeaturedArticleSlider = ({
 }: FeaturedArticleSliderProps) => {
   return (
     <div className="container">
-      <div className="mb-10 text-h2">
+      <div className="text-h2 mb-10">
         Featured article{articles.length > 0 ? "s" : ""}
       </div>
 
