@@ -1,4 +1,5 @@
 /**
+ *
  * @type {import('@remix-run/dev').AppConfig}
  */
 module.exports = {
@@ -7,4 +8,37 @@ module.exports = {
   // assetsBuildDirectory: "public/build",
   // serverBuildPath: "build/index.js",
   // publicPath: "/build/",
-};
+  serverDependenciesToBundle: [
+    /^rehype.*/,
+    /^remark.*/,
+    /^unified.*/,
+    /^unist.*/,
+    /^hast.*/,
+    /^mdast.*/,
+    /^micromark.*/,
+    /^markdown.*/,
+    /^mdx.*/,
+    /^estree.*/,
+    /^character-.*/,
+    /^vfile.*/,
+    /^is-.*/,
+    /^@mdx-js.*/,
+    "@mdx-js/mdx",
+    "ccount",
+    "comma-separated-tokens",
+    "decode-named-character-reference",
+    "fault",
+    "html-whitespace-sensitive-tag-names",
+    "space-separated-tokens",
+    "stringify-entities",
+    "bail",
+    "property-information",
+    "trough",
+    "@fal-works/esbuild-plugin-global-externals",
+    "p-queue",
+    "p-timeout",
+    "parse-entities",
+    "periscopic",
+    "zwitch",
+  ],
+}
