@@ -52,7 +52,7 @@ jobs:
       - name: Install modules
         run: yarn install
       - name: Generate js from svg
-        run: yarn build:svg
+        run: yarn build:0-svg
       - name: Typescript
         run: yarn typecheck
 
