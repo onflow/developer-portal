@@ -82,7 +82,7 @@
     "start": "remix-serve build",
     "storybook": "run-p storybook:*",
     "storybook:css": "yarn dev:css",
-    "storybook:svg": "yarn dev:css",
+    "storybook:svg": "yarn dev:svg",
     "storybook:main": "start-storybook -p 6006",
     "typecheck": "tsc --noEmit",
     "lint": "eslint --ext .js,.jsx,.ts,.tsx --max-warnings 0 app libs"
