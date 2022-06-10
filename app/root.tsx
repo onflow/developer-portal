@@ -22,8 +22,8 @@ import {
   useTheme,
 } from "~/cms/utils/theme.provider"
 import styles from "./main.css"
+import { bodyClasses } from "./styles/sharedClasses"
 import { getThemeSession } from "./theme.server"
-
 import { Footer } from "./ui/design-system/src"
 
 export const links: LinksFunction = () => {
@@ -59,11 +59,7 @@ function App() {
         <Links />
         <ThemeHead ssrTheme={Boolean(data.theme)} />
       </head>
-      <body
-        className={clsx(
-          "h-full flex-col justify-between bg-white text-gray-900 dark:bg-black dark:text-white"
-        )}
-      >
+      <body className={bodyClasses}>
         <ThemeBody ssrTheme={Boolean(data.theme)} />
         {/* <MainNav /> */}
         <Outlet />

@@ -1,44 +1,44 @@
-import { Meta, Story } from '@storybook/react';
-import { ToggleButton, ToggleButtonProps } from '.';
+import { Meta, Story } from "@storybook/react"
+import { ToggleButton, ToggleButtonProps } from "."
 
 export default {
   component: ToggleButton,
-  title: 'Components/ToggleButton',
+  title: "Components/ToggleButton",
   args: {
-    variant: 'primary',
+    variant: "primary",
   },
   argTypes: {
     variant: {
-      options: ['primary', 'secondary'],
-      control: { type: 'select' },
+      options: ["primary", "secondary"],
+      control: { type: "select" },
     },
   },
-} as Meta;
+} as Meta
 
 const Template: Story<ToggleButtonProps> = (args) => {
   return (
     <div
       style={{
-        gap: '1rem',
-        padding: '1rem',
-        display: 'inline-flex',
-        flexDirection: 'column',
+        gap: "1rem",
+        padding: "1rem",
+        display: "inline-flex",
+        flexDirection: "column",
       }}
     >
       <ToggleButton>Not selected</ToggleButton>
       <ToggleButton isSelected={true}>Selected</ToggleButton>
     </div>
-  );
-};
+  )
+}
 
-export const Default = Template.bind({});
+export const Default = Template.bind({})
 Default.args = {
-  children: 'ToggleButton',
-};
-export const defaultDark = Template.bind({});
-defaultDark.args = Default.args;
+  children: "ToggleButton",
+}
+export const defaultDark = Template.bind({})
+defaultDark.args = Default.args
 defaultDark.parameters = {
-  themes: {
-    default: 'dark',
+  backgrounds: {
+    default: "dark",
   },
-};
+}

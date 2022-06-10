@@ -1,43 +1,43 @@
-import { Meta, Story } from '@storybook/react';
-import { InternalSubnav, InternalSubnavProps } from '.';
+import { Meta, Story } from "@storybook/react"
+import { InternalSubnav, InternalSubnavProps } from "."
 
 const VERSIONS = [
-  { name: '9.3', href: '#' },
-  { name: '9.2', href: '#' },
-  { name: '9.1', href: '#' },
-  { name: '9.0', href: '#' },
-  { name: '8.9', href: '#' },
-  { name: '8.8', href: '#' },
-];
+  { name: "9.3", href: "#" },
+  { name: "9.2", href: "#" },
+  { name: "9.1", href: "#" },
+  { name: "9.0", href: "#" },
+  { name: "8.9", href: "#" },
+  { name: "8.8", href: "#" },
+]
 
 export default {
   component: InternalSubnav,
-  title: 'Components/InternalSubnav',
-} as Meta;
+  title: "Components/InternalSubnav",
+} as Meta
 
 const Template: Story<InternalSubnavProps> = (args) => (
   <InternalSubnav {...args} />
-);
+)
 
-export const Default = Template.bind({});
+export const Default = Template.bind({})
 Default.args = {
-  current: 'Quick reference',
+  current: "Quick reference",
   versions: VERSIONS,
   selectedVersionName: VERSIONS[0].name,
-};
+}
 
-export const dark = Template.bind({});
-dark.args = Default.args;
+export const dark = Template.bind({})
+dark.args = Default.args
 dark.parameters = {
-  themes: {
-    default: 'dark',
+  backgrounds: {
+    default: "dark",
   },
-};
+}
 
-export const mobile = Template.bind({});
-mobile.args = { ...Default.args, current: 'Quick reference 2: A longer title' };
+export const mobile = Template.bind({})
+mobile.args = { ...Default.args, current: "Quick reference 2: A longer title" }
 mobile.parameters = {
   viewport: {
-    defaultViewport: 'xs',
+    defaultViewport: "xs",
   },
-};
+}

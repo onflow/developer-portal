@@ -1,34 +1,34 @@
-import { Meta, Story } from '@storybook/react';
-import { InternalSidebarMenu, InternalSidebarMenuProps } from '.';
+import { Meta, Story } from "@storybook/react"
+import { InternalSidebarMenu, InternalSidebarMenuProps } from "."
 
 export default {
   component: InternalSidebarMenu,
-  title: 'Components/InternalSidebarMenu',
-} as Meta;
+  title: "Components/InternalSidebarMenu",
+} as Meta
 
 const Template: Story<InternalSidebarMenuProps> = (args) => {
-  return <InternalSidebarMenu {...args} />;
-};
+  return <InternalSidebarMenu {...args} />
+}
 
-export const Default = Template.bind({});
+export const Default = Template.bind({})
 Default.args = {
-  selectedTool: 'fcl',
-};
+  selectedTool: "fcl",
+}
 
-export const dark = Template.bind({});
-dark.args = Default.args;
+export const dark = Template.bind({})
+dark.args = Default.args
 dark.parameters = {
-  themes: {
-    default: 'dark',
+  backgrounds: {
+    default: "dark",
   },
-};
+}
 
-export const mobile = Template.bind({});
+export const mobile = Template.bind({})
 mobile.args = {
-  selectedTool: 'port',
-};
+  selectedTool: "port",
+}
 mobile.parameters = {
   viewport: {
-    defaultViewport: 'xs',
+    defaultViewport: "xs",
   },
-};
+}

@@ -1,51 +1,51 @@
-import { Meta, Story } from '@storybook/react';
-import { LandingHeaderHome, LandingHeaderHomeProps } from '.';
+import { Meta, Story } from "@storybook/react"
+import { LandingHeaderHome, LandingHeaderHomeProps } from "."
 
 export default {
   component: LandingHeaderHome,
-  title: 'Components/LandingHeaderHome',
+  title: "Components/LandingHeaderHome",
   args: {
-    gradient: 'community',
+    gradient: "community",
   },
   argTypes: {
     gradient: {
       options: [
-        'community',
-        'concepts',
-        'getting-started',
-        'home',
-        'network',
-        'tools',
+        "community",
+        "concepts",
+        "getting-started",
+        "home",
+        "network",
+        "tools",
       ],
-      control: { type: 'select' },
+      control: { type: "select" },
     },
   },
-} as Meta;
+} as Meta
 
 const Template: Story<LandingHeaderHomeProps> = (args) => {
-  return <LandingHeaderHome {...args} />;
-};
+  return <LandingHeaderHome {...args} />
+}
 
-export const Default = Template.bind({});
+export const Default = Template.bind({})
 Default.args = {
-  title: 'Developer Portal',
+  title: "Developer Portal",
   description:
     "Understand the foundational concepts of Flow and it's language, Cadence",
-  tag: 'onflow',
-};
+  tag: "onflow",
+}
 
-export const DefaultMobile = Template.bind({});
-DefaultMobile.args = Default.args;
+export const DefaultMobile = Template.bind({})
+DefaultMobile.args = Default.args
 DefaultMobile.parameters = {
   viewport: {
-    defaultViewport: 'xs',
+    defaultViewport: "xs",
   },
-};
+}
 
-export const dark = Template.bind({});
-dark.args = Default.args;
+export const dark = Template.bind({})
+dark.args = Default.args
 dark.parameters = {
-  themes: {
-    default: 'dark',
+  backgrounds: {
+    default: "dark",
   },
-};
+}
