@@ -27,7 +27,7 @@ export function CatalogSelect({
       changeFCLEnvironment(network);
       // retrieve list of proposals or 
       if (type === 'Proposals') {
-        const proposals = await getProposals()
+        const proposals = await getProposals() || []
         const items = Object.keys(proposals).map((proposalID) => {
           const proposal = proposals[proposalID]
           return {
@@ -39,7 +39,7 @@ export function CatalogSelect({
         })
         setItems(items)
       } else if (type === 'Catalog') {
-        const catalogCollections = await getCollections()
+        const catalogCollections = await getCollections() || []
         const items = Object.keys(catalogCollections).map((catalogKey) => {
           const catalog = catalogCollections[catalogKey]
           return {
