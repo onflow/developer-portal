@@ -58,7 +58,7 @@ export function CatalogSelect({
     <a className="border-t-1 my-4">
       {
         items && items.map((item, i) => {
-          const selectedStyle = selected && item.id === selected ? 'border-x-blue-500 border-l-4' : ''
+          const selectedStyle = selected && item.id === selected ? 'border-x-primary-purple border-l-4' : ''
           return (
             <div key={i} className={`flex-col p-8 hover:bg-gray-300 cursor-pointer border-t-2 text-left ${selectedStyle}`} onClick={
               () => {

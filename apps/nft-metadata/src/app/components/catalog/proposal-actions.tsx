@@ -41,15 +41,19 @@ export function ProposalActions({ proposal, proposalID }: { proposal: any, propo
   if (!loggedIn) {
     return (
       <>
-        <a
-          className="cursor-pointer"
-          onClick={async () => {
-            await fcl.logIn()
-            setForceState(forceState + 1)
-          }}
+        <Button
+          key="login"
+          onClick={
+            async () => {
+              setLoading(true)
+              await fcl.logIn()
+              setForceState(forceState + 1)
+              setLoading(false)
+            }
+          }
         >
           Log In
-        </a>
+        </Button>
       </>
     )
   }
