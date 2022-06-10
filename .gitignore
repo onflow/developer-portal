@@ -53,5 +53,5 @@ node_modules
 /public/build
 .env
 
-/app/tailwind.css
+/app/main.css
 /app/ui/design-system/images/**/*.js

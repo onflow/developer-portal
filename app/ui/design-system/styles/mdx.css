@@ -90,7 +90,7 @@
     }
 
     & a {
-      @apply relative -top-[3px] inline-block h-6 w-6 bg-[url('../images/content/reference.svg')] bg-center bg-no-repeat opacity-100 hover:opacity-75 dark:invert;
+      @apply relative -top-[3px] inline-block h-6 w-6 bg-[url('/images/content/reference.svg')] bg-center bg-no-repeat opacity-100 hover:opacity-75 dark:invert;
       background-size: 16px 16px;
     }
   }

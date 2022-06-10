@@ -82,7 +82,7 @@
     "dev:svg": "yarn svgr --silent --template svgr/template.js --filename-case kebab --out-dir ./app/ui/design-system/images ./app/ui/design-system/images",
     "format:app": "prettier --write app",
     "format:check:app": "prettier --check app",
-    "generate:css": "postcss ./app/ui/design-system/styles/main.css -o app/tailwind.css",
+    "generate:css": "postcss ./app/ui/design-system/styles/main.css -o app/main.css",
     "start": "remix-serve build",
     "storybook": "run-p storybook:*",
     "storybook:css": "yarn dev:css",
