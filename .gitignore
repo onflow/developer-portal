@@ -54,4 +54,4 @@ node_modules
 .env
 
 /app/tailwind.css
-libs/design-system/images/**/*.js
+/app/ui/design-system/images/**/*.js

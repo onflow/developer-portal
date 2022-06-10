@@ -24,7 +24,7 @@ import {
 import styles from "./styles/main.css"
 import { getThemeSession } from "./theme.server"
 
-import { Footer } from "../libs/design-system/src"
+import { Footer } from "./ui/design-system/src"
 
 export const links: LinksFunction = () => {
   return [{ rel: "stylesheet", href: styles }]

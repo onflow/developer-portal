@@ -17,7 +17,7 @@ import {
   InputProps,
   Link,
   StaticCheckbox,
-} from "~/libs/design-system"
+} from "~/ui/design-system"
 import type { LoaderData as RootLoaderData } from "../../root"
 
 function typedBoolean<T>(

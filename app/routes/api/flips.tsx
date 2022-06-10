@@ -1,7 +1,7 @@
 import type { LoaderFunction } from "@remix-run/node"
 import { useLoaderData } from "@remix-run/react"
 import { Octokit } from "@octokit/core"
-import { FlipCellProps } from "libs/design-system/src/lib/Components/FlipCell"
+import { FlipCellProps } from "~/ui/design-system/src/lib/Components/FlipCell"
 
 export type LoaderData = FlipCellProps[]
 

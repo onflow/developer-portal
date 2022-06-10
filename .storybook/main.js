@@ -1,7 +1,7 @@
 module.exports = {
   stories: [
-    "../libs/design-system/**/*.stories.mdx",
-    "../libs/design-system/**/*.stories.@(js|jsx|ts|tsx)",
+    "../app/ui/design-system/**/*.stories.mdx",
+    "../app/ui/design-system/**/*.stories.@(js|jsx|ts|tsx)",
   ],
   addons: [
     "@storybook/addon-links",

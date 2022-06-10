@@ -1,5 +1,5 @@
 import { Octokit } from "@octokit/core"
-import { FlipCellProps } from "~/libs/design-system/src/lib/Components/FlipCell"
+import { FlipCellProps } from "~/ui/design-system/src/lib/Components/FlipCell"
 
 export const fetchFlips = async () => {
   const octokit = new Octokit({
