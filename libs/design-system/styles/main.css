@@ -1,18 +1,15 @@
-@import './backgrounds.css';
-@import './fonts.css';
-@import './colors.css';
-@import './mdx.css';
-/* TODO: */
-/* @import './docsearch.css'; */
+@import "./backgrounds.css";
+@import "./fonts.css";
+@import "./colors.css";
+@import "./mdx.css";
+@import "./docsearch.css";
 
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
-
 
 /* Add .divided-item-hover to .divide-y children to hide borders on hover */
 .divided-item-hover:hover,
 .divided-item-hover:hover + .divided-item-hover {
   @apply !border-transparent;
 }
-
