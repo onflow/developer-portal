@@ -45,9 +45,9 @@ const ToolsPage = ({
 
         <PageSection>
           <div className="container">
-            <div className="flex items-end justify-between mb-6 align-center">
+            <div className="align-center mb-6 flex items-end justify-between">
               <div>
-                <h2 className="mb-4 text-h2">Tools</h2>
+                <h2 className="text-h2 mb-4">Tools</h2>
                 <p className="text-primary-gray-300">
                   Blurb about tools and stuff
                 </p>
@@ -70,7 +70,7 @@ const ToolsPage = ({
             <ButtonLink
               rightIcon="right"
               variant="secondary"
-              className="w-full mt-6 md:hidden"
+              className="mt-6 w-full md:hidden"
               href="#"
             >
               View All Tools
@@ -80,9 +80,9 @@ const ToolsPage = ({
 
         <PageSection>
           <div className="container">
-            <div className="flex items-end justify-between mb-6 align-center">
+            <div className="align-center mb-6 flex items-end justify-between">
               <div>
-                <h2 className="mb-4 text-h2">SDKs</h2>
+                <h2 className="text-h2 mb-4">SDKs</h2>
                 <p className="text-primary-gray-300">
                   Blurb about SDKs and stuff
                 </p>
@@ -105,7 +105,7 @@ const ToolsPage = ({
             <ButtonLink
               rightIcon="right"
               variant="secondary"
-              className="w-full mt-6 md:hidden"
+              className="mt-6 w-full md:hidden"
               href="#"
             >
               View All SDKs
@@ -115,12 +115,12 @@ const ToolsPage = ({
 
         <PageSection>
           <div className="container">
-            <h2 className="mb-4 text-h2">APIs and Service</h2>
+            <h2 className="text-h2 mb-4">APIs and Service</h2>
             <p className="mb-6 text-primary-gray-300">
               Hosted APIs that provide access to the Flow network and related
               data (NFTs, events, etc).
             </p>
-            <div className="grid grid-flow-col gap-4 pb-6 overflow-x-scroll">
+            <div className="grid grid-flow-col gap-4 overflow-x-scroll pb-6">
               {apis &&
                 apis.map((api: TutorialCardProps, index: number) => (
                   <TutorialCard {...api} key={index} />
@@ -131,7 +131,7 @@ const ToolsPage = ({
 
         <PageSection>
           <div className="container">
-            <h4 className="mb-4 text-h4">Explore More Content</h4>
+            <h4 className="text-h4 mb-4">Explore More Content</h4>
             <div className="grid grid-cols-1 gap-4 md:grid-cols-3">
               {contentNavigationItems.map(
                 (contentNav: ContentNavigationProps, index: number) => (

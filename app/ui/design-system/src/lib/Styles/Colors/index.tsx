@@ -1,9 +1,9 @@
 const Section = ({ children }: { children: React.ReactNode }) => (
-  <div className="flex mb-6 mr-12 ">{children}</div>
+  <div className="mb-6 mr-12 flex ">{children}</div>
 )
 
 const Heading = ({ children }: { children: React.ReactNode }) => (
-  <div className="mb-4 text-h5">{children}</div>
+  <div className="text-h5 mb-4">{children}</div>
 )
 
 const Color = ({ name, className }: { name: string; className: string }) => (

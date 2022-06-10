@@ -8,7 +8,7 @@ export default {
 
 const Template: Story<ToolsAndConceptsProps> = (args) => {
   return (
-    <div className="p-6 bg-primary-gray-50 dark:bg-black">
+    <div className="bg-primary-gray-50 p-6 dark:bg-black">
       <ToolsAndConcepts {...args} />
     </div>
   )

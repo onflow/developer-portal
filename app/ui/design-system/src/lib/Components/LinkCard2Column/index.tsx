@@ -34,7 +34,7 @@ export function LinkCard2Column({
 
   return (
     <div className={classes}>
-      <div className="flex flex-col items-start flex-1 md:mr-20">
+      <div className="flex flex-1 flex-col items-start md:mr-20">
         {tags && (
           <div className="mb-1">
             {tags.map((tag) => (
@@ -42,19 +42,19 @@ export function LinkCard2Column({
             ))}
           </div>
         )}
-        <h2 className="my-2 text-h2 md:mb-3">{title}</h2>
+        <h2 className="text-h2 my-2 md:mb-3">{title}</h2>
         <p className="max-w-[18rem] overflow-hidden text-ellipsis	text-primary-gray-400 dark:text-primary-gray-100 lg:max-w-[36rem] xl:max-w-[38rem]">
           {description}
         </p>
         <ButtonLink
           href={buttonUrl}
-          className="px-8 py-3 mt-2 mb-10 md:mt-10"
+          className="mt-2 mb-10 px-8 py-3 md:mt-10"
           variant="primary-no-darkmode"
         >
           {buttonText}
         </ButtonLink>
       </div>
-      <div className="flex flex-col items-stretch flex-1 w-full">
+      <div className="flex w-full flex-1 flex-col items-stretch">
         {items.map((item) => (
           <LinkCard2ColumnItem key={item.title} {...item} />
         ))}

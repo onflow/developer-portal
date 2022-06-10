@@ -49,8 +49,8 @@ export function LinkCard2ColumnItem({
           />
         </div>
       )}
-      <div className="w-full pr-2 overflow-hidden">
-        <h3 className="mr-1 text-xl text-black text-semibold group-hover:opacity-75 dark:text-white">
+      <div className="w-full overflow-hidden pr-2">
+        <h3 className="text-semibold mr-1 text-xl text-black group-hover:opacity-75 dark:text-white">
           {title}
         </h3>
         <p className="mt-2 text-sm text-primary-gray-300 dark:text-primary-gray-200">
@@ -60,7 +60,7 @@ export function LinkCard2ColumnItem({
           <div className="mt-3">
             {links.map(({ title, href }) => (
               <a
-                className="flex items-center justify-between mb-1 text-sm font-semibold text-primary-blue hover:opacity-75 dark:text-blue-dark"
+                className="mb-1 flex items-center justify-between text-sm font-semibold text-primary-blue hover:opacity-75 dark:text-blue-dark"
                 key={title}
                 href={href}
               >
