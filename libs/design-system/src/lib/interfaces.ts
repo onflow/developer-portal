@@ -14,6 +14,7 @@ export interface StatuspageApiResponse {
   automation_email: string;
   start_date: string;
 }
+
 export interface SporkMetadata {
   accessNode: string;
   date: Date;
