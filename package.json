@@ -101,8 +101,7 @@
   },
   "sideEffects": false,
   "lint-staged": {
-    "*": "npx prettier --write .",
-    "*.{js,jsx,ts,tsx}": "eslint --cache --fix",
+    "*.{js,jsx,ts,tsx}": "eslint --fix",
     "*.{js,css,md}": "prettier --write"
   }
 }

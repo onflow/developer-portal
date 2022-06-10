@@ -2,3 +2,6 @@ app/main.css
 public/build/**/*
 .husky
 yarn.lock
+
+.eslintcache
+.prettierignore
