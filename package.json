@@ -55,17 +55,21 @@
     "autoprefixer": "^10.4.7",
     "babel-loader": "^8.2.5",
     "eslint": "^8.15.0",
+    "git-format-staged": "^3.0.0",
+    "husky": "^8.0.0",
+    "lint-staged": ">=10",
     "npm-run-all": "^4.1.5",
     "postcss": "^8.4.14",
     "postcss-cli": "^9.1.0",
     "postcss-import": "^14.1.0",
     "postcss-nesting": "^10.1.5",
+    "prettier": "^2.6.2",
     "tailwind-scrollbar-hide": "^1.1.7",
     "tailwindcss": "^3.1.0",
     "typescript": "^4.6.4"
   },
   "engines": {
-    "node": ">=14"
+    "node": ">=16"
   },
   "prettier": {
     "semi": false
@@ -92,7 +96,13 @@
     "storybook:svg": "yarn dev:svg",
     "storybook:main": "start-storybook -p 6006",
     "typecheck": "tsc --noEmit",
-    "lint": "eslint --ext .js,.jsx,.ts,.tsx --max-warnings 0 app"
+    "lint": "eslint --ext .js,.jsx,.ts,.tsx --max-warnings 0 app",
+    "prepare": "husky install"
   },
-  "sideEffects": false
+  "sideEffects": false,
+  "lint-staged": {
+    "*": "npx prettier --write .",
+    "*.{js,jsx,ts,tsx}": "eslint --cache --fix",
+    "*.{js,css,md}": "prettier --write"
+  }
 }
