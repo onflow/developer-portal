@@ -26,8 +26,7 @@ jobs:
       - name: Install modules
         run: yarn install
       - name: Formatting
-        working-directory: apps/flow-docs # TODO: format entire repo with prettier
-        run: yarn format:check
+        run: yarn format:check:app
 
   lint:
     name: ESLint

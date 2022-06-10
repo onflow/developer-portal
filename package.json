@@ -76,6 +76,7 @@
     "dev:remix": "remix dev",
     "dev:svg": "yarn svgr --silent --template svgr/template.js --filename-case kebab --out-dir ./libs/design-system/images ./libs/design-system/images",
     "format:app": "prettier --write app",
+    "format:check:app": "prettier --check app",
     "generate:css": "postcss ./libs/design-system/styles/main.css -o app/tailwind.css",
     "start": "remix-serve build",
     "storybook": "run-p storybook:*",
