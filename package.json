@@ -69,9 +69,9 @@
   "scripts": {
     "build": "run-s build:*",
     "build-storybook": "build-storybook",
+    "build:0-svg": "yarn svgr --silent --template svgr/template.js --filename-case kebab --out-dir ./libs/design-system/images ./libs/design-system/images",
     "build:css": "yarn generate:css -- --minify",
     "build:remix": "remix build",
-    "build:svg": "yarn svgr --silent --template svgr/template.js --filename-case kebab --out-dir ./libs/design-system/images ./libs/design-system/images",
     "dev": "run-p dev:*",
     "dev:css": "yarn generate:css -- --watch",
     "dev:remix": "remix dev",
