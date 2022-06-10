@@ -51,6 +51,8 @@ jobs:
           cache: 'yarn'
       - name: Install modules
         run: yarn install
+      - name: Generate js from svg
+        run: yarn build:svg
       - name: Typescript
         run: yarn typecheck
 
