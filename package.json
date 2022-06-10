@@ -100,6 +100,6 @@
   "sideEffects": false,
   "lint-staged": {
     "*.{js,jsx,ts,tsx}": "eslint --fix",
-    "*.{js,css,md}": "prettier --write"
+    "*.{js,css,md,jsx,ts,tsx}": "prettier --write"
   }
 }
