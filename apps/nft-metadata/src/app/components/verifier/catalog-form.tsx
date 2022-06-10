@@ -82,14 +82,14 @@ export function CatalogForm({ sampleAddress, publicPath }: CatalogProps) {
         <TextInput
           value={collectionIdentifier}
           updateValue={setCollectionIdentifier}
-          placeholder="e.g. goated_goats"
+          placeholder="e.g. ExampleNFT"
         />
         <br />
         <b>Enter a message with any additional information</b>
         <TextInput
           value={message}
           updateValue={setMessage}
-          placeholder="e.g. Hello, I am adding the Goated Goats collection to the catalog. You can reach me at..."
+          placeholder="e.g. Adding Example NFT to the catalog. For any questions, you can reach me at..."
         />
         <br />
         {loading ? <Spinner /> : <input

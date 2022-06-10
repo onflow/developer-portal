@@ -23,8 +23,6 @@ export function SampleNFTPrompt({
 
   useEffect(() => fcl.currentUser().subscribe(setUser), [])
 
-  console.log('user is', user);
-
   return (
     <form onSubmit={(e) => {
       e.preventDefault();
@@ -125,10 +123,11 @@ export function SampleNFTPrompt({
                 <a className="cursor-pointer hover:underline" onClick={() => { setShowLogIn(!showLogIn) }}>Click here </a>
                 to log in to an account that holds this NFT.
               </p>
-                <TextInput
-                  value={sampleAddress}
-                  updateValue={setSampleAddress}
-                  placeholder="e.g. 0x123456abcdef"
+              <br />
+              <TextInput
+                value={sampleAddress}
+                updateValue={setSampleAddress}
+                placeholder="e.g. 0x123456abcdef"
               />
             </>
           )

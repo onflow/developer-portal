@@ -38,7 +38,6 @@ export function SampleNFTView({
         const user = await fcl.currentUser().snapshot()
         if (user.loggedIn) {
           const linksSetup = await getAreLinksSetup(user.addr as unknown as string, publicPath)
-          console.log('links setup is', linksSetup);
         }
         setError(true)
         setViewsImplemented([])
@@ -148,6 +147,7 @@ export function SampleNFTView({
               <>
                 <p>This NFT contract, <b>{selectedContract}</b>, is implementing all of the recommended views!</p>
                 <p>Review the metadata details above. If they look good, click continue to add or update this collection in the NFT Catalog.</p>
+                <br />
                 <form
                   onSubmit={() => { navigate(`${window.location.pathname}${window.location.search}&confirmed=true`) }}
                 >

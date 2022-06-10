@@ -3,6 +3,7 @@ import { useNavigate } from "react-router-dom"
 import { getCollections, getProposals } from "src/flow/utils"
 import { Network } from "./network-dropdown";
 import { changeFCLEnvironment } from "src/flow/setup";
+import { Badge } from "../shared/badge";
 
 export function CatalogSelect({
   type,
@@ -42,9 +43,10 @@ export function CatalogSelect({
         const catalogCollections = await getCollections() || []
         const items = Object.keys(catalogCollections).map((catalogKey) => {
           const catalog = catalogCollections[catalogKey]
+          console.log(catalog.nftType);
           return {
             name: `${catalogKey}`,
-            subtext: `${catalog.nftType}`,
+            subtext: `${catalog.nftType.typeID}`,
             id: catalogKey,
           }
         })
@@ -66,6 +68,11 @@ export function CatalogSelect({
               }
             }>
               <div className="font-semibold">{item.name}</div>
+              {
+                item.status && (
+                  <Badge color={item.status === 'IN_REVIEW' ? 'blue' : item.status === 'APPROVED' ? 'green' : 'yellow'} text={item.status} />
+                )
+              }
               <div>{item.status}</div>
               <div className="">{item.subtext}</div>
             </div>

@@ -7,6 +7,7 @@ import { CollectionDisplayView } from "../shared/views/collection-display-view"
 import { EmptyContent } from "./empty-content"
 import { Box } from "../shared/box"
 import { ProposalActions } from "./proposal-actions"
+import { Badge } from "../shared/badge"
 
 export function ProposalContent({proposalID}: {proposalID: string|undefined}) {
   const [proposalData, setProposalData] = useState<any>(null)
@@ -37,10 +38,20 @@ export function ProposalContent({proposalID}: {proposalID: string|undefined}) {
   if (!proposalData) {
     return <Spinner />
   }
+
+  let color = "blue"
+  if (proposalData.status === 'APPROVED') {
+    color = "green"
+  }
+  if (proposalData.status === 'REJECTED') {
+    color = "yellow"
+  }
+  
   return (
     <>
-      <div> <span className="text-xl"><b>{proposalData.collectionIdentifier}</b></span> <span className="text-md ml-2">{proposalData.status}</span></div>
+      <div> <span className="text-xl"><b>{proposalData.collectionIdentifier}</b></span> <span className="text-md ml-2"><Badge color={color as any} text={proposalData.status} /></span></div>
       <br />
+      <div className="text-md"><b>Contract: </b>{proposalData.metadata.contractAddress} - {proposalData.metadata.contractName}</div>
       <div className="text-md"><b>Submitted:</b> {proposalData.proposer} on {(new Date(proposalData.createdTime * 1000)).toLocaleDateString("en-US")}</div>
       <div className="text-md"><b>Message: </b>{proposalData.message}</div>
       <br />
