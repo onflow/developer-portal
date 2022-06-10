@@ -33,7 +33,7 @@ export function SporkFAQPage() {
     <main className="bg-zinc-50 px-4 pb-48 dark:bg-black md:bg-white md:px-0 md:pt-16">
       <div>
         <a
-          className="mt-2 flex cursor-pointer items-center rounded-lg py-4 text-primary-blue dark:border-primary-purple dark:text-primary-purple md:hidden w-fit"
+          className="mt-2 flex w-fit cursor-pointer items-center rounded-lg py-4 text-primary-blue dark:border-primary-purple dark:text-primary-purple md:hidden"
           href="#TODO"
         >
           <LeftChevron />

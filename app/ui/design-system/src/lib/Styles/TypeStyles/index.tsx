@@ -1,5 +1,5 @@
 const Section = ({ children }: { children: React.ReactNode }) => (
-  <div className="pt-2 pb-4 my-4 border-b border-b-1 border-b-primary-gray-100">
+  <div className="border-b-1 my-4 border-b border-b-primary-gray-100 pt-2 pb-4">
     {children}
   </div>
 )

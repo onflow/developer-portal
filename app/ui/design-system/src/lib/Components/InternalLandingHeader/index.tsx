@@ -35,13 +35,13 @@ export function InternalLandingHeader({
         <div className="flex origin-top-left scale-75 md:scale-100 md:justify-center">
           <Icon />
         </div>
-        <h1 className="mt-2 mb-4 text-h2 md:mt-10">{tool.name}</h1>
+        <h1 className="text-h2 mt-2 mb-4 md:mt-10">{tool.name}</h1>
         {description}
       </div>
 
       <div className="w-full">
         <div className="mx-auto max-w-[1220px] px-4 md:px-8">
-          <div className="hidden mb-4 text-2xl font-bold md:block">
+          <div className="mb-4 hidden text-2xl font-bold md:block">
             Getting Started
           </div>
           <div className="flex flex-col gap-10 md:flex-row">

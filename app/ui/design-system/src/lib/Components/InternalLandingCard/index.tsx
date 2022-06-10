@@ -64,7 +64,7 @@ export function InternalLandingCard({
         </div>
       </div>
 
-      <div className="flex self-start h-full ml-auto group-hover:opacity-75">
+      <div className="ml-auto flex h-full self-start group-hover:opacity-75">
         <ExternalLinkIcon />
       </div>
     </a>

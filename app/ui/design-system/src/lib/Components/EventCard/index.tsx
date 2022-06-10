@@ -36,7 +36,7 @@ export function EventCard({
       )}
     >
       <div className="min-w-[50%] flex-none basis-1/2 self-center py-10 pl-6 pr-6 md:pr-32 md:pl-20">
-        <div className="mb-1 text-sm font-semibold divide-x divide-solid divide-primary-gray-200 text-primary-gray-300 md:text-xl">
+        <div className="mb-1 divide-x divide-solid divide-primary-gray-200 text-sm font-semibold text-primary-gray-300 md:text-xl">
           <span className="pr-2">{eventDate}</span>
           <span className="pl-2">{location}</span>
         </div>

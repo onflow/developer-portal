@@ -21,7 +21,7 @@ const FeaturedArticleCard = ({
       {tags.map((tag) => (
         <Tag name={tag} />
       ))}
-      <div className="my-2 text-h2">{heading}</div>
+      <div className="text-h2 my-2">{heading}</div>
       <p className="mb-14 text-primary-gray-300 dark:text-primary-gray-200">
         {description}
       </p>

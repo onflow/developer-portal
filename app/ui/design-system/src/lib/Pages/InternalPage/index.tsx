@@ -38,7 +38,7 @@ export function InternalPage() {
         This is a reference
         <sup>
           <a href="#user-content-fn-1">
-            <span className="mr-1 undefined">[1]</span>
+            <span className="undefined mr-1">[1]</span>
           </a>
         </sup>
       </p>
@@ -47,18 +47,18 @@ export function InternalPage() {
         This is another reference
         <sup>
           <a href="#user-content-fn-1">
-            <span className="mr-1 undefined">[1]</span>
+            <span className="undefined mr-1">[1]</span>
           </a>
         </sup>
       </p>
 
       <section data-footnotes="true" className="footnotes">
-        <h2 id="footnotes" className="mt-6 mb-6 text-2xl font-semibold sr-only">
-          <div className="flex group -ml-11">
+        <h2 id="footnotes" className="sr-only mt-6 mb-6 text-2xl font-semibold">
+          <div className="group -ml-11 flex">
             <a
               href="#footnotes"
               title="Footnotes"
-              className="flex items-center justify-center w-8 h-8 mr-3 scale-75 bg-gray-100 rounded-md hover:bg-gray-200 group-hover:visible dark:bg-primary-gray-dark dark:hover:bg-gray-700 md:invisible md:scale-100"
+              className="mr-3 flex h-8 w-8 scale-75 items-center justify-center rounded-md bg-gray-100 hover:bg-gray-200 group-hover:visible dark:bg-primary-gray-dark dark:hover:bg-gray-700 md:invisible md:scale-100"
             >
               <svg
                 xmlns="http://www.w3.org/2000/svg"
@@ -85,7 +85,7 @@ export function InternalPage() {
             <p>
               This is a reference{" "}
               <a href="#user-content-fnref-1">
-                <span className="mr-1 data-footnote-backref">↩</span>
+                <span className="data-footnote-backref mr-1">↩</span>
               </a>
             </p>
           </li>
@@ -93,7 +93,7 @@ export function InternalPage() {
             <p>
               This is another reference{" "}
               <a href="#user-content-fnref-2">
-                <span className="mr-1 data-footnote-backref">↩</span>
+                <span className="data-footnote-backref mr-1">↩</span>
               </a>
             </p>
           </li>

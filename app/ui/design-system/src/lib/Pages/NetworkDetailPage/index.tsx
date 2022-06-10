@@ -33,7 +33,7 @@ const NetworkDetailPage = () => {
   } as Article
 
   return (
-    <div className="w-full p-6 bg-primary-gray-50 dark:bg-black">
+    <div className="w-full bg-primary-gray-50 p-6 dark:bg-black">
       <div className="flex-col items-center">
         <div className="relative">
           <a
@@ -102,7 +102,7 @@ const NetworkDetailPage = () => {
         />
         <div className="divide-y">
           {[1, 2, 3, 4].map((_) => (
-            <div className="pt-4 my-4">
+            <div className="my-4 pt-4">
               <SporksCard
                 heading={currentNetwork.name}
                 timestamp={endOfWeek(new Date())}
@@ -125,11 +125,11 @@ const NetworkDetailPage = () => {
         </div>
         <Pagination itemCount={40} pageSize={4} page={1} setPage={() => null} />
 
-        <div className="self-center my-36">
+        <div className="my-36 self-center">
           <FeaturedArticleSlider articles={[article]} />
         </div>
 
-        <div className="self-center mb-36">
+        <div className="mb-36 self-center">
           <Callout
             heading="Spork FAQ"
             description="Lorem ipsum dolor sit amet proin gravida lorem ipsum"

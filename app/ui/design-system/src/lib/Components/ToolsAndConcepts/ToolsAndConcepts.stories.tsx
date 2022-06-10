@@ -1,26 +1,26 @@
-import { Meta, Story } from '@storybook/react';
-import ToolsAndConcepts, { ToolsAndConceptsProps } from '.';
+import { Meta, Story } from "@storybook/react"
+import ToolsAndConcepts, { ToolsAndConceptsProps } from "."
 
 export default {
   component: ToolsAndConcepts,
-  title: 'Components/ToolsAndConcepts',
-} as Meta;
+  title: "Components/ToolsAndConcepts",
+} as Meta
 
 const Template: Story<ToolsAndConceptsProps> = (args) => {
   return (
-    <div className="p-6 bg-primary-gray-50 dark:bg-black">
+    <div className="bg-primary-gray-50 p-6 dark:bg-black">
       <ToolsAndConcepts {...args} />
     </div>
-  );
-};
+  )
+}
 
 const args = {
   tools: Array(6).fill({
-    title: 'Flow Port',
-    authorIcon: 'https://avatars.githubusercontent.com/u/62387156?s=64&v=4',
-    authorName: 'mini flow',
-    tags: ['Tags'],
-    link: '#',
+    title: "Flow Port",
+    authorIcon: "https://avatars.githubusercontent.com/u/62387156?s=64&v=4",
+    authorName: "mini flow",
+    tags: ["Tags"],
+    link: "#",
     stars: 52,
     toolIcon: (
       <img
@@ -29,16 +29,16 @@ const args = {
       />
     ),
     description:
-      'Lorem ipsum text here can go a two liner sentence or a one liner',
+      "Lorem ipsum text here can go a two liner sentence or a one liner",
   }),
-};
-export const Default = Template.bind({});
-Default.args = args;
+}
+export const Default = Template.bind({})
+Default.args = args
 
-export const mobile = Template.bind({});
-mobile.args = args;
+export const mobile = Template.bind({})
+mobile.args = args
 mobile.parameters = {
   viewport: {
-    defaultViewport: 'xs',
+    defaultViewport: "xs",
   },
-};
+}

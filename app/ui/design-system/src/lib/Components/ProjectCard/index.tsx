@@ -29,7 +29,7 @@ const ProjectCard = ({
   githubLink,
 }: ProjectCardProps) => {
   return (
-    <div className="flex flex-col px-8 py-6 bg-white rounded-lg hover:shadow-2xl dark:bg-primary-gray-dark md:flex-row">
+    <div className="flex flex-col rounded-lg bg-white px-8 py-6 hover:shadow-2xl dark:bg-primary-gray-dark md:flex-row">
       <img
         src={projectImage}
         alt={heading}
@@ -37,7 +37,7 @@ const ProjectCard = ({
       />
       <div className="flex-col">
         <div className="mb-2 text-2xl font-bold">{heading}</div>
-        <div className="flex mb-2 text-primary-gray-300">
+        <div className="mb-2 flex text-primary-gray-300">
           {tags.map((tag) => (
             <Tag name={tag} />
           ))}
@@ -48,10 +48,10 @@ const ProjectCard = ({
             <GithubIcon />
           </a>
         </div>
-        <div className="flex gap-2 mb-2">
+        <div className="mb-2 flex gap-2">
           <img
             src={author.profileImage}
-            className="object-cover w-6 h-6 rounded-full"
+            className="h-6 w-6 rounded-full object-cover"
           />
           {author.name}
           <div className="flex">

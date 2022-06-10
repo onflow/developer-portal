@@ -49,7 +49,7 @@ export function LinkCard3Column({
             "grid-column-start-3": index === 2,
           })}
         >
-          <h5 className="flex items-center mb-2 text-h5">
+          <h5 className="text-h5 mb-2 flex items-center">
             {item.icon && <span className="mr-2">{item.icon}</span>}{" "}
             {item.title}
           </h5>
@@ -73,10 +73,10 @@ export function LinkCard3Column({
           {item.links?.map((link) => (
             <div key={link.title} className="divided-item-hover">
               <a
-                className="flex flex-col px-4 rounded-lg link-card-3-column-link group hover:bg-primary-gray-50"
+                className="link-card-3-column-link group flex flex-col rounded-lg px-4 hover:bg-primary-gray-50"
                 href={link.href}
               >
-                <span className="py-4 display-block">
+                <span className="display-block py-4">
                   <span className="flex justify-between">
                     <span className="group-hover:text-primary-blue">
                       {link.title}
