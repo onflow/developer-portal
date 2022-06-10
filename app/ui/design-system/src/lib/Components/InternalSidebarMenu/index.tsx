@@ -80,8 +80,8 @@ export function InternalSidebarMenu({
           <div className="scale-50">
             <SelectedIcon />
           </div>
-          <div className="font-bold text-small">{TOOLS[selectedTool].name}</div>
-          <div className="pl-2 ml-auto">
+          <div className="text-small font-bold">{TOOLS[selectedTool].name}</div>
+          <div className="ml-auto pl-2">
             <ChevronDown />
           </div>
         </MenuButton>
@@ -89,7 +89,7 @@ export function InternalSidebarMenu({
           {SIDEBAR_SECTION_GROUPS.map((group, index) => (
             <div key={group.name}>
               <MenuItems className="mb-2 md:mb-6 md:divide-y md:divide-solid dark:md:divide-primary-gray-300">
-                <div className="flex items-center my-2">
+                <div className="my-2 flex items-center">
                   <div className="mr-auto font-bold leading-none dark:text-primary-gray-100 md:text-xl md:font-semibold">
                     {group.name}
                   </div>

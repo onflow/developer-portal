@@ -41,7 +41,7 @@ const TutorialCard = ({
           ))}
         </div>
         {description}
-        <div className="flex justify-between mt-6 text-xs text-primary-gray-300 dark:text-primary-gray-200">
+        <div className="mt-6 flex justify-between text-xs text-primary-gray-300 dark:text-primary-gray-200">
           <div className="flex items-center">
             <CalendarIcon className="mr-1 scale-75" />
             Updated: {lastUpdated}

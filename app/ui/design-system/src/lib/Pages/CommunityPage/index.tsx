@@ -58,7 +58,7 @@ export default function CommunityPage({
                 variant="secondary"
                 target="_blank"
                 rel="noreferrer"
-                className="hidden ml-4 md:flex"
+                className="ml-4 hidden md:flex"
               >
                 Go to GitHub
               </ButtonLink>
