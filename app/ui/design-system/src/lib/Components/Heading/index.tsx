@@ -1,15 +1,15 @@
-import clsx from "clsx";
-import { createElement } from "react";
-import LinkIcon from "./LinkIcon";
+import clsx from "clsx"
+import { createElement } from "react"
+import LinkIcon from "./LinkIcon"
 
-type HeadingType = "h1" | "h2" | "h3" | "h4" | "h5" | "h6";
+type HeadingType = "h1" | "h2" | "h3" | "h4" | "h5" | "h6"
 
 export type HeadingProps = React.DetailedHTMLProps<
   React.HTMLAttributes<HTMLHeadingElement>,
   HTMLHeadingElement
-> & { type?: HeadingType };
+> & { type?: HeadingType }
 
-const defaultClasses = "mt-6 font-semibold";
+const defaultClasses = "mt-6 font-semibold"
 
 const headingClasses = {
   h1: "text-4xl mb-24 font-bold",
@@ -18,13 +18,13 @@ const headingClasses = {
   h4: "text-lg mb-2",
   h5: "text-base",
   h6: "text-sm",
-};
+}
 
 function parameterize(string: string) {
   return string
     .toLowerCase()
     .replace(/[^a-zA-Z0-9 ]/g, "")
-    .replace(/ /g, "-");
+    .replace(/ /g, "-")
 }
 
 export function Heading({
@@ -33,8 +33,8 @@ export function Heading({
   className = "",
   ...props
 }: HeadingProps) {
-  const text = typeof children === "string" ? children : "";
-  const anchor = parameterize(text);
+  const text = typeof children === "string" ? children : ""
+  const anchor = parameterize(text)
   return createElement(
     type,
     {
@@ -52,5 +52,5 @@ export function Heading({
       </a>
       {children}
     </div>
-  );
+  )
 }

@@ -1,17 +1,17 @@
-import { ReactElement } from 'react';
+import { ReactElement } from "react"
 
-import { ReactComponent as StarIcon } from '../../../../images/action/star';
-import Tag from '../Tag';
+import { ReactComponent as StarIcon } from "../../../../images/action/star"
+import Tag from "../Tag"
 
 export interface ToolCardProps {
-  title: string;
-  authorIcon: string;
-  authorName: string;
-  tags: string[];
-  link: string;
-  stars: number;
-  toolIcon: ReactElement;
-  description: string;
+  title: string
+  authorIcon: string
+  authorName: string
+  tags: string[]
+  link: string
+  stars: number
+  toolIcon: ReactElement
+  description: string
 }
 
 export function ToolCard({
@@ -60,5 +60,5 @@ export function ToolCard({
         </div>
       </div>
     </a>
-  );
+  )
 }

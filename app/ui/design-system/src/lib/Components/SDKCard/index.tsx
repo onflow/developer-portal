@@ -1,20 +1,20 @@
-import { ReactElement } from 'react';
+import { ReactElement } from "react"
 
-import { ReactComponent as StarIcon } from '../../../../images/action/star';
-import { ReactComponent as CalendarIcon } from '../../../../images/action/date-calendar';
-import { ReactComponent as CommitIcon } from '../../../../images/content/commit';
-import Tag from '../Tag';
+import { ReactComponent as StarIcon } from "../../../../images/action/star"
+import { ReactComponent as CalendarIcon } from "../../../../images/action/date-calendar"
+import { ReactComponent as CommitIcon } from "../../../../images/content/commit"
+import Tag from "../Tag"
 
 export interface SDKCardProps {
-  title: string;
-  authorIcon: string;
-  authorName: string;
-  tags: string[];
-  link: string;
-  stars: number;
-  toolIcon: ReactElement;
-  lastCommit: string;
-  lastRelease: string;
+  title: string
+  authorIcon: string
+  authorName: string
+  tags: string[]
+  link: string
+  stars: number
+  toolIcon: ReactElement
+  lastCommit: string
+  lastRelease: string
 }
 
 export function SDKCard({
@@ -75,5 +75,5 @@ export function SDKCard({
         </div>
       </div>
     </a>
-  );
+  )
 }

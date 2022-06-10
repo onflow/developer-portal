@@ -1,20 +1,20 @@
-import clsx from 'clsx';
-import { ButtonLink } from '../Button';
-import Tag from '../Tag';
+import clsx from "clsx"
+import { ButtonLink } from "../Button"
+import Tag from "../Tag"
 import {
   LinkCard2ColumnItem,
   LinkCard2ColumnItemProps,
-} from './LinkCard2ColumnItem';
+} from "./LinkCard2ColumnItem"
 
 export type LinkCard2ColumnProps = {
-  buttonText: string;
-  buttonUrl: string;
-  description: string;
-  items: LinkCard2ColumnItemProps[];
-  tags?: string[];
-  title: string;
-  bottomRounded?: boolean;
-};
+  buttonText: string
+  buttonUrl: string
+  description: string
+  items: LinkCard2ColumnItemProps[]
+  tags?: string[]
+  title: string
+  bottomRounded?: boolean
+}
 
 export function LinkCard2Column({
   buttonText,
@@ -26,11 +26,11 @@ export function LinkCard2Column({
   bottomRounded = true,
 }: LinkCard2ColumnProps) {
   const classes = clsx(
-    'container flex flex-col items-start px-4 py-12 rounded-lg bg-primary-gray-100/30 dark:bg-primary-gray-dark md:flex-row md:px-20 md:py-20',
+    "container flex flex-col items-start px-4 py-12 rounded-lg bg-primary-gray-100/30 dark:bg-primary-gray-dark md:flex-row md:px-20 md:py-20",
     {
-      'rounded-br-none rounded-bl-none': !bottomRounded,
+      "rounded-br-none rounded-bl-none": !bottomRounded,
     }
-  );
+  )
 
   return (
     <div className={classes}>
@@ -60,5 +60,5 @@ export function LinkCard2Column({
         ))}
       </div>
     </div>
-  );
+  )
 }

@@ -1,14 +1,13 @@
- 
-import { formatDistance } from 'date-fns';
-import { ReactComponent as ExternalLinkIcon } from '../../../../images/content/external-link';
-import { ReactComponent as TimeIcon } from '../../../../images/content/date';
+import { formatDistance } from "date-fns"
+import { ReactComponent as ExternalLinkIcon } from "../../../../images/content/external-link"
+import { ReactComponent as TimeIcon } from "../../../../images/content/date"
 
 export type NetworkDiscordCardProps = {
-  message: string;
-  username: string;
-  timestamp: Date;
-  messageLink: string;
-};
+  message: string
+  username: string
+  timestamp: Date
+  messageLink: string
+}
 
 const NetworkDiscordCard = ({
   message,
@@ -26,7 +25,7 @@ const NetworkDiscordCard = ({
           </div>
           <div
             className="pb-2 text-sm text-primary-gray-300"
-            style={{ lineHeight: '48px' }}
+            style={{ lineHeight: "48px" }}
           >
             {username} on <span className="text-primary-blue">Discord</span>
           </div>
@@ -39,7 +38,7 @@ const NetworkDiscordCard = ({
         </div>
       </div>
     </a>
-  );
-};
+  )
+}
 
-export default NetworkDiscordCard;
+export default NetworkDiscordCard

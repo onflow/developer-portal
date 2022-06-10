@@ -1,15 +1,15 @@
-import clsx from 'clsx';
- 
-import { ReactComponent as ChevronRightIcon } from '../../../../images/arrows/chevron-right';
+import clsx from "clsx"
+
+import { ReactComponent as ChevronRightIcon } from "../../../../images/arrows/chevron-right"
 
 export type NetworkCardProps = {
-  networkName: string;
-  status: 'Under Maintenance' | 'Healthy';
-  version: string;
-  lastSporkDate: string;
-  nextSporkDate: string;
-  link: string;
-};
+  networkName: string
+  status: "Under Maintenance" | "Healthy"
+  version: string
+  lastSporkDate: string
+  nextSporkDate: string
+  link: string
+}
 
 const NetworkCard = ({
   networkName,
@@ -19,10 +19,10 @@ const NetworkCard = ({
   nextSporkDate,
   link,
 }: NetworkCardProps) => {
-  const statusClasses = clsx('rounded-full w-11 h-11 md:mb-0 mb-4', {
-    'bg-primary-red': status === 'Under Maintenance',
-    'bg-green-success': status === 'Healthy',
-  });
+  const statusClasses = clsx("rounded-full w-11 h-11 md:mb-0 mb-4", {
+    "bg-primary-red": status === "Under Maintenance",
+    "bg-green-success": status === "Healthy",
+  })
 
   return (
     <a
@@ -64,7 +64,7 @@ const NetworkCard = ({
         <ChevronRightIcon />
       </div>
     </a>
-  );
-};
+  )
+}
 
-export default NetworkCard;
+export default NetworkCard

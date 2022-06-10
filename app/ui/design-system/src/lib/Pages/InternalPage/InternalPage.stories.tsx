@@ -1,26 +1,26 @@
-import { Meta, Story } from '@storybook/react';
-import { InternalPage } from '.';
+import { Meta, Story } from "@storybook/react"
+import { InternalPage } from "."
 
 export default {
   component: InternalPage,
-  title: 'Pages/InternalPage',
-} as Meta;
+  title: "Pages/InternalPage",
+} as Meta
 
 const Template: Story = (args) => {
-  return <InternalPage />;
-};
+  return <InternalPage />
+}
 
-export const Primary = Template.bind({});
-export const PrimaryDark = Template.bind({});
+export const Primary = Template.bind({})
+export const PrimaryDark = Template.bind({})
 PrimaryDark.parameters = {
   themes: {
-    default: 'dark',
+    default: "dark",
   },
-};
+}
 
-export const PrimaryMobile = Template.bind({});
+export const PrimaryMobile = Template.bind({})
 PrimaryMobile.parameters = {
   viewport: {
-    defaultViewport: 'xs',
+    defaultViewport: "xs",
   },
-};
+}

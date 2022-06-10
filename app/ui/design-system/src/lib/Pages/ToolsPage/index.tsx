@@ -1,27 +1,27 @@
-import { ButtonLink } from '../../Components/Button';
-import { LandingHeader } from '../../Components/LandingHeader';
-import PageBackground from '../shared/PageBackground';
-import PageSections from '../shared/PageSections';
-import PageSection from '../shared/PageSection';
-import { ToolCard, ToolCardProps } from '../../Components/ToolCard';
-import { SDKCard, SDKCardProps } from '../../Components/SDKCard';
+import { ButtonLink } from "../../Components/Button"
+import { LandingHeader } from "../../Components/LandingHeader"
+import PageBackground from "../shared/PageBackground"
+import PageSections from "../shared/PageSections"
+import PageSection from "../shared/PageSection"
+import { ToolCard, ToolCardProps } from "../../Components/ToolCard"
+import { SDKCard, SDKCardProps } from "../../Components/SDKCard"
 import {
   ContentNavigation,
   ContentNavigationProps,
-} from '../../Components/ContentNavigation';
-import { SocialLinksSignup, Footer } from '../../Components';
-import TutorialCard, { TutorialCardProps } from '../../Components/TutorialCard';
+} from "../../Components/ContentNavigation"
+import { SocialLinksSignup, Footer } from "../../Components"
+import TutorialCard, { TutorialCardProps } from "../../Components/TutorialCard"
 
 export type ToolsPageProps = {
-  tools: ToolCardProps[];
-  sdks: SDKCardProps[];
+  tools: ToolCardProps[]
+  sdks: SDKCardProps[]
   contentNavigationItems: [
     ContentNavigationProps,
     ContentNavigationProps,
     ContentNavigationProps
-  ];
-  apis: TutorialCardProps[];
-};
+  ]
+  apis: TutorialCardProps[]
+}
 
 const ToolsPage = ({
   tools,
@@ -117,8 +117,8 @@ const ToolsPage = ({
           <div className="container">
             <h2 className="mb-4 text-h2">APIs and Service</h2>
             <p className="mb-6 text-primary-gray-300">
-              Hosted APIs that provide access to the Flow network and related data
-              (NFTs, events, etc).
+              Hosted APIs that provide access to the Flow network and related
+              data (NFTs, events, etc).
             </p>
             <div className="grid grid-flow-col gap-4 pb-6 overflow-x-scroll">
               {apis &&
@@ -146,7 +146,7 @@ const ToolsPage = ({
       <SocialLinksSignup />
       <Footer />
     </PageBackground>
-  );
-};
+  )
+}
 
-export default ToolsPage;
+export default ToolsPage

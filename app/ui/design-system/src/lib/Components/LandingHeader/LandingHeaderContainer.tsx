@@ -1,18 +1,17 @@
-import clsx from 'clsx';
- 
+import clsx from "clsx"
 
 export type GradientName =
-  | 'community'
-  | 'concepts'
-  | 'getting-started'
-  | 'home'
-  | 'network'
-  | 'tools';
+  | "community"
+  | "concepts"
+  | "getting-started"
+  | "home"
+  | "network"
+  | "tools"
 
 export type LandingHeaderContainerProps =
-  React.ComponentPropsWithoutRef<'header'> & {
-    gradient: GradientName;
-  };
+  React.ComponentPropsWithoutRef<"header"> & {
+    gradient: GradientName
+  }
 
 export function LandingHeaderContainer({
   className,
@@ -24,5 +23,5 @@ export function LandingHeaderContainer({
       className={clsx(`bg-gradient-${gradient} bg-cover bg-bottom`, className)}
       {...props}
     />
-  );
+  )
 }

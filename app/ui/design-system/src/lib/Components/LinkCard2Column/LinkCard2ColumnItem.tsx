@@ -1,39 +1,39 @@
-import { ReactComponent as ChevronRight } from '../../../../images/arrows/chevron-right';
-import { ReactComponent as ExternalLinkIcon } from '../../../../images/content/external-link';
-import { isLinkExternal } from '../Link/isLinkExternal';
-import { LinkCard2ColumnItemContainer } from './LinkCard2ColumnItemContainer';
+import { ReactComponent as ChevronRight } from "../../../../images/arrows/chevron-right"
+import { ReactComponent as ExternalLinkIcon } from "../../../../images/content/external-link"
+import { isLinkExternal } from "../Link/isLinkExternal"
+import { LinkCard2ColumnItemContainer } from "./LinkCard2ColumnItemContainer"
 
 export type LinkCard2ColumnItemBaseProps = {
-  description: string;
-  icon?: string;
-  iconAltText?: string;
-  title: string;
-};
+  description: string
+  icon?: string
+  iconAltText?: string
+  title: string
+}
 
 export type LinkCard2ColumnItemSingleLinkProps =
   LinkCard2ColumnItemBaseProps & {
-    href: string;
-    links?: never;
-  };
+    href: string
+    links?: never
+  }
 
 export type LinkCard2ColumnItemMultipleLinksProps =
   LinkCard2ColumnItemBaseProps & {
-    href?: never;
+    href?: never
     links: Array<{
-      href: string;
-      title: string;
-    }>;
-  };
+      href: string
+      title: string
+    }>
+  }
 
 export type LinkCard2ColumnItemProps =
   | LinkCard2ColumnItemSingleLinkProps
-  | LinkCard2ColumnItemMultipleLinksProps;
+  | LinkCard2ColumnItemMultipleLinksProps
 
 export function LinkCard2ColumnItem({
   description,
   href,
   icon,
-  iconAltText = '',
+  iconAltText = "",
   links,
   title,
 }: LinkCard2ColumnItemProps) {
@@ -78,5 +78,5 @@ export function LinkCard2ColumnItem({
         )}
       </div>
     </LinkCard2ColumnItemContainer>
-  );
+  )
 }

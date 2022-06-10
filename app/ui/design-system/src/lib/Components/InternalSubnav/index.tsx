@@ -1,10 +1,10 @@
-import { Breadcrumbs, BreadcrumbsProps } from '../Breadcrumbs';
-import { InternalVersionSelect, Version } from '../InternalVersionSelect';
+import { Breadcrumbs, BreadcrumbsProps } from "../Breadcrumbs"
+import { InternalVersionSelect, Version } from "../InternalVersionSelect"
 
 export type InternalSubnavProps = BreadcrumbsProps & {
-  selectedVersionName?: string;
-  versions?: Version[];
-};
+  selectedVersionName?: string
+  versions?: Version[]
+}
 
 export function InternalSubnav({
   current,
@@ -25,5 +25,5 @@ export function InternalSubnav({
         )}
       </div>
     </div>
-  );
+  )
 }

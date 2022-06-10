@@ -1,116 +1,116 @@
-import FlowDocsLogo from '../../../../images/logos/flow-docs-logo-light.svg';
-import { ReactComponent as OnFlowIcon } from '../../../../images/logos/flow-icon-bw-light';
-import { ReactComponent as DiscordIcon } from '../../../../images/social/discord-light';
-import { ReactComponent as ForumIcon } from '../../../../images/social/forum-light';
-import { ReactComponent as GithubIcon } from '../../../../images/social/github-light';
+import FlowDocsLogo from "../../../../images/logos/flow-docs-logo-light.svg"
+import { ReactComponent as OnFlowIcon } from "../../../../images/logos/flow-icon-bw-light"
+import { ReactComponent as DiscordIcon } from "../../../../images/social/discord-light"
+import { ReactComponent as ForumIcon } from "../../../../images/social/forum-light"
+import { ReactComponent as GithubIcon } from "../../../../images/social/github-light"
 
 // reduce repetition of the section layout in Footer component
 const footerSections = [
   {
-    header: 'Documentation',
+    header: "Documentation",
     links: [
       {
-        link: '#', // TODO: replace with actual links
-        text: 'Getting Started',
+        link: "#", // TODO: replace with actual links
+        text: "Getting Started",
       },
       {
-        link: '#',
+        link: "#",
         text: "SDK's",
       },
       {
-        link: '#',
-        text: 'Tutorials',
+        link: "#",
+        text: "Tutorials",
       },
       {
-        link: '#',
-        text: 'Guides',
+        link: "#",
+        text: "Guides",
       },
       {
-        link: '#',
-        text: 'Concepts',
+        link: "#",
+        text: "Concepts",
       },
       {
-        link: '#',
-        text: 'Walkthroughs',
+        link: "#",
+        text: "Walkthroughs",
       },
       {
-        link: '#',
-        text: 'How-To',
+        link: "#",
+        text: "How-To",
       },
       {
-        link: '#',
-        text: 'FAQ',
+        link: "#",
+        text: "FAQ",
       },
       {
-        link: '#',
-        text: 'Tools',
+        link: "#",
+        text: "Tools",
       },
     ],
   },
   {
-    header: 'Community',
+    header: "Community",
     links: [
       {
-        link: '#',
-        text: 'Ecosystem',
+        link: "#",
+        text: "Ecosystem",
       },
       {
-        link: '#',
-        text: 'GitHub',
+        link: "#",
+        text: "GitHub",
       },
       {
-        link: '#',
-        text: 'Discord',
+        link: "#",
+        text: "Discord",
       },
       {
-        link: '#',
-        text: 'Flowverse',
+        link: "#",
+        text: "Flowverse",
       },
       {
-        link: '#',
-        text: 'Forum',
+        link: "#",
+        text: "Forum",
       },
     ],
   },
   {
-    header: 'Start Building',
+    header: "Start Building",
     links: [
       {
-        link: '#',
-        text: 'Flow Playground',
+        link: "#",
+        text: "Flow Playground",
       },
       {
-        link: '#',
-        text: 'Crypto Kitties',
+        link: "#",
+        text: "Crypto Kitties",
       },
     ],
   },
   {
-    header: 'Network',
+    header: "Network",
     links: [
       {
-        link: '#',
-        text: 'Network Status',
+        link: "#",
+        text: "Network Status",
       },
       {
-        link: '#',
-        text: 'Mainnet',
+        link: "#",
+        text: "Mainnet",
       },
       {
-        link: '#',
-        text: 'Testnet',
+        link: "#",
+        text: "Testnet",
       },
       {
-        link: '#',
-        text: 'Canary',
+        link: "#",
+        text: "Canary",
       },
       {
-        link: '#',
-        text: 'Sporks FAQ',
+        link: "#",
+        text: "Sporks FAQ",
       },
     ],
   },
-];
+]
 
 export const Footer = ({ sections = footerSections }) => {
   return (
@@ -160,5 +160,5 @@ export const Footer = ({ sections = footerSections }) => {
         <div className="px-2 pt-4 pb-16 lg:px-4">@2022 Flow</div>
       </div>
     </footer>
-  );
-};
+  )
+}

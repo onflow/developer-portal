@@ -1,15 +1,14 @@
-
-import { formatDistance } from 'date-fns';
-import { ReactComponent as ChevronRightIcon } from '../../../../images/arrows/chevron-right';
-import { ReactComponent as TimeIcon } from '../../../../images/content/date';
+import { formatDistance } from "date-fns"
+import { ReactComponent as ChevronRightIcon } from "../../../../images/arrows/chevron-right"
+import { ReactComponent as TimeIcon } from "../../../../images/content/date"
 
 export type AnnouncementCardProps = {
-  sourceIcon: string;
-  sourceAltText: string;
-  heading: string;
-  timestamp: Date;
-  link: string;
-};
+  sourceIcon: string
+  sourceAltText: string
+  heading: string
+  timestamp: Date
+  link: string
+}
 
 const AnnouncementCard = ({
   heading,
@@ -45,7 +44,7 @@ const AnnouncementCard = ({
         <ChevronRightIcon />
       </div>
     </a>
-  );
-};
+  )
+}
 
-export default AnnouncementCard;
+export default AnnouncementCard

@@ -1,1 +1,4 @@
-app/tailwind.css
+app/main.css
+public/build/**/*
+.husky
+yarn.lock

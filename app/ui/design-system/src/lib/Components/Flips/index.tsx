@@ -1,11 +1,11 @@
-import { GITHUB_URL } from '../../constants';
-import { ButtonLink } from '../Button';
-import TabMenu from '../TabMenu';
-import FlipCell, { FlipCellHeader, FlipCellProps } from './FlipCell';
+import { GITHUB_URL } from "../../constants"
+import { ButtonLink } from "../Button"
+import TabMenu from "../TabMenu"
+import FlipCell, { FlipCellHeader, FlipCellProps } from "./FlipCell"
 
 export type FlipsProps = {
-  flips: FlipCellProps[];
-};
+  flips: FlipCellProps[]
+}
 
 export default function Flips({ flips }: FlipsProps) {
   return (
@@ -29,7 +29,7 @@ export default function Flips({ flips }: FlipsProps) {
 
       <div className="mb-6">
         <TabMenu
-          tabs={['Open FLIPS', ' Good places to start']}
+          tabs={["Open FLIPS", " Good places to start"]}
           onTabChange={() => null}
         />
       </div>
@@ -43,5 +43,5 @@ export default function Flips({ flips }: FlipsProps) {
         ))}
       </div>
     </div>
-  );
+  )
 }

@@ -4,20 +4,20 @@ import {
   MenuItem,
   MenuItems,
   MenuList,
-} from '@reach/menu-button';
-import clsx from 'clsx';
-import { ReactComponent as Check } from '../../../../images/action/check';
-import { ReactComponent as ChevronDown } from '../../../../images/arrows/chevron-down';
+} from "@reach/menu-button"
+import clsx from "clsx"
+import { ReactComponent as Check } from "../../../../images/action/check"
+import { ReactComponent as ChevronDown } from "../../../../images/arrows/chevron-down"
 
 export type Version = {
-  name: string;
-  href: string;
-};
+  name: string
+  href: string
+}
 
 export type InternalVersionSelectProps = {
-  selectedVersionName: string;
-  versions: Version[];
-};
+  selectedVersionName: string
+  versions: Version[]
+}
 
 export function InternalVersionSelect({
   selectedVersionName,
@@ -35,7 +35,7 @@ export function InternalVersionSelect({
         <MenuList className="max-h-[15rem] min-w-[12rem] overflow-y-auto rounded-lg bg-white shadow-2xl">
           <MenuItems className="divide-y divide-solid">
             {versions.map((version) => {
-              const isSelected = selectedVersionName === version.name;
+              const isSelected = selectedVersionName === version.name
               return (
                 <MenuItem
                   as="a"
@@ -43,10 +43,10 @@ export function InternalVersionSelect({
                   onSelect={() => null}
                   href="#"
                   className={clsx(
-                    'flex flex-1 flex-row items-center px-4 py-5 text-sm',
+                    "flex flex-1 flex-row items-center px-4 py-5 text-sm",
                     isSelected
-                      ? 'text-primary-gray-400'
-                      : 'text-primary-gray-300'
+                      ? "text-primary-gray-400"
+                      : "text-primary-gray-300"
                   )}
                 >
                   Version {version.name}
@@ -56,11 +56,11 @@ export function InternalVersionSelect({
                     </div>
                   )}
                 </MenuItem>
-              );
+              )
             })}
           </MenuItems>
         </MenuList>
       </Menu>
     </div>
-  );
+  )
 }

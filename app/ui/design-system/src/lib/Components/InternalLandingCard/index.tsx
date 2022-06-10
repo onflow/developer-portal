@@ -1,15 +1,15 @@
-import clsx from 'clsx';
-import { ReactComponent as ExternalLinkIcon } from '../../../../images/content/external-link';
-import RadarImg from '../../../../images/misc/radar.png';
-import RadarImg2x from '../../../../images/misc/radar@2x.png';
-import RingsImg from '../../../../images/misc/rings.png';
+import clsx from "clsx"
+import { ReactComponent as ExternalLinkIcon } from "../../../../images/content/external-link"
+import RadarImg from "../../../../images/misc/radar.png"
+import RadarImg2x from "../../../../images/misc/radar@2x.png"
+import RingsImg from "../../../../images/misc/rings.png"
 
 export type InternalLandingCardProps = {
-  title: string;
-  description: string;
-  isPrimary?: boolean;
-  href: string;
-};
+  title: string
+  description: string
+  isPrimary?: boolean
+  href: string
+}
 
 export function InternalLandingCard({
   title,
@@ -20,10 +20,10 @@ export function InternalLandingCard({
   return (
     <a
       className={clsx(
-        'group flex max-w-[30rem] cursor-pointer items-center gap-4 rounded-2xl px-6 py-8 md:px-8',
+        "group flex max-w-[30rem] cursor-pointer items-center gap-4 rounded-2xl px-6 py-8 md:px-8",
         isPrimary
-          ? 'internal-landing-card-green-bg text-black dark:text-white'
-          : 'bg-primary-gray-400 text-white'
+          ? "internal-landing-card-green-bg text-black dark:text-white"
+          : "bg-primary-gray-400 text-white"
       )}
       href={href}
     >
@@ -54,10 +54,10 @@ export function InternalLandingCard({
         </div>
         <div
           className={clsx(
-            'text-sm group-hover:opacity-75',
+            "text-sm group-hover:opacity-75",
             isPrimary
-              ? 'text-primary-gray-400 dark:text-primary-gray-50'
-              : 'text-primary-gray-50'
+              ? "text-primary-gray-400 dark:text-primary-gray-50"
+              : "text-primary-gray-50"
           )}
         >
           {description}
@@ -68,5 +68,5 @@ export function InternalLandingCard({
         <ExternalLinkIcon />
       </div>
     </a>
-  );
+  )
 }

@@ -1,58 +1,58 @@
-import { NavLink } from '@remix-run/react';
-import clsx from 'clsx';
+import { NavLink } from "@remix-run/react"
+import clsx from "clsx"
 
 type InternalSidebarSectionItem = {
-  label: string;
-  href: string;
-};
+  label: string
+  href: string
+}
 
 type InternalSidebarSection = {
-  title: string;
-  items: InternalSidebarSectionItem[];
-};
+  title: string
+  items: InternalSidebarSectionItem[]
+}
 
 export type InternalSidebarConfig = {
-  sections: InternalSidebarSection[];
-};
+  sections: InternalSidebarSection[]
+}
 
 export type InternalSidebarProps = {
-  config: InternalSidebarConfig;
-};
+  config: InternalSidebarConfig
+}
 
 export const TEMP_SIDEBAR_CONFIG: InternalSidebarConfig = {
   sections: [
     {
-      title: 'Api Documentation',
+      title: "Api Documentation",
       items: [
         {
-          label: 'Quick Reference',
-          href: '/cadence/language',
+          label: "Quick Reference",
+          href: "/cadence/language",
         },
         {
-          label: 'Configuration',
-          href: '/configuration',
+          label: "Configuration",
+          href: "/configuration",
         },
         {
-          label: 'Authentication',
-          href: '/authentication',
+          label: "Authentication",
+          href: "/authentication",
         },
         {
-          label: 'Proving Account Ownership',
-          href: '/proving-account-ownership',
+          label: "Proving Account Ownership",
+          href: "/proving-account-ownership",
         },
       ],
     },
     {
-      title: 'Guides and Tutorials',
+      title: "Guides and Tutorials",
       items: [
         {
-          label: 'Introducing @onflow/fcl',
-          href: '/introducing-onflow-fcl',
+          label: "Introducing @onflow/fcl",
+          href: "/introducing-onflow-fcl",
         },
       ],
     },
   ],
-};
+}
 
 export function InternalSidebar({ config }: InternalSidebarProps) {
   return (
@@ -72,9 +72,9 @@ export function InternalSidebar({ config }: InternalSidebarProps) {
                 key={item.label}
                 className={({ isActive }) =>
                   clsx(
-                    'mb-1 block rounded-md px-2 py-1.5 text-sm text-primary-gray-400 hover:opacity-75 dark:text-gray-200',
+                    "mb-1 block rounded-md px-2 py-1.5 text-sm text-primary-gray-400 hover:opacity-75 dark:text-gray-200",
                     {
-                      'bg-gray-200 bg-opacity-50 text-primary-blue dark:bg-gray-700 dark:text-gray-300':
+                      "bg-gray-200 bg-opacity-50 text-primary-blue dark:bg-gray-700 dark:text-gray-300":
                         isActive,
                     }
                   )
@@ -87,5 +87,5 @@ export function InternalSidebar({ config }: InternalSidebarProps) {
         </div>
       ))}
     </div>
-  );
+  )
 }

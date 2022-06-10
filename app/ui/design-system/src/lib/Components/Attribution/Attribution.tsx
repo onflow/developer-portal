@@ -1,26 +1,26 @@
-import clsx from 'clsx';
-import CalendarIcon from './CalendarIcon';
-import ClockIcon from './ClockIcon';
-import DifficultyIcon from './DifficultyIcon';
+import clsx from "clsx"
+import CalendarIcon from "./CalendarIcon"
+import ClockIcon from "./ClockIcon"
+import DifficultyIcon from "./DifficultyIcon"
 
 export type AttributionProps = {
-  updatedDate: string;
-  authorName: string;
-  authorIcon?: string;
-  otherAuthorsCount?: number;
-  readMinutes?: number;
-  difficulty?: string;
-};
+  updatedDate: string
+  authorName: string
+  authorIcon?: string
+  otherAuthorsCount?: number
+  readMinutes?: number
+  difficulty?: string
+}
 
 const Section = ({
   className,
   children,
 }: {
-  className?: string;
-  children: React.ReactNode;
+  className?: string
+  children: React.ReactNode
 }) => (
-  <div className={clsx('flex items-center gap-1', className)}>{children}</div>
-);
+  <div className={clsx("flex items-center gap-1", className)}>{children}</div>
+)
 
 export function Attribution({
   updatedDate,
@@ -38,10 +38,10 @@ export function Attribution({
         </span>
         <span className="mr-1">Updated: {updatedDate} by</span>
         {!!authorIcon && <img src={authorIcon} alt={authorName} width={20} />}
-        <b className="text-gray-900">{authorName}</b>{' '}
+        <b className="text-gray-900">{authorName}</b>{" "}
         {otherAuthorsCount
-          ? `(+ ${otherAuthorsCount} other${otherAuthorsCount > 1 ? 's' : ''})`
-          : ''}
+          ? `(+ ${otherAuthorsCount} other${otherAuthorsCount > 1 ? "s" : ""})`
+          : ""}
       </Section>
       <Section className="gap-4 sm:gap-4">
         {!!readMinutes && (
@@ -56,5 +56,5 @@ export function Attribution({
         )}
       </Section>
     </div>
-  );
+  )
 }

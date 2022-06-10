@@ -1,22 +1,21 @@
- 
-import { ReactComponent as CalendarIcon } from '../../../../images/action/date-calendar';
-import { ReactComponent as CommentIcon } from '../../../../images/arrows/message-circle';
-import Tag from '../Tag';
-import RoundImage from '../RoundImage';
+import { ReactComponent as CalendarIcon } from "../../../../images/action/date-calendar"
+import { ReactComponent as CommentIcon } from "../../../../images/arrows/message-circle"
+import Tag from "../Tag"
+import RoundImage from "../RoundImage"
 
 export type User = {
-  profileImage: string;
-  name: string;
-};
+  profileImage: string
+  name: string
+}
 
 export type FlipCellProps = {
-  numComments: number;
-  heading: string;
-  tags: string[];
-  participant: User;
-  date: string;
-  forumLink: string;
-};
+  numComments: number
+  heading: string
+  tags: string[]
+  participant: User
+  date: string
+  forumLink: string
+}
 
 const FlipCell = ({
   heading,
@@ -67,7 +66,7 @@ const FlipCell = ({
         </div>
       </div>
     </a>
-  );
-};
+  )
+}
 
-export default FlipCell;
+export default FlipCell

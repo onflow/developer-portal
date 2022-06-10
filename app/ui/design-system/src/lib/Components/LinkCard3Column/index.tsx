@@ -1,56 +1,56 @@
-import clsx from 'clsx';
-import { ReactComponent as ChevronRight } from '../../../../images/arrows/chevron-right';
-import { ReactComponent as ExternalLinkIcon } from '../../../../images/content/external-link';
-import { isLinkExternal } from '../Link/isLinkExternal';
-import Tag from '../Tag';
+import clsx from "clsx"
+import { ReactComponent as ChevronRight } from "../../../../images/arrows/chevron-right"
+import { ReactComponent as ExternalLinkIcon } from "../../../../images/content/external-link"
+import { isLinkExternal } from "../Link/isLinkExternal"
+import Tag from "../Tag"
 
 export type LinkCard3ColumnItemProps = {
-  description: string;
-  icon?: React.ReactNode;
-  title: string;
+  description: string
+  icon?: React.ReactNode
+  title: string
   links: Array<{
-    href: string;
-    title: string;
-    tags?: string[];
-  }>;
-};
+    href: string
+    title: string
+    tags?: string[]
+  }>
+}
 
 export type LinkCard3ColumnProps = {
   items: [
     LinkCard3ColumnItemProps,
     LinkCard3ColumnItemProps,
     LinkCard3ColumnItemProps
-  ];
-  topRounded?: boolean;
-};
+  ]
+  topRounded?: boolean
+}
 
 export function LinkCard3Column({
   items,
   topRounded = true,
 }: LinkCard3ColumnProps) {
   const classes = clsx(
-    'container grid grid-cols-1 pb-8 bg-white rounded-lg gap-x-4 dark:bg-primary-gray-dark md:grid-cols-3 md:flex-row md:px-10',
+    "container grid grid-cols-1 pb-8 bg-white rounded-lg gap-x-4 dark:bg-primary-gray-dark md:grid-cols-3 md:flex-row md:px-10",
     {
-      'rounded-tr-none rounded-tl-none': !topRounded,
+      "rounded-tr-none rounded-tl-none": !topRounded,
     }
-  );
+  )
 
   return (
     <div className={classes}>
       {items.map((item, index) => (
         <div
           key={`${item.title}-header`}
-          className={clsx('px-10 pt-16 md:row-start-1', {
-            'row-start-1': index === 0,
-            'row-start-3': index === 1,
-            'row-start-5': index === 2,
-            'grid-column-start-1': index === 0,
-            'grid-column-start-2': index === 1,
-            'grid-column-start-3': index === 2,
+          className={clsx("px-10 pt-16 md:row-start-1", {
+            "row-start-1": index === 0,
+            "row-start-3": index === 1,
+            "row-start-5": index === 2,
+            "grid-column-start-1": index === 0,
+            "grid-column-start-2": index === 1,
+            "grid-column-start-3": index === 2,
           })}
         >
           <h5 className="flex items-center mb-2 text-h5">
-            {item.icon && <span className="mr-2">{item.icon}</span>}{' '}
+            {item.icon && <span className="mr-2">{item.icon}</span>}{" "}
             {item.title}
           </h5>
           <p className="text-primary-gray-300 dark:text-primary-gray-50">
@@ -62,11 +62,11 @@ export function LinkCard3Column({
         <div
           key={`${item.title}-content`}
           className={clsx(
-            'divide-y divide-primary-gray-100 px-6 md:row-start-2 md:pb-8',
+            "divide-y divide-primary-gray-100 px-6 md:row-start-2 md:pb-8",
             {
-              'row-start-2': index === 0,
-              'row-start-4': index === 1,
-              'row-start-6': index === 2,
+              "row-start-2": index === 0,
+              "row-start-4": index === 1,
+              "row-start-6": index === 2,
             }
           )}
         >
@@ -101,5 +101,5 @@ export function LinkCard3Column({
         </div>
       ))}
     </div>
-  );
+  )
 }

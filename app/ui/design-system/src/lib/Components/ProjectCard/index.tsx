@@ -1,22 +1,21 @@
- 
-import { Tag } from '..';
-import { ReactComponent as StarIcon } from '../../../../images/action/star';
-import { ReactComponent as ChevronRightIcon } from '../../../../images/arrows/chevron-right';
-import { ReactComponent as GithubIcon } from '../../../../images/social/github';
-import { ReactComponent as TwitterIcon } from '../../../../images/social/twitter';
-import { User } from '../../interfaces';
+import { Tag } from ".."
+import { ReactComponent as StarIcon } from "../../../../images/action/star"
+import { ReactComponent as ChevronRightIcon } from "../../../../images/arrows/chevron-right"
+import { ReactComponent as GithubIcon } from "../../../../images/social/github"
+import { ReactComponent as TwitterIcon } from "../../../../images/social/twitter"
+import { User } from "../../interfaces"
 
 export type ProjectCardProps = {
-  projectImage: string;
-  heading: string;
-  description: string;
-  tags: string[];
-  projectLink: string;
-  author: User;
-  numStars: number;
-  twitterLink: string;
-  githubLink: string;
-};
+  projectImage: string
+  heading: string
+  description: string
+  tags: string[]
+  projectLink: string
+  author: User
+  numStars: number
+  twitterLink: string
+  githubLink: string
+}
 
 const ProjectCard = ({
   projectImage,
@@ -72,7 +71,7 @@ const ProjectCard = ({
         </a>
       </div>
     </div>
-  );
-};
+  )
+}
 
-export default ProjectCard;
+export default ProjectCard

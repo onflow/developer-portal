@@ -1,12 +1,12 @@
-import { Meta } from '@storybook/react';
+import { Meta } from "@storybook/react"
 
-import { Footer } from '.';
+import { Footer } from "."
 
 export default {
   component: Footer,
-  title: 'Components/Footer',
-} as Meta;
+  title: "Components/Footer",
+} as Meta
 
-const Template = () => <Footer />;
+const Template = () => <Footer />
 
-export const Default = Template.bind({});
+export const Default = Template.bind({})

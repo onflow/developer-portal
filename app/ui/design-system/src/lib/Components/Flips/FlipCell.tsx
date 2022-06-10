@@ -1,31 +1,31 @@
-import clsx from 'clsx';
-import { ReactComponent as CalendarIcon } from '../../../../images/action/date-calendar';
-import { ReactComponent as CommentIcon } from '../../../../images/arrows/message-circle';
-import Tag from '../Tag';
-import RoundImage from './RoundImage';
+import clsx from "clsx"
+import { ReactComponent as CalendarIcon } from "../../../../images/action/date-calendar"
+import { ReactComponent as CommentIcon } from "../../../../images/arrows/message-circle"
+import Tag from "../Tag"
+import RoundImage from "./RoundImage"
 
 export type User = {
-  profileImage: string;
-  name: string;
-};
+  profileImage: string
+  name: string
+}
 
 export type FlipCellProps = {
-  numComments: number;
-  heading: string;
-  tags: string[];
-  participant: User;
-  date: string;
-  forumLink: string;
-};
+  numComments: number
+  heading: string
+  tags: string[]
+  participant: User
+  date: string
+  forumLink: string
+}
 
 const PARENT_GRID =
-  'p-4 flex flex-col sm:p-6 md:grid gap-[25px] md:grid-cols-[56px_auto_280px]';
-const RIGHT_GRID = 'md:grid md:grid-cols-[80px_100px_100px]';
+  "p-4 flex flex-col sm:p-6 md:grid gap-[25px] md:grid-cols-[56px_auto_280px]"
+const RIGHT_GRID = "md:grid md:grid-cols-[80px_100px_100px]"
 
 export const FlipCellHeader = () => (
   <div
     className={clsx(
-      'hidden text-xs text-primary-gray-200 dark:text-primary-gray-300 md:grid md:py-2',
+      "hidden text-xs text-primary-gray-200 dark:text-primary-gray-300 md:grid md:py-2",
       PARENT_GRID
     )}
   >
@@ -37,7 +37,7 @@ export const FlipCellHeader = () => (
       <div className="text-center">Comments</div>
     </div>
   </div>
-);
+)
 
 const FlipCell = ({
   heading,
@@ -51,7 +51,7 @@ const FlipCell = ({
     <a
       href={forumLink}
       className={clsx(
-        'rounded-lg bg-white hover:shadow-2xl dark:bg-primary-gray-dark',
+        "rounded-lg bg-white hover:shadow-2xl dark:bg-primary-gray-dark",
         PARENT_GRID
       )}
     >
@@ -78,7 +78,7 @@ const FlipCell = ({
       </div>
       <div
         className={clsx(
-          'flex justify-between text-primary-gray-300 dark:text-primary-gray-100',
+          "flex justify-between text-primary-gray-300 dark:text-primary-gray-100",
           RIGHT_GRID
         )}
       >
@@ -96,7 +96,7 @@ const FlipCell = ({
         </div>
       </div>
     </a>
-  );
-};
+  )
+}
 
-export default FlipCell;
+export default FlipCell

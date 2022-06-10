@@ -1,33 +1,33 @@
 import {
   LandingHeader,
   LandingHeaderProps,
-} from '../../Components/LandingHeader';
+} from "../../Components/LandingHeader"
 import {
   LinkCard2Column,
   LinkCard2ColumnProps,
-} from '../../Components/LinkCard2Column';
-import { SocialLinksSignup } from '../../Components';
-import { SDKCard, SDKCardProps } from '../../Components/SDKCard';
-import { ButtonLink } from '../../Components/Button';
+} from "../../Components/LinkCard2Column"
+import { SocialLinksSignup } from "../../Components"
+import { SDKCard, SDKCardProps } from "../../Components/SDKCard"
+import { ButtonLink } from "../../Components/Button"
 import FeaturedArticleCard, {
   FeaturedArticleCardProps,
-} from '../../Components/FeaturedArticleCard';
-import { ToolCard, ToolCardProps } from '../../Components/ToolCard';
+} from "../../Components/FeaturedArticleCard"
+import { ToolCard, ToolCardProps } from "../../Components/ToolCard"
 import {
   ContentNavigation,
   ContentNavigationProps,
-} from '../../Components/ContentNavigation';
+} from "../../Components/ContentNavigation"
 import {
   LinkCard3Column,
   LinkCard3ColumnProps,
-} from '../../Components/LinkCard3Column';
-import { ReactComponent as GitHubIcon } from '../../../../images/social/github';
-import { ReactComponent as DiscordIcon } from '../../../../images/social/discord';
+} from "../../Components/LinkCard3Column"
+import { ReactComponent as GitHubIcon } from "../../../../images/social/github"
+import { ReactComponent as DiscordIcon } from "../../../../images/social/discord"
 
 export interface GettingStartedPageProps {
-  landingHeaderItems: LandingHeaderProps;
-  linkCard3ColumnItems: LinkCard3ColumnProps;
-  linkCard2ColumnItems: LinkCard2ColumnProps;
+  landingHeaderItems: LandingHeaderProps
+  linkCard3ColumnItems: LinkCard3ColumnProps
+  linkCard2ColumnItems: LinkCard2ColumnProps
   sdkCardItems: [
     SDKCardProps,
     SDKCardProps,
@@ -35,14 +35,14 @@ export interface GettingStartedPageProps {
     SDKCardProps,
     SDKCardProps,
     SDKCardProps
-  ];
-  recentArticleItems: FeaturedArticleCardProps;
-  recentToolItems: [ToolCardProps, ToolCardProps, ToolCardProps];
+  ]
+  recentArticleItems: FeaturedArticleCardProps
+  recentToolItems: [ToolCardProps, ToolCardProps, ToolCardProps]
   contentNavigationItems: [
     ContentNavigationProps,
     ContentNavigationProps,
     ContentNavigationProps
-  ];
+  ]
 }
 
 export function GettingStartedPage({
@@ -203,5 +203,5 @@ export function GettingStartedPage({
         <SocialLinksSignup />
       </div>
     </div>
-  );
+  )
 }

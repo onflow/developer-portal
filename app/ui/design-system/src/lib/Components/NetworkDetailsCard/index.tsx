@@ -1,16 +1,15 @@
- 
-import { ReactComponent as ChevronRightIcon } from '../../../../images/arrows/chevron-right';
-import { ReactComponent as RssIcon } from '../../../../images/content/rss';
-import { Link } from '../Link';
+import { ReactComponent as ChevronRightIcon } from "../../../../images/arrows/chevron-right"
+import { ReactComponent as RssIcon } from "../../../../images/content/rss"
+import { Link } from "../Link"
 
 export type NetworkDetailsCardProps = {
-  status: 'Under Maintenance' | 'Healthy';
-  statusLink: string;
-  version: string;
-  lastSporkDate: string;
-  nextSporkDate: string;
-  rssFeed: string;
-};
+  status: "Under Maintenance" | "Healthy"
+  statusLink: string
+  version: string
+  lastSporkDate: string
+  nextSporkDate: string
+  rssFeed: string
+}
 
 const NetworkDetailsCard = ({
   status,
@@ -23,7 +22,7 @@ const NetworkDetailsCard = ({
   return (
     <div
       className="mx-auto flex flex-col items-center justify-center rounded-2xl bg-white py-4 text-center dark:bg-primary-gray-dark md:flex-row md:py-0"
-      style={{ maxWidth: '1140px' }}
+      style={{ maxWidth: "1140px" }}
     >
       <div className="border-0 border-accent-light-gray px-8 py-4 md:border-r-2">
         <p className="mb-2 text-xs uppercase text-primary-gray-200">Version</p>
@@ -33,7 +32,7 @@ const NetworkDetailsCard = ({
       <div className="border-0 border-accent-light-gray px-8 py-4 md:border-r-2 ">
         <p
           className="mb-2 text-xs uppercase text-primary-gray-200"
-          style={{ minWidth: '148px' }}
+          style={{ minWidth: "148px" }}
         >
           Status
         </p>
@@ -67,7 +66,7 @@ const NetworkDetailsCard = ({
         </Link>
       </div>
     </div>
-  );
-};
+  )
+}
 
-export default NetworkDetailsCard;
+export default NetworkDetailsCard

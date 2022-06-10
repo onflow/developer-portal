@@ -1,9 +1,7 @@
- 
-
 export type RoundImageProps = {
-  imageUri: string;
-  altText: string;
-};
+  imageUri: string
+  altText: string
+}
 
 const RoundImage = ({ imageUri, altText }: RoundImageProps) => (
   <div className="w-9">
@@ -15,6 +13,6 @@ const RoundImage = ({ imageUri, altText }: RoundImageProps) => (
       height={40}
     />
   </div>
-);
+)
 
-export default RoundImage;
+export default RoundImage

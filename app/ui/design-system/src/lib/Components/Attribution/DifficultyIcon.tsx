@@ -23,7 +23,7 @@ function DifficultyIcon() {
         </clipPath>
       </defs>
     </svg>
-  );
+  )
 }
 
-export default DifficultyIcon;
+export default DifficultyIcon

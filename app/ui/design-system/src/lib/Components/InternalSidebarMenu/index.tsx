@@ -4,40 +4,40 @@ import {
   MenuItems,
   MenuLink,
   MenuList,
-} from '@reach/menu-button';
-import { useRef } from 'react';
-import { ReactComponent as Close } from '../../../../images/action/close';
-import { ReactComponent as ChevronDown } from '../../../../images/arrows/chevron-down';
-import { ToolName, TOOLS } from '../Internal/tools';
+} from "@reach/menu-button"
+import { useRef } from "react"
+import { ReactComponent as Close } from "../../../../images/action/close"
+import { ReactComponent as ChevronDown } from "../../../../images/arrows/chevron-down"
+import { ToolName, TOOLS } from "../Internal/tools"
 
 export type Version = {
-  name: string;
-  href: string;
-};
+  name: string
+  href: string
+}
 
-type SectionGroup = { name: string; sections: ToolName[] };
+type SectionGroup = { name: string; sections: ToolName[] }
 
 export type InternalSidebarMenuProps = {
-  selectedTool: ToolName;
-};
+  selectedTool: ToolName
+}
 
 const SIDEBAR_SECTION_GROUPS: SectionGroup[] = [
   {
-    name: 'Switch tool',
-    sections: ['emulator', 'vscode', 'port', 'cli', 'testing'],
+    name: "Switch tool",
+    sections: ["emulator", "vscode", "port", "cli", "testing"],
   },
   {
-    name: 'Concepts',
-    sections: ['fcl', 'cadence'],
+    name: "Concepts",
+    sections: ["fcl", "cadence"],
   },
-];
+]
 
 function Group({ group }: { group: SectionGroup }) {
   return (
     <>
       {group.sections.map((section: ToolName) => {
-        const SelectedGroupSectionIcon = TOOLS[section].icon;
-        const SelectedGroupSectionGradientIcon = TOOLS[section].gradientIcon;
+        const SelectedGroupSectionIcon = TOOLS[section].icon
+        const SelectedGroupSectionGradientIcon = TOOLS[section].gradientIcon
         return (
           <div className="border-b border-b-primary-gray-100 last:border-none md:border-none md:p-0">
             <MenuLink
@@ -55,21 +55,21 @@ function Group({ group }: { group: SectionGroup }) {
                 </div>
               </div>
               <div className="flex items-center justify-center font-bold text-primary-gray-400 dark:text-primary-gray-100 md:h-[2rem] md:text-sm md:font-normal">
-                {TOOLS[section].name}{' '}
+                {TOOLS[section].name}{" "}
               </div>
             </MenuLink>
           </div>
-        );
+        )
       })}
     </>
-  );
+  )
 }
 
 export function InternalSidebarMenu({
   selectedTool,
 }: InternalSidebarMenuProps) {
-  const parentRef = useRef<HTMLButtonElement | null>(null);
-  const SelectedIcon = TOOLS[selectedTool].icon;
+  const parentRef = useRef<HTMLButtonElement | null>(null)
+  const SelectedIcon = TOOLS[selectedTool].icon
   return (
     <div className="flex items-center">
       <Menu>
@@ -112,5 +112,5 @@ export function InternalSidebarMenu({
         </MenuList>
       </Menu>
     </div>
-  );
+  )
 }

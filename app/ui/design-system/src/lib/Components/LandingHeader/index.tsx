@@ -1,14 +1,14 @@
-import { ButtonLink } from '../Button';
-import { GradientName, LandingHeaderContainer } from './LandingHeaderContainer';
+import { ButtonLink } from "../Button"
+import { GradientName, LandingHeaderContainer } from "./LandingHeaderContainer"
 
 export type LandingHeaderProps = {
-  buttonText: string;
-  buttonUrl: string;
-  callout: string;
-  description: string;
-  gradient: GradientName;
-  title: string;
-};
+  buttonText: string
+  buttonUrl: string
+  callout: string
+  description: string
+  gradient: GradientName
+  title: string
+}
 
 export function LandingHeader({
   buttonText,
@@ -40,5 +40,5 @@ export function LandingHeader({
         </div>
       </div>
     </LandingHeaderContainer>
-  );
+  )
 }

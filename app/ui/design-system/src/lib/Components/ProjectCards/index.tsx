@@ -1,9 +1,9 @@
-import { ButtonLink } from '../Button';
-import ProjectCard, { ProjectCardProps } from '../ProjectCard';
+import { ButtonLink } from "../Button"
+import ProjectCard, { ProjectCardProps } from "../ProjectCard"
 
 export type ProjectCardsProps = {
-  projects: ProjectCardProps[];
-};
+  projects: ProjectCardProps[]
+}
 
 const ProjectCards = ({ projects }: ProjectCardsProps) => {
   return (
@@ -21,7 +21,7 @@ const ProjectCards = ({ projects }: ProjectCardsProps) => {
         </ButtonLink>
       </div>
     </div>
-  );
-};
+  )
+}
 
-export default ProjectCards;
+export default ProjectCards

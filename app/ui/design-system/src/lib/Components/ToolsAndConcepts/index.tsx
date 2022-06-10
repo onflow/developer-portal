@@ -1,24 +1,24 @@
-import { TabMenu } from '..';
-import { ButtonLink } from '../Button';
-import { ToolCard, ToolCardProps } from '../ToolCard';
+import { TabMenu } from ".."
+import { ButtonLink } from "../Button"
+import { ToolCard, ToolCardProps } from "../ToolCard"
 
 export type ToolsAndConceptsProps = {
-  tools: ToolCardProps[];
-};
+  tools: ToolCardProps[]
+}
 
 // @ts-expect-error please fix
 const ToolsAndConcepts = ({ tools }) => (
   <div className="container">
     <div className="mb-2 text-h2">Tools and Concepts</div>
     <p>Core concepts and tools you’ll need to get started building on Flow</p>
-    <TabMenu tabs={['Tools', 'Concepts']} onTabChange={() => null} />
+    <TabMenu tabs={["Tools", "Concepts"]} onTabChange={() => null} />
     <div className="grid gap-6 mt-9 md:grid-cols-2 md:gap-x-9 md:gap-y-6">
-
-
-      {// @ts-expect-error please fix
-      tools.map((tool) => (
-        <ToolCard {...tool} />
-      ))}
+      {
+        // @ts-expect-error please fix
+        tools.map((tool) => (
+          <ToolCard {...tool} />
+        ))
+      }
     </div>
     <div className="flex flex-col justify-between mt-9 md:flex-row">
       <ButtonLink
@@ -38,6 +38,6 @@ const ToolsAndConcepts = ({ tools }) => (
       </ButtonLink>
     </div>
   </div>
-);
+)
 
-export default ToolsAndConcepts;
+export default ToolsAndConcepts

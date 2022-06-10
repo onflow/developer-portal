@@ -1,11 +1,11 @@
-import LandingImage from '../../../../images/misc/landing-home.png';
-import { LandingHeaderContainer } from '../LandingHeader/LandingHeaderContainer';
+import LandingImage from "../../../../images/misc/landing-home.png"
+import { LandingHeaderContainer } from "../LandingHeader/LandingHeaderContainer"
 
 export type LandingHeaderHomeProps = {
-  description: string;
-  tag: string;
-  title: string;
-};
+  description: string
+  tag: string
+  title: string
+}
 
 export function LandingHeaderHome({
   description,
@@ -17,7 +17,7 @@ export function LandingHeaderHome({
       <div className="container flex flex-col items-center md:flex-row">
         <div className="flex flex-col items-start self-start flex-1 max-w-full py-6 pr-4 basis-1/2 md:mt-24 md:py-20">
           <p className="mb-1 font-bold font-display text-primary-gray-300 dark:text-primary-gray-200">
-            #{tag} 
+            #{tag}
           </p>
           <h1 className="text-h1 mb-6 max-w-full overflow-hidden text-ellipsis !text-4xl md:!text-7xl ">
             {title}
@@ -33,5 +33,5 @@ export function LandingHeaderHome({
         </div>
       </div>
     </LandingHeaderContainer>
-  );
+  )
 }

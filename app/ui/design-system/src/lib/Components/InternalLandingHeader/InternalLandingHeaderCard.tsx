@@ -1,12 +1,12 @@
-import { ReactComponent as ChevronRight } from '../../../../images/arrows/chevron-right';
-import Tag from '../Tag';
+import { ReactComponent as ChevronRight } from "../../../../images/arrows/chevron-right"
+import Tag from "../Tag"
 
 export type InternalLandingHeaderCardProps = {
-  title: string;
-  tags: string[];
-  description: string;
-  href: string;
-};
+  title: string
+  tags: string[]
+  description: string
+  href: string
+}
 
 export function InternalLandingHeaderCard({
   title,
@@ -38,5 +38,5 @@ export function InternalLandingHeaderCard({
         <ChevronRight />
       </div>
     </a>
-  );
+  )
 }
