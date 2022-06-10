@@ -52,7 +52,7 @@ jobs:
       - name: Install modules
         run: yarn install
       - name: Typescript
-        run: yarn typescheck
+        run: yarn typecheck
 
   build:
     name: Build
