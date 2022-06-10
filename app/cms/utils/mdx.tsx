@@ -10,6 +10,7 @@ import {
   downloadDirList,
   downloadMdxFileOrDirectory,
   redisCache,
+  InternalCodeBlock,
 } from "~/cms"
 import {
   Heading,
@@ -300,10 +301,10 @@ const mdxComponents = {
   h4: (props: HeadingProps) => <Heading type="h4" {...props} />,
   h5: (props: HeadingProps) => <Heading type="h5" {...props} />,
   h6: (props: HeadingProps) => <Heading type="h6" {...props} />,
-  // pre: ({ children }: { children: React.ReactNode }) => {
-  //   // TODO: pass code string as rawText for copy to clipboard functionality
-  //   return <InternalCodeblock rawText="TODO" children={children} />
-  // },
+  pre: ({ children }: { children: React.ReactNode }) => {
+    // TODO: pass code string as rawText for copy to clipboard functionality
+    return <InternalCodeBlock rawText="TODO" children={children} />
+  },
 }
 
 /**
