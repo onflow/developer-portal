@@ -1,6 +1,6 @@
-import { endOfWeek } from 'date-fns';
-import   { useState } from 'react';
-import { ReactComponent as ChevronLeftIcon } from '../../../../images/arrows/chevron-left';
+import { endOfWeek } from "date-fns"
+import { useState } from "react"
+import { ReactComponent as ChevronLeftIcon } from "../../../../images/arrows/chevron-left"
 import {
   Callout,
   FeaturedArticleSlider,
@@ -10,27 +10,27 @@ import {
   SocialLinksSignup,
   SporksCard,
   TabMenu,
-} from '../../Components';
-import { Article } from '../../interfaces';
-import data from '../NetworkPage/sample';
+} from "../../Components"
+import { Article } from "../../interfaces"
+import data from "../NetworkPage/sample"
 
 export type NetworkDetailPageProps = {
-  networkName: string;
-};
+  networkName: string
+}
 
 const NetworkDetailPage = () => {
-  const [selectedNetworkIndex, setSelectedNetworkIndex] = useState(0);
-  const tabs = data.map((network: any) => network.name);
-  const currentNetwork = data[selectedNetworkIndex];
+  const [selectedNetworkIndex, setSelectedNetworkIndex] = useState(0)
+  const tabs = data.map((network: any) => network.name)
+  const currentNetwork = data[selectedNetworkIndex]
   const article = {
-    heading: 'Node operator callout',
+    heading: "Node operator callout",
     description:
-      'Everything you need to start building on Flow verything you need to start building on Flow everything you need to start building on Flow',
-    ctaText: 'Learn more',
-    ctaLink: 'https://flow.com',
+      "Everything you need to start building on Flow verything you need to start building on Flow everything you need to start building on Flow",
+    ctaText: "Learn more",
+    ctaLink: "https://flow.com",
     imageUrl:
-      'https://github.githubassets.com/images/modules/logos_page/GitHub-Mark.png',
-  } as Article;
+      "https://github.githubassets.com/images/modules/logos_page/GitHub-Mark.png",
+  } as Article
 
   return (
     <div className="w-full p-6 bg-primary-gray-50 dark:bg-black">
@@ -49,9 +49,9 @@ const NetworkDetailPage = () => {
         </div>
         <NetworkDetailsCard
           status={
-            currentNetwork.status === 'operational'
-              ? 'Healthy'
-              : 'Under Maintenance'
+            currentNetwork.status === "operational"
+              ? "Healthy"
+              : "Under Maintenance"
           }
           statusLink="https://google.com"
           version="33"
@@ -67,16 +67,16 @@ const NetworkDetailPage = () => {
           heading={currentNetwork.name}
           timestamp={endOfWeek(new Date())}
           sporkMetadata={{
-            accessNode: 'access-001.mainnet15.nodes.onflow.org:9000',
+            accessNode: "access-001.mainnet15.nodes.onflow.org:9000",
             date: new Date(),
-            rootHeight: '19050753',
+            rootHeight: "19050753",
             rootParentId:
-              'ac4dbf344ce96e39e15081f1dc3fbbf6dc80532e402de9a57af847d3b35df596',
+              "ac4dbf344ce96e39e15081f1dc3fbbf6dc80532e402de9a57af847d3b35df596",
             rootStateCommit:
-              '641eb088e3ce1a01ff56df2d3a14372c65a7fef44c08799eb92cd7759d1d1d2a',
-            gitCommit: 'f019c1dbd778ce9f92dea61349ca36003678a9ad',
-            branchOrTag: 'v0.22.9-patch-1-epoch-view-check-hotfix',
-            dockerTag: 'v0.22.9-patch-1-epoch-view-check-hotfix',
+              "641eb088e3ce1a01ff56df2d3a14372c65a7fef44c08799eb92cd7759d1d1d2a",
+            gitCommit: "f019c1dbd778ce9f92dea61349ca36003678a9ad",
+            branchOrTag: "v0.22.9-patch-1-epoch-view-check-hotfix",
+            dockerTag: "v0.22.9-patch-1-epoch-view-check-hotfix",
           }}
           upcoming
         />
@@ -88,16 +88,16 @@ const NetworkDetailPage = () => {
           heading={currentNetwork.name}
           timestamp={endOfWeek(new Date())}
           sporkMetadata={{
-            accessNode: 'access-001.mainnet15.nodes.onflow.org:9000',
+            accessNode: "access-001.mainnet15.nodes.onflow.org:9000",
             date: new Date(),
-            rootHeight: '19050753',
+            rootHeight: "19050753",
             rootParentId:
-              'ac4dbf344ce96e39e15081f1dc3fbbf6dc80532e402de9a57af847d3b35df596',
+              "ac4dbf344ce96e39e15081f1dc3fbbf6dc80532e402de9a57af847d3b35df596",
             rootStateCommit:
-              '641eb088e3ce1a01ff56df2d3a14372c65a7fef44c08799eb92cd7759d1d1d2a',
-            gitCommit: 'f019c1dbd778ce9f92dea61349ca36003678a9ad',
-            branchOrTag: 'v0.22.9-patch-1-epoch-view-check-hotfix',
-            dockerTag: 'v0.22.9-patch-1-epoch-view-check-hotfix',
+              "641eb088e3ce1a01ff56df2d3a14372c65a7fef44c08799eb92cd7759d1d1d2a",
+            gitCommit: "f019c1dbd778ce9f92dea61349ca36003678a9ad",
+            branchOrTag: "v0.22.9-patch-1-epoch-view-check-hotfix",
+            dockerTag: "v0.22.9-patch-1-epoch-view-check-hotfix",
           }}
         />
         <div className="divide-y">
@@ -107,16 +107,16 @@ const NetworkDetailPage = () => {
                 heading={currentNetwork.name}
                 timestamp={endOfWeek(new Date())}
                 sporkMetadata={{
-                  accessNode: 'access-001.mainnet15.nodes.onflow.org:9000',
+                  accessNode: "access-001.mainnet15.nodes.onflow.org:9000",
                   date: new Date(),
-                  rootHeight: '19050753',
+                  rootHeight: "19050753",
                   rootParentId:
-                    'ac4dbf344ce96e39e15081f1dc3fbbf6dc80532e402de9a57af847d3b35df596',
+                    "ac4dbf344ce96e39e15081f1dc3fbbf6dc80532e402de9a57af847d3b35df596",
                   rootStateCommit:
-                    '641eb088e3ce1a01ff56df2d3a14372c65a7fef44c08799eb92cd7759d1d1d2a',
-                  gitCommit: 'f019c1dbd778ce9f92dea61349ca36003678a9ad',
-                  branchOrTag: 'v0.22.9-patch-1-epoch-view-check-hotfix',
-                  dockerTag: 'v0.22.9-patch-1-epoch-view-check-hotfix',
+                    "641eb088e3ce1a01ff56df2d3a14372c65a7fef44c08799eb92cd7759d1d1d2a",
+                  gitCommit: "f019c1dbd778ce9f92dea61349ca36003678a9ad",
+                  branchOrTag: "v0.22.9-patch-1-epoch-view-check-hotfix",
+                  dockerTag: "v0.22.9-patch-1-epoch-view-check-hotfix",
                 }}
                 isDefaultExpanded={false}
               />
@@ -145,7 +145,7 @@ const NetworkDetailPage = () => {
         <Footer />
       </div>
     </div>
-  );
-};
+  )
+}
 
-export default NetworkDetailPage;
+export default NetworkDetailPage

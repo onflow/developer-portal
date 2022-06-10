@@ -1,17 +1,17 @@
 const Section = ({ children }: { children: React.ReactNode }) => (
   <div className="flex mb-6 mr-12 ">{children}</div>
-);
+)
 
 const Heading = ({ children }: { children: React.ReactNode }) => (
   <div className="mb-4 text-h5">{children}</div>
-);
+)
 
 const Color = ({ name, className }: { name: string; className: string }) => (
   <div className="mr-6">
     <div className={`h-[6.5rem] w-[6.5rem] rounded-md ${className}`} />
     <div className="mt-2 text-sm text-primary-gray-300">{name}</div>
   </div>
-);
+)
 
 export function Colors() {
   return (
@@ -74,5 +74,5 @@ export function Colors() {
         <Color name="tool-gradient-cadence" className="tool-gradient-cadence" />
       </Section>
     </div>
-  );
+  )
 }

@@ -1,28 +1,28 @@
-import { Meta, Story } from '@storybook/react';
-import { Button, ButtonProps } from '.';
+import { Meta, Story } from "@storybook/react"
+import { Button, ButtonProps } from "."
 
 export default {
   component: Button,
-  title: 'Components/Button',
+  title: "Components/Button",
   args: {
-    variant: 'primary',
+    variant: "primary",
   },
   argTypes: {
     variant: {
-      options: ['primary', 'secondary'],
-      control: { type: 'select' },
+      options: ["primary", "secondary"],
+      control: { type: "select" },
     },
   },
-} as Meta;
+} as Meta
 
 const Template: Story<ButtonProps> = (args) => {
   return (
     <div
       style={{
-        gap: '1rem',
-        padding: '1rem',
-        display: 'inline-flex',
-        flexDirection: 'column',
+        gap: "1rem",
+        padding: "1rem",
+        display: "inline-flex",
+        flexDirection: "column",
       }}
     >
       <Button variant="primary">Primary</Button>
@@ -35,17 +35,17 @@ const Template: Story<ButtonProps> = (args) => {
         Secondary Next
       </Button>
     </div>
-  );
-};
+  )
+}
 
-export const Default = Template.bind({});
+export const Default = Template.bind({})
 Default.args = {
-  children: 'Button',
-};
-export const defaultDark = Template.bind({});
-defaultDark.args = Default.args;
+  children: "Button",
+}
+export const defaultDark = Template.bind({})
+defaultDark.args = Default.args
 defaultDark.parameters = {
   themes: {
-    default: 'dark',
+    default: "dark",
   },
-};
+}

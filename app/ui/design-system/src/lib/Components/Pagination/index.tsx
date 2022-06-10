@@ -1,14 +1,14 @@
-import clsx from 'clsx';
-import { ReactComponent as ArrowLeftIcon } from '../../../../images/arrows/arrow-left';
-import { ReactComponent as ArrowRightIcon } from '../../../../images/arrows/arrow-right';
+import clsx from "clsx"
+import { ReactComponent as ArrowLeftIcon } from "../../../../images/arrows/arrow-left"
+import { ReactComponent as ArrowRightIcon } from "../../../../images/arrows/arrow-right"
 
 export type PaginationProps = {
-  className?: string;
-  page: number;
-  itemCount: number;
-  pageSize: number;
-  setPage: (page: number) => void;
-};
+  className?: string
+  page: number
+  itemCount: number
+  pageSize: number
+  setPage: (page: number) => void
+}
 
 const Pagination = ({
   className,
@@ -17,15 +17,15 @@ const Pagination = ({
   page,
   setPage,
 }: PaginationProps) => {
-  const pageCount = Math.ceil(itemCount / pageSize);
+  const pageCount = Math.ceil(itemCount / pageSize)
 
   return (
-    <div className={clsx('flex items-center justify-end', className)}>
+    <div className={clsx("flex items-center justify-end", className)}>
       <button
         type="button"
-        className={clsx('py-4 px-2', {
-          'cursor-pointer text-primary-gray-300 dark:text-white': page > 1,
-          'cursor-not-allowed text-primary-gray-100 dark:text-primary-gray-300':
+        className={clsx("py-4 px-2", {
+          "cursor-pointer text-primary-gray-300 dark:text-white": page > 1,
+          "cursor-not-allowed text-primary-gray-100 dark:text-primary-gray-300":
             page <= 1,
         })}
         disabled={page <= 1}
@@ -38,22 +38,22 @@ const Pagination = ({
         className="ml-4 mr-2 w-10 rounded-sm border border-primary-gray-300 text-center dark:bg-black dark:text-white"
         value={page}
         onChange={(e) => {
-          const value = +e.target.value;
+          const value = +e.target.value
 
           if (!Number.isFinite(value) || value < 1 || value > pageCount) {
-            return;
+            return
           }
 
-          setPage(value);
+          setPage(value)
         }}
       />
       of {pageCount}
       <button
         type="button"
-        className={clsx('ml-4 py-4 px-2', {
-          'cursor-pointer text-primary-gray-300 dark:text-white':
+        className={clsx("ml-4 py-4 px-2", {
+          "cursor-pointer text-primary-gray-300 dark:text-white":
             page < pageCount,
-          'cursor-not-allowed text-primary-gray-100 dark:text-primary-gray-300':
+          "cursor-not-allowed text-primary-gray-100 dark:text-primary-gray-300":
             page >= pageCount,
         })}
         disabled={page >= pageCount}
@@ -62,7 +62,7 @@ const Pagination = ({
         <ArrowRightIcon />
       </button>
     </div>
-  );
-};
+  )
+}
 
-export default Pagination;
+export default Pagination

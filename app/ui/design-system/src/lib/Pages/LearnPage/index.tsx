@@ -1,34 +1,34 @@
-import { ReactComponent as Filter } from '../../../../images/action/filter2';
-import { LandingHeader } from '../../Components/LandingHeader';
-import { SocialLinksSignup } from '../../Components';
-import { ButtonLink } from '../../Components/Button';
-import { TutorialCardProps } from '../../Components/TutorialCard';
-import PageBackground from '../shared/PageBackground';
-import PageSections from '../shared/PageSections';
-import PageSection from '../shared/PageSection';
-import { useMemo, useState } from 'react';
+import { ReactComponent as Filter } from "../../../../images/action/filter2"
+import { LandingHeader } from "../../Components/LandingHeader"
+import { SocialLinksSignup } from "../../Components"
+import { ButtonLink } from "../../Components/Button"
+import { TutorialCardProps } from "../../Components/TutorialCard"
+import PageBackground from "../shared/PageBackground"
+import PageSections from "../shared/PageSections"
+import PageSection from "../shared/PageSection"
+import { useMemo, useState } from "react"
 import {
   LargeVideoCard,
   LargeVideoCardProps,
-} from '../../Components/VideoCard/LargeVideoCard';
+} from "../../Components/VideoCard/LargeVideoCard"
 import {
   SmallVideoCard,
   SmallVideoCardProps,
-} from '../../Components/VideoCard/SmallVideoCard';
-import { ToggleButton } from '../../Components/ToggleButton';
-import { PaginatedTutorialCardList } from '../../Components/TutorialCard/PaginatedTutorialCardList';
+} from "../../Components/VideoCard/SmallVideoCard"
+import { ToggleButton } from "../../Components/ToggleButton"
+import { PaginatedTutorialCardList } from "../../Components/TutorialCard/PaginatedTutorialCardList"
 
 export type LearnPageProps = {
-  allTutorials: TutorialCardProps[];
-  cadenceHref: string;
-  cadenceTutorials: TutorialCardProps[];
-  nftTutorials: TutorialCardProps[];
+  allTutorials: TutorialCardProps[]
+  cadenceHref: string
+  cadenceTutorials: TutorialCardProps[]
+  nftTutorials: TutorialCardProps[]
   videos: {
-    primary: LargeVideoCardProps;
-    secondary: SmallVideoCardProps[];
-  };
-  youtubeHref: string;
-};
+    primary: LargeVideoCardProps
+    secondary: SmallVideoCardProps[]
+  }
+  youtubeHref: string
+}
 
 export function LearnPage({
   allTutorials = [],
@@ -38,7 +38,7 @@ export function LearnPage({
   videos,
   youtubeHref,
 }: LearnPageProps) {
-  const [filters, setFilters] = useState<string[]>([]);
+  const [filters, setFilters] = useState<string[]>([])
 
   const allTutorialsFiltered = useMemo(
     () =>
@@ -48,7 +48,7 @@ export function LearnPage({
           )
         : allTutorials,
     [allTutorials, filters]
-  );
+  )
 
   const tags: Array<string> = Array.from(
     new Set(
@@ -153,9 +153,9 @@ export function LearnPage({
                   key={tag}
                   onClick={() => {
                     if (filters.includes(tag)) {
-                      setFilters(filters.filter((value) => value !== tag));
+                      setFilters(filters.filter((value) => value !== tag))
                     } else {
-                      setFilters([...filters, tag]);
+                      setFilters([...filters, tag])
                     }
                   }}
                   isSelected={filters.includes(tag)}
@@ -186,5 +186,5 @@ export function LearnPage({
         </div>
       </div>
     </PageBackground>
-  );
+  )
 }

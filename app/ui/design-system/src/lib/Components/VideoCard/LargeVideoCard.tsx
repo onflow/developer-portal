@@ -1,25 +1,25 @@
-import   { useState } from 'react';
+import { useState } from "react"
 
-import { ReactComponent as PlayCircle } from '../../../../images/action/play-circle';
-import { ReactComponent as Time } from '../../../../images/content/date';
+import { ReactComponent as PlayCircle } from "../../../../images/action/play-circle"
+import { ReactComponent as Time } from "../../../../images/content/date"
 
 export interface LargeVideoCardProps {
-  link: string; // NOTE: link should be in the format that youtubes site uses ie: https://www.youtube.com/watch?v=...
-  title: string;
-  length: number; // seconds
+  link: string // NOTE: link should be in the format that youtubes site uses ie: https://www.youtube.com/watch?v=...
+  title: string
+  length: number // seconds
 }
 
 export function LargeVideoCard({ link, title, length }: LargeVideoCardProps) {
-  const [showOverlay, setShowOverlay] = useState(true);
+  const [showOverlay, setShowOverlay] = useState(true)
 
-  const minutes = String(Math.floor(length / 60)).padStart(2, '0');
-  const seconds = length % 60;
+  const minutes = String(Math.floor(length / 60)).padStart(2, "0")
+  const seconds = length % 60
 
-  const url = new URL(link);
-  const videoId = url.searchParams.get('v');
+  const url = new URL(link)
+  const videoId = url.searchParams.get("v")
 
-  if (url.hostname !== 'www.youtube.com') {
-    throw new Error('VideoCard only accepts youtube embeds');
+  if (url.hostname !== "www.youtube.com") {
+    throw new Error("VideoCard only accepts youtube embeds")
   }
 
   return (
@@ -55,9 +55,9 @@ export function LargeVideoCard({ link, title, length }: LargeVideoCardProps) {
       <iframe
         className="aspect-[1/1] w-full rounded-lg md:aspect-[16/9]"
         src={`https://www.youtube.com/embed/${videoId}${
-          showOverlay ? '' : '?autoplay=1'
+          showOverlay ? "" : "?autoplay=1"
         }`}
       />
     </div>
-  );
+  )
 }

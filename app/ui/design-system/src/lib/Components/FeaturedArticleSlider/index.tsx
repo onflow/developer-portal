@@ -1,10 +1,10 @@
-import { Article } from '../../interfaces';
-import { ButtonLink } from '../Button';
-import { Carousel, CarouselProps } from '../Carousel';
+import { Article } from "../../interfaces"
+import { ButtonLink } from "../Button"
+import { Carousel, CarouselProps } from "../Carousel"
 
 export type FeaturedArticleSliderProps = CarouselProps & {
-  articles: Article[];
-};
+  articles: Article[]
+}
 
 const FeaturedArticle = ({
   // @ts-expect-error please fix
@@ -39,18 +39,18 @@ const FeaturedArticle = ({
       className="cover min-h-[8rem] w-full"
     />
   </div>
-);
+)
 
 const FeaturedArticleSlider = ({
   articles,
-  breakpoint = 'none',
-  carouselItemWidth = 'w-10/12 md:w-full',
+  breakpoint = "none",
+  carouselItemWidth = "w-10/12 md:w-full",
   ...carouselProps
 }: FeaturedArticleSliderProps) => {
   return (
     <div className="container">
       <div className="mb-10 text-h2">
-        Featured article{articles.length > 0 ? 's' : ''}
+        Featured article{articles.length > 0 ? "s" : ""}
       </div>
 
       <Carousel
@@ -66,7 +66,7 @@ const FeaturedArticleSlider = ({
         ))}
       </Carousel>
     </div>
-  );
-};
+  )
+}
 
-export default FeaturedArticleSlider;
+export default FeaturedArticleSlider

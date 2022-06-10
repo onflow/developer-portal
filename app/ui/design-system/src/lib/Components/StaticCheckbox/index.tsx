@@ -1,12 +1,12 @@
-import { ReactComponent as CheckboxChecked } from '../../../../images/toggles/checkbox-checked';
-import { ReactComponent as CheckboxUnchecked } from '../../../../images/toggles/checkbox-unchecked';
+import { ReactComponent as CheckboxChecked } from "../../../../images/toggles/checkbox-checked"
+import { ReactComponent as CheckboxUnchecked } from "../../../../images/toggles/checkbox-unchecked"
 
 export type InputProps = React.DetailedHTMLProps<
   React.InputHTMLAttributes<HTMLInputElement>,
   HTMLInputElement
 > & {
-  asInternalChecklist?: boolean;
-};
+  asInternalChecklist?: boolean
+}
 
 export function StaticCheckbox({
   checked,
@@ -14,9 +14,9 @@ export function StaticCheckbox({
   ...props
 }: InputProps) {
   return (
-    <div className={asInternalChecklist ? 'absolute left-0' : ''}>
+    <div className={asInternalChecklist ? "absolute left-0" : ""}>
       {checked ? <CheckboxChecked /> : <CheckboxUnchecked />}
       <input checked={checked} {...props} className="invisible" />
     </div>
-  );
+  )
 }

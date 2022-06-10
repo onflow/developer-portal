@@ -19,7 +19,7 @@ function ClockIcon() {
         d="M8 4.5V9h3"
       ></path>
     </svg>
-  );
+  )
 }
 
-export default ClockIcon;
+export default ClockIcon

@@ -1,20 +1,20 @@
-import clsx from 'clsx';
-import { ButtonLink } from '../Button';
-import { Carousel, CarouselProps } from '../Carousel';
-import Tag from '../Tag';
+import clsx from "clsx"
+import { ButtonLink } from "../Button"
+import { Carousel, CarouselProps } from "../Carousel"
+import Tag from "../Tag"
 
 export type EventCardProps = {
-  className?: string;
-  ctaText: string;
-  description: string;
-  eventDate: string;
-  href: string;
-  imageAlt?: string;
-  imageSrc: string;
-  location: string;
-  tags?: string[];
-  title: string;
-};
+  className?: string
+  ctaText: string
+  description: string
+  eventDate: string
+  href: string
+  imageAlt?: string
+  imageSrc: string
+  location: string
+  tags?: string[]
+  title: string
+}
 
 export function EventCard({
   className,
@@ -22,16 +22,16 @@ export function EventCard({
   description,
   eventDate,
   href,
-  imageAlt = '',
+  imageAlt = "",
   imageSrc,
-  location = 'Online',
+  location = "Online",
   tags,
   title,
 }: EventCardProps) {
   return (
     <div
       className={clsx(
-        'flex min-h-fit flex-col-reverse overflow-hidden rounded-2xl bg-white dark:bg-primary-gray-dark md:min-h-[30rem] md:flex-row',
+        "flex min-h-fit flex-col-reverse overflow-hidden rounded-2xl bg-white dark:bg-primary-gray-dark md:min-h-[30rem] md:flex-row",
         className
       )}
     >
@@ -67,12 +67,12 @@ export function EventCard({
         />
       </div>
     </div>
-  );
+  )
 }
 
 export type EventCardListProps = CarouselProps & {
-  events: EventCardProps[];
-};
+  events: EventCardProps[]
+}
 
 export function EventCardList({
   events,
@@ -84,5 +84,5 @@ export function EventCardList({
         <EventCard key={`${event.title}-${event.href}`} {...event} />
       ))}
     </Carousel>
-  );
+  )
 }

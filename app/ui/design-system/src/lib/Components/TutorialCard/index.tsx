@@ -1,18 +1,18 @@
-import clsx from 'clsx';
-import Tag from '../Tag';
-import { ReactComponent as CalendarIcon } from '../../../../images/action/date-calendar';
-import { ReactComponent as TutorialIcon } from '../../../../images/content/drafting-tools';
+import clsx from "clsx"
+import Tag from "../Tag"
+import { ReactComponent as CalendarIcon } from "../../../../images/action/date-calendar"
+import { ReactComponent as TutorialIcon } from "../../../../images/content/drafting-tools"
 
 export type TutorialCardProps = {
-  className?: string;
-  heading: string;
-  tags: string[];
-  description: string;
-  lastUpdated: string;
-  level?: string;
-  imageUri: string;
-  link: string;
-};
+  className?: string
+  heading: string
+  tags: string[]
+  description: string
+  lastUpdated: string
+  level?: string
+  imageUri: string
+  link: string
+}
 
 const TutorialCard = ({
   className,
@@ -28,7 +28,7 @@ const TutorialCard = ({
     <a
       href={link}
       className={clsx(
-        'flex h-[300px] w-[272px] flex-col overflow-hidden rounded-lg bg-white hover:shadow-2xl dark:bg-primary-gray-dark',
+        "flex h-[300px] w-[272px] flex-col overflow-hidden rounded-lg bg-white hover:shadow-2xl dark:bg-primary-gray-dark",
         className
       )}
     >
@@ -55,7 +55,7 @@ const TutorialCard = ({
         </div>
       </div>
     </a>
-  );
-};
+  )
+}
 
-export default TutorialCard;
+export default TutorialCard

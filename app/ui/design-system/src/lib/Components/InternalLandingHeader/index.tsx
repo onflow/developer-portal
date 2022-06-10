@@ -1,32 +1,32 @@
-import clsx from 'clsx';
-import { ToolName, TOOLS } from '../Internal/tools';
+import clsx from "clsx"
+import { ToolName, TOOLS } from "../Internal/tools"
 import {
   InternalLandingHeaderCard,
   InternalLandingHeaderCardProps,
-} from './InternalLandingHeaderCard';
+} from "./InternalLandingHeaderCard"
 
 const TOOL_GRADIENT_CLASSES = {
-  cadence: 'tool-gradient-cadence',
-};
+  cadence: "tool-gradient-cadence",
+}
 
 export type InternalLandingHeaderProps = {
-  toolName: ToolName;
-  description: string;
-  headerCards: InternalLandingHeaderCardProps[];
-};
+  toolName: ToolName
+  description: string
+  headerCards: InternalLandingHeaderCardProps[]
+}
 
 export function InternalLandingHeader({
   toolName,
   description,
   headerCards,
 }: InternalLandingHeaderProps) {
-  const tool = TOOLS[toolName];
-  const Icon = tool.iconLanding;
+  const tool = TOOLS[toolName]
+  const Icon = tool.iconLanding
 
   return (
     <div
       className={clsx(
-        'flex min-h-[715px] flex-col items-center py-10  text-white',
+        "flex min-h-[715px] flex-col items-center py-10  text-white",
         // @ts-expect-error please fix
         TOOL_GRADIENT_CLASSES[toolName]
       )}
@@ -55,5 +55,5 @@ export function InternalLandingHeader({
         </div>
       </div>
     </div>
-  );
+  )
 }

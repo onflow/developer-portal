@@ -1,23 +1,26 @@
-
-import { startOfDay } from 'date-fns'
-import networkGradientPath from '../../../../images/gradients/network.svg'
+import { startOfDay } from "date-fns"
+import networkGradientPath from "../../../../images/gradients/network.svg"
 import {
-  AnnouncementCard, FeaturedArticleSlider, Footer, NetworkCard, NetworkDiscordCard,
-  SocialLinksSignup
-} from '../../Components'
-import { Article, StatuspageApiResponse } from '../../interfaces'
-import data from './sample'
+  AnnouncementCard,
+  FeaturedArticleSlider,
+  Footer,
+  NetworkCard,
+  NetworkDiscordCard,
+  SocialLinksSignup,
+} from "../../Components"
+import { Article, StatuspageApiResponse } from "../../interfaces"
+import data from "./sample"
 
 const NetworkPage = () => {
   const article = {
     heading: "Node operator callout",
     description:
-      'Everything you need to start building on Flow verything you need to start building on Flow everything you need to start building on Flow',
-    ctaText: 'Learn more',
-    ctaLink: 'https://flow.com',
+      "Everything you need to start building on Flow verything you need to start building on Flow everything you need to start building on Flow",
+    ctaText: "Learn more",
+    ctaLink: "https://flow.com",
     imageUrl:
-      'https://github.githubassets.com/images/modules/logos_page/GitHub-Mark.png',
-  } as Article;
+      "https://github.githubassets.com/images/modules/logos_page/GitHub-Mark.png",
+  } as Article
 
   return (
     <div className="w-full p-6 bg-primary-gray-50 dark:bg-black">
@@ -28,24 +31,25 @@ const NetworkPage = () => {
         <h1 className="text-h1 pt-[212px]">Network status</h1>
 
         <div className="mt-12 mb-[100px] flex-col ">
-
-          {// @ts-expect-error
-          data.map(({ name, status }: StatuspageApiResponse) => {
-            return (
-              <div className="py-6">
-                <NetworkCard
-                  networkName={name}
-                  status={
-                    status === 'operational' ? 'Healthy' : 'Under Maintenance'
-                  }
-                  version="33"
-                  lastSporkDate="April, 2022"
-                  nextSporkDate="April, 2022"
-                  link="https://google.com"
-                />
-              </div>
-            );
-          })}
+          {
+            // @ts-expect-error
+            data.map(({ name, status }: StatuspageApiResponse) => {
+              return (
+                <div className="py-6">
+                  <NetworkCard
+                    networkName={name}
+                    status={
+                      status === "operational" ? "Healthy" : "Under Maintenance"
+                    }
+                    version="33"
+                    lastSporkDate="April, 2022"
+                    nextSporkDate="April, 2022"
+                    link="https://google.com"
+                  />
+                </div>
+              )
+            })
+          }
         </div>
 
         <h3 className="text-h3">Live updates</h3>
@@ -86,7 +90,7 @@ const NetworkPage = () => {
 
       <Footer />
     </div>
-  );
-};
+  )
+}
 
-export default NetworkPage;
+export default NetworkPage

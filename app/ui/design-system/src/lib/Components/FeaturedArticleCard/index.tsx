@@ -1,14 +1,13 @@
- 
-import { ButtonLink } from '../Button';
-import Tag from '../Tag';
+import { ButtonLink } from "../Button"
+import Tag from "../Tag"
 
 export type FeaturedArticleCardProps = {
-  heading: string;
-  tags: string[];
-  link: string;
-  description: string;
-  ctaText: string;
-};
+  heading: string
+  tags: string[]
+  link: string
+  description: string
+  ctaText: string
+}
 
 const FeaturedArticleCard = ({
   heading,
@@ -30,7 +29,7 @@ const FeaturedArticleCard = ({
         {ctaText}
       </ButtonLink>
     </div>
-  );
-};
+  )
+}
 
-export default FeaturedArticleCard;
+export default FeaturedArticleCard

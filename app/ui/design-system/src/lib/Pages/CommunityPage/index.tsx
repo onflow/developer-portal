@@ -1,26 +1,26 @@
-import { Footer, SocialLinksSignup, UpcomingEvents } from '../../Components';
-import { ButtonLink } from '../../Components/Button';
+import { Footer, SocialLinksSignup, UpcomingEvents } from "../../Components"
+import { ButtonLink } from "../../Components/Button"
 import CommunityMembers, {
   CommunityMembersProps,
-} from '../../Components/CommunityMembers';
+} from "../../Components/CommunityMembers"
 import FeaturedArticleSlider, {
   FeaturedArticleSliderProps,
-} from '../../Components/FeaturedArticleSlider';
-import Flips, { FlipsProps } from '../../Components/Flips';
-import { LandingHeader } from '../../Components/LandingHeader';
-import ProjectCards, { ProjectCardsProps } from '../../Components/ProjectCards';
-import { UpcomingEventsProps } from '../../Components/UpcomingEvents';
-import { GITHUB_URL } from '../../constants';
-import PageBackground from '../shared/PageBackground';
-import PageSection from '../shared/PageSection';
-import PageSections from '../shared/PageSections';
+} from "../../Components/FeaturedArticleSlider"
+import Flips, { FlipsProps } from "../../Components/Flips"
+import { LandingHeader } from "../../Components/LandingHeader"
+import ProjectCards, { ProjectCardsProps } from "../../Components/ProjectCards"
+import { UpcomingEventsProps } from "../../Components/UpcomingEvents"
+import { GITHUB_URL } from "../../constants"
+import PageBackground from "../shared/PageBackground"
+import PageSection from "../shared/PageSection"
+import PageSections from "../shared/PageSections"
 
 export type CommunityPageProps = FlipsProps &
   ProjectCardsProps &
   FeaturedArticleSliderProps & {
-    communityMembers: CommunityMembersProps;
-    upcomingEvents: UpcomingEventsProps;
-  };
+    communityMembers: CommunityMembersProps
+    upcomingEvents: UpcomingEventsProps
+  }
 
 export default function CommunityPage({
   flips,
@@ -79,5 +79,5 @@ export default function CommunityPage({
       <SocialLinksSignup />
       <Footer />
     </PageBackground>
-  );
+  )
 }

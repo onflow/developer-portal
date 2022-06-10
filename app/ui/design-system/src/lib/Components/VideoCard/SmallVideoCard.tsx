@@ -1,13 +1,11 @@
- 
-
-import { ReactComponent as PlayCircle } from '../../../../images/action/play-circle';
-import Tag from '../Tag';
-import { LargeVideoCardProps } from './LargeVideoCard';
-import { ReactComponent as ExternalLinkIcon } from '../../../../images/content/external-link';
-import { ReactComponent as TimeIcon } from '../../../../images/content/date';
+import { ReactComponent as PlayCircle } from "../../../../images/action/play-circle"
+import Tag from "../Tag"
+import { LargeVideoCardProps } from "./LargeVideoCard"
+import { ReactComponent as ExternalLinkIcon } from "../../../../images/content/external-link"
+import { ReactComponent as TimeIcon } from "../../../../images/content/date"
 
 export interface SmallVideoCardProps extends LargeVideoCardProps {
-  tags: string[];
+  tags: string[]
 }
 
 export function SmallVideoCard({
@@ -16,13 +14,13 @@ export function SmallVideoCard({
   tags,
   link,
 }: SmallVideoCardProps) {
-  const minutes = String(Math.floor(length / 60)).padStart(2, '0');
-  const seconds = length % 60;
+  const minutes = String(Math.floor(length / 60)).padStart(2, "0")
+  const seconds = length % 60
 
-  const url = new URL(link);
+  const url = new URL(link)
 
-  if (url.hostname !== 'www.youtube.com') {
-    throw new Error('VideoCard only accepts youtube embeds');
+  if (url.hostname !== "www.youtube.com") {
+    throw new Error("VideoCard only accepts youtube embeds")
   }
 
   return (
@@ -55,5 +53,5 @@ export function SmallVideoCard({
         <ExternalLinkIcon className="text-gray-700 dark:text-gray-600" />
       </div>
     </a>
-  );
+  )
 }

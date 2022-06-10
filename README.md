@@ -2,7 +2,8 @@
 
 ## Get Started
 
-Project requires: 
+Project requires:
+
 - Node >= 16
 - Yarn >= 1.22.18
 
@@ -14,26 +15,25 @@ Project requires:
 git clone https://github.com/onflow/next-docs-v1.git
 ```
 
-You'll need to acquire the project's `.env` file before continuing. 
+You'll need to acquire the project's `.env` file before continuing.
+
 - Add the `.env` file to `/apps/flow-docs/.env`
 
-
-1) `yarn`
-4) `docker compose up -d` To start Redis and Postgres for the project. (use this when not running Postgres & Redis from your system)
-
+1. `yarn`
+2. `docker compose up -d` To start Redis and Postgres for the project. (use this when not running Postgres & Redis from your system)
 
 ### Running Storybook
 
-1) `yarn storybook`
+1. `yarn storybook`
 
 ### Running the Docs Site
 
-1) `yarn dev`  
-
+1. `yarn dev`
 
 # Development
 
 ⚠️ Please use **Yarn** exclusively...
+
 - If you use `npm` by accident, remove any `package.lock` files and run `yarn` from the root.
 
 ### Installing packages
@@ -50,9 +50,11 @@ You'll need to acquire the project's `.env` file before continuing.
 - Any new environemnt variable added to `.env` should also be added to the `docker-compose.yml`
 
 ## Documentation Sources
+
 The doc site pull the markdown files existing in various `onflow` repositories. To see the Github Actions that triggers processing of the markdown files (i.e. refreshing cache), go to any of the repos and click on the `Actions` tab.
 
 List of repository sources:
+
 - [/flow](https://github.com/onflow/flow)
 - [/cadence](https://github.com/onflow/cadence)
 - [/flow-cli](https://github.com/onflow/flow-cli)

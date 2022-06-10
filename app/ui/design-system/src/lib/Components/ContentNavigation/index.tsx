@@ -1,14 +1,14 @@
-import { ReactComponent as ChevronRight } from '../../../../images/arrows/chevron-right';
+import { ReactComponent as ChevronRight } from "../../../../images/arrows/chevron-right"
 import {
   ContentNavigationIcon,
   ContentNavigationIconProps,
-} from './ContentNavigationIcon';
+} from "./ContentNavigationIcon"
 
 export type ContentNavigationProps = {
-  title: string;
-  text: string;
-  link: string;
-} & ContentNavigationIconProps;
+  title: string
+  text: string
+  link: string
+} & ContentNavigationIconProps
 
 export function ContentNavigation({
   title,
@@ -32,5 +32,5 @@ export function ContentNavigation({
         <ChevronRight />
       </div>
     </a>
-  );
+  )
 }

@@ -1,14 +1,14 @@
-import { LowerPageNavLink } from './LowerPageNavLink';
+import { LowerPageNavLink } from "./LowerPageNavLink"
 
 export type LowerPageNavLinkType = {
-  name: string;
-  href: string;
-};
+  name: string
+  href: string
+}
 
 export type LowerPageNavProps = {
-  prev: LowerPageNavLinkType;
-  next: LowerPageNavLinkType;
-};
+  prev: LowerPageNavLinkType
+  next: LowerPageNavLinkType
+}
 
 export function LowerPageNav({ prev, next }: LowerPageNavProps) {
   return (
@@ -16,5 +16,5 @@ export function LowerPageNav({ prev, next }: LowerPageNavProps) {
       {!!prev && <LowerPageNavLink link={prev} />}
       {!!next && <LowerPageNavLink link={next} next={true} />}
     </div>
-  );
+  )
 }

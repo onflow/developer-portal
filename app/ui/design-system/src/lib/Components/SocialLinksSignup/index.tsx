@@ -1,23 +1,23 @@
-import { ReactComponent as ContentExternalLinkIcon } from '../../../../images/content/external-link';
-import socialLinksGradientPath from '../../../../images/gradients/social-links';
-import { ReactComponent as DiscordLogo } from '../../../../images/social/discord';
-import { ReactComponent as DiscourseLogo } from '../../../../images/social/forum';
-import { ReactComponent as GithubLogo } from '../../../../images/social/github';
-import { ReactComponent as TwitterLogo } from '../../../../images/social/twitter';
+import { ReactComponent as ContentExternalLinkIcon } from "../../../../images/content/external-link"
+import socialLinksGradientPath from "../../../../images/gradients/social-links"
+import { ReactComponent as DiscordLogo } from "../../../../images/social/discord"
+import { ReactComponent as DiscourseLogo } from "../../../../images/social/forum"
+import { ReactComponent as GithubLogo } from "../../../../images/social/github"
+import { ReactComponent as TwitterLogo } from "../../../../images/social/twitter"
 import {
   DISCORD_URL,
   DISCOURSE_URL,
   GITHUB_URL,
   TWITTER_URL,
-} from '../../constants';
+} from "../../constants"
 
 type SocialLinkProps = {
-  header: string;
-  description: string;
-  logo: any;
-  className?: string;
-  url: string;
-};
+  header: string
+  description: string
+  logo: any
+  className?: string
+  url: string
+}
 
 const SocialLink = ({
   header,
@@ -26,12 +26,12 @@ const SocialLink = ({
   className,
   url,
 }: SocialLinkProps) => {
-  const Logo = logo;
+  const Logo = logo
   return (
     <a
       href={url}
       className={`flex items-center justify-between py-6 px-2 hover:cursor-pointer md:px-10 ${className}`}
-      style={{ borderColor: 'rgba(105, 113, 126, 0.2)' }}
+      style={{ borderColor: "rgba(105, 113, 126, 0.2)" }}
     >
       <div className="flex items-center">
         <div className="scale-150 md:scale-200 fill-black dark:fill-white">
@@ -44,10 +44,10 @@ const SocialLink = ({
       </div>
       <ContentExternalLinkIcon />
     </a>
-  );
-};
+  )
+}
 
-export type SocialLinksSignupProps = {};
+export type SocialLinksSignupProps = {}
 
 const SocialLinksSignup = () => {
   return (
@@ -55,13 +55,13 @@ const SocialLinksSignup = () => {
       className="py-32"
       style={{
         backgroundImage: `url(${socialLinksGradientPath})`,
-        backgroundSize: 'cover',
+        backgroundSize: "cover",
       }}
     >
       <div className="container">
         <div
           className="grid grid-flow-col grid-rows-4 px-4 rounded-lg md:grid-rows-2 md:px-0"
-          style={{ background: 'rgba(213, 221, 233, 0.3)' }}
+          style={{ background: "rgba(213, 221, 233, 0.3)" }}
         >
           <SocialLink
             header="Title"
@@ -99,7 +99,7 @@ const SocialLinksSignup = () => {
               placeholder="Email"
               type="email"
               className="mb-4 h-14 w-full min-w-[16rem] rounded-lg rounded-tl-lg rounded-bl-lg border-white p-4 text-primary-gray-300 focus:border-white md:rounded-br-none md:rounded-tr-none"
-              style={{ boxShadow: '0px 4px 40px rgba(0, 0, 0, 0.08)' }}
+              style={{ boxShadow: "0px 4px 40px rgba(0, 0, 0, 0.08)" }}
             />
             <a
               className="px-12 py-4 text-center text-white bg-black border-black rounded-lg rounded-tr-lg rounded-br-lg h-14 md:rounded-tl-none md:rounded-bl-none"
@@ -111,7 +111,7 @@ const SocialLinksSignup = () => {
         </div>
       </div>
     </div>
-  );
-};
+  )
+}
 
-export default SocialLinksSignup;
+export default SocialLinksSignup

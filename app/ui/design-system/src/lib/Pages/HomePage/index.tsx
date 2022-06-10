@@ -7,23 +7,23 @@ import {
   SocialLinksSignup,
   ToolsAndConcepts,
   UpcomingEvents,
-} from '../../Components';
-import { FlipCellProps } from '../../Components/FlipCell';
-import { LinkCard2ColumnProps } from '../../Components/LinkCard2Column';
-import { LinkCard3ColumnProps } from '../../Components/LinkCard3Column';
-import { ToolCardProps } from '../../Components/ToolCard';
-import { UpcomingEventsProps } from '../../Components/UpcomingEvents';
-import PageBackground from '../shared/PageBackground';
-import PageSection from '../shared/PageSection';
-import PageSections from '../shared/PageSections';
+} from "../../Components"
+import { FlipCellProps } from "../../Components/FlipCell"
+import { LinkCard2ColumnProps } from "../../Components/LinkCard2Column"
+import { LinkCard3ColumnProps } from "../../Components/LinkCard3Column"
+import { ToolCardProps } from "../../Components/ToolCard"
+import { UpcomingEventsProps } from "../../Components/UpcomingEvents"
+import PageBackground from "../shared/PageBackground"
+import PageSection from "../shared/PageSection"
+import PageSections from "../shared/PageSections"
 
 export type HomePageProps = {
-  startProjectItems: LinkCard2ColumnProps;
-  flips: FlipCellProps[];
-  tools: ToolCardProps[];
-  threeColumnItems: LinkCard3ColumnProps;
-  upcomingEvents: UpcomingEventsProps;
-};
+  startProjectItems: LinkCard2ColumnProps
+  flips: FlipCellProps[]
+  tools: ToolCardProps[]
+  threeColumnItems: LinkCard3ColumnProps
+  upcomingEvents: UpcomingEventsProps
+}
 
 const HomePage = ({
   startProjectItems,
@@ -61,7 +61,7 @@ const HomePage = ({
       <SocialLinksSignup />
       <Footer />
     </PageBackground>
-  );
-};
+  )
+}
 
-export default HomePage;
+export default HomePage

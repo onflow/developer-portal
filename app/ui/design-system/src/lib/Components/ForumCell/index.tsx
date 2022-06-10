@@ -1,19 +1,18 @@
- 
-import { ReactComponent as CommentIcon } from '../../../../images/arrows/message-circle';
-import RoundImage from '../RoundImage';
+import { ReactComponent as CommentIcon } from "../../../../images/arrows/message-circle"
+import RoundImage from "../RoundImage"
 
 export type User = {
-  profileImage: string;
-  name: string;
-};
+  profileImage: string
+  name: string
+}
 
 export type ForumCellProps = {
-  numComments: number;
-  heading: string;
-  subheading: string;
-  participants: User[];
-  forumLink: string;
-};
+  numComments: number
+  heading: string
+  subheading: string
+  participants: User[]
+  forumLink: string
+}
 
 const ForumCell = ({
   heading,
@@ -52,7 +51,7 @@ const ForumCell = ({
         </div>
       </div>
     </a>
-  );
-};
+  )
+}
 
-export default ForumCell;
+export default ForumCell

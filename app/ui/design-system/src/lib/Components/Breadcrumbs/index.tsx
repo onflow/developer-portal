@@ -1,13 +1,13 @@
 export type BreadcrumbsProps = {
-  current?: string;
-};
+  current?: string
+}
 
 function Separator() {
   return (
     <span className="mx-3 font-semibold text-primary-gray-200 dark:text-primary-gray-300">
       /
     </span>
-  );
+  )
 }
 
 function BreadcrumbLink({ name, href }: { name: string; href: string }) {
@@ -18,7 +18,7 @@ function BreadcrumbLink({ name, href }: { name: string; href: string }) {
     >
       {name}
     </a>
-  );
+  )
 }
 
 export function Breadcrumbs({ current }: BreadcrumbsProps) {
@@ -36,5 +36,5 @@ export function Breadcrumbs({ current }: BreadcrumbsProps) {
         </>
       )}
     </div>
-  );
+  )
 }

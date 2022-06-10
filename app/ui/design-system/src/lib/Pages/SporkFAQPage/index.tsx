@@ -1,38 +1,41 @@
-import React from 'react';
+import React from "react"
 
-import { ReactComponent as LeftChevron } from '../../../../images/arrows/chevron-left';
-import { Attribution } from '../../Components/Attribution/Attribution';
-import { ButtonLink } from '../../Components/Button';
-import { FAQ } from '../../Components/FAQ/FAQ';
+import { ReactComponent as LeftChevron } from "../../../../images/arrows/chevron-left"
+import { Attribution } from "../../Components/Attribution/Attribution"
+import { ButtonLink } from "../../Components/Button"
+import { FAQ } from "../../Components/FAQ/FAQ"
 
 const faqList = [
   {
-    question: 'What is a spork',
+    question: "What is a spork",
     answer:
-      'In the mature Flow, new nodes can be staked and un-staked as the protocol advances from epoch to epoch. However, we are not there yet. Hence, currently every couple of weeks we turn-off the network, update the identity list to include (and exclude) nodes and then turn the network back on again. We call this process a Spork.\n\nAlso, as Flow evolves, we are continuously adding new features and discovering and fixing bugs in the Flow node software. We also utilize a Spork as an opportunity to update the nodes with the latest releases.',
+      "In the mature Flow, new nodes can be staked and un-staked as the protocol advances from epoch to epoch. However, we are not there yet. Hence, currently every couple of weeks we turn-off the network, update the identity list to include (and exclude) nodes and then turn the network back on again. We call this process a Spork.\n\nAlso, as Flow evolves, we are continuously adding new features and discovering and fixing bugs in the Flow node software. We also utilize a Spork as an opportunity to update the nodes with the latest releases.",
   },
   {
-    question: 'How frequently do we spork',
+    question: "How frequently do we spork",
     answer:
-      'Lorem ipsum dolor sit amet. Et officia Quis sed vero corrupti hic fuga asperiores? Qui provident dolor hic pariatur deserunt cum mollitia rerum et tempore sint non fugiat dolor a molestiae deserunt.\n\nAut cumque internos et accusantium Quis aut obcaecati minus vel esse dolores? Sed molestiae unde a nulla amet et debitis laborum aut quidem tempora. Id fugit quia id quia distinctio in minima internos quo laboriosam possimus.\n\nCum optio autem ut velit rerum sed culpa omnis ut deleniti deleniti. Et amet quos labore quia ut ullam dolor et consequatur sint! Ut minus nostrum ea eius voluptates quo minima itaque At repellendus saepe et quasi vitae sit quia illo eos cumque omnis.',
+      "Lorem ipsum dolor sit amet. Et officia Quis sed vero corrupti hic fuga asperiores? Qui provident dolor hic pariatur deserunt cum mollitia rerum et tempore sint non fugiat dolor a molestiae deserunt.\n\nAut cumque internos et accusantium Quis aut obcaecati minus vel esse dolores? Sed molestiae unde a nulla amet et debitis laborum aut quidem tempora. Id fugit quia id quia distinctio in minima internos quo laboriosam possimus.\n\nCum optio autem ut velit rerum sed culpa omnis ut deleniti deleniti. Et amet quos labore quia ut ullam dolor et consequatur sint! Ut minus nostrum ea eius voluptates quo minima itaque At repellendus saepe et quasi vitae sit quia illo eos cumque omnis.",
   },
   {
-    question: 'This is another question',
+    question: "This is another question",
     answer:
-      'Lorem ipsum dolor sit amet. Et officia Quis sed vero corrupti hic fuga asperiores? Qui provident dolor hic pariatur deserunt cum mollitia rerum et tempore sint non fugiat dolor a molestiae deserunt.\n\nAut cumque internos et accusantium Quis aut obcaecati minus vel esse dolores? Sed molestiae unde a nulla amet et debitis laborum aut quidem tempora. Id fugit quia id quia distinctio in minima internos quo laboriosam possimus.\n\nCum optio autem ut velit rerum sed culpa omnis ut deleniti deleniti. Et amet quos labore quia ut ullam dolor et consequatur sint! Ut minus nostrum ea eius voluptates quo minima itaque At repellendus saepe et quasi vitae sit quia illo eos cumque omnis.',
+      "Lorem ipsum dolor sit amet. Et officia Quis sed vero corrupti hic fuga asperiores? Qui provident dolor hic pariatur deserunt cum mollitia rerum et tempore sint non fugiat dolor a molestiae deserunt.\n\nAut cumque internos et accusantium Quis aut obcaecati minus vel esse dolores? Sed molestiae unde a nulla amet et debitis laborum aut quidem tempora. Id fugit quia id quia distinctio in minima internos quo laboriosam possimus.\n\nCum optio autem ut velit rerum sed culpa omnis ut deleniti deleniti. Et amet quos labore quia ut ullam dolor et consequatur sint! Ut minus nostrum ea eius voluptates quo minima itaque At repellendus saepe et quasi vitae sit quia illo eos cumque omnis.",
   },
   {
-    question: 'This is another question',
+    question: "This is another question",
     answer:
-      'Lorem ipsum dolor sit amet. Et officia Quis sed vero corrupti hic fuga asperiores? Qui provident dolor hic pariatur deserunt cum mollitia rerum et tempore sint non fugiat dolor a molestiae deserunt.\n\nAut cumque internos et accusantium Quis aut obcaecati minus vel esse dolores? Sed molestiae unde a nulla amet et debitis laborum aut quidem tempora. Id fugit quia id quia distinctio in minima internos quo laboriosam possimus.\n\nCum optio autem ut velit rerum sed culpa omnis ut deleniti deleniti. Et amet quos labore quia ut ullam dolor et consequatur sint! Ut minus nostrum ea eius voluptates quo minima itaque At repellendus saepe et quasi vitae sit quia illo eos cumque omnis.',
+      "Lorem ipsum dolor sit amet. Et officia Quis sed vero corrupti hic fuga asperiores? Qui provident dolor hic pariatur deserunt cum mollitia rerum et tempore sint non fugiat dolor a molestiae deserunt.\n\nAut cumque internos et accusantium Quis aut obcaecati minus vel esse dolores? Sed molestiae unde a nulla amet et debitis laborum aut quidem tempora. Id fugit quia id quia distinctio in minima internos quo laboriosam possimus.\n\nCum optio autem ut velit rerum sed culpa omnis ut deleniti deleniti. Et amet quos labore quia ut ullam dolor et consequatur sint! Ut minus nostrum ea eius voluptates quo minima itaque At repellendus saepe et quasi vitae sit quia illo eos cumque omnis.",
   },
-];
+]
 
 export function SporkFAQPage() {
   return (
     <main className="bg-zinc-50 px-4 pb-48 dark:bg-black md:bg-white md:px-0 md:pt-16">
       <div>
-        <a className="mt-2 flex cursor-pointer items-center rounded-lg py-4 text-primary-blue dark:border-primary-purple dark:text-primary-purple md:hidden w-fit" href='#TODO'>
+        <a
+          className="mt-2 flex cursor-pointer items-center rounded-lg py-4 text-primary-blue dark:border-primary-purple dark:text-primary-purple md:hidden w-fit"
+          href="#TODO"
+        >
           <LeftChevron />
           Back to Network
         </a>
@@ -53,14 +56,16 @@ export function SporkFAQPage() {
           />
         </div>
         <div className="hidden md:block">
-          <ButtonLink variant="secondary"
-          // @ts-expect-error please fix
-          prev>
+          <ButtonLink
+            variant="secondary"
+            // @ts-expect-error please fix
+            prev
+          >
             Back to Network
           </ButtonLink>
         </div>
       </div>
       <FAQ faqList={faqList} variation="large" />
     </main>
-  );
+  )
 }

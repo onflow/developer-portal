@@ -1,22 +1,22 @@
-import { ReactComponent as ChevronRight } from '../../../../images/arrows/chevron-right';
-import { ReactComponent as ExternalLinkIcon } from '../../../../images/content/external-link';
-import { ButtonLink } from '../Button';
-import { isLinkExternal } from '../Link/isLinkExternal';
+import { ReactComponent as ChevronRight } from "../../../../images/arrows/chevron-right"
+import { ReactComponent as ExternalLinkIcon } from "../../../../images/content/external-link"
+import { ButtonLink } from "../Button"
+import { isLinkExternal } from "../Link/isLinkExternal"
 
 export type FeatureLinkBlockProps = {
-  ctaLink: string;
-  ctaText: string;
-  description: string;
-  icon: React.ReactNode;
+  ctaLink: string
+  ctaText: string
+  description: string
+  icon: React.ReactNode
   links: Array<{
-    href: string;
-    title: string;
-  }>;
-  title: string;
-};
+    href: string
+    title: string
+  }>
+  title: string
+}
 
 export function FeatureLinkBlock({
-  ctaLink = 'Online',
+  ctaLink = "Online",
   ctaText,
   description,
   icon,
@@ -51,5 +51,5 @@ export function FeatureLinkBlock({
         ))}
       </div>
     </div>
-  );
+  )
 }

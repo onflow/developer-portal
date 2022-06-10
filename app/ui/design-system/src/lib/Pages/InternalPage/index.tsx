@@ -83,7 +83,7 @@ export function InternalPage() {
         <ol>
           <li id="user-content-fn-1">
             <p>
-              This is a reference{' '}
+              This is a reference{" "}
               <a href="#user-content-fnref-1">
                 <span className="mr-1 data-footnote-backref">↩</span>
               </a>
@@ -91,7 +91,7 @@ export function InternalPage() {
           </li>
           <li id="user-content-fn-1">
             <p>
-              This is another reference{' '}
+              This is another reference{" "}
               <a href="#user-content-fnref-2">
                 <span className="mr-1 data-footnote-backref">↩</span>
               </a>
@@ -100,5 +100,5 @@ export function InternalPage() {
         </ol>
       </section>
     </div>
-  );
+  )
 }

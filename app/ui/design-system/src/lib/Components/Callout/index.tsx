@@ -1,15 +1,15 @@
 export type CalloutProps = {
-  heading: string;
-  description: string;
-  ctaText: string;
-  ctaLink: string;
-};
+  heading: string
+  description: string
+  ctaText: string
+  ctaLink: string
+}
 
 const Callout = ({ heading, description, ctaText, ctaLink }: CalloutProps) => {
   return (
     <div
       className="flex flex-col items-start justify-between p-10 rounded-2xl dark:bg-primary-gray-dark md:flex-row md:items-center md:px-20 md:pt-16 md:pb-12"
-      style={{ backgroundColor: 'rgba(222,226,233, 0.5)' }}
+      style={{ backgroundColor: "rgba(222,226,233, 0.5)" }}
     >
       <div className="flex-1">
         <h4 className="text-h4">{heading}</h4>
@@ -22,7 +22,7 @@ const Callout = ({ heading, description, ctaText, ctaLink }: CalloutProps) => {
         {ctaText}
       </a>
     </div>
-  );
-};
+  )
+}
 
-export default Callout;
+export default Callout

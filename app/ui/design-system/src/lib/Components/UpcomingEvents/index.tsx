@@ -1,17 +1,17 @@
-import { useState } from 'react';
-import { ButtonLink } from '../Button';
-import { EventCardList, EventCardProps } from '../EventCard';
-import { EventCardSmall, EventCardSmallProps } from '../EventCardSmall';
-import TabMenu from '../TabMenu';
+import { useState } from "react"
+import { ButtonLink } from "../Button"
+import { EventCardList, EventCardProps } from "../EventCard"
+import { EventCardSmall, EventCardSmallProps } from "../EventCardSmall"
+import TabMenu from "../TabMenu"
 
 export type UpcomingEventsProps = {
-  officeHours: React.ReactNode;
-  workingHours: React.ReactNode;
-  submitEventHref: string;
-  goToCommunityHref: string;
-  primaryEvents: EventCardProps[];
-  secondaryEvents: EventCardSmallProps[];
-};
+  officeHours: React.ReactNode
+  workingHours: React.ReactNode
+  submitEventHref: string
+  goToCommunityHref: string
+  primaryEvents: EventCardProps[]
+  secondaryEvents: EventCardSmallProps[]
+}
 
 export function UpcomingEvents({
   officeHours,
@@ -21,13 +21,13 @@ export function UpcomingEvents({
   primaryEvents,
   secondaryEvents,
 }: UpcomingEventsProps) {
-  const [selectedTab, setSelectedTab] = useState(0);
+  const [selectedTab, setSelectedTab] = useState(0)
 
   return (
     <div className="container">
       <div className="mb-2 text-h2">Upcoming events</div>
       <TabMenu
-        tabs={['Upcoming events', 'Working hours', 'Flow office hours']}
+        tabs={["Upcoming events", "Working hours", "Flow office hours"]}
         onTabChange={setSelectedTab}
       />
       {selectedTab === 0 && (
@@ -67,5 +67,5 @@ export function UpcomingEvents({
       {selectedTab === 1 && <div>{workingHours}</div>}
       {selectedTab === 2 && <div>{officeHours}</div>}
     </div>
-  );
+  )
 }

@@ -1,20 +1,20 @@
-import { ReactComponent as ExternalLinkIcon } from '../../../../images/content/external-link';
-import Tag from '../Tag';
+import { ReactComponent as ExternalLinkIcon } from "../../../../images/content/external-link"
+import Tag from "../Tag"
 
 export type EventCardSmallProps = {
-  eventType: string;
-  href: string;
-  imageAlt?: string;
-  imageSrc: string;
-  tags?: string[];
-  title: string;
-  when: string;
-};
+  eventType: string
+  href: string
+  imageAlt?: string
+  imageSrc: string
+  tags?: string[]
+  title: string
+  when: string
+}
 
 export function EventCardSmall({
-  eventType = 'Online',
+  eventType = "Online",
   href,
-  imageAlt = '',
+  imageAlt = "",
   imageSrc,
   tags,
   title,
@@ -49,5 +49,5 @@ export function EventCardSmall({
         <ExternalLinkIcon />
       </span>
     </a>
-  );
+  )
 }

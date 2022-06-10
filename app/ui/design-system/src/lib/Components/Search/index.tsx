@@ -1,10 +1,10 @@
-import { DocSearch } from '@docsearch/react';
+import { DocSearch } from "@docsearch/react"
 
 export type SearchProps = {
-  appId: string;
-  apiKey: string;
-  indexName: string;
-};
+  appId: string
+  apiKey: string
+  indexName: string
+}
 
 export function Search({ appId, apiKey, indexName }: SearchProps) {
   return (
@@ -14,5 +14,5 @@ export function Search({ appId, apiKey, indexName }: SearchProps) {
       apiKey="74700aee1bcb782c019adc7bc92fde31"
       placeholder="Search Documentation..."
     />
-  );
+  )
 }

@@ -6,7 +6,6 @@ module.exports = {
     autoprefixer: {
       flexbox: "no-2009",
     },
-    "postcss-url": {
-    },
+    "postcss-url": {},
   },
-};
+}
