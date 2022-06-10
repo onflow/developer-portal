@@ -1,4 +1,4 @@
-import "../app/tailwind.css"
+import "../app/main.css"
 import tailwindConfig from "../tailwind.config"
 import { useGlobals } from "@storybook/addons"
 

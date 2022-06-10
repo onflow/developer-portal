@@ -53,5 +53,7 @@ node_modules
 /public/build
 .env
 
-/app/tailwind.css
-libs/design-system/images/**/*.js
+/app/main.css
+/app/ui/design-system/images/**/*.js
+
+.eslintcache

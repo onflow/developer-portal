@@ -21,10 +21,10 @@ import {
   ThemeProvider,
   useTheme,
 } from "~/cms/utils/theme.provider"
-import styles from "./styles/main.css"
+import styles from "./main.css"
 import { getThemeSession } from "./theme.server"
 
-import { Footer } from "../libs/design-system/src"
+import { Footer } from "./ui/design-system/src"
 
 export const links: LinksFunction = () => {
   return [{ rel: "stylesheet", href: styles }]

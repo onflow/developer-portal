@@ -19,4 +19,3 @@ ${variables.exports};
 }
 
 module.exports = template
-

@@ -1,4 +1,4 @@
-import { LandingHeaderHome } from "~/libs/design-system"
+import { LandingHeaderHome } from "~/ui/design-system"
 
 export default function Index() {
   return (
