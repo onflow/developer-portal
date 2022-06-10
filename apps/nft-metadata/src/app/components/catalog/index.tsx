@@ -6,7 +6,6 @@ import { Filter } from "./filter";
 import { NftCollectionContent } from "./nft-collection-content";
 import { ProposalContent } from "./proposal-content";
 import { useNavigate } from "react-router-dom"
-import { TabMenu } from '@nft-metadata/ui';
 
 type CatalogParams = {
   network: Network;
