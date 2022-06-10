@@ -1,32 +1,32 @@
-import { Meta, Story } from '@storybook/react';
-import Callout, { CalloutProps } from '.';
+import { Meta, Story } from "@storybook/react"
+import Callout, { CalloutProps } from "."
 
 export default {
   component: Callout,
-  title: 'Components/Callout',
-} as Meta;
+  title: "Components/Callout",
+} as Meta
 
 const Template: Story<CalloutProps> = (args) => {
-  return <Callout {...args} />;
-};
+  return <Callout {...args} />
+}
 
-export const Default = Template.bind({});
+export const Default = Template.bind({})
 Default.args = {
-  heading: 'Spork FAQ',
-  description: 'Lorem ipsum dolor sit amet proin gravida lorem ipsum',
-  ctaText: 'View FAQ',
-  ctaLink: 'https://google.com',
-};
+  heading: "Spork FAQ",
+  description: "Lorem ipsum dolor sit amet proin gravida lorem ipsum",
+  ctaText: "View FAQ",
+  ctaLink: "https://google.com",
+}
 
-export const Mobile = Template.bind({});
+export const Mobile = Template.bind({})
 Mobile.args = {
-  heading: 'Spork FAQ',
-  description: 'Lorem ipsum dolor sit amet proin gravida lorem ipsum',
-  ctaText: 'View FAQ',
-  ctaLink: 'https://google.com',
-};
+  heading: "Spork FAQ",
+  description: "Lorem ipsum dolor sit amet proin gravida lorem ipsum",
+  ctaText: "View FAQ",
+  ctaLink: "https://google.com",
+}
 Mobile.parameters = {
   viewport: {
-    defaultViewport: 'xs',
+    defaultViewport: "xs",
   },
-};
+}

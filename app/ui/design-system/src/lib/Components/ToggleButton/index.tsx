@@ -1,9 +1,9 @@
-import clsx from 'clsx';
-import { ReactComponent as Close } from '../../../../images/action/close';
+import clsx from "clsx"
+import { ReactComponent as Close } from "../../../../images/action/close"
 
-export type ToggleButtonProps = React.ComponentPropsWithoutRef<'button'> & {
-  isSelected?: boolean;
-};
+export type ToggleButtonProps = React.ComponentPropsWithoutRef<"button"> & {
+  isSelected?: boolean
+}
 
 export function ToggleButton({
   className,
@@ -14,11 +14,11 @@ export function ToggleButton({
   return (
     <button
       className={clsx(
-        'inline-flex items-center justify-center rounded-md border py-2 px-4 text-center text-base font-semibold hover:shadow-2xl ',
+        "inline-flex items-center justify-center rounded-md border py-2 px-4 text-center text-base font-semibold hover:shadow-2xl ",
         {
-          'border-primary-gray-200 bg-transparent hover:bg-white dark:text-primary-gray-200 dark:hover:bg-primary-gray-400':
+          "border-primary-gray-200 bg-transparent hover:bg-white dark:text-primary-gray-200 dark:hover:bg-primary-gray-400":
             !isSelected,
-          'border-primary-blue bg-primary-blue text-white dark:border-blue-dark dark:bg-blue-dark dark:text-black':
+          "border-primary-blue bg-primary-blue text-white dark:border-blue-dark dark:bg-blue-dark dark:text-black":
             isSelected,
         },
         className
@@ -27,7 +27,7 @@ export function ToggleButton({
     >
       {children}
       <Close
-        className={clsx('text-currentColor ml-2', {
+        className={clsx("text-currentColor ml-2", {
           hidden: !isSelected,
         })}
         height="1.25em"
@@ -35,5 +35,5 @@ export function ToggleButton({
         fill="currentColor"
       />
     </button>
-  );
+  )
 }

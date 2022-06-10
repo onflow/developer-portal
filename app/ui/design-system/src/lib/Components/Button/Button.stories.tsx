@@ -45,7 +45,7 @@ Default.args = {
 export const defaultDark = Template.bind({})
 defaultDark.args = Default.args
 defaultDark.parameters = {
-  themes: {
+  backgrounds: {
     default: "dark",
   },
 }

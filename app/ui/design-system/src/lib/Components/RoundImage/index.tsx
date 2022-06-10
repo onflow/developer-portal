@@ -1,20 +1,20 @@
-import clsx from 'clsx';
-import React from 'react';
+import clsx from "clsx"
+import React from "react"
 
 export type RoundImageProps = {
-  imageUri: string;
-  altText: string;
-  large?: boolean;
-};
+  imageUri: string
+  altText: string
+  large?: boolean
+}
 
 const RoundImage = ({ imageUri, altText, large = false }: RoundImageProps) => {
   const imageClasses = clsx(
-    'rounded-full border-2 border-white dark:border-primary-gray-dark object-cover',
+    "rounded-full border-2 border-white dark:border-primary-gray-dark object-cover",
     {
-      'h-14 w-14': large,
-      'h-10 w-10': !large,
+      "h-14 w-14": large,
+      "h-10 w-10": !large,
     }
-  );
+  )
 
   return (
     <img
@@ -23,7 +23,7 @@ const RoundImage = ({ imageUri, altText, large = false }: RoundImageProps) => {
       title={altText}
       src={imageUri}
     />
-  );
-};
+  )
+}
 
-export default RoundImage;
+export default RoundImage

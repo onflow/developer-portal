@@ -1,18 +1,18 @@
-import { Meta, Story } from '@storybook/react';
-import { GettingStartedPage, GettingStartedPageProps } from '.';
-import { ReactComponent as CadenceIcon } from '../../../../images/tools/tool-cadence';
-import { ReactComponent as FCLIcon } from '../../../../images/tools/tool-fcl';
-import { ReactComponent as FlowPortIcon } from '../../../../images/tools/tool-port';
-import { ReactComponent as EmulatorIcon } from '../../../../images/tools/tool-emulator';
-import { ReactComponent as FLOWCLIIcon } from '../../../../images/tools/tool-cli';
+import { Meta, Story } from "@storybook/react"
+import { GettingStartedPage, GettingStartedPageProps } from "."
+import { ReactComponent as CadenceIcon } from "../../../../images/tools/tool-cadence"
+import { ReactComponent as FLOWCLIIcon } from "../../../../images/tools/tool-cli"
+import { ReactComponent as EmulatorIcon } from "../../../../images/tools/tool-emulator"
+import { ReactComponent as FCLIcon } from "../../../../images/tools/tool-fcl"
+import { ReactComponent as FlowPortIcon } from "../../../../images/tools/tool-port"
 
-import { ReactComponent as ElixirIcon } from '../../../../images/sdk/elixir';
-import { ReactComponent as GoIcon } from '../../../../images/sdk/go';
-import { ReactComponent as RustIcon } from '../../../../images/sdk/rust';
-import { ReactComponent as SwiftIcon } from '../../../../images/sdk/swift';
-import { ReactComponent as NetIcon } from '../../../../images/sdk/net';
+import { ReactComponent as ElixirIcon } from "../../../../images/sdk/elixir"
+import { ReactComponent as GoIcon } from "../../../../images/sdk/go"
+import { ReactComponent as NetIcon } from "../../../../images/sdk/net"
+import { ReactComponent as RustIcon } from "../../../../images/sdk/rust"
+import { ReactComponent as SwiftIcon } from "../../../../images/sdk/swift"
 
-import { svgToDataUri } from '../../Components/LinkCard2Column/LinkCard2Column.stories';
+import { svgToDataUri } from "../../Components/LinkCard2Column/LinkCard2Column.stories"
 
 const Icon1 = () => (
   <svg
@@ -70,7 +70,7 @@ const Icon1 = () => (
       strokeWidth="0.5"
     />
   </svg>
-);
+)
 
 const Icon2 = () => (
   <svg
@@ -87,7 +87,7 @@ const Icon2 = () => (
       fill="#69717E"
     />
   </svg>
-);
+)
 
 const Icon3 = () => (
   <svg
@@ -106,284 +106,284 @@ const Icon3 = () => (
       stroke="#69717E"
     />
   </svg>
-);
+)
 
 const gettingStartedPageData = {
   landingHeaderItems: {
-    buttonText: 'Button Text',
-    buttonUrl: '#changeme',
-    callout: 'Featured callout here two lines',
+    buttonText: "Button Text",
+    buttonUrl: "#changeme",
+    callout: "Featured callout here two lines",
     description:
-      'Lorem ipsum dolor sit amet proin gravida lorem ipsum dolor sit.',
-    gradient: 'getting-started',
-    title: 'Getting Started',
+      "Lorem ipsum dolor sit amet proin gravida lorem ipsum dolor sit.",
+    gradient: "getting-started",
+    title: "Getting Started",
   },
   linkCard3ColumnItems: {
     items: [
       {
-        title: 'Try Flow',
+        title: "Try Flow",
         description:
-          'A package used to interact with user wallets and the Flow blockchain.',
+          "A package used to interact with user wallets and the Flow blockchain.",
         icon: <Icon1 />,
         links: [
           {
-            title: 'Online Playground',
-            href: '#tutorial1',
-            tags: ['tutorial'],
+            title: "Online Playground",
+            href: "#tutorial1",
+            tags: ["tutorial"],
           },
           {
-            title: 'Kitty Items Tutorial',
-            href: '#tutorial2',
-            tags: ['tutorial'],
+            title: "Kitty Items Tutorial",
+            href: "#tutorial2",
+            tags: ["tutorial"],
           },
           {
-            title: 'Crypto Dappy',
-            href: '#tutorial3',
-            tags: ['tutorial'],
+            title: "Crypto Dappy",
+            href: "#tutorial3",
+            tags: ["tutorial"],
           },
           {
-            title: 'Flow Blockchain Explorer',
-            href: '#tutorial3',
-            tags: ['tutorial'],
+            title: "Flow Blockchain Explorer",
+            href: "#tutorial3",
+            tags: ["tutorial"],
           },
           {
-            title: 'Sample Smart Contracts',
-            href: '#tutorial3',
-            tags: ['tutorial'],
+            title: "Sample Smart Contracts",
+            href: "#tutorial3",
+            tags: ["tutorial"],
           },
           {
-            title: 'Flow Client Library',
-            href: '#tutorial3',
-            tags: ['tutorial'],
+            title: "Flow Client Library",
+            href: "#tutorial3",
+            tags: ["tutorial"],
           },
         ],
       },
       {
-        title: 'Learn',
+        title: "Learn",
         description:
-          'An up to 3-line blurb here describing the section lorem ipsum dolor sit amet proin.',
+          "An up to 3-line blurb here describing the section lorem ipsum dolor sit amet proin.",
         icon: <Icon2 />,
         links: [
           {
-            title: 'Guide 1',
-            href: '#tutorial1',
-            tags: ['tutorial'],
+            title: "Guide 1",
+            href: "#tutorial1",
+            tags: ["tutorial"],
           },
           {
-            title: 'Guide 2',
-            href: '#tutorial2',
+            title: "Guide 2",
+            href: "#tutorial2",
           },
           {
-            title: 'An external link',
-            href: 'https://www.onflow.org',
-            tags: ['tutorial', 'external'],
+            title: "An external link",
+            href: "https://www.onflow.org",
+            tags: ["tutorial", "external"],
           },
         ],
       },
       {
-        title: 'Start Building',
-        description: 'Smart contracts description.',
+        title: "Start Building",
+        description: "Smart contracts description.",
         icon: <Icon3 />,
         links: [
           {
-            title: 'Name of a Smart Contract tutorial',
-            href: '#tutorial1',
-            tags: ['tutorial'],
+            title: "Name of a Smart Contract tutorial",
+            href: "#tutorial1",
+            tags: ["tutorial"],
           },
           {
-            title: 'Name of a tutorial',
-            href: '#tutorial2',
-            tags: ['tag1', 'tag2', 'tag3', 'tag4'],
+            title: "Name of a tutorial",
+            href: "#tutorial2",
+            tags: ["tag1", "tag2", "tag3", "tag4"],
           },
           {
             title: "View all SDK's",
-            href: '#sdks',
+            href: "#sdks",
           },
         ],
       },
     ],
   },
   linkCard2ColumnItems: {
-    buttonText: 'View Concepts',
-    buttonUrl: '#changeme',
+    buttonText: "View Concepts",
+    buttonUrl: "#changeme",
     description:
-      'Building on Flow is easy. Start building now with lorem ipsum et sigitus loranum prospitarius.',
-    title: 'Core Concepts',
-    tags: ['Tag', 'Lorem', 'Ipsum'],
+      "Building on Flow is easy. Start building now with lorem ipsum et sigitus loranum prospitarius.",
+    title: "Core Concepts",
+    tags: ["Tag", "Lorem", "Ipsum"],
     items: [
       {
-        title: 'Cadence',
+        title: "Cadence",
         description:
-          'A package used to interact with user wallets and the Flow blockchain.',
-        href: 'https://www.onflow.org',
+          "A package used to interact with user wallets and the Flow blockchain.",
+        href: "https://www.onflow.org",
         icon: svgToDataUri(<CadenceIcon />),
       },
       {
-        title: 'Flow Client Library',
+        title: "Flow Client Library",
         description:
-          'A package used to interact with user wallets and the Flow blockchain.',
-        href: '#create-non-fungible-token',
+          "A package used to interact with user wallets and the Flow blockchain.",
+        href: "#create-non-fungible-token",
         icon: svgToDataUri(<FCLIcon />),
       },
     ],
   },
   sdkCardItems: [
     {
-      title: 'Swift',
-      authorIcon: 'https://avatars.githubusercontent.com/u/62387156?s=64&v=4',
-      authorName: 'mini flow',
-      tags: ['Tags'],
-      link: '#',
+      title: "Swift",
+      authorIcon: "https://avatars.githubusercontent.com/u/62387156?s=64&v=4",
+      authorName: "mini flow",
+      tags: ["Tags"],
+      link: "#",
       stars: 52,
       toolIcon: <SwiftIcon />,
-      lastCommit: '22/3',
-      lastRelease: '207',
+      lastCommit: "22/3",
+      lastRelease: "207",
     },
     {
-      title: '.Net',
-      authorIcon: 'https://avatars.githubusercontent.com/u/62387156?s=64&v=4',
-      authorName: 'mini flow',
-      tags: ['Tags'],
-      link: '#',
+      title: ".Net",
+      authorIcon: "https://avatars.githubusercontent.com/u/62387156?s=64&v=4",
+      authorName: "mini flow",
+      tags: ["Tags"],
+      link: "#",
       stars: 52,
       toolIcon: <NetIcon />,
-      lastCommit: '22/3',
-      lastRelease: '207',
+      lastCommit: "22/3",
+      lastRelease: "207",
     },
     {
-      title: 'Go',
-      authorIcon: 'https://avatars.githubusercontent.com/u/62387156?s=64&v=4',
-      authorName: 'mini flow',
-      tags: ['Tags'],
-      link: '#',
+      title: "Go",
+      authorIcon: "https://avatars.githubusercontent.com/u/62387156?s=64&v=4",
+      authorName: "mini flow",
+      tags: ["Tags"],
+      link: "#",
       stars: 52,
       toolIcon: <GoIcon />,
-      lastCommit: '22/3',
-      lastRelease: '207',
+      lastCommit: "22/3",
+      lastRelease: "207",
     },
     {
-      title: 'Rust',
-      authorIcon: 'https://avatars.githubusercontent.com/u/62387156?s=64&v=4',
-      authorName: 'mini flow',
-      tags: ['Tags'],
-      link: '#',
+      title: "Rust",
+      authorIcon: "https://avatars.githubusercontent.com/u/62387156?s=64&v=4",
+      authorName: "mini flow",
+      tags: ["Tags"],
+      link: "#",
       stars: 52,
       toolIcon: <RustIcon />,
-      lastCommit: '22/3',
-      lastRelease: '207',
+      lastCommit: "22/3",
+      lastRelease: "207",
     },
     {
-      title: 'Elixir',
-      authorIcon: 'https://avatars.githubusercontent.com/u/62387156?s=64&v=4',
-      authorName: 'mini flow',
-      tags: ['Tags'],
-      link: '#',
+      title: "Elixir",
+      authorIcon: "https://avatars.githubusercontent.com/u/62387156?s=64&v=4",
+      authorName: "mini flow",
+      tags: ["Tags"],
+      link: "#",
       stars: 52,
       toolIcon: <ElixirIcon />,
-      lastCommit: '22/3',
-      lastRelease: '207',
+      lastCommit: "22/3",
+      lastRelease: "207",
     },
     {
-      title: 'Python',
-      authorIcon: 'https://avatars.githubusercontent.com/u/62387156?s=64&v=4',
-      authorName: 'mini flow',
-      tags: ['Tags'],
-      link: '#',
+      title: "Python",
+      authorIcon: "https://avatars.githubusercontent.com/u/62387156?s=64&v=4",
+      authorName: "mini flow",
+      tags: ["Tags"],
+      link: "#",
       stars: 52,
       toolIcon: <SwiftIcon />,
-      lastCommit: '22/3',
-      lastRelease: '207',
+      lastCommit: "22/3",
+      lastRelease: "207",
     },
   ],
   recentArticleItems: {
-    heading: 'This is a featured article with two rows title',
-    tags: ['Tag'],
+    heading: "This is a featured article with two rows title",
+    tags: ["Tag"],
     description:
-      'Everything you need to start building on,  Flow verything you need to start building on start building on start building on',
-    link: '/article',
-    ctaText: 'Click me!',
+      "Everything you need to start building on,  Flow verything you need to start building on start building on start building on",
+    link: "/article",
+    ctaText: "Click me!",
   },
   recentToolItems: [
     {
-      title: 'Flow Port',
-      authorIcon: 'https://avatars.githubusercontent.com/u/62387156?s=64&v=4',
-      authorName: 'mini flow',
-      tags: ['Tags'],
-      link: '#',
+      title: "Flow Port",
+      authorIcon: "https://avatars.githubusercontent.com/u/62387156?s=64&v=4",
+      authorName: "mini flow",
+      tags: ["Tags"],
+      link: "#",
       stars: 52,
       toolIcon: <FlowPortIcon />,
       description:
-        'Lorem ipsum text here can go a two liner sentence or a one liner',
+        "Lorem ipsum text here can go a two liner sentence or a one liner",
     },
     {
-      title: 'Flow CLI',
-      authorIcon: 'https://avatars.githubusercontent.com/u/62387156?s=64&v=4',
-      authorName: 'mini flow',
-      tags: ['Tags'],
-      link: '#',
+      title: "Flow CLI",
+      authorIcon: "https://avatars.githubusercontent.com/u/62387156?s=64&v=4",
+      authorName: "mini flow",
+      tags: ["Tags"],
+      link: "#",
       stars: 52,
       toolIcon: <FLOWCLIIcon />,
       description:
-        'Lorem ipsum text here can go a two liner sentence or a one liner',
+        "Lorem ipsum text here can go a two liner sentence or a one liner",
     },
     {
-      title: 'Flow Emulator',
-      authorIcon: 'https://avatars.githubusercontent.com/u/62387156?s=64&v=4',
-      authorName: 'mini flow',
-      tags: ['Tags'],
-      link: '#',
+      title: "Flow Emulator",
+      authorIcon: "https://avatars.githubusercontent.com/u/62387156?s=64&v=4",
+      authorName: "mini flow",
+      tags: ["Tags"],
+      link: "#",
       stars: 52,
       toolIcon: <EmulatorIcon />,
       description:
-        'Lorem ipsum text here can go a two liner sentence or a one liner',
+        "Lorem ipsum text here can go a two liner sentence or a one liner",
     },
   ],
   contentNavigationItems: [
     {
-      title: 'Learn',
-      text: 'Lorem ipsum dolor sit amet proin gravida lorem ipsum',
-      link: '#',
-      icon: 'learn',
+      title: "Learn",
+      text: "Lorem ipsum dolor sit amet proin gravida lorem ipsum",
+      link: "#",
+      icon: "learn",
     },
     {
-      title: 'Tools',
-      text: 'Lorem ipsum dolor sit amet proin gravida lorem ipsum',
-      link: '#',
-      icon: 'tools',
+      title: "Tools",
+      text: "Lorem ipsum dolor sit amet proin gravida lorem ipsum",
+      link: "#",
+      icon: "tools",
     },
     {
-      title: 'Concepts',
-      text: 'Lorem ipsum dolor sit amet proin gravida lorem ipsum',
-      link: '#',
-      icon: 'concepts',
+      title: "Concepts",
+      text: "Lorem ipsum dolor sit amet proin gravida lorem ipsum",
+      link: "#",
+      icon: "concepts",
     },
   ],
-};
+}
 
 export default {
   component: GettingStartedPage,
-  title: 'Pages/GettingStartedPage',
-} as Meta;
+  title: "Pages/GettingStartedPage",
+} as Meta
 
 const Template: Story<GettingStartedPageProps> = (args) => {
-  return <GettingStartedPage {...args} />;
-};
+  return <GettingStartedPage {...args} />
+}
 
-export const Default = Template.bind({});
-Default.args = gettingStartedPageData;
+export const Default = Template.bind({})
+Default.args = gettingStartedPageData
 
-export const dark = Template.bind({});
-dark.args = gettingStartedPageData;
+export const dark = Template.bind({})
+dark.args = gettingStartedPageData
 dark.parameters = {
-  themes: {
-    default: 'dark',
+  backgrounds: {
+    default: "dark",
   },
-};
+}
 
-export const mobile = Template.bind({});
-mobile.args = gettingStartedPageData;
+export const mobile = Template.bind({})
+mobile.args = gettingStartedPageData
 mobile.parameters = {
   viewport: {
-    defaultViewport: 'xs',
+    defaultViewport: "xs",
   },
-};
+}
