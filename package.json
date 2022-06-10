@@ -77,7 +77,7 @@
     "build:0-svg": "yarn svgr --silent --template svgr/template.js --filename-case kebab --out-dir ./app/ui/design-system/images ./app/ui/design-system/images",
     "build:css": "yarn generate:css -- --minify",
     "build:remix": "remix build",
-    "build:assets": "echo FONTS AND IMAGE NOT IMPLEMENTED.",
+    "build:assets": "yarn dev:copy-assets",
     "dev": "run-p dev:*",
     "dev:css": "yarn generate:css -- --watch",
     "dev:remix": "remix dev",
