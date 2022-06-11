@@ -18,3 +18,11 @@ export const Default = Template.bind({})
 Default.args = {
   config: TEMP_SIDEBAR_CONFIG,
 }
+
+export const dark = Template.bind({})
+dark.args = Default.args
+dark.parameters = {
+  backgrounds: {
+    default: "dark",
+  },
+}

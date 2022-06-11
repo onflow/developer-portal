@@ -35,7 +35,7 @@ const NetworkPage = () => {
             // @ts-expect-error
             data.map(({ name, status }: StatuspageApiResponse) => {
               return (
-                <div className="py-6">
+                <div className="py-6" key={name}>
                   <NetworkCard
                     networkName={name}
                     status={
@@ -54,20 +54,22 @@ const NetworkPage = () => {
 
         <h3 className="text-h3">Live updates</h3>
         <div className="mt-6 mb-[100px] flex justify-between xs:flex-col xs:gap-4 md:flex-row">
-          {[1, 2, 3].map(() => (
-            <NetworkDiscordCard
-              message="Mainnet has been down for the past two hours"
-              timestamp={startOfDay(new Date())}
-              messageLink="https://google.com"
-              username="@john_flow"
-            />
+          {[1, 2, 3].map((index) => (
+            <div key={index}>
+              <NetworkDiscordCard
+                message="Mainnet has been down for the past two hours"
+                timestamp={startOfDay(new Date())}
+                messageLink="https://google.com"
+                username="@john_flow"
+              />
+            </div>
           ))}
         </div>
 
         <h3 className="text-h3">Announcements</h3>
         <div className="mb-[100px] flex-col">
-          {[1, 2, 3].map(() => (
-            <div className="py-4">
+          {[1, 2, 3].map((index) => (
+            <div className="py-4" key={index}>
               <AnnouncementCard
                 sourceIcon="https://github.githubassets.com/images/modules/logos_page/GitHub-Mark.png"
                 sourceAltText="Github"

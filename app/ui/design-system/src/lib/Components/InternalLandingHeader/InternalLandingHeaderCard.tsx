@@ -23,7 +23,7 @@ export function InternalLandingHeaderCard({
         <div className="flex flex-col md:flex-col-reverse">
           <div className="mb-2 md:mb-0">
             {tags.map((tag) => (
-              <Tag name={tag} />
+              <Tag name={tag} key={tag} />
             ))}
           </div>
           <div className="text-semibold text-xl text-black group-hover:opacity-75 dark:text-white">
