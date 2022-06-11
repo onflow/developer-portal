@@ -6,7 +6,11 @@ export default {
   title: "Components/Attribution",
 } as Meta
 
-const Template: Story<AttributionProps> = (args) => <Attribution {...args} />
+const Template: Story<AttributionProps> = (args) => (
+  <div style={{ padding: "1rem" }}>
+    <Attribution {...args} />
+  </div>
+)
 
 export const Default = Template.bind({})
 
@@ -17,4 +21,20 @@ Default.args = {
   otherAuthorsCount: 12,
   readMinutes: 4,
   difficulty: "Beginners",
+}
+
+export const dark = Template.bind({})
+dark.args = Default.args
+dark.parameters = {
+  backgrounds: {
+    default: "dark",
+  },
+}
+
+export const mobile = Template.bind({})
+mobile.args = Default.args
+mobile.parameters = {
+  viewport: {
+    defaultViewport: "xs",
+  },
 }

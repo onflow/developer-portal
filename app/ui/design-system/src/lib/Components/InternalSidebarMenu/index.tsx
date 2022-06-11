@@ -44,7 +44,7 @@ function Group({ group }: { group: SectionGroup }) {
             <a
               href="#"
               className={clsx(
-                "dark:shadow-2xl-dark group flex items-center px-1 py-2 text-center text-sm hover:bg-primary-gray-100/50 dark:bg-black hover:dark:bg-primary-gray-400/25 md:h-[7.5rem] md:w-[7rem] md:flex-col md:rounded-lg md:px-4 md:py-5 md:shadow-2xl"
+                "group flex items-center px-1 py-2 text-center text-sm hover:bg-primary-gray-100/50 dark:bg-black dark:shadow-2xl-dark hover:dark:bg-primary-gray-400/5 md:h-[7.5rem] md:w-[7rem] md:flex-col md:rounded-lg md:px-4 md:py-5 md:shadow-2xl"
               )}
             >
               <div className="mr-2 scale-75 md:mr-0 md:-mt-2">
@@ -63,6 +63,38 @@ function Group({ group }: { group: SectionGroup }) {
         )
       })}
     </>
+  )
+}
+
+function SidebarSectionGroup({
+  group,
+  index,
+  close,
+}: {
+  group: SectionGroup
+  index: number
+  close: () => void
+}) {
+  return (
+    <div className="mb-2 md:mb-6 md:divide-y md:divide-solid dark:md:divide-primary-gray-300">
+      <div className="my-2 flex items-center">
+        <div className="mr-auto font-bold leading-none dark:text-primary-gray-100 md:text-xl md:font-semibold">
+          {group.name}
+        </div>
+        {index === 0 && (
+          <button
+            className="hover:opacity-75"
+            onClick={() => close()}
+            aria-label="Close"
+          >
+            <Close />
+          </button>
+        )}
+      </div>
+      <div className="flex flex-col py-4 md:flex-row md:flex-wrap md:gap-4 md:py-6">
+        <Group group={group} />
+      </div>
+    </div>
   )
 }
 
@@ -88,7 +120,7 @@ export function InternalSidebarMenu({
           <div className="relative">
             <Popover.Button
               ref={reference}
-              className="dark:shadow-2xl-dark mb-4 flex items-center rounded-lg pr-3 text-sm shadow-2xl hover:text-primary-gray-300 dark:bg-black dark:text-primary-gray-200 dark:hover:text-primary-gray-100"
+              className="mb-4 flex items-center rounded-lg pr-3 text-sm shadow-2xl hover:text-primary-gray-300 dark:bg-black dark:text-primary-gray-200 dark:shadow-2xl-dark-strong dark:hover:text-primary-gray-100"
             >
               <div className="scale-50">
                 <SelectedIcon />
@@ -101,35 +133,20 @@ export function InternalSidebarMenu({
               </div>
             </Popover.Button>
             <div
-              className="absolute mt-8 min-w-[15rem]"
+              className="absolute mt-8 w-full md:min-w-[15rem]"
               ref={floating}
               style={{ top: y || 0, left: x || 0 }}
             >
               <DropdownTransition>
-                <Popover.Panel className="dark:shadow-2xl-dark relative mr-2 min-w-[17rem] max-w-[34rem] overflow-y-auto rounded-lg bg-white px-4 py-2 shadow-2xl dark:bg-primary-gray-dark md:px-6 md:py-4">
+                <Popover.Panel className="relative mr-2 min-w-[17rem] max-w-[34rem] overflow-y-auto rounded-lg bg-white px-4 py-2 shadow-2xl dark:bg-primary-gray-dark dark:shadow-2xl-dark md:px-6 md:py-4">
                   {({ close }) =>
                     SIDEBAR_SECTION_GROUPS.map((group, index) => (
-                      <div key={group.name}>
-                        <div className="mb-2 md:mb-6 md:divide-y md:divide-solid dark:md:divide-primary-gray-300">
-                          <div className="my-2 flex items-center">
-                            <div className="mr-auto font-bold leading-none dark:text-primary-gray-100 md:text-xl md:font-semibold">
-                              {group.name}
-                            </div>
-                            {index === 0 && (
-                              <button
-                                className="hover:opacity-75"
-                                onClick={() => close()}
-                                aria-label="Close"
-                              >
-                                <Close />
-                              </button>
-                            )}
-                          </div>
-                          <div className="flex flex-col py-4 md:flex-row md:flex-wrap md:gap-4 md:py-6">
-                            <Group group={group} />
-                          </div>
-                        </div>
-                      </div>
+                      <SidebarSectionGroup
+                        group={group}
+                        index={index}
+                        key={index}
+                        close={close}
+                      />
                     ))
                   }
                 </Popover.Panel>

@@ -55,14 +55,13 @@ const NetworkPage = () => {
         <h3 className="text-h3">Live updates</h3>
         <div className="mt-6 mb-[100px] flex justify-between xs:flex-col xs:gap-4 md:flex-row">
           {[1, 2, 3].map((index) => (
-            <div key={index}>
-              <NetworkDiscordCard
-                message="Mainnet has been down for the past two hours"
-                timestamp={startOfDay(new Date())}
-                messageLink="https://google.com"
-                username="@john_flow"
-              />
-            </div>
+            <NetworkDiscordCard
+              message="Mainnet has been down for the past two hours"
+              timestamp={startOfDay(new Date())}
+              messageLink="https://google.com"
+              username="@john_flow"
+              key={index}
+            />
           ))}
         </div>
 
