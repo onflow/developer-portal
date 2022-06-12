@@ -56,11 +56,7 @@ export function SporkFAQPage() {
           />
         </div>
         <div className="hidden md:block">
-          <ButtonLink
-            variant="secondary"
-            // @ts-expect-error please fix
-            prev
-          >
+          <ButtonLink variant="secondary" leftIcon="left">
             Back to Network
           </ButtonLink>
         </div>

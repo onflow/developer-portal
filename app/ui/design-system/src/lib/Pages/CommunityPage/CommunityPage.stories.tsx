@@ -5,6 +5,7 @@ import { Default as DefaultFeaturedArticles } from "../../Components/FeaturedArt
 import { Default as DefaultFlips } from "../../Components/Flips/Flips.stories"
 import { Default as DefaultProjects } from "../../Components/ProjectCards/ProjectCards.stories"
 import { Default as DefaultUpcomingEvents } from "../../Components/UpcomingEvents/UpcomingEvents.stories"
+import { Default as DefaultTools } from "../../Components/ToolsAndConcepts/ToolsAndConcepts.stories"
 
 export default {
   component: CommunityPage,
@@ -20,6 +21,7 @@ Default.args = {
   communityMembers: DefaultCommunityMembers.args,
   projects: DefaultProjects.args.projects,
   articles: DefaultFeaturedArticles.args.articles,
+  tools: DefaultTools.args.tools,
 }
 
 export const dark = Template.bind({})

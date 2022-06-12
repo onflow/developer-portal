@@ -1,4 +1,9 @@
-import { Footer, SocialLinksSignup, UpcomingEvents } from "../../Components"
+import {
+  Footer,
+  SocialLinksSignup,
+  ToolsAndConcepts,
+  UpcomingEvents,
+} from "../../Components"
 import { ButtonLink } from "../../Components/Button"
 import CommunityMembers, {
   CommunityMembersProps,
@@ -9,6 +14,7 @@ import FeaturedArticleSlider, {
 import Flips, { FlipsProps } from "../../Components/Flips"
 import { LandingHeader } from "../../Components/LandingHeader"
 import ProjectCards, { ProjectCardsProps } from "../../Components/ProjectCards"
+import { ToolsAndConceptsProps } from "../../Components/ToolsAndConcepts"
 import { UpcomingEventsProps } from "../../Components/UpcomingEvents"
 import { GITHUB_URL } from "../../constants"
 import PageBackground from "../shared/PageBackground"
@@ -17,7 +23,8 @@ import PageSections from "../shared/PageSections"
 
 export type CommunityPageProps = FlipsProps &
   ProjectCardsProps &
-  FeaturedArticleSliderProps & {
+  FeaturedArticleSliderProps &
+  ToolsAndConceptsProps & {
     communityMembers: CommunityMembersProps
     upcomingEvents: UpcomingEventsProps
   }
@@ -28,6 +35,7 @@ export default function CommunityPage({
   projects,
   upcomingEvents,
   articles,
+  tools,
 }: CommunityPageProps) {
   return (
     <PageBackground>
@@ -71,6 +79,9 @@ export default function CommunityPage({
         </PageSection>
         <PageSection>
           <ProjectCards projects={projects} />
+        </PageSection>
+        <PageSection>
+          <ToolsAndConcepts tools={tools} />
         </PageSection>
         <PageSection>
           <FeaturedArticleSlider articles={articles} />
