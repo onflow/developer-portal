@@ -1,3 +1,4 @@
+import { ToolsAndConcepts } from "../../Components"
 import { ButtonLink } from "../../Components/Button"
 import {
   ContentNavigation,
@@ -12,7 +13,7 @@ import {
   LandingHeader,
   LandingHeaderProps,
 } from "../../Components/LandingHeader"
-import { ToolCard, ToolCardProps } from "../../Components/ToolCard"
+import { ToolCardProps } from "../../Components/ToolCard"
 import PageBackground from "../shared/PageBackground"
 import PageSection from "../shared/PageSection"
 import PageSections from "../shared/PageSections"
@@ -72,46 +73,19 @@ export function ConceptsPage({
           </div>
         </PageSection>
         <PageSection>
-          <div className="container">
-            <div className="flex justify-between md:pb-11">
-              <div>
-                <h4 className="text-h4 md:text-h2 pb-4 text-2xl md:pb-2">
-                  Tools
-                </h4>
-                <div className="hidden md:block">
-                  Core concepts and tools you'll need to get started building on
-                  Flow
-                </div>
-                <div className="block pb-4 md:hidden">Tools lorem ipsum</div>
-              </div>
-              <div>
-                <ButtonLink
-                  rightIcon="right"
-                  variant="secondary"
-                  className="hidden md:inline-flex"
-                >
-                  View all
-                </ButtonLink>
-              </div>
-            </div>
-            <div className="grid-rows-auto grid grid-cols-1 gap-y-12 md:grid-cols-2 md:gap-y-6 md:gap-x-9">
-              {toolCardItems.map((toolCard, i) => (
-                <ToolCard
-                  key={i}
-                  title={toolCard.title}
-                  authorIcon={toolCard.authorIcon}
-                  authorName={toolCard.authorName}
-                  tags={toolCard.tags}
-                  link={toolCard.link}
-                  stars={toolCard.stars}
-                  toolIcon={toolCard.toolIcon}
-                  description={toolCard.description}
-                />
-              ))}
-              <ButtonLink className="inline-flex md:hidden" rightIcon="right">
-                View All Tools
-              </ButtonLink>
-            </div>
+          <ToolsAndConcepts
+            tools={toolCardItems}
+            headerButtontext="View all Tools"
+            bottomButtons={false}
+          />
+          <div className="md:hidden px-4 pt-6">
+            <ButtonLink
+              className="w-full cursor-pointer"
+              variant="primary"
+              rightIcon="right"
+            >
+              View all Tools
+            </ButtonLink>
           </div>
         </PageSection>
         <PageSection>
