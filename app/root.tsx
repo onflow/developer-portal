@@ -27,7 +27,6 @@ import styles from "./main.css"
 import { bodyClasses } from "./styles/sharedClasses"
 import { getThemeSession } from "./theme.server"
 import { Footer } from "./ui/design-system/src"
-import { ButtonLink } from "./ui/design-system/src/lib/Components/Button"
 import { ErrorPage } from "./ui/design-system/src/lib/Components/ErrorPage"
 
 export const links: LinksFunction = () => {
