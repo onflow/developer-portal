@@ -101,8 +101,8 @@ const NetworkDetailPage = () => {
           }}
         />
         <div className="divide-y">
-          {[1, 2, 3, 4].map((_) => (
-            <div className="my-4 pt-4">
+          {[1, 2, 3, 4].map((index) => (
+            <div className="my-4 pt-4" key={index}>
               <SporksCard
                 heading={currentNetwork.name}
                 timestamp={endOfWeek(new Date())}

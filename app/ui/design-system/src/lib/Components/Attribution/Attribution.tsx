@@ -31,14 +31,14 @@ export function Attribution({
   difficulty,
 }: AttributionProps) {
   return (
-    <div className="border-b-1 flex flex-col gap-2 border-b border-b-gray-400 py-3 text-xs text-gray-500 sm:flex-row sm:items-center sm:gap-4">
+    <div className="border-b-1 flex flex-col gap-2 border-b border-b-gray-400 py-3 text-xs text-primary-gray-300 dark:text-primary-gray-100 sm:flex-row sm:items-center sm:gap-4">
       <Section>
         <span className="mr-1">
           <CalendarIcon />
         </span>
         <span className="mr-1">Updated: {updatedDate} by</span>
         {!!authorIcon && <img src={authorIcon} alt={authorName} width={20} />}
-        <b className="text-gray-900">{authorName}</b>{" "}
+        <b>{authorName}</b>{" "}
         {otherAuthorsCount
           ? `(+ ${otherAuthorsCount} other${otherAuthorsCount > 1 ? "s" : ""})`
           : ""}

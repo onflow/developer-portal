@@ -47,6 +47,7 @@ export function FAQ({ faqList, variation }: FAQProps) {
             onClick={() => toggleExpansion(i)}
             role="button"
             className={classes}
+            key={i}
           >
             <div
               className={`flex items-center justify-between gap-4 ${

@@ -21,7 +21,7 @@ const ToolsAndConcepts = ({ tools, concepts }: ToolsAndConceptsProps) => {
       )}
       <div className="mt-9 grid gap-6 md:grid-cols-2 md:gap-x-9 md:gap-y-6">
         {tools.map((tool: ToolCardProps) => (
-          <ToolCard {...tool} />
+          <ToolCard {...tool} key={tool.title} />
         ))}
       </div>
       <div className="mt-9 flex flex-col justify-between md:flex-row">

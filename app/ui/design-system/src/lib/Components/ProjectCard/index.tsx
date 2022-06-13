@@ -39,7 +39,7 @@ const ProjectCard = ({
         <div className="mb-2 text-2xl font-bold">{heading}</div>
         <div className="mb-2 flex text-primary-gray-300">
           {tags.map((tag) => (
-            <Tag name={tag} />
+            <Tag name={tag} key={tag} />
           ))}
           <a href={twitterLink} className="mr-2">
             <TwitterIcon />

@@ -7,7 +7,11 @@ export default {
 } as Meta
 
 const Template: Story<InternalSidebarMenuProps> = (args) => {
-  return <InternalSidebarMenu {...args} />
+  return (
+    <div style={{ padding: "1rem" }}>
+      <InternalSidebarMenu {...args} />
+    </div>
+  )
 }
 
 export const Default = Template.bind({})
