@@ -1,5 +1,5 @@
 import { useGlobals, useParameter } from "@storybook/addons"
-import "../app/ui/design-system/styles/main.css"
+import "../app/main.css"
 import { bodyClasses } from "../app/styles/sharedClasses"
 import tailwindConfig from "../tailwind.config"
 
