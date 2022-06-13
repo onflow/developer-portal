@@ -4,22 +4,22 @@ import { fetchNetworkStatus } from "~/cms/utils/fetch-network-status"
 import { StatuspageApiResponse } from "~/ui/design-system/src/lib/interfaces"
 
 export type LoaderData = {
-  networkStatus: StatuspageApiResponse[]
+  statuseResponses: StatuspageApiResponse[]
 }
 
 export async function loader(): Promise<LoaderData> {
   const networkStatus = await fetchNetworkStatus()
   return {
-    networkStatus,
+    statuseResponses: networkStatus,
   }
 }
 
 export default function () {
-  const { networkStatus } = useLoaderData<LoaderData>()
-  const [status, setStatus] = useState(networkStatus)
+  const networkData = useLoaderData<LoaderData>()
+  const [status, setStatus] = useState(networkData)
 
   // Whenever the loader gives us new data(for example, after a form submission), update our `data` state.
-  useEffect(() => setStatus(networkStatus), [networkStatus])
+  useEffect(() => setStatus(networkData), [networkData])
 
   const fetcher = useFetcher()
 
@@ -44,9 +44,9 @@ export default function () {
   return (
     <div>
       <h1>NETWORKS</h1>
-      Number of Networks: {status.length}
+      Number of Networks: {status.statuseResponses.length}
       <div className="w-full">
-        {status.map((s) => (
+        {status.statuseResponses.map((s) => (
           <li id="user-content-fn-1" key={s.id}>
             Network: {s.name} - {s.status} - {s.updated_at}
           </li>
