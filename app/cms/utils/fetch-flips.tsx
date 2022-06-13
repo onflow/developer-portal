@@ -1,7 +1,7 @@
 import { Octokit } from "@octokit/core"
-import { FlipCellProps } from "~/libs/design-system/src/lib/Components/FlipCell"
+import { FlipCellProps } from "~/libs/design-system/src/lib/Components/Flips/FlipCell"
 
-export const fetchFlips = async () => {
+export const fetchOpenFlips = async () => {
   const octokit = new Octokit({
     auth: process.env.BOT_GITHUB_TOKEN,
   })
@@ -54,4 +54,11 @@ export const fetchFlips = async () => {
   const data: FlipCellProps[] = await Promise.all(flipCellProps)
 
   return data
+}
+
+export const fetchGoodToStartFlips = async () => {
+  const octokit = new Octokit({
+    auth: process.env.BOT_GITHUB_TOKEN,
+  })
+  // Source: github.com/onflow/flips
 }

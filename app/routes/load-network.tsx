@@ -1,16 +1,8 @@
-import type { LoaderFunction } from "@remix-run/node"
-import { useLoaderData } from "@remix-run/react"
-import fetchNetworkStatuses from "~/cms/utils/fetch-network-status"
-import { StatuspageApiResponse } from "~/libs/design-system/dist/lib/interfaces"
+import useNetworkStatuses from "~/cms/utils/hooks-network-status"
+import { StatuspageApiResponse } from "~/libs/design-system/src/lib/interfaces"
 
-export type LoaderData = StatuspageApiResponse[]
-
-export const loader: LoaderFunction = async () => {
-  return fetchNetworkStatuses()
-}
-
-export default function Flips() {
-  const status: LoaderData = useLoaderData()
+export default function NetworkStatus() {
+  const status: StatuspageApiResponse[] = useNetworkStatuses()
   return (
     <div>
       <h1>NETWORKS</h1>

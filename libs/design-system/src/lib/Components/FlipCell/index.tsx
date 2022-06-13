@@ -3,20 +3,12 @@ import { ReactComponent as CalendarIcon } from '../../../../images/action/date-c
 import { ReactComponent as CommentIcon } from '../../../../images/arrows/message-circle';
 import Tag from '../Tag';
 import RoundImage from '../RoundImage';
+import type { FlipCellProps } from "../Flips/FlipCell"
 
 export type User = {
-  profileImage: string;
-  name: string;
-};
-
-export type FlipCellProps = {
-  numComments: number;
-  heading: string;
-  tags: string[];
-  participant: User;
-  date: string;
-  forumLink: string;
-};
+  profileImage: string
+  name: string
+}
 
 const FlipCell = ({
   heading,
@@ -70,4 +62,4 @@ const FlipCell = ({
   );
 };
 
-export default FlipCell;
+export default FlipCell
