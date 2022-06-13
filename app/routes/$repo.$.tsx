@@ -10,7 +10,7 @@ import { getMdxPage, useMdxComponent } from "~/cms/utils/mdx"
 // might add this repo mapping to json resource endpoint
 // TODO: Allow specifying a specific branch, ideally dynamically (from publisher-land)
 // ... but we can hardcode  master / main for MVP
-const repos = ["cadence", "fcl-js"]
+const repos = ["cadence", "fcl-js", "mock-developer-doc"]
 
 const validRepo = (repo: string | undefined) => {
   return repos.includes(repo!)
