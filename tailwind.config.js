@@ -87,6 +87,8 @@ module.exports = {
       },
       boxShadow: {
         "2xl": "0px 4px 40px 0px #00000014",
+        "2xl-dark": "0px 4px 40px #FFFFFF14",
+        "2xl-dark-strong": "0px 0px 40px #FFFFFF32",
       },
     },
   },
