@@ -8,6 +8,10 @@ import { ButtonLink } from "../../Components/Button"
 import CommunityMembers, {
   CommunityMembersProps,
 } from "../../Components/CommunityMembers"
+import {
+  ContentNavigation,
+  ContentNavigationProps,
+} from "../../Components/ContentNavigation"
 import FeaturedArticleSlider, {
   FeaturedArticleSliderProps,
 } from "../../Components/FeaturedArticleSlider"
@@ -27,6 +31,7 @@ export type CommunityPageProps = FlipsProps &
   ToolsAndConceptsProps & {
     communityMembers: CommunityMembersProps
     upcomingEvents: UpcomingEventsProps
+    contentNavigationItems: ContentNavigationProps[]
   }
 
 export default function CommunityPage({
@@ -36,6 +41,7 @@ export default function CommunityPage({
   upcomingEvents,
   articles,
   tools,
+  contentNavigationItems,
 }: CommunityPageProps) {
   return (
     <PageBackground>
@@ -75,16 +81,40 @@ export default function CommunityPage({
           <CommunityMembers {...communityMembers} />
         </PageSection>
         <PageSection>
-          <Flips flips={flips} />
+          <div className="container">
+            <Flips flips={flips} />
+          </div>
         </PageSection>
+
         <PageSection>
-          <ProjectCards projects={projects} />
+          <div className="container">
+            <ProjectCards projects={projects} />
+          </div>
         </PageSection>
+
         <PageSection>
-          <ToolsAndConcepts tools={tools} />
+          <div className="container">
+            <ToolsAndConcepts tools={tools} />
+          </div>
         </PageSection>
+
         <PageSection>
-          <FeaturedArticleSlider articles={articles} />
+          <div className="container">
+            <h4 className="text-h4 mb-4">Explore More Content</h4>
+            <div className="grid grid-cols-1 gap-4 md:grid-cols-3">
+              {contentNavigationItems.map(
+                (contentNav: ContentNavigationProps, index: number) => (
+                  <ContentNavigation key={index} {...contentNav} />
+                )
+              )}
+            </div>
+          </div>
+        </PageSection>
+
+        <PageSection>
+          <div className="container">
+            <FeaturedArticleSlider articles={articles} />
+          </div>
         </PageSection>
       </PageSections>
       <SocialLinksSignup />

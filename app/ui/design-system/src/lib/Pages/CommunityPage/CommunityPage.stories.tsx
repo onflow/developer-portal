@@ -6,6 +6,7 @@ import { Default as DefaultFlips } from "../../Components/Flips/Flips.stories"
 import { Default as DefaultProjects } from "../../Components/ProjectCards/ProjectCards.stories"
 import { Default as DefaultUpcomingEvents } from "../../Components/UpcomingEvents/UpcomingEvents.stories"
 import { Default as DefaultTools } from "../../Components/ToolsAndConcepts/ToolsAndConcepts.stories"
+import { Default as DefaultContentNavigationItem } from "../../Components/ContentNavigation/ContentNavigation.stories"
 
 export default {
   component: CommunityPage,
@@ -22,6 +23,11 @@ Default.args = {
   projects: DefaultProjects.args.projects,
   articles: DefaultFeaturedArticles.args.articles,
   tools: DefaultTools.args.tools,
+  contentNavigationItems: [
+    { ...DefaultContentNavigationItem, title: "Bug bounty", icon: "bug" },
+    { ...DefaultContentNavigationItem, title: "Contribute", icon: "community" },
+    { ...DefaultContentNavigationItem, title: "Get funding", icon: "funding" },
+  ],
 }
 
 export const dark = Template.bind({})
