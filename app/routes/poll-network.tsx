@@ -3,16 +3,23 @@ import { useEffect, useState } from "react"
 import { fetchNetworkStatus } from "~/cms/utils/fetch-network-status"
 import { StatuspageApiResponse } from "~/ui/design-system/src/lib/interfaces"
 
-export async function loader() {
-  return await fetchNetworkStatus()
+export type LoaderData = {
+  networkStatus: StatuspageApiResponse[]
+}
+
+export async function loader(): Promise<LoaderData> {
+  const networkStatus = await fetchNetworkStatus()
+  return {
+    networkStatus,
+  }
 }
 
 export default function () {
-  const loaderData: StatuspageApiResponse[] = useLoaderData()
-  const [status, setStatus] = useState(loaderData)
+  const { networkStatus } = useLoaderData<LoaderData>()
+  const [status, setStatus] = useState(networkStatus)
 
   // Whenever the loader gives us new data(for example, after a form submission), update our `data` state.
-  useEffect(() => setStatus(loaderData), [loaderData])
+  useEffect(() => setStatus(networkStatus), [networkStatus])
 
   const fetcher = useFetcher()
 
