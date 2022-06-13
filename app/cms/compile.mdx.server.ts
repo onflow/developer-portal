@@ -9,6 +9,7 @@ import calculateReadingTime from "reading-time"
 import type * as U from "unified"
 import type { GitHubFile } from "./github.server"
 import { visit } from "unist-util-visit"
+import formatLinks from "./utils/format-links"
 
 if (process.platform === "win32") {
   process.env.ESBUILD_BINARY_PATH = path.resolve(
@@ -53,7 +54,7 @@ const remarkPlugins: U.PluggableList = [
   ],
 ]
 
-const rehypePlugins: U.PluggableList = [removePreContainerDivs]
+const rehypePlugins: U.PluggableList = [removePreContainerDivs, formatLinks]
 
 async function compileMdx<FrontmatterType extends Record<string, unknown>>(
   slug: string,

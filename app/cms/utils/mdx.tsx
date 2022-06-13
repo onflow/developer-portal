@@ -282,13 +282,22 @@ function mapFromMdxPageToMdxListItem(page: MdxPage): MdxListItem {
   return mdxListItem
 }
 
+const isLinkExternal = (href?: string) => !!href?.match(/^(www|http)/i)
+
 const mdxComponents = {
-  a: (props: LinkProps & { href: string }) => (
-    <RemixLink to={props.href}>
-      {/* @ts-expect-error: We need to figure out how to type this */}
-      <Link {...props} />
-    </RemixLink>
-  ),
+  a: (props: LinkProps & { href: string }) => {
+    if (isLinkExternal(props.href)) {
+      // @ts-expect-error: TODO: Nees types.
+      return <Link {...props} isExternal={true} />
+    } else {
+      return (
+        <RemixLink to={props.href}>
+          {/* @ts-expect-error: TODO: Nees types. */}
+          <Link {...props} isExternal={false} />
+        </RemixLink>
+      )
+    }
+  },
   input: (props: InputProps) =>
     props.type === "checkbox" ? (
       <StaticCheckbox {...props} asInternalChecklist={true} />
