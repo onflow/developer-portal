@@ -1,8 +1,9 @@
 // import { InternalSidebar } from "@flow-docs/ui";
 import type { LoaderFunction, MetaFunction } from "@remix-run/node"
-import { useLoaderData, useCatch } from "@remix-run/react"
+import { useLoaderData, useCatch, Link, useLocation } from "@remix-run/react"
 import { json } from "@remix-run/node"
 import { getMdxPage, useMdxComponent } from "~/cms/utils/mdx"
+import { ErrorPage } from "~/ui/design-system/src/lib/Components/ErrorPage"
 
 // import { TEMP_SIDEBAR_CONFIG } from "@flow-docs/ui";
 
@@ -24,6 +25,9 @@ export const loader: LoaderFunction = async ({ params, request }) => {
   // Here we forward the request if the first URL segemnt does
   // not match a repo we know about ...
 
+  if (!validRepo(params["repo"])) {
+    throw json({ status: "noRepo" }, { status: 404 })
+  }
   // TODO: make this redirect to appropriate section for repo
   // If no approapriate section, then fall through and try to get content
   // for the repo ... otherwise return Response and handle down the chain?
@@ -43,11 +47,11 @@ export const loader: LoaderFunction = async ({ params, request }) => {
       { request, forceFresh: process.env.FORCE_REFRESH === "true" }
     )
   } catch (e) {
-    throw json({ noPage: true }, { status: 500 })
+    throw json({ status: "noPage" }, { status: 500 })
   }
 
   if (!page) {
-    throw json({ noPage: true }, { status: 404 })
+    throw json({ status: "noPage" }, { status: 404 })
   }
 
   return {
@@ -70,8 +74,32 @@ export default function () {
 export function CatchBoundary() {
   const caught = useCatch()
   console.error("CatchBoundary", caught)
-  if (caught.data.noPage) {
-    return <div>No Page</div>
+  if (caught.data.status === "noPage") {
+    return (
+      <ErrorPage
+        title={"404 – Page not found"}
+        subtitle={`there is no page at "${location.pathname}"`}
+        actions={
+          <Link className="underline" to="/">
+            Go home
+          </Link>
+        }
+      />
+    )
   }
+  if (caught.data.status === "noRepo") {
+    return (
+      <ErrorPage
+        title={"404 – Repo not found"}
+        subtitle={`This repo is not available or does not exist`}
+        actions={
+          <Link className="underline" to="/">
+            Go home
+          </Link>
+        }
+      />
+    )
+  }
+
   throw new Error(`Unhandled error: ${caught.status}`)
 }

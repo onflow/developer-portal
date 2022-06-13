@@ -7,8 +7,8 @@ export const ErrorPage = (props: {
   actions: ReactNode
 }) => {
   return (
-    <div className="flex flex-1 flex-col ">
-      <div className="mx-auto flex max-w-3xl flex-col overflow-auto py-6 px-4">
+    <div className="flex flex-1 flex-col p-12">
+      <div className="mx-auto flex max-w-3xl flex-col overflow-auto ">
         <div className="grid gap-2">
           <div className="font-extrabold">{props.title}</div>
           <div>{props.subtitle}</div>
