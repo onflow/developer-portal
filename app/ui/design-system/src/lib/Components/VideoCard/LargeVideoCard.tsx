@@ -1,6 +1,6 @@
 import { useState } from "react"
 
-import { ReactComponent as PlayCircle } from "../../../../images/action/play-circle"
+import PlayCircle from "../../../../images/action/play-circle.svg"
 import { ReactComponent as Time } from "../../../../images/content/date"
 
 export interface LargeVideoCardProps {
@@ -39,12 +39,17 @@ export function LargeVideoCard({ link, title, length }: LargeVideoCardProps) {
           <div className="pointer-events-none absolute h-full w-full rounded-lg bg-black opacity-70" />
 
           <div className="pointer-events-none absolute grid h-full w-full place-items-center">
-            <PlayCircle width={48} height={64} />
+            <img src={PlayCircle} alt={title} width={56} height={56} />
           </div>
           <div className="pointer-events-none absolute bottom-0 left-0 w-full p-6 text-white md:w-3/4">
             <div className="text-h4 line-clamp-2">{title}</div>
             <div className="items-align flex gap-2">
-              <Time className="stroke-white" height={20} width={20} />
+              <Time
+                className="stroke-white"
+                height={20}
+                width={20}
+                viewBox="0 0 24 24"
+              />
               <div className="text-base">
                 {minutes}:{seconds}
               </div>
