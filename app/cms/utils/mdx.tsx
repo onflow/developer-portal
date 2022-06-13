@@ -314,6 +314,8 @@ const mdxComponents = {
     // TODO: pass code string as rawText for copy to clipboard functionality
     return <InternalCodeblock rawText="TODO" children={children} />
   },
+  Callout: (props: React.PropsWithChildren<{}>) => <div>{props.children}</div>,
+  Img: (props: React.PropsWithRef<{}>) => <img {...props} />,
 }
 
 /**
