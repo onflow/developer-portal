@@ -66,6 +66,7 @@ export interface Poster {
 }
 
 const fetchDiscourseChanges = (url: string) => {
+  console.log("Fetching discourse changes")
   return fetch(url, {
     headers: {
       "Content-Type": "application/json",
