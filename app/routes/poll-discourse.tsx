@@ -5,16 +5,23 @@ import {
   Topic,
 } from "~/cms/utils/fetch-discourse-api"
 
-export async function loader() {
-  return await fetchBreakingChangesPosts()
+type LoaderData = {
+  topics: Topic[]
+}
+
+export async function loader(): Promise<LoaderData> {
+  const breakingChanges = await fetchBreakingChangesPosts()
+  return {
+    topics: breakingChanges,
+  }
 }
 
 export default function () {
-  const loaderData: Topic[] = useLoaderData()
-  const [breakingChangesTopics, setBreakingChangesTopics] = useState(loaderData)
+  const discourseData = useLoaderData<LoaderData>()
+  const [breakingChanges, setBreakingChanges] = useState(discourseData)
 
   // Whenever the loader gives us new data(for example, after a form submission), update our `data` state.
-  useEffect(() => setBreakingChangesTopics(loaderData), [loaderData])
+  useEffect(() => setBreakingChanges(discourseData), [discourseData])
 
   const fetcher = useFetcher()
 
@@ -32,18 +39,19 @@ export default function () {
   // When the fetcher comes back with new data, update our `data` state.
   useEffect(() => {
     if (fetcher.data) {
-      setBreakingChangesTopics(fetcher.data)
+      setBreakingChanges(fetcher.data)
     }
   }, [fetcher.data])
 
   return (
     <div>
       <h1>Breaking Changes Topics</h1>
-      Number: {breakingChangesTopics.length}
+      Count: {breakingChanges.topics.length}
       <div className="w-full">
-        {breakingChangesTopics.map((t) => (
+        {breakingChanges.topics.map((t) => (
           <li id="user-content-fn-1" key={t.id}>
-            Network: {t.__formatted_date} - {t.title} - {t.featured_link}
+            Breaking Change Topic: {t.__formatted_date} - {t.title} -{" "}
+            {t.featured_link}
           </li>
         ))}
       </div>
