@@ -4,6 +4,7 @@ import { useLoaderData, useCatch, Link, useLocation } from "@remix-run/react"
 import { json } from "@remix-run/node"
 import { getMdxPage, useMdxComponent } from "~/cms/utils/mdx"
 import { ErrorPage } from "~/ui/design-system/src/lib/Components/ErrorPage"
+import invariant from "tiny-invariant"
 
 // import { TEMP_SIDEBAR_CONFIG } from "@flow-docs/ui";
 
@@ -38,12 +39,14 @@ export const loader: LoaderFunction = async ({ params, request }) => {
   if (!validRepo(params["repo"])) {
     throw json({ status: "noRepo" }, { status: 404 })
   }
+
   // TODO: make this redirect to appropriate section for repo
   // If no approapriate section, then fall through and try to get content
   // for the repo ... otherwise return Response and handle down the chain?
-  if (!params["repo"] || !validRepo(params["repo"])) {
-    return new Response()
-  }
+  // if (!params["repo"] || !validRepo(params["repo"])) {
+  //   return new Response()
+  // }
+  invariant(params["repo"], `expected repo param`)
 
   const [repo, fileOrDirPath] = [params["repo"], params["*"] || "index"]
 
@@ -57,7 +60,7 @@ export const loader: LoaderFunction = async ({ params, request }) => {
       { request, forceFresh: process.env.FORCE_REFRESH === "true" }
     )
   } catch (e) {
-    throw json({ status: "noPage" }, { status: 500 })
+    throw json({ status: "mdxError", error: e }, { status: 500 })
   }
 
   if (!page) {
@@ -85,31 +88,44 @@ export function CatchBoundary() {
   const caught = useCatch()
   console.error("CatchBoundary", caught)
   const location = useLocation()
-  if (caught.data.status === "noPage") {
-    return (
-      <ErrorPage
-        title={"404 – Page not found"}
-        subtitle={`there is no page at "${location.pathname}"`}
-        actions={
-          <Link className="underline" to="/">
-            Go home
-          </Link>
-        }
-      />
-    )
-  }
-  if (caught.data.status === "noRepo") {
-    return (
-      <ErrorPage
-        title={"404 – Repo not found"}
-        subtitle={`This repo is not available or does not exist`}
-        actions={
-          <Link className="underline" to="/">
-            Go home
-          </Link>
-        }
-      />
-    )
+
+  switch (caught.data.status) {
+    case "noPage":
+      return (
+        <ErrorPage
+          title={"404 – Page not found"}
+          subtitle={`there is no page at "${location.pathname}"`}
+          actions={
+            <Link className="underline" to="/">
+              Go home
+            </Link>
+          }
+        />
+      )
+    case "mdxError":
+      return (
+        <ErrorPage
+          title={"Error processing"}
+          subtitle={`An error occured processing the mdx for this document`}
+          actions={
+            <Link className="underline" to="/">
+              Go home
+            </Link>
+          }
+        />
+      )
+    case "noRepo":
+      return (
+        <ErrorPage
+          title={"404 – Repo not found"}
+          subtitle={`This repo is not available or does not exist`}
+          actions={
+            <Link className="underline" to="/">
+              Go home
+            </Link>
+          }
+        />
+      )
   }
 
   throw new Error(`Unhandled error: ${caught.status}`)
