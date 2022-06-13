@@ -26,8 +26,8 @@ const Template: Story<ContentNavigationProps> = (args) => (
   </div>
 )
 
-export const Primary = Template.bind({})
-Primary.args = {
+export const Default = Template.bind({})
+Default.args = {
   title: "Get Started",
   text: "Lorem ipsum dolor sit amet proin gravida lorem ipsum",
   link: "#",
