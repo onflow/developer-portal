@@ -43,7 +43,6 @@ export function CatalogSelect({
         const catalogCollections = await getCollections() || []
         const items = Object.keys(catalogCollections).map((catalogKey) => {
           const catalog = catalogCollections[catalogKey]
-          console.log(catalog.nftType);
           return {
             name: `${catalogKey}`,
             subtext: `${catalog.nftType.typeID}`,
@@ -73,7 +72,6 @@ export function CatalogSelect({
                   <Badge color={item.status === 'IN_REVIEW' ? 'blue' : item.status === 'APPROVED' ? 'green' : 'yellow'} text={item.status} />
                 )
               }
-              <div>{item.status}</div>
               <div className="">{item.subtext}</div>
             </div>
           )
