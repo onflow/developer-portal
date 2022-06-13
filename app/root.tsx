@@ -5,6 +5,7 @@ import type {
 } from "@remix-run/node"
 import { json } from "@remix-run/node"
 import {
+  Link,
   Links,
   LiveReload,
   Meta,
@@ -12,6 +13,7 @@ import {
   Scripts,
   ScrollRestoration,
   useLoaderData,
+  useLocation,
 } from "@remix-run/react"
 import clsx from "clsx"
 import {
@@ -25,6 +27,8 @@ import styles from "./main.css"
 import { bodyClasses } from "./styles/sharedClasses"
 import { getThemeSession } from "./theme.server"
 import { Footer } from "./ui/design-system/src"
+import { ButtonLink } from "./ui/design-system/src/lib/Components/Button"
+import { ErrorPage } from "./ui/design-system/src/lib/Components/ErrorPage"
 
 export const links: LinksFunction = () => {
   return [{ rel: "stylesheet", href: styles }]
@@ -79,5 +83,32 @@ export default function AppWithProviders() {
     <ThemeProvider specifiedTheme={data.theme}>
       <App />
     </ThemeProvider>
+  )
+}
+
+export function ErrorBoundary({ error }: { error: Error }) {
+  console.error(error)
+  const location = useLocation()
+  return (
+    <html className="flex min-h-full bg-red-300">
+      <head>
+        <title>An unexpected error occured</title>
+        <Meta />
+        <Links />
+      </head>
+      <body className="flex flex-1 align-middle">
+        <ErrorPage
+          title={"500 – An unexpected error occured"}
+          subtitle={`"${location.pathname}" is currently not working`}
+          actions={
+            <Link className="underline" to="/">
+              Go home
+            </Link>
+          }
+        />
+        {/* add the UI you want your users to see */}
+        <Scripts />
+      </body>
+    </html>
   )
 }
