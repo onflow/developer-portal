@@ -287,7 +287,7 @@ const isLinkExternal = (href?: string) => !!href?.match(/^(www|http)/i)
 const mdxComponents = {
   a: (props: LinkProps & { href: string }) => {
     if (isLinkExternal(props.href)) {
-      // @ts-expect-error: TODO: Nees types.
+      // @ts-expect-error: TODO: Needs types.
       return <Link {...props} isExternal={true} />
     } else {
       return (
