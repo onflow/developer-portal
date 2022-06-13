@@ -1,6 +1,7 @@
-import "../app/tailwind.css"
+import { useGlobals, useParameter } from "@storybook/addons"
+import "../app/main.css"
+import { bodyClasses } from "../app/styles/sharedClasses"
 import tailwindConfig from "../tailwind.config"
-import { useGlobals } from "@storybook/addons"
 
 export const parameters = {
   actions: { argTypesRegex: "^on[A-Z].*" },
@@ -10,6 +11,7 @@ export const parameters = {
       date: /Date$/,
     },
   },
+  layout: "fullscreen",
   backgrounds: {
     default: "light",
     values: [
@@ -73,11 +75,19 @@ const withDarkMode = (Story, context) => {
   // https://github.com/storybookjs/storybook/issues/15632
 
   const [globals] = useGlobals()
-  const isDarkMode = globals.backgrounds?.value === "#000000"
+  const backgrounds = useParameter("backgrounds")
+  const isDefaultDarkModeStory = backgrounds.default === "dark"
+  const isDarkModeSelected = globals.backgrounds?.value === "#000000"
+  const isDarkMode = isDarkModeSelected || isDefaultDarkModeStory
 
   return (
-    <div className={isDarkMode ? "dark" : ""}>
-      <Story {...context} />
+    <div className={isDarkMode ? "dark" : ""} style={{ padding: 0 }}>
+      <div
+        className={bodyClasses}
+        style={{ height: "100%", minHeight: "100vh" }}
+      >
+        <Story {...context} />
+      </div>
     </div>
   )
 }

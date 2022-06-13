@@ -13,7 +13,6 @@
     "forceConsistentCasingInFileNames": true,
     "baseUrl": ".",
     "paths": {
-      "~/libs/*": ["./libs/*"],
       "~/*": ["./app/*"]
     },
 
@@ -27,5 +26,5 @@
   },
 
   // TODO: fix type errors in storybook files
-  "exclude": ["libs/design-system/**/*.stories.tsx"]
+  "exclude": ["app/ui/design-system/**/*.stories.tsx"]
 }
