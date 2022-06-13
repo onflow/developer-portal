@@ -1,13 +1,13 @@
-import { TabMenu } from "..";
-import { ButtonLink } from "../Button";
-import { ToolCard, ToolCardProps } from "../ToolCard";
+import { TabMenu } from ".."
+import { ButtonLink } from "../Button"
+import { ToolCard, ToolCardProps } from "../ToolCard"
 
 export type ToolsAndConceptsProps = {
-  tools: ToolCardProps[];
-  bottomButtons?: boolean;
-  headerButtontext?: string;
-  concepts?: ToolCardProps[]; // Not sure what this looks like yet.
-};
+  tools: ToolCardProps[]
+  bottomButtons?: boolean
+  headerButtontext?: string
+  concepts?: ToolCardProps[] // Not sure what this looks like yet.
+}
 
 const ToolsAndConcepts = ({
   tools,
@@ -16,8 +16,8 @@ const ToolsAndConcepts = ({
   bottomButtons = true,
 }: ToolsAndConceptsProps) => {
   const getHeading = () => {
-    return concepts && concepts.length > 0 ? "Tools and Concepts" : "Tools";
-  };
+    return concepts && concepts.length > 0 ? "Tools and Concepts" : "Tools"
+  }
 
   return (
     <div className="container">
@@ -64,7 +64,7 @@ const ToolsAndConcepts = ({
         </div>
       )}
     </div>
-  );
-};
+  )
+}
 
-export default ToolsAndConcepts;
+export default ToolsAndConcepts
