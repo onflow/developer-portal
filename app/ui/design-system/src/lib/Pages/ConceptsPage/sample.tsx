@@ -1,8 +1,8 @@
-import { ReactComponent as FclIcon } from "../../../../images/tools/tool-fcl"
-import { ReactComponent as CadenceIcon } from "../../../../images/tools/tool-cadence"
-import { ReactComponent as FlowPortIcon } from "../../../../images/tools/tool-port"
-import { ReactComponent as EmulatorIcon } from "../../../../images/tools/tool-emulator"
-import { ReactComponent as FLOWCLIIcon } from "../../../../images/tools/tool-cli"
+import { ReactComponent as FclIcon } from "../../../../images/tools/tool-fcl";
+import { ReactComponent as CadenceIcon } from "../../../../images/tools/tool-cadence";
+import { ReactComponent as FlowPortIcon } from "../../../../images/tools/tool-port";
+import { ReactComponent as EmulatorIcon } from "../../../../images/tools/tool-emulator";
+import { ReactComponent as FLOWCLIIcon } from "../../../../images/tools/tool-cli";
 
 export const data = {
   landingHeaderItems: {
@@ -174,4 +174,4 @@ export const data = {
       "https://assets.website-files.com/5f6294c0c7a8cdf432b1c827/61689102d3325e237fd44b76_unnamed%20(8).png",
     title: "Start Building",
   },
-}
+};

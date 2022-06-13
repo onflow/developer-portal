@@ -1,26 +1,26 @@
-import { ToolsAndConcepts } from "../../Components"
-import { ButtonLink } from "../../Components/Button"
+import { ToolsAndConcepts } from "../../Components";
+import { ButtonLink } from "../../Components/Button";
 import {
   ContentNavigation,
   ContentNavigationProps,
-} from "../../Components/ContentNavigation"
-import { EventCard, EventCardProps } from "../../Components/EventCard"
+} from "../../Components/ContentNavigation";
+import { EventCard, EventCardProps } from "../../Components/EventCard";
 import {
   FeatureLinkBlock,
   FeatureLinkBlockProps,
-} from "../../Components/FeatureLinkBlock"
+} from "../../Components/FeatureLinkBlock";
 import {
   LandingHeader,
   LandingHeaderProps,
-} from "../../Components/LandingHeader"
-import { ToolCardProps } from "../../Components/ToolCard"
-import PageBackground from "../shared/PageBackground"
-import PageSection from "../shared/PageSection"
-import PageSections from "../shared/PageSections"
+} from "../../Components/LandingHeader";
+import { ToolCardProps } from "../../Components/ToolCard";
+import PageBackground from "../shared/PageBackground";
+import PageSection from "../shared/PageSection";
+import PageSections from "../shared/PageSections";
 
 export interface ConceptsPageProps {
-  landingHeaderItems: LandingHeaderProps
-  featureLinkBlockItems: [FeatureLinkBlockProps, FeatureLinkBlockProps]
+  landingHeaderItems: LandingHeaderProps;
+  featureLinkBlockItems: [FeatureLinkBlockProps, FeatureLinkBlockProps];
   toolCardItems: [
     ToolCardProps,
     ToolCardProps,
@@ -28,13 +28,13 @@ export interface ConceptsPageProps {
     ToolCardProps,
     ToolCardProps,
     ToolCardProps
-  ]
+  ];
   contentNavigationItems: [
     ContentNavigationProps,
     ContentNavigationProps,
     ContentNavigationProps
-  ]
-  eventCardItems: EventCardProps
+  ];
+  eventCardItems: EventCardProps;
 }
 
 export function ConceptsPage({
@@ -78,7 +78,7 @@ export function ConceptsPage({
             headerButtontext="View all Tools"
             bottomButtons={false}
           />
-          <div className="md:hidden px-4 pt-6">
+          <div className="px-4 pt-6 md:hidden">
             <ButtonLink
               className="w-full cursor-pointer"
               variant="primary"
@@ -122,5 +122,5 @@ export function ConceptsPage({
         </PageSection>
       </PageSections>
     </PageBackground>
-  )
+  );
 }
