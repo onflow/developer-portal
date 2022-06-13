@@ -2,7 +2,6 @@ import { useCallback } from "react"
 import { useParams } from "react-router-dom";
 import { NetworkDropDown, Network } from "./network-dropdown";
 import { CatalogSelect } from "./catalog-select";
-import { Filter } from "./filter";
 import { NftCollectionContent } from "./nft-collection-content";
 import { ProposalContent } from "./proposal-content";
 import { useNavigate } from "react-router-dom"
