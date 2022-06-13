@@ -339,7 +339,7 @@ function getMdxComponent({ code, frontmatter }: MdxPage) {
   }: Parameters<typeof Component>["0"]) {
     return (
       <div className="flex flex-row">
-        <div className="mdx-content px-4">
+        <div className="px-4 mdx-content">
           {/* @ts-expect-error: We need to figure out how to type this */}
           <Component components={mdxComponents} {...rest} />
         </div>
