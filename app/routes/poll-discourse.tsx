@@ -2,26 +2,30 @@ import { useFetcher, useLoaderData } from "@remix-run/react"
 import { useEffect, useState } from "react"
 import {
   fetchBreakingChangesPosts,
+  fetchMainnetSporkPosts,
   Topic,
 } from "~/cms/utils/fetch-discourse-api"
 
 type LoaderData = {
-  topics: Topic[]
+  breakingChanges: Topic[]
+  sporks: Topic[]
 }
 
 export async function loader(): Promise<LoaderData> {
-  const breakingChanges = await fetchBreakingChangesPosts()
+  const breakingChangesPosts = await fetchBreakingChangesPosts()
+  const sporksPosts = await fetchMainnetSporkPosts()
   return {
-    topics: breakingChanges,
+    breakingChanges: breakingChangesPosts,
+    sporks: sporksPosts,
   }
 }
 
 export default function () {
-  const discourseData = useLoaderData<LoaderData>()
-  const [breakingChanges, setBreakingChanges] = useState(discourseData)
+  const data = useLoaderData<LoaderData>()
+  const [discourseData, setDiscourseData] = useState(data)
 
   // Whenever the loader gives us new data(for example, after a form submission), update our `data` state.
-  useEffect(() => setBreakingChanges(discourseData), [discourseData])
+  useEffect(() => setDiscourseData(data), [data])
 
   const fetcher = useFetcher()
 
@@ -39,19 +43,28 @@ export default function () {
   // When the fetcher comes back with new data, update our `data` state.
   useEffect(() => {
     if (fetcher.data) {
-      setBreakingChanges(fetcher.data)
+      setDiscourseData(fetcher.data)
     }
   }, [fetcher.data])
 
   return (
     <div>
       <h1>Breaking Changes Topics</h1>
-      Count: {breakingChanges.topics.length}
+      Count: {discourseData.breakingChanges.length}
       <div className="w-full">
-        {breakingChanges.topics.map((t) => (
+        {discourseData.breakingChanges.map((t) => (
           <li id="user-content-fn-1" key={t.id}>
             Breaking Change Topic: {t.__formatted_date} - {t.title} -{" "}
             {t.featured_link}
+          </li>
+        ))}
+      </div>
+      <h1>Mainnet Spork Topics</h1>
+      Count: {discourseData.sporks.length}
+      <div className="w-full">
+        {discourseData.sporks.map((t) => (
+          <li id="user-content-fn-1" key={t.id}>
+            Spork Topic: {t.__formatted_date} - {t.title} - {t.featured_link}
           </li>
         ))}
       </div>

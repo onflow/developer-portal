@@ -65,7 +65,6 @@ export interface Poster {
 
 const fetchDiscourseChanges = (url: string) => {
   // List topics API: https://docs.discourse.org/#tag/Categories/operation/listCategoryTopics
-  console.log("Fetching discourse changes")
   return fetch(url, {
     headers: {
       "Content-Type": "application/json",
@@ -78,7 +77,32 @@ export async function fetchBreakingChangesPosts() {
     DISCOURSE_API_URL
   )
 
-  // On success
+  const {
+    topic_list: { topics },
+  } = data
+
+  const sorted: Topic[] = topics
+    // Remove the "About this category" post
+    .filter((post: Topic) => post.id !== 762)
+    .map((post: Topic) => {
+      const date = moment(new Date(post.created_at)).fromNow()
+      post.__formatted_date = date
+      return post
+    })
+    .sort((a, b) => {
+      return new Date(a.created_at).getTime() > new Date(b.created_at).getTime()
+        ? -1
+        : 1
+    })
+
+  return sorted
+}
+
+export async function fetchMainnetSporkPosts() {
+  const data: DiscourseTopicsResponse = await fetchDiscourseChanges(
+    DISCOURSE_MAINNET_SPORK_URL
+  )
+
   const {
     topic_list: { topics },
   } = data
