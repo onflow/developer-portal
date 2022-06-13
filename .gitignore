@@ -51,6 +51,7 @@ node_modules
 /.cache
 /build
 /public/build
+/storybook-static
 .env
 
 /app/main.css

@@ -30,8 +30,12 @@ const CardItem = ({ label, data }: { label: string; data: any }) => (
   </div>
 )
 
-// @ts-expect-error please fix
-const Spork = ({ heading, timestamp, sporkMetadata, isDefaultExpanded }) => {
+const Spork = ({
+  heading,
+  timestamp,
+  sporkMetadata,
+  isDefaultExpanded,
+}: SporksCardProps) => {
   const {
     accessNode,
     date,
@@ -85,8 +89,10 @@ const Spork = ({ heading, timestamp, sporkMetadata, isDefaultExpanded }) => {
   )
 }
 
-// @ts-expect-error please fix
-const UpcomingSpork = ({ heading, timestamp }) => {
+const UpcomingSpork = ({
+  heading,
+  timestamp,
+}: Pick<SporksCardProps, "heading" | "timestamp">) => {
   return (
     <div className="flex-col items-center justify-between rounded-2xl bg-white px-4 py-6 dark:bg-primary-gray-dark md:px-8">
       <div className="flex flex-col justify-start px-2 md:flex-row">
