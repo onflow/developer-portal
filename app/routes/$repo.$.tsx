@@ -74,6 +74,7 @@ export default function () {
 export function CatchBoundary() {
   const caught = useCatch()
   console.error("CatchBoundary", caught)
+  const location = useLocation()
   if (caught.data.status === "noPage") {
     return (
       <ErrorPage
