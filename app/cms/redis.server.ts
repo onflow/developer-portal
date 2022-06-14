@@ -1,22 +1,25 @@
-import Redis from "ioredis"
+import redis, { createClient } from "redis"
 import { getRequiredServerEnvVar } from "./helpers"
 
 declare global {
   // This prevents us from making multiple connections to the db when the
   // require cache is cleared.
   // eslint-disable-next-line
-  var primaryClient: Redis | undefined
+  var primaryClient: redis.RedisClientType | undefined
 }
 
 const REDIS_URL = getRequiredServerEnvVar("REDIS_URL")
 
 const primaryURL = new URL(REDIS_URL)
-let primaryClient: Redis | null = null
+let primaryClient: redis.RedisClientType | null = null
 
 primaryClient = createRedisClient("primaryClient", primaryURL.toString())
 
 // Create Redis client instance
-function createRedisClient(name: "primaryClient", url: string): Redis {
+function createRedisClient(
+  name: "primaryClient",
+  url: string
+): redis.RedisClientType {
   let client = global[name]
   if (!client) {
     const dbURL = new URL(url ?? "http://no-redis-url.example.com?weird")
@@ -26,14 +29,12 @@ function createRedisClient(name: "primaryClient", url: string): Redis {
     url.startsWith("rediss:") &&
       console.log(`TLS servername: ${dbURL.hostname}`)
 
-    client = global[name] = new Redis(
-      REDIS_URL,
-      url.startsWith("rediss:")
-        ? {
-            tls: { servername: dbURL.hostname },
-          }
-        : {}
-    )
+    client = global[name] = createClient({
+      url,
+    })
+    ;(async () => {
+      await client.connect()
+    })()
   }
   return client
 }
