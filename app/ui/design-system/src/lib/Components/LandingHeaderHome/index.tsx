@@ -1,8 +1,6 @@
 import LandingImage from "../../../../images/misc/landing-home.png"
-import { ReactComponent as DiscordIcon } from "../../../../images/social/discord"
-import { ReactComponent as GithubIcon } from "../../../../images/social/github"
-import { GITHUB_URL, DISCORD_URL } from "../../constants"
 import LandingImage2x from "../../../../images/misc/landing-home@2x.png"
+import { LandingHeaderLinks } from "../LandingHeader"
 
 export type LandingHeaderHomeProps = {
   description: string
@@ -36,14 +34,7 @@ export function LandingHeaderHome({
           className="max-h-[195px] object-cover md:max-h-[540px]"
         />
       </div>
-      <div className="fixed right-6 top-1/4 hidden flex-col text-center text-primary-gray-400 dark:text-white md:flex">
-        <a href={DISCORD_URL} className="scale-150 pb-4">
-          <DiscordIcon />
-        </a>
-        <a href={GITHUB_URL} className="scale-150">
-          <GithubIcon />
-        </a>
-      </div>
+      <LandingHeaderLinks />
     </div>
   )
 }

@@ -1,5 +1,3 @@
-import { ReactComponent as DiscordIcon } from "../../../../images/social/discord"
-import { ReactComponent as GitHubIcon } from "../../../../images/social/github"
 import { SocialLinksSignup } from "../../Components"
 import { ButtonLink } from "../../Components/Button"
 import {
@@ -62,14 +60,6 @@ export function GettingStartedPage({
     <PageBackground gradient="getting-started">
       <PageSections>
         <PageSection className="pt-0 pb-0">
-          <div className="absolute right-0 hidden h-full flex-col justify-center gap-2 pr-11 lg:flex">
-            <a href="https://discord.com/invite/flow">
-              <DiscordIcon />
-            </a>
-            <a href="https://github.com/onflow">
-              <GitHubIcon />
-            </a>
-          </div>
           <LandingHeader
             buttonText={landingHeaderItems.buttonText}
             buttonUrl={landingHeaderItems.buttonUrl}

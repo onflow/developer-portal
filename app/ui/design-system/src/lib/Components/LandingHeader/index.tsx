@@ -11,6 +11,29 @@ export type LandingHeaderProps = {
   title: string
 }
 
+export const LandingHeaderLinks = () => (
+  <div className="fixed right-6 top-1/4 hidden flex-col text-center text-primary-gray-400 dark:text-white lg:flex">
+    <a
+      href={DISCORD_URL}
+      className="scale-150 pb-4 hover:opacity-75"
+      target="_blank"
+      rel="noreferrer"
+      title="Discord"
+    >
+      <DiscordIcon />
+    </a>
+    <a
+      href={GITHUB_URL}
+      className="scale-150 hover:opacity-75"
+      target="_blank"
+      rel="noreferrer"
+      title="GitHub"
+    >
+      <GithubIcon />
+    </a>
+  </div>
+)
+
 export function LandingHeader({
   buttonText,
   buttonUrl,
@@ -35,13 +58,7 @@ export function LandingHeader({
             {buttonText}
           </ButtonLink>
         </div>
-        <div className="fixed right-6 top-1/4 hidden flex-col text-center text-primary-gray-400 dark:text-white md:flex">
-          <a href={DISCORD_URL} className="scale-150 pb-4">
-            <DiscordIcon />
-          </a>
-          <a href={GITHUB_URL} className="scale-150">
-            <GithubIcon />
-          </a>
+        <LandingHeaderLinks />
       </div>
     </div>
   )

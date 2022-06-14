@@ -1,6 +1,6 @@
 import { LoaderFunction } from "@remix-run/node"
 import { useLoaderData } from "@remix-run/react"
-import { fetchFlips } from "~/cms/utils/fetch-flips"
+import { fetchOpenFlips } from "~/cms/utils/fetch-flips"
 import { ReactComponent as EcosystemIcon } from "~/ui/design-system/images/content/ecosystem"
 import KittyItemsImg from "~/ui/design-system/images/content/kitty-items@3x.png"
 import { ReactComponent as SDKIcon } from "~/ui/design-system/images/content/sdk"
@@ -118,7 +118,7 @@ type DynamicHomePageProps = Pick<
 >
 
 export const loader: LoaderFunction = async () => {
-  const flips = await fetchFlips()
+  const flips = await fetchOpenFlips()
   const tools = DefaultToolAndConcepts?.args?.tools as ToolCardProps[]
   const concepts = DefaultToolAndConcepts.args?.concepts as ToolCardProps[]
   const upcomingEvents = DefaultUpcomingEvents?.args as UpcomingEventsProps
