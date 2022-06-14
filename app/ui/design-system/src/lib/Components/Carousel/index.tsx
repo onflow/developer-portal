@@ -23,6 +23,10 @@ export type CarouselProps = React.PropsWithChildren<{
     | string
 
   className?: string
+
+  indicatorColor?: string
+  indicatorSelectedColor?: string
+  indicatorSize?: "xs" | "sm" | "md"
 }>
 
 /**
@@ -35,6 +39,9 @@ export function Carousel({
   carouselItemWidth = "w-10/12",
   children,
   className,
+  indicatorColor = "bg-primary-gray-100",
+  indicatorSelectedColor = "bg-green-success",
+  indicatorSize = "md",
 }: CarouselProps) {
   const [selectedIndex, setSelectedIndex] = useState(0)
   const scrollContainer = useRef<HTMLUListElement>()
@@ -97,13 +104,13 @@ export function Carousel({
             type="button"
             role="option"
             aria-selected={index === selectedIndex ? "true" : "false"}
-            className={clsx(
-              "mr-3 mt-4 h-4 w-4 cursor-pointer rounded-full md:mt-8",
-              {
-                "bg-green-success": index === selectedIndex,
-                "bg-primary-gray-100": index !== selectedIndex,
-              }
-            )}
+            className={clsx("mr-3 rounded-full hover:cursor-pointer", {
+              [indicatorSelectedColor]: index === selectedIndex,
+              [indicatorColor]: index !== selectedIndex,
+              "h-2 w-2": indicatorSize === "xs",
+              "h-3 w-3": indicatorSize === "sm",
+              "h-4 w-4": indicatorSize === "md",
+            })}
             onClick={(e) => {
               const { current } = scrollContainer
 
