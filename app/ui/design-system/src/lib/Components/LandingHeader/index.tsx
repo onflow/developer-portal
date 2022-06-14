@@ -40,11 +40,11 @@ export function LandingHeader({
             </ButtonLink>
           </div>
         </div>
-        <div className="fixed top-1/2 hidden flex-col text-center text-primary-gray-400 dark:text-white md:flex">
-          <a href={DISCORD_URL} className="pb-4">
+        <div className="fixed right-6 top-1/4 hidden flex-col text-center text-primary-gray-400 dark:text-white md:flex">
+          <a href={DISCORD_URL} className="scale-150 pb-4">
             <DiscordIcon />
           </a>
-          <a href={GITHUB_URL}>
+          <a href={GITHUB_URL} className="scale-150">
             <GithubIcon />
           </a>
         </div>
