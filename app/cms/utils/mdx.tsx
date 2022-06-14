@@ -18,6 +18,7 @@ import {
   Link,
   StaticCheckbox,
   InternalCodeblock,
+  LargeVideoCard,
 } from "~/ui/design-system"
 import type { LoaderData as RootLoaderData } from "../../root"
 
@@ -316,6 +317,11 @@ const mdxComponents = {
   },
   Callout: (props: React.PropsWithChildren<{}>) => <div>{props.children}</div>,
   Img: (props: React.PropsWithRef<{}>) => <img {...props} />,
+  iframe: (props: React.PropsWithRef<{ src: string; title: string }>) => {
+    console.log("SAW IFRAME")
+    const { src, title, ...rest } = props
+    return <LargeVideoCard link={src} title={title} length={0} {...rest} />
+  },
 }
 
 /**
