@@ -22,7 +22,9 @@ function createRedisClient(name: "primaryClient", url: string): Redis {
     const dbURL = new URL(url ?? "http://no-redis-url.example.com?weird")
 
     console.log(`Setting up redis client to: ${dbURL.host}`)
-    console.log(`TLS servername: ${dbURL.hostname}`)
+    console.log("Request TLS connection", url.startsWith("rediss:"))
+    url.startsWith("rediss:") &&
+      console.log(`TLS servername: ${dbURL.hostname}`)
 
     client = global[name] = new Redis(
       REDIS_URL,
