@@ -1,6 +1,6 @@
+import { useEffect, useLayoutEffect, useRef, useState } from "react"
 import TutorialCard, { TutorialCardProps } from "."
 import Pagination from "../Pagination"
-import { useEffect, useLayoutEffect, useRef, useState } from "react"
 
 export type PaginatedTutorialCardListProps = {
   className?: string
@@ -46,14 +46,18 @@ export const PaginatedTutorialCardList = ({
   return (
     <div className={className}>
       <div
-        className="mb-4 grid grid-cols-1 gap-6 md:grid-cols-4"
+        className="mb-4 grid grid-cols-1 gap-4 md:grid-cols-4 md:gap-6"
         // @ts-expect-error please fix
         ref={topRef}
       >
         {tutorials
           .slice((page - 1) * pageSize, page * pageSize)
           .map((tutorialProps, index) => (
-            <TutorialCard key={index} className="w-full" {...tutorialProps} />
+            <TutorialCard
+              key={index}
+              className="w-full md:w-[100%]"
+              {...tutorialProps}
+            />
           ))}
       </div>
       <Pagination

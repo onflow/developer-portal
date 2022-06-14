@@ -3,7 +3,7 @@ import { ReactComponent as ChevronRightIcon } from "../../../../images/arrows/ch
 import { ReactComponent as ExternalLinkIcon } from "../../../../images/content/external-link-variant"
 
 const BASE_CLASSES =
-  "inline-flex items-center justify-center font-semibold text-center border hover:shadow-2xl"
+  "inline-flex items-center justify-center font-semibold text-center border dark:hover:shadow-2xl-dark hover:shadow-2xl"
 
 const VARIANTS = {
   primary: [

@@ -6,7 +6,7 @@ export type FeaturedArticleSliderProps = CarouselProps & {
   articles: Article[]
 }
 
-const FeaturedArticle = ({
+export const FeaturedArticle = ({
   // @ts-expect-error please fix
   heading,
   // @ts-expect-error please fix

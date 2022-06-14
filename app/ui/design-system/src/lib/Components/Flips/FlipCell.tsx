@@ -51,7 +51,7 @@ const FlipCell = ({
     <a
       href={forumLink}
       className={clsx(
-        "rounded-lg bg-white hover:shadow-2xl dark:bg-primary-gray-dark",
+        "rounded-lg bg-white hover:shadow-2xl dark:bg-primary-gray-dark dark:hover:shadow-2xl-dark",
         PARENT_GRID
       )}
     >

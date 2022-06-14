@@ -1,5 +1,5 @@
 import { ReactComponent as ContentExternalLinkIcon } from "../../../../images/content/external-link"
-import socialLinksGradientPath from "../../../../images/gradients/social-links"
+import socialLinksGradientPath from "../../../../images/gradients/social-links.svg"
 import { ReactComponent as DiscordLogo } from "../../../../images/social/discord"
 import { ReactComponent as DiscourseLogo } from "../../../../images/social/forum"
 import { ReactComponent as GithubLogo } from "../../../../images/social/github"
@@ -30,7 +30,7 @@ const SocialLink = ({
   return (
     <a
       href={url}
-      className={`flex items-center justify-between py-6 px-2 hover:cursor-pointer md:px-10 ${className}`}
+      className={`flex items-center justify-between py-6 px-2 hover:cursor-pointer hover:opacity-70 md:px-10 ${className}`}
       style={{ borderColor: "rgba(105, 113, 126, 0.2)" }}
     >
       <div className="flex items-center">
@@ -52,10 +52,9 @@ export type SocialLinksSignupProps = {}
 const SocialLinksSignup = () => {
   return (
     <div
-      className="py-32"
+      className="bg-cover bg-[center_top_-100px] bg-no-repeat pt-14 pb-32 md:bg-[length:100%_150%]"
       style={{
         backgroundImage: `url(${socialLinksGradientPath})`,
-        backgroundSize: "cover",
       }}
     >
       <div className="container">
@@ -92,8 +91,10 @@ const SocialLinksSignup = () => {
           />
         </div>
 
-        <div className="mt-8 flex flex-col items-center justify-between rounded-lg bg-white px-4 pt-24 pb-9 dark:bg-primary-gray-dark sm:p-10 md:flex-row md:py-20 md:px-[75px]">
-          <h2 className="text-h2 mb-4 mr-8">Subscribe to our newsletter</h2>
+        <div className="mt-8 flex flex-col items-center justify-between rounded-lg bg-white px-4 py-10 dark:bg-primary-gray-dark sm:p-10 md:flex-row md:py-20 md:px-[75px]">
+          <h2 className="text-h2 mb-4 text-center md:mr-8 md:text-left">
+            Subscribe to our newsletter
+          </h2>
           <div className="flex flex-col md:flex-row">
             <input
               placeholder="Email"
@@ -102,7 +103,7 @@ const SocialLinksSignup = () => {
               style={{ boxShadow: "0px 4px 40px rgba(0, 0, 0, 0.08)" }}
             />
             <a
-              className="h-14 rounded-lg rounded-tr-lg rounded-br-lg border-black bg-black px-12 py-4 text-center text-white md:rounded-tl-none md:rounded-bl-none"
+              className="h-14 rounded-lg rounded-tr-lg rounded-br-lg border-black bg-black px-12 py-4 text-center text-white hover:bg-primary-gray-400 dark:hover:bg-primary-gray-400/50 md:rounded-tl-none md:rounded-bl-none"
               href="/foo"
             >
               Subscribe

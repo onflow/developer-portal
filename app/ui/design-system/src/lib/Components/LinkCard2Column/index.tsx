@@ -26,38 +26,40 @@ export function LinkCard2Column({
   bottomRounded = true,
 }: LinkCard2ColumnProps) {
   const classes = clsx(
-    "container flex flex-col items-start px-4 py-12 rounded-lg bg-primary-gray-100/30 dark:bg-primary-gray-dark md:flex-row md:px-20 md:py-20",
+    "flex flex-col items-start px-4 py-12 rounded-lg bg-primary-gray-100/30 dark:bg-primary-gray-dark md:flex-row md:px-20 md:py-12",
     {
       "rounded-br-none rounded-bl-none": !bottomRounded,
     }
   )
 
   return (
-    <div className={classes}>
-      <div className="flex flex-1 flex-col items-start md:mr-20">
-        {tags && (
-          <div className="mb-1">
-            {tags.map((tag) => (
-              <Tag key={tag} name={tag} />
-            ))}
-          </div>
-        )}
-        <h2 className="text-h2 my-2 md:mb-3">{title}</h2>
-        <p className="max-w-[18rem] overflow-hidden text-ellipsis	text-primary-gray-400 dark:text-primary-gray-100 lg:max-w-[36rem] xl:max-w-[38rem]">
-          {description}
-        </p>
-        <ButtonLink
-          href={buttonUrl}
-          className="mt-2 mb-10 px-8 py-3 md:mt-10"
-          variant="primary-no-darkmode"
-        >
-          {buttonText}
-        </ButtonLink>
-      </div>
-      <div className="flex w-full flex-1 flex-col items-stretch">
-        {items.map((item) => (
-          <LinkCard2ColumnItem key={item.title} {...item} />
-        ))}
+    <div className="container">
+      <div className={classes}>
+        <div className="flex flex-1 flex-col items-start md:mr-20">
+          {tags && (
+            <div className="mb-1">
+              {tags.map((tag) => (
+                <Tag key={tag} name={tag} />
+              ))}
+            </div>
+          )}
+          <h2 className="text-h2 my-2 md:mb-3">{title}</h2>
+          <p className="max-w-xs overflow-hidden text-ellipsis text-primary-gray-400 dark:text-primary-gray-100">
+            {description}
+          </p>
+          <ButtonLink
+            href={buttonUrl}
+            className="mt-2 mb-10 md:mt-10"
+            variant="primary-no-darkmode"
+          >
+            {buttonText}
+          </ButtonLink>
+        </div>
+        <div className="flex w-full flex-1 flex-col items-stretch">
+          {items.map((item) => (
+            <LinkCard2ColumnItem key={item.title} {...item} />
+          ))}
+        </div>
       </div>
     </div>
   )

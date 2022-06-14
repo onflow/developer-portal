@@ -46,7 +46,7 @@ export default function CommunityPage({
   return (
     <PageBackground>
       <PageSections>
-        <PageSection className="pt-0">
+        <PageSection className="pt-0 pb-0">
           <LandingHeader
             buttonText="Button Text"
             buttonUrl="#"
@@ -81,27 +81,19 @@ export default function CommunityPage({
           <CommunityMembers {...communityMembers} />
         </PageSection>
         <PageSection>
-          <div className="container">
-            <Flips flips={flips} />
-          </div>
+          <Flips flips={flips} />
         </PageSection>
-
         <PageSection>
-          <div className="container">
-            <ProjectCards projects={projects} />
-          </div>
+          <ProjectCards projects={projects} />
         </PageSection>
-
         <PageSection>
-          <div className="container">
-            <ToolsAndConcepts tools={tools} />
-          </div>
+          <ToolsAndConcepts tools={tools} />
         </PageSection>
-
         <PageSection>
+          {/* TODO: Extract into shared component */}
           <div className="container">
-            <h4 className="text-h4 mb-4">Explore More Content</h4>
-            <div className="grid grid-cols-1 gap-4 md:grid-cols-3">
+            <h4 className="text-h2 mb-10">Explore More Content</h4>
+            <div className="grid grid-cols-1 gap-4 md:grid-cols-3 md:gap-8">
               {contentNavigationItems.map(
                 (contentNav: ContentNavigationProps, index: number) => (
                   <ContentNavigation key={index} {...contentNav} />
@@ -110,11 +102,8 @@ export default function CommunityPage({
             </div>
           </div>
         </PageSection>
-
         <PageSection>
-          <div className="container">
-            <FeaturedArticleSlider articles={articles} />
-          </div>
+          <FeaturedArticleSlider articles={articles} />
         </PageSection>
       </PageSections>
       <SocialLinksSignup />

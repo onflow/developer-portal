@@ -13,8 +13,16 @@ const Template: Story<LearnPageProps> = (args) => (
 
 export const Default = Template.bind({})
 
-export const Mobile = Template.bind({})
-Mobile.parameters = {
+export const dark = Template.bind({})
+dark.args = Default.args
+dark.parameters = {
+  backgrounds: {
+    default: "dark",
+  },
+}
+
+export const mobile = Template.bind({})
+mobile.parameters = {
   viewport: {
     defaultViewport: "xs",
   },

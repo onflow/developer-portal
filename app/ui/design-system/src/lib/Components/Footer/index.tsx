@@ -119,19 +119,21 @@ export const Footer = ({ sections = footerSections }) => {
         <div className="block items-center justify-between px-2 pt-8 pb-6 md:flex md:px-4 md:pt-16">
           <img src={FlowDocsLogo} alt="Flow Docs" width="150" />
           <div className="flex items-center gap-6 pt-8 md:pt-0">
-            <a href="#">
+            <a href="#" className="hover:opacity-75">
               <img src={GithubIcon} height={32} width={32} />
             </a>
-            <a href="#">
+            <a href="#" className="hover:opacity-75">
               <img src={DiscordIcon} height={28} width={28} />
             </a>
-            <a href="#">
+            <a href="#" className="hover:opacity-75">
               <img src={ForumIcon} height={24} width={24} />
             </a>
-            <a href="#">
+            <a href="#" className="hover:opacity-75">
               <img src={OnFlowIcon} height={28} width={28} />
             </a>
-            <a href="#">Eng</a>
+            <a href="#" className="hover:text-primary-gray-100">
+              Eng
+            </a>
           </div>
         </div>
         <div className="grid auto-cols-min gap-y-4 border-y border-y-primary-gray-400 px-2 pb-6 pt-9 xs:grid-cols-1 sm:grid-cols-2 sm:gap-x-12 md:grid-cols-[fit-content(25%)_fit-content(25%)_fit-content(25%)_fit-content(25%)] md:gap-x-20 md:px-4">
@@ -146,7 +148,7 @@ export const Footer = ({ sections = footerSections }) => {
                 {section.links.map((link, j) => (
                   <li className="py-1 pl-0" key={j}>
                     <a
-                      className="whitespace-nowrap text-xs text-primary-gray-200 lg:text-base"
+                      className="whitespace-nowrap text-xs text-primary-gray-200 hover:text-primary-gray-100 lg:text-base"
                       href={link.link}
                     >
                       {link.text}

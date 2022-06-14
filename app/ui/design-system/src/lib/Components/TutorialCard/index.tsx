@@ -1,7 +1,7 @@
 import clsx from "clsx"
-import Tag from "../Tag"
 import { ReactComponent as CalendarIcon } from "../../../../images/action/date-calendar"
 import { ReactComponent as TutorialIcon } from "../../../../images/content/drafting-tools"
+import Tag from "../Tag"
 
 export type TutorialCardProps = {
   className?: string
@@ -28,7 +28,7 @@ const TutorialCard = ({
     <a
       href={link}
       className={clsx(
-        "flex h-[300px] w-[272px] flex-col overflow-hidden rounded-lg bg-white hover:shadow-2xl dark:bg-primary-gray-dark",
+        "flex h-[300px] w-full flex-col overflow-hidden rounded-lg bg-white hover:shadow-2xl dark:bg-primary-gray-dark dark:hover:shadow-2xl-dark md:w-[272px]",
         className
       )}
     >

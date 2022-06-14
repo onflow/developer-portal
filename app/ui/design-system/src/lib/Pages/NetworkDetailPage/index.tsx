@@ -3,7 +3,6 @@ import { useState } from "react"
 import { ReactComponent as ChevronLeftIcon } from "../../../../images/arrows/chevron-left"
 import {
   Callout,
-  FeaturedArticleSlider,
   Footer,
   NetworkDetailsCard,
   Pagination,
@@ -11,8 +10,12 @@ import {
   SporksCard,
   TabMenu,
 } from "../../Components"
+import { FeaturedArticle } from "../../Components/FeaturedArticleSlider"
 import { Article } from "../../interfaces"
 import data from "../NetworkPage/sample"
+import PageBackground from "../shared/PageBackground"
+import PageSection from "../shared/PageSection"
+import PageSections from "../shared/PageSections"
 
 export type NetworkDetailPageProps = {
   networkName: string
@@ -33,118 +36,110 @@ const NetworkDetailPage = () => {
   } as Article
 
   return (
-    <div className="w-full bg-primary-gray-50 p-6 dark:bg-black">
-      <div className="flex-col items-center">
-        <div className="relative">
-          <a
-            href="/network"
-            className="absolute top-[110px] right-0 flex max-w-fit text-primary-blue hover:opacity-75 dark:text-blue-dark md:right-auto md:left-0 md:top-0 md:left-0 md:py-6"
-          >
-            <ChevronLeftIcon /> Network
-          </a>
+    <PageBackground>
+      <PageSections divided={false}>
+        <PageSection>
+          <div className="container relative">
+            <a
+              href="/network"
+              className="absolute top-[110px] right-0 flex max-w-fit text-primary-blue hover:opacity-75 dark:text-blue-dark md:right-auto md:top-0 md:left-0 md:py-6"
+            >
+              <ChevronLeftIcon /> Network
+            </a>
+          </div>
           <TabMenu tabs={tabs} onTabChange={setSelectedNetworkIndex} centered />
-          <div className="text-h3 md:text-h1 mt-[50px] mb-3 md:mt-[100px]  md:mb-[50px] md:text-center md:text-5xl">
+          <div className="text-h3 md:text-h1 mb-14 mt-16 md:text-center md:text-5xl">
             {currentNetwork.name}
           </div>
-        </div>
-        <NetworkDetailsCard
-          status={
-            currentNetwork.status === "operational"
-              ? "Healthy"
-              : "Under Maintenance"
-          }
-          statusLink="https://google.com"
-          version="33"
-          lastSporkDate="April, 2022"
-          nextSporkDate="April, 2022"
-          rssFeed="/link"
-        />
-
-        <div className="text-h2 xs:font-md mb-8 mt-[50px] md:mt-[100px]">
-          Upcoming Spork
-        </div>
-        <SporksCard
-          heading={currentNetwork.name}
-          timestamp={endOfWeek(new Date())}
-          sporkMetadata={{
-            accessNode: "access-001.mainnet15.nodes.onflow.org:9000",
-            date: new Date(),
-            rootHeight: "19050753",
-            rootParentId:
-              "ac4dbf344ce96e39e15081f1dc3fbbf6dc80532e402de9a57af847d3b35df596",
-            rootStateCommit:
-              "641eb088e3ce1a01ff56df2d3a14372c65a7fef44c08799eb92cd7759d1d1d2a",
-            gitCommit: "f019c1dbd778ce9f92dea61349ca36003678a9ad",
-            branchOrTag: "v0.22.9-patch-1-epoch-view-check-hotfix",
-            dockerTag: "v0.22.9-patch-1-epoch-view-check-hotfix",
-          }}
-          upcoming
-        />
-
-        <div className="text-h2 xs:font-md mt-[50px] mb-8 md:mt-[100px]">
-          Past Sporks
-        </div>
-        <SporksCard
-          heading={currentNetwork.name}
-          timestamp={endOfWeek(new Date())}
-          sporkMetadata={{
-            accessNode: "access-001.mainnet15.nodes.onflow.org:9000",
-            date: new Date(),
-            rootHeight: "19050753",
-            rootParentId:
-              "ac4dbf344ce96e39e15081f1dc3fbbf6dc80532e402de9a57af847d3b35df596",
-            rootStateCommit:
-              "641eb088e3ce1a01ff56df2d3a14372c65a7fef44c08799eb92cd7759d1d1d2a",
-            gitCommit: "f019c1dbd778ce9f92dea61349ca36003678a9ad",
-            branchOrTag: "v0.22.9-patch-1-epoch-view-check-hotfix",
-            dockerTag: "v0.22.9-patch-1-epoch-view-check-hotfix",
-          }}
-        />
-        <div className="divide-y">
-          {[1, 2, 3, 4].map((index) => (
-            <div className="my-4 pt-4" key={index}>
-              <SporksCard
-                heading={currentNetwork.name}
-                timestamp={endOfWeek(new Date())}
-                sporkMetadata={{
-                  accessNode: "access-001.mainnet15.nodes.onflow.org:9000",
-                  date: new Date(),
-                  rootHeight: "19050753",
-                  rootParentId:
-                    "ac4dbf344ce96e39e15081f1dc3fbbf6dc80532e402de9a57af847d3b35df596",
-                  rootStateCommit:
-                    "641eb088e3ce1a01ff56df2d3a14372c65a7fef44c08799eb92cd7759d1d1d2a",
-                  gitCommit: "f019c1dbd778ce9f92dea61349ca36003678a9ad",
-                  branchOrTag: "v0.22.9-patch-1-epoch-view-check-hotfix",
-                  dockerTag: "v0.22.9-patch-1-epoch-view-check-hotfix",
-                }}
-                isDefaultExpanded={false}
-              />
-            </div>
-          ))}
-        </div>
-        <Pagination itemCount={40} pageSize={4} page={1} setPage={() => null} />
-
-        <div className="my-36 self-center">
-          <FeaturedArticleSlider articles={[article]} />
-        </div>
-
-        <div className="mb-36 self-center">
-          <Callout
-            heading="Spork FAQ"
-            description="Lorem ipsum dolor sit amet proin gravida lorem ipsum"
-            ctaText="View FAQ"
-            ctaLink="https://flow.com"
+          <NetworkDetailsCard
+            status={
+              currentNetwork.status === "operational"
+                ? "Healthy"
+                : "Under Maintenance"
+            }
+            statusLink="https://google.com"
+            version="33"
+            lastSporkDate="April, 2022"
+            nextSporkDate="April, 2022"
+            rssFeed="/link"
           />
-        </div>
-
-        <div className="my-24">
-          <SocialLinksSignup />
-        </div>
-
-        <Footer />
-      </div>
-    </div>
+        </PageSection>
+        <PageSection>
+          <div className="container">
+            <div className="text-h2 xs:font-md mb-8">Upcoming Spork</div>
+            <SporksCard
+              heading={currentNetwork.name}
+              timestamp={endOfWeek(new Date())}
+              sporkMetadata={{
+                accessNode: "access-001.mainnet15.nodes.onflow.org:9000",
+                date: new Date(),
+                rootHeight: "19050753",
+                rootParentId:
+                  "ac4dbf344ce96e39e15081f1dc3fbbf6dc80532e402de9a57af847d3b35df596",
+                rootStateCommit:
+                  "641eb088e3ce1a01ff56df2d3a14372c65a7fef44c08799eb92cd7759d1d1d2a",
+                gitCommit: "f019c1dbd778ce9f92dea61349ca36003678a9ad",
+                branchOrTag: "v0.22.9-patch-1-epoch-view-check-hotfix",
+                dockerTag: "v0.22.9-patch-1-epoch-view-check-hotfix",
+              }}
+              upcoming
+            />
+          </div>
+        </PageSection>
+        <PageSection>
+          <div className="container">
+            <div className="text-h4 xs:font-md mb-8">Past Sporks</div>
+            <div className="mb-4 divide-y dark:divide-primary-gray-400">
+              {[1, 2, 3, 4].map((index) => (
+                <div className="divided-item-hover" key={index}>
+                  <SporksCard
+                    heading={currentNetwork.name}
+                    timestamp={endOfWeek(new Date())}
+                    sporkMetadata={{
+                      accessNode: "access-001.mainnet15.nodes.onflow.org:9000",
+                      date: new Date(),
+                      rootHeight: "19050753",
+                      rootParentId:
+                        "ac4dbf344ce96e39e15081f1dc3fbbf6dc80532e402de9a57af847d3b35df596",
+                      rootStateCommit:
+                        "641eb088e3ce1a01ff56df2d3a14372c65a7fef44c08799eb92cd7759d1d1d2a",
+                      gitCommit: "f019c1dbd778ce9f92dea61349ca36003678a9ad",
+                      branchOrTag: "v0.22.9-patch-1-epoch-view-check-hotfix",
+                      dockerTag: "v0.22.9-patch-1-epoch-view-check-hotfix",
+                    }}
+                  />
+                </div>
+              ))}
+            </div>
+            <Pagination
+              itemCount={40}
+              pageSize={4}
+              page={1}
+              setPage={() => null}
+            />
+          </div>
+        </PageSection>
+        <PageSection>
+          <div className="container">
+            <div className="self-center">
+              <FeaturedArticle {...article} />
+            </div>
+          </div>
+        </PageSection>
+        <PageSection>
+          <div className="container">
+            <Callout
+              heading="Spork FAQ"
+              description="Lorem ipsum dolor sit amet proin gravida lorem ipsum"
+              ctaText="View FAQ"
+              ctaLink="https://flow.com"
+            />
+          </div>
+        </PageSection>
+      </PageSections>
+      <SocialLinksSignup />
+      <Footer />
+    </PageBackground>
   )
 }
 

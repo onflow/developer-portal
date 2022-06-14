@@ -51,7 +51,7 @@ const Pagination = ({
       <button
         type="button"
         className={clsx("ml-4 py-4 px-2", {
-          "cursor-pointer text-primary-gray-300 dark:text-white":
+          "cursor-pointer text-primary-gray-300 hover:text-primary-gray-400 dark:text-white dark:hover:text-primary-gray-50":
             page < pageCount,
           "cursor-not-allowed text-primary-gray-100 dark:text-primary-gray-300":
             page >= pageCount,
