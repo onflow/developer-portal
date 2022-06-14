@@ -1,5 +1,4 @@
 import LandingImage from "../../../../images/misc/landing-home.png"
-import { LandingHeaderContainer } from "../LandingHeader/LandingHeaderContainer"
 import { ReactComponent as DiscordIcon } from "../../../../images/social/discord"
 import { ReactComponent as GithubIcon } from "../../../../images/social/github"
 import { GITHUB_URL, DISCORD_URL } from "../../constants"
