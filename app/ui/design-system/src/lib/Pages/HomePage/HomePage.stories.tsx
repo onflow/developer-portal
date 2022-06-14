@@ -60,7 +60,7 @@ const threeColumnItems = [
     title: "Quickstart",
     description:
       "A package used to interact with user wallets and the Flow blockchain.",
-    icon: <UseCaseIcon />,
+    icon: <UseCaseIcon height="1.5em" width="1.5em" />,
     links: [
       {
         title: "Quickstart tutorial",
@@ -83,7 +83,7 @@ const threeColumnItems = [
     title: "Guides & Tutorials",
     description:
       "An up to 3-line blurb here describing the section lorem ipsum dolor sit amet proin.",
-    icon: <EcosystemIcon />,
+    icon: <EcosystemIcon height="1.5em" width="1.5em" />,
     links: [
       {
         title: "Guide 1",
@@ -104,7 +104,7 @@ const threeColumnItems = [
   {
     title: "Smart Contracts",
     description: "Smart contracts description.",
-    icon: <SDKIcon />,
+    icon: <SDKIcon height="1.5em" width="1.5em" />,
     links: [
       {
         title: "Name of a Smart Contract tutorial",
