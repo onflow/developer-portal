@@ -1,28 +1,56 @@
 import { json, LoaderFunction } from "@remix-run/node"
 import { Link, Outlet, useCatch, useLoaderData } from "@remix-run/react"
 import invariant from "tiny-invariant"
-import repos from "~/constants/repos.json"
+import { repoList, repoPresets } from "~/constants/repos"
+import { RepoSchema } from "~/constants/repos/repo-schema"
 import { ErrorPage } from "~/ui/design-system/src/lib/Components/ErrorPage"
+import { InternalSidebar } from "~/ui/design-system/src/lib/Components/InternalSidebar"
 
-export const loader: LoaderFunction = async ({ params }) => {
+type LoaderData = {
+  repo: string
+  repoSchema: RepoSchema | null
+}
+
+export const loader: LoaderFunction = async ({
+  params,
+}): Promise<LoaderData> => {
   invariant(params.repo, `expected repo param`)
 
-  const isKnownRepo = repos.map((r) => r.repo).includes(params.repo)
+  const isKnownRepo = repoList.map((r) => r.repo).includes(params.repo)
   if (!isKnownRepo) {
     throw json({ status: "unknownRepo" }, { status: 404 })
   }
 
+  // currently we are using only the presets, evnetually here we could
+  // use the github api to see if a configuration file (e.g. onflowdocs.json)
+  // exists, validate it against repo-schema, and use that instead. for now,
+  // we'll use the definitions in this repo
+  const sidebar = repoPresets[params.repo] ?? null
+
   return {
     repo: params.repo,
+    repoSchema: sidebar,
   }
 }
 
 export default function Repo() {
-  const data = useLoaderData()
+  const data = useLoaderData<LoaderData>()
   return (
     <div>
       <div>REPO: {data.repo}</div>
-      <Outlet />
+      <div>schema: {JSON.stringify(data.repoSchema, null, 2)}</div>
+      <div className="grid">
+        <div>
+          {data.repoSchema ? (
+            <InternalSidebar config={data.repoSchema.sidebar} />
+          ) : (
+            <div>⚠️ Missing repo config</div>
+          )}
+        </div>
+        <div>
+          <Outlet />
+        </div>
+      </div>
     </div>
   )
 }

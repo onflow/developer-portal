@@ -1,8 +1,9 @@
 import { LoaderFunction } from "@remix-run/node"
 import { getMdxPage, useMdxComponent } from "~/cms/utils/mdx"
 import { json } from "@remix-run/node"
-import { useLoaderData } from "@remix-run/react"
+import { Link, useCatch, useLoaderData, useLocation } from "@remix-run/react"
 import invariant from "tiny-invariant"
+import { ErrorPage } from "~/ui/design-system/src/lib/Components/ErrorPage"
 
 export const loader: LoaderFunction = async ({ params, request }) => {
   const [repo, fileOrDirPath] = [params["repo"], params["*"] || "index"]
@@ -40,4 +41,38 @@ export default function () {
       <Component />
     </div>
   )
+}
+
+export function CatchBoundary() {
+  const caught = useCatch()
+  console.error("CatchBoundary", caught)
+  const location = useLocation()
+  if (caught.data.status === "noPage") {
+    return (
+      <ErrorPage
+        title={"404 – Page not found"}
+        subtitle={`there is no page at "${location.pathname}"`}
+        actions={
+          <Link className="underline" to="/">
+            Go home
+          </Link>
+        }
+      />
+    )
+  }
+  if (caught.data.status === "noRepo") {
+    return (
+      <ErrorPage
+        title={"404 – Repo not found"}
+        subtitle={`This repo is not available or does not exist`}
+        actions={
+          <Link className="underline" to="/">
+            Go home
+          </Link>
+        }
+      />
+    )
+  }
+
+  throw new Error(`Unhandled error: ${caught.status}`)
 }
