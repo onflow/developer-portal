@@ -19,23 +19,23 @@
           },
           {
             "label": "Cadence Anti-Patterns",
-            "href": "cadence/anti-patterns"
+            "href": "anti-patterns"
           },
           {
-            "label": "msg․sender Conshrefered Harmful",
-            "href": "cadence/msg-sender"
+            "label": "msg․sender Considered Harmful",
+            "href": "msg-sender"
           },
           {
             "label": "Measuring Time In Cadence",
-            "href": "cadence/measuring-time"
+            "href": "measuring-time"
           },
           {
-            "label": "Migration Guhrefe",
-            "href": "cadence/migration-guhrefe"
+            "label": "Migration Guide",
+            "href": "migration-guide"
           },
           {
             "label": "JSON-Cadence Data Interchange Format",
-            "href": "cadence/json-cadence-spec"
+            "href": "json-cadence-spec"
           }
         ]
       }

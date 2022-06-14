@@ -37,8 +37,6 @@ export default function Repo() {
   const data = useLoaderData<LoaderData>()
   return (
     <div>
-      <div>REPO: {data.repo}</div>
-      <div>schema: {JSON.stringify(data.repoSchema, null, 2)}</div>
       <div className="grid">
         <div>
           {data.repoSchema ? (
