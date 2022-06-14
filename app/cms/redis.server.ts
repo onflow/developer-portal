@@ -21,12 +21,17 @@ function createRedisClient(name: "primaryClient", url: string): Redis {
   if (!client) {
     const dbURL = new URL(url ?? "http://no-redis-url.example.com?weird")
 
-    console.log(`Setting up redis client to ${dbURL.host}`)
+    console.log(`Setting up redis client to: ${dbURL.host}`)
+    console.log(`TLS servername: ${dbURL.hostname}`)
 
-    client = global[name] = new Redis(REDIS_URL, {
-      lazyConnect: true,
-      retryStrategy: () => 1000,
-    })
+    client = global[name] = new Redis(
+      REDIS_URL,
+      url.startsWith("rediss:")
+        ? {
+            tls: { servername: dbURL.hostname },
+          }
+        : {}
+    )
   }
   return client
 }
