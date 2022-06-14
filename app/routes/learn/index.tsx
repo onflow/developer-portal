@@ -1,6 +1,5 @@
 import { LoaderFunction } from "@remix-run/server-runtime"
 import { LearnPage } from "~/ui/design-system/src/lib/Pages/LearnPage"
-import { useLoaderData } from "@remix-run/react"
 
 import { TutorialCardProps } from "~/ui/design-system/src/lib/Components/TutorialCard"
 
