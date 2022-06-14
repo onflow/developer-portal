@@ -1,4 +1,4 @@
-import Redis from "ioredis"
+import Redis, { RedisOptions } from "ioredis"
 import { getRequiredServerEnvVar } from "./helpers"
 
 declare global {
@@ -21,8 +21,19 @@ function createRedisClient(name: "primaryClient", url: string): Redis {
   if (!client) {
     const dbURL = new URL(url ?? "http://no-redis-url.example.com?weird")
     console.log(`Setting up redis client to ${dbURL.host}`)
+
+    const connectOptions: RedisOptions = {
+      port: Number(dbURL.port),
+      host: dbURL.host,
+      password: dbURL.password,
+    }
+
+    if (url.startsWith("rediss:")) {
+      connectOptions.tls = { servername: dbURL.hostname }
+    }
+
     // eslint-disable-next-line no-multi-assign
-    client = global[name] = new Redis(REDIS_URL)
+    client = global[name] = new Redis(connectOptions)
   }
   return client
 }
