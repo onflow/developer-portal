@@ -1,5 +1,3 @@
-import React from "react"
-
 import { ReactComponent as LeftChevron } from "../../../../images/arrows/chevron-left"
 import { Attribution } from "../../Components/Attribution/Attribution"
 import { ButtonLink } from "../../Components/Button"
@@ -30,7 +28,7 @@ const faqList = [
 
 export function SporkFAQPage() {
   return (
-    <main className="bg-zinc-50 px-4 pb-48 dark:bg-black md:bg-white md:px-0 md:pt-16">
+    <main className="container bg-zinc-50 px-4 pb-48 dark:bg-black md:bg-white md:px-0 md:pt-16">
       <div>
         <a
           className="mt-2 flex w-fit cursor-pointer items-center rounded-lg py-4 text-primary-blue dark:border-primary-purple dark:text-primary-purple md:hidden"

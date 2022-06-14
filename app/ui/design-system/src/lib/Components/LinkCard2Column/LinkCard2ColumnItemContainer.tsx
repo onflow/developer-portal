@@ -1,5 +1,5 @@
-import { ReactComponent as ExternalLinkIcon } from "../../../../images/content/external-link"
 import clsx from "clsx"
+import { ReactComponent as ExternalLinkIcon } from "../../../../images/content/external-link"
 import { isLinkExternal } from "../Link/isLinkExternal"
 
 export type LinkCard2ColumnItemContainerProps = React.PropsWithChildren<{
@@ -11,7 +11,7 @@ export function LinkCard2ColumnItemContainer({
   children,
 }: LinkCard2ColumnItemContainerProps) {
   const className =
-    "group mb-4 flex flex-1 flex-col md:flex-row justify-start rounded-lg bg-white px-6 py-5 hover:shadow-2xl dark:bg-primary-gray-400 relative"
+    "group my-2 flex flex-1 flex-col md:flex-row justify-start rounded-lg bg-white dark:hover:shadow-2xl-dark px-6 py-5 hover:shadow-2xl dark:bg-black relative"
 
   if (href) {
     const isExternal = isLinkExternal(href)

@@ -1,12 +1,11 @@
+import { useMemo, useState } from "react"
 import { ReactComponent as Filter } from "../../../../images/action/filter2"
-import { LandingHeader } from "../../Components/LandingHeader"
 import { SocialLinksSignup } from "../../Components"
 import { ButtonLink } from "../../Components/Button"
+import { LandingHeader } from "../../Components/LandingHeader"
+import { ToggleButton } from "../../Components/ToggleButton"
 import { TutorialCardProps } from "../../Components/TutorialCard"
-import PageBackground from "../shared/PageBackground"
-import PageSections from "../shared/PageSections"
-import PageSection from "../shared/PageSection"
-import { useMemo, useState } from "react"
+import { PaginatedTutorialCardList } from "../../Components/TutorialCard/PaginatedTutorialCardList"
 import {
   LargeVideoCard,
   LargeVideoCardProps,
@@ -15,8 +14,9 @@ import {
   SmallVideoCard,
   SmallVideoCardProps,
 } from "../../Components/VideoCard/SmallVideoCard"
-import { ToggleButton } from "../../Components/ToggleButton"
-import { PaginatedTutorialCardList } from "../../Components/TutorialCard/PaginatedTutorialCardList"
+import PageBackground from "../shared/PageBackground"
+import PageSection from "../shared/PageSection"
+import PageSections from "../shared/PageSections"
 
 export type LearnPageProps = {
   allTutorials: TutorialCardProps[]
@@ -62,7 +62,7 @@ export function LearnPage({
   return (
     <PageBackground>
       <PageSections>
-        <PageSection className="pt-0">
+        <PageSection className="pt-0 pb-0">
           <LandingHeader
             gradient="tools"
             title="Learn"
@@ -72,7 +72,6 @@ export function LearnPage({
             description="Lorem ipsum dolor sit amet proin gravida lorem ipsum dolor sit."
           />
         </PageSection>
-
         <PageSection className="flex-col items-stretch">
           <div className="container">
             <div className="mb-6 flex items-baseline justify-between">
@@ -82,7 +81,6 @@ export function LearnPage({
                 className="hidden whitespace-nowrap md:flex"
                 href={cadenceHref}
                 rightIcon="right"
-                size="sm"
               >
                 Go to Cadence
               </ButtonLink>
@@ -98,14 +96,12 @@ export function LearnPage({
             </ButtonLink>
           </div>
         </PageSection>
-
         <PageSection className="flex-col items-stretch ">
           <div className="container">
             <h2 className="text-h2 f mb-6">NFTs</h2>
             <PaginatedTutorialCardList tutorials={nftTutorials} />
           </div>
         </PageSection>
-
         <PageSection>
           <div className="container">
             <div className="mb-6 flex items-baseline justify-between">
@@ -115,7 +111,6 @@ export function LearnPage({
                 className="hidden whitespace-nowrap md:flex"
                 href={youtubeHref}
                 rightIcon="external"
-                size="sm"
               >
                 Go to Youtube
               </ButtonLink>
@@ -140,7 +135,6 @@ export function LearnPage({
             </ButtonLink>
           </div>
         </PageSection>
-
         <PageSection>
           <div className="container">
             <h2 className="text-h2 mb-6">All content</h2>
@@ -179,12 +173,7 @@ export function LearnPage({
           </div>
         </PageSection>
       </PageSections>
-
-      <div className="flex-col items-center">
-        <div className="my-24">
-          <SocialLinksSignup />
-        </div>
-      </div>
+      <SocialLinksSignup />
     </PageBackground>
   )
 }

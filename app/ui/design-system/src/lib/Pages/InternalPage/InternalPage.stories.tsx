@@ -7,7 +7,11 @@ export default {
 } as Meta
 
 const Template: Story = (args) => {
-  return <InternalPage />
+  return (
+    <div style={{ padding: "1rem" }}>
+      <InternalPage />
+    </div>
+  )
 }
 
 export const Primary = Template.bind({})

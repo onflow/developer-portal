@@ -53,7 +53,7 @@ export function InternalVersionSelect({
               style={{ top: y || 0, left: x || 0 }}
             >
               <DropdownTransition>
-                <Menu.Items className="relative max-h-[15rem] divide-y divide-solid divide-primary-gray-100 overflow-hidden overflow-y-auto rounded-lg bg-white shadow-2xl dark:divide-primary-gray-400">
+                <Menu.Items className="relative max-h-[15rem] divide-y divide-solid divide-primary-gray-100 overflow-hidden overflow-y-auto rounded-lg bg-white shadow-2xl dark:divide-primary-gray-400 dark:hover:shadow-2xl-dark">
                   {versions.map((version) => {
                     const isSelected = selectedVersionName === version.name
                     return (

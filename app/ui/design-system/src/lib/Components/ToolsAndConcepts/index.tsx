@@ -15,11 +15,13 @@ const ToolsAndConcepts = ({ tools, concepts }: ToolsAndConceptsProps) => {
   return (
     <div className="container">
       <div className="text-h2 mb-2">{getHeading()}</div>
-      <p>Core concepts and tools you’ll need to get started building on Flow</p>
+      <p className="text-primary-gray-400 dark:text-primary-gray-100">
+        Core concepts and tools you’ll need to get started building on Flow
+      </p>
       {concepts && concepts.length > 0 && (
         <TabMenu tabs={["Tools", "Concepts"]} onTabChange={() => null} />
       )}
-      <div className="mt-9 grid gap-6 md:grid-cols-2 md:gap-x-9 md:gap-y-6">
+      <div className="mt-9 grid gap-4 md:grid-cols-2 md:gap-8">
         {tools.map((tool: ToolCardProps) => (
           <ToolCard {...tool} key={tool.title} />
         ))}

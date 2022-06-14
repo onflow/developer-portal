@@ -1,7 +1,7 @@
 import { ReactComponent as CalendarIcon } from "../../../../images/action/date-calendar"
 import { ReactComponent as CommentIcon } from "../../../../images/arrows/message-circle"
-import Tag from "../Tag"
 import RoundImage from "../RoundImage"
+import Tag from "../Tag"
 
 export type User = {
   profileImage: string
@@ -28,7 +28,7 @@ const FlipCell = ({
   return (
     <a
       href={forumLink}
-      className="flex flex-col items-center justify-between rounded-lg bg-white p-6 hover:cursor-pointer hover:shadow-2xl dark:bg-primary-gray-dark md:flex-row md:p-8"
+      className="flex flex-col items-center justify-between rounded-lg bg-white p-6 hover:cursor-pointer hover:shadow-2xl dark:bg-primary-gray-dark dark:hover:shadow-2xl-dark md:flex-row md:p-8"
     >
       <div className="flex items-center">
         <svg

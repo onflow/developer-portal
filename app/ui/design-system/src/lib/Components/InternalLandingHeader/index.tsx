@@ -26,7 +26,7 @@ export function InternalLandingHeader({
   return (
     <div
       className={clsx(
-        "flex min-h-[715px] flex-col items-center py-10  text-white",
+        "flex min-h-[715px] flex-col items-center py-10 text-white",
         // @ts-expect-error please fix
         TOOL_GRADIENT_CLASSES[toolName]
       )}

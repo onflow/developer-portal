@@ -44,7 +44,7 @@ function Group({ group }: { group: SectionGroup }) {
             <a
               href="#"
               className={clsx(
-                "group flex items-center px-1 py-2 text-center text-sm hover:bg-primary-gray-100/50 dark:bg-black dark:shadow-2xl-dark hover:dark:bg-primary-gray-400/5 md:h-[7.5rem] md:w-[7rem] md:flex-col md:rounded-lg md:px-4 md:py-5 md:shadow-2xl"
+                "group flex items-center px-1 py-2 text-center text-sm hover:bg-primary-gray-100/50 dark:bg-black hover:dark:bg-primary-gray-400/5 md:h-[7.5rem] md:w-[7rem] md:flex-col md:rounded-lg md:px-4 md:py-5 md:shadow-2xl dark:md:shadow-2xl-dark"
               )}
             >
               <div className="mr-2 scale-75 md:mr-0 md:-mt-2">
@@ -138,7 +138,7 @@ export function InternalSidebarMenu({
               style={{ top: y || 0, left: x || 0 }}
             >
               <DropdownTransition>
-                <Popover.Panel className="relative mr-2 min-w-[17rem] max-w-[34rem] overflow-y-auto rounded-lg bg-white px-4 py-2 shadow-2xl dark:bg-primary-gray-dark dark:shadow-2xl-dark md:px-6 md:py-4">
+                <Popover.Panel className="relative mr-2 min-w-[17rem] max-w-[34rem] overflow-y-auto rounded-lg bg-white px-4 py-2 shadow-2xl dark:bg-primary-gray-dark dark:shadow-2xl-dark dark:hover:shadow-2xl-dark dark:hover:shadow-2xl-dark md:px-6 md:py-4">
                   {({ close }) =>
                     SIDEBAR_SECTION_GROUPS.map((group, index) => (
                       <SidebarSectionGroup

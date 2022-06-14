@@ -7,5 +7,5 @@ export default function PageSection({
   className?: string
   children: React.ReactNode
 }) {
-  return <div className={clsx("pt-16 pb-20", className)}>{children}</div>
+  return <div className={clsx("py-16", className)}>{children}</div>
 }
