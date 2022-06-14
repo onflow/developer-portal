@@ -12,7 +12,7 @@ export type HeadingProps = React.DetailedHTMLProps<
 const defaultClasses = "mt-6 font-semibold"
 
 const headingClasses = {
-  h1: "text-4xl mb-24 font-bold",
+  h1: "text-4xl mb-6 font-bold",
   h2: "text-2xl mb-6",
   h3: "text-xl mb-4",
   h4: "text-lg mb-2",
