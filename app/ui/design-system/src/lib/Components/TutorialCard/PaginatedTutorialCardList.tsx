@@ -40,7 +40,10 @@ export const PaginatedTutorialCardList = ({
   }, [listId])
 
   useLayoutEffect(() => {
-    topRef.current?.scrollIntoView({ behavior: "smooth" })
+    if (resetScroll > 0) {
+      // We don't want to scroll on the initial render.
+      topRef.current?.scrollIntoView({ behavior: "smooth" })
+    }
   }, [resetScroll])
 
   return (
