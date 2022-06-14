@@ -16,9 +16,9 @@ type SidebarItem =
       type: "doc"
       label: string
       /**
-       * e.g. docs/getting-started.md
+       * e.g. docs/getting-started
        */
-      path: string
+      id: string
     }
 
 export type RepoSchema = {

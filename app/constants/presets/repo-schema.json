@@ -25,11 +25,11 @@
                 },
                 {
                     "properties": {
-                        "label": {
+                        "id": {
+                            "description": "e.g. docs/getting-started",
                             "type": "string"
                         },
-                        "path": {
-                            "description": "e.g. docs/getting-started.md",
+                        "label": {
                             "type": "string"
                         },
                         "type": {
