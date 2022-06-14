@@ -26,7 +26,7 @@ export function ToolCard({
 }: ToolCardProps) {
   return (
     <a
-      className="flex gap-4 rounded-lg bg-white py-6 px-8 dark:bg-primary-gray-dark"
+      className="flex gap-4 rounded-lg bg-white py-6 px-8 hover:shadow-2xl dark:bg-primary-gray-dark dark:hover:shadow-2xl-dark"
       href={link}
     >
       <div>{toolIcon}</div>

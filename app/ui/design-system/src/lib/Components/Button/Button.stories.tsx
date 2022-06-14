@@ -26,7 +26,7 @@ const Template: Story<ButtonProps> = (args) => {
       }}
     >
       <Button variant="primary">Primary</Button>
-      <Button variant="primary-inverse">Primary Inverse</Button>
+      <Button variant="primary-no-darkmode">Primary No Dark Mode</Button>
       <Button variant="secondary">Secondary</Button>
       <Button variant="secondary" leftIcon="left">
         Secondary Prev

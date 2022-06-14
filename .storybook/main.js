@@ -8,10 +8,6 @@ module.exports = {
     { from: "../app/ui/design-system/fonts", to: "/fonts" },
     { from: "../app/ui/design-system/images", to: "/images" },
   ],
-  staticDirs: [
-    { from: "../app/ui/design-system/fonts", to: "/fonts" },
-    { from: "../app/ui/design-system/images", to: "/images" },
-  ],
   addons: [
     "@storybook/addon-links",
     "@storybook/addon-essentials",

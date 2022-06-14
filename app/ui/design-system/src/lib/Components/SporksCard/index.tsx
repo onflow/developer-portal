@@ -1,9 +1,9 @@
 import clsx from "clsx"
-import { useState } from "react"
 import { format, formatDistanceToNow } from "date-fns"
+import { useState } from "react"
 import { ReactComponent as CopyIcon } from "../../../../images/action/copy"
-import { ReactComponent as ChevronUpIcon } from "../../../../images/arrows/chevron-up"
 import { ReactComponent as ChevronDownIcon } from "../../../../images/arrows/chevron-down"
+import { ReactComponent as ChevronUpIcon } from "../../../../images/arrows/chevron-up"
 import { SporkMetadata } from "../../interfaces"
 
 export type SporksCardProps = {
@@ -11,17 +11,17 @@ export type SporksCardProps = {
   timestamp: Date
   sporkMetadata: SporkMetadata
   upcoming?: boolean
-  isDefaultExpanded?: boolean
 }
 
 const CardItem = ({ label, data }: { label: string; data: any }) => (
-  <div className="group flex items-center justify-between p-4 hover:cursor-pointer hover:bg-gray-50 dark:hover:bg-black">
+  <div className="group flex items-center justify-between p-4">
     <div className="break-all">
       <span className="block uppercase text-primary-gray-300">{label}</span>
       {data}
     </div>
     <div
-      className="hidden group-hover:hidden md:group-hover:block"
+      className="hidden cursor-pointer text-primary-blue hover:text-primary-gray-400 group-hover:hidden md:group-hover:block"
+      role="button"
       title={`Copy ${data}`}
       onClick={() => navigator.clipboard.writeText(data.toString())}
     >
@@ -30,12 +30,8 @@ const CardItem = ({ label, data }: { label: string; data: any }) => (
   </div>
 )
 
-const Spork = ({
-  heading,
-  timestamp,
-  sporkMetadata,
-  isDefaultExpanded,
-}: SporksCardProps) => {
+// TODO: Use headlessui disclosure: https://headlessui.dev/react/disclosure
+const Spork = ({ heading, timestamp, sporkMetadata }: SporksCardProps) => {
   const {
     accessNode,
     date,
@@ -46,9 +42,9 @@ const Spork = ({
     branchOrTag,
     dockerTag,
   } = sporkMetadata
-  const [isExpanded, setIsExpanded] = useState(isDefaultExpanded)
+  const [isExpanded, setIsExpanded] = useState(false)
   const cardStyles = clsx(
-    "flex-col items-center justify-between px-4 py-6 rounded-2xl hover:shadow-2xl cursor-pointer md:px-8",
+    "flex-col items-center justify-between px-4 rounded-2xl hover:shadow-2xl hover:bg-primary-gray-50 dark:hover:bg-primary-gray-400/50 dark:hover:shadow-2xl-dark md:px-8",
     {
       "bg-white dark:bg-primary-gray-dark": isExpanded,
       "dark:bg-black": !isExpanded,
@@ -56,16 +52,17 @@ const Spork = ({
   )
 
   return (
-    <div className={cardStyles} onClick={() => setIsExpanded(!isExpanded)}>
+    <div className={cardStyles}>
       <div
-        className="flex justify-between px-2 ease-in"
-        tabIndex={0}
         role="button"
+        className="flex cursor-pointer justify-between px-2 py-6 ease-in"
+        tabIndex={0}
         aria-pressed="false"
+        onClick={() => setIsExpanded((prev) => !prev)}
       >
         <div className="flex items-center">
-          <span className="pr-4 text-xl text-2xl font-bold">{heading}</span>
-          <span className="border-l border-primary-gray-100 pl-4 text-primary-gray-300">
+          <span className="pr-4 text-2xl font-bold">{heading}</span>
+          <span className="border-l border-primary-gray-100 pl-4 text-primary-gray-300 dark:border-primary-gray-400">
             {format(timestamp, "MMMM d")}
           </span>
         </div>
@@ -74,7 +71,7 @@ const Spork = ({
         </div>
       </div>
       {isExpanded && (
-        <div className="flex-col pt-4 pb-2">
+        <div className="flex-col pb-4">
           <CardItem label="Access Node" data={accessNode} />
           <CardItem label="Date" data={format(date, "LLL d, yyyy")} />
           <CardItem label="Root Height" data={rootHeight} />
@@ -95,10 +92,10 @@ const UpcomingSpork = ({
 }: Pick<SporksCardProps, "heading" | "timestamp">) => {
   return (
     <div className="flex-col items-center justify-between rounded-2xl bg-white px-4 py-6 dark:bg-primary-gray-dark md:px-8">
-      <div className="flex flex-col justify-start px-2 md:flex-row">
-        <span className="text-xl text-2xl font-bold md:pr-4">{heading}</span>
+      <div className="flex flex-col items-center justify-start px-2 md:flex-row">
+        <span className="text-2xl font-bold md:pr-4">{heading}</span>
         <hr className="my-4 inline-block w-6 md:hidden" />
-        <span className="border-primary-gray-100 md:border-l md:pl-4">
+        <span className="border-primary-gray-100 dark:border-primary-gray-400 md:border-l md:pl-4">
           Coming in {formatDistanceToNow(timestamp)} (
           {format(timestamp, "MMMM d")} 8-9AM PST)
         </span>
@@ -112,7 +109,6 @@ const SporksCard = ({
   timestamp,
   sporkMetadata,
   upcoming = false,
-  isDefaultExpanded = true,
 }: SporksCardProps) => {
   return upcoming ? (
     <UpcomingSpork heading={heading} timestamp={timestamp} />
@@ -121,7 +117,6 @@ const SporksCard = ({
       heading={heading}
       timestamp={timestamp}
       sporkMetadata={sporkMetadata}
-      isDefaultExpanded={isDefaultExpanded}
     />
   )
 }
