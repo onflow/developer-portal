@@ -20,16 +20,13 @@ function createRedisClient(name: "primaryClient", url: string): Redis {
   let client = global[name]
   if (!client) {
     const dbURL = new URL(url ?? "http://no-redis-url.example.com?weird")
-    console.log(`Setting up redis client to ${dbURL.host}`)
-    // eslint-disable-next-line no-multi-assign
 
-    if (url.startsWith("rediss:")) {
-      client = global[name] = new Redis(REDIS_URL, {
-        tls: { servername: dbURL.hostname },
-      })
-    } else {
-      client = global[name] = new Redis(REDIS_URL)
-    }
+    console.log(`Setting up redis client to ${dbURL.host}`)
+
+    client = global[name] = new Redis(REDIS_URL, {
+      lazyConnect: true,
+      retryStrategy: () => 1000,
+    })
   }
   return client
 }
