@@ -1,0 +1,77 @@
+{
+    "$schema": "http://json-schema.org/draft-07/schema#",
+    "definitions": {
+        "SidebarItem": {
+            "anyOf": [
+                {
+                    "$ref": "#/definitions/{type:\"category\";label:string;items:SidebarItem[];}"
+                },
+                {
+                    "properties": {
+                        "href": {
+                            "type": "string"
+                        },
+                        "label": {
+                            "type": "string"
+                        },
+                        "type": {
+                            "enum": [
+                                "link"
+                            ],
+                            "type": "string"
+                        }
+                    },
+                    "type": "object"
+                },
+                {
+                    "properties": {
+                        "label": {
+                            "type": "string"
+                        },
+                        "path": {
+                            "description": "e.g. docs/getting-started.md",
+                            "type": "string"
+                        },
+                        "type": {
+                            "enum": [
+                                "doc"
+                            ],
+                            "type": "string"
+                        }
+                    },
+                    "type": "object"
+                }
+            ]
+        },
+        "{type:\"category\";label:string;items:SidebarItem[];}": {
+            "properties": {
+                "items": {
+                    "items": {
+                        "$ref": "#/definitions/SidebarItem"
+                    },
+                    "type": "array"
+                },
+                "label": {
+                    "type": "string"
+                },
+                "type": {
+                    "enum": [
+                        "category"
+                    ],
+                    "type": "string"
+                }
+            },
+            "type": "object"
+        }
+    },
+    "properties": {
+        "sidebar": {
+            "items": {
+                "$ref": "#/definitions/SidebarItem"
+            },
+            "type": "array"
+        }
+    },
+    "type": "object"
+}
+

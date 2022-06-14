@@ -1,0 +1,15 @@
+{
+  "$schema": "./repo-schema.json",
+  "sidebar": [
+    {
+      "type": "doc",
+      "label": "Getting Started",
+      "path": "docs/getting-started"
+    },
+    {
+      "type": "category",
+      "label": "foo",
+      "items": []
+    }
+  ]
+}
