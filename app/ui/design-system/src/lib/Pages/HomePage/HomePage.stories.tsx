@@ -1,7 +1,6 @@
 import { Meta, Story } from "@storybook/react"
 import HomePage, { HomePageProps } from "."
 import { LinkCard2ColumnProps } from "../../.."
-import KittyItemsImg from "../../../../images/content/kitty-items@3x.png"
 import { Default as DefaultFlips } from "../../Components/Flips/Flips.stories"
 import { Default as DefaultLinkCard3Column } from "../../Components/LinkCard3Column/LinkCard3Column.stories"
 import { Default as DefaultToolsAndConcepts } from "../../Components/ToolsAndConcepts/ToolsAndConcepts.stories"
@@ -20,13 +19,13 @@ const startProjectItems: LinkCard2ColumnProps = {
       description:
         "A package used to interact with user wallets and the Flow blockchain.",
       href: "#",
-      icon: KittyItemsImg,
+      icon: "https://avatars.githubusercontent.com/u/62387156?s=64&v=4",
     },
     {
       title: "Create an NFT",
       description:
         "A series of tutorials that explain how to build your first NFT (Non-Fungible Token)",
-      icon: KittyItemsImg,
+      icon: "https://avatars.githubusercontent.com/u/62387156?s=64&v=4",
       links: [
         { href: "#", title: "Dictionaries" },
         { href: "#", title: "Path Finder for NFTs" },

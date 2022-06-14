@@ -24,7 +24,7 @@ const flip = {
       "https://github.githubassets.com/images/modules/logos_page/GitHub-Mark.png",
     name: "Marky Mark",
   },
-  date: "23/3/22",
+  date: "2022-05-16T18:46:23Z",
   forumLink: "#test",
 }
 const args = { flips: [flip, flip, flip] }

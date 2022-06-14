@@ -30,7 +30,7 @@ export function LinkCard2Column({
   const classes = clsx(
     "flex flex-col items-start px-4 py-8 rounded-lg bg-primary-gray-100/30 md:flex-row md:px-20",
     homePage
-      ? "md:py-24 dark:bg-[#2F353FA8]"
+      ? "md:py-24 dark:bg-[#1F232A]"
       : "md:py-12 dark:bg-primary-gray-dark",
     {
       "rounded-br-none rounded-bl-none": !bottomRounded,
