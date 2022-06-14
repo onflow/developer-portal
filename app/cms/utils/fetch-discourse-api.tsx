@@ -51,8 +51,6 @@ export interface Topic {
   pinned_globally: boolean
   featured_link: string
   posters: Poster[]
-  // Formatted date is a custom field added by our implementation, not taken from the API response
-  __formatted_date?: string
 }
 
 export interface Poster {

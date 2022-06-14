@@ -8,6 +8,6 @@ export async function fetchNetworkStatus() {
     },
   }).then((r) => r.json())
 
-  const status = await Promise.all(response)
+  const status = await response
   return status as StatuspageApiResponse[]
 }

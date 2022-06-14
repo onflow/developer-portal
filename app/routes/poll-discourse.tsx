@@ -16,14 +16,12 @@ type LoaderData = {
 const ABOUT_THIS_CATEGORY_BREAKING_CHANGES = 762
 const ABOUT_THIS_CATEGORY_SPORK = 2543
 
+var getRelativeDate = (created_at: string) =>
+  formatDistance(new Date(created_at), new Date())
+
 function sortTopics(topics: Topic[], removeCategoryId: number) {
   const sorted: Topic[] = topics
     .filter((post: Topic) => post.id !== removeCategoryId)
-    .map((post: Topic) => {
-      const date = formatDistance(new Date(post.created_at), new Date())
-      post.__formatted_date = date
-      return post
-    })
     .sort((a, b) => {
       return new Date(a.created_at).getTime() > new Date(b.created_at).getTime()
         ? -1
@@ -79,7 +77,7 @@ export default function () {
       <div className="w-full">
         {discourseData.breakingChanges.map((t) => (
           <li id="user-content-fn-1" key={t.id}>
-            Breaking Change Topic: {t.__formatted_date} - {t.title}
+            Breaking Change Topic: {getRelativeDate(t.created_at)} - {t.title}
           </li>
         ))}
       </div>
@@ -88,7 +86,7 @@ export default function () {
       <div className="w-full">
         {discourseData.sporks.map((t) => (
           <li id="user-content-fn-1" key={t.id}>
-            Spork Topic: {t.__formatted_date} - {t.title}
+            Spork Topic: {getRelativeDate(t.created_at)} - {t.title}
           </li>
         ))}
       </div>
