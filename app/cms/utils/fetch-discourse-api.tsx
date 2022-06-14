@@ -1,5 +1,4 @@
 import { DISCOURSE_API_URL, DISCOURSE_MAINNET_SPORK_URL } from "./constants"
-import moment from "moment"
 
 export interface DiscourseTopicsResponse {
   users: User[]
@@ -81,21 +80,7 @@ export async function fetchBreakingChangesPosts() {
     topic_list: { topics },
   } = data
 
-  const sorted: Topic[] = topics
-    // Remove the "About this category" post
-    .filter((post: Topic) => post.id !== 762)
-    .map((post: Topic) => {
-      const date = moment(new Date(post.created_at)).fromNow()
-      post.__formatted_date = date
-      return post
-    })
-    .sort((a, b) => {
-      return new Date(a.created_at).getTime() > new Date(b.created_at).getTime()
-        ? -1
-        : 1
-    })
-
-  return sorted
+  return topics
 }
 
 export async function fetchMainnetSporkPosts() {
@@ -107,19 +92,5 @@ export async function fetchMainnetSporkPosts() {
     topic_list: { topics },
   } = data
 
-  const sorted: Topic[] = topics
-    // Remove the "About this category" post
-    .filter((post: Topic) => post.id !== 762)
-    .map((post: Topic) => {
-      const date = moment(new Date(post.created_at)).fromNow()
-      post.__formatted_date = date
-      return post
-    })
-    .sort((a, b) => {
-      return new Date(a.created_at).getTime() > new Date(b.created_at).getTime()
-        ? -1
-        : 1
-    })
-
-  return sorted
+  return topics
 }

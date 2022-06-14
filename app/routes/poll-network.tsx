@@ -1,5 +1,6 @@
 import { useFetcher, useLoaderData } from "@remix-run/react"
 import { useEffect, useState } from "react"
+import { POLLING_INTERVAL } from "~/cms/utils/constants"
 import { fetchNetworkStatus } from "~/cms/utils/fetch-network-status"
 import { StatuspageApiResponse } from "~/ui/design-system/src/lib/interfaces"
 
@@ -29,7 +30,7 @@ export default function () {
       if (document.visibilityState === "visible") {
         fetcher.load("/poll-network")
       }
-    }, 5 * 1000)
+    }, POLLING_INTERVAL)
 
     return () => clearInterval(interval)
   })

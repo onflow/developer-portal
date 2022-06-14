@@ -5,18 +5,43 @@ import {
   fetchMainnetSporkPosts,
   Topic,
 } from "~/cms/utils/fetch-discourse-api"
+import { formatDistance } from "date-fns"
+import { POLLING_INTERVAL } from "~/cms/utils/constants"
 
 type LoaderData = {
   breakingChanges: Topic[]
   sporks: Topic[]
 }
 
+const ABOUT_THIS_CATEGORY_BREAKING_CHANGES = 762
+const ABOUT_THIS_CATEGORY_SPORK = 2543
+
+function sortTopics(topics: Topic[], removeCategoryId: number) {
+  const sorted: Topic[] = topics
+    .filter((post: Topic) => post.id !== removeCategoryId)
+    .map((post: Topic) => {
+      const date = formatDistance(new Date(post.created_at), new Date())
+      post.__formatted_date = date
+      return post
+    })
+    .sort((a, b) => {
+      return new Date(a.created_at).getTime() > new Date(b.created_at).getTime()
+        ? -1
+        : 1
+    })
+
+  return sorted
+}
+
 export async function loader(): Promise<LoaderData> {
   const breakingChangesPosts = await fetchBreakingChangesPosts()
   const sporksPosts = await fetchMainnetSporkPosts()
   return {
-    breakingChanges: breakingChangesPosts,
-    sporks: sporksPosts,
+    breakingChanges: sortTopics(
+      breakingChangesPosts,
+      ABOUT_THIS_CATEGORY_BREAKING_CHANGES
+    ),
+    sporks: sortTopics(sporksPosts, ABOUT_THIS_CATEGORY_SPORK),
   }
 }
 
@@ -35,7 +60,7 @@ export default function () {
       if (document.visibilityState === "visible") {
         fetcher.load("/poll-discourse")
       }
-    }, 5 * 1000)
+    }, POLLING_INTERVAL)
 
     return () => clearInterval(interval)
   })
@@ -54,8 +79,7 @@ export default function () {
       <div className="w-full">
         {discourseData.breakingChanges.map((t) => (
           <li id="user-content-fn-1" key={t.id}>
-            Breaking Change Topic: {t.__formatted_date} - {t.title} -{" "}
-            {t.featured_link}
+            Breaking Change Topic: {t.__formatted_date} - {t.title}
           </li>
         ))}
       </div>
@@ -64,7 +88,7 @@ export default function () {
       <div className="w-full">
         {discourseData.sporks.map((t) => (
           <li id="user-content-fn-1" key={t.id}>
-            Spork Topic: {t.__formatted_date} - {t.title} - {t.featured_link}
+            Spork Topic: {t.__formatted_date} - {t.title}
           </li>
         ))}
       </div>
