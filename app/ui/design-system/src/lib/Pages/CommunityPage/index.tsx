@@ -16,6 +16,7 @@ import FeaturedArticleSlider, {
   FeaturedArticleSliderProps,
 } from "../../Components/FeaturedArticleSlider"
 import Flips, { FlipsProps } from "../../Components/Flips"
+import ForumCell, { ForumCellProps } from "../../Components/ForumCell"
 import { LandingHeader } from "../../Components/LandingHeader"
 import ProjectCards, { ProjectCardsProps } from "../../Components/ProjectCards"
 import { ToolsAndConceptsProps } from "../../Components/ToolsAndConcepts"
@@ -32,6 +33,7 @@ export type CommunityPageProps = FlipsProps &
     communityMembers: CommunityMembersProps
     upcomingEvents: UpcomingEventsProps
     contentNavigationItems: ContentNavigationProps[]
+    forumTopics: ForumCellProps[]
   }
 
 export default function CommunityPage({
@@ -42,6 +44,7 @@ export default function CommunityPage({
   articles,
   tools,
   contentNavigationItems,
+  forumTopics,
 }: CommunityPageProps) {
   return (
     <PageBackground>
@@ -104,6 +107,28 @@ export default function CommunityPage({
         </PageSection>
         <PageSection>
           <FeaturedArticleSlider articles={articles} />
+        </PageSection>
+        <PageSection>
+          <div className="container mb-8">
+            <div className="mb-10 flex items-center justify-between">
+              <h4 className="text-h2">From the forum</h4>
+              <ButtonLink
+                rightIcon="right"
+                href=""
+                variant="secondary"
+                target="_blank"
+                rel="noreferrer"
+                className="ml-4 hidden md:flex"
+              >
+                Go to Forum
+              </ButtonLink>
+            </div>
+            <div className="grid grid-cols-1 gap-4">
+              {forumTopics.map((topic: ForumCellProps, index: number) => (
+                <ForumCell {...topic} key={index} />
+              ))}
+            </div>
+          </div>
         </PageSection>
       </PageSections>
       <SocialLinksSignup />
