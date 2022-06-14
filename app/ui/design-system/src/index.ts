@@ -16,7 +16,6 @@ export type { InternalSidebarConfig } from "./lib/Components/InternalSidebar"
 // } from './lib/Components/InternalSidebar';
 export { getHeadingsFromMdxComponent } from "./lib/Components/InternalToc"
 export { LandingHeader } from "./lib/Components/LandingHeader"
-export { LandingHeaderContainer } from "./lib/Components/LandingHeader/LandingHeaderContainer"
 export { LandingHeaderHome } from "./lib/Components/LandingHeaderHome"
 export { Link } from "./lib/Components/Link"
 export { LinkCard2Column } from "./lib/Components/LinkCard2Column"

@@ -1,6 +1,5 @@
 import {
   Flips,
-  LandingHeaderContainer,
   LandingHeaderHome,
   LinkCard2Column,
   LinkCard3Column,
@@ -35,20 +34,18 @@ const HomePage = ({
   upcomingEvents,
 }: HomePageProps) => {
   return (
-    <PageBackground>
-      <LandingHeaderContainer gradient="home">
-        <LandingHeaderHome
-          title="Developer Portal"
-          description="Understand the foundational concepts of Flow and its language, Cadence"
-          tag="onflow"
-        />
-        <LinkCard2Column
-          {...startProjectItems}
-          bottomRounded={false}
-          homePage={true}
-        />
-        <LinkCard3Column items={threeColumnItems} topRounded={false} />
-      </LandingHeaderContainer>
+    <PageBackground gradient="home">
+      <LandingHeaderHome
+        title="Developer Portal"
+        description="Understand the foundational concepts of Flow and its language, Cadence"
+        tag="onflow"
+      />
+      <LinkCard2Column
+        {...startProjectItems}
+        bottomRounded={false}
+        homePage={true}
+      />
+      <LinkCard3Column items={threeColumnItems} topRounded={false} />
       <PageSections>
         <PageSection className="pt-0" />
         <PageSection>

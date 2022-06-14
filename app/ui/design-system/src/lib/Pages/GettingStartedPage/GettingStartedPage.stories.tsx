@@ -106,7 +106,6 @@ const gettingStartedPageData = {
     callout: "Featured callout here two lines",
     description:
       "Lorem ipsum dolor sit amet proin gravida lorem ipsum dolor sit.",
-    gradient: "getting-started",
     title: "Getting Started",
   },
   linkCard3ColumnItems: {
