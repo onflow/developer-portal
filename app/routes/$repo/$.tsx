@@ -2,9 +2,11 @@ import { LoaderFunction } from "@remix-run/node"
 import { getMdxPage, useMdxComponent } from "~/cms/utils/mdx"
 import { json } from "@remix-run/node"
 import { useLoaderData } from "@remix-run/react"
+import invariant from "tiny-invariant"
 
 export const loader: LoaderFunction = async ({ params, request }) => {
   const [repo, fileOrDirPath] = [params["repo"], params["*"] || "index"]
+  invariant(repo, `expected a value`)
 
   let page
   try {
