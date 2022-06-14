@@ -36,8 +36,8 @@ export const loader: LoaderFunction = async ({
 export default function Repo() {
   const data = useLoaderData<LoaderData>()
   return (
-    <div>
-      <div className="grid">
+    <div className="mx-4">
+      <div className="flex">
         <div>
           {data.repoSchema ? (
             <InternalSidebar config={data.repoSchema.sidebar} />
