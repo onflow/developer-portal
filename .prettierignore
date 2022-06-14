@@ -1,7 +1,10 @@
 app/main.css
+app/constants/repos/repo-schema.json
+
 public/build/**/*
 .husky
 yarn.lock
 
 .eslintcache
 .prettierignore
+
