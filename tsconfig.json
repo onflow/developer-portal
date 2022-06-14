@@ -1,5 +1,5 @@
 {
-  "include": ["remix.env.d.ts", "**/*.ts", "**/*.tsx", "scripts/validate-mdx.js"],
+  "include": ["remix.env.d.ts", "**/*.ts", "**/*.tsx"],
   "compilerOptions": {
     "lib": ["DOM", "DOM.Iterable", "ES2021"],
     "isolatedModules": true,
@@ -22,9 +22,7 @@
     "skipDefaultLibCheck": true,
 
     // is this ok?
-    // "module": "esnext"
-    "module": "CommonJS"
-
+    "module": "esnext"
   },
 
   // TODO: fix type errors in storybook files
