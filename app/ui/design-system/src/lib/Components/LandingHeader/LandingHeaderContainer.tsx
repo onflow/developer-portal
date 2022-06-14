@@ -13,14 +13,18 @@ export type LandingHeaderContainerProps =
     gradient: GradientName
   }
 
+// TODO: Consider adding background gradient to PageBackground to avoid clipping
 export function LandingHeaderContainer({
   className,
   gradient,
   ...props
 }: LandingHeaderContainerProps) {
   return (
-    <header
-      className={clsx(`bg-gradient-${gradient} bg-cover bg-bottom`, className)}
+    <div
+      className={clsx(
+        `bg-gradient-${gradient} bg-cover bg-[center_top_-75px] bg-no-repeat md:bg-[length:120%_120%]`,
+        className
+      )}
       {...props}
     />
   )

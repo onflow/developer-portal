@@ -20,8 +20,8 @@ export function LandingHeader({
 }: LandingHeaderProps) {
   return (
     <LandingHeaderContainer gradient={gradient}>
-      <div className="container mx-auto flex flex-col justify-items-stretch pt-16 md:pt-20">
-        <h1 className="text-h1 mb-14 max-w-full overflow-hidden text-ellipsis !text-4xl md:mt-24 md:!text-7xl md:!leading-tight">
+      <div className="container mx-auto flex flex-col justify-items-stretch py-16 md:py-32">
+        <h1 className="text-h1 mb-14 max-w-full overflow-hidden text-ellipsis !text-4xl md:mt-12 md:!text-7xl md:!leading-tight">
           {title}
         </h1>
         <div className="flex flex-row items-stretch rounded-lg bg-primary-gray-100/30">

@@ -19,7 +19,7 @@ export type LinkCard2ColumnItemSingleLinkProps =
 export type LinkCard2ColumnItemMultipleLinksProps =
   LinkCard2ColumnItemBaseProps & {
     href?: never
-    links: Array<{
+    links?: Array<{
       href: string
       title: string
     }>
@@ -38,7 +38,7 @@ export function LinkCard2ColumnItem({
   title,
 }: LinkCard2ColumnItemProps) {
   return (
-    <LinkCard2ColumnItemContainer href={href}>
+    <LinkCard2ColumnItemContainer href={links?.length ? undefined : href}>
       {icon && (
         <div className="mr-4 mb-4 max-w-[58px] shrink-0 grow-0 basis-[58px] md:max-w-[84px] md:basis-[84px]">
           <img
@@ -50,7 +50,7 @@ export function LinkCard2ColumnItem({
         </div>
       )}
       <div className="w-full overflow-hidden pr-2">
-        <h3 className="text-semibold mr-1 text-xl text-black group-hover:opacity-75 dark:text-white">
+        <h3 className="text-semibold mr-1 text-xl text-black dark:text-white">
           {title}
         </h3>
         <p className="mt-2 text-sm text-primary-gray-300 dark:text-primary-gray-200">

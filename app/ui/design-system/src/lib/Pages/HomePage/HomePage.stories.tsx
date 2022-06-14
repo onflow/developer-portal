@@ -1,12 +1,12 @@
 import { Meta, Story } from "@storybook/react"
 import HomePage, { HomePageProps } from "."
-import DappyImg from "../../../../images/content/dappy@3x.png"
 import { ReactComponent as EcosystemIcon } from "../../../../images/content/ecosystem"
 import KittyItemsImg from "../../../../images/content/kitty-items@3x.png"
 import { ReactComponent as SDKIcon } from "../../../../images/content/sdk"
 import { ReactComponent as UseCaseIcon } from "../../../../images/content/use-cases"
 import { Default as DefaultToolsAndConcepts } from "../../Components/ToolsAndConcepts/ToolsAndConcepts.stories"
 import { Default as DefaultUpcomingEvents } from "../../Components/UpcomingEvents/UpcomingEvents.stories"
+import DappyImg from "./dappy@3x.png"
 
 export default {
   component: HomePage,
@@ -33,7 +33,6 @@ const startProjectItems = {
       title: "Create an NFT",
       description:
         "A series of tutorials that explain how to build your first NFT (Non-Fungible Token)",
-      href: "#create-non-fungible-token",
       icon: KittyItemsImg,
       links: [
         { href: "#", title: "Dictionaries" },
@@ -129,6 +128,7 @@ const args = {
   startProjectItems,
   flips,
   tools: DefaultToolsAndConcepts.args.tools,
+  concepts: DefaultToolsAndConcepts.args.concepts,
   threeColumnItems,
   upcomingEvents: DefaultUpcomingEvents.args,
 }

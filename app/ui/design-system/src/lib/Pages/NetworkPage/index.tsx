@@ -1,14 +1,17 @@
 import { startOfDay } from "date-fns"
-import networkGradientPath from "../../../../images/gradients/network.svg"
 import {
   AnnouncementCard,
-  FeaturedArticleSlider,
   Footer,
+  LandingHeaderContainer,
   NetworkCard,
   NetworkDiscordCard,
   SocialLinksSignup,
 } from "../../Components"
+import { FeaturedArticle } from "../../Components/FeaturedArticleSlider"
 import { Article, StatuspageApiResponse } from "../../interfaces"
+import PageBackground from "../shared/PageBackground"
+import PageSection from "../shared/PageSection"
+import PageSections from "../shared/PageSections"
 import data from "./sample"
 
 const NetworkPage = () => {
@@ -23,74 +26,83 @@ const NetworkPage = () => {
   } as Article
 
   return (
-    <div className="w-full bg-primary-gray-50 p-6 dark:bg-black">
-      <div
-        className="flex-col items-center bg-no-repeat"
-        style={{ backgroundImage: `url(${networkGradientPath})` }}
-      >
-        <h1 className="text-h1 pt-[212px]">Network status</h1>
+    <PageBackground>
+      <PageSections divided={false}>
+        <LandingHeaderContainer
+          gradient="network"
+          className="flex-col items-center bg-[center_top_-120px] md:bg-[length:100%]"
+        >
+          <div className="container">
+            <h1 className="text-h1 pt-[212px]">Network status</h1>
 
-        <div className="mt-12 mb-[100px] flex-col ">
-          {
-            // @ts-expect-error
-            data.map(({ name, status }: StatuspageApiResponse) => {
-              return (
-                <div className="py-6" key={name}>
-                  <NetworkCard
-                    networkName={name}
-                    status={
-                      status === "operational" ? "Healthy" : "Under Maintenance"
-                    }
-                    version="33"
-                    lastSporkDate="April, 2022"
-                    nextSporkDate="April, 2022"
-                    link="https://google.com"
-                  />
-                </div>
-              )
-            })
-          }
-        </div>
-
-        <h3 className="text-h3">Live updates</h3>
-        <div className="mt-6 mb-[100px] flex justify-between xs:flex-col xs:gap-4 md:flex-row">
-          {[1, 2, 3].map((index) => (
-            <NetworkDiscordCard
-              message="Mainnet has been down for the past two hours"
-              timestamp={startOfDay(new Date())}
-              messageLink="https://google.com"
-              username="@john_flow"
-              key={index}
-            />
-          ))}
-        </div>
-
-        <h3 className="text-h3">Announcements</h3>
-        <div className="mb-[100px] flex-col">
-          {[1, 2, 3].map((index) => (
-            <div className="py-4" key={index}>
-              <AnnouncementCard
-                sourceIcon="https://github.githubassets.com/images/modules/logos_page/GitHub-Mark.png"
-                sourceAltText="Github"
-                heading="Holy schnikes Github is down"
-                timestamp={startOfDay(new Date())}
-                link="https://google.com"
-              />
+            <div className="mt-12 flex flex-col gap-4 md:gap-6">
+              {
+                // @ts-expect-error
+                data.map(({ name, status }: StatuspageApiResponse) => {
+                  return (
+                    <div key={name}>
+                      <NetworkCard
+                        networkName={name}
+                        status={
+                          status === "operational"
+                            ? "Healthy"
+                            : "Under Maintenance"
+                        }
+                        version="33"
+                        lastSporkDate="April, 2022"
+                        nextSporkDate="April, 2022"
+                        link="https://google.com"
+                      />
+                    </div>
+                  )
+                })
+              }
             </div>
-          ))}
-        </div>
-      </div>
-
-      <div className="self-center">
-        <FeaturedArticleSlider articles={[article]} />
-      </div>
-
-      <div className="my-24 xs:h-[57rem] md:h-[42rem]">
-        <SocialLinksSignup />
-      </div>
-
+          </div>
+          <PageSection>
+            <div className="container">
+              <h3 className="text-h3 mb-10">Live updates</h3>
+              <div className="mt-6 flex flex-col gap-4 md:flex-row md:gap-8">
+                {[1, 2, 3].map((index) => (
+                  <NetworkDiscordCard
+                    message="Mainnet has been down for the past two hours"
+                    timestamp={startOfDay(new Date())}
+                    messageLink="https://google.com"
+                    username="@john_flow"
+                    key={index}
+                  />
+                ))}
+              </div>
+            </div>
+          </PageSection>
+          <PageSection>
+            <div className="container">
+              <h3 className="text-h3 mb-6">Announcements</h3>
+              <div className="flex flex-col gap-4 md:gap-8">
+                {[1, 2, 3].map((index) => (
+                  <div key={index}>
+                    <AnnouncementCard
+                      sourceIcon="https://github.githubassets.com/images/modules/logos_page/GitHub-Mark.png"
+                      sourceAltText="Github"
+                      heading="Holy schnikes Github is down"
+                      timestamp={startOfDay(new Date())}
+                      link="https://google.com"
+                    />
+                  </div>
+                ))}
+              </div>
+            </div>
+          </PageSection>
+          <PageSection>
+            <div className="container">
+              <FeaturedArticle {...article} />
+            </div>
+          </PageSection>
+        </LandingHeaderContainer>
+      </PageSections>
+      <SocialLinksSignup />
       <Footer />
-    </div>
+    </PageBackground>
   )
 }
 
