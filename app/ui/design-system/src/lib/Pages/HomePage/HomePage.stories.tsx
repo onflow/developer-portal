@@ -1,20 +1,13 @@
 import { Meta, Story } from "@storybook/react"
 import HomePage, { HomePageProps } from "."
-import { ReactComponent as EcosystemIcon } from "../../../../images/content/ecosystem"
+import { LinkCard2ColumnProps } from "../../.."
 import KittyItemsImg from "../../../../images/content/kitty-items@3x.png"
-import { ReactComponent as SDKIcon } from "../../../../images/content/sdk"
-import { ReactComponent as UseCaseIcon } from "../../../../images/content/use-cases"
+import { Default as DefaultFlips } from "../../Components/Flips/Flips.stories"
+import { Default as DefaultLinkCard3Column } from "../../Components/LinkCard3Column/LinkCard3Column.stories"
 import { Default as DefaultToolsAndConcepts } from "../../Components/ToolsAndConcepts/ToolsAndConcepts.stories"
 import { Default as DefaultUpcomingEvents } from "../../Components/UpcomingEvents/UpcomingEvents.stories"
-import DappyImg from "./dappy@3x.png"
 
-export default {
-  component: HomePage,
-  title: "Pages/HomePage",
-} as Meta
-
-const Template: Story<HomePageProps> = (args) => <HomePage {...args} />
-const startProjectItems = {
+const startProjectItems: LinkCard2ColumnProps = {
   buttonText: "Get started",
   buttonUrl: "#changeme",
   description:
@@ -27,7 +20,7 @@ const startProjectItems = {
       description:
         "A package used to interact with user wallets and the Flow blockchain.",
       href: "#",
-      icon: DappyImg,
+      icon: KittyItemsImg,
     },
     {
       title: "Create an NFT",
@@ -42,96 +35,22 @@ const startProjectItems = {
   ],
 }
 
-const flips = Array(3).fill({
-  numComments: 23,
-  heading: "Error Subscribing to Events in Default Docs",
-  tags: ["moo", "crab", "rangoon"],
-  participant: {
-    profileImage:
-      "https://github.githubassets.com/images/modules/logos_page/GitHub-Mark.png",
-    name: "Marky Mark",
-  },
-  date: "23/3/22",
-  forumLink: "#test",
-})
+export default {
+  component: HomePage,
+  title: "Pages/HomePage",
+} as Meta
 
-const threeColumnItems = [
-  {
-    title: "Quickstart",
-    description:
-      "A package used to interact with user wallets and the Flow blockchain.",
-    icon: <UseCaseIcon />,
-    links: [
-      {
-        title: "Quickstart tutorial",
-        href: "#tutorial1",
-        tags: ["tutorial"],
-      },
-      {
-        title: "Name of a tutorial",
-        href: "#tutorial2",
-        tags: ["tutorial"],
-      },
-      {
-        title: "Name of another tutorial",
-        href: "#tutorial3",
-        tags: ["tutorial"],
-      },
-    ],
-  },
-  {
-    title: "Guides & Tutorials",
-    description:
-      "An up to 3-line blurb here describing the section lorem ipsum dolor sit amet proin.",
-    icon: <EcosystemIcon />,
-    links: [
-      {
-        title: "Guide 1",
-        href: "#tutorial1",
-        tags: ["tutorial"],
-      },
-      {
-        title: "Guide 2",
-        href: "#tutorial2",
-      },
-      {
-        title: "An external link",
-        href: "https://www.onflow.org",
-        tags: ["tutorial", "external"],
-      },
-    ],
-  },
-  {
-    title: "Smart Contracts",
-    description: "Smart contracts description.",
-    icon: <SDKIcon />,
-    links: [
-      {
-        title: "Name of a Smart Contract tutorial",
-        href: "#tutorial1",
-        tags: ["tutorial"],
-      },
-      {
-        title: "Name of a tutorial",
-        href: "#tutorial2",
-        tags: ["tag1", "tag2", "tag3", "tag4"],
-      },
-      {
-        title: "View all SDK's",
-        href: "#sdks",
-      },
-    ],
-  },
-]
+const Template: Story<HomePageProps> = (args) => <HomePage {...args} />
 
-const args = {
+const args: HomePageProps = {
   startProjectItems,
-  flips,
+  flips: DefaultFlips.args.flips,
   tools: DefaultToolsAndConcepts.args.tools,
   concepts: DefaultToolsAndConcepts.args.concepts,
-  threeColumnItems,
+  threeColumnItems: DefaultLinkCard3Column.args.items,
   upcomingEvents: DefaultUpcomingEvents.args,
 }
+
 export const Default = Template.bind({})
 Default.args = args
 

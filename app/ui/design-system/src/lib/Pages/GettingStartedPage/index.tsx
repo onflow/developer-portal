@@ -135,7 +135,7 @@ export function GettingStartedPage({
                   tags={tool.tags}
                   link={tool.link}
                   stars={tool.stars}
-                  toolIcon={tool.toolIcon}
+                  toolIconSrc={tool.toolIconSrc}
                   description={tool.description}
                 />
               ))}

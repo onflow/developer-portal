@@ -22,7 +22,7 @@ export function LandingHeaderContainer({
   return (
     <div
       className={clsx(
-        `bg-gradient-${gradient} bg-cover bg-[center_top_-75px] bg-no-repeat md:bg-[length:120%_120%]`,
+        `bg-gradient-${gradient} bg-cover bg-[center_top_-75px] bg-no-repeat md:bg-[length:100%_100%]`,
         className
       )}
       {...props}

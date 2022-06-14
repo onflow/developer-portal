@@ -14,6 +14,7 @@ export type LinkCard2ColumnProps = {
   tags?: string[]
   title: string
   bottomRounded?: boolean
+  homePage?: boolean
 }
 
 export function LinkCard2Column({
@@ -24,9 +25,13 @@ export function LinkCard2Column({
   tags,
   title,
   bottomRounded = true,
+  homePage = false,
 }: LinkCard2ColumnProps) {
   const classes = clsx(
-    "flex flex-col items-start px-4 py-12 rounded-lg bg-primary-gray-100/30 dark:bg-primary-gray-dark md:flex-row md:px-20 md:py-12",
+    "flex flex-col items-start px-4 py-8 rounded-lg bg-primary-gray-100/30 md:flex-row md:px-20",
+    homePage
+      ? "md:py-24 dark:bg-[#2F353FA8]"
+      : "md:py-12 dark:bg-primary-gray-dark",
     {
       "rounded-br-none rounded-bl-none": !bottomRounded,
     }
@@ -49,7 +54,7 @@ export function LinkCard2Column({
           </p>
           <ButtonLink
             href={buttonUrl}
-            className="mt-2 mb-10 md:mt-10"
+            className="mb-10 mt-8 md:mt-10"
             variant="primary-no-darkmode"
           >
             {buttonText}
@@ -57,7 +62,11 @@ export function LinkCard2Column({
         </div>
         <div className="flex w-full flex-1 flex-col items-stretch">
           {items.map((item) => (
-            <LinkCard2ColumnItem key={item.title} {...item} />
+            <LinkCard2ColumnItem
+              key={item.title}
+              {...item}
+              homePage={homePage}
+            />
           ))}
         </div>
       </div>

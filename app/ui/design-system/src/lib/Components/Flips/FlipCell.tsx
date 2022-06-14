@@ -54,6 +54,8 @@ const FlipCell = ({
         "rounded-lg bg-white hover:shadow-2xl dark:bg-primary-gray-dark dark:hover:shadow-2xl-dark",
         PARENT_GRID
       )}
+      target="_blank"
+      rel="noreferrer"
     >
       <div className="hidden justify-end md:flex">
         <svg

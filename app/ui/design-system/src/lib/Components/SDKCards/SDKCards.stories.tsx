@@ -1,6 +1,4 @@
 import { Meta, Story } from "@storybook/react"
-
-import { ReactComponent as CadenceIcon } from "../../../../images/tools/tool-fcl"
 import { SDKCard, SDKCardProps } from "."
 
 export default {
@@ -25,7 +23,7 @@ Primary.args = {
   link: "#",
   type: "sdk",
   stars: 52,
-  toolIcon: <CadenceIcon />,
+  toolIconSrc: "https://avatars.githubusercontent.com/u/62387156?s=64&v=4",
   lastCommit: "22/3",
   lastRelease: "207",
 }

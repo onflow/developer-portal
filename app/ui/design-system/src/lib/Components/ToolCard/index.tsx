@@ -1,5 +1,3 @@
-import { ReactElement } from "react"
-
 import { ReactComponent as StarIcon } from "../../../../images/action/star"
 import Tag from "../Tag"
 
@@ -10,7 +8,7 @@ export interface ToolCardProps {
   tags: string[]
   link: string
   stars: number
-  toolIcon: ReactElement
+  toolIconSrc: string
   description: string
 }
 
@@ -21,15 +19,17 @@ export function ToolCard({
   tags,
   link,
   stars,
-  toolIcon,
+  toolIconSrc,
   description,
 }: ToolCardProps) {
   return (
     <a
-      className="flex gap-4 rounded-lg bg-white py-6 px-8 hover:shadow-2xl dark:bg-primary-gray-dark dark:hover:shadow-2xl-dark"
+      className="flex gap-4 rounded-lg bg-white py-6 px-8 dark:bg-primary-gray-dark"
       href={link}
     >
-      <div>{toolIcon}</div>
+      <div>
+        <img src={toolIconSrc} alt={title} width={64} />
+      </div>
       <div className="grow">
         <h5 className="text-h5">{title}</h5>
         <div className="flex items-center">
@@ -41,13 +41,11 @@ export function ToolCard({
               {authorName}
             </div>
           </div>
-
           <div className="shrink-0 pr-1 line-clamp-1">
             {tags.map((tag, i) => (
               <Tag name={tag} key={i} />
             ))}
           </div>
-
           <div className="flex shrink-0 gap-1">
             <StarIcon className="h-fit text-amber-400" width={14} height={14} />
             <div className="md:leading-1 h-fit text-sm text-gray-500 dark:text-gray-300">
