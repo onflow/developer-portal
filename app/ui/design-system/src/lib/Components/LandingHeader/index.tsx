@@ -1,5 +1,8 @@
 import { ButtonLink } from "../Button"
 import { GradientName, LandingHeaderContainer } from "./LandingHeaderContainer"
+import { ReactComponent as DiscordIcon } from "../../../../images/social/discord"
+import { ReactComponent as GithubIcon } from "../../../../images/social/github"
+import { GITHUB_URL, DISCORD_URL } from "../../constants"
 
 export type LandingHeaderProps = {
   buttonText: string
@@ -36,7 +39,14 @@ export function LandingHeader({
               {buttonText}
             </ButtonLink>
           </div>
-          <div className="hidden basis-1/2 rounded-r-lg bg-white px-10 py-6 dark:bg-white/40 md:block md:px-20 md:py-12"></div>
+        </div>
+        <div className="fixed right-6 top-1/4 hidden flex-col text-center text-primary-gray-400 dark:text-white md:flex">
+          <a href={DISCORD_URL} className="scale-150 pb-4">
+            <DiscordIcon />
+          </a>
+          <a href={GITHUB_URL} className="scale-150">
+            <GithubIcon />
+          </a>
         </div>
       </div>
     </LandingHeaderContainer>
