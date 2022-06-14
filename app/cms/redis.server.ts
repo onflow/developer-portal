@@ -1,4 +1,5 @@
-import Redis from "ioredis"
+import Redis, { RedisOptions } from "ioredis"
+
 import { getRequiredServerEnvVar } from "./helpers"
 
 declare global {
