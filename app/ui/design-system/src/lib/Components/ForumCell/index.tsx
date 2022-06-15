@@ -30,7 +30,7 @@ const ForumCell = ({
         <p className="mb-2 text-xl font-semibold">{heading}</p>
         <span className="text-primary-gray-300">{subheading}</span>
       </div>
-      <div className="mt-8 flex items-center justify-between md:mt-0">
+      <div className="mt-8 flex justify-between md:mt-0 md:items-center">
         <div className="relative left-0 h-12 w-[9rem]">
           {participants.map((participant, index) => (
             <div
@@ -45,7 +45,7 @@ const ForumCell = ({
             </div>
           ))}
         </div>
-        <div className="ml-3 ml-9 flex items-center text-primary-gray-300 dark:text-primary-gray-100">
+        <div className="mt-2 ml-3 ml-9 flex items-center text-primary-gray-300 dark:text-primary-gray-100 md:mt-0">
           <CommentIcon />
           <span className="ml-3">{numComments}</span>
         </div>

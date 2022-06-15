@@ -34,7 +34,7 @@ export function SDKCards({ cards, description }: SDKCardsProps) {
             tags={sdkCard.tags}
             link={sdkCard.link}
             stars={sdkCard.stars}
-            toolIcon={sdkCard.toolIcon}
+            toolIconSrc={sdkCard.toolIconSrc}
             lastCommit={sdkCard.lastCommit}
             lastRelease={sdkCard.lastRelease}
           />

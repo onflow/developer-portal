@@ -1,5 +1,3 @@
-import { ReactElement } from "react"
-
 import { ReactComponent as CalendarIcon } from "../../../../images/action/date-calendar"
 import { ReactComponent as StarIcon } from "../../../../images/action/star"
 import { ReactComponent as CommitIcon } from "../../../../images/content/commit"
@@ -12,7 +10,7 @@ export interface SDKCardProps {
   tags: string[]
   link: string
   stars: number
-  toolIcon: ReactElement
+  toolIconSrc: string
   lastCommit: string
   lastRelease: string
 }
@@ -24,7 +22,7 @@ export function SDKCard({
   tags,
   link,
   stars,
-  toolIcon,
+  toolIconSrc,
   lastCommit,
   lastRelease,
 }: SDKCardProps) {
@@ -33,7 +31,9 @@ export function SDKCard({
       className="flex gap-4 rounded-lg bg-white py-6 px-8 hover:shadow-2xl dark:bg-primary-gray-dark dark:hover:shadow-2xl-dark"
       href={link}
     >
-      <div>{toolIcon}</div>
+      <div>
+        <img src={toolIconSrc} alt={title} width={64} />
+      </div>
       <div className="grow">
         <h5 className="text-h5">{title}</h5>
         <div className="flex items-center">
@@ -53,7 +53,9 @@ export function SDKCard({
           </div>
 
           <div className="flex shrink-0 gap-1">
-            <StarIcon className="h-fit text-amber-400" width={14} height={14} />
+            <div className="scale-50">
+              <StarIcon className="text-amber-400" />
+            </div>
             <div className="md:leading-1 h-fit text-sm text-gray-500 dark:text-gray-300">
               {stars}
             </div>

@@ -33,7 +33,7 @@ const TabMenu = ({ tabs, onTabChange, centered }: TabMenuProps) => {
             key={tab}
             className="relative cursor-pointer py-4 text-center text-black hover:text-primary-gray-400 dark:text-white hover:dark:text-primary-gray-100 md:py-6"
             role="button"
-            onClick={() => {
+            onClick={(e) => {
               setActiveIndex(index)
               onTabChange(index)
             }}

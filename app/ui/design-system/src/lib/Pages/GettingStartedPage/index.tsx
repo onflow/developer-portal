@@ -57,7 +57,7 @@ export function GettingStartedPage({
   contentNavigationItems,
 }: GettingStartedPageProps) {
   return (
-    <PageBackground>
+    <PageBackground gradient="getting-started">
       <PageSections>
         <PageSection className="pt-0 pb-0">
           <LandingHeader
@@ -65,18 +65,15 @@ export function GettingStartedPage({
             buttonUrl={landingHeaderItems.buttonUrl}
             callout={landingHeaderItems.callout}
             description={landingHeaderItems.description}
-            gradient={landingHeaderItems.gradient}
             title={landingHeaderItems.title}
           />
         </PageSection>
-
         <PageSection>
           <div className="container">
             <h2 className="text-h2 hidden pb-14 md:block">First Steps</h2>
             <LinkCard3Column items={linkCard3ColumnItems.items} />
           </div>
         </PageSection>
-
         <PageSection>
           <LinkCard2Column
             buttonText={linkCard2ColumnItems.buttonText}
@@ -125,7 +122,7 @@ export function GettingStartedPage({
                   tags={tool.tags}
                   link={tool.link}
                   stars={tool.stars}
-                  toolIcon={tool.toolIcon}
+                  toolIconSrc={tool.toolIconSrc}
                   description={tool.description}
                 />
               ))}
