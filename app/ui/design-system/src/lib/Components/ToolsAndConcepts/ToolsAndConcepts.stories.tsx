@@ -22,22 +22,17 @@ const tools = Array(6).fill({
   tags: ["Tags"],
   link: "#",
   stars: 52,
-  toolIcon: (
-    <img
-      src="https://avatars.githubusercontent.com/u/62387156?s=64&v=4"
-      alt=""
-    />
-  ),
+  toolIconSrc: "https://avatars.githubusercontent.com/u/62387156?s=64&v=4",
   description:
     "Lorem ipsum text here can go a two liner sentence or a one liner",
 })
 
-const args = {
+const DefaultArgs: ToolsAndConceptsProps = {
   tools,
   concepts: tools,
 }
 export const Default = Template.bind({})
-Default.args = args
+Default.args = DefaultArgs
 
 export const ToolsOnly = Template.bind({})
 ToolsOnly.args = {
@@ -46,7 +41,7 @@ ToolsOnly.args = {
 }
 
 export const dark = Template.bind({})
-dark.args = args
+dark.args = DefaultArgs
 dark.parameters = {
   backgrounds: {
     default: "dark",
@@ -54,7 +49,7 @@ dark.parameters = {
 }
 
 export const mobile = Template.bind({})
-mobile.args = args
+mobile.args = DefaultArgs
 mobile.parameters = {
   viewport: {
     defaultViewport: "xs",

@@ -30,7 +30,7 @@ const ToolsPage = ({
   apis,
 }: ToolsPageProps) => {
   return (
-    <PageBackground>
+    <PageBackground gradient="tools">
       <PageSections>
         <PageSection className="pt-0 pb-0">
           <LandingHeader
@@ -38,7 +38,6 @@ const ToolsPage = ({
             buttonUrl="#"
             callout="Featured callout here two lines"
             description="Lorem ipsum dolor sit amet proin gravida lorem ipsum dolor sit."
-            gradient="tools"
             title="Tools"
           />
         </PageSection>

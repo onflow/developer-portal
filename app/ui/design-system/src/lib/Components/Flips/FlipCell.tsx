@@ -1,6 +1,7 @@
 import clsx from "clsx"
 import { ReactComponent as CalendarIcon } from "../../../../images/action/date-calendar"
 import { ReactComponent as CommentIcon } from "../../../../images/arrows/message-circle"
+import { dateYYMMDD } from "../../utils/dates"
 import Tag from "../Tag"
 import RoundImage from "./RoundImage"
 
@@ -54,6 +55,8 @@ const FlipCell = ({
         "rounded-lg bg-white hover:shadow-2xl dark:bg-primary-gray-dark dark:hover:shadow-2xl-dark",
         PARENT_GRID
       )}
+      target="_blank"
+      rel="noreferrer"
     >
       <div className="hidden justify-end md:flex">
         <svg
@@ -89,7 +92,8 @@ const FlipCell = ({
           />
         </div>
         <div className="flex items-center justify-center">
-          <CalendarIcon /> <span className="ml-1 sm:ml-2">{date}</span>
+          <CalendarIcon />{" "}
+          <span className="ml-1 sm:ml-2">{dateYYMMDD(date)}</span>
         </div>
         <div className="flex items-center justify-center">
           <CommentIcon /> <span className="ml-1 sm:ml-2">{numComments}</span>

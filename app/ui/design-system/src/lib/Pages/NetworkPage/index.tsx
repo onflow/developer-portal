@@ -2,7 +2,6 @@ import { startOfDay } from "date-fns"
 import {
   AnnouncementCard,
   Footer,
-  LandingHeaderContainer,
   NetworkCard,
   NetworkDiscordCard,
   SocialLinksSignup,
@@ -26,16 +25,12 @@ const NetworkPage = () => {
   } as Article
 
   return (
-    <PageBackground>
+    <PageBackground gradient="network">
       <PageSections divided={false}>
-        <LandingHeaderContainer
-          gradient="network"
-          className="flex-col items-center bg-[center_top_-120px] md:bg-[length:100%]"
-        >
+        <PageSection>
           <div className="container">
-            <h1 className="text-h1 pt-[212px]">Network status</h1>
-
-            <div className="mt-12 flex flex-col gap-4 md:gap-6">
+            <h1 className="text-h1 pt-28 md:pt-[212px]">Network status</h1>
+            <div className="mt-20 flex flex-col gap-4 md:gap-6">
               {
                 // @ts-expect-error
                 data.map(({ name, status }: StatuspageApiResponse) => {
@@ -59,46 +54,46 @@ const NetworkPage = () => {
               }
             </div>
           </div>
-          <PageSection>
-            <div className="container">
-              <h3 className="text-h3 mb-10">Live updates</h3>
-              <div className="mt-6 flex flex-col gap-4 md:flex-row md:gap-8">
-                {[1, 2, 3].map((index) => (
-                  <NetworkDiscordCard
-                    message="Mainnet has been down for the past two hours"
+        </PageSection>
+        <PageSection>
+          <div className="container">
+            <h3 className="text-h3 mb-10">Live updates</h3>
+            <div className="mt-6 flex flex-col gap-4 md:flex-row md:gap-8">
+              {[1, 2, 3].map((index) => (
+                <NetworkDiscordCard
+                  message="Mainnet has been down for the past two hours"
+                  timestamp={startOfDay(new Date())}
+                  messageLink="https://google.com"
+                  username="@john_flow"
+                  key={index}
+                />
+              ))}
+            </div>
+          </div>
+        </PageSection>
+        <PageSection>
+          <div className="container">
+            <h3 className="text-h3 mb-6">Announcements</h3>
+            <div className="flex flex-col gap-4 md:gap-8">
+              {[1, 2, 3].map((index) => (
+                <div key={index}>
+                  <AnnouncementCard
+                    sourceIcon="https://github.githubassets.com/images/modules/logos_page/GitHub-Mark.png"
+                    sourceAltText="Github"
+                    heading="Holy schnikes Github is down"
                     timestamp={startOfDay(new Date())}
-                    messageLink="https://google.com"
-                    username="@john_flow"
-                    key={index}
+                    link="https://google.com"
                   />
-                ))}
-              </div>
+                </div>
+              ))}
             </div>
-          </PageSection>
-          <PageSection>
-            <div className="container">
-              <h3 className="text-h3 mb-6">Announcements</h3>
-              <div className="flex flex-col gap-4 md:gap-8">
-                {[1, 2, 3].map((index) => (
-                  <div key={index}>
-                    <AnnouncementCard
-                      sourceIcon="https://github.githubassets.com/images/modules/logos_page/GitHub-Mark.png"
-                      sourceAltText="Github"
-                      heading="Holy schnikes Github is down"
-                      timestamp={startOfDay(new Date())}
-                      link="https://google.com"
-                    />
-                  </div>
-                ))}
-              </div>
-            </div>
-          </PageSection>
-          <PageSection>
-            <div className="container">
-              <FeaturedArticle {...article} />
-            </div>
-          </PageSection>
-        </LandingHeaderContainer>
+          </div>
+        </PageSection>
+        <PageSection>
+          <div className="container">
+            <FeaturedArticle {...article} />
+          </div>
+        </PageSection>
       </PageSections>
       <SocialLinksSignup />
       <Footer />

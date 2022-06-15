@@ -1,5 +1,3 @@
-import { ReactComponent as DiscordIcon } from "../../../../images/social/discord"
-import { ReactComponent as GitHubIcon } from "../../../../images/social/github"
 import { SocialLinksSignup } from "../../Components"
 import { ButtonLink } from "../../Components/Button"
 import {
@@ -59,34 +57,23 @@ export function GettingStartedPage({
   contentNavigationItems,
 }: GettingStartedPageProps) {
   return (
-    <PageBackground>
+    <PageBackground gradient="getting-started">
       <PageSections>
         <PageSection className="pt-0 pb-0">
-          <div className="absolute right-0 hidden h-full flex-col justify-center gap-2 pr-11 lg:flex">
-            <a href="https://discord.com/invite/flow">
-              <DiscordIcon />
-            </a>
-            <a href="https://github.com/onflow">
-              <GitHubIcon />
-            </a>
-          </div>
           <LandingHeader
             buttonText={landingHeaderItems.buttonText}
             buttonUrl={landingHeaderItems.buttonUrl}
             callout={landingHeaderItems.callout}
             description={landingHeaderItems.description}
-            gradient={landingHeaderItems.gradient}
             title={landingHeaderItems.title}
           />
         </PageSection>
-
         <PageSection>
           <div className="container">
             <h2 className="text-h2 hidden pb-14 md:block">First Steps</h2>
             <LinkCard3Column items={linkCard3ColumnItems.items} />
           </div>
         </PageSection>
-
         <PageSection>
           <LinkCard2Column
             buttonText={linkCard2ColumnItems.buttonText}
@@ -135,7 +122,7 @@ export function GettingStartedPage({
                   tags={tool.tags}
                   link={tool.link}
                   stars={tool.stars}
-                  toolIcon={tool.toolIcon}
+                  toolIconSrc={tool.toolIconSrc}
                   description={tool.description}
                 />
               ))}

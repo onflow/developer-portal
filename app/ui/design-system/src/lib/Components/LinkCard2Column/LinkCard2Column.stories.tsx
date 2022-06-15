@@ -1,7 +1,6 @@
 import { Meta, Story } from "@storybook/react"
 import { renderToStaticMarkup } from "react-dom/server"
 import { LinkCard2Column, LinkCard2ColumnProps } from "."
-import KittyItemsImg from "../../../../images/content/kitty-items@3x.png"
 import { ReactComponent as CadenceIcon } from "../../../../images/tools/tool-cadence-gradient"
 
 export const svgToDataUri = (
@@ -14,6 +13,7 @@ export const svgToDataUri = (
 export default {
   component: LinkCard2Column,
   title: "Components/LinkCard2Column",
+  excludeStories: ["svgToDataUri"],
 } as Meta
 
 const Template: Story<LinkCard2ColumnProps> = (args) => {
@@ -40,7 +40,7 @@ Default.args = {
       title: "Internal single link example",
       description: "This is an example of an item with a single internal link.",
       href: "#create-non-fungible-token",
-      icon: KittyItemsImg,
+      icon: "https://avatars.githubusercontent.com/u/62387156?s=64&v=4",
     },
     {
       title: "Create Non Fungible Token",
