@@ -1,6 +1,5 @@
 import { Meta, Story } from "@storybook/react"
 import ToolsPage, { ToolsPageProps } from "."
-import { ReactComponent as CadenceIcon } from "../../../../images/tools/tool-cadence"
 
 export default {
   component: ToolsPage,
@@ -18,7 +17,7 @@ const args = {
     link: "#",
     type: "tool",
     stars: 52,
-    toolIcon: <CadenceIcon />,
+    toolIconSrc: "https://avatars.githubusercontent.com/u/62387156?s=64&v=4",
     description:
       "Lorem ipsum text here can go a two liner sentence or a one liner",
   }),
@@ -30,7 +29,7 @@ const args = {
     link: "#",
     type: "sdk",
     stars: 52,
-    toolIcon: <CadenceIcon />,
+    toolIconSrc: "https://avatars.githubusercontent.com/u/62387156?s=64&v=4",
     lastCommit: "22/3",
     lastRelease: "207",
   }),

@@ -47,7 +47,7 @@ export default function CommunityPage({
   forumTopics,
 }: CommunityPageProps) {
   return (
-    <PageBackground>
+    <PageBackground gradient="community">
       <PageSections>
         <PageSection className="pt-0 pb-0">
           <LandingHeader
@@ -55,7 +55,6 @@ export default function CommunityPage({
             buttonUrl="#"
             callout="Featured callout here two lines"
             description="Lorem ipsum dolor sit amet proin gravida lorem ipsum dolor sit."
-            gradient="community"
             title="Community"
           />
         </PageSection>

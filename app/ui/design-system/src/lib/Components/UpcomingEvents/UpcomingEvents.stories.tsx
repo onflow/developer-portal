@@ -12,8 +12,7 @@ const Template: Story<UpcomingEventsProps> = (args) => (
   </div>
 )
 
-export const Default = Template.bind({})
-Default.args = {
+const DefaultArgs = {
   officeHours: <p>[office hours placeholder]</p>,
   workingHours: <p>[working hours placeholder]</p>,
   goToCommunityHref: "#todo",
@@ -105,8 +104,11 @@ Default.args = {
   ],
 }
 
+export const Default = Template.bind({})
+Default.args = DefaultArgs
+
 export const SingleEvent = Template.bind({})
 SingleEvent.args = {
   ...Default.args,
-  primaryEvents: Default.args.primaryEvents.slice(0, 1),
+  primaryEvents: DefaultArgs.primaryEvents.slice(0, 1),
 }

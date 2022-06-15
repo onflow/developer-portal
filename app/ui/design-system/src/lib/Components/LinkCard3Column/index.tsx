@@ -15,12 +15,14 @@ export type LinkCard3ColumnItemProps = {
   }>
 }
 
+export type LinkCard3ColumnItems = [
+  LinkCard3ColumnItemProps,
+  LinkCard3ColumnItemProps,
+  LinkCard3ColumnItemProps
+]
+
 export type LinkCard3ColumnProps = {
-  items: [
-    LinkCard3ColumnItemProps,
-    LinkCard3ColumnItemProps,
-    LinkCard3ColumnItemProps
-  ]
+  items: LinkCard3ColumnItems
   topRounded?: boolean
 }
 

@@ -55,7 +55,7 @@ const ProjectCard = ({
           />
           {author.name}
           <div className="flex">
-            <div className="scale-75 text-secondary-yellow">
+            <div className="scale-50 text-secondary-yellow">
               <StarIcon />
             </div>
             {numStars}
