@@ -28,10 +28,8 @@ export function LinkCard2Column({
   homePage = false,
 }: LinkCard2ColumnProps) {
   const classes = clsx(
-    "flex flex-col items-start px-4 py-8 rounded-lg bg-primary-gray-100/30 md:flex-row md:px-20",
-    homePage
-      ? "md:py-24 dark:bg-[#1F232A]"
-      : "md:py-12 dark:bg-primary-gray-dark",
+    "flex flex-col items-start px-4 py-12 rounded-lg bg-primary-gray-100/30 md:flex-row md:px-20",
+    homePage ? "md:py-24 dark:bg-[#1F232A]" : "dark:bg-primary-gray-dark",
     {
       "rounded-br-none rounded-bl-none": !bottomRounded,
     }
@@ -54,7 +52,7 @@ export function LinkCard2Column({
           </p>
           <ButtonLink
             href={buttonUrl}
-            className="mb-10 mt-8 md:mt-10"
+            className="mt-8 mb-10 md:mt-10"
             variant="primary-no-darkmode"
           >
             {buttonText}

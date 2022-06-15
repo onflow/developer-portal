@@ -5,7 +5,7 @@ import { ReactComponent as FCLIcon } from "../../../../images/tools/tool-fcl"
 
 import { svgToDataUri } from "../../Components/LinkCard2Column/LinkCard2Column.stories"
 
-const Icon1 = () => (
+export const Icon1 = () => (
   <svg
     width="38"
     height="42"
@@ -63,7 +63,7 @@ const Icon1 = () => (
   </svg>
 )
 
-const Icon2 = () => (
+export const Icon2 = () => (
   <svg
     width="33"
     height="37"
@@ -80,7 +80,7 @@ const Icon2 = () => (
   </svg>
 )
 
-const Icon3 = () => (
+export const Icon3 = () => (
   <svg
     width="36"
     height="41"
@@ -348,7 +348,7 @@ const gettingStartedPageData = {
       icon: "concepts",
     },
   ],
-}
+} as GettingStartedPageProps
 
 export default {
   component: GettingStartedPage,
