@@ -2,6 +2,17 @@ import { LoaderFunction } from "@remix-run/server-runtime"
 import ToolsPage, {
   ToolsPageProps,
 } from "../../ui/design-system/src/lib/Pages/ToolsPage"
+import SdkElixirIconSrc from "../../ui/design-system/images/sdk/elixir.svg"
+import SdkGoIconSrc from "../../ui/design-system/images/sdk/go.svg"
+import SdkNetIconSrc from "../../ui/design-system/images/sdk/net.svg"
+import SdkRustIconSrc from "../../ui/design-system/images/sdk/rust.svg"
+import SdkSwiftIconSrc from "../../ui/design-system/images/sdk/swift.svg"
+import ToolPortIconSrc from "../../ui/design-system/images/tools/tool-port.svg"
+import ToolCliIconSrc from "../../ui/design-system/images/tools/tool-cli.svg"
+import ToolFclIconSrc from "../../ui/design-system/images/tools/tool-fcl.svg"
+import ToolEmulatorIconSrc from "../../ui/design-system/images/tools/tool-emulator.svg"
+import ToolVsCodeIconSrc from "../../ui/design-system/images/tools/tool-vscode.svg"
+import ToolTestingIconSrc from "../../ui/design-system/images/tools/tool-testing.svg"
 import { useLoaderData } from "@remix-run/react"
 
 const loaderData: ToolsPageProps = {
@@ -13,7 +24,7 @@ const loaderData: ToolsPageProps = {
       tags: ["Tool"],
       link: "#",
       stars: 52,
-      iconType: "port",
+      iconSrc: ToolPortIconSrc,
       description:
         "Lorem ipsum text here can go a two liner sentence or a one liner",
     },
@@ -24,7 +35,7 @@ const loaderData: ToolsPageProps = {
       tags: ["Tool"],
       link: "#",
       stars: 52,
-      iconType: "emulator",
+      iconSrc: ToolEmulatorIconSrc,
       description:
         "Lorem ipsum text here can go a two liner sentence or a one liner",
     },
@@ -35,7 +46,7 @@ const loaderData: ToolsPageProps = {
       tags: ["Tool"],
       link: "#",
       stars: 52,
-      iconType: "cli",
+      iconSrc: ToolCliIconSrc,
       description:
         "Lorem ipsum text here can go a two liner sentence or a one liner",
     },
@@ -46,7 +57,7 @@ const loaderData: ToolsPageProps = {
       tags: ["Tool"],
       link: "#",
       stars: 52,
-      iconType: "emulator",
+      iconSrc: ToolVsCodeIconSrc,
       description:
         "Lorem ipsum text here can go a two liner sentence or a one liner",
     },
@@ -57,7 +68,7 @@ const loaderData: ToolsPageProps = {
       tags: ["Tool"],
       link: "#",
       stars: 52,
-      iconType: "fcl",
+      iconSrc: ToolFclIconSrc,
       description:
         "Lorem ipsum text here can go a two liner sentence or a one liner",
     },
@@ -69,7 +80,7 @@ const loaderData: ToolsPageProps = {
       tags: ["Tool"],
       link: "#",
       stars: 52,
-      iconType: "testing",
+      iconSrc: ToolTestingIconSrc,
       description:
         "Lorem ipsum text here can go a two liner sentence or a one liner",
     },
@@ -82,7 +93,7 @@ const loaderData: ToolsPageProps = {
       tags: ["Tool"],
       link: "#",
       stars: 52,
-      iconType: "swift",
+      iconSrc: SdkSwiftIconSrc,
       lastCommit: "22/3",
       lastRelease: "207",
     },
@@ -93,7 +104,7 @@ const loaderData: ToolsPageProps = {
       tags: ["Tool"],
       link: "#",
       stars: 52,
-      iconType: "elixir",
+      iconSrc: SdkElixirIconSrc,
       lastCommit: "22/3",
       lastRelease: "207",
     },
@@ -104,7 +115,7 @@ const loaderData: ToolsPageProps = {
       tags: ["Tool"],
       link: "#",
       stars: 52,
-      iconType: "go",
+      iconSrc: SdkGoIconSrc,
       lastCommit: "22/3",
       lastRelease: "207",
     },
@@ -115,7 +126,7 @@ const loaderData: ToolsPageProps = {
       tags: ["Tool"],
       link: "#",
       stars: 52,
-      iconType: "rust",
+      iconSrc: SdkRustIconSrc,
       lastCommit: "22/3",
       lastRelease: "207",
     },
@@ -126,7 +137,7 @@ const loaderData: ToolsPageProps = {
       tags: ["Tool"],
       link: "#",
       stars: 52,
-      iconType: "net",
+      iconSrc: SdkNetIconSrc,
       lastCommit: "22/3",
       lastRelease: "207",
     },
