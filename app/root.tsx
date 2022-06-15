@@ -28,6 +28,8 @@ import { bodyClasses } from "./styles/sharedClasses"
 import { getThemeSession } from "./theme.server"
 import { Footer } from "./ui/design-system/src"
 import { ErrorPage } from "./ui/design-system/src/lib/Components/ErrorPage"
+import { NavigationBar } from "./ui/design-system/src/lib/Components/NavigationBar"
+import { MenuItems } from "./component-data/NavigationBar"
 
 export const links: LinksFunction = () => {
   return [{ rel: "stylesheet", href: styles }]
@@ -63,8 +65,10 @@ function App() {
         <ThemeHead ssrTheme={Boolean(data.theme)} />
       </head>
       <body className={bodyClasses}>
+        <div className="p-10">
+          <NavigationBar menuItems={MenuItems} onDarkModeToggle={() => {}} />
+        </div>
         <ThemeBody ssrTheme={Boolean(data.theme)} />
-        {/* <MainNav /> */}
         <Outlet />
         <Footer />
         <ScrollRestoration />
