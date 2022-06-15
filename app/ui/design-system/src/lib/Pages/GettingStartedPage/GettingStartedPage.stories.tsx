@@ -13,8 +13,9 @@ import { ReactComponent as RustIcon } from "../../../../images/sdk/rust"
 import { ReactComponent as SwiftIcon } from "../../../../images/sdk/swift"
 
 import { svgToDataUri } from "../../Components/LinkCard2Column/LinkCard2Column.stories"
+import { GradientName } from "../../Components/LandingHeader/LandingHeaderContainer"
 
-const Icon1 = () => (
+export const Icon1 = () => (
   <svg
     width="38"
     height="42"
@@ -72,7 +73,7 @@ const Icon1 = () => (
   </svg>
 )
 
-const Icon2 = () => (
+export const Icon2 = () => (
   <svg
     width="33"
     height="37"
@@ -89,7 +90,7 @@ const Icon2 = () => (
   </svg>
 )
 
-const Icon3 = () => (
+export const Icon3 = () => (
   <svg
     width="36"
     height="41"
@@ -115,7 +116,7 @@ const gettingStartedPageData = {
     callout: "Featured callout here two lines",
     description:
       "Lorem ipsum dolor sit amet proin gravida lorem ipsum dolor sit.",
-    gradient: "getting-started",
+    gradient: "getting-started" as GradientName,
     title: "Getting Started",
   },
   linkCard3ColumnItems: {
@@ -358,7 +359,7 @@ const gettingStartedPageData = {
       icon: "concepts",
     },
   ],
-}
+} as any
 
 export default {
   component: GettingStartedPage,
