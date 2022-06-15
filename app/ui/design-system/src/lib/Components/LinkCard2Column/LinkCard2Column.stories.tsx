@@ -84,11 +84,11 @@ export const NoTags = Template.bind({})
 NoTags.args = {
   ...Default.args,
   tags: undefined,
-  items: Default.args.items.slice(0, 2),
+  items: Default.args?.items?.slice(0, 2),
 }
 
 export const SingleItem = Template.bind({})
 SingleItem.args = {
   ...Default.args,
-  items: Default.args.items.slice(1, 2),
+  items: Default.args?.items?.slice(1, 2),
 }

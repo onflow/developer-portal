@@ -14,6 +14,7 @@ import { ReactComponent as SwiftIcon } from "../../../../images/sdk/swift"
 
 import { svgToDataUri } from "../../Components/LinkCard2Column/LinkCard2Column.stories"
 import { GradientName } from "../../Components/LandingHeader/LandingHeaderContainer"
+import { LinkCard3ColumnItemProps } from "../../Components/LinkCard3Column"
 
 export const Icon1 = () => (
   <svg
@@ -359,7 +360,7 @@ const gettingStartedPageData = {
       icon: "concepts",
     },
   ],
-} as any
+} as GettingStartedPageProps
 
 export default {
   component: GettingStartedPage,

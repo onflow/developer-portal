@@ -18,13 +18,16 @@ import { ToolCardProps } from "~/ui/design-system/src/lib/Components/ToolCard"
 import { FeaturedArticleCardProps } from "~/ui/design-system/src/lib/Components/FeaturedArticleCard"
 import { ContentNavigationProps } from "~/ui/design-system/src/lib/Components/ContentNavigation"
 import { LandingHeaderProps } from "~/ui/design-system/src/lib/Components/LandingHeader"
+import { LinkCard3ColumnProps } from "~/ui/design-system/src/lib/Components/LinkCard3Column"
+import { LinkCard2ColumnProps } from "~/ui/design-system/src/lib/Components/LinkCard2Column"
 
-const linkCard2ColumnItems = {
+const linkCard2ColumnItems: LinkCard2ColumnProps = {
   buttonText: "View Concepts",
   buttonUrl: "#changeme",
   description:
     "Building on Flow is easy. Start building now with lorem ipsum et sigitus loranum prospitarius.",
   title: "Core Concepts",
+  tags: ["Tag", "Lorem", "Ipsum"],
   items: [
     {
       title: "Cadence",
@@ -43,7 +46,7 @@ const linkCard2ColumnItems = {
   ],
 }
 
-const linkCard3ColumnItems = {
+const linkCard3ColumnItems: LinkCard3ColumnProps = {
   items: [
     {
       title: "Quick Start",
@@ -114,7 +117,7 @@ const linkCard3ColumnItems = {
       ],
     },
   ],
-} as any
+}
 
 type DynamicGettingStartedPageProps = Pick<
   GettingStartedPageProps,
