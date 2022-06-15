@@ -28,12 +28,12 @@ const TutorialCard = ({
     <a
       href={link}
       className={clsx(
-        "flex h-[300px] w-full flex-col overflow-hidden rounded-lg bg-white hover:shadow-2xl dark:bg-primary-gray-dark dark:hover:shadow-2xl-dark md:w-[272px]",
+        "flex h-[340px] w-full flex-col overflow-hidden rounded-lg bg-white hover:shadow-2xl dark:bg-primary-gray-dark dark:hover:shadow-2xl-dark md:w-[272px]",
         className
       )}
     >
       <img src={imageUri} alt="" className="h-[110px] object-cover" />
-      <div className="p-4">
+      <div className="flex flex-1 flex-col justify-between p-4">
         <div className="text-lg font-bold md:text-xl">{heading}</div>
         <div className="my-2">
           {tags.map((tag) => (
