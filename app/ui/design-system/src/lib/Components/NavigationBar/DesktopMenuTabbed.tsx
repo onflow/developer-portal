@@ -14,7 +14,12 @@ export function DesktopMenuTabbed({ className, tabs }: DesktopMenuTabbedProps) {
   const selectedTab = tabs[selectedTabIndex]
 
   return (
-    <div className={clsx("flex max-h-full items-stretch", className)}>
+    <div
+      className={clsx(
+        "flex max-h-full items-stretch bg-white dark:bg-black",
+        className
+      )}
+    >
       <div
         className={"flex w-80 flex-initial flex-col overflow-y-auto shadow-lg"}
       >

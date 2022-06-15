@@ -55,7 +55,7 @@ export const loader: LoaderFunction = async ({ request }) => {
 
 function App() {
   const data = useLoaderData<LoaderData>()
-  const [theme] = useTheme()
+  const [theme, setTheme] = useTheme()
 
   return (
     <html lang="en" className={clsx("h-full", theme ?? "")}>
@@ -65,12 +65,12 @@ function App() {
         <ThemeHead ssrTheme={Boolean(data.theme)} />
       </head>
       <body className={bodyClasses}>
-        <div className="p-10">
-          <NavigationBar
-            menuItems={navBarData.menuItems}
-            onDarkModeToggle={() => {}}
-          />
-        </div>
+        <NavigationBar
+          menuItems={navBarData.menuItems}
+          onDarkModeToggle={() =>
+            setTheme(theme === Theme.DARK ? Theme.LIGHT : Theme.DARK)
+          }
+        />
         <ThemeBody ssrTheme={Boolean(data.theme)} />
         <Outlet />
         <Footer />
