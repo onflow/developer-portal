@@ -81,8 +81,6 @@ const ToolsPage = ({
           </div>
         </PageSection>
       </PageSections>
-      <SocialLinksSignup />
-      <Footer />
     </PageBackground>
   )
 }
