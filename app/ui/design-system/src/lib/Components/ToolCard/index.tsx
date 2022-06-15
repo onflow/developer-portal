@@ -1,16 +1,34 @@
 import { ReactComponent as StarIcon } from "../../../../images/action/star"
+import PortIconSrc from "../../../../images/tools/tool-port.svg"
+import CliIconSrc from "../../../../images/tools/tool-cli.svg"
+import FclIconSrc from "../../../../images/tools/tool-fcl.svg"
+import EmulatorIconSrc from "../../../../images/tools/tool-emulator.svg"
+import VsCodeIconSrc from "../../../../images/tools/tool-vscode.svg"
+import TestingIconSrc from "../../../../images/tools/tool-testing.svg"
 import Tag from "../Tag"
 
-export interface ToolCardProps {
+export const TOOL_ICONS = {
+  port: PortIconSrc,
+  cli: CliIconSrc,
+  fcl: FclIconSrc,
+  emulator: EmulatorIconSrc,
+  vscode: VsCodeIconSrc,
+  testing: TestingIconSrc,
+}
+
+export type ToolIcon =
+  | { iconSrc: string; iconType?: never }
+  | { iconSrc?: never; iconType: keyof typeof TOOL_ICONS }
+
+export type ToolCardProps = {
   title: string
   authorIcon: string
   authorName: string
   tags: string[]
   link: string
   stars: number
-  toolIconSrc: string
   description: string
-}
+} & ToolIcon
 
 export function ToolCard({
   title,
@@ -19,7 +37,8 @@ export function ToolCard({
   tags,
   link,
   stars,
-  toolIconSrc,
+  iconType,
+  iconSrc,
   description,
 }: ToolCardProps) {
   return (
@@ -28,7 +47,11 @@ export function ToolCard({
       href={link}
     >
       <div>
-        <img src={toolIconSrc} alt={title} width={64} />
+        <img
+          src={iconType ? TOOL_ICONS[iconType] : iconSrc}
+          alt={title}
+          width={64}
+        />
       </div>
       <div className="grow">
         <h5 className="text-h5">{title}</h5>

@@ -22,7 +22,7 @@ const tools = Array(6).fill({
   tags: ["Tags"],
   link: "#",
   stars: 52,
-  toolIconSrc: "https://avatars.githubusercontent.com/u/62387156?s=64&v=4",
+  iconSrc: "https://avatars.githubusercontent.com/u/62387156?s=64&v=4",
   description:
     "Lorem ipsum text here can go a two liner sentence or a one liner",
 })

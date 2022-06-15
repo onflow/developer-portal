@@ -1,19 +1,35 @@
 import { ReactComponent as CalendarIcon } from "../../../../images/action/date-calendar"
 import { ReactComponent as StarIcon } from "../../../../images/action/star"
 import { ReactComponent as CommitIcon } from "../../../../images/content/commit"
+import ElixirIconSrc from "../../../../images/sdk/elixir.svg"
+import GoIconSrc from "../../../../images/sdk/go.svg"
+import NetIconSrc from "../../../../images/sdk/net.svg"
+import RustIconSrc from "../../../../images/sdk/rust.svg"
+import SwiftIconSrc from "../../../../images/sdk/swift.svg"
 import Tag from "../Tag"
 
-export interface SDKCardProps {
+export const SDK_ICONS = {
+  elixir: ElixirIconSrc,
+  go: GoIconSrc,
+  net: NetIconSrc,
+  rust: RustIconSrc,
+  swift: SwiftIconSrc,
+}
+
+export type SdkIcon =
+  | { iconSrc: string; iconType?: never }
+  | { iconSrc?: never; iconType: keyof typeof SDK_ICONS }
+
+export type SDKCardProps = {
   title: string
   authorIcon: string
   authorName: string
   tags: string[]
   link: string
   stars: number
-  toolIconSrc: string
   lastCommit: string
   lastRelease: string
-}
+} & SdkIcon
 
 export function SDKCard({
   title,
@@ -22,7 +38,8 @@ export function SDKCard({
   tags,
   link,
   stars,
-  toolIconSrc,
+  iconSrc,
+  iconType,
   lastCommit,
   lastRelease,
 }: SDKCardProps) {
@@ -32,7 +49,11 @@ export function SDKCard({
       href={link}
     >
       <div>
-        <img src={toolIconSrc} alt={title} width={64} />
+        <img
+          src={iconType ? SDK_ICONS[iconType] : iconSrc}
+          alt={title}
+          width={64}
+        />
       </div>
       <div className="grow">
         <h5 className="text-h5">{title}</h5>

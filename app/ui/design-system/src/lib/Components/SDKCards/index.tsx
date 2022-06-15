@@ -26,18 +26,7 @@ export function SDKCards({ cards, description }: SDKCardsProps) {
       </div>
       <div className="mb-4 grid grid-cols-1 grid-rows-5 gap-4 md:grid-cols-2 md:grid-rows-3 md:gap-8">
         {cards.map((sdkCard, i) => (
-          <SDKCard
-            key={i}
-            title={sdkCard.title}
-            authorIcon={sdkCard.authorIcon}
-            authorName={sdkCard.authorName}
-            tags={sdkCard.tags}
-            link={sdkCard.link}
-            stars={sdkCard.stars}
-            toolIconSrc={sdkCard.toolIconSrc}
-            lastCommit={sdkCard.lastCommit}
-            lastRelease={sdkCard.lastRelease}
-          />
+          <SDKCard key={i} {...sdkCard} />
         ))}
       </div>
       <ButtonLink variant="primary" className="w-full md:hidden" href="#">
