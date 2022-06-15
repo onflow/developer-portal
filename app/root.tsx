@@ -29,7 +29,7 @@ import { getThemeSession } from "./theme.server"
 import { Footer } from "./ui/design-system/src"
 import { ErrorPage } from "./ui/design-system/src/lib/Components/ErrorPage"
 import { NavigationBar } from "./ui/design-system/src/lib/Components/NavigationBar"
-import { MenuItems } from "./component-data/NavigationBar"
+import { navBarData } from "./component-data/NavigationBar"
 
 export const links: LinksFunction = () => {
   return [{ rel: "stylesheet", href: styles }]
@@ -66,7 +66,10 @@ function App() {
       </head>
       <body className={bodyClasses}>
         <div className="p-10">
-          <NavigationBar menuItems={MenuItems} onDarkModeToggle={() => {}} />
+          <NavigationBar
+            menuItems={navBarData.menuItems}
+            onDarkModeToggle={() => {}}
+          />
         </div>
         <ThemeBody ssrTheme={Boolean(data.theme)} />
         <Outlet />
