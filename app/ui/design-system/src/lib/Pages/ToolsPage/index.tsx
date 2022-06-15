@@ -1,4 +1,4 @@
-import { Footer, SocialLinksSignup, ToolsAndConcepts } from "../../Components"
+import { ToolsAndConcepts } from "../../Components"
 import {
   ContentNavigation,
   ContentNavigationProps,
