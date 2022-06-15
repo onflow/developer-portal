@@ -60,11 +60,10 @@ export function LearnPage({
   ).sort()
 
   return (
-    <PageBackground>
+    <PageBackground gradient="tools">
       <PageSections>
         <PageSection className="pt-0 pb-0">
           <LandingHeader
-            gradient="tools"
             title="Learn"
             buttonText="Button Text"
             buttonUrl="#fixme"

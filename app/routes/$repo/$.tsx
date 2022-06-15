@@ -1,51 +1,13 @@
-// import { InternalSidebar } from "@flow-docs/ui";
-import type { LoaderFunction, MetaFunction } from "@remix-run/node"
-import { useLoaderData, useCatch, Link, useLocation } from "@remix-run/react"
-import { json } from "@remix-run/node"
+import { LoaderFunction } from "@remix-run/node"
 import { getMdxPage, useMdxComponent } from "~/cms/utils/mdx"
+import { json } from "@remix-run/node"
+import { Link, useCatch, useLoaderData, useLocation } from "@remix-run/react"
+import invariant from "tiny-invariant"
 import { ErrorPage } from "~/ui/design-system/src/lib/Components/ErrorPage"
 
-// import { TEMP_SIDEBAR_CONFIG } from "@flow-docs/ui";
-
-// TODO: MAP REPO TO INFO ARCH: EG "fcl-js repo" should redirect to '/sdks/fcl' ... etc
-// might add this repo mapping to json resource endpoint
-// TODO: Allow specifying a specific branch, ideally dynamically (from publisher-land)
-// ... but we can hardcode  master / main for MVP
-const repos = [
-  "flow",
-  "cadence",
-  "flow-cli",
-  "flow-js-testing",
-  "flow-go-sdk",
-  "fcl-js",
-  "flow-emulator",
-  "flow-cadut",
-  "mock-developer-doc",
-]
-
-const validRepo = (repo: string | undefined) => {
-  return repos.includes(repo!)
-}
-
-export const meta: MetaFunction = () => {
-  return { title: "" }
-}
-
 export const loader: LoaderFunction = async ({ params, request }) => {
-  // Here we forward the request if the first URL segemnt does
-  // not match a repo we know about ...
-
-  if (!validRepo(params["repo"])) {
-    throw json({ status: "noRepo" }, { status: 404 })
-  }
-  // TODO: make this redirect to appropriate section for repo
-  // If no approapriate section, then fall through and try to get content
-  // for the repo ... otherwise return Response and handle down the chain?
-  if (!params["repo"] || !validRepo(params["repo"])) {
-    return new Response()
-  }
-
   const [repo, fileOrDirPath] = [params["repo"], params["*"] || "index"]
+  invariant(repo, `expected a value`)
 
   let page
   try {

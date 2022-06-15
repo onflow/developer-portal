@@ -1,23 +1,47 @@
-.bg-gradient-community {
+.page-bg-gradient {
+  background-repeat: no-repeat;
+  background-position: 50% -40px;
+  background-size: 1000px auto;
+
+  @media screen and (min-width: 768px) {
+    background-size: 1500px auto;
+    background-position: 50% -40px;
+  }
+
+  @media screen and (min-width: 1536px) {
+    background-size: contain;
+    background-position: 50% -100px;
+  }
+
+  @media screen and (min-width: 1920px) {
+    background-position: 50% -200px;
+  }
+
+  @media screen and (min-width: 2200px) {
+    background-position: 50% -400px;
+  }
+}
+
+.page-bg-gradient-community {
   background-image: url(/images/gradients/community.svg);
 }
 
-.bg-gradient-concepts {
+.page-bg-gradient-concepts {
   background-image: url(/images/gradients/concepts.svg);
 }
 
-.bg-gradient-getting-started {
+.page-bg-gradient-getting-started {
   background-image: url(/images/gradients/getting-started.svg);
 }
 
-.bg-gradient-home {
+.page-bg-gradient-home {
   background-image: url(/images/gradients/home.svg);
 }
 
-.bg-gradient-network {
+.page-bg-gradient-network {
   background-image: url(/images/gradients/network.svg);
 }
 
-.bg-gradient-tools {
+.page-bg-gradient-tools {
   background-image: url(/images/gradients/tools.svg);
 }

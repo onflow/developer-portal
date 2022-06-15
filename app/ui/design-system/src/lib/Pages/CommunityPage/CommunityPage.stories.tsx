@@ -7,6 +7,7 @@ import { Default as DefaultFlips } from "../../Components/Flips/Flips.stories"
 import { Default as DefaultProjects } from "../../Components/ProjectCards/ProjectCards.stories"
 import { Default as DefaultTools } from "../../Components/ToolsAndConcepts/ToolsAndConcepts.stories"
 import { Default as DefaultUpcomingEvents } from "../../Components/UpcomingEvents/UpcomingEvents.stories"
+import { Default as DefaultForumCell } from "../../Components/ForumCell/ForumCell.stories"
 
 export default {
   component: CommunityPage,
@@ -36,6 +37,7 @@ Default.args = {
       icon: "funding",
     },
   ],
+  forumTopics: Array(3).fill(DefaultForumCell.args),
 }
 
 export const dark = Template.bind({})

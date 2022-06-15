@@ -1,12 +1,12 @@
 import type { LoaderFunction } from "@remix-run/node"
 import { useLoaderData } from "@remix-run/react"
-import { fetchFlips } from "~/cms/utils/fetch-flips"
+import { fetchOpenFlips } from "~/cms/utils/fetch-flips"
 import { FlipCellProps } from "~/ui/design-system/src/lib/Components/FlipCell"
 
 export type LoaderData = FlipCellProps[]
 
 export const loader: LoaderFunction = async () => {
-  return fetchFlips()
+  return fetchOpenFlips()
 }
 
 export default function Flips() {

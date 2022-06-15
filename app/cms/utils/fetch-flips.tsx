@@ -1,7 +1,7 @@
 import { Octokit } from "@octokit/core"
 import { FlipCellProps } from "~/ui/design-system/src/lib/Components/FlipCell"
 
-export const fetchFlips = async () => {
+export const fetchOpenFlips = async () => {
   const octokit = new Octokit({
     auth: process.env.BOT_GITHUB_TOKEN,
   })

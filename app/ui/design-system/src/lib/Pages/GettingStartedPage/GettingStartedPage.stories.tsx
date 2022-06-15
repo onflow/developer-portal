@@ -1,16 +1,7 @@
 import { Meta, Story } from "@storybook/react"
 import { GettingStartedPage, GettingStartedPageProps } from "."
 import { ReactComponent as CadenceIcon } from "../../../../images/tools/tool-cadence"
-import { ReactComponent as FLOWCLIIcon } from "../../../../images/tools/tool-cli"
-import { ReactComponent as EmulatorIcon } from "../../../../images/tools/tool-emulator"
 import { ReactComponent as FCLIcon } from "../../../../images/tools/tool-fcl"
-import { ReactComponent as FlowPortIcon } from "../../../../images/tools/tool-port"
-
-import { ReactComponent as ElixirIcon } from "../../../../images/sdk/elixir"
-import { ReactComponent as GoIcon } from "../../../../images/sdk/go"
-import { ReactComponent as NetIcon } from "../../../../images/sdk/net"
-import { ReactComponent as RustIcon } from "../../../../images/sdk/rust"
-import { ReactComponent as SwiftIcon } from "../../../../images/sdk/swift"
 
 import { svgToDataUri } from "../../Components/LinkCard2Column/LinkCard2Column.stories"
 
@@ -115,7 +106,6 @@ const gettingStartedPageData = {
     callout: "Featured callout here two lines",
     description:
       "Lorem ipsum dolor sit amet proin gravida lorem ipsum dolor sit.",
-    gradient: "getting-started",
     title: "Getting Started",
   },
   linkCard3ColumnItems: {
@@ -235,7 +225,7 @@ const gettingStartedPageData = {
       tags: ["Tags"],
       link: "#",
       stars: 52,
-      toolIcon: <SwiftIcon />,
+      toolIconSrc: "https://avatars.githubusercontent.com/u/62387156?s=64&v=4",
       lastCommit: "22/3",
       lastRelease: "207",
     },
@@ -246,7 +236,7 @@ const gettingStartedPageData = {
       tags: ["Tags"],
       link: "#",
       stars: 52,
-      toolIcon: <NetIcon />,
+      toolIconSrc: "https://avatars.githubusercontent.com/u/62387156?s=64&v=4",
       lastCommit: "22/3",
       lastRelease: "207",
     },
@@ -257,7 +247,7 @@ const gettingStartedPageData = {
       tags: ["Tags"],
       link: "#",
       stars: 52,
-      toolIcon: <GoIcon />,
+      toolIconSrc: "https://avatars.githubusercontent.com/u/62387156?s=64&v=4",
       lastCommit: "22/3",
       lastRelease: "207",
     },
@@ -268,7 +258,7 @@ const gettingStartedPageData = {
       tags: ["Tags"],
       link: "#",
       stars: 52,
-      toolIcon: <RustIcon />,
+      toolIconSrc: "https://avatars.githubusercontent.com/u/62387156?s=64&v=4",
       lastCommit: "22/3",
       lastRelease: "207",
     },
@@ -279,7 +269,7 @@ const gettingStartedPageData = {
       tags: ["Tags"],
       link: "#",
       stars: 52,
-      toolIcon: <ElixirIcon />,
+      toolIconSrc: "https://avatars.githubusercontent.com/u/62387156?s=64&v=4",
       lastCommit: "22/3",
       lastRelease: "207",
     },
@@ -290,7 +280,7 @@ const gettingStartedPageData = {
       tags: ["Tags"],
       link: "#",
       stars: 52,
-      toolIcon: <SwiftIcon />,
+      toolIconSrc: "https://avatars.githubusercontent.com/u/62387156?s=64&v=4",
       lastCommit: "22/3",
       lastRelease: "207",
     },
@@ -311,7 +301,7 @@ const gettingStartedPageData = {
       tags: ["Tags"],
       link: "#",
       stars: 52,
-      toolIcon: <FlowPortIcon />,
+      toolIconSrc: "https://avatars.githubusercontent.com/u/62387156?s=64&v=4",
       description:
         "Lorem ipsum text here can go a two liner sentence or a one liner",
     },
@@ -322,7 +312,7 @@ const gettingStartedPageData = {
       tags: ["Tags"],
       link: "#",
       stars: 52,
-      toolIcon: <FLOWCLIIcon />,
+      toolIconSrc: "https://avatars.githubusercontent.com/u/62387156?s=64&v=4",
       description:
         "Lorem ipsum text here can go a two liner sentence or a one liner",
     },
@@ -333,7 +323,7 @@ const gettingStartedPageData = {
       tags: ["Tags"],
       link: "#",
       stars: 52,
-      toolIcon: <EmulatorIcon />,
+      toolIconSrc: "https://avatars.githubusercontent.com/u/62387156?s=64&v=4",
       description:
         "Lorem ipsum text here can go a two liner sentence or a one liner",
     },

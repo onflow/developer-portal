@@ -14,6 +14,7 @@ export type LinkCard2ColumnItemSingleLinkProps =
   LinkCard2ColumnItemBaseProps & {
     href: string
     links?: never
+    homePage?: boolean
   }
 
 export type LinkCard2ColumnItemMultipleLinksProps =
@@ -23,6 +24,7 @@ export type LinkCard2ColumnItemMultipleLinksProps =
       href: string
       title: string
     }>
+    homePage?: boolean
   }
 
 export type LinkCard2ColumnItemProps =
@@ -36,9 +38,13 @@ export function LinkCard2ColumnItem({
   iconAltText = "",
   links,
   title,
+  homePage,
 }: LinkCard2ColumnItemProps) {
   return (
-    <LinkCard2ColumnItemContainer href={links?.length ? undefined : href}>
+    <LinkCard2ColumnItemContainer
+      href={links?.length ? undefined : href}
+      homePage={homePage}
+    >
       {icon && (
         <div className="mr-4 mb-4 max-w-[58px] shrink-0 grow-0 basis-[58px] md:max-w-[84px] md:basis-[84px]">
           <img
