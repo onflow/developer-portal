@@ -13,6 +13,7 @@ export const svgToDataUri = (
 export default {
   component: LinkCard2Column,
   title: "Components/LinkCard2Column",
+  excludeStories: ["svgToDataUri"],
 } as Meta
 
 const Template: Story<LinkCard2ColumnProps> = (args) => {

@@ -13,6 +13,10 @@ export default {
       options: ["w-6/12", "w-8/12", "w-9/12", "w-10/12", "w-11/12", "w-full"],
       control: { type: "select" },
     },
+    indicatorSize: {
+      options: ["xs", "sm", "md"],
+      control: { type: "inline-radio" },
+    },
   },
 } as Meta
 
@@ -46,5 +50,6 @@ export const Default = TemplateSingle.bind({})
 Default.args = {
   carouselItemWidth: "w-10/12",
   breakpoint: "md",
+  indicatorSize: "md",
   itemCount: 10,
 }
