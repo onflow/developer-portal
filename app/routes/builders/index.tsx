@@ -27,7 +27,6 @@ const linkCard2ColumnItems: LinkCard2ColumnProps = {
   description:
     "Building on Flow is easy. Start building now with lorem ipsum et sigitus loranum prospitarius.",
   title: "Core Concepts",
-  tags: ["Tag", "Lorem", "Ipsum"],
   items: [
     {
       title: "Cadence",
