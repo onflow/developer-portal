@@ -52,7 +52,7 @@ export function SDKCard({
             ))}
           </div>
 
-          <div className="flex shrink-0 gap-1">
+          <div className="flex shrink-0 items-center gap-1">
             <div className="scale-50">
               <StarIcon className="text-amber-400" />
             </div>

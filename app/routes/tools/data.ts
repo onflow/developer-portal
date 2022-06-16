@@ -57,7 +57,7 @@ export const data: ToolsPageProps = {
         "Lorem ipsum text here can go a two liner sentence or a one liner",
     },
     {
-      title: "Flow Client Lbrary",
+      title: "Flow Client Library",
       authorIcon: "https://avatars.githubusercontent.com/u/62387156?s=64&v=4",
       authorName: "mini flow",
       tags: ["Tool"],
