@@ -7,7 +7,7 @@
         "items": [
           {
             "label": "Introduction to Cadence",
-            "href": "index"
+            "href": "intro"
           },
           {
             "label": "Cadence Design Patterns",
