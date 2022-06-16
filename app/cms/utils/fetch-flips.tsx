@@ -134,20 +134,20 @@ export const fetchFlips = async () => {
   )
 
   const goodPlacesToStartFlipCellProps: Promise<FlipCellProps>[] =
-    goodPlacesToStartIssues.map(async (pr) => ({
-      numComments: await getNumComments(pr.number),
-      heading: pr.title,
-      tags: pr.labels
+    goodPlacesToStartIssues.map(async (issue: PullRequestResponse) => ({
+      numComments: await getNumComments(issue.number),
+      heading: issue.title,
+      tags: issue.labels
         .filter((label) => typeof label !== "string")
         .map((label) =>
           typeof label !== "string" && label.name ? label.name : ""
         ),
       participant: {
-        profileImage: pr.user?.avatar_url ?? "",
-        name: pr.user?.login ?? "",
+        profileImage: issue.user?.avatar_url ?? "",
+        name: issue.user?.login ?? "",
       },
-      date: pr.created_at,
-      forumLink: pr.html_url,
+      date: issue.created_at,
+      forumLink: issue.html_url,
     }))
 
   const openFlips: FlipCellProps[] = await Promise.all(openFlipCellProps)
