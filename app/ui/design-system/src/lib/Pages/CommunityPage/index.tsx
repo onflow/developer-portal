@@ -37,7 +37,8 @@ export type CommunityPageProps = FlipsProps &
   }
 
 export default function CommunityPage({
-  flips,
+  openFlips,
+  goodPlacesToStartFlips,
   communityMembers,
   projects,
   upcomingEvents,
@@ -83,7 +84,10 @@ export default function CommunityPage({
           <CommunityMembers {...communityMembers} />
         </PageSection>
         <PageSection>
-          <Flips {...flips} />
+          <Flips
+            openFlips={openFlips}
+            goodPlacesToStartFlips={goodPlacesToStartFlips}
+          />
         </PageSection>
         <PageSection>
           <ProjectCards projects={projects} />
