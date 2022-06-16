@@ -13,3 +13,8 @@
 .divided-item-hover:hover + .divided-item-hover {
   @apply !border-transparent;
 }
+
+body,
+html {
+  @apply text-black dark:text-white;
+}
