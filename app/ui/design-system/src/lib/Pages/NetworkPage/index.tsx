@@ -1,7 +1,6 @@
 import { startOfDay } from "date-fns"
 import {
   AnnouncementCard,
-  Footer,
   NetworkCard,
   NetworkDiscordCard,
   SocialLinksSignup,
@@ -11,9 +10,12 @@ import { Article, StatuspageApiResponse } from "../../interfaces"
 import PageBackground from "../shared/PageBackground"
 import PageSection from "../shared/PageSection"
 import PageSections from "../shared/PageSections"
-import data from "./sample"
 
-const NetworkPage = () => {
+export type NetworkPageProps = {
+  networkStatuses: StatuspageApiResponse[]
+}
+
+const NetworkPage = ({ networkStatuses }: NetworkPageProps) => {
   const article = {
     heading: "Node operator callout",
     description:
@@ -31,9 +33,8 @@ const NetworkPage = () => {
           <div className="container">
             <h1 className="text-h1 pt-28 md:pt-[212px]">Network status</h1>
             <div className="mt-20 flex flex-col gap-4 md:gap-6">
-              {
-                // @ts-expect-error
-                data.map(({ name, status }: StatuspageApiResponse) => {
+              {networkStatuses.map(
+                ({ name, status }: StatuspageApiResponse) => {
                   return (
                     <div key={name}>
                       <NetworkCard
@@ -50,8 +51,8 @@ const NetworkPage = () => {
                       />
                     </div>
                   )
-                })
-              }
+                }
+              )}
             </div>
           </div>
         </PageSection>
@@ -96,7 +97,6 @@ const NetworkPage = () => {
         </PageSection>
       </PageSections>
       <SocialLinksSignup />
-      <Footer />
     </PageBackground>
   )
 }

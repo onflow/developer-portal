@@ -1,15 +1,15 @@
 import { ReactComponent as StarIcon } from "../../../../images/action/star"
 import Tag from "../Tag"
 
-export interface ToolCardProps {
+export type ToolCardProps = {
   title: string
   authorIcon: string
   authorName: string
   tags: string[]
   link: string
   stars: number
-  toolIconSrc: string
   description: string
+  iconSrc: string
 }
 
 export function ToolCard({
@@ -19,7 +19,7 @@ export function ToolCard({
   tags,
   link,
   stars,
-  toolIconSrc,
+  iconSrc,
   description,
 }: ToolCardProps) {
   return (
@@ -28,7 +28,7 @@ export function ToolCard({
       href={link}
     >
       <div>
-        <img src={toolIconSrc} alt={title} width={64} />
+        <img src={iconSrc} alt={title} width={64} />
       </div>
       <div className="grow">
         <h5 className="text-h5">{title}</h5>

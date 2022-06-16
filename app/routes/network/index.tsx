@@ -1,9 +1,20 @@
-import { LoaderFunction } from "@remix-run/server-runtime"
+import { LoaderFunction } from "@remix-run/node"
+import { useLoaderData } from "@remix-run/react"
+import { fetchNetworkStatus } from "~/cms/utils/fetch-network-status"
+import NetworkPage, {
+  NetworkPageProps,
+} from "~/ui/design-system/src/lib/Pages/NetworkPage"
+
+type DynamicNetworkPageProps = Pick<NetworkPageProps, "networkStatuses">
 
 export const loader: LoaderFunction = async () => {
-  return {}
+  const networkStatuses = await fetchNetworkStatus()
+  const data = { networkStatuses }
+  return data
 }
 
 export default function Page() {
-  return <div>Network Homepage</div>
+  const { networkStatuses } = useLoaderData<DynamicNetworkPageProps>()
+
+  return <NetworkPage networkStatuses={networkStatuses} />
 }
