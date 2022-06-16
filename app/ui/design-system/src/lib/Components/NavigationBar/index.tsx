@@ -23,7 +23,7 @@ export function NavigationBar({
   const [isMobileNavOpen, setMobileNavOpen] = useState(false)
 
   return (
-    <nav className="container flex items-start justify-between bg-white px-3 py-4 text-black dark:bg-black dark:text-white">
+    <nav className="flex items-start justify-between bg-white px-3 py-4 text-black dark:bg-black dark:text-white">
       <div className="h-[2rem] py-1">
         <FlowDocsLogo className="shrink-0 dark:hidden" height="2rem" />
         <FlowDocsLogoLight className="hidden dark:block" height="2rem" />
@@ -33,7 +33,7 @@ export function NavigationBar({
         <Search appId="" apiKey="" indexName="" />
         <DesktopMenu menuItems={menuItems} />
         <ul className="flex items-center">
-          <li className="flex	items-center whitespace-nowrap border-l px-4">
+          <li className="flex items-center whitespace-nowrap border-l px-4">
             <button type="button" onClick={() => onDarkModeToggle()}>
               <ModeDark className="dark:hidden" />
               <ModeLight className="hidden dark:block" />
