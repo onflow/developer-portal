@@ -20,7 +20,7 @@ export function ContractSelect({
         This tool will assist you in verifying the metadata on your NFTs and allow your collection to be added to the <b>Flow NFT Catalog</b>.
         <br />
         <br />
-        The <b>Flow NFT Catalog</b> will provide the needed context to applications and marketplaces to utilize your NFT collection on their platforms.
+        The <b>Flow NFT Catalog</b> will provide the needed context to applications and marketplaces to utilize your NFT collection and unlock interoperability throughout the Flow ecosystem.
         <br />
       </div>
       <hr className="my-6" />
