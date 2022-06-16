@@ -1,9 +1,15 @@
-import { LoaderFunction } from "@remix-run/server-runtime"
-
-export const loader: LoaderFunction = async () => {
-  return {}
-}
+import { LearnPage } from "~/ui/design-system/src/lib/Pages/LearnPage"
+import { data } from "./data"
 
 export default function Page() {
-  return <div>Learn Homepage</div>
+  return (
+    <LearnPage
+      videos={data.videos}
+      nftTutorials={data.nftTutorials}
+      cadenceHref={data.cadenceHref}
+      allTutorials={data.allTutorials}
+      cadenceTutorials={data.cadenceTutorials}
+      youtubeHref={data.youtubeHref}
+    />
+  )
 }
