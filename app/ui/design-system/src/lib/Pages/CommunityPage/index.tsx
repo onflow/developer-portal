@@ -83,7 +83,7 @@ export default function CommunityPage({
           <CommunityMembers {...communityMembers} />
         </PageSection>
         <PageSection>
-          <Flips flips={flips} />
+          <Flips {...flips} />
         </PageSection>
         <PageSection>
           <ProjectCards projects={projects} />

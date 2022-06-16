@@ -7,7 +7,6 @@ import {
   ToolsAndConcepts,
   UpcomingEvents,
 } from "../../Components"
-import { FlipCellProps } from "../../Components/FlipCell"
 import { FlipsProps } from "../../Components/Flips"
 import { LinkCard2ColumnProps } from "../../Components/LinkCard2Column"
 import { LinkCard3ColumnItems } from "../../Components/LinkCard3Column"
