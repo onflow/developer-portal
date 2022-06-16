@@ -58,3 +58,5 @@ node_modules
 /app/ui/design-system/images/**/*.js
 
 .eslintcache
+.env.staging
+.env.production
