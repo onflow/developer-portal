@@ -103,6 +103,7 @@ async function compileMdx<FrontmatterType extends Record<string, unknown>>(
       code,
       readTime,
       frontmatter: frontmatter as FrontmatterType,
+      toc: [{ test: "OK" }],
     }
   } catch (error: unknown) {
     console.error(`Compilation error for slug: `, slug)
@@ -178,7 +179,7 @@ type MdxPage = {
   code: string
   // slug: string;
   // editLink: string;
-  // readTime?: ReturnType<typeof calculateReadingTime>;
+  readTime?: ReturnType<typeof calculateReadingTime>
 
   /**
    * It's annoying that all these are set to optional I know, but there's
@@ -188,6 +189,7 @@ type MdxPage = {
    * these values are missing to avoid runtime errors.
    */
   frontmatter: MdxFrontmatter
+  toc: any
 }
 
 /**

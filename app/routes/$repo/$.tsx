@@ -33,12 +33,13 @@ export const loader: LoaderFunction = async ({ params, request }) => {
 
 export default function () {
   const data = useLoaderData()
-  const { code, frontmatter } = data.page
+  const { code, frontmatter, toc } = data.page
   const Component = useMdxComponent({ code, frontmatter })
 
   return (
     <div className="flex flex-col py-8 md:flex-row">
       <Component />
+      <div className="h-full w-60 bg-red-300">{JSON.stringify(toc)}</div>
     </div>
   )
 }
