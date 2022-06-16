@@ -9,7 +9,6 @@ declare global {
 }
 
 const REDIS_URL = getRequiredServerEnvVar("REDIS_URL")
-const REDIS_CA = getRequiredServerEnvVar("REDIS_CA")
 
 const primaryURL = new URL(REDIS_URL)
 let primaryClient: Redis | null = null
@@ -25,6 +24,7 @@ function createRedisClient(name: "primaryClient", url: string): Redis {
     const connectOptions: { tls?: { ca: Buffer } } = {}
 
     if (url.startsWith("rediss:")) {
+      const REDIS_CA = getRequiredServerEnvVar("REDIS_CA")
       console.log("Request TLS connection", url.startsWith("rediss:"))
       console.log(`TLS servername: ${dbURL.hostname}`)
       connectOptions.tls = { ca: Buffer.from(REDIS_CA, "utf-8") }
