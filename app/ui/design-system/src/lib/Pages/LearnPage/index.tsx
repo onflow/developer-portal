@@ -68,7 +68,7 @@ export function LearnPage({
             buttonText="Button Text"
             buttonUrl="#fixme"
             callout="Featured"
-            description="Lorem ipsum dolor sit amet proin gravida lorem ipsum dolor sit."
+            description="Learn header Lorem ipsum dolor sit amet proin gravida lorem ipsum dolor sit."
           />
         </PageSection>
         <PageSection className="flex-col items-stretch">
@@ -114,11 +114,11 @@ export function LearnPage({
                 Go to Youtube
               </ButtonLink>
             </div>
-            <div className="flex flex-col items-stretch gap-4 md:basis-1/2 md:flex-row md:items-center">
-              <div className="shrink-0 grow">
+            <div className="flex flex-col items-stretch gap-4  md:flex-row md:items-center">
+              <div className="shrink-0 grow md:basis-1/2">
                 <LargeVideoCard {...videos.primary} />
               </div>
-              <div className="flex flex-col gap-4">
+              <div className="flex flex-col gap-x-6 gap-y-5 md:basis-1/2">
                 {videos.secondary.map((videoProps) => (
                   <SmallVideoCard key={videoProps.link} {...videoProps} />
                 ))}
