@@ -36,7 +36,7 @@ export const loader: LoaderFunction = async ({
 export default function Repo() {
   const data = useLoaderData<LoaderData>()
   return (
-    <div className="flex h-full">
+    <div className="flex min-h-full">
       {data.repoSchema ? (
         <InternalSidebar config={data.repoSchema.sidebar} />
       ) : (
