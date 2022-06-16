@@ -103,7 +103,7 @@ async function compileMdx<FrontmatterType extends Record<string, unknown>>(
       code,
       readTime,
       frontmatter: frontmatter as FrontmatterType,
-      toc: [{ test: "OK" }],
+      toc: [{ test: "GREAT" }],
     }
   } catch (error: unknown) {
     console.error(`Compilation error for slug: `, slug)
