@@ -8,6 +8,7 @@ import { Search } from "../Search"
 import { DesktopMenu } from "./DesktopMenu"
 import { MobileMenu } from "./MobileMenu"
 import { MobileMenuToggleButton } from "./MobileMenuToggleButton"
+import { ScrollLock } from "./ScrollLock"
 import { MenuItem } from "./types"
 
 export type NavigationBarProps = {
@@ -56,7 +57,8 @@ export function NavigationBar({
         leaveFrom="opacity-100 scale-100"
         leaveTo="opacity-0 scale-95"
       >
-        <div className="fixed top-[4rem] left-1 bottom-1 right-1 overflow-auto rounded-md border bg-white dark:border-gray-500 dark:bg-black md:hidden ">
+        <div className="fixed top-[4rem] left-1 bottom-1 right-1 z-50 overflow-auto rounded-md border bg-white dark:border-gray-500 dark:bg-black md:hidden ">
+          <ScrollLock />
           <MobileMenu menuItems={menuItems} />
         </div>
       </Transition>
