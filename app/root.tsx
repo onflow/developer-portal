@@ -28,6 +28,8 @@ import { bodyClasses } from "./styles/sharedClasses"
 import { getThemeSession } from "./theme.server"
 import { Footer } from "./ui/design-system/src"
 import { ErrorPage } from "./ui/design-system/src/lib/Components/ErrorPage"
+import { NavigationBar } from "./ui/design-system/src/lib/Components/NavigationBar"
+import { navBarData } from "./component-data/NavigationBar"
 
 export const links: LinksFunction = () => {
   return [{ rel: "stylesheet", href: styles }]
@@ -53,7 +55,7 @@ export const loader: LoaderFunction = async ({ request }) => {
 
 function App() {
   const data = useLoaderData<LoaderData>()
-  const [theme] = useTheme()
+  const [theme, setTheme] = useTheme()
 
   return (
     <html lang="en" className={clsx("h-full", theme ?? "")}>
@@ -63,8 +65,13 @@ function App() {
         <ThemeHead ssrTheme={Boolean(data.theme)} />
       </head>
       <body className={bodyClasses}>
+        <NavigationBar
+          menuItems={navBarData.menuItems}
+          onDarkModeToggle={() =>
+            setTheme(theme === Theme.DARK ? Theme.LIGHT : Theme.DARK)
+          }
+        />
         <ThemeBody ssrTheme={Boolean(data.theme)} />
-        {/* <MainNav /> */}
         <Outlet />
         <Footer />
         <ScrollRestoration />

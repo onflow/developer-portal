@@ -22,8 +22,8 @@ const ToolsAndConcepts = ({ tools, concepts }: ToolsAndConceptsProps) => {
         <TabMenu tabs={["Tools", "Concepts"]} onTabChange={() => null} />
       )}
       <div className="mt-9 grid gap-4 md:grid-cols-2 md:gap-8">
-        {tools.map((tool: ToolCardProps) => (
-          <ToolCard {...tool} key={tool.title} />
+        {tools.map((tool: ToolCardProps, index) => (
+          <ToolCard {...tool} key={index} />
         ))}
       </div>
       <div className="mt-9 flex flex-col justify-between md:flex-row">

@@ -26,7 +26,10 @@ export function MenuContent({
 
   return (
     <div
-      className={clsx("flex max-h-full flex-col gap-6 md:flex-row", className)}
+      className={clsx(
+        "flex max-h-full flex-col gap-6 bg-white dark:bg-black md:flex-row ",
+        className
+      )}
     >
       {cards.length > 0 && (
         <div>

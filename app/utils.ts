@@ -1,5 +1,6 @@
 import { useMatches } from "@remix-run/react"
 import { useMemo } from "react"
+import { renderToStaticMarkup } from "react-dom/server"
 
 const DEFAULT_REDIRECT = "/"
 
@@ -44,4 +45,11 @@ export function useMatchesData(
 
 export function validateEmail(email: unknown): email is string {
   return typeof email === "string" && email.length > 3 && email.includes("@")
+}
+
+export const svgToDataUri = (
+  element: Parameters<typeof renderToStaticMarkup>[0]
+) => {
+  const svgString = encodeURIComponent(renderToStaticMarkup(element))
+  return `data:image/svg+xml,${svgString}`
 }
