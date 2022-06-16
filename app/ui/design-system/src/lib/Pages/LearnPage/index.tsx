@@ -114,8 +114,8 @@ export function LearnPage({
                 Go to Youtube
               </ButtonLink>
             </div>
-            <div className="flex flex-col items-stretch gap-4  md:flex-row md:items-center">
-              <div className="shrink-0 grow md:basis-1/2">
+            <div className="flex flex-col items-stretch gap-4 md:flex-row">
+              <div className="aspect-[1/1] md:aspect-[auto] md:basis-1/2">
                 <LargeVideoCard {...videos.primary} />
               </div>
               <div className="flex flex-col gap-x-6 gap-y-5 md:basis-1/2">
