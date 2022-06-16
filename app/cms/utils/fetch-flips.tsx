@@ -1,13 +1,13 @@
 import { Octokit } from "@octokit/core"
 import { FlipCellProps } from "~/ui/design-system/src/lib/Components/FlipCell"
+import { FlipsProps } from "~/ui/design-system/src/lib/Components/Flips"
 
-export const fetchOpenFlips = async () => {
+export const fetchFlips = async () => {
   const octokit = new Octokit({
     auth: process.env.BOT_GITHUB_TOKEN,
   })
 
-  const getPullRequests = async (fetchLabel: string) => {
-    // Fetch PRs from onflow/flow repo
+  const getOpenFlipPullRequests = async () => {
     const pullRequestResponse = await octokit
       .request("GET /repos/{owner}/{repo}/pulls", {
         owner: "onflow",
@@ -15,11 +15,22 @@ export const fetchOpenFlips = async () => {
       })
       .then((response) => response.data)
 
-    // Filter only PRs with 'Flip' labels
     return pullRequestResponse.filter((pr) => {
       const labelNames = pr.labels.map((label) => label.name)
-      return labelNames.includes(fetchLabel)
+      return labelNames.includes("FLIP")
     })
+  }
+
+  const getGoodPlacesToStartIssues = async () => {
+    const issueResponse = await octokit
+      .request("GET /repos/{owner}/{repo}/issues?state=all&labels={label}", {
+        owner: "onflow",
+        repo: "flow",
+        label: "good first issue",
+      })
+      .then((response) => response.data)
+
+    return issueResponse
   }
 
   const getNumComments = async (fetchIssue: number): Promise<number> => {
@@ -34,10 +45,11 @@ export const fetchOpenFlips = async () => {
     return comments.length
   }
 
-  const flipPullRequests = await getPullRequests("FLIP")
+  const openFlipPullRequests = await getOpenFlipPullRequests()
+  const goodPlacesToStartIssues = await getGoodPlacesToStartIssues()
 
   // Convert from github API output to FlipCellProp
-  const flipCellProps: Promise<FlipCellProps>[] = flipPullRequests.map(
+  const openFlipCellProps: Promise<FlipCellProps>[] = openFlipPullRequests.map(
     async (pr) => ({
       numComments: await getNumComments(pr.number),
       heading: pr.title,
@@ -51,7 +63,27 @@ export const fetchOpenFlips = async () => {
     })
   )
 
-  const data: FlipCellProps[] = await Promise.all(flipCellProps)
+  const goodPlacesToStartFlipCellProps: Promise<FlipCellProps>[] =
+    goodPlacesToStartIssues.map(async (pr) => ({
+      numComments: await getNumComments(pr.number),
+      heading: pr.title,
+      tags: pr.labels
+        .filter((label) => typeof label !== "string")
+        .map((label) =>
+          typeof label !== "string" && label.name ? label.name : ""
+        ),
+      participant: {
+        profileImage: pr.user?.avatar_url ?? "",
+        name: pr.user?.login ?? "",
+      },
+      date: pr.created_at,
+      forumLink: pr.html_url,
+    }))
 
-  return data
+  const openFlips: FlipCellProps[] = await Promise.all(openFlipCellProps)
+  const goodPlacesToStartFlips: FlipCellProps[] = await Promise.all(
+    goodPlacesToStartFlipCellProps
+  )
+
+  return { openFlips, goodPlacesToStartFlips } as FlipsProps
 }
