@@ -113,18 +113,8 @@ export function GettingStartedPage({
               />
             </div>
             <div className="flex grow flex-col justify-between gap-4">
-              {recentToolItems.map((tool, i) => (
-                <ToolCard
-                  key={i}
-                  title={tool.title}
-                  authorIcon={tool.authorIcon}
-                  authorName={tool.authorName}
-                  tags={tool.tags}
-                  link={tool.link}
-                  stars={tool.stars}
-                  toolIconSrc={tool.toolIconSrc}
-                  description={tool.description}
-                />
+              {recentToolItems.map((toolProps, i) => (
+                <ToolCard key={i} {...toolProps} />
               ))}
               <ButtonLink
                 variant="secondary"

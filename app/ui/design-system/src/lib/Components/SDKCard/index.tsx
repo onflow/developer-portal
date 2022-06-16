@@ -3,16 +3,16 @@ import { ReactComponent as StarIcon } from "../../../../images/action/star"
 import { ReactComponent as CommitIcon } from "../../../../images/content/commit"
 import Tag from "../Tag"
 
-export interface SDKCardProps {
+export type SDKCardProps = {
   title: string
   authorIcon: string
   authorName: string
   tags: string[]
   link: string
   stars: number
-  toolIconSrc: string
   lastCommit: string
   lastRelease: string
+  iconSrc: string
 }
 
 export function SDKCard({
@@ -22,7 +22,7 @@ export function SDKCard({
   tags,
   link,
   stars,
-  toolIconSrc,
+  iconSrc,
   lastCommit,
   lastRelease,
 }: SDKCardProps) {
@@ -32,7 +32,7 @@ export function SDKCard({
       href={link}
     >
       <div>
-        <img src={toolIconSrc} alt={title} width={64} />
+        <img src={iconSrc} alt={title} width={64} />
       </div>
       <div className="grow">
         <h5 className="text-h5">{title}</h5>
@@ -52,7 +52,7 @@ export function SDKCard({
             ))}
           </div>
 
-          <div className="flex shrink-0 gap-1">
+          <div className="flex shrink-0 items-center gap-1">
             <div className="scale-50">
               <StarIcon className="text-amber-400" />
             </div>

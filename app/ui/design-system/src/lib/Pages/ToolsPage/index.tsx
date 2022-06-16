@@ -1,4 +1,4 @@
-import { Footer, SocialLinksSignup, ToolsAndConcepts } from "../../Components"
+import { ToolsAndConcepts } from "../../Components"
 import {
   ContentNavigation,
   ContentNavigationProps,
@@ -81,8 +81,6 @@ const ToolsPage = ({
           </div>
         </PageSection>
       </PageSections>
-      <SocialLinksSignup />
-      <Footer />
     </PageBackground>
   )
 }
