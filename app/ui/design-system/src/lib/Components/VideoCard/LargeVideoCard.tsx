@@ -23,7 +23,7 @@ export function LargeVideoCard({ link, title, length }: LargeVideoCardProps) {
   }
 
   return (
-    <div className="relative cursor-pointer rounded-lg">
+    <div className="relative h-full w-full cursor-pointer rounded-lg">
       {showOverlay ? (
         <>
           <div
@@ -42,7 +42,7 @@ export function LargeVideoCard({ link, title, length }: LargeVideoCardProps) {
             <img src={PlayCircle} alt={title} width={56} height={56} />
           </div>
           <div className="pointer-events-none absolute bottom-0 left-0 w-full p-6 text-white md:w-3/4">
-            <div className="text-h4 line-clamp-2">{title}</div>
+            <div className="text-h4 leading-8 line-clamp-2">{title}</div>
             <div className="items-align flex gap-2">
               <Time
                 className="stroke-white"
@@ -58,7 +58,7 @@ export function LargeVideoCard({ link, title, length }: LargeVideoCardProps) {
         </>
       ) : null}
       <iframe
-        className="aspect-[1/1] w-full rounded-lg md:aspect-[16/9]"
+        className="h-full w-full rounded-lg"
         src={`https://www.youtube.com/embed/${videoId}${
           showOverlay ? "" : "?autoplay=1"
         }`}
