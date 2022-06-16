@@ -2,13 +2,83 @@ import { Octokit } from "@octokit/core"
 import { FlipCellProps } from "~/ui/design-system/src/lib/Components/FlipCell"
 import { FlipsProps } from "~/ui/design-system/src/lib/Components/Flips"
 
+export interface PullRequestResponse {
+  url: string
+  id: number
+  node_id: string
+  html_url: string
+  diff_url: string
+  patch_url: string
+  issue_url: string
+  commits_url: string
+  review_comments_url: string
+  review_comment_url: string
+  comments_url: string
+  statuses_url: string
+  number: number
+  state: string
+  locked: boolean
+  title: string
+  user: User | null
+  body: string | null
+  labels: Label[]
+  milestone: any
+  active_lock_reason?: string | null
+  created_at: string
+  updated_at: string
+  closed_at: string | null
+  merged_at: string | null
+  merge_commit_sha: string | null
+  assignee?: any | null
+  assignees?: any[] | null
+  requested_reviewers?: any[] | null
+  requested_teams?: any[] | null
+  head: any
+  base: any
+  _links: any
+  author_association: string
+  auto_merge: any
+  draft?: boolean
+}
+
+export interface User {
+  login: string
+  id: number
+  node_id: string
+  avatar_url: string
+  gravatar_id: string | null
+  url: string
+  html_url: string
+  followers_url: string
+  following_url: string
+  gists_url: string
+  starred_url: string
+  subscriptions_url: string
+  organizations_url: string
+  repos_url: string
+  events_url: string
+  received_events_url: string
+  type: string
+  site_admin: boolean
+}
+
+export interface Label {
+  id?: number
+  node_id?: string
+  url?: string
+  name?: string
+  description?: string
+  color?: string
+  default?: boolean
+}
+
 export const fetchFlips = async () => {
   const octokit = new Octokit({
     auth: process.env.BOT_GITHUB_TOKEN,
   })
 
   const getOpenFlipPullRequests = async () => {
-    const pullRequestResponse = await octokit
+    const pullRequestResponse: PullRequestResponse[] = await octokit
       .request("GET /repos/{owner}/{repo}/pulls", {
         owner: "onflow",
         repo: "flow",
