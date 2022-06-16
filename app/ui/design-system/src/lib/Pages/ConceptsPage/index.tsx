@@ -45,14 +45,13 @@ export function ConceptsPage({
   eventCardItems,
 }: ConceptsPageProps) {
   return (
-    <PageBackground>
+    <PageBackground gradient="concepts">
       <PageSections>
         <PageSection className="pt-0">
           <LandingHeader
             title={landingHeaderItems.title}
             buttonText={landingHeaderItems.buttonText}
             buttonUrl={landingHeaderItems.buttonUrl}
-            gradient={landingHeaderItems.gradient}
             callout={landingHeaderItems.callout}
             description={landingHeaderItems.description}
           />

@@ -1,6 +1,7 @@
 import { Meta, Story } from "@storybook/react"
 import ProjectCards, { ProjectCardsProps } from "."
 import PageBackground from "../../Pages/shared/PageBackground"
+import { ProjectCardProps } from "../ProjectCard"
 import { Default as DefaultProjectCard } from "../ProjectCard/ProjectCard.stories"
 
 export default {
@@ -14,17 +15,17 @@ const Template: Story<ProjectCardsProps> = (args) => (
   </PageBackground>
 )
 
-const args = {
+const projectCardArgs = DefaultProjectCard.args as ProjectCardProps
+export const Default = Template.bind({})
+
+Default.args = {
   projects: [
-    DefaultProjectCard.args,
-    DefaultProjectCard.args,
-    DefaultProjectCard.args,
-    DefaultProjectCard.args,
+    projectCardArgs,
+    projectCardArgs,
+    projectCardArgs,
+    projectCardArgs,
   ],
 }
-
-export const Default = Template.bind({})
-Default.args = args
 
 export const dark = Template.bind({})
 dark.args = Default.args
@@ -35,7 +36,7 @@ dark.parameters = {
 }
 
 export const mobile = Template.bind({})
-mobile.args = args
+mobile.args = Default.args
 mobile.parameters = {
   viewport: {
     defaultViewport: "xs",
