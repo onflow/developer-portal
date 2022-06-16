@@ -9,7 +9,7 @@ export type HeadingProps = React.DetailedHTMLProps<
   HTMLHeadingElement
 > & { type?: HeadingType }
 
-const defaultClasses = "mt-6 font-semibold"
+const defaultClasses = "mt-6 font-semibold text-red-400"
 
 const headingClasses = {
   h1: "text-4xl mb-6 font-bold",
