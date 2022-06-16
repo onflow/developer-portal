@@ -31,7 +31,7 @@ const NetworkCard = ({
     >
       <div className="flex flex-col items-center md:flex-row">
         <div className={statusClasses} />
-        <span className="mb-6 ml-0 text-2xl font-bold md:ml-6 md:mb-0">
+        <span className="mb-6 ml-0 w-[180px] text-2xl font-bold md:ml-6 md:mb-0">
           {networkName}
         </span>
       </div>
