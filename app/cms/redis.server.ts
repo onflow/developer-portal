@@ -30,14 +30,7 @@ function createRedisClient(name: "primaryClient", url: string): Redis {
       connectOptions.tls = { ca: Buffer.from(REDIS_CA, "utf-8") }
     }
 
-    client = global[name] = new Redis(
-      REDIS_URL,
-      url.startsWith("rediss:")
-        ? {
-            tls: { servername: dbURL.hostname },
-          }
-        : {}
-    )
+    client = global[name] = new Redis(REDIS_URL, connectOptions)
   }
   return client
 }
