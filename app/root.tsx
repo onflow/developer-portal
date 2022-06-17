@@ -16,6 +16,7 @@ import {
   useLocation,
 } from "@remix-run/react"
 import clsx from "clsx"
+import { useCallback } from "react"
 import {
   Theme,
   ThemeBody,
@@ -23,13 +24,13 @@ import {
   ThemeProvider,
   useTheme,
 } from "~/cms/utils/theme.provider"
+import { navBarData } from "./component-data/NavigationBar"
 import styles from "./main.css"
 import { bodyClasses } from "./styles/sharedClasses"
 import { getThemeSession } from "./theme.server"
 import { Footer } from "./ui/design-system/src"
 import { ErrorPage } from "./ui/design-system/src/lib/Components/ErrorPage"
 import { NavigationBar } from "./ui/design-system/src/lib/Components/NavigationBar"
-import { navBarData } from "./component-data/NavigationBar"
 
 export const links: LinksFunction = () => {
   return [{ rel: "stylesheet", href: styles }]
@@ -56,24 +57,32 @@ export const loader: LoaderFunction = async ({ request }) => {
 function App() {
   const data = useLoaderData<LoaderData>()
   const [theme, setTheme] = useTheme()
+  const toggleTheme = useCallback(() => {
+    setTheme((currentTheme) =>
+      currentTheme === Theme.DARK ? Theme.LIGHT : Theme.DARK
+    )
+  }, [setTheme])
 
   return (
-    <html lang="en" className={clsx("h-full", theme ?? "")}>
+    <html
+      lang="en"
+      className={clsx("h-full min-h-full overflow-hidden", theme ?? "")}
+    >
       <head>
         <Meta />
         <Links />
         <ThemeHead ssrTheme={Boolean(data.theme)} />
       </head>
       <body className={bodyClasses}>
+        <ThemeBody ssrTheme={Boolean(data.theme)} />
         <NavigationBar
           menuItems={navBarData.menuItems}
-          onDarkModeToggle={() =>
-            setTheme(theme === Theme.DARK ? Theme.LIGHT : Theme.DARK)
-          }
+          onDarkModeToggle={toggleTheme}
         />
-        <ThemeBody ssrTheme={Boolean(data.theme)} />
-        <Outlet />
-        <Footer />
+        <div className="flex-auto	overflow-auto">
+          <Outlet />
+          <Footer />
+        </div>
         <ScrollRestoration />
         <Scripts />
         <LiveReload />

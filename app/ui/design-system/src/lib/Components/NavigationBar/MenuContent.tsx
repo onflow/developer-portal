@@ -25,12 +25,7 @@ export function MenuContent({
   const hasCards = cards.length > 0
 
   return (
-    <div
-      className={clsx(
-        "flex max-h-full flex-col gap-6 bg-white dark:bg-black md:flex-row ",
-        className
-      )}
-    >
+    <div className="flex max-h-full flex-col gap-6 bg-white p-4 dark:bg-black md:flex-row">
       {cards.length > 0 && (
         <div>
           <IntroCardCarousel cards={cards} />

@@ -1,4 +1,3 @@
-import clsx from "clsx"
 import { useState } from "react"
 import { MenuContent } from "./MenuContent"
 import { TabButton } from "./TabButton"
@@ -14,15 +13,8 @@ export function DesktopMenuTabbed({ className, tabs }: DesktopMenuTabbedProps) {
   const selectedTab = tabs[selectedTabIndex]
 
   return (
-    <div
-      className={clsx(
-        "flex max-h-full items-stretch bg-white dark:bg-black",
-        className
-      )}
-    >
-      <div
-        className={"flex w-80 flex-initial flex-col overflow-y-auto shadow-lg"}
-      >
+    <div className="flex max-h-full items-stretch bg-white dark:bg-black">
+      <div className="flex w-80 flex-initial flex-col overflow-y-auto shadow-lg">
         {tabs.map((tab, index) => (
           <TabButton
             key={index}
