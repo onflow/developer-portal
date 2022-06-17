@@ -19,7 +19,7 @@ export const loader: LoaderFunction = async ({ params, request }) => {
       { request, forceFresh: process.env.FORCE_REFRESH === "true" }
     )
   } catch (e) {
-    throw json({ status: "noPage" }, { status: 500 })
+    throw json({ status: "mdxError", error: e }, { status: 500 })
   }
 
   if (!page) {
@@ -48,31 +48,44 @@ export function CatchBoundary() {
   const caught = useCatch()
   console.error("CatchBoundary", caught)
   const location = useLocation()
-  if (caught.data.status === "noPage") {
-    return (
-      <ErrorPage
-        title={"404 – Page not found"}
-        subtitle={`there is no page at "${location.pathname}"`}
-        actions={
-          <Link className="underline" to="/">
-            Go home
-          </Link>
-        }
-      />
-    )
-  }
-  if (caught.data.status === "noRepo") {
-    return (
-      <ErrorPage
-        title={"404 – Repo not found"}
-        subtitle={`This repo is not available or does not exist`}
-        actions={
-          <Link className="underline" to="/">
-            Go home
-          </Link>
-        }
-      />
-    )
+
+  switch (caught.data.status) {
+    case "noPage":
+      return (
+        <ErrorPage
+          title={"404 – Page not found"}
+          subtitle={`there is no page at "${location.pathname}"`}
+          actions={
+            <Link className="underline" to="/">
+              Go home
+            </Link>
+          }
+        />
+      )
+    case "mdxError":
+      return (
+        <ErrorPage
+          title={"Error processing"}
+          subtitle={`An error occured processing the mdx for this document`}
+          actions={
+            <Link className="underline" to="/">
+              Go home
+            </Link>
+          }
+        />
+      )
+    case "noRepo":
+      return (
+        <ErrorPage
+          title={"404 – Repo not found"}
+          subtitle={`This repo is not available or does not exist`}
+          actions={
+            <Link className="underline" to="/">
+              Go home
+            </Link>
+          }
+        />
+      )
   }
 
   throw new Error(`Unhandled error: ${caught.status}`)
