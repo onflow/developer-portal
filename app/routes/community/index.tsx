@@ -1,8 +1,9 @@
 import { useLoaderData } from "@remix-run/react"
 import { LoaderFunction } from "@remix-run/server-runtime"
-import { fetchOpenFlips } from "~/cms/utils/fetch-flips"
+import { fetchFlips } from "~/cms/utils/fetch-flips"
 import { CommunityMembersProps } from "~/ui/design-system/src/lib/Components/CommunityMembers"
 import { Default as DefaultCommunityMembers } from "~/ui/design-system/src/lib/Components/CommunityMembers/CommunityMembers.stories"
+import { FlipsProps } from "~/ui/design-system/src/lib/Components/Flips"
 import { ForumCellProps } from "~/ui/design-system/src/lib/Components/ForumCell"
 import { Default as DefaultForumCell } from "~/ui/design-system/src/lib/Components/ForumCell/ForumCell.stories"
 import { UpcomingEventsProps } from "~/ui/design-system/src/lib/Components/UpcomingEvents"
@@ -14,11 +15,16 @@ import { articles, contentNavigationItems, projects, tools } from "./data"
 
 type DynamicCommunityPageProps = Pick<
   CommunityPageProps,
-  "flips" | "communityMembers" | "concepts" | "upcomingEvents" | "forumTopics"
+  | "openFlips"
+  | "goodPlacesToStartFlips"
+  | "communityMembers"
+  | "concepts"
+  | "upcomingEvents"
+  | "forumTopics"
 >
 
 export const loader: LoaderFunction = async () => {
-  const flips = await fetchOpenFlips()
+  const { openFlips, goodPlacesToStartFlips } = await fetchFlips()
   const upcomingEvents = DefaultUpcomingEvents?.args as UpcomingEventsProps
   const forumTopics = [
     DefaultForumCell?.args,
@@ -29,7 +35,8 @@ export const loader: LoaderFunction = async () => {
   const communityMembers =
     DefaultCommunityMembers?.args as CommunityMembersProps
   const data: DynamicCommunityPageProps = {
-    flips,
+    openFlips,
+    goodPlacesToStartFlips,
     communityMembers,
     upcomingEvents,
     forumTopics,
@@ -38,12 +45,18 @@ export const loader: LoaderFunction = async () => {
 }
 
 export default function Page() {
-  const { flips, communityMembers, upcomingEvents, forumTopics } =
-    useLoaderData<DynamicCommunityPageProps>()
+  const {
+    openFlips,
+    goodPlacesToStartFlips,
+    communityMembers,
+    upcomingEvents,
+    forumTopics,
+  } = useLoaderData<DynamicCommunityPageProps>()
 
   return (
     <CommunityPage
-      flips={flips}
+      openFlips={openFlips}
+      goodPlacesToStartFlips={goodPlacesToStartFlips}
       communityMembers={communityMembers}
       projects={projects}
       upcomingEvents={upcomingEvents}
