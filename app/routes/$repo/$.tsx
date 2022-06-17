@@ -43,7 +43,7 @@ export default function () {
         <div className="w-[80%] flex-col">
           <MDXContent />
         </div>
-        <div>
+        <div className="pt-[55px]">
           <InternalToc headings={toc} />
         </div>
       </div>
