@@ -1,3 +1,4 @@
+import clsx from "clsx"
 import { useGlobals, useParameter } from "@storybook/addons"
 import "../app/main.css"
 import { bodyClasses } from "../app/styles/sharedClasses"
@@ -81,13 +82,8 @@ const withDarkMode = (Story, context) => {
   const isDarkMode = isDarkModeSelected || isDefaultDarkModeStory
 
   return (
-    <div className={isDarkMode ? "dark" : ""} style={{ padding: 0 }}>
-      <div
-        className={bodyClasses}
-        style={{ height: "100%", minHeight: "100vh" }}
-      >
-        <Story {...context} />
-      </div>
+    <div className={clsx(bodyClasses, { dark: isDarkMode })}>
+      <Story {...context} />
     </div>
   )
 }
