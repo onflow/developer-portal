@@ -21,6 +21,15 @@ import { LandingHeaderProps } from "~/ui/design-system/src/lib/Components/Landin
 import { LinkCard3ColumnProps } from "~/ui/design-system/src/lib/Components/LinkCard3Column"
 import { LinkCard2ColumnProps } from "~/ui/design-system/src/lib/Components/LinkCard2Column"
 
+const landingHeaderItems: LandingHeaderProps = {
+  buttonText: "Go to course",
+  buttonUrl: "https://github.com/emerald-dao/0-hello-world",
+  callout: "Emerald Academy",
+  description:
+    "Emerald Academy guides you from zero to hero on all things Flow it's smart contract language - Cadence.",
+  title: "Getting Started",
+}
+
 const linkCard2ColumnItems: LinkCard2ColumnProps = {
   buttonText: "View Concepts",
   buttonUrl: "#changeme",
@@ -48,66 +57,85 @@ const linkCard2ColumnItems: LinkCard2ColumnProps = {
 const linkCard3ColumnItems: LinkCard3ColumnProps = {
   items: [
     {
-      title: "Quick Start",
+      title: "Try",
       description:
-        "An up to 3-line blurb here describing the section lorem ipsum dolor sit amet proin.",
+        "A package used to interact with user wallets and the Flow blockchain.",
       icon: <Icon1 />,
       links: [
         {
-          title: "Name of a tutorial",
+          title: "Hello, World! on Flow",
+          href: "https://docs.onflow.org/cadence/tutorial/02-hello-world/",
+          tags: ["tutorial", "cadence", "playground"],
+        },
+        {
+          title: "Javascript Quickstart",
+          href: "https://docs.onflow.org/fcl/tutorials/flow-app-quickstart/",
+          tags: ["tutorial", "beginner"],
+        },
+        {
+          title: "NFT Storefront & Marketplace",
+          href: "https://docs.onflow.org/kitty-items/",
+          tags: ["example", "intermediate"],
+        },
+        {
+          title: "Cadence Cookbook",
+          href: "https://open-cadence.onflow.org/",
+          tags: ["sample", "playground"],
+        },
+        {
+          title: "Flow Block Explorer",
+          href: "https://flowscan.org/",
+          tags: ["explorer"],
+        },
+      ],
+    },
+    {
+      title: "Learn",
+      description:
+        "An up to 3-line blurb here describing the section lorem ipsum dolor sit amet proin.",
+      icon: <Icon2 />,
+      links: [
+        {
+          title: "Flow Architecture",
+          href: "https://www.onflow.org/technical-paper",
+          tags: ["protocol", "security"],
+        },
+        {
+          title: "Dapp Architecture on Flow",
+          href: "#tutorial1",
+          tags: ["guide", "overview"],
+        },
+        {
+          title: "Solidity to Cadence",
+          href: "#tutorial2",
+          tags: ["guide", "beginner"],
+        },
+        {
+          title: "Youtube Tutorials",
+          href: "https://www.youtube.com/playlist?list=PLvcQxi9WyGdGUx-a4rCsLWn_WKlA9YAXP",
+          tags: ["tutorial", "beginner", "video"],
+        },
+        {
+          title: "Learn Web3",
+          href: "https://web3-learning-roadmap.vercel.app/",
+          tags: ["roadmap", "beginner"],
+        },
+      ],
+    },
+    {
+      title: "Build",
+      description: "Smart contracts description.",
+      icon: <Icon3 />,
+      links: [
+        {
+          title: "Name of a Smart Contract tutorial",
           href: "#tutorial1",
           tags: ["tutorial"],
         },
         {
           title: "Name of a tutorial",
           href: "#tutorial2",
-          tags: ["tutorial"],
-        },
-        {
-          title: "Name of a tutorial",
-          href: "#tutorial3",
-          tags: ["tutorial"],
-        },
-      ],
-    },
-    {
-      title: "Guides",
-      description:
-        "An up to 3-line blurb here describing the section lorem ipsum dolor sit amet proin.",
-      icon: <Icon2 />,
-      links: [
-        {
-          title: "Name of a tutorial",
-          href: "#tutorial1",
-          tags: ["tutorial"],
-        },
-        {
-          title: "Name of a tutorial",
-          href: "#tutorial1",
-          tags: ["tutorial"],
-        },
-        {
-          title: "Name of a tutorial",
-          href: "#tutorial1",
-          tags: ["tutorial"],
-        },
-      ],
-    },
-    {
-      title: "Smart Contracts",
-      description:
-        "An up to 3-line blurb here describing the section lorem ipsum dolor sit amet proin.",
-      icon: <Icon3 />,
-      links: [
-        {
-          title: "Name of a tutorial",
-          href: "#tutorial1",
-          tags: ["tutorial"],
-        },
-        {
-          title: "Name of a tutorial",
-          href: "#tutorial1",
-          tags: ["tutorial"],
+          tags: ["tag1", "tag2", "tag3", "tag4"],
         },
         {
           title: "View all SDK's",
@@ -120,7 +148,6 @@ const linkCard3ColumnItems: LinkCard3ColumnProps = {
 
 type DynamicGettingStartedPageProps = Pick<
   GettingStartedPageProps,
-  | "landingHeaderItems"
   | "sdkCardItems"
   | "recentToolItems"
   | "contentNavigationItems"
@@ -128,8 +155,6 @@ type DynamicGettingStartedPageProps = Pick<
 >
 
 export const loader: LoaderFunction = async () => {
-  const landingHeaderItems = DefaultGettingStartedProps.args
-    ?.landingHeaderItems as LandingHeaderProps
   const sdkCardItems = DefaultGettingStartedProps.args?.sdkCardItems as [
     SDKCardProps,
     SDKCardProps,
@@ -152,7 +177,6 @@ export const loader: LoaderFunction = async () => {
   const recentArticleItems = DefaultGettingStartedProps.args
     ?.recentArticleItems as FeaturedArticleCardProps
   const data: DynamicGettingStartedPageProps = {
-    landingHeaderItems,
     sdkCardItems,
     recentToolItems,
     contentNavigationItems,
@@ -163,7 +187,6 @@ export const loader: LoaderFunction = async () => {
 
 export default function Page() {
   const {
-    landingHeaderItems,
     sdkCardItems,
     recentToolItems,
     contentNavigationItems,
