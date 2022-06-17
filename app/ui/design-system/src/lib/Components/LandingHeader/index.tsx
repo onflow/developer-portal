@@ -12,7 +12,7 @@ export type LandingHeaderProps = {
 }
 
 export const LandingHeaderLinks = () => (
-  <div className="fixed right-6 top-1/4 hidden flex-col text-center text-primary-gray-400 dark:text-white lg:flex">
+  <div className="fixed right-14 top-1/4 hidden flex-col text-center text-primary-gray-400 dark:text-white lg:flex">
     <a
       href={DISCORD_URL}
       className="scale-150 pb-4 hover:opacity-75"
