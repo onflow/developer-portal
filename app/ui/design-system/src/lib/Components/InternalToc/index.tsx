@@ -23,24 +23,25 @@ export function InternalToc({ headings }: InternalTocProps) {
       </div>
       <div className="border-l-1 border-l border-l-gray-100 bg-opacity-80 dark:border-l-gray-800">
         {/* TODO: Fix: We have to slice otherwise we get the page title */}
-        {headings.slice(1, headings.length).map(({ title, hash }) => {
-          return (
-            <div className="flex" key={hash}>
-              <a
-                href={hash}
-                className={clsx(
-                  "mb-1 cursor-pointer py-2 px-5 text-sm text-primary-gray-400 hover:opacity-75 dark:text-gray-200"
-                  // {
-                  //   "bg-gray-100 bg-opacity-75 font-semibold text-primary-blue dark:bg-primary-gray-dark dark:text-gray-300":
-                  //     hash === path,
-                  // }
-                )}
-              >
-                {title}
-              </a>
-            </div>
-          )
-        })}
+        {headings.length &&
+          headings.slice(1, headings.length).map(({ title, hash }) => {
+            return (
+              <div className="flex" key={hash}>
+                <a
+                  href={hash}
+                  className={clsx(
+                    "mb-1 cursor-pointer py-2 px-5 text-sm text-primary-gray-400 hover:opacity-75 dark:text-gray-200"
+                    // {
+                    //   "bg-gray-100 bg-opacity-75 font-semibold text-primary-blue dark:bg-primary-gray-dark dark:text-gray-300":
+                    //     hash === path,
+                    // }
+                  )}
+                >
+                  {title}
+                </a>
+              </div>
+            )
+          })}
       </div>
     </div>
   )
