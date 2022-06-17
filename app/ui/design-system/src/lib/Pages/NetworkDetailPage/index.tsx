@@ -48,7 +48,7 @@ const NetworkDetailPage = () => {
             </a>
           </div>
           <TabMenu tabs={tabs} onTabChange={setSelectedNetworkIndex} centered />
-          <div className="text-h3 md:text-h1 mb-14 mt-16 md:text-center md:text-5xl">
+          <div className="text-h3 md:text-h1 mt-16 mb-14 md:text-center md:text-5xl">
             {currentNetwork.name}
           </div>
           <NetworkDetailsCard

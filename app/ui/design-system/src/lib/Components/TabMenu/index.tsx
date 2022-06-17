@@ -3,7 +3,7 @@ import { useState } from "react"
 
 export type TabMenuProps = {
   tabs: string[]
-  onTabChange: (tab: string) => void
+  onTabChange: any
   centered?: boolean
 }
 
