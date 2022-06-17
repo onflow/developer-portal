@@ -1,6 +1,6 @@
 import { Meta, Story } from "@storybook/react"
 import { FeatureLinkBlock, FeatureLinkBlockProps } from "."
-import { ReactComponent as FclIcon } from "../../../../images/tools/tool-fcl"
+import FclIconSrc from "../../../../images/tools/tool-fcl.svg"
 
 export default {
   component: FeatureLinkBlock,
@@ -21,7 +21,7 @@ Default.args = {
   ctaText: "Get started",
   description:
     "Everything you need to start building on Flow is lorem ipsum Everything",
-  icon: <FclIcon />,
+  iconSrc: FclIconSrc,
   links: [
     {
       href: "#reference",

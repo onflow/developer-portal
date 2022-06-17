@@ -7,7 +7,7 @@ export type FeatureLinkBlockProps = {
   ctaLink: string
   ctaText: string
   description: string
-  icon: React.ReactNode
+  iconSrc: string
   links: Array<{
     href: string
     title: string
@@ -19,14 +19,16 @@ export function FeatureLinkBlock({
   ctaLink = "Online",
   ctaText,
   description,
-  icon,
+  iconSrc,
   links,
   title,
 }: FeatureLinkBlockProps) {
   return (
     <div className="flex flex-col items-start items-stretch rounded-lg bg-white p-6 dark:bg-primary-gray-dark md:flex-row md:items-center md:p-12">
       <div className="basis-1/2 md:mr-10">
-        {icon}
+        <div>
+          <img src={iconSrc} alt={title} />
+        </div>
         <h2 className="text-h2 mb-2 mt-6">{title}</h2>
         <p className="mb-10 text-primary-gray-400 dark:text-primary-gray-100">
           {description}
@@ -39,10 +41,10 @@ export function FeatureLinkBlock({
         </ButtonLink>
       </div>
       <div className="mt-10 flex basis-1/2 flex-col items-stretch divide-y divide-primary-gray-100 dark:divide-primary-gray-400">
-        {links.map(({ title, href }) => (
+        {links.map(({ title, href }, index) => (
           <a
             className="flex items-center justify-between py-3 text-sm text-primary-blue hover:opacity-75 dark:text-blue-dark"
-            key={title}
+            key={index}
             href={href}
           >
             <span>{title}</span>
