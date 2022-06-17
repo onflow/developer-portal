@@ -56,38 +56,27 @@ export function SDKCard({
               <Tag name={tag} key={i} />
             ))}
           </div>
-          {stars !== undefined && (
-            <div className="flex shrink-0 items-center gap-1">
-              <div className="scale-50">
-                <StarIcon className="text-amber-400" />
-              </div>
-              <div className="md:leading-1 h-fit text-sm text-gray-500 dark:text-gray-300">
-                {stars}
-              </div>
+
+          <div className="flex shrink-0 gap-1">
+            <StarIcon className="text-amber-400" height={16} width={16} />
+            <div className="md:leading-1 h-fit text-sm text-gray-500 dark:text-gray-300">
+              {stars}
             </div>
-          )}
+          </div>
         </div>
         <div className="align-center -mb-1 grid w-fit grid-cols-1 gap-x-4 justify-self-center pt-6 text-gray-500 md:grid-cols-2	">
-          {lastRelease && (
-            <div className="flex items-center">
-              <CalendarIcon
-                className="mr-3 stroke-gray-500"
-                width={22}
-                height={18}
-              />
-              <div>{lastRelease} days ago</div>
-            </div>
-          )}
-          {lastCommit && (
-            <div className="flex items-center">
-              <CommitIcon
-                className="mr-3 fill-gray-500"
-                width={22}
-                height={22}
-              />
-              <div>{lastCommit}</div>
-            </div>
-          )}
+          <div className="flex items-center">
+            <CalendarIcon
+              className="mr-3 stroke-gray-500"
+              width={22}
+              height={22}
+            />
+            <div>{lastRelease} days ago</div>
+          </div>
+          <div className="flex items-center">
+            <CommitIcon className="mr-3 fill-gray-500" width={22} height={22} />
+            <div>{lastCommit}</div>
+          </div>
         </div>
       </div>
     </a>
