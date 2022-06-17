@@ -22,29 +22,44 @@ export function DesktopMenuItem({ divider, ...props }: DesktopMenuItemProps) {
 
   return (
     <Popover as="li" className={clsx({ "border-l": divider })}>
-      <Popover.Button className="flex whitespace-nowrap px-4">
-        {title} <ChevronDown />
-      </Popover.Button>
-      <Popover.Overlay className="fixed top-16 left-0 right-0 bottom-0" />
-      <Transition
-        as={Fragment}
-        enter="transition ease-out duration-100"
-        enterFrom="transform opacity-0 scale-95"
-        enterTo="transform opacity-100 scale-100"
-        leave="transition ease-in duration-75"
-        leaveFrom="transform opacity-100 scale-100"
-        leaveTo="transform opacity-0 scale-95"
-      >
-        <Popover.Panel className="fixed top-16 left-0 right-0 bottom-0 z-50 origin-top-right">
-          <div className="h-full max-h-full">
-            {"tabs" in contentProps ? (
-              <DesktopMenuTabbed {...contentProps} />
-            ) : (
-              <MenuContent {...contentProps} />
-            )}
-          </div>
-        </Popover.Panel>
-      </Transition>
+      {({ open }) => (
+        <>
+          <Popover.Button
+            className={clsx("flex whitespace-nowrap px-4 focus:outline-none", {
+              "text-primary-blue dark:text-blue-dark": open,
+            })}
+          >
+            <>
+              {title}{" "}
+              <ChevronDown
+                className={clsx("transform transition duration-300", {
+                  "rotate-x-180": open,
+                })}
+              />
+            </>
+          </Popover.Button>
+          <Popover.Overlay className="fixed top-16 left-0 right-0 bottom-0" />
+          <Transition
+            as={Fragment}
+            enter="transition ease-out duration-100"
+            enterFrom="transform opacity-0 scale-95"
+            enterTo="transform opacity-100 scale-100"
+            leave="transition ease-in duration-75"
+            leaveFrom="transform opacity-100 scale-100"
+            leaveTo="transform opacity-0 scale-95"
+          >
+            <Popover.Panel className="fixed top-16 left-0 right-0 bottom-0 z-50 origin-top-right">
+              <div className="h-full max-h-full">
+                {"tabs" in contentProps ? (
+                  <DesktopMenuTabbed {...contentProps} />
+                ) : (
+                  <MenuContent {...contentProps} />
+                )}
+              </div>
+            </Popover.Panel>
+          </Transition>
+        </>
+      )}
     </Popover>
   )
 }
