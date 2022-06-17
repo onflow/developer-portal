@@ -56,11 +56,7 @@ export const PaginatedTutorialCardList = ({
         {tutorials
           .slice((page - 1) * pageSize, page * pageSize)
           .map((tutorialProps, index) => (
-            <TutorialCard
-              key={index}
-              className="w-full md:w-[100%]"
-              {...tutorialProps}
-            />
+            <TutorialCard key={index} {...tutorialProps} />
           ))}
       </div>
       <Pagination

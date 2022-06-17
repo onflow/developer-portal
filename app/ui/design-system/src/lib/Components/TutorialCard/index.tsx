@@ -28,19 +28,23 @@ const TutorialCard = ({
     <a
       href={link}
       className={clsx(
-        "flex h-[340px] w-full flex-col overflow-hidden rounded-lg bg-white hover:shadow-2xl dark:bg-primary-gray-dark dark:hover:shadow-2xl-dark md:w-[272px]",
+        "flex flex-col overflow-hidden rounded-lg bg-white hover:shadow-2xl dark:bg-primary-gray-dark dark:hover:shadow-2xl-dark",
         className
       )}
     >
-      <img src={imageUri} alt="" className="h-[110px] object-cover" />
-      <div className="flex flex-1 flex-col justify-between p-4">
-        <div className="text-lg font-bold md:text-xl">{heading}</div>
-        <div className="my-2">
-          {tags.map((tag) => (
-            <Tag key={tag} name={tag} />
-          ))}
+      <img src={imageUri} alt={heading} className="h-[110px] object-cover" />
+      <div className="flex h-full flex-col justify-between p-4">
+        <div>
+          <div className="text-lg font-bold md:text-xl">{heading}</div>
+          <div className="my-1 inline-flex flex-wrap">
+            {tags.map((tag) => (
+              <span className="my-1" key={tag}>
+                <Tag name={tag} />
+              </span>
+            ))}
+          </div>
+          <div className="line-clamp-3">{description}</div>
         </div>
-        {description}
         <div className="mt-6 flex justify-between text-xs text-primary-gray-300 dark:text-primary-gray-200">
           <div className="flex items-center">
             <CalendarIcon className="mr-1 scale-75" />
