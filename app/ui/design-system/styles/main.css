@@ -18,3 +18,7 @@ body,
 html {
   @apply text-gray-900 dark:text-gray-300;
 }
+
+.rotate-x-180 {
+  transform: rotateX(180deg);
+}
