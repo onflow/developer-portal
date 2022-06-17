@@ -20,6 +20,7 @@ import {
   StaticCheckbox,
 } from "~/ui/design-system"
 import type { LoaderData as RootLoaderData } from "../../root"
+import { useTheme } from "./theme.provider"
 
 function typedBoolean<T>(
   value: T
@@ -282,34 +283,31 @@ function mapFromMdxPageToMdxListItem(page: MdxPage): MdxListItem {
   return mdxListItem
 }
 
-const mdxComponents = {
-  a: (props: LinkProps & { href: string }) => (
-    <RemixLink to={props.href}>
-      {/* @ts-expect-error: We need to figure out how to type this */}
-      <Link {...props} />
-    </RemixLink>
-  ),
-  input: (props: InputProps) =>
-    props.type === "checkbox" ? (
-      <StaticCheckbox {...props} asInternalChecklist={true} />
-    ) : (
-      <input {...props} />
+function GetMdxComponents() {
+  const [theme] = useTheme()
+  return {
+    a: (props: LinkProps & { href: string }) => (
+      <RemixLink to={props.href}>
+        {/* @ts-expect-error: We need to figure out how to type this */}
+        <Link {...props} />
+      </RemixLink>
     ),
-  h1: (props: HeadingProps) => <Heading type="h1" {...props} />,
-  h2: (props: HeadingProps) => <Heading type="h2" {...props} />,
-  h3: (props: HeadingProps) => <Heading type="h3" {...props} />,
-  h4: (props: HeadingProps) => <Heading type="h4" {...props} />,
-  h5: (props: HeadingProps) => <Heading type="h5" {...props} />,
-  h6: (props: HeadingProps) => <Heading type="h6" {...props} />,
-  pre: ({
-    className,
-    children,
-  }: {
-    className: string
-    children: JSX.Element
-  }) => {
-    return <InternalCodeblock children={children} />
-  },
+    input: (props: InputProps) =>
+      props.type === "checkbox" ? (
+        <StaticCheckbox {...props} asInternalChecklist={true} />
+      ) : (
+        <input {...props} />
+      ),
+    h1: (props: HeadingProps) => <Heading type="h1" {...props} />,
+    h2: (props: HeadingProps) => <Heading type="h2" {...props} />,
+    h3: (props: HeadingProps) => <Heading type="h3" {...props} />,
+    h4: (props: HeadingProps) => <Heading type="h4" {...props} />,
+    h5: (props: HeadingProps) => <Heading type="h5" {...props} />,
+    h6: (props: HeadingProps) => <Heading type="h6" {...props} />,
+    pre: ({ children }: { className: string; children: JSX.Element }) => {
+      return <InternalCodeblock children={children} theme={theme} />
+    },
+  }
 }
 
 /**
@@ -320,7 +318,6 @@ const mdxComponents = {
 function getMdxComponent({ code, frontmatter }: MdxPage) {
   const Component = getMDXComponent(code)
   // const headings = getHeadingsFromMdxComponent(Component);
-
   function MdxComponent({
     components,
     ...rest
@@ -329,7 +326,7 @@ function getMdxComponent({ code, frontmatter }: MdxPage) {
       <div className="container flex flex-row">
         <div className="mdx-content">
           {/* @ts-expect-error: We need to figure out how to type this */}
-          <Component components={mdxComponents} {...rest} />
+          <Component components={GetMdxComponents()} {...rest} />
         </div>
       </div>
     )

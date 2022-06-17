@@ -1,6 +1,7 @@
 import { Dialog } from "@headlessui/react"
 import clsx from "clsx"
 import React, { useState } from "react"
+import { Theme } from "~/cms/utils/theme.provider"
 import { ReactComponent as CollapseIcon } from "../../../../images/content/collapse"
 import { ReactComponent as FileCodeIcon } from "../../../../images/content/file-code"
 // import { ReactComponent as FileCopyIcon } from "../../../../images/content/file-copy"
@@ -12,6 +13,7 @@ import { Code } from "./Code"
 
 export type InternalCodeblockProps = {
   tall?: boolean
+  theme: Theme | null
   children: JSX.Element
 }
 
@@ -83,7 +85,11 @@ function FullWidthDialog({
   )
 }
 
-export function InternalCodeblock({ tall, children }: InternalCodeblockProps) {
+export function InternalCodeblock({
+  tall,
+  theme,
+  children,
+}: InternalCodeblockProps) {
   const [showDialog, setShowDialog] = useState(false)
 
   const openDialog = () => setShowDialog(true)
@@ -105,6 +111,7 @@ export function InternalCodeblock({ tall, children }: InternalCodeblockProps) {
             "w-full",
             tall ? "max-h-[280px]" : "max-h-[130px]"
           )}
+          theme={theme}
         />
       </div>
       <FullWidthDialog closeDialog={closeDialog} showDialog={showDialog}>
@@ -115,7 +122,11 @@ export function InternalCodeblock({ tall, children }: InternalCodeblockProps) {
           onCopy={onCopy}
         />
         <div className="mdx-content h-full">
-          <Code children={children} innerClasses="w-full h-full" />
+          <Code
+            children={children}
+            innerClasses="w-full h-full"
+            theme={theme}
+          />
         </div>
       </FullWidthDialog>
     </>
