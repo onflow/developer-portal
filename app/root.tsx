@@ -26,7 +26,6 @@ import {
 } from "~/cms/utils/theme.provider"
 import { navBarData } from "./component-data/NavigationBar"
 import styles from "./main.css"
-import { bodyClasses } from "./styles/sharedClasses"
 import { getThemeSession } from "./theme.server"
 import { Footer } from "./ui/design-system/src"
 import { ErrorPage } from "./ui/design-system/src/lib/Components/ErrorPage"
@@ -73,7 +72,7 @@ function App() {
         <Links />
         <ThemeHead ssrTheme={Boolean(data.theme)} />
       </head>
-      <body className={bodyClasses}>
+      <body className="root">
         <ThemeBody ssrTheme={Boolean(data.theme)} />
         <NavigationBar
           menuItems={navBarData.menuItems}

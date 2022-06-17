@@ -1,7 +1,6 @@
-import clsx from "clsx"
 import { useGlobals, useParameter } from "@storybook/addons"
+import clsx from "clsx"
 import "../app/main.css"
-import { bodyClasses } from "../app/styles/sharedClasses"
 import tailwindConfig from "../tailwind.config"
 
 export const parameters = {
@@ -82,7 +81,7 @@ const withDarkMode = (Story, context) => {
   const isDarkMode = isDarkModeSelected || isDefaultDarkModeStory
 
   return (
-    <div className={clsx(bodyClasses, { dark: isDarkMode })}>
+    <div className={clsx("root", { dark: isDarkMode })}>
       <Story {...context} />
     </div>
   )
