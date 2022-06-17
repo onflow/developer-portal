@@ -7,7 +7,7 @@ import {
   ToolsAndConcepts,
   UpcomingEvents,
 } from "../../Components"
-import { FlipCellProps } from "../../Components/FlipCell"
+import { FlipsProps } from "../../Components/Flips"
 import { LinkCard2ColumnProps } from "../../Components/LinkCard2Column"
 import { LinkCard3ColumnItems } from "../../Components/LinkCard3Column"
 import { ToolCardProps } from "../../Components/ToolCard"
@@ -18,7 +18,7 @@ import PageSections from "../shared/PageSections"
 
 export type HomePageProps = {
   startProjectItems: LinkCard2ColumnProps
-  flips: FlipCellProps[]
+  flips: FlipsProps
   tools: ToolCardProps[]
   concepts?: ToolCardProps[]
   threeColumnItems: LinkCard3ColumnItems
@@ -52,7 +52,7 @@ const HomePage = ({
           <ToolsAndConcepts tools={tools} concepts={concepts} />
         </PageSection>
         <PageSection>
-          <Flips flips={flips} />
+          <Flips {...flips} />
         </PageSection>
         <PageSection>
           <UpcomingEvents {...upcomingEvents} />
