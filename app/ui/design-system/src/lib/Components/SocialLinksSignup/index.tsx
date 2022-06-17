@@ -63,35 +63,35 @@ const SocialLinksSignup = () => {
           style={{ background: "rgba(213, 221, 233, 0.3)" }}
         >
           <SocialLink
-            header="Title"
-            description="One liner explaining this"
+            header="Github"
+            description="All repos maintained by the core contributors of Flow."
             logo={GithubLogo}
             className="border-b border-r-0 md:border-r"
             url={GITHUB_URL}
           />
           <SocialLink
-            header="Title"
-            description="One liner explaining this"
+            header="Forum"
+            description="A place to discuss proposals, check updates, and find answers."
             logo={DiscourseLogo}
             className="border-b border-r-0 md:border-r md:border-b-0"
             url={DISCOURSE_URL}
           />
           <SocialLink
-            header="Title"
-            description="One liner explaining this"
+            header="Discord"
+            description="Talk directly to the developer community."
             logo={DiscordLogo}
             className="border-b"
             url={DISCORD_URL}
           />
           <SocialLink
-            header="Title"
-            description="One liner explaining this"
+            header="Twitter"
+            description="Checkout the latest happenings on Flow."
             logo={TwitterLogo}
             url={TWITTER_URL}
           />
         </div>
-
-        <div className="mt-8 flex flex-col items-center justify-between rounded-lg bg-white px-4 py-10 dark:bg-primary-gray-dark sm:p-10 md:flex-row md:py-20 md:px-[75px]">
+        {/** Temporarily disabling email capture */}
+        {/* <div className="mt-8 flex flex-col items-center justify-between rounded-lg bg-white px-4 py-10 dark:bg-primary-gray-dark sm:p-10 md:flex-row md:py-20 md:px-[75px]">
           <h2 className="text-h2 mb-4 text-center md:mr-8 md:text-left">
             Subscribe to our newsletter
           </h2>
@@ -109,7 +109,7 @@ const SocialLinksSignup = () => {
               Subscribe
             </a>
           </div>
-        </div>
+        </div> */}
       </div>
     </div>
   )
