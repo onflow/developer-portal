@@ -1,4 +1,3 @@
-import { useState } from "react"
 import { ButtonLink } from "../Button"
 import { EventCard, EventCardProps } from "../EventCard"
 import { EventCardSmall } from "../EventCardSmall"
