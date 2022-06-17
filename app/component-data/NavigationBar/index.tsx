@@ -39,47 +39,36 @@ export const largeSection: Section = {
 }
 
 export const card: IntroCardProps = {
-  href: "",
+  href: "/builders",
   ctaText: "Get Started",
-  description: "Intro blurb for an intro card, maximum two lines.",
-  imageHref: "",
-  title: "Two-line title here lorem ipsum",
+  description: "New to Flow? Start here to understand and learn the basics.",
+  imageHref:
+    "https://www.dropbox.com/sh/5z8cfonblsycxj1/AACbXQwa8aFbgkM23GX5gnnSa?dl=0&preview=Asset+6%403x.png",
+  title: "Get Started",
 }
 
 export const tabs: Tab[] = [
   {
-    title: "Multiple Cards and Sections",
-    description: "A tab that contains multiple cards and sections",
+    title: "Build",
+    description: "Start developing dapps on Flow.",
     cards: Array(3).fill(card),
     sections: Array(5).fill(section),
   },
   {
-    title: "Single Card and Multiple Sections",
-    description: "A tab that contains a single card and multiple sections",
+    title: "Setup",
+    description: "Connect to our networks or get started locally.",
     cards: [card],
     sections: [section, section, section, mediumSection],
   },
   {
-    title: "Sections only",
-    description: "A tab that contains only sections",
+    title: "Learn",
+    description: "Understand how Flow works.",
     sections: [section, section, section, mediumSection],
   },
   {
-    title: "One Large Section",
-    description: "A tab that contains a single large section",
+    title: "Cadence",
+    description: "Flow's smart contract programming language.",
     sections: [largeSection],
-  },
-  {
-    title: "Small Section",
-    description: "A tab that contains a small section",
-    sections: [
-      {
-        links: [sectionLink, sectionLink],
-        title: "Section Title",
-        subSections: [sectionSubSection, sectionSubSection],
-        icon: <EcosystemIcon height="1em" width="1em" />,
-      },
-    ],
   },
 ]
 
