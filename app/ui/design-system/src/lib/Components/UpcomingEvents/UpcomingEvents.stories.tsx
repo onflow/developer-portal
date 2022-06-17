@@ -13,11 +13,9 @@ const Template: Story<UpcomingEventsProps> = (args) => (
 )
 
 const DefaultArgs = {
-  officeHours: <p>[office hours placeholder]</p>,
-  workingHours: <p>[working hours placeholder]</p>,
   goToCommunityHref: "#todo",
   submitEventHref: "#todo",
-  primaryEvents: [
+  events: [
     {
       ctaText: "CTA Here",
       description:
@@ -31,75 +29,59 @@ const DefaultArgs = {
       title: "Event Title",
     },
     {
-      ctaText: "CTA Here",
+      href: "https://www.onflow.org",
       description:
         "Everything you need to start building on Flow verything you need to start building on Flow everything you need to start building on Flow",
-      eventDate: "Mar 23",
-      href: "#todo",
+      eventType: "Online",
       imageSrc:
-        "https://assets.website-files.com/5f6294c0c7a8cdf432b1c827/61689102d3325e237fd44b76_unnamed%20(8).png",
-      location: "Online",
+        "https://assets.website-files.com/5f6294c0c7a8cdf432b1c827/61410bc0c8d0522eea319058_Hack-blog_Flow.png",
       tags: ["Flow official"],
-      title: "Event Title",
+      title: "FLIP contest",
+      eventDate: "May 5th, 5pm",
     },
     {
-      ctaText: "CTA Here",
+      href: "https://www.onflow.org",
       description:
         "Everything you need to start building on Flow verything you need to start building on Flow everything you need to start building on Flow",
-      eventDate: "Mar 23",
-      href: "#todo",
-      imageSrc:
-        "https://assets.website-files.com/5f6294c0c7a8cdf432b1c827/61689102d3325e237fd44b76_unnamed%20(8).png",
-      location: "Online",
-      tags: ["Flow official"],
-      title: "Event Title",
-    },
-  ],
-  secondaryEvents: [
-    {
-      href: "https://www.onflow.org",
       eventType: "Online",
       imageSrc:
         "https://assets.website-files.com/5f6294c0c7a8cdf432b1c827/61410bc0c8d0522eea319058_Hack-blog_Flow.png",
       tags: ["Flow official"],
       title: "FLIP contest",
-      when: "May 5th, 5pm",
+      eventDate: "May 5th, 5pm",
     },
     {
       href: "https://www.onflow.org",
+      description:
+        "Everything you need to start building on Flow verything you need to start building on Flow everything you need to start building on Flow",
       eventType: "Online",
       imageSrc:
         "https://assets.website-files.com/5f6294c0c7a8cdf432b1c827/61410bc0c8d0522eea319058_Hack-blog_Flow.png",
       tags: ["Flow official"],
       title: "FLIP contest",
-      when: "May 5th, 5pm",
+      eventDate: "May 5th, 5pm",
     },
     {
       href: "https://www.onflow.org",
+      description:
+        "Everything you need to start building on Flow verything you need to start building on Flow everything you need to start building on Flow",
       eventType: "Online",
       imageSrc:
         "https://assets.website-files.com/5f6294c0c7a8cdf432b1c827/61410bc0c8d0522eea319058_Hack-blog_Flow.png",
       tags: ["Flow official"],
       title: "FLIP contest",
-      when: "May 5th, 5pm",
+      eventDate: "May 5th, 5pm",
     },
     {
       href: "https://www.onflow.org",
+      description:
+        "Everything you need to start building on Flow verything you need to start building on Flow everything you need to start building on Flow",
       eventType: "Online",
       imageSrc:
         "https://assets.website-files.com/5f6294c0c7a8cdf432b1c827/61410bc0c8d0522eea319058_Hack-blog_Flow.png",
       tags: ["Flow official"],
       title: "FLIP contest",
-      when: "May 5th, 5pm",
-    },
-    {
-      href: "https://www.onflow.org",
-      eventType: "Online",
-      imageSrc:
-        "https://assets.website-files.com/5f6294c0c7a8cdf432b1c827/61410bc0c8d0522eea319058_Hack-blog_Flow.png",
-      tags: ["Flow official"],
-      title: "FLIP contest",
-      when: "May 5th, 5pm",
+      eventDate: "May 5th, 5pm",
     },
   ],
 }
@@ -110,5 +92,5 @@ Default.args = DefaultArgs
 export const SingleEvent = Template.bind({})
 SingleEvent.args = {
   ...Default.args,
-  primaryEvents: DefaultArgs.primaryEvents.slice(0, 1),
+  events: DefaultArgs.events.slice(0, 1),
 }

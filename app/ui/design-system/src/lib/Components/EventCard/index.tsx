@@ -5,15 +5,16 @@ import Tag from "../Tag"
 
 export type EventCardProps = {
   className?: string
-  ctaText: string
+  ctaText?: string
   description: string
   eventDate: string
   href: string
   imageAlt?: string
   imageSrc: string
-  location: string
+  location?: string
   tags?: string[]
   title: string
+  eventType?: string
 }
 
 export function EventCard({

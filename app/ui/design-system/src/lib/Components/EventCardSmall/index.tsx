@@ -1,15 +1,6 @@
 import { ReactComponent as ExternalLinkIcon } from "../../../../images/content/external-link"
+import { EventCardProps } from "../EventCard"
 import Tag from "../Tag"
-
-export type EventCardSmallProps = {
-  eventType: string
-  href: string
-  imageAlt?: string
-  imageSrc: string
-  tags?: string[]
-  title: string
-  when: string
-}
 
 export function EventCardSmall({
   eventType = "Online",
@@ -18,8 +9,8 @@ export function EventCardSmall({
   imageSrc,
   tags,
   title,
-  when,
-}: EventCardSmallProps) {
+  eventDate,
+}: EventCardProps) {
   return (
     <a
       href={href}
@@ -41,7 +32,7 @@ export function EventCardSmall({
           </span>
         )}
         <span className="mt-1 mb-2 text-primary-gray-300 dark:text-primary-gray-100">
-          {when}
+          {eventDate}
         </span>
         <span className="text-sm text-primary-gray-200">{eventType}</span>
       </span>

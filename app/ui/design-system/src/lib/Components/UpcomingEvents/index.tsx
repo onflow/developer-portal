@@ -1,26 +1,22 @@
 import { useState } from "react"
 import { ButtonLink } from "../Button"
-import { EventCardList, EventCardProps } from "../EventCard"
-import { EventCardSmall, EventCardSmallProps } from "../EventCardSmall"
+import { EventCard, EventCardProps } from "../EventCard"
+import { EventCardSmall } from "../EventCardSmall"
 import TabMenu from "../TabMenu"
 
 export type UpcomingEventsProps = {
-  officeHours: React.ReactNode
-  workingHours: React.ReactNode
   submitEventHref: string
   goToCommunityHref: string
-  primaryEvents: EventCardProps[]
-  secondaryEvents: EventCardSmallProps[]
+  events: EventCardProps[]
 }
 
 export function UpcomingEvents({
-  officeHours,
-  workingHours,
   submitEventHref,
   goToCommunityHref,
-  primaryEvents,
-  secondaryEvents,
+  events,
 }: UpcomingEventsProps) {
+  const firstEvent = events[0]
+  const remainingEvents = [...events].splice(0, 1)
   const [selectedTab, setSelectedTab] = useState(0)
 
   return (
@@ -32,14 +28,9 @@ export function UpcomingEvents({
       />
       {selectedTab === 0 && (
         <div className="py-6">
-          <EventCardList
-            events={primaryEvents}
-            breakpoint="none"
-            className="mb-4"
-            carouselItemWidth="w-10/12 md:w-full"
-          />
+          <EventCard {...firstEvent} className="mb-4" />
           <ul className="hidden list-none flex-row gap-6 overflow-x-auto md:flex">
-            {secondaryEvents.map((event, index) => (
+            {remainingEvents.map((event: EventCardProps, index: number) => (
               <li key={index}>
                 <EventCardSmall {...event} />
               </li>
@@ -64,8 +55,6 @@ export function UpcomingEvents({
           </div>
         </div>
       )}
-      {selectedTab === 1 && <div>{workingHours}</div>}
-      {selectedTab === 2 && <div>{officeHours}</div>}
     </div>
   )
 }
