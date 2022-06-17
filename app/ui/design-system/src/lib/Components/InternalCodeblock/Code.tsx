@@ -3,7 +3,7 @@ import clsx from "clsx"
 import Highlight, { defaultProps, Language, Prism } from "prism-react-renderer"
 import darkTheme from "prism-react-renderer/themes/vsDark"
 import lightTheme from "prism-react-renderer/themes/vsLight"
-import { useTheme } from "~/cms/utils/theme.provider"
+import { Theme } from "~/cms/utils/theme.provider"
 import { prismSwiftLang } from "./prism"
 
 // Add swift to Prism. Is there a better way to do this?
@@ -19,12 +19,13 @@ Prism.languages.cadence = Prism.languages["swift"]
 
 export function Code({
   innerClasses,
+  theme,
   children,
 }: {
   innerClasses: string
+  theme: Theme | null
   children: JSX.Element
 }) {
-  const [theme] = useTheme()
   const language =
     children.props.className?.replace(/language-/, "") || "language-javascript"
 
