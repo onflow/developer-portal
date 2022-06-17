@@ -39,30 +39,18 @@ export default function Flips({
           tabs={["Open FLIPS", " Good places to start"]}
           onTabChange={setSelectedTab}
         />
-        {selectedTab === 0 && (
-          <div className="py-6">
-            <FlipCellHeader />
-            <div className="flex flex-col gap-4">
-              {openFlips.map((flip, index) => (
+        <div className="py-6">
+          <FlipCellHeader />
+          <div className="flex flex-col gap-4">
+            {(selectedTab === 0 ? openFlips : goodPlacesToStartFlips).map(
+              (flip, index) => (
                 <div key={index}>
                   <FlipCell {...flip} />
                 </div>
-              ))}
-            </div>
+              )
+            )}
           </div>
-        )}
-        {selectedTab === 1 && (
-          <div className="py-6">
-            <FlipCellHeader />
-            <div className="flex flex-col gap-4">
-              {goodPlacesToStartFlips.map((flip, index) => (
-                <div key={index}>
-                  <FlipCell {...flip} />
-                </div>
-              ))}
-            </div>
-          </div>
-        )}
+        </div>
       </div>
     </div>
   )
