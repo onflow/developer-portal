@@ -1,14 +1,8 @@
-import { LoaderFunction } from "@remix-run/node"
-import { useLoaderData } from "@remix-run/react"
-import {
-  GettingStartedPage,
-  GettingStartedPageProps,
-} from "~/ui/design-system/src/lib/Pages/GettingStartedPage"
+import { GettingStartedPage } from "~/ui/design-system/src/lib/Pages/GettingStartedPage"
 import {
   Icon1,
   Icon2,
   Icon3,
-  Default as DefaultGettingStartedProps,
 } from "~/ui/design-system/src/lib/Pages/GettingStartedPage/GettingStartedPage.stories"
 import { svgToDataUri } from "~/ui/design-system/src/lib/Components/LinkCard2Column/LinkCard2Column.stories"
 import { ReactComponent as CadenceIcon } from "~/ui/design-system/images/tools/tool-cadence"
