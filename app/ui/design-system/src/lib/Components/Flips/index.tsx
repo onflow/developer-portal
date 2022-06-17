@@ -2,12 +2,19 @@ import { GITHUB_URL } from "../../constants"
 import { ButtonLink } from "../Button"
 import TabMenu from "../TabMenu"
 import FlipCell, { FlipCellHeader, FlipCellProps } from "./FlipCell"
+import { useState } from "react"
 
 export type FlipsProps = {
-  flips: FlipCellProps[]
+  openFlips: FlipCellProps[]
+  goodPlacesToStartFlips: FlipCellProps[]
 }
 
-export default function Flips({ flips }: FlipsProps) {
+export default function Flips({
+  openFlips,
+  goodPlacesToStartFlips,
+}: FlipsProps) {
+  const [selectedTab, setSelectedTab] = useState(0)
+
   return (
     <div className="container">
       <div className="flex items-center justify-between">
@@ -30,17 +37,20 @@ export default function Flips({ flips }: FlipsProps) {
       <div className="mb-6">
         <TabMenu
           tabs={["Open FLIPS", " Good places to start"]}
-          onTabChange={() => null}
+          onTabChange={setSelectedTab}
         />
-      </div>
-
-      <FlipCellHeader />
-      <div className="flex flex-col gap-4">
-        {flips.map((flip, index) => (
-          <div key={index}>
-            <FlipCell {...flip} />
+        <div className="py-6">
+          <FlipCellHeader />
+          <div className="flex flex-col gap-4">
+            {(selectedTab === 0 ? openFlips : goodPlacesToStartFlips).map(
+              (flip, index) => (
+                <div key={index}>
+                  <FlipCell {...flip} />
+                </div>
+              )
+            )}
           </div>
-        ))}
+        </div>
       </div>
     </div>
   )
