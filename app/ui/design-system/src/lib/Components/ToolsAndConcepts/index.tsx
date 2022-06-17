@@ -37,7 +37,13 @@ const ToolsAndConcepts = ({
         )}
       </div>
       {concepts && concepts.length > 0 && (
-        <TabMenu tabs={["Tools", "Concepts"]} onTabChange={() => null} />
+        <TabMenu
+          tabs={[
+            { name: " Tools", link: "#" },
+            { name: " Concepts", link: "#" },
+          ]}
+          onTabChange={() => null}
+        />
       )}
       <div className="mt-9 grid gap-4 md:grid-cols-2 md:gap-8">
         {tools.map((tool: ToolCardProps, index) => (

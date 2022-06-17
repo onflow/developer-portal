@@ -17,6 +17,7 @@ export type LinkProps = React.DetailedHTMLProps<
 export function Link({ children, className, id, href, ...props }) {
   const isExternal = isLinkExternal(href)
   const isFootnote = !!props["data-footnote-ref"]
+  const onClick = props.onClick
 
   const classes = clsx(defaultClasses, {
     "border-b border-b-1 border-primary-blue stroke-primary-blue border-solid":
@@ -38,7 +39,7 @@ export function Link({ children, className, id, href, ...props }) {
   }
 
   return (
-    <span className={`mr-1 ${className}`}>
+    <span className={`mr-1 ${className}`} onClick={onClick}>
       {isFootnote ? <>[{children}]</> : children}
     </span>
   )

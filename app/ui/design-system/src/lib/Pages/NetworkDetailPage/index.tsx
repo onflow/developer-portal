@@ -19,14 +19,17 @@ import PageSections from "../shared/PageSections"
 export type NetworkDetailPageProps = {
   networkStatuses: StatuspageApiResponse[]
   networkName: string
+  networkUrl: string
   featuredArticle: Article
 }
 
 const NetworkDetailPage = ({
   networkName,
+  networkUrl,
   networkStatuses,
   featuredArticle,
 }: NetworkDetailPageProps) => {
+  console.log(networkUrl, networkName)
   const convertedName = networkName
     .split("-")
     .map((name) => name[0].toUpperCase() + name.slice(1))
@@ -34,11 +37,11 @@ const NetworkDetailPage = ({
   const defaultIndex = networkStatuses.findIndex((object) => {
     return object.name === convertedName
   })
-  console.log(convertedName, defaultIndex)
   const [selectedNetworkIndex, setSelectedNetworkIndex] = useState(defaultIndex)
-  const tabs = networkStatuses.map(
-    (network: StatuspageApiResponse) => network.name
-  )
+  const tabs = networkStatuses.map((network: StatuspageApiResponse) => ({
+    name: network.name,
+    link: networkUrl + convertedName,
+  }))
   const currentNetwork = networkStatuses[selectedNetworkIndex]
 
   return (
