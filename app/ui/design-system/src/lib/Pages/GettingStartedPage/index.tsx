@@ -107,7 +107,11 @@ export function GettingStartedPage({
             <div className="hidden md:block">
               <Carousel breakpoint="none" carouselItemWidth="w-full">
                 {recentArticleItems.map((recentArticleItem, index) => (
-                  <FeaturedArticleCard key={index} {...recentArticleItem} />
+                  <FeaturedArticleCard
+                    bg="page-bg-gradient-getting-started bg-bottom border-primary-gray-100 border dark:border-primary-gray-400"
+                    key={index}
+                    {...recentArticleItem}
+                  />
                 ))}
               </Carousel>
             </div>
