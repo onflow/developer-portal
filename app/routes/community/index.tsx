@@ -1,7 +1,5 @@
-import { useFetcher, useLoaderData } from "@remix-run/react"
+import { useLoaderData } from "@remix-run/react"
 import { LoaderFunction } from "@remix-run/server-runtime"
-import { useEffect, useState } from "react"
-import { POLLING_INTERVAL_FIVE_SECONDS } from "~/cms/utils/constants"
 import { fetchLatestTopics } from "~/cms/utils/fetch-discourse-api"
 import { fetchFlips } from "~/cms/utils/fetch-flips"
 import { CommunityMembersProps } from "~/ui/design-system/src/lib/Components/CommunityMembers"
