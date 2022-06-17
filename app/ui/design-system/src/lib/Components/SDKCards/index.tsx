@@ -15,23 +15,25 @@ export function SDKCards({ cards, description }: SDKCardsProps) {
             </p>
           )}
         </div>
-        <ButtonLink
+        {/* hidden for now */}
+        {/* <ButtonLink
           rightIcon="right"
           variant="secondary"
           className="hidden md:inline-flex"
           href="#"
         >
           View All SDKs
-        </ButtonLink>
+        </ButtonLink> */}
       </div>
       <div className="mb-4 grid grid-cols-1 grid-rows-5 gap-4 md:grid-cols-2 md:grid-rows-3 md:gap-8">
         {cards.map((sdkCard, i) => (
           <SDKCard key={i} {...sdkCard} />
         ))}
       </div>
-      <ButtonLink variant="primary" className="w-full md:hidden" href="#">
+      {/* hidden for now */}
+      {/* <ButtonLink variant="primary" className="w-full md:hidden" href="#">
         View All SDKs
-      </ButtonLink>
+      </ButtonLink> */}
     </div>
   )
 }
