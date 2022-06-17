@@ -3,16 +3,16 @@ import clsx from "clsx"
 import React, { useState } from "react"
 import { ReactComponent as CollapseIcon } from "../../../../images/content/collapse"
 import { ReactComponent as FileCodeIcon } from "../../../../images/content/file-code"
-import { ReactComponent as FileCopyIcon } from "../../../../images/content/file-copy"
+// import { ReactComponent as FileCopyIcon } from "../../../../images/content/file-copy"
 import { ReactComponent as HashIcon } from "../../../../images/content/hash"
 import { ReactComponent as ScreenFullIcon } from "../../../../images/content/screen-full"
+import { Code } from "./Code"
 
 // TODO: Cadence and dark mode MDX code highlighting
 
 export type InternalCodeblockProps = {
   tall?: boolean
-  rawText: string
-  children: React.ReactNode
+  children: JSX.Element
 }
 
 function Header({
@@ -35,7 +35,8 @@ function Header({
         <FileCodeIcon />
       </div>
       <div className="ml-auto text-primary-blue">
-        <button
+        {/* TODO: pass rawText to InternalCodeblock */}
+        {/* <button
           type="button"
           className="ml-auto p-2 hover:opacity-75"
           title="Copy to clipboard"
@@ -43,7 +44,7 @@ function Header({
           onClick={onCopy}
         >
           <FileCopyIcon />
-        </button>
+        </button> */}
         <button
           className="cursor-pointer p-2 hover:opacity-75"
           title={showDialog ? "Collapse" : "Expand"}
@@ -53,25 +54,6 @@ function Header({
         </button>
       </div>
     </div>
-  )
-}
-
-function Code({
-  innerClasses,
-  children,
-}: {
-  innerClasses: string
-  children: React.ReactNode
-}) {
-  return (
-    <pre
-      className="flex h-full w-full overflow-hidden rounded-bl-lg rounded-br-lg bg-[#FDFDFD] font-mono text-xs dark:bg-[#111111] dark:!text-white"
-      style={{
-        boxShadow: "rgb(0 0 0 / 3%) 0px 11px 15px 0px inset",
-      }}
-    >
-      <div className={clsx("overflow-auto p-3", innerClasses)}>{children}</div>
-    </pre>
   )
 }
 
@@ -101,16 +83,12 @@ function FullWidthDialog({
   )
 }
 
-export function InternalCodeblock({
-  tall,
-  rawText,
-  children,
-}: InternalCodeblockProps) {
+export function InternalCodeblock({ tall, children }: InternalCodeblockProps) {
   const [showDialog, setShowDialog] = useState(false)
 
   const openDialog = () => setShowDialog(true)
   const closeDialog = () => setShowDialog(false)
-  const onCopy = () => navigator.clipboard.writeText(rawText)
+  const onCopy = () => navigator.clipboard.writeText("") // TODO: add copy to clipboard
 
   return (
     <>
