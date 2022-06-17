@@ -11,29 +11,35 @@ import {
   TabMenu,
 } from "../../Components"
 import { FeaturedArticle } from "../../Components/FeaturedArticleSlider"
-import { Article } from "../../interfaces"
-import data from "../NetworkPage/sample"
+import { Article, StatuspageApiResponse } from "../../interfaces"
 import PageBackground from "../shared/PageBackground"
 import PageSection from "../shared/PageSection"
 import PageSections from "../shared/PageSections"
 
 export type NetworkDetailPageProps = {
+  networkStatuses: StatuspageApiResponse[]
   networkName: string
+  featuredArticle: Article
 }
 
-const NetworkDetailPage = () => {
-  const [selectedNetworkIndex, setSelectedNetworkIndex] = useState(0)
-  const tabs = data.map((network: any) => network.name)
-  const currentNetwork = data[selectedNetworkIndex]
-  const article = {
-    heading: "Node operator callout",
-    description:
-      "Everything you need to start building on Flow verything you need to start building on Flow everything you need to start building on Flow",
-    ctaText: "Learn more",
-    ctaLink: "https://flow.com",
-    imageUrl:
-      "https://github.githubassets.com/images/modules/logos_page/GitHub-Mark.png",
-  } as Article
+const NetworkDetailPage = ({
+  networkName,
+  networkStatuses,
+  featuredArticle,
+}: NetworkDetailPageProps) => {
+  const convertedName = networkName
+    .split("-")
+    .map((name) => name[0].toUpperCase() + name.slice(1))
+    .join(" ")
+  const defaultIndex = networkStatuses.findIndex((object) => {
+    return object.name === convertedName
+  })
+  console.log(convertedName, defaultIndex)
+  const [selectedNetworkIndex, setSelectedNetworkIndex] = useState(defaultIndex)
+  const tabs = networkStatuses.map(
+    (network: StatuspageApiResponse) => network.name
+  )
+  const currentNetwork = networkStatuses[selectedNetworkIndex]
 
   return (
     <PageBackground>
@@ -47,8 +53,13 @@ const NetworkDetailPage = () => {
               <ChevronLeftIcon /> Network
             </a>
           </div>
-          <TabMenu tabs={tabs} onTabChange={setSelectedNetworkIndex} centered />
-          <div className="text-h3 md:text-h1 mb-14 mt-16 md:text-center md:text-5xl">
+          <TabMenu
+            tabs={tabs}
+            defaultTabIndex={selectedNetworkIndex}
+            onTabChange={setSelectedNetworkIndex}
+            centered
+          />
+          <div className="text-h3 md:text-h1 mt-16 mb-14 md:text-center md:text-5xl">
             {currentNetwork.name}
           </div>
           <NetworkDetailsCard
@@ -122,7 +133,7 @@ const NetworkDetailPage = () => {
         <PageSection>
           <div className="container">
             <div className="self-center">
-              <FeaturedArticle {...article} />
+              <FeaturedArticle {...featuredArticle} />
             </div>
           </div>
         </PageSection>

@@ -4,12 +4,18 @@ import { useState } from "react"
 export type TabMenuProps = {
   tabs: string[]
   onTabChange: (index: number) => void
+  defaultTabIndex: number
   centered?: boolean
 }
 
 // TODO: Use links for tabs
-const TabMenu = ({ tabs, onTabChange, centered }: TabMenuProps) => {
-  const [activeIndex, setActiveIndex] = useState(0)
+const TabMenu = ({
+  tabs,
+  onTabChange,
+  centered,
+  defaultTabIndex,
+}: TabMenuProps) => {
+  const [activeIndex, setActiveIndex] = useState(defaultTabIndex)
 
   return (
     <div
