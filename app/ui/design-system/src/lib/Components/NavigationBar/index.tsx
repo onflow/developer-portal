@@ -8,7 +8,6 @@ import { Search } from "../Search"
 import { DesktopMenu } from "./DesktopMenu"
 import { MobileMenu } from "./MobileMenu"
 import { MobileMenuToggleButton } from "./MobileMenuToggleButton"
-import { ScrollLock } from "./ScrollLock"
 import { MenuItem } from "./types"
 
 export type NavigationBarProps = {
@@ -23,7 +22,7 @@ export function NavigationBar({
   const [isMobileNavOpen, setMobileNavOpen] = useState(false)
 
   return (
-    <nav className="container flex items-start justify-between bg-white px-3 py-4 text-black dark:bg-black dark:text-white">
+    <nav className="z-50 flex h-16 items-start justify-between bg-white px-3 py-4 text-black dark:bg-black dark:text-white">
       <div className="h-[2rem] py-1">
         <FlowDocsLogo className="shrink-0 dark:hidden" height="2rem" />
         <FlowDocsLogoLight className="hidden dark:block" height="2rem" />
@@ -57,8 +56,7 @@ export function NavigationBar({
         leaveFrom="opacity-100 scale-100"
         leaveTo="opacity-0 scale-95"
       >
-        <div className="fixed top-[4rem] left-1 bottom-1 right-1 z-50 overflow-auto rounded-md border bg-white dark:border-gray-500 dark:bg-black md:hidden ">
-          <ScrollLock />
+        <div className="fixed top-16 left-0 right-0 bottom-0 z-50 origin-top-right overflow-auto bg-white dark:bg-black md:hidden">
           <MobileMenu menuItems={menuItems} />
         </div>
       </Transition>
