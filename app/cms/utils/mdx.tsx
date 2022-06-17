@@ -318,7 +318,6 @@ const mdxComponents = {
   Callout: (props: React.PropsWithChildren<{}>) => <div>{props.children}</div>,
   Img: (props: React.PropsWithRef<{}>) => <img {...props} />,
   iframe: (props: React.PropsWithRef<{ src: string; title: string }>) => {
-    console.log("SAW IFRAME")
     const { src, title, ...rest } = props
     return <LargeVideoCard link={src} title={title} length={0} {...rest} />
   },
@@ -329,22 +328,15 @@ const mdxComponents = {
  * @param code the code to get the component from
  * @returns the component
  */
-function getMdxComponent({ code, frontmatter }: MdxPage) {
+function getMdxComponent({ code, frontmatter, toc }: MdxPage) {
   const Component = getMDXComponent(code)
-  // const headings = getHeadingsFromMdxComponent(Component);
 
   function MdxComponent({
     components,
     ...rest
   }: Parameters<typeof Component>["0"]) {
-    return (
-      <div className="flex flex-row">
-        <div className="px-4 mdx-content">
-          {/* @ts-expect-error: We need to figure out how to type this */}
-          <Component components={mdxComponents} {...rest} />
-        </div>
-      </div>
-    )
+    /* @ts-expect-error: TODO: Needs types. */
+    return <Component components={mdxComponents} {...rest} />
   }
   return MdxComponent
 }

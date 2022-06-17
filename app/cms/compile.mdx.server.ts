@@ -10,6 +10,7 @@ import type * as U from "unified"
 import type { GitHubFile } from "./github.server"
 import { visit } from "unist-util-visit"
 import formatLinks from "./utils/format-links"
+import { generateTOC } from "./utils/generate-toc"
 
 if (process.platform === "win32") {
   process.env.ESBUILD_BINARY_PATH = path.resolve(
@@ -98,12 +99,13 @@ async function compileMdx<FrontmatterType extends Record<string, unknown>>(
       },
     })
     const readTime = calculateReadingTime(indexFile.content)
+    const toc = generateTOC(indexFile.content)
 
     return {
       code,
       readTime,
       frontmatter: frontmatter as FrontmatterType,
-      toc: [{ test: "GREAT" }],
+      toc,
     }
   } catch (error: unknown) {
     console.error(`Compilation error for slug: `, slug)
@@ -189,7 +191,7 @@ type MdxPage = {
    * these values are missing to avoid runtime errors.
    */
   frontmatter: MdxFrontmatter
-  toc: any
+  toc?: any
 }
 
 /**

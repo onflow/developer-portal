@@ -40,7 +40,7 @@ export default function Repo() {
       {data.repoSchema ? (
         <InternalSidebar config={data.repoSchema.sidebar} />
       ) : (
-        <div>⚠️ Missing repo config</div>
+        <div>⚠️ D'oh. Failed to load sidebar content.</div>
       )}
       <div className="overflow-auto">
         <Outlet />
