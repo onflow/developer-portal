@@ -9,7 +9,7 @@ type Tab = {
 
 export type TabMenuProps = {
   tabs: Tab[]
-  onTabChange: (index: number) => void
+  onTabChange: any
   defaultTabIndex?: number
   centered?: boolean
 }
@@ -47,7 +47,7 @@ const TabMenu = ({
             className="relative cursor-pointer py-4 text-center text-black hover:text-primary-gray-400 dark:text-white hover:dark:text-primary-gray-100 md:py-6"
             onClick={() => {
               setActiveIndex(index)
-              onTabChange(index)
+              onTabChange(index, name)
             }}
           >
             <span

@@ -27,7 +27,6 @@ export default function Page() {
       networkStatuses={networkStatuses}
       featuredArticle={featuredArticle}
       networkName={networkName}
-      networkUrl={`${process.env["HOSTNAME"]}/network/`}
     />
   )
 }
