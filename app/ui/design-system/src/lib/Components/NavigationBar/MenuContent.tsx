@@ -1,4 +1,3 @@
-import clsx from "clsx"
 import { IntroCardCarousel } from "./IntroCardCarousel"
 import { MenuContentGrid } from "./MenuContentGrid"
 import { SectionHeading } from "./SectionHeading"
