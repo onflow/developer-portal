@@ -7,7 +7,7 @@ export type UpcomingEventsProps = {
   submitEventHref: string
   goToCommunityHref: string
   events: EventCardProps[]
-  onTabChange: (tab: string) => void
+  onTabChange: any
 }
 
 export function UpcomingEvents({
