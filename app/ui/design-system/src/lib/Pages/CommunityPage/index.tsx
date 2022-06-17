@@ -1,9 +1,4 @@
-import {
-  Footer,
-  SocialLinksSignup,
-  ToolsAndConcepts,
-  UpcomingEvents,
-} from "../../Components"
+import { ToolsAndConcepts, UpcomingEvents } from "../../Components"
 import { ButtonLink } from "../../Components/Button"
 import CommunityMembers, {
   CommunityMembersProps,
@@ -134,8 +129,6 @@ export default function CommunityPage({
           </div>
         </PageSection>
       </PageSections>
-      <SocialLinksSignup />
-      <Footer />
     </PageBackground>
   )
 }
