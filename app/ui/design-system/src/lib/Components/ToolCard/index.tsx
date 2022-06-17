@@ -51,14 +51,13 @@ export function ToolCard({
               <Tag name={tag} key={i} />
             ))}
           </div>
-          {stars !== undefined && (
-            <div className="flex shrink-0 items-center">
-              <StarIcon className="scale-50 text-amber-400" />
-              <div className="text-sm text-gray-500 dark:text-gray-300">
-                {stars}
-              </div>
+
+          <div className="flex shrink-0 gap-1">
+            <StarIcon className="text-amber-400" height={22} width={22} />
+            <div className="md:leading-1 h-fit text-sm text-gray-500 dark:text-gray-300">
+              {stars}
             </div>
-          )}
+          </div>
         </div>
         <div className="pt-2 text-gray-700 line-clamp-2 dark:text-gray-300">
           {description}
