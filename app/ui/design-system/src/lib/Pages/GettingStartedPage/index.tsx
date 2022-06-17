@@ -1,5 +1,6 @@
 import { SocialLinksSignup } from "../../Components"
 import { ButtonLink } from "../../Components/Button"
+import { Carousel } from "../../Components/Carousel"
 import {
   ContentNavigation,
   ContentNavigationProps,
@@ -38,7 +39,7 @@ export interface GettingStartedPageProps {
     SDKCardProps,
     SDKCardProps
   ]
-  recentArticleItems: FeaturedArticleCardProps
+  recentArticleItems: FeaturedArticleCardProps[]
   recentToolItems: [ToolCardProps, ToolCardProps, ToolCardProps]
   contentNavigationItems: [
     ContentNavigationProps,
@@ -104,13 +105,11 @@ export function GettingStartedPage({
               </ButtonLink>
             </div>
             <div className="hidden md:block">
-              <FeaturedArticleCard
-                heading={recentArticleItems.heading}
-                tags={recentArticleItems.tags}
-                description={recentArticleItems.description}
-                link={recentArticleItems.link}
-                ctaText={recentArticleItems.ctaText}
-              />
+              <Carousel breakpoint="none" carouselItemWidth="w-full">
+                {recentArticleItems.map((recentArticleItem, index) => (
+                  <FeaturedArticleCard key={index} {...recentArticleItem} />
+                ))}
+              </Carousel>
             </div>
             <div className="flex grow flex-col justify-between gap-4">
               {recentToolItems.map((toolProps, i) => (
