@@ -3,7 +3,7 @@ import { useState } from "react"
 
 export type TabMenuProps = {
   tabs: string[]
-  onTabChange: (index: number) => void
+  onTabChange: (tab: string) => void
   centered?: boolean
 }
 
@@ -35,7 +35,7 @@ const TabMenu = ({ tabs, onTabChange, centered }: TabMenuProps) => {
             role="button"
             onClick={(e) => {
               setActiveIndex(index)
-              onTabChange(index)
+              onTabChange(tab)
             }}
           >
             <span

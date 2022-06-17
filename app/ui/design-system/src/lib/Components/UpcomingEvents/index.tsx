@@ -8,53 +8,52 @@ export type UpcomingEventsProps = {
   submitEventHref: string
   goToCommunityHref: string
   events: EventCardProps[]
+  onTabChange: (tab: string) => void
 }
 
 export function UpcomingEvents({
   submitEventHref,
   goToCommunityHref,
   events,
+  onTabChange,
 }: UpcomingEventsProps) {
   const firstEvent = events[0]
-  const remainingEvents = [...events].splice(0, 1)
-  const [selectedTab, setSelectedTab] = useState(0)
+  const remainingEvents = [...events].slice(1)
 
   return (
     <div className="container">
       <div className="text-h2 mb-2">Upcoming events</div>
       <TabMenu
         tabs={["Upcoming events", "Working hours", "Flow office hours"]}
-        onTabChange={setSelectedTab}
+        onTabChange={onTabChange}
       />
-      {selectedTab === 0 && (
-        <div className="py-6">
-          <EventCard {...firstEvent} className="mb-4" />
-          <ul className="hidden list-none flex-row gap-6 overflow-x-auto md:flex">
-            {remainingEvents.map((event: EventCardProps, index: number) => (
-              <li key={index}>
-                <EventCardSmall {...event} />
-              </li>
-            ))}
-          </ul>
-          <div className="mt-10 flex flex-col justify-items-stretch gap-6 md:flex-row">
-            <ButtonLink
-              className="flex-1"
-              href={submitEventHref}
-              rightIcon="right"
-            >
-              Submit an Event
-            </ButtonLink>
-            <ButtonLink
-              className="flex-1"
-              variant="secondary"
-              href={goToCommunityHref}
-              rightIcon="external"
-            >
-              Go to Community
-            </ButtonLink>
-          </div>
+      <div className="py-6">
+        <EventCard {...firstEvent} className="mb-4" />
+        <ul className="hidden list-none flex-row justify-between gap-6 overflow-x-auto md:flex">
+          {remainingEvents.map((event: EventCardProps, index: number) => (
+            <li key={index} className="mr-12">
+              <EventCardSmall {...event} />
+            </li>
+          ))}
+        </ul>
+        <div className="mt-10 flex flex-col justify-items-stretch gap-6 md:flex-row">
+          <ButtonLink
+            className="flex-1"
+            href={submitEventHref}
+            rightIcon="right"
+          >
+            Submit an Event
+          </ButtonLink>
+          <ButtonLink
+            className="flex-1"
+            variant="secondary"
+            href={goToCommunityHref}
+            rightIcon="external"
+          >
+            Go to Community
+          </ButtonLink>
         </div>
-      )}
+      </div>
     </div>
   )
 }
