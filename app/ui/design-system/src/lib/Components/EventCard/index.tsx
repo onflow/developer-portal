@@ -11,7 +11,7 @@ export type EventCardProps = {
   href: string
   imageAlt?: string
   imageSrc: string
-  location: string
+  location?: string
   tags?: string[]
   title: string
 }
