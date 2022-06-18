@@ -30,7 +30,6 @@ Community.args = {
   callout: "Featured callout here two lines",
   description:
     "Lorem ipsum dolor sit amet proin gravida lorem ipsum dolor sit.",
-  gradient: "community",
   title: "Community",
 }
 
@@ -38,7 +37,6 @@ export const GettingStarted = Template.bind({})
 GettingStarted.args = {
   ...Community.args,
   title: "Getting Started",
-  gradient: "getting-started",
   description:
     "Everything you need to start building on Flow verything you need to start building on Flow ever.",
 }
@@ -53,12 +51,10 @@ export const Concepts = Template.bind({})
 Concepts.args = {
   ...Community.args,
   title: "Concepts",
-  gradient: "concepts",
 }
 
 export const Tools = Template.bind({})
 Tools.args = {
   ...Community.args,
   title: "Tools",
-  gradient: "tools",
 }
