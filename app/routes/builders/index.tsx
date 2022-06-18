@@ -262,21 +262,33 @@ const recentToolItems: [ToolCardProps, ToolCardProps, ToolCardProps] = [
     link: "https://docs.flowser.dev/",
     stars: 28,
     iconSrc: "https://docs.flowser.dev/img/logo.svg",
-    description: `Flowser lets you inspect the current state of any flow blockchain network (emulator, testnet, mainnet,..) and 
+    description: `Flowser lets you inspect the current state of any flow blockchain network (emulator, testnet, mainnet,..) and
       it also manages the Flow emulator"`,
   },
 ]
 
-const recentArticleItems: FeaturedArticleCardProps = {
-  heading: "Introduction to Flow blockchain",
-  tags: ["protocol", "network"],
-  description: `When Dapper Labs built Crypto Kitties we learned a lot. 
-    Most importantly, we realized that the technology at the time was not ready for this kind of application. 
-    Being the visionaries we are, we set to build a better tech for what we plan to do. 
+const recentArticleItems: FeaturedArticleCardProps[] = [
+  {
+    heading: "Introduction to Flow blockchain",
+    tags: ["protocol", "network"],
+    description: `When Dapper Labs built Crypto Kitties we learned a lot.
+    Most importantly, we realized that the technology at the time was not ready for this kind of application.
+    Being the visionaries we are, we set to build a better tech for what we plan to do.
     We set to build what is now Flow blockchain.`,
-  link: "https://jan-bernatik.medium.com/introduction-to-flow-blockchain-7532977c8af8",
-  ctaText: "View Article",
-}
+    link: "https://jan-bernatik.medium.com/introduction-to-flow-blockchain-7532977c8af8",
+    ctaText: "View Article",
+  },
+  {
+    heading: "Introduction to Flow blockchain",
+    tags: ["protocol", "network"],
+    description: `When Dapper Labs built Crypto Kitties we learned a lot.
+    Most importantly, we realized that the technology at the time was not ready for this kind of application.
+    Being the visionaries we are, we set to build a better tech for what we plan to do.
+    We set to build what is now Flow blockchain.`,
+    link: "https://jan-bernatik.medium.com/introduction-to-flow-blockchain-7532977c8af8",
+    ctaText: "View Article",
+  },
+]
 
 const contentNavigationItems: [
   ContentNavigationProps,
