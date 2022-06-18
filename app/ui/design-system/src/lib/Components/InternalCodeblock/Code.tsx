@@ -21,15 +21,16 @@ Prism.languages.cadence = Prism.languages["swift"]
 export function Code({
   innerClasses,
   theme,
-  children,
+  code,
+  language,
 }: {
   innerClasses: string
   theme: Theme | null
-  children: JSX.Element
+  code: string
+  language: string
 }) {
+  language = language?.replace(/language-/, "") || "language-javascript"
   const [highlightTheme, setHighlightTheme] = useState(lightTheme)
-  const language =
-    children.props.className?.replace(/language-/, "") || "language-javascript"
 
   useEffect(() => {
     // System theme is not set on initial SSR load, and component doesn't re-render on hydration. Is there a better way to do this?
@@ -40,7 +41,7 @@ export function Code({
     // @ts-expect-error: TODO: incorrect Highlight typing?
     <Highlight
       {...defaultProps}
-      code={children?.props?.children}
+      code={code}
       language={language as Language}
       theme={highlightTheme}
       Prism={Prism}
