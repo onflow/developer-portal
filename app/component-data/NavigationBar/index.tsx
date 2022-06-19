@@ -7,6 +7,14 @@ import {
   Section,
   Tab,
 } from "~/ui/design-system/src/lib/Components/NavigationBar/types"
+import {
+  BuildTabData,
+  SetupTabData,
+  LearnTabData,
+  CadenceTabData,
+} from "./documentationTabData"
+import { ConnectTabData, ContributeTabData } from "./joinFlowTabData"
+import { NetworkCards, NetworkSections } from "./networkTabData"
 
 export const sectionSubSection = {
   title: "Title Name",
@@ -14,12 +22,21 @@ export const sectionSubSection = {
 }
 
 export const sectionLink = {
-  title: "Link to Page",
+  title: "123",
   href: "#todo",
 }
 
 export const section: Section = {
-  links: [sectionLink],
+  links: [
+    {
+      title: "View all SDKs",
+      href: "#todo",
+    },
+    {
+      title: "View all Tools",
+      href: "#todo",
+    },
+  ],
   title: "Section Title",
   subSections: Array(5).fill(sectionSubSection),
   icon: <EcosystemIcon height="1em" width="1em" />,
@@ -47,45 +64,29 @@ export const card: IntroCardProps = {
   title: "Get Started",
 }
 
-export const tabs: Tab[] = [
-  {
-    title: "Build",
-    description: "Start developing dapps on Flow.",
-    cards: Array(3).fill(card),
-    sections: Array(5).fill(section),
-  },
-  {
-    title: "Setup",
-    description: "Connect to our networks or get started locally.",
-    cards: [card],
-    sections: [section, section, section, mediumSection],
-  },
-  {
-    title: "Learn",
-    description: "Understand how Flow works.",
-    sections: [section, section, section, mediumSection],
-  },
-  {
-    title: "Cadence",
-    description: "Flow's smart contract programming language.",
-    sections: [largeSection],
-  },
+export const documentationMenuData: Tab[] = [
+  BuildTabData,
+  SetupTabData,
+  LearnTabData,
+  CadenceTabData,
 ]
+
+export const joinFlowMenuData: Tab[] = [ConnectTabData, ContributeTabData]
 
 export const navBarData: Omit<NavigationBarProps, "onDarkModeToggle"> = {
   menuItems: [
     {
       title: "Documentation",
-      tabs,
+      tabs: documentationMenuData,
     },
     {
       title: "Join Flow",
-      cards: Array(3).fill(card),
-      sections: Array(5).fill(section),
+      tabs: joinFlowMenuData,
     },
     {
       title: "Network",
-      sections: [largeSection],
+      cards: NetworkCards,
+      sections: NetworkSections,
     },
     {
       divider: true,
