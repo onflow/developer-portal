@@ -1,6 +1,9 @@
 import EcosystemIcon from "~/ui/design-system/images/content/ecosystem"
+import NetworkIcon from "~/ui/design-system/images/nav/network"
+import NodeIcon from "~/ui/design-system/images/nav/node"
+import TokenIcon from "~/ui/design-system/images/nav/token"
 import { Section } from "~/ui/design-system/src/lib/Components/NavigationBar/types"
-import { sporkProcessCard, networkStatusCard } from "./navCardsData"
+import { networkStatusCard, sporkProcessCard } from "./navCardsData"
 
 export const nodeOperation: Section = {
   links: [
@@ -32,7 +35,7 @@ export const nodeOperation: Section = {
       href: "https://github.com/Outblock/flow-swift",
     },
   ],
-  icon: <EcosystemIcon height="1em" width="1em" />,
+  icon: <NodeIcon height="1.5em" width="1.5em" />,
 }
 
 export const flowToken: Section = {
@@ -65,7 +68,7 @@ export const flowToken: Section = {
       href: "#todo",
     },
   ],
-  icon: <EcosystemIcon height="1em" width="1em" />,
+  icon: <TokenIcon height="1.5em" width="1.5em" />,
 }
 
 export const grantsSection: Section = {
@@ -131,7 +134,7 @@ export const governanceSection: Section = {
       href: "https://flowscan.org/",
     },
   ],
-  icon: <EcosystemIcon height="1em" width="1em" />,
+  icon: <NetworkIcon height="1.5em" width="1.5em" />,
 }
 
 const NetworkSections = [nodeOperation, flowToken, governanceSection]

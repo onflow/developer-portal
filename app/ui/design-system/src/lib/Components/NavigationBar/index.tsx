@@ -4,7 +4,6 @@ import { ReactComponent as FlowDocsLogo } from "../../../../images/logos/flow-do
 import { ReactComponent as FlowDocsLogoLight } from "../../../../images/logos/flow-docs-logo-light"
 import { ReactComponent as ModeDark } from "../../../../images/toggles/mode-dark"
 import { ReactComponent as ModeLight } from "../../../../images/toggles/mode-light"
-import { Search } from "../Search"
 import { DesktopMenu } from "./DesktopMenu"
 import { MobileMenu } from "./MobileMenu"
 import { MobileMenuToggleButton } from "./MobileMenuToggleButton"
@@ -22,26 +21,31 @@ export function NavigationBar({
   const [isMobileNavOpen, setMobileNavOpen] = useState(false)
 
   return (
-    <nav className="z-10 flex h-16 items-start justify-between bg-white px-3 py-4 text-primary-gray-400 dark:bg-black dark:text-white">
-      <div className="h-[2rem] py-1">
-        <FlowDocsLogo className="shrink-0 dark:hidden" height="2rem" />
-        <FlowDocsLogoLight className="hidden dark:block" height="2rem" />
+    <nav className="z-10 flex min-h-[96px] items-center bg-white px-8 py-4 text-primary-gray-400 dark:bg-black dark:text-white">
+      <div className="flex items-center">
+        <FlowDocsLogo className="shrink-0 dark:hidden" />
+        <FlowDocsLogoLight className="hidden dark:block" />
       </div>
       <div className="mt-1 flex flex-1 justify-end">
         {/* TODO: fetch appId and apiKey from env */}
-        <div className="mr-4 flex items-center">
+        {/* TODO: search is disabled for launch */}
+        {/* <div className="mr-4 flex items-center">
           <Search
             appId="DKF9ZIO5WM"
             apiKey="d53324bc00b550f87f608c2c56636bc6"
             indexName="crawler_Flow Docs"
           />
-        </div>
+        </div> */}
         <DesktopMenu menuItems={menuItems} />
         <ul className="flex items-center">
-          <li className="flex	items-center whitespace-nowrap border-l px-4">
-            <button type="button" onClick={() => onDarkModeToggle()}>
+          <li className="flex	items-center whitespace-nowrap border-primary-gray-100 px-4 dark:border-primary-gray-400 md:border-l">
+            <button
+              type="button"
+              onClick={() => onDarkModeToggle()}
+              className="hover:text-primary-blue dark:hover:text-blue-hover-dark"
+            >
               <ModeDark className="dark:hidden" />
-              <ModeLight className="hidden dark:block" />
+              <ModeLight className="hidden dark:block dark:text-[#FFE68D] dark:hover:text-white" />
             </button>
           </li>
           <li className="md:hidden">
@@ -62,7 +66,7 @@ export function NavigationBar({
         leaveFrom="opacity-100 scale-100"
         leaveTo="opacity-0 scale-95"
       >
-        <div className="fixed top-16 left-0 right-0 bottom-0 z-10 origin-top-right overflow-auto bg-white dark:bg-black md:hidden">
+        <div className="fixed top-[96px] left-0 right-0 bottom-0 z-10 origin-top-right overflow-auto bg-white dark:bg-black md:hidden">
           <MobileMenu menuItems={menuItems} />
         </div>
       </Transition>

@@ -1,10 +1,18 @@
-import EcosystemIcon from "~/ui/design-system/images/content/ecosystem"
+import ConceptsIcon from "~/ui/design-system/images/nav/concepts"
+import FundamentalsIcon from "~/ui/design-system/images/nav/fundamentals"
+import LearnIcon from "~/ui/design-system/images/nav/learn"
+import LocalIcon from "~/ui/design-system/images/nav/local"
+import SDKIcon from "~/ui/design-system/images/nav/sdk"
+import TestnetIcon from "~/ui/design-system/images/nav/testnet"
+import ToolsIcon from "~/ui/design-system/images/nav/tools"
+import UsecasesIcon from "~/ui/design-system/images/nav/use-cases"
+
 import { Section } from "~/ui/design-system/src/lib/Components/NavigationBar/types"
 import {
-  playgroundCard,
   emeraldDaoCard,
-  learnCard,
   kittyItemsCard,
+  learnCard,
+  playgroundCard,
 } from "./navCardsData"
 
 // Build Tab
@@ -38,7 +46,7 @@ export const sdkSection: Section = {
       href: "https://github.com/Outblock/flow-swift",
     },
   ],
-  icon: <EcosystemIcon height="1em" width="1em" />,
+  icon: <SDKIcon height="1.5em" width="1.5em" />,
 }
 
 export const toolsSection: Section = {
@@ -71,7 +79,7 @@ export const toolsSection: Section = {
       href: "https://github.com/rayvin-flow/flow-scanner",
     },
   ],
-  icon: <EcosystemIcon height="1em" width="1em" />,
+  icon: <ToolsIcon height="1.5em" width="1.5em" />,
 }
 
 // Setup Section
@@ -102,7 +110,7 @@ export const localSection: Section = {
       href: "https://docs.flowser.dev/",
     },
   ],
-  icon: <EcosystemIcon height="1em" width="1em" />,
+  icon: <LocalIcon height="1.5em" width="1.5em" />,
 }
 
 const liveNetworksSection: Section = {
@@ -135,7 +143,7 @@ const liveNetworksSection: Section = {
       href: "https://docs.onflow.org/flow-token/available-wallets/",
     },
   ],
-  icon: <EcosystemIcon height="1em" width="1em" />,
+  icon: <TestnetIcon height="1.5em" width="1.5em" />,
 }
 
 // Developing Dapps
@@ -173,7 +181,7 @@ const dappDevelomentSection: Section = {
       href: "https://flow-partner-dev-hub.vercel.app/",
     },
   ],
-  icon: <EcosystemIcon height="1em" width="1em" />,
+  icon: <UsecasesIcon height="1.5em" width="1.5em" />,
 }
 
 const flowConceptsSection: Section = {
@@ -210,7 +218,7 @@ const flowConceptsSection: Section = {
       href: "https://flowscan.org/",
     },
   ],
-  icon: <EcosystemIcon height="1em" width="1em" />,
+  icon: <FundamentalsIcon height="1.5em" width="1.5em" />,
 }
 
 // Cadence Section
@@ -245,7 +253,7 @@ const cadenceConceptsSection: Section = {
       href: "https://docs.onflow.org/cadence/msg-sender/",
     },
   ],
-  icon: <EcosystemIcon height="1em" width="1em" />,
+  icon: <ConceptsIcon height="1.5em" width="1.5em" />,
 }
 
 const cadenceResourceSection: Section = {
@@ -278,7 +286,7 @@ const cadenceResourceSection: Section = {
       href: "https://flowscan.org/",
     },
   ],
-  icon: <EcosystemIcon height="1em" width="1em" />,
+  icon: <LearnIcon height="1.5em" width="1.5em" />,
 }
 
 const buildTabData = {

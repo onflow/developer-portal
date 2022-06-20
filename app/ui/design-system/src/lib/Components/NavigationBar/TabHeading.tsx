@@ -24,7 +24,7 @@ export function TabHeading({
         {title}
       </h6>
       <p
-        className={clsx("overflow-hidden text-ellipsis leading-none", {
+        className={clsx("overflow-hidden text-ellipsis leading-[1.1]", {
           "text-primary-gray-400 dark:text-primary-gray-200": isSelected,
           "text-black/20 dark:text-primary-gray-300": !isSelected,
         })}
