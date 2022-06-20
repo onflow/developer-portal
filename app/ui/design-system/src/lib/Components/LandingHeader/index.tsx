@@ -54,7 +54,7 @@ export function LandingHeader({
           <h2 className="text-h2 mb-2 md:mb-4">{callout}</h2>
           <p>{description}</p>
           <ButtonLink
-            className="mt-4 mb-4 md:mt-12"
+            className="mt-4 mb-4 transition duration-200 md:mt-12"
             href={buttonUrl}
             variant="primary-no-darkmode"
           >
