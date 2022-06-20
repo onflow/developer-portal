@@ -38,7 +38,7 @@ export function Link({ children, className, id, href, ...props }) {
   }
 
   return (
-    <span className={`mr-1 ${className}`}>
+    <span className={`mr-1 ${className}`} {...props}>
       {isFootnote ? <>[{children}]</> : children}
     </span>
   )

@@ -37,7 +37,7 @@ const NetworkDetailPage = ({
   const [selectedNetworkIndex, setSelectedNetworkIndex] = useState(defaultIndex)
   const tabs = networkStatuses.map((network: StatuspageApiResponse) => ({
     name: network.name,
-    link: convertedName,
+    link: `/${networkName}`,
   }))
   const currentNetwork = networkStatuses[selectedNetworkIndex]
 
