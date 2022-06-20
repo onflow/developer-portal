@@ -14,6 +14,7 @@ export type SDKCardProps = {
   lastCommit?: string
   lastRelease?: string
   iconSrc?: string
+  description?: string
 }
 
 export function SDKCard({
@@ -26,6 +27,7 @@ export function SDKCard({
   iconSrc = FlowIconSrc,
   lastCommit,
   lastRelease,
+  description,
 }: SDKCardProps) {
   return (
     <a
@@ -65,28 +67,34 @@ export function SDKCard({
             </div>
           )}
         </div>
-        <div className="align-center -mb-1 grid w-fit grid-cols-1 gap-x-4 justify-self-center pt-6 text-gray-500 md:grid-cols-2	">
-          {lastRelease && (
-            <div className="flex items-center">
-              <CalendarIcon
-                className="mr-3 stroke-gray-500"
-                width={22}
-                height={18}
-              />
-              <div>{lastRelease} days ago</div>
-            </div>
-          )}
-          {lastCommit && (
-            <div className="flex items-center">
-              <CommitIcon
-                className="mr-3 fill-gray-500"
-                width={22}
-                height={22}
-              />
-              <div>{lastCommit}</div>
-            </div>
-          )}
-        </div>
+        {description ? (
+          <div className="pt-2 text-gray-700 line-clamp-2 dark:text-gray-300">
+            {description}
+          </div>
+        ) : (
+          <div className="align-center -mb-1 grid w-fit grid-cols-1 gap-x-4 justify-self-center pt-6 text-gray-500 md:grid-cols-2	">
+            {lastRelease && (
+              <div className="flex items-center">
+                <CalendarIcon
+                  className="mr-3 stroke-gray-500"
+                  width={22}
+                  height={18}
+                />
+                <div>{lastRelease} days ago</div>
+              </div>
+            )}
+            {lastCommit && (
+              <div className="flex items-center">
+                <CommitIcon
+                  className="mr-3 fill-gray-500"
+                  width={22}
+                  height={22}
+                />
+                <div>{lastCommit}</div>
+              </div>
+            )}
+          </div>
+        )}
       </div>
     </a>
   )
