@@ -2,7 +2,6 @@
 @import "./fonts.css";
 @import "./colors.css";
 @import "./mdx.css";
-@import "./docsearch.css";
 
 @tailwind base;
 @tailwind components;
@@ -18,11 +17,16 @@
   @apply !border-transparent;
 }
 
-body,
-html {
-  @apply text-gray-900 dark:text-gray-300;
+.divided-item-selected,
+.divided-item-selected + .divided-item-selectable {
+  @apply !border-transparent;
 }
 
 .rotate-x-180 {
   transform: rotateX(180deg);
+}
+
+/* Algolia autocomplete search highlight */
+.ais-Snippet-highlighted {
+  @apply bg-transparent font-bold text-primary-blue dark:text-blue-dark;
 }

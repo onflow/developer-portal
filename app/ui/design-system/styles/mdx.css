@@ -78,6 +78,12 @@
     @apply relative mt-3 pl-8;
   }
 
+  & :not(pre) > code {
+    @apply bg-[#ebeef0] text-[#2075d6] dark:bg-primary-gray-400 dark:text-white;
+    border-radius: 0.3em;
+    padding: 0.1em 0.3em;
+  }
+
   & section.footnotes {
     @apply mt-4 border-t border-primary-gray-100 pt-4 text-sm text-primary-gray-300 dark:border-primary-gray-300 dark:text-primary-gray-100;
 

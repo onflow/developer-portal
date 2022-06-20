@@ -21,7 +21,7 @@ import {
   LargeVideoCard,
 } from "~/ui/design-system"
 import type { LoaderData as RootLoaderData } from "../../root"
-import { useTheme } from "./theme.provider"
+import { Theme, useTheme } from "./theme.provider"
 
 function typedBoolean<T>(
   value: T
@@ -283,11 +283,9 @@ function mapFromMdxPageToMdxListItem(page: MdxPage): MdxListItem {
   const { code, ...mdxListItem } = page
   return mdxListItem
 }
-
 const isLinkExternal = (href?: string) => !!href?.match(/^(www|http)/i)
 
-function GetMdxComponents() {
-  const [theme] = useTheme()
+function GetMdxComponents(theme: Theme | null) {
   return {
     a: (props: LinkProps & { href: string }) => {
       if (isLinkExternal(props.href)) {
@@ -333,20 +331,23 @@ function GetMdxComponents() {
  * @param code the code to get the component from
  * @returns the component
  */
-function getMdxComponent({ code, frontmatter, toc }: MdxPage) {
+function getMdxComponent(page: MdxPage, theme: Theme | null) {
+  const { code } = page
+
   const Component = getMDXComponent(code)
   function MdxComponent({
     components,
     ...rest
   }: Parameters<typeof Component>["0"]) {
     /* @ts-expect-error: TODO: Needs types. */
-    return <Component components={GetMdxComponents()} {...rest} />
+    ;<Component components={GetMdxComponents(theme)} {...rest} />
   }
   return MdxComponent
 }
 
 function useMdxComponent(page: MdxPage) {
-  return React.useMemo(() => getMdxComponent(page), [page])
+  const [theme] = useTheme()
+  return React.useMemo(() => getMdxComponent(page, theme), [page, theme])
 }
 
 export {
