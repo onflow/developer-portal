@@ -35,7 +35,7 @@ const TabMenu = ({ tabs, onTabChange, centered }: TabMenuProps) => {
             role="button"
             onClick={(e) => {
               setActiveIndex(index)
-              onTabChange(tab)
+              onTabChange(index)
             }}
           >
             <span
