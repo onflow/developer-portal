@@ -1,15 +1,26 @@
 import clsx from "clsx"
 import { useState } from "react"
+import { Link } from "../Link"
+
+type Tab = {
+  name: string
+  link: string
+}
 
 export type TabMenuProps = {
-  tabs: string[]
-  onTabChange: (index: number) => void
+  tabs: Tab[]
+  onTabChange: any
+  defaultTabIndex?: number
   centered?: boolean
 }
 
-// TODO: Use links for tabs
-const TabMenu = ({ tabs, onTabChange, centered }: TabMenuProps) => {
-  const [activeIndex, setActiveIndex] = useState(0)
+const TabMenu = ({
+  tabs,
+  onTabChange,
+  centered,
+  defaultTabIndex = 0,
+}: TabMenuProps) => {
+  const [activeIndex, setActiveIndex] = useState(defaultTabIndex)
 
   return (
     <div
@@ -20,7 +31,7 @@ const TabMenu = ({ tabs, onTabChange, centered }: TabMenuProps) => {
         }
       )}
     >
-      {tabs.map((tab, index) => {
+      {tabs.map(({ name, link }: Tab, index) => {
         const isCurrentIndex = activeIndex === index
 
         const indicatorClasses = clsx(
@@ -29,13 +40,14 @@ const TabMenu = ({ tabs, onTabChange, centered }: TabMenuProps) => {
         )
 
         return (
-          <div
-            key={tab}
+          <Link
+            key={name}
+            id={name}
+            href={link}
             className="relative cursor-pointer py-4 text-center text-black hover:text-primary-gray-400 dark:text-white hover:dark:text-primary-gray-100 md:py-6"
-            role="button"
-            onClick={(e) => {
+            onClick={() => {
               setActiveIndex(index)
-              onTabChange(index)
+              onTabChange(index, name)
             }}
           >
             <span
@@ -44,10 +56,10 @@ const TabMenu = ({ tabs, onTabChange, centered }: TabMenuProps) => {
                 isCurrentIndex ? "-mx-[1px] font-bold" : ""
               )}
             >
-              {tab}
+              {name}
             </span>
             <div className={indicatorClasses} />
-          </div>
+          </Link>
         )
       })}
     </div>

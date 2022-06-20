@@ -36,19 +36,23 @@ export default function Flips({
 
       <div className="mb-6">
         <TabMenu
-          tabs={["Open FLIPS", " Good places to start"]}
+          tabs={[
+            { name: "Open FLIPS", link: "#" },
+            { name: " Good places to start", link: "#" },
+          ]}
           onTabChange={setSelectedTab}
         />
         <div className="py-6">
           <FlipCellHeader />
           <div className="flex flex-col gap-4">
-            {(selectedTab === 0 ? openFlips : goodPlacesToStartFlips).map(
-              (flip, index) => (
+            {(selectedTab === 0 ? openFlips : goodPlacesToStartFlips)
+              .sort((a, b) => (a.numComments > b.numComments ? -1 : 1))
+              .slice(0, 5)
+              .map((flip, index) => (
                 <div key={index}>
                   <FlipCell {...flip} />
                 </div>
-              )
-            )}
+              ))}
           </div>
         </div>
       </div>
