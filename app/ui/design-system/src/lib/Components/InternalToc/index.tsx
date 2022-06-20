@@ -14,7 +14,7 @@ export type InternalTocProps = {
 export function InternalToc({
   headings,
   currentHash,
-  setHash,
+  updateHash,
 }: InternalTocProps) {
   return (
     <div className="sticky top-0 ml-auto h-auto w-full shrink-0 flex-col self-start p-4">
