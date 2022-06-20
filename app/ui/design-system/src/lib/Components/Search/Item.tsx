@@ -39,7 +39,7 @@ export function Item({ item, selected }: { item: HitType; selected: boolean }) {
         </div>
         <Snippet
           attribute="content"
-          // @ts-expect-error
+          // @ts-expect-error: TODO: Short description of the error
           hit={item}
           className="break-all text-primary-gray-300 dark:text-primary-gray-200"
         />
