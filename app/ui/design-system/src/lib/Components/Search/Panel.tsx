@@ -50,7 +50,6 @@ export function Panel({
                   item,
                   source: collection.source,
                 })
-                console.log(itemProps)
                 const selected = itemProps["aria-selected"]
                 return (
                   // @ts-expect-error
