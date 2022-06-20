@@ -37,7 +37,7 @@ export function DesktopMenuItem({ divider, ...props }: DesktopMenuItemProps) {
         <>
           <Popover.Button
             className={clsx(
-              "flex whitespace-nowrap px-4 hover:text-primary-blue focus:outline-none dark:hover:text-blue-hover-dark",
+              "flex whitespace-nowrap px-2 hover:text-primary-blue focus:outline-none dark:hover:text-blue-hover-dark lg:px-4",
               {
                 "text-primary-blue dark:text-blue-dark": open,
               }
@@ -46,7 +46,7 @@ export function DesktopMenuItem({ divider, ...props }: DesktopMenuItemProps) {
             <>
               {title}{" "}
               <ChevronDown
-                className={clsx("ml-2 transform transition duration-300", {
+                className={clsx("transform transition duration-300 lg:ml-2", {
                   "rotate-x-180": open,
                 })}
               />
