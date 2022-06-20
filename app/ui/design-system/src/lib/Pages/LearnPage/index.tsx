@@ -168,6 +168,8 @@ export function LearnPage({
             <PaginatedTutorialCardList
               listId={filters}
               tutorials={allTutorialsFiltered}
+              pageSize={8}
+              scrollOnPaginate={false}
             />
           </div>
         </PageSection>

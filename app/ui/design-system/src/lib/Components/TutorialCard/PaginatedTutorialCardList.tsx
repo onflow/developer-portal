@@ -14,6 +14,8 @@ export type PaginatedTutorialCardListProps = {
   pageSize?: number
 
   tutorials: TutorialCardProps[]
+
+  scrollOnPaginate: boolean
 }
 
 export const PaginatedTutorialCardList = ({
@@ -21,6 +23,7 @@ export const PaginatedTutorialCardList = ({
   listId,
   pageSize = 4,
   tutorials,
+  scrollOnPaginate = true,
 }: PaginatedTutorialCardListProps) => {
   const topRef = useRef<HTMLDivElement>()
   const [page, setPage] = useState(1)
@@ -40,7 +43,7 @@ export const PaginatedTutorialCardList = ({
   }, [listId])
 
   useLayoutEffect(() => {
-    if (resetScroll > 0) {
+    if (resetScroll > 0 && scrollOnPaginate) {
       // We don't want to scroll on the initial render.
       topRef.current?.scrollIntoView({ behavior: "smooth" })
     }
