@@ -58,9 +58,7 @@ export function SDKCard({
           </div>
           {stars !== undefined && (
             <div className="flex shrink-0 items-center gap-1">
-              <div className="scale-50">
-                <StarIcon className="text-amber-400" />
-              </div>
+              <StarIcon className="text-amber-400" height={16} width={16} />
               <div className="md:leading-1 h-fit text-sm text-gray-500 dark:text-gray-300">
                 {stars}
               </div>
