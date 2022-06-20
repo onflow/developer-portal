@@ -32,7 +32,7 @@ export function UpcomingEvents({
 
   return (
     <div className="container">
-      <div className="mb-2 text-h2">Upcoming events</div>
+      <div className="text-h2 mb-2">Upcoming events</div>
       <TabMenu
         tabs={[
           { name: "Upcoming events", link: "#" },
@@ -44,7 +44,7 @@ export function UpcomingEvents({
       <div className="py-6">
         <div className="hidden md:block">
           <EventCard {...primaryEvent} className="mb-4" />
-          <ul className="flex-row justify-between hidden gap-6 overflow-x-auto list-none md:flex">
+          <ul className="hidden list-none flex-row justify-between gap-6 overflow-x-auto md:flex">
             {remainingEvents.map((event: EventCardProps, index: number) => (
               <li key={index} className="mr-12">
                 <EventCardSmall {...event} />
@@ -58,7 +58,7 @@ export function UpcomingEvents({
           className="visible mb-4 md:hidden"
           carouselItemWidth="w-10/12 md:w-full"
         />
-        <div className="flex flex-col gap-6 mt-10 justify-items-stretch md:flex-row">
+        <div className="mt-10 flex flex-col justify-items-stretch gap-6 md:flex-row">
           <ButtonLink
             className="flex-1"
             href={submitEventHref}
