@@ -53,7 +53,11 @@ export function LinkCard3Column({
             })}
           >
             <h5 className="text-h5 mb-2 flex items-center">
-              {item.icon && <span className="mr-2">{item.icon}</span>}{" "}
+              {item.icon && (
+                <span className="mr-2 max-w-[36px] text-primary-gray-300 dark:text-primary-gray-50">
+                  {item.icon}
+                </span>
+              )}
               {item.title}
             </h5>
             <p className="mb-2 text-primary-gray-300 dark:text-primary-gray-50">
