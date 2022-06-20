@@ -16,9 +16,9 @@ export function TabButton({
 }: TabButtonProps) {
   return (
     <button
-      className={clsx("flex items-stretch pt-7 pb-5 text-left", {
-        "bg-primary-gray-50 dark:bg-primary-gray-400": isSelected,
-        "bg-white dark:bg-black": !isSelected,
+      className={clsx("flex items-stretch py-7 text-left", {
+        "bg-primary-gray-50 dark:bg-black": isSelected,
+        "bg-white dark:bg-primary-gray-dark": !isSelected,
       })}
       onClick={onClick}
       type="button"

@@ -13,7 +13,7 @@ export function MobileMenuButton({
   return (
     <button
       type="button"
-      className={clsx(className, "flex px-4 py-3")}
+      className={clsx(className, "flex px-4 py-3 hover:opacity-75")}
       {...props}
     >
       {children}

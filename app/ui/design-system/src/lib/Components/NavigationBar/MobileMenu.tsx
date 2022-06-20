@@ -26,7 +26,7 @@ export function MobileMenu({ menuItems }: MobileMenuProps) {
 
   if (isDropdownMenuItem(selectedMenuItem)) {
     return (
-      <ul className="w-full divide-y dark:divide-gray-500">
+      <ul className="w-full divide-y divide-primary-gray-100 dark:divide-primary-gray-400">
         <li>
           <MobileMenuBackButton onClick={() => setSelectedIndex(-1)} />
         </li>

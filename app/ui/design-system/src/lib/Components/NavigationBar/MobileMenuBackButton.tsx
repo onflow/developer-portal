@@ -9,8 +9,11 @@ export function MobileMenuBackButton({
   ...props
 }: MobileMenuBackButtonProps) {
   return (
-    <MobileMenuButton {...props}>
-      <ArrowLeftIcon /> {children}
+    <MobileMenuButton className="hover:opacity-75" {...props}>
+      <span className="-ml-2 scale-50">
+        <ArrowLeftIcon />
+      </span>{" "}
+      {children}
     </MobileMenuButton>
   )
 }

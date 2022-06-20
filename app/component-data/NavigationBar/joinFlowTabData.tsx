@@ -1,6 +1,8 @@
 import EcosystemIcon from "~/ui/design-system/images/content/ecosystem"
+import AmbassadorsIcon from "~/ui/design-system/images/nav/ambassadors"
+import SocialsIcon from "~/ui/design-system/images/nav/socials"
 import { Section } from "~/ui/design-system/src/lib/Components/NavigationBar/types"
-import { flowVerseCard, emeraldDaoCard, grantsCard } from "./navCardsData"
+import { emeraldDaoCard, flowVerseCard, grantsCard } from "./navCardsData"
 // Connect Tab
 export const eventsSection: Section = {
   links: [
@@ -36,7 +38,7 @@ export const eventsSection: Section = {
       href: "https://github.com/onflow/flow-go-sdk",
     },
   ],
-  icon: <EcosystemIcon height="1em" width="1em" />,
+  icon: <EcosystemIcon height="1.5em" width="1.5em" />,
 }
 
 export const socialsSection: Section = {
@@ -77,7 +79,7 @@ export const socialsSection: Section = {
       href: "https://t.me/flow_blockchain",
     },
   ],
-  icon: <EcosystemIcon height="1em" width="1em" />,
+  icon: <SocialsIcon height="1.5em" width="1.5em" />,
 }
 
 // Setup Section
@@ -108,7 +110,7 @@ export const grantsSection: Section = {
       href: "https://github.com/onflow/flip-fest",
     },
   ],
-  icon: <EcosystemIcon height="1em" width="1em" />,
+  icon: <AmbassadorsIcon height="1.5em" width="1.5em" />,
 }
 
 export const governanceSection: Section = {
@@ -137,7 +139,7 @@ export const governanceSection: Section = {
       href: "https://permissionless.onflow.org/",
     },
   ],
-  icon: <EcosystemIcon height="1em" width="1em" />,
+  icon: <SocialsIcon height="1.5em" width="1.5em" />,
 }
 
 const ConnectTabData = {
