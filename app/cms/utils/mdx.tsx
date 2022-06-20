@@ -340,7 +340,7 @@ function getMdxComponent({ code, frontmatter, toc }: MdxPage) {
     ...rest
   }: Parameters<typeof Component>["0"]) {
     /* @ts-expect-error: TODO: Needs types. */
-    return <Component components={mdxComponents} {...rest} />
+    return <Component components={GetMdxComponents()} {...rest} />
   }
   return MdxComponent
 }

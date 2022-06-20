@@ -1,61 +1,48 @@
 import clsx from "clsx"
-import { useEffect, useState } from "react"
 
 type InternalTocItem = {
   title: string
-  hash: string
+  hash: URL["hash"]
 }
 
 export type InternalTocProps = {
   headings: InternalTocItem[]
-  hash: URL["hash"]
+  currentHash: URL["hash"]
+  updateHash: (hash: string) => void
 }
 
-export function getHeadingsFromMdxComponent(
-  Component: React.FunctionComponent<{
-    [props: string]: unknown
-    components?: import("mdx/types").MDXComponents | undefined
-  }>
-) {
-  return Component({})
-    ?.props.children.filter((c: { type: string }) => c.type === "h2")
-    .map(({ props }: { props: { id: string; children: string } }) => ({
-      id: props.id,
-      value: props.children,
-    }))
-}
-
-export function InternalToc({ headings, hash }: InternalTocProps) {
-  const [theHash, setHash] = useState("")
-  useEffect(() => {
-    setHash(hash)
-  }, [hash])
-
+export function InternalToc({
+  headings,
+  currentHash,
+  setHash,
+}: InternalTocProps) {
   return (
-    <div className="sticky top-0 ml-auto h-auto w-[220px] shrink-0 flex-col self-start pt-4">
+    <div className="sticky top-0 ml-auto h-auto w-full shrink-0 flex-col self-start p-4">
       <div className="mb-6 px-5 text-2xs uppercase text-gray-500">
         On this page
       </div>
       <div className="border-l-1 border-l border-l-gray-100 bg-opacity-80 dark:border-l-gray-800">
-        {headings.map(({ id, value }) => {
-          const path = `#${id}`
-          return (
-            <div className="flex" key={id}>
-              <a
-                href={path}
-                className={clsx(
-                  "mb-1 py-2 px-5 text-sm text-primary-gray-400 hover:opacity-75 dark:text-gray-200",
-                  {
-                    "bg-gray-100 bg-opacity-75 font-semibold text-primary-blue dark:bg-primary-gray-dark dark:text-gray-300":
-                      theHash === path,
-                  }
-                )}
-              >
-                {value}
-              </a>
-            </div>
-          )
-        })}
+        {/* TODO: Fix: We have to slice otherwise we get the page title */}
+        {headings.length
+          ? headings.slice(1, headings.length).map(({ title, hash }) => {
+              return (
+                <div className="flex" key={Math.random()}>
+                  <a
+                    href={hash}
+                    className={clsx(
+                      "mb-1 cursor-pointer py-2 px-5 text-sm text-primary-gray-400 hover:opacity-75 dark:text-gray-200",
+                      {
+                        "bg-gray-100 bg-opacity-75 font-semibold text-primary-blue dark:bg-primary-gray-dark dark:text-gray-300":
+                          hash === currentHash,
+                      }
+                    )}
+                  >
+                    {title}
+                  </a>
+                </div>
+              )
+            })
+          : "No content"}
       </div>
     </div>
   )

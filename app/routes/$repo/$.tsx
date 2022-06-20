@@ -1,3 +1,4 @@
+import { useEffect, useState } from "react"
 import { LoaderFunction } from "@remix-run/node"
 import { getMdxPage, useMdxComponent } from "~/cms/utils/mdx"
 import { json } from "@remix-run/node"
@@ -38,6 +39,12 @@ export default function () {
   const { code, frontmatter, toc } = data.page
   const MDXContent = useMdxComponent({ code, frontmatter })
 
+  const [currentHash, setHash] = useState("")
+
+  useEffect(() => {
+    setHash(location.hash)
+  }, [location.hash])
+
   return (
     <div className="pl-[55px]">
       <div className="flex">
@@ -45,7 +52,11 @@ export default function () {
           <MDXContent />
         </div>
         <div className="pt-[55px]">
-          <InternalToc headings={toc} hash={location.hash} />
+          <InternalToc
+            headings={toc}
+            currentHash={currentHash}
+            updateHash={(e) => setHash("#test")}
+          />
         </div>
       </div>
     </div>

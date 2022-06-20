@@ -5,7 +5,7 @@ import { toc } from "mdast-util-toc"
 import get from "lodash/get"
 
 // NOTE: gets the relavent information we need to build the
-// table of contents from the mdast.
+// table of contents from the mdast!
 export const generateTOC = (mdContent: any) => {
   const TOC = toc(fromMarkdown(mdContent))
   return get(TOC, "map.children").map((el: any) => ({
