@@ -105,7 +105,7 @@ export function Autocomplete({
                 closeDialog()
                 return
               }
-              // @ts-expect-error
+              // @ts-expect-error: TODO: Short description of the error
               inputProps.onKeyDown(e)
             }}
             type="text"
