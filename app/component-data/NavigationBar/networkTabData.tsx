@@ -1,27 +1,26 @@
 import EcosystemIcon from "~/ui/design-system/images/content/ecosystem"
 import { Section } from "~/ui/design-system/src/lib/Components/NavigationBar/types"
-import { IntroCardProps } from "~/ui/design-system/src/lib/Components/NavigationBar/IntroCard"
+import { sporkProcessCard, networkStatusCard } from "./navCardsData"
 
-// Connect Tab
-export const eventsSection: Section = {
+export const nodeOperation: Section = {
   links: [
     {
       title: "View Community",
       href: "#todo",
     },
   ],
-  title: "Flow Ecosystem",
+  title: "Node Operation & Staking",
   subSections: [
     {
-      title: "Flow Dapp Metrics",
-      href: "https://docs.onflow.org/http-api/",
+      title: "Operating a Flow Node",
+      href: "https://docs.onflow.org/node-operation/",
     },
     {
-      title: "Emerald Dao Bootcamp",
-      href: "https://github.com/onflow/fcl-js",
+      title: "Staking Walkthrough",
+      href: "https://docs.onflow.org/flow-port/staking-guide/",
     },
     {
-      title: "Jobs on Flow",
+      title: "Flow Port",
       href: "https://github.com/onflow/flow-go-sdk",
     },
     {
@@ -36,14 +35,14 @@ export const eventsSection: Section = {
   icon: <EcosystemIcon height="1em" width="1em" />,
 }
 
-export const socialsSection: Section = {
+export const flowToken: Section = {
   links: [
     {
       title: "View all tools",
       href: "#todo",
     },
   ],
-  title: "Tools",
+  title: "Flow Token",
   subSections: [
     {
       title: "CLI",
@@ -69,17 +68,6 @@ export const socialsSection: Section = {
   icon: <EcosystemIcon height="1em" width="1em" />,
 }
 
-// Setup Section
-
-export const playgroundCard: IntroCardProps = {
-  href: "https://docs.onflow.org/cadence/tutorial/01-first-steps",
-  ctaText: "Learn More",
-  description:
-    "No tools needed. Learn and experiment with Cadence and smart contracts on Flow in a isolated environment.",
-  imageHref: "https://play.onflow.org/flow_logo_TODO.jpg",
-  title: "Flow Playground",
-}
-
 export const grantsSection: Section = {
   links: [
     {
@@ -87,7 +75,7 @@ export const grantsSection: Section = {
       href: "https://github.com/emerald-dao/0-hello-world",
     },
   ],
-  title: "Grants & Bounties",
+  title: "Network Information",
   subSections: [
     {
       title: "Flow Ecosystem Fund",
@@ -120,14 +108,18 @@ export const governanceSection: Section = {
       href: "https://docs.onflow.org/fcl/tutorials/flow-app-quickstart/",
     },
   ],
-  title: "Governance",
+  title: "Network Information",
   subSections: [
     {
-      title: "Voting",
+      title: "Network Status",
       href: "https://testnet-faucet.onflow.org/",
     },
     {
-      title: "FLIPs",
+      title: "Upcoming Sporks",
+      href: "https://testnet-faucet.onflow.org/",
+    },
+    {
+      title: "Past Sporks",
       href: "https://docs.onflow.org/dapp-development/mainnet-account-setup",
     },
     {
@@ -138,16 +130,12 @@ export const governanceSection: Section = {
       title: "Mainnet Explorer",
       href: "https://flowscan.org/",
     },
-    {
-      title: "Wallets on Flow",
-      href: "https://docs.onflow.org/flow-token/available-wallets/",
-    },
   ],
   icon: <EcosystemIcon height="1em" width="1em" />,
 }
 
-const NetworkSections = [eventsSection, socialsSection]
+const NetworkSections = [nodeOperation, flowToken, governanceSection]
 
-const NetworkCards = [playgroundCard]
+const NetworkCards = [networkStatusCard, sporkProcessCard]
 
 export { NetworkSections, NetworkCards }
