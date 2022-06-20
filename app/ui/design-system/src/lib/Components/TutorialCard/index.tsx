@@ -14,7 +14,7 @@ export type TutorialCardProps = {
   level?: string
   imageUri?: string
   link: string
-  author: User
+  author?: User
 }
 
 const TutorialCard = ({
