@@ -1,16 +1,15 @@
-import path from "path"
-import remarkPrism from "remark-prism"
 import remarkEmbedder from "@remark-embedder/core"
 import oembedTransformer from "@remark-embedder/transformer-oembed"
 import type * as H from "hast"
 import { bundleMDX } from "mdx-bundler"
 import type TPQueue from "p-queue"
+import path from "path"
 import calculateReadingTime from "reading-time"
 import type * as U from "unified"
-import type { GitHubFile } from "./github.server"
 import { visit } from "unist-util-visit"
 import formatLinks from "./utils/format-links"
 import { generateTOC } from "./utils/generate-toc"
+import type { GitHubFile } from "./github.server"
 
 if (process.platform === "win32") {
   process.env.ESBUILD_BINARY_PATH = path.resolve(
@@ -44,7 +43,6 @@ function removePreContainerDivs() {
 }
 
 const remarkPlugins: U.PluggableList = [
-  [remarkPrism, {}],
   [
     // @ts-expect-error 🤷‍♂️
     remarkEmbedder,

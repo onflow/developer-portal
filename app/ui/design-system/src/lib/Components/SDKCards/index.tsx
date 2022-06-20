@@ -1,7 +1,7 @@
 import { ButtonLink } from "../Button"
 import { SDKCard, SDKCardProps } from "../SDKCard"
 
-type SDKCardsProps = { cards: SDKCardProps[]; description?: string }
+export type SDKCardsProps = { cards: SDKCardProps[]; description?: string }
 
 export function SDKCards({ cards, description }: SDKCardsProps) {
   return (

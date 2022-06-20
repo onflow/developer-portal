@@ -27,7 +27,10 @@ const flip = {
   date: "2022-05-16T18:46:23Z",
   forumLink: "#test",
 }
-const args = { flips: [flip, flip, flip] }
+const args = {
+  openFlips: [flip, flip, flip],
+  goodPlacesToStartFlips: [flip, flip, flip],
+}
 Default.args = args
 
 export const dark = Template.bind({})

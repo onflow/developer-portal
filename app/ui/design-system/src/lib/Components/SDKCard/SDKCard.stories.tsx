@@ -14,8 +14,8 @@ const Template: Story<SDKCardProps> = (args) => {
   )
 }
 
-export const Primary = Template.bind({})
-Primary.args = {
+export const Default = Template.bind({})
+Default.args = {
   title: "Flow Port",
   authorIcon: "https://avatars.githubusercontent.com/u/62387156?s=64&v=4",
   authorName: "mini flow",
@@ -26,4 +26,10 @@ Primary.args = {
   iconSrc: "https://avatars.githubusercontent.com/u/62387156?s=64&v=4",
   lastCommit: "22/3",
   lastRelease: "207",
+}
+
+export const Minimal = Template.bind({})
+Minimal.args = {
+  link: "#",
+  title: "Flow Port",
 }

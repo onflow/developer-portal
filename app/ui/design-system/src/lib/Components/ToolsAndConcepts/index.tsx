@@ -1,29 +1,32 @@
+import { useState } from "react"
 import { TabMenu } from ".."
 import { ButtonLink } from "../Button"
 import { ToolCard, ToolCardProps } from "../ToolCard"
+import { TutorialCardProps } from "../TutorialCard"
+import { PaginatedTutorialCardList } from "../TutorialCard/PaginatedTutorialCardList"
 
 export type ToolsAndConceptsProps = {
   tools: ToolCardProps[]
   bottomButtons?: boolean
   headerButtontext?: string
-  concepts?: ToolCardProps[] // Not sure what this looks like yet.
+  concepts?: TutorialCardProps[] // Not sure what this looks like yet.
 }
 
 const ToolsAndConcepts = ({
   tools,
-  concepts,
+  concepts = [],
   headerButtontext = "",
   bottomButtons = true,
 }: ToolsAndConceptsProps) => {
-  const getHeading = () => {
-    return concepts && concepts.length > 0 ? "Tools and Concepts" : "Tools"
-  }
+  const [selectedTabIndex, setSelectedTabIndex] = useState(0)
 
   return (
     <div className="container">
       <div className="flex items-center justify-between">
         <div>
-          <div className="text-h2 mb-2">{getHeading()}</div>
+          <div className="text-h2 mb-2">
+            {concepts.length > 0 ? "Tools and Concepts" : "Tools"}
+          </div>
           <p>
             Core concepts and tools you’ll need to get started building on Flow
           </p>
@@ -36,14 +39,24 @@ const ToolsAndConcepts = ({
           </div>
         )}
       </div>
-      {concepts && concepts.length > 0 && (
-        <TabMenu tabs={["Tools", "Concepts"]} onTabChange={() => null} />
+      {concepts.length > 0 && (
+        <TabMenu
+          tabs={["Tools", "Concepts"]}
+          onTabChange={(index) => setSelectedTabIndex(index)}
+        />
       )}
-      <div className="mt-9 grid gap-4 md:grid-cols-2 md:gap-8">
-        {tools.map((tool: ToolCardProps, index) => (
-          <ToolCard {...tool} key={index} />
-        ))}
-      </div>
+      {selectedTabIndex === 0 && (
+        <div className="grid gap-4 pt-9 md:grid-cols-2 md:gap-8">
+          {tools.map((tool: ToolCardProps, index) => (
+            <ToolCard {...tool} key={index} />
+          ))}
+        </div>
+      )}
+      {selectedTabIndex === 1 && (
+        <div className="pt-9">
+          <PaginatedTutorialCardList tutorials={concepts} />
+        </div>
+      )}
       {!!bottomButtons && (
         <div className="mt-9 flex flex-col justify-between md:flex-row">
           <ButtonLink

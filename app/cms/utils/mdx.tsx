@@ -15,12 +15,13 @@ import {
   Heading,
   HeadingProps,
   InputProps,
+  InternalCodeblock,
   Link,
   StaticCheckbox,
-  InternalCodeblock,
   LargeVideoCard,
 } from "~/ui/design-system"
 import type { LoaderData as RootLoaderData } from "../../root"
+import { useTheme } from "./theme.provider"
 
 function typedBoolean<T>(
   value: T
@@ -285,42 +286,46 @@ function mapFromMdxPageToMdxListItem(page: MdxPage): MdxListItem {
 
 const isLinkExternal = (href?: string) => !!href?.match(/^(www|http)/i)
 
-const mdxComponents = {
-  a: (props: LinkProps & { href: string }) => {
-    if (isLinkExternal(props.href)) {
-      // @ts-expect-error: TODO: Needs types.
-      return <Link {...props} isExternal={true} />
-    } else {
-      return (
-        <RemixLink to={props.href}>
-          {/* @ts-expect-error: TODO: Nees types. */}
-          <Link {...props} isExternal={false} />
-        </RemixLink>
-      )
-    }
-  },
-  input: (props: InputProps) =>
-    props.type === "checkbox" ? (
-      <StaticCheckbox {...props} asInternalChecklist={true} />
-    ) : (
-      <input {...props} />
+function GetMdxComponents() {
+  const [theme] = useTheme()
+  return {
+    a: (props: LinkProps & { href: string }) => {
+      if (isLinkExternal(props.href)) {
+        // @ts-expect-error: TODO: Needs types.
+        return <Link {...props} isExternal={true} />
+      } else {
+        return (
+          <RemixLink to={props.href}>
+            {/* @ts-expect-error: TODO: Nees types. */}
+            <Link {...props} isExternal={false} />
+          </RemixLink>
+        )
+      }
+    },
+    input: (props: InputProps) =>
+      props.type === "checkbox" ? (
+        <StaticCheckbox {...props} asInternalChecklist={true} />
+      ) : (
+        <input {...props} />
+      ),
+    h1: (props: HeadingProps) => <Heading type="h1" {...props} />,
+    h2: (props: HeadingProps) => <Heading type="h2" {...props} />,
+    h3: (props: HeadingProps) => <Heading type="h3" {...props} />,
+    h4: (props: HeadingProps) => <Heading type="h4" {...props} />,
+    h5: (props: HeadingProps) => <Heading type="h5" {...props} />,
+    h6: (props: HeadingProps) => <Heading type="h6" {...props} />,
+    pre: ({ children }: { className: string; children: JSX.Element }) => {
+      return <InternalCodeblock children={children} theme={theme} />
+    },
+    Callout: (props: React.PropsWithChildren<{}>) => (
+      <div>{props.children}</div>
     ),
-  h1: (props: HeadingProps) => <Heading type="h1" {...props} />,
-  h2: (props: HeadingProps) => <Heading type="h2" {...props} />,
-  h3: (props: HeadingProps) => <Heading type="h3" {...props} />,
-  h4: (props: HeadingProps) => <Heading type="h4" {...props} />,
-  h5: (props: HeadingProps) => <Heading type="h5" {...props} />,
-  h6: (props: HeadingProps) => <Heading type="h6" {...props} />,
-  pre: ({ children }: { children: React.ReactNode }) => {
-    // TODO: pass code string as rawText for copy to clipboard functionality
-    return <InternalCodeblock rawText="TODO" children={children} />
-  },
-  Callout: (props: React.PropsWithChildren<{}>) => <div>{props.children}</div>,
-  Img: (props: React.PropsWithRef<{}>) => <img {...props} />,
-  iframe: (props: React.PropsWithRef<{ src: string; title: string }>) => {
-    const { src, title, ...rest } = props
-    return <LargeVideoCard link={src} title={title} length={0} {...rest} />
-  },
+    Img: (props: React.PropsWithRef<{}>) => <img {...props} />,
+    iframe: (props: React.PropsWithRef<{ src: string; title: string }>) => {
+      const { src, title, ...rest } = props
+      return <LargeVideoCard link={src} title={title} length={0} {...rest} />
+    },
+  }
 }
 
 /**
@@ -330,7 +335,6 @@ const mdxComponents = {
  */
 function getMdxComponent({ code, frontmatter, toc }: MdxPage) {
   const Component = getMDXComponent(code)
-
   function MdxComponent({
     components,
     ...rest
