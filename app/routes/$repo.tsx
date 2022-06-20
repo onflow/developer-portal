@@ -25,7 +25,9 @@ export const loader: LoaderFunction = async ({
   // use the github api to see if a configuration file (e.g. onflowdocs.json)
   // exists, validate it against repo-schema, and use that instead. for now,
   // we'll use the definitions in this repo
+  console.log(params.repo)
   const sidebar = repoPresets[params.repo] ?? null
+  console.log(sidebar)
 
   return {
     repo: params.repo,

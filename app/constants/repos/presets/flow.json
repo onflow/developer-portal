@@ -1,0 +1,25 @@
+{
+  "$schema": "../repo-schema.json",
+  "sidebar": {
+    "sections": [
+      {
+        "title": "Kitty Items",
+        "items": [
+          {
+            "label": "Introduction",
+            "href": "content/kitty-items/index"
+          }
+        ]
+      },
+      {
+        "title": "Cadence VS Code Extension",
+        "items": [
+          {
+            "label": "Introduction",
+            "href": "content/vscode-extension/index"
+          }
+        ]
+      }
+    ]
+  }
+}

@@ -1,0 +1,16 @@
+{
+  "$schema": "../repo-schema.json",
+  "sidebar": {
+    "sections": [
+      {
+        "title": "Flow Client Library Javascript",
+        "items": [
+          {
+            "label": "Introduction",
+            "href": "index"
+          }
+        ]
+      }
+    ]
+  }
+}
