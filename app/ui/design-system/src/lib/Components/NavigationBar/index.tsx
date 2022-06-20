@@ -22,14 +22,20 @@ export function NavigationBar({
   const [isMobileNavOpen, setMobileNavOpen] = useState(false)
 
   return (
-    <nav className="z-50 flex h-16 items-start justify-between bg-white px-3 py-4 text-black dark:bg-black dark:text-white">
+    <nav className="z-10 flex h-16 items-start justify-between bg-white px-3 py-4 text-primary-gray-400 dark:bg-black dark:text-white">
       <div className="h-[2rem] py-1">
         <FlowDocsLogo className="shrink-0 dark:hidden" height="2rem" />
         <FlowDocsLogoLight className="hidden dark:block" height="2rem" />
       </div>
-
       <div className="mt-1 flex flex-1 justify-end">
-        <Search appId="" apiKey="" indexName="" />
+        {/* TODO: fetch appId and apiKey from env */}
+        <div className="mr-4 flex items-center">
+          <Search
+            appId="DKF9ZIO5WM"
+            apiKey="d53324bc00b550f87f608c2c56636bc6"
+            indexName="crawler_Flow Docs"
+          />
+        </div>
         <DesktopMenu menuItems={menuItems} />
         <ul className="flex items-center">
           <li className="flex	items-center whitespace-nowrap border-l px-4">
@@ -56,7 +62,7 @@ export function NavigationBar({
         leaveFrom="opacity-100 scale-100"
         leaveTo="opacity-0 scale-95"
       >
-        <div className="fixed top-16 left-0 right-0 bottom-0 z-50 origin-top-right overflow-auto bg-white dark:bg-black md:hidden">
+        <div className="fixed top-16 left-0 right-0 bottom-0 z-10 origin-top-right overflow-auto bg-white dark:bg-black md:hidden">
           <MobileMenu menuItems={menuItems} />
         </div>
       </Transition>
