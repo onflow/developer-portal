@@ -64,7 +64,7 @@ export function ConceptsPage({
                 title={featureLinkBlock.title}
                 description={featureLinkBlock.description}
                 links={featureLinkBlock.links}
-                icon={featureLinkBlock.icon}
+                iconSrc={featureLinkBlock.iconSrc}
                 ctaLink={featureLinkBlock.ctaLink}
                 ctaText={featureLinkBlock.ctaText}
               />

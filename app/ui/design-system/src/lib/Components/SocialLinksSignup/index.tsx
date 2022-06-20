@@ -59,7 +59,7 @@ const SocialLinksSignup = () => {
     >
       <div className="container">
         <div
-          className="grid grid-flow-col grid-rows-4 rounded-lg px-4 md:grid-rows-2 md:px-0"
+          className="grid grid-cols-1 rounded-lg px-4 md:grid-cols-2 md:px-0"
           style={{ background: "rgba(213, 221, 233, 0.3)" }}
         >
           <SocialLink
