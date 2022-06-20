@@ -84,7 +84,10 @@ export function LinkCard3Column({
                       {link.title}
                       <div>
                         {isLinkExternal(link.href) ? (
-                          <ExternalLinkIcon />
+                          // "artificial" centering due to viewbox adding padding
+                          <div className="pr-[3px] pt-[2px]">
+                            <ExternalLinkIcon />
+                          </div>
                         ) : (
                           <ChevronRight />
                         )}
