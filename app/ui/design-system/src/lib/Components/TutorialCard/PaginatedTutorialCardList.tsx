@@ -47,7 +47,7 @@ export const PaginatedTutorialCardList = ({
       // We don't want to scroll on the initial render.
       topRef.current?.scrollIntoView({ behavior: "smooth" })
     }
-  }, [resetScroll])
+  }, [resetScroll, scrollOnPaginate])
 
   return (
     <div className={className}>
