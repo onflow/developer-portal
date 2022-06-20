@@ -21,10 +21,19 @@ const args = {
   imageUri:
     "https://upload.wikimedia.org/wikipedia/commons/thumb/4/49/A_black_image.jpg/2560px-A_black_image.jpg",
   link: "/tutorials",
+  author: {
+    name: "Crab Rangoon",
+  },
 }
 
 export const Primary = Template.bind({})
 Primary.args = args
+
+export const WithoutImage = Template.bind({})
+let withoutImageArgs = { ...args }
+// @ts-ignore
+delete withoutImageArgs.imageUri
+WithoutImage.args = withoutImageArgs
 
 export const Mobile = Template.bind({})
 Mobile.args = args
