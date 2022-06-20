@@ -34,6 +34,7 @@ export const loader: LoaderFunction = async ({ params, request }) => {
 
 export default function () {
   const data = useLoaderData()
+  const location = useLocation()
   const { code, frontmatter, toc } = data.page
   const MDXContent = useMdxComponent({ code, frontmatter })
 
@@ -44,7 +45,7 @@ export default function () {
           <MDXContent />
         </div>
         <div className="pt-[55px]">
-          <InternalToc headings={toc} />
+          <InternalToc headings={toc} hash={location.hash} />
         </div>
       </div>
     </div>
