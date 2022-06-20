@@ -52,8 +52,8 @@ export function ToolCard({
             ))}
           </div>
           {stars !== undefined && (
-            <div className="flex shrink-0 items-center">
-              <StarIcon className="scale-50 text-amber-400" />
+            <div className="flex shrink-0 items-center gap-1">
+              <StarIcon className="text-amber-400" width={16} height={16} />
               <div className="text-sm text-gray-500 dark:text-gray-300">
                 {stars}
               </div>

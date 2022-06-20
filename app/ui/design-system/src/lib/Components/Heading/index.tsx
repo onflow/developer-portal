@@ -9,11 +9,9 @@ export type HeadingProps = React.DetailedHTMLProps<
   HTMLHeadingElement
 > & { type?: HeadingType }
 
-const defaultClasses = "mt-6 font-semibold"
-
 const headingClasses = {
-  h1: "text-4xl mb-24 font-bold",
-  h2: "text-2xl mb-6",
+  h1: "text-4xl mb-4 font-bold",
+  h2: "text-2xl mb-4",
   h3: "text-xl mb-4",
   h4: "text-lg mb-2",
   h5: "text-base",
@@ -40,13 +38,13 @@ export function Heading({
     {
       ...props,
       id: anchor,
-      className: clsx(defaultClasses, headingClasses[type], className),
+      className: clsx("mt-6 font-semibold", headingClasses[type], className),
     },
-    <div className="group -ml-11 flex">
+    <div className="group -ml-11 flex items-center">
       <a
         href={`#${anchor}`}
         title={text}
-        className="mr-3 flex h-8 w-8 scale-75 items-center justify-center rounded-md bg-gray-100 hover:bg-gray-200 group-hover:visible dark:bg-primary-gray-dark dark:hover:bg-gray-700 md:invisible md:scale-100"
+        className="-mt-1 mr-3 flex h-8 w-8 scale-75 items-center justify-center rounded-md bg-gray-100 hover:bg-gray-200 group-hover:visible dark:bg-primary-gray-dark dark:hover:bg-gray-700 md:invisible md:scale-100"
       >
         <LinkIcon />
       </a>

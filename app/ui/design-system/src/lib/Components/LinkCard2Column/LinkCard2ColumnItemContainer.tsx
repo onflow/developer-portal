@@ -13,7 +13,7 @@ export function LinkCard2ColumnItemContainer({
   children,
 }: LinkCard2ColumnItemContainerProps) {
   const className = clsx(
-    "group my-2 flex flex-1 flex-col md:flex-row justify-start rounded-lg bg-white px-6 py-5 relative",
+    "group my-2 flex flex-1 flex-col md:flex-row justify-start rounded-lg bg-white px-6 py-5 relative dark:hover:shadow-2xl-dark hover:shadow-2xl",
     homePage ? "dark:bg-primary-gray-400" : "dark:bg-black"
   )
 

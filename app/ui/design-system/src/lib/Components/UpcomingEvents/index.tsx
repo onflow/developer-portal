@@ -34,7 +34,11 @@ export function UpcomingEvents({
     <div className="container">
       <div className="text-h2 mb-2">Upcoming events</div>
       <TabMenu
-        tabs={["Upcoming events", "Working hours", "Flow office hours"]}
+        tabs={[
+          { name: "Upcoming events", link: "#" },
+          { name: "Working hours", link: "#" },
+          { name: "Flow office hours", link: "#" },
+        ]}
         onTabChange={setSelectedTab}
       />
       <div className="py-6">

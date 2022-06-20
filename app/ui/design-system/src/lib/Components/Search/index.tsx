@@ -1,4 +1,9 @@
-import { DocSearch } from "@docsearch/react"
+import algoliasearch from "algoliasearch/lite"
+import { useCallback, useEffect, useMemo, useState } from "react"
+import { InstantSearch } from "react-instantsearch-hooks-web"
+import { ReactComponent as SearchIcon } from "../../../../images/action/search"
+import { Dialog } from "../Dialog"
+import { Autocomplete } from "./Autocomplete"
 
 export type SearchProps = {
   appId: string
@@ -7,12 +12,46 @@ export type SearchProps = {
 }
 
 export function Search({ appId, apiKey, indexName }: SearchProps) {
+  const [open, setOpen] = useState(false)
+  const closeDialog = () => setOpen(false)
+  const searchClient = useMemo(
+    () => algoliasearch(appId, apiKey),
+    [apiKey, appId]
+  )
+
+  const onKeyDown = useCallback(({ repeat, metaKey, ctrlKey, key }) => {
+    if (repeat) return
+    // Open search dialog with cmd+k or ctrl+k
+    if ((metaKey || ctrlKey) && key === "k") setOpen((prev) => !prev)
+  }, [])
+
+  useEffect(() => {
+    document.addEventListener("keydown", onKeyDown)
+    return () => {
+      document.removeEventListener("keydown", onKeyDown)
+    }
+  }, [onKeyDown])
+
   return (
-    <DocSearch
-      appId="QE0LM9XKDG"
-      indexName="search-index"
-      apiKey="74700aee1bcb782c019adc7bc92fde31"
-      placeholder="Search Documentation..."
-    />
+    <>
+      <button
+        onClick={() => setOpen((prev) => !prev)}
+        className="flex items-center hover:opacity-75"
+      >
+        <div className="mr-1 scale-75">
+          <SearchIcon />
+        </div>
+        Search
+      </button>
+      <InstantSearch searchClient={searchClient} indexName={indexName}>
+        <Dialog open={open} closeDialog={closeDialog} maxWidth="695px">
+          <Autocomplete
+            searchClient={searchClient}
+            indexName={indexName}
+            closeDialog={closeDialog}
+          />
+        </Dialog>
+      </InstantSearch>
+    </>
   )
 }

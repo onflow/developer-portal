@@ -20,7 +20,7 @@ import {
   StaticCheckbox,
 } from "~/ui/design-system"
 import type { LoaderData as RootLoaderData } from "../../root"
-import { useTheme } from "./theme.provider"
+import { Theme, useTheme } from "./theme.provider"
 
 function typedBoolean<T>(
   value: T
@@ -283,8 +283,7 @@ function mapFromMdxPageToMdxListItem(page: MdxPage): MdxListItem {
   return mdxListItem
 }
 
-function GetMdxComponents() {
-  const [theme] = useTheme()
+function GetMdxComponents(theme: Theme | null) {
   return {
     a: (props: LinkProps & { href: string }) => (
       <RemixLink to={props.href}>
@@ -315,7 +314,9 @@ function GetMdxComponents() {
  * @param code the code to get the component from
  * @returns the component
  */
-function getMdxComponent({ code, frontmatter }: MdxPage) {
+function getMdxComponent(page: MdxPage, theme: Theme | null) {
+  const { code } = page
+
   const Component = getMDXComponent(code)
   // const headings = getHeadingsFromMdxComponent(Component);
   function MdxComponent({
@@ -326,7 +327,7 @@ function getMdxComponent({ code, frontmatter }: MdxPage) {
       <div className="container flex flex-row">
         <div className="mdx-content">
           {/* @ts-expect-error: We need to figure out how to type this */}
-          <Component components={GetMdxComponents()} {...rest} />
+          <Component components={GetMdxComponents(theme)} {...rest} />
         </div>
       </div>
     )
@@ -335,7 +336,8 @@ function getMdxComponent({ code, frontmatter }: MdxPage) {
 }
 
 function useMdxComponent(page: MdxPage) {
-  return React.useMemo(() => getMdxComponent(page), [page])
+  const [theme] = useTheme()
+  return React.useMemo(() => getMdxComponent(page, theme), [page, theme])
 }
 
 export {

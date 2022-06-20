@@ -36,7 +36,10 @@ export default function Flips({
 
       <div className="mb-6">
         <TabMenu
-          tabs={["Open FLIPS", " Good places to start"]}
+          tabs={[
+            { name: "Open FLIPS", link: "#" },
+            { name: " Good places to start", link: "#" },
+          ]}
           onTabChange={setSelectedTab}
         />
         <div className="py-6">
