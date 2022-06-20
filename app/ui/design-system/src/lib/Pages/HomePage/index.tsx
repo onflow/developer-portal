@@ -39,7 +39,7 @@ const HomePage = ({
       <LandingHeaderHome
         title="Developer Portal"
         description="Understand the foundational concepts of Flow and its language, Cadence"
-        tag="onflow"
+        tag="alpha-preview"
       />
       <LinkCard2Column
         {...startProjectItems}

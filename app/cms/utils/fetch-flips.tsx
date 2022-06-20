@@ -72,6 +72,35 @@ export interface Label {
   default?: boolean
 }
 
+export interface IssueResponse {
+  id: number
+  node_id: string
+  url: string
+  repository_url: string
+  labels_url: string
+  comments_url: string
+  events_url: string
+  html_url: string
+  number: number
+  state: string
+  title: string
+  body: string
+  user: User
+  labels: Label[]
+  assignee: any
+  assignees: any
+  milestone: any
+  locked: boolean
+  active_lock_reason: string
+  comments: number
+  pull_request: any
+  closed_at: any
+  created_at: string
+  updated_at: string
+  closed_by: any
+  author_association: string
+}
+
 export const fetchFlips = async () => {
   const octokit = new Octokit({
     auth: process.env.BOT_GITHUB_TOKEN,
@@ -92,22 +121,33 @@ export const fetchFlips = async () => {
   }
 
   const getGoodPlacesToStartIssues = async () => {
-    const issueResponse = await octokit
-      .request("GET /repos/{owner}/{repo}/issues?state=all&labels={label}", {
-        owner: "onflow",
-        repo: "flow",
-        label: "good first issue",
-      })
-      .then((response) => response.data)
+    const repositories = ["flow", "fcl-js", "kitty-items", "flow-go-sdk"]
 
-    return issueResponse
+    const issuesFromRepos = repositories.map(async (repositoryName) => {
+      const issueResponse: IssueResponse[] = await octokit
+        .request("GET /repos/{owner}/{repo}/issues?state=all&labels={label}", {
+          owner: "onflow",
+          repo: repositoryName,
+          label: "good first issue",
+        })
+        .then((response) => response.data)
+      return issueResponse
+    })
+
+    const nestedIssueResponses = await Promise.all(issuesFromRepos)
+    const issueResponses = nestedIssueResponses.flat()
+    return issueResponses
   }
 
-  const getNumComments = async (fetchIssue: number): Promise<number> => {
+  const getNumComments = async (
+    repositoryName: string,
+    fetchIssue: number
+  ): Promise<number> => {
+    console.log()
     const comments = await octokit
       .request("GET /repos/{owner}/{repo}/issues/{issueNumber}/comments", {
         owner: "onflow",
-        repo: "flow",
+        repo: repositoryName,
         issueNumber: fetchIssue,
       })
       .then((response) => response.data)
@@ -121,7 +161,7 @@ export const fetchFlips = async () => {
   // Convert from github API output to FlipCellProp
   const openFlipCellProps: Promise<FlipCellProps>[] = openFlipPullRequests.map(
     async (pr) => ({
-      numComments: await getNumComments(pr.number),
+      numComments: await getNumComments("flow", pr.number),
       heading: pr.title,
       tags: pr.labels.map((label) => label.name ?? ""),
       participant: {
@@ -133,9 +173,15 @@ export const fetchFlips = async () => {
     })
   )
 
+  const getRepositoryName = (url: string) =>
+    url.substring(url.lastIndexOf("/") + 1)
+
   const goodPlacesToStartFlipCellProps: Promise<FlipCellProps>[] =
-    goodPlacesToStartIssues.map(async (issue: PullRequestResponse) => ({
-      numComments: await getNumComments(issue.number),
+    goodPlacesToStartIssues.map(async (issue: IssueResponse) => ({
+      numComments: await getNumComments(
+        getRepositoryName(issue.repository_url),
+        issue.number
+      ),
       heading: issue.title,
       tags: issue.labels
         .filter((label) => typeof label !== "string")
