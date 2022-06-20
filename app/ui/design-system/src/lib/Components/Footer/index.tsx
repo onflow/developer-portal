@@ -10,7 +10,7 @@ const footerSections = [
     header: "Documentation",
     links: [
       {
-        link: "/builders",
+        link: "/getting-started",
         text: "Getting Started",
       },
       {
