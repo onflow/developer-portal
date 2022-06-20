@@ -44,7 +44,7 @@ const TabMenu = ({
             key={name}
             id={name}
             href={link}
-            className="relative cursor-pointer py-4 text-center text-black hover:text-primary-gray-400 dark:text-white hover:dark:text-primary-gray-100 md:py-6"
+            className="relative py-4 text-center text-black cursor-pointer hover:text-primary-gray-400 dark:text-white hover:dark:text-primary-gray-100 md:py-6"
             onClick={() => {
               setActiveIndex(index)
               onTabChange(index, name)
