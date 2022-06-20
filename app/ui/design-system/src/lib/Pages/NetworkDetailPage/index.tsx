@@ -53,12 +53,7 @@ const NetworkDetailPage = ({
               <ChevronLeftIcon /> Network
             </a>
           </div>
-          <TabMenu
-            tabs={tabs}
-            defaultTabIndex={selectedNetworkIndex}
-            onTabChange={setSelectedNetworkIndex}
-            centered
-          />
+          <TabMenu tabs={tabs} onTabChange={setSelectedNetworkIndex} centered />
           <div className="text-h3 md:text-h1 mt-16 mb-14 md:text-center md:text-5xl">
             {currentNetwork.name}
           </div>
