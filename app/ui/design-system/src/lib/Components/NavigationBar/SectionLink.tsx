@@ -6,7 +6,7 @@ export type SectionLinkProps = SubSection
 export function SectionLink({ href, title }: SectionLinkProps) {
   return (
     <a
-      className="flex items-center justify-between text-sm font-semibold text-primary-blue hover:opacity-75 dark:text-blue-dark"
+      className="flex items-center justify-between px-2 font-semibold text-primary-blue hover:opacity-75 dark:text-blue-dark"
       href={href}
     >
       <span className="flex-1 truncate">{title}</span>
