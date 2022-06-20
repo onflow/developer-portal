@@ -1,11 +1,6 @@
 import EcosystemIcon from "~/ui/design-system/images/content/ecosystem"
 import { Section } from "~/ui/design-system/src/lib/Components/NavigationBar/types"
-import {
-  playgroundCard,
-  flowVerseCard,
-  emeraldDaoCard,
-  grantsCard,
-} from "./navCardsData"
+import { flowVerseCard, emeraldDaoCard, grantsCard } from "./navCardsData"
 // Connect Tab
 export const eventsSection: Section = {
   links: [
