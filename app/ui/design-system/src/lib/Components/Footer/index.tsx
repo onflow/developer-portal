@@ -104,6 +104,14 @@ const footerSections = [
         text: "Cadence Tutorials",
       },
       {
+        link: "https://open-cadence.onflow.org",
+        text: "Cadence Cookbook",
+      },
+      {
+        link: "https://docs.onflow.org/core-contracts/",
+        text: "Core Contracts & Standards",
+      },
+      {
         link: "https://academy.ecdao.org/",
         text: "Emerald DAO Bootcamp",
       },
@@ -151,20 +159,17 @@ export const Footer = ({ sections = footerSections }) => {
         <div className="block items-center justify-between px-2 pt-8 pb-6 md:flex md:px-4 md:pt-16">
           <img src={FlowDocsLogo} alt="Flow Docs" width="150" />
           <div className="flex items-center gap-6 pt-8 md:pt-0">
-            <a href="#" className="hover:opacity-75">
+            <a href="https://github.com/onflow" className="hover:opacity-75">
               <img src={GithubIcon} height={32} width={32} />
             </a>
-            <a href="#" className="hover:opacity-75">
+            <a href="https://discord.gg/mDvccFPx" className="hover:opacity-75">
               <img src={DiscordIcon} height={28} width={28} />
             </a>
-            <a href="#" className="hover:opacity-75">
+            <a href="https://forum.onflow.org/" className="hover:opacity-75">
               <img src={ForumIcon} height={24} width={24} />
             </a>
-            <a href="#" className="hover:opacity-75">
+            <a href="https://onflow.org/" className="hover:opacity-75">
               <img src={OnFlowIcon} height={28} width={28} />
-            </a>
-            <a href="#" className="hover:text-primary-gray-100">
-              Eng
             </a>
           </div>
         </div>

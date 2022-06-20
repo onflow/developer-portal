@@ -19,6 +19,10 @@ import {
   flowserTool,
   overflowTool,
 } from "../component-data/Tools"
+import {
+  introToFlowBlockchainArticle,
+  organizingCadenceArticle,
+} from "../component-data/Articles"
 
 type DynamicHomePageProps = Pick<
   HomePageProps,
@@ -35,7 +39,10 @@ export const loader: LoaderFunction = async () => {
     flowserTool,
     overflowTool,
   ] as ToolCardProps[]
-  const concepts = DefaultToolAndConcepts.args?.concepts as TutorialCardProps[]
+  const concepts = [
+    introToFlowBlockchainArticle,
+    organizingCadenceArticle,
+  ] as TutorialCardProps[]
   const upcomingEvents = DefaultUpcomingEvents?.args as UpcomingEventsProps
   const data: DynamicHomePageProps = { flips, tools, concepts, upcomingEvents }
   return data

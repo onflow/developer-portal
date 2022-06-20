@@ -1,6 +1,7 @@
 import { FeaturedArticleCardProps } from "~/ui/design-system/src/lib/Components/FeaturedArticleCard"
+import { TutorialCardProps } from "~/ui/design-system/src/lib/Components/TutorialCard"
 
-const introToFlowBlockchain: FeaturedArticleCardProps = {
+const introToFlowBlockchainArticle: FeaturedArticleCardProps = {
   heading: "Introduction to Flow blockchain",
   tags: ["protocol", "network"],
   description: `When Dapper Labs built Crypto Kitties we learned a lot.
@@ -11,4 +12,13 @@ const introToFlowBlockchain: FeaturedArticleCardProps = {
   ctaText: "View Article",
 }
 
-export { introToFlowBlockchain }
+const organizingCadenceArticle: TutorialCardProps = {
+  heading: "How to organize Cadence projects",
+  tags: ["protocol", "network"],
+  description: `How you organize the files for your project in your Github repo by Joshua Hannan - a senior smart contract engineer at Flow.`,
+  link: "https://joshuahannan.medium.com/how-i-organize-my-cadence-projects-75b811b700d9",
+  imageUri: "https://miro.medium.com/max/1400/1*o_J8FQHAIczyhTehcT1ziw.png",
+  lastUpdated: "Apr 8, 2021",
+}
+
+export { introToFlowBlockchainArticle, organizingCadenceArticle }

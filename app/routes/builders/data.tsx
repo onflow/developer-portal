@@ -22,7 +22,7 @@ import {
   flowserTool,
   flowScannerTool,
 } from "../../component-data/Tools"
-import { introToFlowBlockchain } from "../../component-data/Articles"
+import { introToFlowBlockchainArticle } from "../../component-data/Articles"
 import { FeaturedArticleCardProps } from "~/ui/design-system/src/lib/Components/FeaturedArticleCard"
 import { ToolCardProps } from "~/ui/design-system/src/lib/Components/ToolCard"
 
@@ -198,7 +198,11 @@ const recentArticleItems: [
   FeaturedArticleCardProps,
   FeaturedArticleCardProps,
   FeaturedArticleCardProps
-] = [introToFlowBlockchain, introToFlowBlockchain, introToFlowBlockchain]
+] = [
+  introToFlowBlockchainArticle,
+  introToFlowBlockchainArticle,
+  introToFlowBlockchainArticle,
+]
 const recentToolItems: [ToolCardProps, ToolCardProps, ToolCardProps] = [
   overflowTool,
   flowserTool,
