@@ -1,10 +1,9 @@
 import { useLoaderData } from "@remix-run/react"
 import { LoaderFunction } from "@remix-run/server-runtime"
+import { fetchLatestTopics } from "~/cms/utils/fetch-discourse-api"
 import { fetchFlips } from "~/cms/utils/fetch-flips"
 import { CommunityMembersProps } from "~/ui/design-system/src/lib/Components/CommunityMembers"
 import { Default as DefaultCommunityMembers } from "~/ui/design-system/src/lib/Components/CommunityMembers/CommunityMembers.stories"
-import { ForumCellProps } from "~/ui/design-system/src/lib/Components/ForumCell"
-import { Default as DefaultForumCell } from "~/ui/design-system/src/lib/Components/ForumCell/ForumCell.stories"
 import { UpcomingEventsProps } from "~/ui/design-system/src/lib/Components/UpcomingEvents"
 import { Default as DefaultUpcomingEvents } from "~/ui/design-system/src/lib/Components/UpcomingEvents/UpcomingEvents.stories"
 import CommunityPage, {
@@ -25,12 +24,7 @@ type DynamicCommunityPageProps = Pick<
 export const loader: LoaderFunction = async () => {
   const { openFlips, goodPlacesToStartFlips } = await fetchFlips()
   const upcomingEvents = DefaultUpcomingEvents?.args as UpcomingEventsProps
-  const forumTopics = [
-    DefaultForumCell?.args,
-    DefaultForumCell?.args,
-    DefaultForumCell?.args,
-    DefaultForumCell?.args,
-  ] as ForumCellProps[]
+  const forumTopics = await fetchLatestTopics()
   const communityMembers =
     DefaultCommunityMembers?.args as CommunityMembersProps
   const data: DynamicCommunityPageProps = {

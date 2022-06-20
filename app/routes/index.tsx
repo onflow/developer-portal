@@ -13,6 +13,7 @@ import { ToolCardProps } from "~/ui/design-system/src/lib/Components/ToolCard"
 import { Default as DefaultToolAndConcepts } from "~/ui/design-system/src/lib/Components/ToolsAndConcepts/ToolsAndConcepts.stories"
 import { UpcomingEventsProps } from "~/ui/design-system/src/lib/Components/UpcomingEvents"
 import { Default as DefaultUpcomingEvents } from "~/ui/design-system/src/lib/Components/UpcomingEvents/UpcomingEvents.stories"
+import { TutorialCardProps } from "../ui/design-system/src/lib/Components/TutorialCard"
 
 export const startProjectItems: LinkCard2ColumnProps = {
   buttonText: "Get started",
@@ -119,7 +120,7 @@ type DynamicHomePageProps = Pick<
 export const loader: LoaderFunction = async () => {
   const flips = await fetchFlips()
   const tools = DefaultToolAndConcepts?.args?.tools as ToolCardProps[]
-  const concepts = DefaultToolAndConcepts.args?.concepts as ToolCardProps[]
+  const concepts = DefaultToolAndConcepts.args?.concepts as TutorialCardProps[]
   const upcomingEvents = DefaultUpcomingEvents?.args as UpcomingEventsProps
   const data: DynamicHomePageProps = { flips, tools, concepts, upcomingEvents }
   return data

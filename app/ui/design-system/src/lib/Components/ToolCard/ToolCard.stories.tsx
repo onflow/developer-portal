@@ -1,5 +1,4 @@
 import { Meta, Story } from "@storybook/react"
-
 import { ToolCard, ToolCardProps } from "."
 
 export default {
@@ -17,14 +16,19 @@ const Template: Story<ToolCardProps> = (args) => {
 
 export const Primary = Template.bind({})
 Primary.args = {
-  title: "Flow Port",
   authorIcon: "https://avatars.githubusercontent.com/u/62387156?s=64&v=4",
   authorName: "mini flow",
-  tags: ["Tags"],
-  link: "#",
-  type: "tool",
-  stars: 52,
-  iconSrc: "https://avatars.githubusercontent.com/u/62387156?s=64&v=4",
   description:
     "Lorem ipsum text here can go a two liner sentence or a one liner",
+  iconSrc: "https://avatars.githubusercontent.com/u/62387156?s=64&v=4",
+  link: "#",
+  stars: 52,
+  tags: ["Tags"],
+  title: "Flow Port",
+}
+
+export const Minimal = Template.bind({})
+Minimal.args = {
+  link: "#",
+  title: "Flow Port",
 }

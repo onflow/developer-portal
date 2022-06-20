@@ -16,10 +16,12 @@ export default {
 const Template: Story<CommunityPageProps> = (args) => (
   <CommunityPage {...args} />
 )
+
 export const Default = Template.bind({})
 Default.args = {
   upcomingEvents: DefaultUpcomingEvents.args,
-  flips: DefaultFlips.args.flips,
+  openFlips: DefaultFlips.args.openFlips,
+  goodPlacesToStartFlips: DefaultFlips.args.goodPlacesToStartFlips,
   communityMembers: DefaultCommunityMembers.args,
   projects: DefaultProjects.args.projects,
   articles: DefaultFeaturedArticles.args.articles,
