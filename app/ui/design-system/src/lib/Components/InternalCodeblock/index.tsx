@@ -1,15 +1,13 @@
-import { Dialog } from "@headlessui/react"
 import clsx from "clsx"
-import React, { useState } from "react"
+import { useState } from "react"
 import { Theme } from "~/cms/utils/theme.provider"
 import { ReactComponent as CollapseIcon } from "../../../../images/content/collapse"
 import { ReactComponent as FileCodeIcon } from "../../../../images/content/file-code"
-// import { ReactComponent as FileCopyIcon } from "../../../../images/content/file-copy"
+import { ReactComponent as FileCopyIcon } from "../../../../images/content/file-copy"
 import { ReactComponent as HashIcon } from "../../../../images/content/hash"
 import { ReactComponent as ScreenFullIcon } from "../../../../images/content/screen-full"
+import { Dialog } from "../Dialog"
 import { Code } from "./Code"
-
-// TODO: Cadence and dark mode MDX code highlighting
 
 export type InternalCodeblockProps = {
   tall?: boolean
@@ -18,12 +16,12 @@ export type InternalCodeblockProps = {
 }
 
 function Header({
-  showDialog,
+  open,
   openDialog,
   closeDialog,
   onCopy,
 }: {
-  showDialog: boolean
+  open: boolean
   openDialog: () => void
   closeDialog: () => void
   onCopy: () => void
@@ -37,8 +35,7 @@ function Header({
         <FileCodeIcon />
       </div>
       <div className="ml-auto text-primary-blue">
-        {/* TODO: pass rawText to InternalCodeblock */}
-        {/* <button
+        <button
           type="button"
           className="ml-auto p-2 hover:opacity-75"
           title="Copy to clipboard"
@@ -46,42 +43,16 @@ function Header({
           onClick={onCopy}
         >
           <FileCopyIcon />
-        </button> */}
+        </button>
         <button
           className="cursor-pointer p-2 hover:opacity-75"
-          title={showDialog ? "Collapse" : "Expand"}
-          onClick={showDialog ? closeDialog : openDialog}
+          title={open ? "Collapse" : "Expand"}
+          onClick={open ? closeDialog : openDialog}
         >
-          {showDialog ? <CollapseIcon /> : <ScreenFullIcon />}
+          {open ? <CollapseIcon /> : <ScreenFullIcon />}
         </button>
       </div>
     </div>
-  )
-}
-
-function FullWidthDialog({
-  showDialog,
-  closeDialog,
-  children,
-}: {
-  showDialog: boolean
-  closeDialog: () => void
-  children: React.ReactNode
-}) {
-  return (
-    <Dialog open={showDialog} onClose={closeDialog}>
-      <div className="fixed inset-0 bg-black/30" aria-hidden="true" />
-      <Dialog.Panel
-        className="fixed inset-0 flex"
-        style={{
-          height: "75vh",
-          width: "95vw",
-          margin: "5vh auto 10vh auto",
-        }}
-      >
-        <div className="h-full w-full">{children}</div>
-      </Dialog.Panel>
-    </Dialog>
   )
 }
 
@@ -90,11 +61,11 @@ export function InternalCodeblock({
   theme,
   children,
 }: InternalCodeblockProps) {
-  const [showDialog, setShowDialog] = useState(false)
-
-  const openDialog = () => setShowDialog(true)
-  const closeDialog = () => setShowDialog(false)
-  const onCopy = () => navigator.clipboard.writeText("") // TODO: add copy to clipboard
+  const [open, setOpen] = useState(false)
+  const openDialog = () => setOpen(true)
+  const closeDialog = () => setOpen(false)
+  const codeString = children?.props?.children
+  const onCopy = () => navigator.clipboard.writeText(codeString)
 
   return (
     <>
@@ -102,11 +73,12 @@ export function InternalCodeblock({
         <Header
           openDialog={openDialog}
           closeDialog={closeDialog}
-          showDialog={showDialog}
+          open={open}
           onCopy={onCopy}
         />
         <Code
-          children={children}
+          language={children.props.className}
+          code={codeString}
           innerClasses={clsx(
             "w-full",
             tall ? "max-h-[280px]" : "max-h-[130px]"
@@ -114,21 +86,22 @@ export function InternalCodeblock({
           theme={theme}
         />
       </div>
-      <FullWidthDialog closeDialog={closeDialog} showDialog={showDialog}>
+      <Dialog closeDialog={closeDialog} open={open}>
         <Header
           openDialog={openDialog}
           closeDialog={closeDialog}
-          showDialog={showDialog}
+          open={open}
           onCopy={onCopy}
         />
         <div className="mdx-content h-full">
           <Code
-            children={children}
+            language={children.props.className}
+            code={codeString}
             innerClasses="w-full h-full"
             theme={theme}
           />
         </div>
-      </FullWidthDialog>
+      </Dialog>
     </>
   )
 }
