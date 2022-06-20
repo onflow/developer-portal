@@ -3,6 +3,7 @@ import clsx from "clsx"
 import Highlight, { defaultProps, Language, Prism } from "prism-react-renderer"
 import darkTheme from "prism-react-renderer/themes/vsDark"
 import lightTheme from "prism-react-renderer/themes/vsLight"
+import { useEffect, useState } from "react"
 import { Theme } from "~/cms/utils/theme.provider"
 import { prismSwiftLang } from "./prism"
 
@@ -20,22 +21,29 @@ Prism.languages.cadence = Prism.languages["swift"]
 export function Code({
   innerClasses,
   theme,
-  children,
+  code,
+  language,
 }: {
   innerClasses: string
   theme: Theme | null
-  children: JSX.Element
+  code: string
+  language: string
 }) {
-  const language =
-    children.props.className?.replace(/language-/, "") || "language-javascript"
+  language = language?.replace(/language-/, "") || "language-javascript"
+  const [highlightTheme, setHighlightTheme] = useState(lightTheme)
+
+  useEffect(() => {
+    // System theme is not set on initial SSR load, and component doesn't re-render on hydration. This forces a state change to set the theme. Is there a better way?
+    setHighlightTheme(theme === "dark" ? darkTheme : lightTheme)
+  }, [theme])
 
   return (
     // @ts-expect-error: TODO: incorrect Highlight typing?
     <Highlight
       {...defaultProps}
-      code={children?.props?.children}
+      code={code}
       language={language as Language}
-      theme={theme === "dark" ? darkTheme : lightTheme}
+      theme={highlightTheme}
       Prism={Prism}
     >
       {({ className, style, tokens, getLineProps, getTokenProps }) => (
