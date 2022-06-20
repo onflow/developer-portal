@@ -1,26 +1,27 @@
 import { ReactComponent as StarIcon } from "../../../../images/action/star"
+import FlowIconSrc from "../../../../images/logos/flow-icon.svg"
 import Tag from "../Tag"
 
 export type ToolCardProps = {
-  title: string
-  authorIcon: string
-  authorName: string
-  tags: string[]
+  authorIcon?: string
+  authorName?: string
+  description?: string
+  iconSrc?: string
   link: string
-  stars: number
-  description: string
-  iconSrc: string
+  stars?: number
+  tags?: string[]
+  title: string
 }
 
 export function ToolCard({
-  title,
   authorIcon,
   authorName,
-  tags,
+  description,
+  iconSrc = FlowIconSrc,
   link,
   stars,
-  iconSrc,
-  description,
+  tags,
+  title,
 }: ToolCardProps) {
   return (
     <a
@@ -34,24 +35,30 @@ export function ToolCard({
         <h5 className="text-h5">{title}</h5>
         <div className="flex items-center">
           <div className="flex shrink-0 items-center gap-2 pr-3 md:pr-4">
-            <div className="h-6 w-6">
-              <img src={authorIcon} alt={authorName} className="w-full" />
-            </div>
-            <div className="dark:gray-400 md:leading-1 whitespace-nowrap text-sm text-gray-600 dark:text-gray-400">
-              {authorName}
-            </div>
+            {authorIcon && (
+              <div className="h-6 w-6">
+                <img src={authorIcon} alt={authorName} className="w-full" />
+              </div>
+            )}
+            {authorName && (
+              <div className="dark:gray-400 md:leading-1 whitespace-nowrap text-sm text-gray-600 dark:text-gray-400">
+                {authorName}
+              </div>
+            )}
           </div>
           <div className="shrink-0 pr-1 line-clamp-1">
-            {tags.map((tag, i) => (
+            {tags?.map((tag, i) => (
               <Tag name={tag} key={i} />
             ))}
           </div>
-          <div className="flex shrink-0 items-center">
-            <StarIcon className="scale-50 text-amber-400" />
-            <div className="text-sm text-gray-500 dark:text-gray-300">
-              {stars}
+          {stars !== undefined && (
+            <div className="flex shrink-0 items-center">
+              <StarIcon className="scale-50 text-amber-400" />
+              <div className="text-sm text-gray-500 dark:text-gray-300">
+                {stars}
+              </div>
             </div>
-          </div>
+          )}
         </div>
         <div className="pt-2 text-gray-700 line-clamp-2 dark:text-gray-300">
           {description}

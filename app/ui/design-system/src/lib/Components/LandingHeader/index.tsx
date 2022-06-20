@@ -2,17 +2,19 @@ import { ReactComponent as DiscordIcon } from "../../../../images/social/discord
 import { ReactComponent as GithubIcon } from "../../../../images/social/github"
 import { DISCORD_URL, GITHUB_URL } from "../../constants"
 import { ButtonLink } from "../Button"
+import LandingImage from "../../../../images/misc/landing-home.png"
 
 export type LandingHeaderProps = {
   buttonText: string
   buttonUrl: string
   callout: string
   description: string
+  imageSrc?: string
   title: string
 }
 
 export const LandingHeaderLinks = () => (
-  <div className="fixed right-6 top-1/4 hidden flex-col text-center text-primary-gray-400 dark:text-white lg:flex">
+  <div className="fixed right-14 top-1/4 hidden flex-col text-center text-primary-gray-400 dark:text-white lg:flex">
     <a
       href={DISCORD_URL}
       className="scale-150 pb-4 hover:opacity-75"
@@ -39,6 +41,7 @@ export function LandingHeader({
   buttonUrl,
   callout,
   description,
+  imageSrc = LandingImage,
   title,
 }: LandingHeaderProps) {
   return (
@@ -58,8 +61,11 @@ export function LandingHeader({
             {buttonText}
           </ButtonLink>
         </div>
-        <LandingHeaderLinks />
+        <div className="hidden rounded-r-lg border px-10 py-6 dark:bg-white/40 md:block md:block md:basis-1/2 md:px-20 md:py-12">
+          <img src={imageSrc} alt={title} />
+        </div>
       </div>
+      <LandingHeaderLinks />
     </div>
   )
 }

@@ -8,6 +8,10 @@
 @tailwind components;
 @tailwind utilities;
 
+.root {
+  @apply flex h-full min-h-full flex-col overflow-hidden bg-white text-black dark:bg-black dark:text-white;
+}
+
 /* Add .divided-item-hover to .divide-y children to hide borders on hover */
 .divided-item-hover:hover,
 .divided-item-hover:hover + .divided-item-hover {

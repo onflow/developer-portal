@@ -1,20 +1,24 @@
 import { useFetcher, useLoaderData } from "@remix-run/react"
 import { useEffect, useState } from "react"
 import {
-  fetchBreakingChangesPosts,
-  fetchMainnetSporkPosts,
+  fetchLatestTopics,
+  fetchBreakingChangesTopics,
+  fetchMainnetSporkTopics,
   Topic,
 } from "~/cms/utils/fetch-discourse-api"
 import { formatDistance } from "date-fns"
-import { POLLING_INTERVAL } from "~/cms/utils/constants"
+import {
+  ABOUT_THIS_CATEGORY_BREAKING_CHANGES,
+  ABOUT_THIS_CATEGORY_SPORK,
+  POLLING_INTERVAL_FIVE_SECONDS,
+} from "~/cms/utils/constants"
+import { ForumCellProps } from "~/ui/design-system/src/lib/Components/ForumCell"
 
 type LoaderData = {
+  latestTopics: ForumCellProps[]
   breakingChanges: Topic[]
   sporks: Topic[]
 }
-
-const ABOUT_THIS_CATEGORY_BREAKING_CHANGES = 762
-const ABOUT_THIS_CATEGORY_SPORK = 2543
 
 var getRelativeDate = (created_at: string) =>
   formatDistance(new Date(created_at), new Date())
@@ -32,14 +36,16 @@ function sortTopics(topics: Topic[], removeCategoryId: number) {
 }
 
 export async function loader(): Promise<LoaderData> {
-  const breakingChangesPosts = await fetchBreakingChangesPosts()
-  const sporksPosts = await fetchMainnetSporkPosts()
+  const latestTopics = await fetchLatestTopics()
+  const breakingChangesTopics = await fetchBreakingChangesTopics()
+  const mainnetSporkTopics = await fetchMainnetSporkTopics()
   return {
+    latestTopics: latestTopics,
     breakingChanges: sortTopics(
-      breakingChangesPosts,
+      breakingChangesTopics,
       ABOUT_THIS_CATEGORY_BREAKING_CHANGES
     ),
-    sporks: sortTopics(sporksPosts, ABOUT_THIS_CATEGORY_SPORK),
+    sporks: sortTopics(mainnetSporkTopics, ABOUT_THIS_CATEGORY_SPORK),
   }
 }
 
@@ -58,7 +64,7 @@ export default function () {
       if (document.visibilityState === "visible") {
         fetcher.load("/poll-discourse")
       }
-    }, POLLING_INTERVAL)
+    }, POLLING_INTERVAL_FIVE_SECONDS)
 
     return () => clearInterval(interval)
   })
@@ -72,6 +78,16 @@ export default function () {
 
   return (
     <div>
+      <h1>Latest Posts</h1>
+      Count: {discourseData.latestTopics.length}
+      <div className="w-full">
+        {discourseData.latestTopics.map((t) => (
+          <li id="user-content-fn-1" key={t.forumLink}>
+            Post: {t.forumLink} - {t.heading} - {t.lastUpdatedDate} -{" "}
+            {t.numComments} - {t.participants[0].name}
+          </li>
+        ))}
+      </div>
       <h1>Breaking Changes Topics</h1>
       Count: {discourseData.breakingChanges.length}
       <div className="w-full">

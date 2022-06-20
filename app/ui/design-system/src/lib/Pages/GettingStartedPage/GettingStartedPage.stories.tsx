@@ -285,14 +285,24 @@ const gettingStartedPageData = {
       lastRelease: "207",
     },
   ],
-  recentArticleItems: {
-    heading: "This is a featured article with two rows title",
-    tags: ["Tag"],
-    description:
-      "Everything you need to start building on,  Flow verything you need to start building on start building on start building on",
-    link: "/article",
-    ctaText: "Click me!",
-  },
+  recentArticleItems: [
+    {
+      heading: "This is a featured article with two rows title",
+      tags: ["Tag"],
+      description:
+        "Everything you need to start building on,  Flow verything you need to start building on start building on start building on",
+      link: "/article",
+      ctaText: "Click me!",
+    },
+    {
+      heading: "This is a featured article with two rows title",
+      tags: ["Tag"],
+      description:
+        "Everything you need to start building on,  Flow verything you need to start building on start building on start building on",
+      link: "/article",
+      ctaText: "Click me!",
+    },
+  ],
   recentToolItems: [
     {
       title: "Flow Port",

@@ -11,6 +11,7 @@ import { FlipsProps } from "../../Components/Flips"
 import { LinkCard2ColumnProps } from "../../Components/LinkCard2Column"
 import { LinkCard3ColumnItems } from "../../Components/LinkCard3Column"
 import { ToolCardProps } from "../../Components/ToolCard"
+import { TutorialCardProps } from "../../Components/TutorialCard"
 import { UpcomingEventsProps } from "../../Components/UpcomingEvents"
 import PageBackground from "../shared/PageBackground"
 import PageSection from "../shared/PageSection"
@@ -20,7 +21,7 @@ export type HomePageProps = {
   startProjectItems: LinkCard2ColumnProps
   flips: FlipsProps
   tools: ToolCardProps[]
-  concepts?: ToolCardProps[]
+  concepts?: TutorialCardProps[]
   threeColumnItems: LinkCard3ColumnItems
   upcomingEvents: UpcomingEventsProps
 }
@@ -38,7 +39,7 @@ const HomePage = ({
       <LandingHeaderHome
         title="Developer Portal"
         description="Understand the foundational concepts of Flow and its language, Cadence"
-        tag="onflow"
+        tag="alpha-preview"
       />
       <LinkCard2Column
         {...startProjectItems}
