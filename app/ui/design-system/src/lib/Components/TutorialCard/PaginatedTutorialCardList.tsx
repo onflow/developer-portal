@@ -15,7 +15,7 @@ export type PaginatedTutorialCardListProps = {
 
   tutorials: TutorialCardProps[]
 
-  scrollOnPaginate: boolean
+  scrollOnPaginate?: boolean
 }
 
 export const PaginatedTutorialCardList = ({
