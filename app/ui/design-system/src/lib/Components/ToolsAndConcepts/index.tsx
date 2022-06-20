@@ -41,8 +41,11 @@ const ToolsAndConcepts = ({
       </div>
       {concepts.length > 0 && (
         <TabMenu
-          tabs={["Tools", "Concepts"]}
-          onTabChange={(index) => setSelectedTabIndex(index)}
+          tabs={[
+            { name: " Tools", link: "#" },
+            { name: " Concepts", link: "#" },
+          ]}
+          onTabChange={(index: number) => setSelectedTabIndex(index)}
         />
       )}
       {selectedTabIndex === 0 && (
