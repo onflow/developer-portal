@@ -44,6 +44,7 @@ export function LandingHeader({
   imageSrc = LandingImage,
   title,
 }: LandingHeaderProps) {
+  console.log(imageSrc)
   return (
     <div className="container mx-auto flex flex-col justify-items-stretch py-16 md:py-32">
       <h1 className="text-h1 mb-14 max-w-full overflow-hidden text-ellipsis !text-4xl md:mt-12 md:!text-7xl md:!leading-tight">
@@ -61,7 +62,7 @@ export function LandingHeader({
             {buttonText}
           </ButtonLink>
         </div>
-        <div className="hidden rounded-r-lg border bg-white px-10 py-6 dark:bg-white/40 md:block md:block md:basis-1/2 md:px-20 md:py-12">
+        <div className="hidden rounded-r-lg border px-10 py-6 dark:bg-white/40 md:block md:block md:basis-1/2 md:px-20 md:py-12">
           <img src={imageSrc} alt={title} />
         </div>
       </div>

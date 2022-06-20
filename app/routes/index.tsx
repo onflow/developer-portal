@@ -11,6 +11,14 @@ import {
   homepageThreeColumnData,
   homepageStartProjectData,
 } from "../component-data/Homepage"
+import {
+  httpSDK,
+  goSDK,
+  fclSDK,
+  flowScannerTool,
+  flowserTool,
+  overflowTool,
+} from "../component-data/Tools"
 
 type DynamicHomePageProps = Pick<
   HomePageProps,
@@ -19,7 +27,14 @@ type DynamicHomePageProps = Pick<
 
 export const loader: LoaderFunction = async () => {
   const flips = await fetchFlips()
-  const tools = DefaultToolAndConcepts?.args?.tools as ToolCardProps[]
+  const tools = [
+    httpSDK,
+    goSDK,
+    fclSDK,
+    flowScannerTool,
+    flowserTool,
+    overflowTool,
+  ] as ToolCardProps[]
   const concepts = DefaultToolAndConcepts.args?.concepts as TutorialCardProps[]
   const upcomingEvents = DefaultUpcomingEvents?.args as UpcomingEventsProps
   const data: DynamicHomePageProps = { flips, tools, concepts, upcomingEvents }
