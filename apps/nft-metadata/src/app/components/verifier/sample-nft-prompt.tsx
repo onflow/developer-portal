@@ -17,7 +17,7 @@ export function SampleNFTPrompt({
   const navigate = useNavigate()
   const [publicPath, setPublicPath] = useState<string>(defaultValues.publicPath || "")
   const [sampleAddress, setSampleAddress] = useState<string>(defaultValues.sampleAddress || "")
-  const [showLogIn, setShowLogIn] = useState<boolean>(true)
+  const [showLogIn, setShowLogIn] = useState<boolean>(false)
   const possiblePublicPaths: Array<string> = contractCode.match(/\/public\/[A-Za-z0-9]*/gmi) || []
   const [user, setUser] = useState({ loggedIn: null, addr: null })
 

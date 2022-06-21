@@ -9,10 +9,11 @@ import * as fcl from "@onflow/fcl";
 
 type CatalogProps = {
   sampleAddress: string | null
-  publicPath: string | null
+  publicPath: string | null,
+  nftID: string | null
 }
 
-export function CatalogForm({ sampleAddress, publicPath }: CatalogProps) {
+export function CatalogForm({ sampleAddress, publicPath, nftID }: CatalogProps) {
   const navigate = useNavigate()
   const [collectionIdentifier, setCollectionIdentifier] = useState<string>("")
   const debouncedCollectionIdentifier: string = useDebounce<string>(collectionIdentifier, 500);
@@ -56,7 +57,7 @@ export function CatalogForm({ sampleAddress, publicPath }: CatalogProps) {
           setError("Missing Data");
           return;
         }
-        if (!publicPath || !sampleAddress || !selectedAddress || !selectedContract) {
+        if (!publicPath || !sampleAddress || !selectedAddress || !selectedContract || !nftID) {
           setError("Missing Data");
           return;
         }
@@ -70,7 +71,7 @@ export function CatalogForm({ sampleAddress, publicPath }: CatalogProps) {
         setLoading(true);
         let proposalMessage = message + " ( This proposal was made via: " + window.location.href + " )"
         try {
-          await proposeNFTToCatalog(collectionIdentifier, sampleAddress, publicPath, selectedContract, selectedAddress, proposalMessage);
+          await proposeNFTToCatalog(collectionIdentifier, sampleAddress, nftID, publicPath, selectedContract, selectedAddress, proposalMessage);
           setError(null);
           navigate(`/proposals/${selectedNetwork}`);
         } catch (e) {

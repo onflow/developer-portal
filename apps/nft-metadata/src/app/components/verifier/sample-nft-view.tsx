@@ -1,6 +1,6 @@
 import { useEffect, useState } from "react";
 import { useNavigate, useParams } from "react-router-dom";
-import { retrieveMetadataInformation, getNFTInAccount, getAreLinksSetup } from "../../../flow/utils"
+import { retrieveMetadataInformation, getNFTsInAccount, getAreLinksSetup, getNFTInAccount } from "../../../flow/utils"
 import { Accordian } from "../shared/accordian";
 import { Alert } from "../shared/alert";
 import { Spinner } from "../shared/spinner";
@@ -13,43 +13,83 @@ import * as fcl from "@onflow/fcl"
 
 export function SampleNFTView({
   sampleAddress,
-  publicPath
+  publicPath,
+  nftID
 }: {
   sampleAddress: string | null,
   publicPath: string | null,
+  nftID: string | null
 }) {
   const navigate = useNavigate()
-  const { selectedNetwork, selectedAddress, selectedContract } = useParams<any>()
+  const { selectedContract } = useParams<any>()
+  const [ownedNFTs, setOwnedNFTs] = useState<any>(null)
   const [viewsImplemented, setViewsImplemented] = useState<any>([]);
   const [viewData, setViewData] = useState<{ [key: string]: Object }>({});
-  const [error, setError] = useState<boolean | null>(null);
+  const [error, setError] = useState<string | null>(null);
   const [loading, setLoading] = useState<boolean>(true);
-  
+
   useEffect(() => {
-    const metadataViewInformation = async () => {
-      setError(false)
-      if (!publicPath || !sampleAddress) { return }
-      const res = await retrieveMetadataInformation(sampleAddress, publicPath);
-      let nftData = null;
-      if (res) {
-        nftData = await getNFTInAccount(sampleAddress, publicPath);
-      }
-      if (!res || !nftData) {
+    const getMetadataConformity = async () => {
+      if (!sampleAddress || !publicPath) { return }
+      setLoading(true)
+      setError(null)
+      const metadataConformities = await retrieveMetadataInformation(sampleAddress, publicPath);
+      if (!metadataConformities) {
         const user = await fcl.currentUser().snapshot()
-        if (user.loggedIn) {
+        if (user.loggedIn && sampleAddress === user.addr) {
           const linksSetup = await getAreLinksSetup(user.addr as unknown as string, publicPath)
+          // TODO: Implement one-off new public path linking to metadataviews for the case where the
+          // logged in user might be able to fix it themself.
         }
-        setError(true)
-        setViewsImplemented([])
-        setViewData({});
+        setError("Failed to retrieve metadata")
       } else {
-        setViewsImplemented(res);
-        setViewData(nftData);
+        const hasInvalidViews = Object.values(metadataConformities).filter((conforms) => {
+          return !conforms
+        }).length > 0
+        if (hasInvalidViews) {
+          setViewsImplemented(metadataConformities)
+        } else {
+          const allNFTs = await getNFTsInAccount(sampleAddress, publicPath);
+          setOwnedNFTs(allNFTs)
+          const uniqueCollections: any = {}
+          console.log('allNFTs', allNFTs)
+          allNFTs.forEach((nft: any, i: number) => {
+            const id = nft.Id
+            const key = nft && nft.Display ? nft.Display.name : null
+            if (key) {
+              uniqueCollections[key] = {
+                index: i,
+                id: id
+              }
+            }
+          })
+          if (Object.keys(uniqueCollections).length > 1) {
+            // We have more than one unique collection, we must prompt the user to select the right collection
+            setViewsImplemented(metadataConformities)
+          } else {
+            // We have just one possible collection from this account, so we can take any to be set as the query param
+            const nftID = (Object.values(uniqueCollections)[0] as any).id
+            const nftIndex = (Object.values(uniqueCollections)[0] as any).index
+            navigate(`${window.location.pathname}${window.location.search.replace(/&nftID=.*/, '')}&nftID=${nftID}`)
+            setViewsImplemented(metadataConformities)
+            setViewData(allNFTs[nftIndex])
+          }
+        }
       }
       setLoading(false)
     }
-    metadataViewInformation()
+    getMetadataConformity()
   }, [sampleAddress, publicPath])
+
+  useEffect(() => {
+    const metadataViewInformation = async () => {
+      if (!publicPath || !sampleAddress || !nftID || !ownedNFTs || ownedNFTs.length === 0) { return }
+      setLoading(true)
+      console.log('here');
+      setLoading(false)
+    }
+    metadataViewInformation()
+  }, [sampleAddress, publicPath, nftID, ownedNFTs])
 
   if (!sampleAddress || !publicPath) {
     return null;

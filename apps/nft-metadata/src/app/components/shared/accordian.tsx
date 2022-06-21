@@ -2,10 +2,11 @@
   Used from https://tailwind-elements.com/docs/standard/components/accordion/ as a base
 */
 
-import { useState } from "react"
+import React, { useState } from "react"
 
-function Collapsible({item, index}: {item: any, index: number}) {
+function Collapsible({item, index, containsInvalids}: {item: any, index: number, containsInvalids: boolean}) {
   const [expand, setExpand] = useState(false)
+  const shouldNotExpand = containsInvalids && item.isValid
   const statusColor = item.isValid ? "green" : "red"
   const borderClass = index > 0 ? 'border-t-2' : ''
   return (
@@ -27,7 +28,7 @@ function Collapsible({item, index}: {item: any, index: number}) {
             focus:outline-none
           " type="button"
             onClick={() => {
-              setExpand(!expand)
+              !shouldNotExpand && setExpand(!expand)
             }}
           >
             <svg height="20" width="20">
@@ -37,7 +38,7 @@ function Collapsible({item, index}: {item: any, index: number}) {
               {item.title}
             </span>
             <span className="ml-auto blue underline text-xs">
-              { !expand ? 'Show Details' : 'Hide Details' }
+              { shouldNotExpand ? '' : !expand ? 'Show Details' : 'Hide Details' }
             </span>
           </button>
         </h2>
@@ -54,14 +55,17 @@ function Collapsible({item, index}: {item: any, index: number}) {
 }
 
 export function Accordian({items}: {items: Array<any>}) {
+  const containsInvalids = items.filter((i) => {
+    return !i.isValid
+  }).length > 0
   return (
     <div className="accordion border-2 border-gray-400 rounded-sm" id="accordionExample">
       {
         items && items.map((item, i) => {
           return (
-            <>
-              <Collapsible key={i} item={item} index={i} />
-            </>
+            <React.Fragment key={i}>
+              <Collapsible key={i} item={item} index={i} containsInvalids={containsInvalids} />
+            </React.Fragment>
           )
         })
       }

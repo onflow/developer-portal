@@ -17,6 +17,7 @@ export default function ({
 
   const publicPath = query.get("path")
   const sampleAddress = query.get("sampleAddress")
+  const nftID = query.get("nftID")
   const confirmed = query.get("confirmed")
 
   const steps = [
@@ -78,13 +79,13 @@ export default function ({
         }
         {
           steps[2].isActive && !steps[2].isComplete && (
-            <SampleNFTView sampleAddress={sampleAddress} publicPath={publicPath} />
+            <SampleNFTView sampleAddress={sampleAddress} publicPath={publicPath} nftID={nftID} />
           )
         }
 
         {
           steps[3].isActive && !steps[3].isComplete && (
-            <AddToCatalog sampleAddress={sampleAddress} publicPath={publicPath} />
+            <AddToCatalog sampleAddress={sampleAddress} publicPath={publicPath} nftID={nftID} />
           )
         }
       </div>
