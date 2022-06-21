@@ -3,6 +3,7 @@
 import { throttling } from "@octokit/plugin-throttling"
 import { Octokit as createOctokit } from "@octokit/rest"
 import nodePath from "path"
+import { flowContentNames } from "~/constants/repos"
 
 type GitHubFile = { path: string; content: string }
 
@@ -62,7 +63,15 @@ async function downloadMdxFileOrDirectory(
   repo: string,
   fileOrDirPath: string
 ): Promise<{ entry: string; files: Array<GitHubFile> }> {
-  const mdxFileOrDirectory = `docs/${fileOrDirPath}`
+  /* If the repository is internal /flow content
+   * - Map Flow Content Paths to the right repository paths
+   * - Reassign repository to Flow
+   */
+  console.log("repo requested", repo, fileOrDirPath)
+  const mdxFileOrDirectory = flowContentNames.includes(repo)
+    ? `docs/content/${repo}/${fileOrDirPath}`
+    : `docs/${fileOrDirPath}`
+  repo = flowContentNames.includes(repo) ? "flow" : repo
 
   console.log(`Downloading ${repo}/${mdxFileOrDirectory}`)
 

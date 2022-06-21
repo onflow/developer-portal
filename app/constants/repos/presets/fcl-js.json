@@ -3,11 +3,61 @@
   "sidebar": {
     "sections": [
       {
-        "title": "Flow Client Library Javascript",
+        "title": "Flow Client Library JS",
         "items": [
           {
             "label": "Introduction",
             "href": "index"
+          }
+        ]
+      },
+      {
+        "title": "Tutorials",
+        "items": [
+          {
+            "label": "Flow App Quickstart",
+            "href": "tutorials/flow-app-quickstart"
+          }
+        ]
+      },
+      {
+        "title": "Reference",
+        "items": [
+          {
+            "label": "API",
+            "href": "reference/api"
+          },
+          {
+            "label": "Authentication",
+            "href": "reference/authentication"
+          },
+          {
+            "label": "Configuring FCL",
+            "href": "reference/configure-fcl"
+          },
+          {
+            "label": "Discovery",
+            "href": "reference/discovery"
+          },
+          {
+            "label": "Proving Authentication",
+            "href": "reference/proving-authentication"
+          },
+          {
+            "label": "Scripts",
+            "href": "reference/scripts"
+          },
+          {
+            "label": "SDK Guidelines",
+            "href": "reference/sdk-guidelines"
+          },
+          {
+            "label": "Transactions",
+            "href": "reference/transactions"
+          },
+          {
+            "label": "User Signatures",
+            "href": "reference/user-signatures"
           }
         ]
       }

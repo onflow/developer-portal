@@ -1,7 +1,12 @@
 import { json, LoaderFunction } from "@remix-run/node"
 import { Link, Outlet, useCatch, useLoaderData } from "@remix-run/react"
 import invariant from "tiny-invariant"
-import { repoList, repoPresets } from "~/constants/repos"
+import {
+  repoList,
+  repoPresets,
+  flowContentPresets,
+  flowContentNames,
+} from "~/constants/repos"
 import { RepoSchema } from "~/constants/repos/repo-schema"
 import { ErrorPage } from "~/ui/design-system/src/lib/Components/ErrorPage"
 import { InternalSidebar } from "~/ui/design-system/src/lib/Components/InternalSidebar"
@@ -14,25 +19,32 @@ type LoaderData = {
 export const loader: LoaderFunction = async ({
   params,
 }): Promise<LoaderData> => {
-  invariant(params.repo, `expected repo param`)
+  const content = params.repo
 
-  const isKnownRepo = repoList.map((r) => r.repo).includes(params.repo)
+  invariant(content, `expected repo param`)
+
+  const isKnownRepo = repoList.map((r) => r.repo).includes(content)
   if (!isKnownRepo) {
     throw json({ status: "unknownRepo" }, { status: 404 })
+  }
+
+  // Flow Repository has additional internal content. If Flow repository is loaded, look for different sidebars
+  if (flowContentNames.includes(content)) {
+    return {
+      repo: "flow",
+      repoSchema: flowContentPresets[content] ?? null,
+    }
+  } else {
+    return {
+      repo: content,
+      repoSchema: repoPresets[content] ?? null,
+    }
   }
 
   // currently we are using only the presets, evnetually here we could
   // use the github api to see if a configuration file (e.g. onflowdocs.json)
   // exists, validate it against repo-schema, and use that instead. for now,
   // we'll use the definitions in this repo
-  console.log(params.repo)
-  const sidebar = repoPresets[params.repo] ?? null
-  console.log(sidebar)
-
-  return {
-    repo: params.repo,
-    repoSchema: sidebar,
-  }
 }
 
 export default function Repo() {

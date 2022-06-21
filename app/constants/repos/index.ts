@@ -1,6 +1,7 @@
 import cadence from "./presets/cadence.json"
 import fclJs from "./presets/fcl-js.json"
-import flow from "./presets/flow.json"
+import kittyItems from "./presets/kitty-items.json"
+import vscodeExtension from "./presets/vscode-extension.json"
 import flowGoSdk from "./presets/flow-go-sdk.json"
 import flowJsTesting from "./presets/flow-js-testing.json"
 import { RepoSchema } from "./repo-schema"
@@ -17,22 +18,27 @@ const repositoryNames = [
   "mock-developer-doc",
 ]
 
-// Some documentations temporarily lives in the /flow/docs/contents repository
-const flowContentNames = ["kitty-items", "vs-code-extension"]
+const flowContentNames = ["kitty-items", "vscode-extension"]
 
-const repoList = repositoryNames.map((repositoryName) => ({
-  org: "onflow",
-  repo: repositoryName,
-}))
+const repoList = [...repositoryNames, ...flowContentNames].map(
+  (repositoryName) => ({
+    org: "onflow",
+    repo: repositoryName,
+  })
+)
 
 type Repo = typeof repoList
 
+const flowContentPresets: Partial<Record<string, RepoSchema>> = {
+  "kitty-items": kittyItems as RepoSchema,
+  "vscode-extension": vscodeExtension as RepoSchema,
+}
+
 const repoPresets: Partial<Record<Repo[number]["repo"], RepoSchema>> = {
-  flow: flow as RepoSchema,
   cadence: cadence as RepoSchema,
   "fcl-js": fclJs as RepoSchema,
   "flow-go-sdk": flowGoSdk as RepoSchema,
   "flow-js-testing": flowJsTesting as RepoSchema,
 }
 
-export { repoList, repoPresets }
+export { repoList, repoPresets, flowContentNames, flowContentPresets }

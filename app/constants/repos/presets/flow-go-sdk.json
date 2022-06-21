@@ -8,6 +8,10 @@
           {
             "label": "Getting Started",
             "href": "index"
+          },
+          {
+            "label": "Migration Guide",
+            "href": "migration-v0.25.0"
           }
         ]
       }

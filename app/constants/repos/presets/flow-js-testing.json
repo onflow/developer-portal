@@ -8,6 +8,62 @@
           {
             "label": "Introduction",
             "href": "index"
+          },
+          {
+            "label": "Accounts",
+            "href": "accounts"
+          },
+          {
+            "label": "API",
+            "href": "api"
+          },
+          {
+            "label": "Contracts",
+            "href": "contracts"
+          },
+          {
+            "label": "Emulator",
+            "href": "emulator"
+          },
+          {
+            "label": "Executing Scripts",
+            "href": "execute-scripts"
+          },
+          {
+            "label": "Flow Token",
+            "href": "flow-token"
+          },
+          {
+            "label": "Generator",
+            "href": "generator"
+          },
+          {
+            "label": "Init Framework",
+            "href": "init"
+          },
+          {
+            "label": "Installation",
+            "href": "install"
+          },
+          {
+            "label": "Jest Helpers",
+            "href": "jest-helpers"
+          },
+          {
+            "label": "Sending Transactions",
+            "href": "send-transactions"
+          },
+          {
+            "label": "Structure",
+            "href": "structure"
+          },
+          {
+            "label": "Templates",
+            "href": "templates"
+          },
+          {
+            "label": "Types",
+            "href": "types"
           }
         ]
       }
