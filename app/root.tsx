@@ -34,12 +34,19 @@ import { NavigationBar } from "./ui/design-system/src/lib/Components/NavigationB
 import * as gtag from "./gtags.client"
 
 export const links: LinksFunction = () => {
-  return [{ rel: "stylesheet", href: styles }]
+  return [
+    { rel: "stylesheet", href: styles },
+    {
+      rel: "icon",
+      href: "https://assets.website-files.com/5f6294c0c7a8cdd643b1c820/5f6294c0c7a8cd5e06b1c938_Asset%201%405x.png",
+      type: "image/png",
+    },
+  ]
 }
 
 export const meta: MetaFunction = () => ({
   charset: "utf-8",
-  title: "Flow Documentation",
+  title: "Flow Developer Portal",
   viewport: "width=device-width,initial-scale=1",
 })
 
@@ -112,7 +119,7 @@ function App() {
           menuItems={navBarData.menuItems}
           onDarkModeToggle={toggleTheme}
         />
-        <div className="flex-auto	overflow-auto">
+        <div className="flex-auto overflow-auto">
           <Outlet />
           <Footer />
         </div>
