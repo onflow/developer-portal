@@ -17,7 +17,7 @@ export default function ComingSoon() {
             <h1 className="text-h1 mb-14 max-w-full overflow-hidden text-ellipsis !text-4xl md:mt-12 md:!text-7xl md:!leading-tight">
               Coming soon
             </h1>
-            <div>
+            <div className="pl-2">
               Visit our <Link to="/">homepage</Link>,{" "}
               <Link to="/getting-started">getting-started</Link>, and{" "}
               <Link to="/tools">tools</Link> instead.
