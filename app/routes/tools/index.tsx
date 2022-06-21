@@ -4,7 +4,10 @@ import { data } from "./data"
 export default function Page() {
   return (
     <ToolsPage
-      apis={data.apis}
+      explorers={data.explorers}
+      ossservices={data.ossservices}
+      hostedApis={data.hostedApis}
+      cadenceTools={data.cadenceTools}
       contentNavigationItems={data.contentNavigationItems}
       sdks={data.sdks}
       tools={data.tools}

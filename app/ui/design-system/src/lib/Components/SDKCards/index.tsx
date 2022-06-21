@@ -17,7 +17,7 @@ export function SDKCards({
         <div>
           <h2 className="text-h2">{header}</h2>
           {description && (
-            <p className="mt-2 max-w-[480px] text-primary-gray-400 dark:text-primary-gray-100">
+            <p className="mt-2 max-w-[640px] text-primary-gray-400 dark:text-primary-gray-100">
               {description}
             </p>
           )}
