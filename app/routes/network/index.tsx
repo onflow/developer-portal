@@ -1,4 +1,4 @@
-import { LoaderFunction, redirect } from "@remix-run/node"
+import { LoaderFunction } from "@remix-run/node"
 import { useLoaderData } from "@remix-run/react"
 import { fetchNetworkStatus } from "~/cms/utils/fetch-network-status"
 import NetworkPage, {
