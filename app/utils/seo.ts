@@ -1,6 +1,6 @@
 export function getSocialMetas({
   url,
-  title = "Welcome to the Flow developer docs",
+  title = "Welcome to the Flow Developer Portal",
   description = "Your resource for everything you'll need to build in Flow",
   origin,
   image,
