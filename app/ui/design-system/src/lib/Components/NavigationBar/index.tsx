@@ -29,7 +29,7 @@ export function NavigationBar({
       <div className="mt-1 flex flex-1 justify-end">
         {/* TODO: fetch appId and apiKey from env */}
         {/* TODO: search is disabled for launch */}
-        {/* <div className="mr-4 flex items-center">
+        {/* <div className="flex items-center mr-4">
           <Search
             appId="DKF9ZIO5WM"
             apiKey="d53324bc00b550f87f608c2c56636bc6"
@@ -38,7 +38,7 @@ export function NavigationBar({
         </div> */}
         <DesktopMenu menuItems={menuItems} />
         <ul className="flex items-center">
-          <li className="flex	items-center whitespace-nowrap border-primary-gray-100 pl-4 dark:border-primary-gray-400 md:border-l">
+          <li className="flex items-center whitespace-nowrap border-primary-gray-100 pl-4 dark:border-primary-gray-400 md:border-l">
             <button
               type="button"
               onClick={() => onDarkModeToggle()}

@@ -39,18 +39,14 @@ export const loader: LoaderFunction = async ({
 export default function Repo() {
   const data = useLoaderData<LoaderData>()
   return (
-    <div className="mx-4">
-      <div className="flex">
-        <div>
-          {data.repoSchema ? (
-            <InternalSidebar config={data.repoSchema.sidebar} />
-          ) : (
-            <div>⚠️ Missing repo config</div>
-          )}
-        </div>
-        <div>
-          <Outlet />
-        </div>
+    <div className="flex h-full">
+      {data.repoSchema ? (
+        <InternalSidebar config={data.repoSchema.sidebar} />
+      ) : (
+        <div>⚠️ D'oh. Failed to load sidebar content.</div>
+      )}
+      <div className="overflow-auto">
+        <Outlet />
       </div>
     </div>
   )

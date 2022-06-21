@@ -49,6 +49,7 @@ const TabMenu = ({
               setActiveIndex(index)
               onTabChange(index, name)
             }}
+            isExternal={false}
           >
             <span
               className={clsx(
