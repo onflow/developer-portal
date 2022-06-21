@@ -93,12 +93,10 @@ const homepageThreeColumnData: LinkCard3ColumnItems = [
         href: "https://docs.onflow.org/flow-cli/deploy-project-contracts/",
         tags: ["cli", "tutorial"],
       },
-      // TODO: We need to expose this footer once the /learn page is production ready
-      /*
       {
         title: "View more learning resources",
-        href: "https://web3-learning-roadmap.vercel.app/",
-      },*/
+        href: "#todo", // TODO: We need to expose this footer once the /learn page is production ready
+      },
     ],
   },
   {
