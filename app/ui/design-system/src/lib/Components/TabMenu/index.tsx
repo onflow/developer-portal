@@ -9,10 +9,13 @@ type Tab = {
 
 export type TabMenuProps = {
   tabs: Tab[]
-  onTabChange: any
+  onTabChange?: any
   defaultTabIndex?: number
   centered?: boolean
 }
+
+const tabClasses =
+  "relative cursor-pointer py-4 text-center text-black hover:text-primary-gray-400 dark:text-white hover:dark:text-primary-gray-100 md:py-6"
 
 const TabMenu = ({
   tabs,
@@ -39,16 +42,39 @@ const TabMenu = ({
           { block: isCurrentIndex, hidden: !isCurrentIndex }
         )
 
+        if (onTabChange) {
+          return (
+            <Link
+              key={name}
+              id={name}
+              href={link}
+              className={tabClasses}
+              onClick={() => {
+                setActiveIndex(index)
+                onTabChange(index, name)
+              }}
+            >
+              <span
+                className={clsx(
+                  "whitespace-nowrap px-4 text-sm md:px-6 md:text-base",
+                  isCurrentIndex ? "-mx-[1px] font-bold" : ""
+                )}
+              >
+                {name}
+              </span>
+              <div className={indicatorClasses} />
+            </Link>
+          )
+        }
+
         return (
-          <Link
+          <div
             key={name}
-            id={name}
-            href={link}
-            className="relative cursor-pointer py-4 text-center text-black hover:text-primary-gray-400 dark:text-white hover:dark:text-primary-gray-100 md:py-6"
+            role="button"
             onClick={() => {
               setActiveIndex(index)
-              onTabChange(index, name)
             }}
+            className={tabClasses}
           >
             <span
               className={clsx(
@@ -59,7 +85,7 @@ const TabMenu = ({
               {name}
             </span>
             <div className={indicatorClasses} />
-          </Link>
+          </div>
         )
       })}
     </div>
