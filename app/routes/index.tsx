@@ -14,7 +14,7 @@ import {
   httpSDK,
   goSDK,
   fclSDK,
-  flowScannerTool,
+  eventIndexingTool,
   flowserTool,
   overflowTool,
 } from "../component-data/Tools"
@@ -34,7 +34,7 @@ export const loader: LoaderFunction = async () => {
     httpSDK,
     goSDK,
     fclSDK,
-    flowScannerTool,
+    eventIndexingTool,
     flowserTool,
     overflowTool,
   ] as ToolCardProps[]

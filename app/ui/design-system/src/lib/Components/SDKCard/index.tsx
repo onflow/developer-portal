@@ -52,12 +52,6 @@ export function SDKCard({
               </div>
             )}
           </div>
-
-          <div className="shrink-0 pr-1 line-clamp-1">
-            {tags?.map((tag, i) => (
-              <Tag name={tag} key={i} />
-            ))}
-          </div>
           {stars !== undefined && (
             <div className="flex shrink-0 items-center gap-1">
               <StarIcon className="text-amber-400" height={16} width={16} />
@@ -66,6 +60,11 @@ export function SDKCard({
               </div>
             </div>
           )}
+        </div>
+        <div className="shrink-0 py-1 pr-1 line-clamp-1">
+          {tags?.map((tag, i) => (
+            <Tag name={tag} key={i} />
+          ))}
         </div>
         {description ? (
           <div className="pt-2 text-gray-700 line-clamp-2 dark:text-gray-300">
