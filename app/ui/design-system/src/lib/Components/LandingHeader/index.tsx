@@ -1,6 +1,6 @@
 import { ReactComponent as DiscordIcon } from "../../../../images/social/discord"
 import { ReactComponent as GithubIcon } from "../../../../images/social/github"
-import { DISCORD_URL, GITHUB_URL } from "../../constants"
+import { DISCORD_URL, GITHUB_URL } from "../../../../../../constants"
 import { ButtonLink } from "../Button"
 import LandingImage from "../../../../images/misc/landing-home.png"
 import clsx from "clsx"

@@ -9,7 +9,7 @@ import {
   DISCOURSE_URL,
   GITHUB_URL,
   TWITTER_URL,
-} from "../../constants"
+} from "../../../../../../constants"
 
 type SocialLinkProps = {
   header: string

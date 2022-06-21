@@ -3,7 +3,7 @@ import OnFlowIcon from "../../../../images/logos/flow-icon-bw-light.svg"
 import DiscordIcon from "../../../../images/social/discord-light.svg"
 import ForumIcon from "../../../../images/social/forum-light.svg"
 import GithubIcon from "../../../../images/social/github-light.svg"
-import { DISCORD_URL } from "~/ui/design-system/src/lib/constants"
+import { DISCORD_URL } from "../../../../../../constants"
 
 // reduce repetition of the section layout in Footer component
 const footerSections = [
