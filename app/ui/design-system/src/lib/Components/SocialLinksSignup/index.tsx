@@ -52,7 +52,7 @@ export type SocialLinksSignupProps = {}
 const SocialLinksSignup = () => {
   return (
     <div
-      className="bg-cover bg-[center_top_-150px] bg-no-repeat pt-24 pb-32 md:bg-[length:70%_150%]"
+      className="bg-cover bg-[center_top] bg-no-repeat py-36 lg:bg-[length:70%] xl:bg-[center_top_-30px]"
       style={{
         backgroundImage: `url(${socialLinksGradientPath})`,
       }}
