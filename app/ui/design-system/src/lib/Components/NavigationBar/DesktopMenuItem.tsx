@@ -12,7 +12,12 @@ export type DesktopMenuItemProps = MenuItem
 export function DesktopMenuItem({ divider, ...props }: DesktopMenuItemProps) {
   if ("href" in props) {
     return (
-      <li className={clsx({ "border-l": divider })}>
+      <li
+        className={clsx({
+          "border-l border-primary-gray-100 dark:border-primary-gray-400":
+            divider,
+        })}
+      >
         <MenuItemLink {...props} className="px-4" />
       </li>
     )
@@ -21,24 +26,32 @@ export function DesktopMenuItem({ divider, ...props }: DesktopMenuItemProps) {
   const { title, ...contentProps } = props
 
   return (
-    <Popover as="li" className={clsx({ "border-l": divider })}>
+    <Popover
+      as="li"
+      className={clsx({
+        "border-l border-primary-gray-100 dark:border-primary-gray-400":
+          divider,
+      })}
+    >
       {({ open }) => (
         <>
           <Popover.Button
-            className={clsx("flex whitespace-nowrap px-4 focus:outline-none", {
-              "text-primary-blue dark:text-blue-dark": open,
-            })}
+            className={clsx(
+              "flex whitespace-nowrap px-2 hover:text-primary-blue focus:outline-none dark:hover:text-blue-hover-dark lg:px-4",
+              {
+                "text-primary-blue dark:text-blue-dark": open,
+              }
+            )}
           >
             <>
               {title}{" "}
               <ChevronDown
-                className={clsx("transform transition duration-300", {
+                className={clsx("transform transition duration-300 lg:ml-2", {
                   "rotate-x-180": open,
                 })}
               />
             </>
           </Popover.Button>
-          <Popover.Overlay className="fixed top-16 left-0 right-0 bottom-0" />
           <Transition
             as={Fragment}
             enter="transition ease-out duration-100"
@@ -48,14 +61,15 @@ export function DesktopMenuItem({ divider, ...props }: DesktopMenuItemProps) {
             leaveFrom="transform opacity-100 scale-100"
             leaveTo="transform opacity-0 scale-95"
           >
-            <Popover.Panel className="fixed top-16 left-0 right-0 bottom-0 z-50 origin-top-right">
-              <div className="h-full max-h-full">
+            <Popover.Panel className="fixed top-[96px] left-0 right-0 bottom-0 z-10 origin-top-right">
+              <div className="relative z-20 max-h-full">
                 {"tabs" in contentProps ? (
                   <DesktopMenuTabbed {...contentProps} />
                 ) : (
                   <MenuContent {...contentProps} />
                 )}
               </div>
+              <Popover.Overlay className="fixed top-[96px] left-0 right-0 bottom-0" />
             </Popover.Panel>
           </Transition>
         </>

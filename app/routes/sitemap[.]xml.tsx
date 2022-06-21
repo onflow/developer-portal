@@ -2,181 +2,181 @@ export const loader = () => {
   const content = `
   <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
 	<url>
-		<loc>https://flow-docs.fly.dev/</loc>
+		<loc>https://developers.onflow.org/</loc>
 	</url>
 	<url>
-		<loc>https://flow-docs.fly.dev/cadence</loc>
+		<loc>https://developers.onflow.org/cadence</loc>
 	</url>
 	<url>
-		<loc>https://flow-docs.fly.dev/cadence/FAQ</loc>
+		<loc>https://developers.onflow.org/cadence/FAQ</loc>
 	</url>
 	<url>
-		<loc>https://flow-docs.fly.dev/cadence/README</loc>
+		<loc>https://developers.onflow.org/cadence/README</loc>
 	</url>
 	<url>
-		<loc>https://flow-docs.fly.dev/cadence/contract-upgrades</loc>
+		<loc>https://developers.onflow.org/cadence/contract-upgrades</loc>
 	</url>
 	<url>
-		<loc>https://flow-docs.fly.dev/cadence/goland</loc>
+		<loc>https://developers.onflow.org/cadence/goland</loc>
 	</url>
 	<url>
-		<loc>https://flow-docs.fly.dev/cadence/index</loc>
+		<loc>https://developers.onflow.org/cadence/index</loc>
 	</url>
 	<url>
-		<loc>https://flow-docs.fly.dev/cadence/msg-sender</loc>
+		<loc>https://developers.onflow.org/cadence/msg-sender</loc>
 	</url>
 	<url>
-		<loc>https://flow-docs.fly.dev/cadence/releasing</loc>
+		<loc>https://developers.onflow.org/cadence/releasing</loc>
 	</url>
 	<url>
-		<loc>https://flow-docs.fly.dev/cadence/subtyping</loc>
+		<loc>https://developers.onflow.org/cadence/subtyping</loc>
 	</url>
 	<url>
-		<loc>https://flow-docs.fly.dev/cadence/syntax-highlighting</loc>
+		<loc>https://developers.onflow.org/cadence/syntax-highlighting</loc>
 	</url>
 	<url>
-		<loc>https://flow-docs.fly.dev/cadence/anti-patterns</loc>
+		<loc>https://developers.onflow.org/cadence/anti-patterns</loc>
 	</url>
 	<url>
-		<loc>https://flow-docs.fly.dev/cadence/design-patterns</loc>
+		<loc>https://developers.onflow.org/cadence/design-patterns</loc>
 	</url>
 	<url>
-		<loc>https://flow-docs.fly.dev/cadence/development</loc>
+		<loc>https://developers.onflow.org/cadence/development</loc>
 	</url>
 	<url>
-		<loc>https://flow-docs.fly.dev/cadence/json-cadence-spec</loc>
+		<loc>https://developers.onflow.org/cadence/json-cadence-spec</loc>
 	</url>
 	<url>
-		<loc>https://flow-docs.fly.dev/cadence/measuring-time</loc>
+		<loc>https://developers.onflow.org/cadence/measuring-time</loc>
 	</url>
 	<url>
-		<loc>https://flow-docs.fly.dev/cadence/migration-guide</loc>
+		<loc>https://developers.onflow.org/cadence/migration-guide</loc>
 	</url>
 	<url>
-		<loc>https://flow-docs.fly.dev/cadence/language</loc>
+		<loc>https://developers.onflow.org/cadence/language</loc>
 	</url>
 	<url>
-		<loc>https://flow-docs.fly.dev/cadence/language/access-control</loc>
+		<loc>https://developers.onflow.org/cadence/language/access-control</loc>
 	</url>
 	<url>
-		<loc>https://flow-docs.fly.dev/cadence/language/accounts</loc>
+		<loc>https://developers.onflow.org/cadence/language/accounts</loc>
 	</url>
 	<url>
-		<loc>https://flow-docs.fly.dev/cadence/language/built-in-functions</loc>
+		<loc>https://developers.onflow.org/cadence/language/built-in-functions</loc>
 	</url>
 	<url>
-		<loc>https://flow-docs.fly.dev/cadence/language/capability-based-access-control</loc>
+		<loc>https://developers.onflow.org/cadence/language/capability-based-access-control</loc>
 	</url>
 	<url>
-		<loc>https://flow-docs.fly.dev/cadence/language/composite-types</loc>
+		<loc>https://developers.onflow.org/cadence/language/composite-types</loc>
 	</url>
 	<url>
-		<loc>https://flow-docs.fly.dev/cadence/language/constants-and-variables</loc>
+		<loc>https://developers.onflow.org/cadence/language/constants-and-variables</loc>
 	</url>
 	<url>
-		<loc>https://flow-docs.fly.dev/cadence/language/contract-updatability</loc>
+		<loc>https://developers.onflow.org/cadence/language/contract-updatability</loc>
 	</url>
 	<url>
-		<loc>https://flow-docs.fly.dev/cadence/language/contracts</loc>
+		<loc>https://developers.onflow.org/cadence/language/contracts</loc>
 	</url>
 	<url>
-		<loc>https://flow-docs.fly.dev/cadence/language/control-flow</loc>
+		<loc>https://developers.onflow.org/cadence/language/control-flow</loc>
 	</url>
 	<url>
-		<loc>https://flow-docs.fly.dev/cadence/language/core-events</loc>
+		<loc>https://developers.onflow.org/cadence/language/core-events</loc>
 	</url>
 	<url>
-		<loc>https://flow-docs.fly.dev/cadence/language/crypto</loc>
+		<loc>https://developers.onflow.org/cadence/language/crypto</loc>
 	</url>
 	<url>
-		<loc>https://flow-docs.fly.dev/cadence/language/enumerations</loc>
+		<loc>https://developers.onflow.org/cadence/language/enumerations</loc>
 	</url>
 	<url>
-		<loc>https://flow-docs.fly.dev/cadence/language/environment-information</loc>
+		<loc>https://developers.onflow.org/cadence/language/environment-information</loc>
 	</url>
 	<url>
-		<loc>https://flow-docs.fly.dev/cadence/language/events</loc>
+		<loc>https://developers.onflow.org/cadence/language/events</loc>
 	</url>
 	<url>
-		<loc>https://flow-docs.fly.dev/cadence/language/functions</loc>
+		<loc>https://developers.onflow.org/cadence/language/functions</loc>
 	</url>
 	<url>
-		<loc>https://flow-docs.fly.dev/cadence/language/glossary</loc>
+		<loc>https://developers.onflow.org/cadence/language/glossary</loc>
 	</url>
 	<url>
-		<loc>https://flow-docs.fly.dev/cadence/language/imports</loc>
+		<loc>https://developers.onflow.org/cadence/language/imports</loc>
 	</url>
 	<url>
-		<loc>https://flow-docs.fly.dev/cadence/language/index</loc>
+		<loc>https://developers.onflow.org/cadence/language/index</loc>
 	</url>
 	<url>
-		<loc>https://flow-docs.fly.dev/cadence/language/interfaces</loc>
+		<loc>https://developers.onflow.org/cadence/language/interfaces</loc>
 	</url>
 	<url>
-		<loc>https://flow-docs.fly.dev/cadence/language/operators</loc>
+		<loc>https://developers.onflow.org/cadence/language/operators</loc>
 	</url>
 	<url>
-		<loc>https://flow-docs.fly.dev/cadence/language/references</loc>
+		<loc>https://developers.onflow.org/cadence/language/references</loc>
 	</url>
 	<url>
-		<loc>https://flow-docs.fly.dev/cadence/language/resources</loc>
+		<loc>https://developers.onflow.org/cadence/language/resources</loc>
 	</url>
 	<url>
-		<loc>https://flow-docs.fly.dev/cadence/language/restricted-types</loc>
+		<loc>https://developers.onflow.org/cadence/language/restricted-types</loc>
 	</url>
 	<url>
-		<loc>https://flow-docs.fly.dev/cadence/language/run-time-types</loc>
+		<loc>https://developers.onflow.org/cadence/language/run-time-types</loc>
 	</url>
 	<url>
-		<loc>https://flow-docs.fly.dev/cadence/language/scope</loc>
+		<loc>https://developers.onflow.org/cadence/language/scope</loc>
 	</url>
 	<url>
-		<loc>https://flow-docs.fly.dev/cadence/language/syntax</loc>
+		<loc>https://developers.onflow.org/cadence/language/syntax</loc>
 	</url>
 	<url>
-		<loc>https://flow-docs.fly.dev/cadence/language/transactions</loc>
+		<loc>https://developers.onflow.org/cadence/language/transactions</loc>
 	</url>
 	<url>
-		<loc>https://flow-docs.fly.dev/cadence/language/type-annotations</loc>
+		<loc>https://developers.onflow.org/cadence/language/type-annotations</loc>
 	</url>
 	<url>
-		<loc>https://flow-docs.fly.dev/cadence/language/type-hierarchy</loc>
+		<loc>https://developers.onflow.org/cadence/language/type-hierarchy</loc>
 	</url>
 	<url>
-		<loc>https://flow-docs.fly.dev/cadence/language/type-inference</loc>
+		<loc>https://developers.onflow.org/cadence/language/type-inference</loc>
 	</url>
 	<url>
-		<loc>https://flow-docs.fly.dev/cadence/language/type-safety</loc>
+		<loc>https://developers.onflow.org/cadence/language/type-safety</loc>
 	</url>
 	<url>
-		<loc>https://flow-docs.fly.dev/cadence/language/values-and-types</loc>
+		<loc>https://developers.onflow.org/cadence/language/values-and-types</loc>
 	</url>
 	<url>
-		<loc>https://flow-docs.fly.dev/cadence/tutorial</loc>
+		<loc>https://developers.onflow.org/cadence/tutorial</loc>
 	</url>
 	<url>
-		<loc>https://flow-docs.fly.dev/cadence/tutorial/01-first-steps.mdx</loc>
+		<loc>https://developers.onflow.org/cadence/tutorial/01-first-steps.mdx</loc>
 	</url>
 	<url>
-		<loc>https://flow-docs.fly.dev/cadence/tutorial/02-hello-world.mdx</loc>
+		<loc>https://developers.onflow.org/cadence/tutorial/02-hello-world.mdx</loc>
 	</url>
 	<url>
-		<loc>https://flow-docs.fly.dev/cadence/tutorial/03-fungible-tokens.mdx</loc>
+		<loc>https://developers.onflow.org/cadence/tutorial/03-fungible-tokens.mdx</loc>
 	</url>
 	<url>
-		<loc>https://flow-docs.fly.dev/cadence/tutorial/04-non-fungible-tokens.mdx</loc>
+		<loc>https://developers.onflow.org/cadence/tutorial/04-non-fungible-tokens.mdx</loc>
 	</url>
 	<url>
-		<loc>https://flow-docs.fly.dev/cadence/tutorial/05-marketplace-setup.mdx</loc>
+		<loc>https://developers.onflow.org/cadence/tutorial/05-marketplace-setup.mdx</loc>
 	</url>
 	<url>
-		<loc>https://flow-docs.fly.dev/cadence/tutorial/06-marketplace-compose.mdx</loc>
+		<loc>https://developers.onflow.org/cadence/tutorial/06-marketplace-compose.mdx</loc>
 	</url>
 	<url>
-		<loc>https://flow-docs.fly.dev/cadence/tutorial/07-resources-compose.mdx</loc>
+		<loc>https://developers.onflow.org/cadence/tutorial/07-resources-compose.mdx</loc>
 	</url>
 	<url>
-		<loc>https://flow-docs.fly.dev/cadence/tutorial/08-voting.mdx</loc>
+		<loc>https://developers.onflow.org/cadence/tutorial/08-voting.mdx</loc>
 	</url>
 </urlset>
   `

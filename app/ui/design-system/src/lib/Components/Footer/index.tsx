@@ -10,40 +10,44 @@ const footerSections = [
     header: "Documentation",
     links: [
       {
-        link: "#", // TODO: replace with actual links
+        link: "/getting-started",
         text: "Getting Started",
       },
       {
-        link: "#",
-        text: "SDK's",
+        link: "/tools",
+        text: "SDK's & Tools",
       },
       {
-        link: "#",
-        text: "Tutorials",
+        link: "/learn",
+        text: "Learning Resources",
       },
       {
-        link: "#",
-        text: "Guides",
+        link: "https://docs.onflow.org/cadence/",
+        text: "Cadence",
       },
       {
-        link: "#",
-        text: "Concepts",
+        link: "https://docs.onflow.org/fcl/",
+        text: "FCL",
       },
       {
-        link: "#",
-        text: "Walkthroughs",
+        link: "https://docs.onflow.org/flow-js-testing/",
+        text: "JS Testing Library",
       },
       {
-        link: "#",
-        text: "How-To",
+        link: "https://docs.onflow.org/flow-cli/",
+        text: "CLI",
       },
       {
-        link: "#",
-        text: "FAQ",
+        link: "https://docs.onflow.org/emulator/",
+        text: "Emulator",
       },
       {
-        link: "#",
-        text: "Tools",
+        link: "https://github.com/onflow/fcl-dev-wallet",
+        text: "Dev Wallet",
+      },
+      {
+        link: "https://docs.onflow.org/vscode-extension/",
+        text: "VS Code Extension",
       },
     ],
   },
@@ -51,24 +55,36 @@ const footerSections = [
     header: "Community",
     links: [
       {
-        link: "#",
+        link: "/community",
         text: "Ecosystem",
       },
       {
-        link: "#",
-        text: "GitHub",
+        link: "https://port.onflow.org/",
+        text: "Flow Port",
       },
       {
-        link: "#",
-        text: "Discord",
+        link: "/community",
+        text: "Developer Grants",
       },
       {
-        link: "#",
+        link: "/community",
+        text: "Bug Bounties",
+      },
+      {
+        link: "https://forum.onflow.org/",
+        text: "Forum",
+      },
+      {
+        link: "https://www.flowverse.co/",
         text: "Flowverse",
       },
       {
-        link: "#",
-        text: "Forum",
+        link: "https://academy.ecdao.org/",
+        text: "Emerald Academy",
+      },
+      {
+        link: "https://floats.city/",
+        text: "FLOATs (Attendance NFTs)",
       },
     ],
   },
@@ -76,12 +92,28 @@ const footerSections = [
     header: "Start Building",
     links: [
       {
-        link: "#",
+        link: "https://play.onflow.org/local-project",
         text: "Flow Playground",
       },
       {
-        link: "#",
-        text: "Crypto Kitties",
+        link: "https://docs.onflow.org/kitty-items/",
+        text: "Kitty Items",
+      },
+      {
+        link: "https://docs.onflow.org/cadence/tutorial/01-first-steps/",
+        text: "Cadence Tutorials",
+      },
+      {
+        link: "https://open-cadence.onflow.org",
+        text: "Cadence Cookbook",
+      },
+      {
+        link: "https://docs.onflow.org/core-contracts/",
+        text: "Core Contracts & Standards",
+      },
+      {
+        link: "https://academy.ecdao.org/",
+        text: "Emerald DAO Bootcamp",
       },
     ],
   },
@@ -89,24 +121,32 @@ const footerSections = [
     header: "Network",
     links: [
       {
-        link: "#",
+        link: "https://docs.onflow.org/status/",
         text: "Network Status",
       },
       {
-        link: "#",
-        text: "Mainnet",
+        link: "https://flowscan.org/",
+        text: "Flowscan Mainnet",
       },
       {
-        link: "#",
-        text: "Testnet",
+        link: "https://testnet.flowscan.org/",
+        text: "Flowscan Testnet",
       },
       {
-        link: "#",
-        text: "Canary",
+        link: "https://docs.onflow.org/node-operation/past-sporks/",
+        text: "Past Sporks",
       },
       {
-        link: "#",
-        text: "Sporks FAQ",
+        link: "https://docs.onflow.org/node-operation/upcoming-sporks/",
+        text: "Upcoming Sporks",
+      },
+      {
+        link: "https://docs.onflow.org/node-operation/",
+        text: "Node Operation",
+      },
+      {
+        link: "https://docs.onflow.org/node-operation/spork/",
+        text: "Spork Information",
       },
     ],
   },
@@ -119,20 +159,17 @@ export const Footer = ({ sections = footerSections }) => {
         <div className="block items-center justify-between px-2 pt-8 pb-6 md:flex md:px-4 md:pt-16">
           <img src={FlowDocsLogo} alt="Flow Docs" width="150" />
           <div className="flex items-center gap-6 pt-8 md:pt-0">
-            <a href="#" className="hover:opacity-75">
+            <a href="https://github.com/onflow" className="hover:opacity-75">
               <img src={GithubIcon} height={32} width={32} />
             </a>
-            <a href="#" className="hover:opacity-75">
+            <a href="https://discord.gg/mDvccFPx" className="hover:opacity-75">
               <img src={DiscordIcon} height={28} width={28} />
             </a>
-            <a href="#" className="hover:opacity-75">
+            <a href="https://forum.onflow.org/" className="hover:opacity-75">
               <img src={ForumIcon} height={24} width={24} />
             </a>
-            <a href="#" className="hover:opacity-75">
+            <a href="https://onflow.org/" className="hover:opacity-75">
               <img src={OnFlowIcon} height={28} width={28} />
-            </a>
-            <a href="#" className="hover:text-primary-gray-100">
-              Eng
             </a>
           </div>
         </div>

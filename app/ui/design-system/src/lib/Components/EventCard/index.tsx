@@ -5,7 +5,7 @@ import Tag from "../Tag"
 
 export type EventCardProps = {
   className?: string
-  ctaText: string
+  ctaText?: string
   description: string
   eventDate: string
   href: string
@@ -14,6 +14,8 @@ export type EventCardProps = {
   location?: string
   tags?: string[]
   title: string
+  eventType?: string
+  isPrimary?: boolean
 }
 
 export function EventCard({
@@ -35,12 +37,12 @@ export function EventCard({
         className
       )}
     >
-      <div className="min-w-[50%] flex-none basis-1/2 self-center py-10 pl-6 pr-6 md:pr-32 md:pl-20">
-        <div className="mb-1 divide-x divide-solid divide-primary-gray-200 text-sm font-semibold text-primary-gray-300 md:text-xl">
+      <div className="min-w-[50%] flex-none basis-1/2 self-center py-11 pl-6 pr-6 md:pr-32 md:pl-20">
+        <div className="mb-1 divide-x divide-solid divide-primary-gray-200 text-sm text-primary-gray-300 md:text-xl">
           <span className="pr-2">{eventDate}</span>
           <span className="pl-2">{location}</span>
         </div>
-        <h3 className="text-h3 mb-2 !text-xl md:mb-3 md:!text-2xl">
+        <h3 className="text-h3 mb-3 !text-xl md:mb-3 md:!text-2xl">
           <a href={href}>{title}</a>
         </h3>
         {tags && tags.length > 0 && (
@@ -63,7 +65,7 @@ export function EventCard({
         <img
           src={imageSrc}
           alt={imageAlt}
-          className="h-full w-full object-cover"
+          className="h-full max-h-[125px] w-full object-cover md:max-h-full"
         />
       </div>
     </div>

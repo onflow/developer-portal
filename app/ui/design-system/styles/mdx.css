@@ -68,7 +68,7 @@
     @apply relative mt-3 pl-8;
   }
 
-  &:not(pre) > code {
+  & :not(pre) > code {
     @apply bg-[#ebeef0] text-[#2075d6] dark:bg-primary-gray-400 dark:text-white;
     border-radius: 0.3em;
     padding: 0.1em 0.3em;

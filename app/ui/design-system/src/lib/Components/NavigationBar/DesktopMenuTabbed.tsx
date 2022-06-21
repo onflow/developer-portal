@@ -13,7 +13,7 @@ export function DesktopMenuTabbed({ className, tabs }: DesktopMenuTabbedProps) {
   const selectedTab = tabs[selectedTabIndex]
 
   return (
-    <div className="flex max-h-full items-stretch bg-white dark:bg-black">
+    <div className="flex max-h-full items-stretch bg-white dark:bg-primary-gray-dark">
       <div className="flex w-80 flex-initial flex-col overflow-y-auto shadow-lg">
         {tabs.map((tab, index) => (
           <TabButton
@@ -25,7 +25,7 @@ export function DesktopMenuTabbed({ className, tabs }: DesktopMenuTabbedProps) {
           />
         ))}
       </div>
-      <div className="flex-1 overflow-y-hidden">
+      <div className="ml-6 h-full flex-1 overflow-y-hidden">
         {selectedTab && (
           <MenuContent
             cards={selectedTab.cards}

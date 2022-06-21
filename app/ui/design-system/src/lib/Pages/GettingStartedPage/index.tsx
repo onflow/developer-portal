@@ -67,6 +67,7 @@ export function GettingStartedPage({
             callout={landingHeaderItems.callout}
             description={landingHeaderItems.description}
             title={landingHeaderItems.title}
+            imageSrc={landingHeaderItems.imageSrc}
           />
         </PageSection>
         <PageSection>

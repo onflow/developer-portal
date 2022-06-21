@@ -1,4 +1,3 @@
-import { GettingStartedPage } from "~/ui/design-system/src/lib/Pages/GettingStartedPage"
 import {
   Icon1,
   Icon2,
@@ -8,12 +7,24 @@ import { svgToDataUri } from "~/ui/design-system/src/lib/Components/LinkCard2Col
 import { ReactComponent as CadenceIcon } from "~/ui/design-system/images/tools/tool-cadence"
 import { ReactComponent as FCLIcon } from "~/ui/design-system/images/tools/tool-fcl"
 import { SDKCardProps } from "~/ui/design-system/src/lib/Components/SDKCard"
-import { ToolCardProps } from "~/ui/design-system/src/lib/Components/ToolCard"
-import { FeaturedArticleCardProps } from "~/ui/design-system/src/lib/Components/FeaturedArticleCard"
 import { ContentNavigationProps } from "~/ui/design-system/src/lib/Components/ContentNavigation"
 import { LandingHeaderProps } from "~/ui/design-system/src/lib/Components/LandingHeader"
 import { LinkCard3ColumnProps } from "~/ui/design-system/src/lib/Components/LinkCard3Column"
 import { LinkCard2ColumnProps } from "~/ui/design-system/src/lib/Components/LinkCard2Column"
+import {
+  goSDK,
+  fclSDK,
+  jvmSDK,
+  swiftSDK,
+  httpSDK,
+  dotNetSDK,
+  overflowTool,
+  flowserTool,
+  flowScannerTool,
+} from "../../component-data/Tools"
+import { introToFlowBlockchainArticle } from "../../component-data/Articles"
+import { FeaturedArticleCardProps } from "~/ui/design-system/src/lib/Components/FeaturedArticleCard"
+import { ToolCardProps } from "~/ui/design-system/src/lib/Components/ToolCard"
 
 const landingHeaderItems: LandingHeaderProps = {
   buttonText: "View Course",
@@ -22,6 +33,7 @@ const landingHeaderItems: LandingHeaderProps = {
   description:
     "Emerald Academy guides you from zero to hero on all things Flow it's smart contract language - Cadence.",
   title: "Getting Started",
+  imageSrc: "https://academy.ecdao.org/thumb-beginner-cadence.png",
 }
 
 const linkCard3ColumnItems: LinkCard3ColumnProps = {
@@ -155,140 +167,7 @@ const sdkCardItems: [
   SDKCardProps,
   SDKCardProps,
   SDKCardProps
-] = [
-  {
-    title: "FCL",
-    authorIcon: "https://avatars.githubusercontent.com/u/62387156?s=64&v=4",
-    authorName: "onflow",
-    tags: ["documentation", "active"],
-    link: "https://github.com/onflow/fcl-js",
-    stars: 268,
-    iconSrc:
-      "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/javascript/javascript-original.svg",
-    lastCommit: "20/6/2022",
-    lastRelease: "1",
-  },
-  {
-    title: "Go",
-    authorIcon: "https://avatars.githubusercontent.com/u/62387156?s=64&v=4",
-    authorName: "onflow",
-    tags: ["documentation", "active"],
-    link: "https://github.com/onflow/flow-go-sdk",
-    stars: 186,
-    iconSrc:
-      "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/go/go-original.svg",
-    lastCommit: "20/6/2022",
-    lastRelease: "1",
-  },
-  {
-    title: "JVM",
-    authorIcon:
-      "https://onunblocked.com/_next/static/media/logo-unblocked-by-nftco.8d69dd0c.svg",
-    authorName: "The NFT Company",
-    tags: ["active"],
-    link: "https://github.com/onflow/flow-jvm-sdk",
-    stars: 52,
-    iconSrc:
-      "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/java/java-original.svg",
-    lastCommit: "22/3",
-    lastRelease: "207",
-  },
-  {
-    title: "Rust",
-    authorIcon: "https://avatars.githubusercontent.com/u/62387156?s=64&v=4",
-    authorName: "mini flow",
-    tags: ["Tags"],
-    link: "#",
-    stars: 52,
-    iconSrc:
-      "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/rust/rust-plain.svg",
-    lastCommit: "22/3",
-    lastRelease: "207",
-  },
-  {
-    title: "Swift",
-    authorIcon: "https://avatars.githubusercontent.com/u/62387156?s=64&v=4",
-    authorName: "mini flow",
-    tags: ["documentation", "active"],
-    link: "#",
-    stars: 52,
-    iconSrc:
-      "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/swift/swift-original.svg",
-    lastCommit: "22/3",
-    lastRelease: "207",
-  },
-  {
-    title: ".NET",
-    authorIcon: "https://avatars.githubusercontent.com/u/62387156?s=64&v=4",
-    authorName: "mini flow",
-    tags: ["documentation", "active"],
-    link: "https://github.com/tyronbrand/flow.net",
-    stars: 52,
-    iconSrc:
-      "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/dot-net/dot-net-original.svg",
-    lastCommit: "22/3",
-    lastRelease: "207",
-  },
-]
-
-const recentToolItems: [ToolCardProps, ToolCardProps, ToolCardProps] = [
-  {
-    title: "Overflow",
-    authorIcon: "https://avatars.githubusercontent.com/u/10621?v=4",
-    authorName: "bjartek",
-    tags: ["Go", "testing", "cadence"],
-    link: "https://github.com/bjartek/overflow",
-    stars: 17,
-    iconSrc: "https://avatars.githubusercontent.com/u/62387156?s=64&v=4",
-    description:
-      "Test your Cadence logic with a go-based testing framework made specifically for Flow.",
-  },
-  {
-    title: "Flow Scanner",
-    authorIcon: "https://avatars.githubusercontent.com/u/93519414?s=200&v=4",
-    authorName: "mini flow",
-    tags: ["events", "indexing"],
-    link: "#",
-    stars: 9,
-    iconSrc: "https://avatars.githubusercontent.com/u/62387156?s=64&v=4",
-    description:
-      "A standalone service that can monitor the Flow blockchain for one or more Cadence event types and broadcast those events to one or more consumers.",
-  },
-  {
-    title: "Flowser",
-    authorIcon: "https://docs.flowser.dev/img/logo.svg",
-    authorName: "onflowser",
-    tags: ["GUI", "explorer", "local"],
-    link: "https://docs.flowser.dev/",
-    stars: 28,
-    iconSrc: "https://docs.flowser.dev/img/logo.svg",
-    description: `Flowser lets you inspect the current state of any flow blockchain network (emulator, testnet, mainnet,..) and
-      it also manages the Flow emulator"`,
-  },
-]
-
-const recentArticleItems: FeaturedArticleCardProps[] = [
-  {
-    heading: "Introduction to Flow blockchain",
-    tags: ["protocol", "network"],
-    description: `When Dapper Labs built Crypto Kitties we learned a lot.
-    Most importantly, we realized that the technology at the time was not ready for this kind of application.
-    Being the visionaries we are, we set to build a better tech for what we plan to do.
-    We set to build what is now Flow blockchain.`,
-    link: "https://jan-bernatik.medium.com/introduction-to-flow-blockchain-7532977c8af8",
-    ctaText: "View Article",
-  },
-  {
-    heading: "Introduction to Flow blockchain",
-    tags: ["protocol", "network"],
-    description: `When Dapper Labs built Crypto Kitties we learned a lot.
-    Most importantly, we realized that the technology at the time was not ready for this kind of application.
-    Being the visionaries we are, we set to build a better tech for what we plan to do.
-    We set to build what is now Flow blockchain.`,
-    link: "https://jan-bernatik.medium.com/introduction-to-flow-blockchain-7532977c8af8",
-    ctaText: "View Article",
-  },
-]
+] = [goSDK, fclSDK, jvmSDK, swiftSDK, httpSDK, dotNetSDK]
 
 const contentNavigationItems: [
   ContentNavigationProps,
@@ -315,16 +194,27 @@ const contentNavigationItems: [
   },
 ]
 
-export default function Page() {
-  return (
-    <GettingStartedPage
-      landingHeaderItems={landingHeaderItems}
-      sdkCardItems={sdkCardItems}
-      recentToolItems={recentToolItems}
-      recentArticleItems={recentArticleItems}
-      contentNavigationItems={contentNavigationItems}
-      linkCard3ColumnItems={linkCard3ColumnItems}
-      linkCard2ColumnItems={linkCard2ColumnItems}
-    />
-  )
+const recentArticleItems: [
+  FeaturedArticleCardProps,
+  FeaturedArticleCardProps,
+  FeaturedArticleCardProps
+] = [
+  introToFlowBlockchainArticle,
+  introToFlowBlockchainArticle,
+  introToFlowBlockchainArticle,
+]
+const recentToolItems: [ToolCardProps, ToolCardProps, ToolCardProps] = [
+  overflowTool,
+  flowserTool,
+  flowScannerTool,
+]
+
+export {
+  contentNavigationItems,
+  recentArticleItems,
+  recentToolItems,
+  sdkCardItems,
+  linkCard2ColumnItems,
+  linkCard3ColumnItems,
+  landingHeaderItems,
 }
