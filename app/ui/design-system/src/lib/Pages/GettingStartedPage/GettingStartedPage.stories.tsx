@@ -291,7 +291,7 @@ const gettingStartedPageData = {
       tags: ["protocol", "network"],
       description:
         "Get the Flow Down is a curated collection of the best Flow blockchain tools, tutorials, articles and more!",
-      link: "https://jan-bernatik.medium.com/introduction-to-flow-blockchain-7532977c8af8",
+      link: "https://github.com/ph0ph0/Get-The-Flow-Down",
       ctaText: "View List",
     },
     {
