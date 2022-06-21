@@ -20,7 +20,6 @@ Primary.args = {
   authorName: "mini flow",
   description:
     "Lorem ipsum text here can go a two liner sentence or a one liner",
-  iconSrc: "https://avatars.githubusercontent.com/u/62387156?s=64&v=4",
   link: "#",
   stars: 52,
   tags: ["Tags"],
