@@ -210,7 +210,7 @@ const flowConceptsSection: Section = {
     },
     {
       title: "Flow Dapp Architecture Overview",
-      href: "https://flowscan.org/",
+      href: "https://docs.onflow.org/dapp-development/DappArchitectures/",
     },
   ],
   icon: <FundamentalsIcon height="1.5em" width="1.5em" />,
@@ -255,30 +255,30 @@ const cadenceResourceSection: Section = {
   links: [
     {
       title: "View technical papers",
-      href: "https://docs.onflow.org/fcl/tutorials/flow-app-quickstart/",
+      href: "https://www.onflow.org/technical-paper",
     },
   ],
   title: "Cadence Resources",
   subSections: [
     {
       title: "Cadence cookbook",
-      href: "https://docs.onflow.org/concepts/",
+      href: "https://open-cadence.onflow.org/",
     },
     {
       title: "Core contracts",
-      href: "https://testnet-faucet.onflow.org/",
+      href: "https://docs.onflow.org/core-contracts/",
     },
     {
       title: "Cadence tutorials",
-      href: "https://docs.onflow.org/dapp-development/mainnet-account-setup",
+      href: "https://docs.onflow.org/cadence/tutorial/02-hello-world/",
     },
     {
-      title: "Zero to Hero",
-      href: "https://testnet.flowscan.org/",
+      title: "Zero to hero Cadence course",
+      href: "https://github.com/emerald-dao/beginner-cadence-course",
     },
     {
-      title: "Flow Dapp Architecture Overview",
-      href: "https://flowscan.org/",
+      title: "Gold Star Contracts",
+      href: "https://github.com/muttoni/gold-star-contracts",
     },
   ],
   icon: <LearnIcon height="1.5em" width="1.5em" />,

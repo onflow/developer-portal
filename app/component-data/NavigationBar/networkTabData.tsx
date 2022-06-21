@@ -8,8 +8,8 @@ import { networkStatusCard, sporkProcessCard } from "./navCardsData"
 export const nodeOperation: Section = {
   links: [
     {
-      title: "View Community",
-      href: "/coming-soon",
+      title: "View our sustainability report",
+      href: "https://flow.com/sustainability",
     },
   ],
   title: "Node Operation & Staking",
@@ -24,15 +24,7 @@ export const nodeOperation: Section = {
     },
     {
       title: "Flow Port",
-      href: "https://github.com/onflow/flow-go-sdk",
-    },
-    {
-      title: ".find Flow Domain Name Service",
-      href: "https://github.com/onflow/flow-jvm-sdk",
-    },
-    {
-      title: "FNS Flow Domain Name Service",
-      href: "https://github.com/Outblock/flow-swift",
+      href: "https://port.onflow.org/",
     },
   ],
   icon: <NodeIcon height="1.5em" width="1.5em" />,
@@ -41,31 +33,23 @@ export const nodeOperation: Section = {
 export const flowToken: Section = {
   links: [
     {
-      title: "View all tools",
-      href: "#todo",
+      title: "View Flow FAQs",
+      href: "https://flow.com/faq",
     },
   ],
   title: "Flow Token",
   subSections: [
     {
-      title: "CLI",
-      href: "#todo",
+      title: "Token Distribution",
+      href: "https://www.onflow.org/token-distribution",
     },
     {
-      title: "Emulator",
-      href: "#todo",
+      title: "Token Economics",
+      href: "https://www.onflow.org/flow-token-economics",
     },
     {
-      title: "Dev Wallet",
-      href: "#todo",
-    },
-    {
-      title: "JS-Testing",
-      href: "#todo",
-    },
-    {
-      title: "Event Indexing",
-      href: "#todo",
+      title: "Get FLOW",
+      href: "https://flovatar.com/get-started#flow",
     },
   ],
   icon: <TokenIcon height="1.5em" width="1.5em" />,
@@ -82,23 +66,19 @@ export const grantsSection: Section = {
   subSections: [
     {
       title: "Flow Ecosystem Fund",
-      href: "https://docs.onflow.org/flow-cli/start-emulator/",
-    },
-    {
-      title: "Flow Diversity Fund",
-      href: "https://docs.onflow.org/flow-cli/configuration/",
+      href: "https://flow.com/ecosystemsupport",
     },
     {
       title: "Flow Developer Fund",
-      href: "https://docs.onflow.org/vscode-extension/",
+      href: "https://github.com/onflow/developer-grants",
     },
     {
       title: "Flow Security Bounties",
-      href: "https://github.com/cadence-tools/cadence-for-intellij-platform",
+      href: "https://docs.onflow.org/bounties",
     },
     {
       title: "FLIP Fest (past)",
-      href: "https://docs.flowser.dev/",
+      href: "https://github.com/onflow/flip-fest/blob/main/winners.md",
     },
   ],
   icon: <EcosystemIcon height="1em" width="1em" />,
@@ -115,15 +95,15 @@ export const governanceSection: Section = {
   subSections: [
     {
       title: "Network Status",
-      href: "https://testnet-faucet.onflow.org/",
+      href: "https://docs.onflow.org/status/",
     },
     {
       title: "Upcoming Sporks",
-      href: "https://testnet-faucet.onflow.org/",
+      href: "https://docs.onflow.org/node-operation/upcoming-sporks/",
     },
     {
       title: "Past Sporks",
-      href: "https://docs.onflow.org/dapp-development/mainnet-account-setup",
+      href: "https://docs.onflow.org/node-operation/past-sporks/",
     },
     {
       title: "Testnet Explorer",

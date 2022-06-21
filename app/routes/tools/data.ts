@@ -77,22 +77,22 @@ export const data: ToolsPageProps = {
   explorers: [flowScanTool, flowViewSourceTool, bigDipperTool],
   contentNavigationItems: [
     {
-      title: "Concepts",
-      text: "Lorem ipsum dolor sit amet proin gravida lorem ipsum",
-      link: "#",
-      icon: "concepts",
-    },
-    {
       title: "Learn",
-      text: "Lorem ipsum dolor sit amet proin gravida lorem ipsum",
-      link: "#",
+      text: "All the resources you need to learn and build.",
+      link: "/learn",
       icon: "learn",
     },
     {
       title: "Tools",
-      text: "Lorem ipsum dolor sit amet proin gravida lorem ipsum",
-      link: "#",
+      text: "Curated list of developer tools, services, SDKs.",
+      link: "/tools",
       icon: "tools",
+    },
+    {
+      title: "Community",
+      text: "Learn more about Flow's ecosystem and get involved.",
+      link: "/community",
+      icon: "community",
     },
   ],
 }
