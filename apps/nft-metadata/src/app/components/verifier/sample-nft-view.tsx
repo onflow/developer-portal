@@ -69,7 +69,6 @@ export function SampleNFTView({
             setViewsImplemented(metadataConformities)
           } else {
             if (nftID) {
-              console.log('allNFTs', allNFTs)
               setUniqueCollections(null)
               navigate(`${window.location.pathname}${window.location.search.replace(/&nftID=.*/, '')}&nftID=${nftID}`)
               setViewsImplemented(metadataConformities)
