@@ -73,6 +73,7 @@ const TabMenu = ({
               setActiveIndex(index)
             }}
             className={tabClasses}
+            isExternal={false}
           >
             <span
               className={clsx(
