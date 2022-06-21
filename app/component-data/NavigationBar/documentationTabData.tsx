@@ -8,12 +8,7 @@ import ToolsIcon from "~/ui/design-system/images/nav/tools"
 import UsecasesIcon from "~/ui/design-system/images/nav/use-cases"
 
 import { Section } from "~/ui/design-system/src/lib/Components/NavigationBar/types"
-import {
-  emeraldDaoCard,
-  kittyItemsCard,
-  learnCard,
-  playgroundCard,
-} from "./navCardsData"
+import { emeraldDaoCard, kittyItemsCard, playgroundCard } from "./navCardsData"
 
 // Build Tab
 export const sdkSection: Section = {
@@ -292,21 +287,21 @@ const cadenceResourceSection: Section = {
 const buildTabData = {
   title: "Build",
   description: "Start developing dapps on Flow.",
-  cards: [kittyItemsCard, playgroundCard, learnCard],
+  cards: [kittyItemsCard, playgroundCard],
   sections: [sdkSection, toolsSection],
 }
 
 const setupTabData = {
   title: "Setup",
   description: "Connect to our networks or get started locally.",
-  cards: [playgroundCard, learnCard],
+  cards: [playgroundCard],
   sections: [localSection, liveNetworksSection],
 }
 
 const learnTabData = {
   title: "Learn",
   description: "Understand how Flow works.",
-  cards: [emeraldDaoCard, learnCard, kittyItemsCard],
+  cards: [emeraldDaoCard, kittyItemsCard],
   sections: [dappDevelomentSection, flowConceptsSection],
 }
 
