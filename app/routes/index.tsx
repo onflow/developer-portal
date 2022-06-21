@@ -5,7 +5,6 @@ import { HomePage, HomePageProps } from "~/ui/design-system/src/"
 import { ToolCardProps } from "~/ui/design-system/src/lib/Components/ToolCard"
 import { UpcomingEventsProps } from "~/ui/design-system/src/lib/Components/UpcomingEvents"
 import { Default as DefaultUpcomingEvents } from "~/ui/design-system/src/lib/Components/UpcomingEvents/UpcomingEvents.stories"
-import { TutorialCardProps } from "../ui/design-system/src/lib/Components/TutorialCard"
 import {
   homepageThreeColumnData,
   homepageStartProjectData,
@@ -18,10 +17,6 @@ import {
   flowserTool,
   overflowTool,
 } from "../component-data/Tools"
-import {
-  introToFlowBlockchainTutorial,
-  organizingCadenceArticle,
-} from "../component-data/Articles"
 
 type DynamicHomePageProps = Pick<
   HomePageProps,
