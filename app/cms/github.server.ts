@@ -67,7 +67,6 @@ async function downloadMdxFileOrDirectory(
    * - Map Flow Content Paths to the right repository paths
    * - Reassign repository to Flow
    */
-  console.log("repo requested", repo, fileOrDirPath)
   const mdxFileOrDirectory = flowContentNames.includes(repo)
     ? `docs/content/${repo}/${fileOrDirPath}`
     : `docs/${fileOrDirPath}`
