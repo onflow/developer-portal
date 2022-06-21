@@ -291,7 +291,7 @@ function GetMdxComponents(theme: Theme | null) {
     a: (props: LinkProps & { href: string }) => {
       if (isLinkExternal(props.href)) {
         // @ts-expect-error: TODO: Needs types.
-        return <Link {...props} isExternal={true} />
+        return <Link {...props} isExternal={true} rel="noreferrer" />
       } else {
         return (
           <RemixLink to={props.href}>

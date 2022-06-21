@@ -8,6 +8,7 @@ export type LinkProps = React.DetailedHTMLProps<
   React.HTMLAttributes<HTMLAnchorElement> & {
     href?: string
     "data-footnote-ref"?: boolean
+    isExternal?: boolean
   },
   HTMLAnchorElement
 >
