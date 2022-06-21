@@ -60,7 +60,7 @@ export function Carousel({
     <section className={clsx("flex flex-col", className)}>
       <ul
         className={clsx(
-          "flex min-h-fit snap-x snap-mandatory list-none flex-row gap-6 overflow-x-auto scrollbar-hide",
+          "flex min-h-fit flex-1 snap-x snap-mandatory list-none flex-row gap-6 overflow-x-auto scrollbar-hide",
           {
             "sm:flex-col": breakpoint === "sm",
             "md:flex-col": breakpoint === "md",
