@@ -1,4 +1,4 @@
-import { useEffect, useState } from "react";
+import React, { useEffect, useState } from "react";
 import { useNavigate, useParams } from "react-router-dom";
 import { retrieveMetadataInformation, getNFTsInAccount, getAreLinksSetup, getNFTInAccount } from "../../../flow/utils"
 import { Accordian } from "../shared/accordian";
@@ -24,6 +24,7 @@ export function SampleNFTView({
   const { selectedContract } = useParams<any>()
   const [ownedNFTs, setOwnedNFTs] = useState<any>(null)
   const [viewsImplemented, setViewsImplemented] = useState<any>([]);
+  const [uniqueCollections, setUniqueCollections] = useState<any>(null)
   const [viewData, setViewData] = useState<{ [key: string]: Object }>({});
   const [error, setError] = useState<string | null>(null);
   const [loading, setLoading] = useState<boolean>(true);
@@ -52,10 +53,9 @@ export function SampleNFTView({
           const allNFTs = await getNFTsInAccount(sampleAddress, publicPath);
           setOwnedNFTs(allNFTs)
           const uniqueCollections: any = {}
-          console.log('allNFTs', allNFTs)
           allNFTs.forEach((nft: any, i: number) => {
             const id = nft.Id
-            const key = nft && nft.Display ? nft.Display.name : null
+            const key = nft && nft.NFTCollectionDisplay ? nft.NFTCollectionDisplay.collectionName : null
             if (key) {
               uniqueCollections[key] = {
                 index: i,
@@ -63,37 +63,39 @@ export function SampleNFTView({
               }
             }
           })
-          if (Object.keys(uniqueCollections).length > 1) {
+          if (Object.keys(uniqueCollections).length > 1 && !nftID) {
             // We have more than one unique collection, we must prompt the user to select the right collection
+            setUniqueCollections(uniqueCollections)
             setViewsImplemented(metadataConformities)
           } else {
-            // We have just one possible collection from this account, so we can take any to be set as the query param
-            const nftID = (Object.values(uniqueCollections)[0] as any).id
-            const nftIndex = (Object.values(uniqueCollections)[0] as any).index
-            navigate(`${window.location.pathname}${window.location.search.replace(/&nftID=.*/, '')}&nftID=${nftID}`)
-            setViewsImplemented(metadataConformities)
-            setViewData(allNFTs[nftIndex])
+            if (nftID) {
+              console.log('allNFTs', allNFTs)
+              setUniqueCollections(null)
+              navigate(`${window.location.pathname}${window.location.search.replace(/&nftID=.*/, '')}&nftID=${nftID}`)
+              setViewsImplemented(metadataConformities)
+              const res = allNFTs.find((nft: { Id: string }) => {
+                return nft.Id === nftID
+              })
+              if (res) {
+                setViewData(res)
+              } else {
+                setError("The given ID does not exist in the account")
+              }
+            } else {
+              // We have just one possible collection from this account, so we can take any to be set as the query param
+              const selectedNftID = (Object.values(uniqueCollections)[0] as any).id
+              const nftIndex = (Object.values(uniqueCollections)[0] as any).index
+              navigate(`${window.location.pathname}${window.location.search.replace(/&nftID=.*/, '')}&nftID=${selectedNftID}`)
+              setViewsImplemented(metadataConformities)
+              setViewData(allNFTs[nftIndex])
+            }
           }
         }
       }
       setLoading(false)
     }
     getMetadataConformity()
-  }, [sampleAddress, publicPath])
-
-  useEffect(() => {
-    const metadataViewInformation = async () => {
-      if (!publicPath || !sampleAddress || !nftID || !ownedNFTs || ownedNFTs.length === 0) { return }
-      setLoading(true)
-      console.log('here');
-      setLoading(false)
-    }
-    metadataViewInformation()
-  }, [sampleAddress, publicPath, nftID, ownedNFTs])
-
-  if (!sampleAddress || !publicPath) {
-    return null;
-  }
+  }, [sampleAddress, publicPath, nftID])
 
   let invalidViews: any = []
 
@@ -159,7 +161,33 @@ export function SampleNFTView({
         />
       }
       {
-        !error &&
+        !error && uniqueCollections &&
+        <>
+          We found NFTs from with different collection names within the selected account. Which collection would you like to continue with?
+          <div>
+            <br />
+            {
+              Object.keys(uniqueCollections).map((key) => {
+                return (
+                  <React.Fragment key={key}>
+                    <a
+                      className="cursor-pointer text-blue-500 hover:underline"
+                      onClick={() => {
+                        navigate(`${window.location.pathname}${window.location.search.replace(/&nftID=.*/, '')}&nftID=${uniqueCollections[key].id}`)
+                      }}
+                    >
+                        {key}
+                    </a>
+                    <br/>
+                  </React.Fragment>
+                )
+              })
+            }
+          </div>
+        </>
+      }
+      {
+        !error && !uniqueCollections &&
         <>
           <Accordian items={accordianItems} />
           {
