@@ -26,12 +26,15 @@ import {
 } from "~/cms/utils/theme.provider"
 import { getRequiredServerEnvVar } from "./cms/helpers"
 import { navBarData } from "./component-data/NavigationBar"
+import * as gtag from "./gtags.client"
 import styles from "./main.css"
 import { getThemeSession } from "./theme.server"
 import { Footer } from "./ui/design-system/src"
 import { ErrorPage } from "./ui/design-system/src/lib/Components/ErrorPage"
 import { NavigationBar } from "./ui/design-system/src/lib/Components/NavigationBar"
-import * as gtag from "./gtags.client"
+
+export const getMetaTitle = (title?: string) =>
+  [title, "Flow Developer Portal"].filter(Boolean).join(" | ")
 
 export const links: LinksFunction = () => {
   return [
@@ -46,7 +49,7 @@ export const links: LinksFunction = () => {
 
 export const meta: MetaFunction = () => ({
   charset: "utf-8",
-  title: "Flow Developer Portal",
+  title: getMetaTitle(),
   viewport: "width=device-width,initial-scale=1",
 })
 
