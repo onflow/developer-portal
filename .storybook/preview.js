@@ -1,4 +1,4 @@
-import { useGlobals, useParameter } from "@storybook/addons"
+import { useGlobals, useParameter, useEffect } from "@storybook/addons"
 import clsx from "clsx"
 import "../app/main.css"
 import tailwindConfig from "../tailwind.config"
@@ -17,7 +17,7 @@ export const parameters = {
     values: [
       {
         name: "light",
-        value: "#ffffff",
+        value: "#f6f7f9",
       },
       {
         name: "dark",
