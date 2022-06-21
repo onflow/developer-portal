@@ -3,6 +3,7 @@ import { ReactComponent as GithubIcon } from "../../../../images/social/github"
 import { DISCORD_URL, GITHUB_URL } from "../../constants"
 import { ButtonLink } from "../Button"
 import LandingImage from "../../../../images/misc/landing-home.png"
+import clsx from "clsx"
 
 export type LandingHeaderProps = {
   buttonText: string
@@ -10,6 +11,7 @@ export type LandingHeaderProps = {
   callout: string
   description: string
   imageSrc?: string
+  imagePadding?: boolean
   title: string
 }
 
@@ -42,6 +44,7 @@ export function LandingHeader({
   callout,
   description,
   imageSrc = LandingImage,
+  imagePadding = true,
   title,
 }: LandingHeaderProps) {
   return (
@@ -61,8 +64,17 @@ export function LandingHeader({
             {buttonText}
           </ButtonLink>
         </div>
-        <div className="hidden rounded-r-lg border px-10 py-6 dark:bg-white/40 md:block md:block md:basis-1/2 md:px-20 md:py-12">
-          <img src={imageSrc} alt={title} />
+        <div
+          className={clsx(
+            "hidden rounded-r-lg border dark:bg-white/40 md:flex md:basis-1/2 md:items-center md:justify-center",
+            { "px-10 py-6 md:px-20 md:py-12": imagePadding }
+          )}
+        >
+          <img
+            src={imageSrc}
+            alt={title}
+            className="max-h-[340px] max-w-[570px] object-contain"
+          />
         </div>
       </div>
       <LandingHeaderLinks />

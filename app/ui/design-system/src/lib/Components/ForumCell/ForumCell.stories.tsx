@@ -42,6 +42,7 @@ const args = {
     },
   ],
   forumLink: "#test",
+  lastUpdatedDate: "2022-06-06",
 }
 
 Default.args = args

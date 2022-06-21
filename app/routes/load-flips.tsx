@@ -1,3 +1,4 @@
+// This route is only for testing API functionalities. This page should not be discoverable by the navigation.
 import type { LoaderFunction } from "@remix-run/node"
 import { useLoaderData } from "@remix-run/react"
 import { fetchFlips } from "~/cms/utils/fetch-flips"

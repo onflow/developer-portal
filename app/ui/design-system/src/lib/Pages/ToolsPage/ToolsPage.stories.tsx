@@ -53,7 +53,17 @@ const args = {
       icon: "concepts",
     },
   ],
-  apis: Array(6).fill({
+  apisAndServices: Array(6).fill({
+    heading: "Such title, much heading",
+    tags: ["Tool"],
+    description: "An online contest that lorem ipsum ipsums ipsum",
+    lastUpdated: "23/3/2022",
+    level: "Beginners",
+    imageUri:
+      "https://upload.wikimedia.org/wikipedia/commons/thumb/4/49/A_black_image.jpg/2560px-A_black_image.jpg",
+    link: "/tutorials",
+  }),
+  explorers: Array(6).fill({
     heading: "Such title, much heading",
     tags: ["Tool"],
     description: "An online contest that lorem ipsum ipsums ipsum",

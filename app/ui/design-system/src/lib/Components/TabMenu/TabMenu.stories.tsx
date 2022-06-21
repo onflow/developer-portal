@@ -10,7 +10,7 @@ const Template: Story<TabMenuProps> = (args) => <TabMenu {...args} />
 
 export const Default = Template.bind({})
 Default.args = {
-  tabs: ["Mainnet", "Testnet", "Canary"],
+  tabs: [{ name: "Mainnet" }, { name: "Testnet" }, { name: "Canary" }],
   onTabChange: () => null,
 }
 
@@ -30,7 +30,13 @@ dark.parameters = {
 
 export const mobile = Template.bind({})
 mobile.args = {
-  tabs: ["Mainnet", "Testnet", "Canary", "Foo", "Bar"],
+  tabs: [
+    { name: "Mainnet" },
+    { name: "Testnet" },
+    { name: "Canary" },
+    { name: "Foo" },
+    { name: "Bar" },
+  ],
 }
 mobile.parameters = {
   viewport: {

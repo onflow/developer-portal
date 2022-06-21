@@ -1,13 +1,19 @@
+import { MetaFunction } from "@remix-run/node"
+import { getMetaTitle } from "~/root"
 import { GettingStartedPage } from "~/ui/design-system/src/lib/Pages/GettingStartedPage"
 import {
   contentNavigationItems,
+  landingHeaderItems,
+  linkCard2ColumnItems,
+  linkCard3ColumnItems,
   recentArticleItems,
   recentToolItems,
   sdkCardItems,
-  linkCard2ColumnItems,
-  linkCard3ColumnItems,
-  landingHeaderItems,
 } from "./data"
+
+export const meta: MetaFunction = () => ({
+  title: getMetaTitle("Getting Started"),
+})
 
 export default function Page() {
   return (

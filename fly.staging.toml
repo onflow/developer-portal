@@ -1,6 +1,6 @@
 # fly.toml file generated for flow-docs on 2022-06-09T17:02:59-07:00
 
-app = "flow-docs"
+app = "flow-docs-staging"
 
 kill_signal = "SIGINT"
 kill_timeout = 5

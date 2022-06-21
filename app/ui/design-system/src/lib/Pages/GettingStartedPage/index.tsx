@@ -68,6 +68,7 @@ export function GettingStartedPage({
             description={landingHeaderItems.description}
             title={landingHeaderItems.title}
             imageSrc={landingHeaderItems.imageSrc}
+            imagePadding={false}
           />
         </PageSection>
         <PageSection>
@@ -106,10 +107,14 @@ export function GettingStartedPage({
               </ButtonLink>
             </div>
             <div className="hidden md:block">
-              <Carousel breakpoint="none" carouselItemWidth="w-full">
+              <Carousel
+                breakpoint="none"
+                carouselItemWidth="w-full"
+                className="justify-stretch h-full"
+              >
                 {recentArticleItems.map((recentArticleItem, index) => (
                   <FeaturedArticleCard
-                    bg="page-bg-gradient-getting-started bg-bottom border-primary-gray-100 border dark:border-primary-gray-400"
+                    bg="page-bg-gradient-getting-started bg-bottom border-primary-gray-100 border dark:border-primary-gray-400 h-full"
                     key={index}
                     {...recentArticleItem}
                   />

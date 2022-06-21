@@ -1,5 +1,6 @@
 import { ReactComponent as StarIcon } from "../../../../images/action/star"
-import FlowIconSrc from "../../../../images/logos/flow-icon.svg"
+import CodeIconSrc from "../../../../images/content/code.svg"
+import CodeIconLightSrc from "../../../../images/content/code-light.svg"
 import Tag from "../Tag"
 
 export type ToolCardProps = {
@@ -7,6 +8,7 @@ export type ToolCardProps = {
   authorName?: string
   description?: string
   iconSrc?: string
+  iconDarkModeSrc?: string
   link: string
   stars?: number
   tags?: string[]
@@ -17,7 +19,8 @@ export function ToolCard({
   authorIcon,
   authorName,
   description,
-  iconSrc = FlowIconSrc,
+  iconSrc,
+  iconDarkModeSrc,
   link,
   stars,
   tags,
@@ -25,11 +28,22 @@ export function ToolCard({
 }: ToolCardProps) {
   return (
     <a
-      className="flex gap-4 rounded-lg bg-white py-6 px-8 hover:shadow-2xl dark:bg-primary-gray-dark dark:hover:shadow-2xl-dark"
+      className="flex gap-4 rounded-lg bg-white py-6 px-8 hover:shadow-2xl dark:bg-primary-gray-dark dark:text-white dark:hover:shadow-2xl-dark"
       href={link}
     >
       <div>
-        <img src={iconSrc} alt={title} width={64} />
+        <img
+          className="dark:hidden"
+          src={iconSrc || CodeIconSrc}
+          alt={title}
+          width={64}
+        />
+        <img
+          className="hidden dark:block"
+          src={iconDarkModeSrc || iconSrc || CodeIconLightSrc}
+          alt={title}
+          width={64}
+        />
       </div>
       <div className="grow">
         <h5 className="text-h5">{title}</h5>
@@ -46,11 +60,6 @@ export function ToolCard({
               </div>
             )}
           </div>
-          <div className="shrink-0 pr-1 line-clamp-1">
-            {tags?.map((tag, i) => (
-              <Tag name={tag} key={i} />
-            ))}
-          </div>
           {stars !== undefined && (
             <div className="flex shrink-0 items-center gap-1">
               <StarIcon className="text-amber-400" width={16} height={16} />
@@ -59,6 +68,11 @@ export function ToolCard({
               </div>
             </div>
           )}
+        </div>
+        <div className="shrink-0 py-1 pr-1 line-clamp-1">
+          {tags?.map((tag, i) => (
+            <Tag name={tag} key={i} />
+          ))}
         </div>
         <div className="pt-2 text-gray-700 line-clamp-2 dark:text-gray-300">
           {description}

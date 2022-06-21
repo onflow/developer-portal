@@ -5,7 +5,6 @@ import { HomePage, HomePageProps } from "~/ui/design-system/src/"
 import { ToolCardProps } from "~/ui/design-system/src/lib/Components/ToolCard"
 import { UpcomingEventsProps } from "~/ui/design-system/src/lib/Components/UpcomingEvents"
 import { Default as DefaultUpcomingEvents } from "~/ui/design-system/src/lib/Components/UpcomingEvents/UpcomingEvents.stories"
-import { TutorialCardProps } from "../ui/design-system/src/lib/Components/TutorialCard"
 import {
   homepageThreeColumnData,
   homepageStartProjectData,
@@ -14,14 +13,10 @@ import {
   httpSDK,
   goSDK,
   fclSDK,
-  flowScannerTool,
+  eventIndexingTool,
   flowserTool,
   overflowTool,
 } from "../component-data/Tools"
-import {
-  introToFlowBlockchainArticle,
-  organizingCadenceArticle,
-} from "../component-data/Articles"
 
 type DynamicHomePageProps = Pick<
   HomePageProps,
@@ -34,29 +29,23 @@ export const loader: LoaderFunction = async () => {
     httpSDK,
     goSDK,
     fclSDK,
-    flowScannerTool,
+    eventIndexingTool,
     flowserTool,
     overflowTool,
   ] as ToolCardProps[]
-  const concepts = [
-    introToFlowBlockchainArticle,
-    organizingCadenceArticle,
-  ] as TutorialCardProps[]
   const upcomingEvents = DefaultUpcomingEvents?.args as UpcomingEventsProps
-  const data: DynamicHomePageProps = { flips, tools, concepts, upcomingEvents }
+  const data: DynamicHomePageProps = { flips, tools, upcomingEvents }
   return data
 }
 
 export default function Index() {
-  const { flips, tools, concepts, upcomingEvents } =
-    useLoaderData<DynamicHomePageProps>()
+  const { flips, tools, upcomingEvents } = useLoaderData<DynamicHomePageProps>()
 
   return (
     <HomePage
       startProjectItems={homepageStartProjectData}
       flips={flips}
       tools={tools}
-      concepts={concepts}
       threeColumnItems={homepageThreeColumnData}
       upcomingEvents={upcomingEvents}
     />

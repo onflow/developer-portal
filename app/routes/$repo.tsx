@@ -10,6 +10,7 @@ import {
 import { RepoSchema } from "~/constants/repos/repo-schema"
 import { ErrorPage } from "~/ui/design-system/src/lib/Components/ErrorPage"
 import { InternalSidebar } from "~/ui/design-system/src/lib/Components/InternalSidebar"
+import { temporarilyRedirectToComingSoon } from "~/utils/features"
 
 type LoaderData = {
   repo: string

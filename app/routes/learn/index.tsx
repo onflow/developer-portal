@@ -1,5 +1,17 @@
+import { LoaderFunction, MetaFunction } from "@remix-run/node"
+import { getMetaTitle } from "~/root"
 import { LearnPage } from "~/ui/design-system/src/lib/Pages/LearnPage"
+import { temporarilyRedirectToComingSoon } from "~/utils/features"
 import { data } from "./data"
+
+export const meta: MetaFunction = () => ({
+  title: getMetaTitle("Learn"),
+})
+
+export const loader: LoaderFunction = () => {
+  temporarilyRedirectToComingSoon()
+  return {}
+}
 
 export default function Page() {
   return (
