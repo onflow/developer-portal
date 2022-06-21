@@ -5,6 +5,7 @@ import { repoList, repoPresets } from "~/constants/repos"
 import { RepoSchema } from "~/constants/repos/repo-schema"
 import { ErrorPage } from "~/ui/design-system/src/lib/Components/ErrorPage"
 import { InternalSidebar } from "~/ui/design-system/src/lib/Components/InternalSidebar"
+import { temporarilyRedirectToComingSoon } from "~/utils/features"
 
 type LoaderData = {
   repo: string
@@ -15,6 +16,8 @@ export const loader: LoaderFunction = async ({
   params,
 }): Promise<LoaderData> => {
   invariant(params.repo, `expected repo param`)
+
+  temporarilyRedirectToComingSoon()
 
   const isKnownRepo = repoList.map((r) => r.repo).includes(params.repo)
   if (!isKnownRepo) {

@@ -1,4 +1,3 @@
-import { ToolsAndConcepts } from "../../Components"
 import {
   ContentNavigation,
   ContentNavigationProps,
@@ -6,66 +5,70 @@ import {
 import { LandingHeader } from "../../Components/LandingHeader"
 import { SDKCardProps } from "../../Components/SDKCard"
 import { SDKCards } from "../../Components/SDKCards"
-import { ToolCardProps } from "../../Components/ToolCard"
-import TutorialCard, { TutorialCardProps } from "../../Components/TutorialCard"
 import PageBackground from "../shared/PageBackground"
 import PageSection from "../shared/PageSection"
 import PageSections from "../shared/PageSections"
+import ArchesImageSrc from "../../../../images/misc/arches.png"
 
 export type ToolsPageProps = {
-  tools: ToolCardProps[]
+  tools: SDKCardProps[]
   sdks: SDKCardProps[]
+  explorers: SDKCardProps[]
+  apisAndServices: SDKCardProps[]
   contentNavigationItems: [
     ContentNavigationProps,
     ContentNavigationProps,
     ContentNavigationProps
   ]
-  apis: TutorialCardProps[]
 }
 
 const ToolsPage = ({
   tools,
   sdks,
+  explorers,
+  apisAndServices,
   contentNavigationItems,
-  apis,
 }: ToolsPageProps) => {
   return (
     <PageBackground gradient="tools">
       <PageSections>
         <PageSection className="pt-0 pb-0">
           <LandingHeader
-            buttonText="Button Text"
-            buttonUrl="#"
-            callout="Featured callout here two lines"
-            description="Lorem ipsum dolor sit amet proin gravida lorem ipsum dolor sit."
+            buttonText="View guide"
+            buttonUrl="https://docs.onflow.org/dapp-development/DappArchitectures/"
+            callout="Flow Dapp Architecture Guide"
+            description="Wondering what tools you need? See our dapp architectures guide to help you out."
             title="Tools"
+            imageSrc={ArchesImageSrc}
           />
-        </PageSection>
-        <PageSection>
-          <ToolsAndConcepts tools={tools} />
         </PageSection>
         <PageSection>
           <SDKCards
-            cards={sdks}
-            description="Blurb aboud SDK's here lorem ipsum dolor sit amet proin."
+            header="Development Tools"
+            cards={tools}
+            description="These essential tools will help you build, test, and debug your dapp on Flow."
           />
         </PageSection>
         <PageSection>
-          {/* TODO: Extract to separate component */}
-          {/* TODO: Align right to match design */}
-          <div className="container">
-            <h2 className="text-h2 mb-4">APIs and Service</h2>
-            <p className="mb-6 text-primary-gray-300">
-              Hosted APIs that provide access to the Flow network and related
-              data (NFTs, events, etc).
-            </p>
-            <div className="grid grid-flow-col gap-4 overflow-x-scroll pb-6">
-              {apis &&
-                apis.map((api: TutorialCardProps, index: number) => (
-                  <TutorialCard {...api} key={index} className="w-[272px]" />
-                ))}
-            </div>
-          </div>
+          <SDKCards
+            header="SDKs"
+            cards={sdks}
+            description="Libraries that make it easy to connect to Flow in multiple languages and frameworks."
+          />
+        </PageSection>
+        <PageSection>
+          <SDKCards
+            header="APIs & Services"
+            cards={apisAndServices}
+            description="Hosted and open source services that abstract some of the most difficult parts of building on the blockchain."
+          />
+        </PageSection>
+        <PageSection>
+          <SDKCards
+            header="Flow Blockchain Explorers"
+            cards={explorers}
+            description="Different ways of looking up on-chain metrics, events, transactions, accounts, and more."
+          />
         </PageSection>
         <PageSection>
           {/* TODO: Extract into shared component */}

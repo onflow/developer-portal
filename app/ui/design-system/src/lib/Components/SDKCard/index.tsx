@@ -1,7 +1,8 @@
 import { ReactComponent as CalendarIcon } from "../../../../images/action/date-calendar"
 import { ReactComponent as StarIcon } from "../../../../images/action/star"
 import { ReactComponent as CommitIcon } from "../../../../images/content/commit"
-import FlowIconSrc from "../../../../images/logos/flow-icon.svg"
+import CodeIconSrc from "../../../../images/content/code.svg"
+import CodeIconLightSrc from "../../../../images/content/code-light.svg"
 import Tag from "../Tag"
 
 export type SDKCardProps = {
@@ -14,6 +15,8 @@ export type SDKCardProps = {
   lastCommit?: string
   lastRelease?: string
   iconSrc?: string
+  iconDarkModeSrc?: string
+  description?: string
 }
 
 export function SDKCard({
@@ -23,17 +26,30 @@ export function SDKCard({
   tags,
   link,
   stars,
-  iconSrc = FlowIconSrc,
+  iconSrc,
+  iconDarkModeSrc,
   lastCommit,
   lastRelease,
+  description,
 }: SDKCardProps) {
   return (
     <a
-      className="flex gap-4 rounded-lg bg-white py-6 px-8 hover:shadow-2xl dark:bg-primary-gray-dark dark:hover:shadow-2xl-dark"
+      className="flex gap-4 rounded-lg bg-white py-6 px-8 hover:shadow-2xl dark:bg-primary-gray-dark dark:text-white dark:hover:shadow-2xl-dark"
       href={link}
     >
       <div>
-        <img src={iconSrc} alt={title} width={64} />
+        <img
+          className="dark:hidden"
+          src={iconSrc || CodeIconSrc}
+          alt={title}
+          width={64}
+        />
+        <img
+          className="hidden dark:block"
+          src={iconDarkModeSrc || iconSrc || CodeIconLightSrc}
+          alt={title}
+          width={64}
+        />
       </div>
       <div className="grow">
         <h5 className="text-h5">{title}</h5>
@@ -50,12 +66,6 @@ export function SDKCard({
               </div>
             )}
           </div>
-
-          <div className="shrink-0 pr-1 line-clamp-1">
-            {tags?.map((tag, i) => (
-              <Tag name={tag} key={i} />
-            ))}
-          </div>
           {stars !== undefined && (
             <div className="flex shrink-0 items-center gap-1">
               <StarIcon className="text-amber-400" height={16} width={16} />
@@ -65,28 +75,39 @@ export function SDKCard({
             </div>
           )}
         </div>
-        <div className="align-center -mb-1 grid w-fit grid-cols-1 gap-x-4 justify-self-center pt-6 text-gray-500 md:grid-cols-2	">
-          {lastRelease && (
-            <div className="flex items-center">
-              <CalendarIcon
-                className="mr-3 stroke-gray-500"
-                width={22}
-                height={18}
-              />
-              <div>{lastRelease} days ago</div>
-            </div>
-          )}
-          {lastCommit && (
-            <div className="flex items-center">
-              <CommitIcon
-                className="mr-3 fill-gray-500"
-                width={22}
-                height={22}
-              />
-              <div>{lastCommit}</div>
-            </div>
-          )}
+        <div className="shrink-0 py-1 pr-1 line-clamp-1">
+          {tags?.map((tag, i) => (
+            <Tag name={tag} key={i} />
+          ))}
         </div>
+        {description ? (
+          <div className="pt-2 text-gray-700 line-clamp-2 dark:text-gray-300">
+            {description}
+          </div>
+        ) : (
+          <div className="align-center -mb-1 grid w-fit grid-cols-1 gap-x-4 justify-self-center pt-6 text-gray-500 md:grid-cols-2	">
+            {lastRelease && (
+              <div className="flex items-center">
+                <CalendarIcon
+                  className="mr-3 stroke-gray-500"
+                  width={22}
+                  height={18}
+                />
+                <div>{lastRelease} days ago</div>
+              </div>
+            )}
+            {lastCommit && (
+              <div className="flex items-center">
+                <CommitIcon
+                  className="mr-3 fill-gray-500"
+                  width={22}
+                  height={22}
+                />
+                <div>{lastCommit}</div>
+              </div>
+            )}
+          </div>
+        )}
       </div>
     </a>
   )

@@ -4,7 +4,8 @@ import { data } from "./data"
 export default function Page() {
   return (
     <ToolsPage
-      apis={data.apis}
+      explorers={data.explorers}
+      apisAndServices={data.apisAndServices}
       contentNavigationItems={data.contentNavigationItems}
       sdks={data.sdks}
       tools={data.tools}

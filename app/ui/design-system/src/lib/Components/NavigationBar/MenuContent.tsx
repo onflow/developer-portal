@@ -61,7 +61,7 @@ export function MenuContent({
         </div>
       ) : (
         <MenuContentGrid
-          className="flex-1 gap-4 md:gap-12"
+          className="flex-1 gap-4 md:gap-x-12 md:gap-y-8"
           hasCards={cards.length > 0}
           isTabContent={isTabContent}
         >

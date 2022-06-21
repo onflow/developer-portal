@@ -14,6 +14,7 @@ export function EventCardSmall({
   return (
     <a
       href={href}
+      target="_blank"
       rel="noreferrer"
       className="mb-4 flex min-w-max max-w-sm items-start rounded-lg bg-white px-6 py-5 hover:shadow-2xl dark:bg-primary-gray-dark dark:hover:shadow-2xl-dark"
     >

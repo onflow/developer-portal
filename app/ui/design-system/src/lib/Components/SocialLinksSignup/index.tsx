@@ -52,7 +52,7 @@ export type SocialLinksSignupProps = {}
 const SocialLinksSignup = () => {
   return (
     <div
-      className="bg-cover bg-[center_top_-150px] bg-no-repeat pt-24 pb-32 md:bg-[length:70%_150%]"
+      className="bg-cover bg-[center_top] bg-no-repeat py-36 lg:bg-[length:70%] xl:bg-[center_top_-30px]"
       style={{
         backgroundImage: `url(${socialLinksGradientPath})`,
       }}
@@ -73,14 +73,14 @@ const SocialLinksSignup = () => {
             header="Forum"
             description="A place to discuss proposals, check updates, and find answers."
             logo={DiscourseLogo}
-            className="border-b border-r-0 md:border-r md:border-b-0"
+            className="border-b"
             url={DISCOURSE_URL}
           />
           <SocialLink
             header="Discord"
             description="Talk directly to the developer community."
             logo={DiscordLogo}
-            className="border-b"
+            className="border-b border-r-0 md:border-b-0 md:border-r"
             url={DISCORD_URL}
           />
           <SocialLink
@@ -92,7 +92,7 @@ const SocialLinksSignup = () => {
         </div>
         {/** Temporarily disabling email capture */}
         {/* <div className="mt-8 flex flex-col items-center justify-between rounded-lg bg-white px-4 py-10 dark:bg-primary-gray-dark sm:p-10 md:flex-row md:py-20 md:px-[75px]">
-          <h2 className="text-h2 mb-4 text-center md:mr-8 md:text-left">
+          <h2 className="mb-4 text-center text-h2 md:mr-8 md:text-left">
             Subscribe to our newsletter
           </h2>
           <div className="flex flex-col md:flex-row">
@@ -103,7 +103,7 @@ const SocialLinksSignup = () => {
               style={{ boxShadow: "0px 4px 40px rgba(0, 0, 0, 0.08)" }}
             />
             <a
-              className="h-14 rounded-lg rounded-tr-lg rounded-br-lg border-black bg-black px-12 py-4 text-center text-white hover:bg-primary-gray-400 dark:hover:bg-primary-gray-400/50 md:rounded-tl-none md:rounded-bl-none"
+              className="px-12 py-4 text-center text-white bg-black border-black rounded-lg rounded-tr-lg rounded-br-lg h-14 hover:bg-primary-gray-400 dark:hover:bg-primary-gray-400/50 md:rounded-tl-none md:rounded-bl-none"
               href="/foo"
             >
               Subscribe

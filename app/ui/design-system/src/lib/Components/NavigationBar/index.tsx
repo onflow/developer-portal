@@ -21,10 +21,12 @@ export function NavigationBar({
   const [isMobileNavOpen, setMobileNavOpen] = useState(false)
 
   return (
-    <nav className="z-10 flex min-h-[96px] items-center bg-white px-8 py-4 text-primary-gray-400 dark:bg-black dark:text-white">
+    <nav className="z-10 flex min-h-[96px] items-center bg-white p-4 text-primary-gray-400 dark:bg-black dark:text-white lg:px-8">
       <div className="flex items-center">
-        <FlowDocsLogo className="shrink-0 dark:hidden" />
-        <FlowDocsLogoLight className="hidden dark:block" />
+        <a href="/" className="py-2 hover:opacity-75">
+          <FlowDocsLogo className="shrink-0 dark:hidden" />
+          <FlowDocsLogoLight className="hidden dark:block" />
+        </a>
       </div>
       <div className="mt-1 flex flex-1 justify-end">
         {/* TODO: fetch appId and apiKey from env */}
@@ -38,7 +40,7 @@ export function NavigationBar({
         </div> */}
         <DesktopMenu menuItems={menuItems} />
         <ul className="flex items-center">
-          <li className="flex items-center whitespace-nowrap border-primary-gray-100 px-4 dark:border-primary-gray-400 md:border-l">
+          <li className="flex items-center whitespace-nowrap border-primary-gray-100 pl-4 dark:border-primary-gray-400 md:border-l">
             <button
               type="button"
               onClick={() => onDarkModeToggle()}
@@ -48,7 +50,7 @@ export function NavigationBar({
               <ModeLight className="hidden dark:block dark:text-[#FFE68D] dark:hover:text-white" />
             </button>
           </li>
-          <li className="md:hidden">
+          <li className="pl-4 md:hidden">
             <MobileMenuToggleButton
               isOpen={isMobileNavOpen}
               onOpenChanged={(open) => setMobileNavOpen(open)}

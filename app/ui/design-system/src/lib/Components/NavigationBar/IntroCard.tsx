@@ -13,7 +13,7 @@ export function IntroCard({
 }: IntroCardProps) {
   return (
     <div className="flex flex-col items-stretch">
-      <div className="h-[128px]">
+      <div className="h-[128px] items-center">
         <img src={imageHref} alt={imageAlt} className="h-full" />
       </div>
       <h6 className="text-h6 my-4 font-display !leading-tight">{title}</h6>

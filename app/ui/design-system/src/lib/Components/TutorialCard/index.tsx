@@ -1,6 +1,8 @@
 import clsx from "clsx"
 import { ReactComponent as CalendarIcon } from "../../../../images/action/date-calendar"
 import { ReactComponent as TutorialIcon } from "../../../../images/content/drafting-tools"
+import { ReactComponent as UserIcon } from "../../../../images/arrows/user"
+import { User } from "../../interfaces"
 import Tag from "../Tag"
 
 export type TutorialCardProps = {
@@ -8,10 +10,11 @@ export type TutorialCardProps = {
   heading: string
   tags: string[]
   description: string
-  lastUpdated: string
+  lastUpdated?: string
   level?: string
-  imageUri: string
+  imageUri?: string
   link: string
+  author?: User
 }
 
 const TutorialCard = ({
@@ -23,7 +26,12 @@ const TutorialCard = ({
   level,
   imageUri,
   link,
+  author,
 }: TutorialCardProps) => {
+  const contentClasses = clsx('flex flex-col justify-between h-full"', {
+    "pt-8 px-4 pb-4 ": !imageUri,
+    "p-4": imageUri,
+  })
   return (
     <a
       href={link}
@@ -32,8 +40,10 @@ const TutorialCard = ({
         className
       )}
     >
-      <img src={imageUri} alt={heading} className="h-[110px] object-cover" />
-      <div className="flex h-full flex-col justify-between p-4">
+      {imageUri && (
+        <img src={imageUri} alt={heading} className="object-cov er h-[110px]" />
+      )}
+      <div className={contentClasses}>
         <div>
           <div className="text-lg font-bold md:text-xl">{heading}</div>
           <div className="my-1 inline-flex flex-wrap">
@@ -43,17 +53,29 @@ const TutorialCard = ({
               </span>
             ))}
           </div>
-          <div className="line-clamp-3">{description}</div>
+          <div className={imageUri ? "line-clamp-6" : "line-clamp-8"}>
+            {description}
+          </div>
         </div>
         <div className="mt-6 flex justify-between text-xs text-primary-gray-300 dark:text-primary-gray-200">
-          <div className="flex items-center">
-            <CalendarIcon className="mr-1 scale-75" />
-            Updated: {lastUpdated}
-          </div>
+          {lastUpdated && (
+            <div className="flex items-center">
+              <CalendarIcon className="mr-1 scale-75" />
+              Updated: {lastUpdated}
+            </div>
+          )}
           {level && (
             <div className="flex items-center">
-              <TutorialIcon className="mr-2" />
+              <TutorialIcon className="mr-1" />
               {level}
+            </div>
+          )}
+        </div>
+        <div className="text-xs text-primary-gray-300 dark:text-primary-gray-200">
+          {author && (
+            <div className="flex items-center">
+              <UserIcon className="mr-1 scale-75" />
+              {author.name}
             </div>
           )}
         </div>
