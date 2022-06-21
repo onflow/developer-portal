@@ -58,7 +58,7 @@ const TutorialCard = ({
         <div className="mt-6 flex justify-between text-xs text-primary-gray-300 dark:text-primary-gray-200">
           {lastUpdated && (
             <div className="flex items-center">
-              <CalendarIcon className="mr-1 scale-75" />
+              <CalendarIcon className="mr-1 scale-75" width="36" height="36" />
               Updated: {lastUpdated}
             </div>
           )}

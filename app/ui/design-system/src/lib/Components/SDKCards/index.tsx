@@ -32,7 +32,7 @@ export function SDKCards({
           View All SDKs
         </ButtonLink> */}
       </div>
-      <div className="mb-4 grid grid-cols-1 grid-rows-5 gap-4 md:grid-cols-2 md:grid-rows-3 md:gap-8">
+      <div className="mb-4 grid grid-cols-1 gap-4 md:grid-cols-2 md:grid-rows-3 md:gap-8">
         {cards.map((sdkCard, i) => (
           <SDKCard key={i} {...sdkCard} />
         ))}

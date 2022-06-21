@@ -56,7 +56,7 @@ const ProjectCard = ({
           {author.name}
           <div className="flex">
             <div className="scale-50 text-secondary-yellow">
-              <StarIcon />
+              <StarIcon height={24} width={24} />
             </div>
             {numStars}
           </div>

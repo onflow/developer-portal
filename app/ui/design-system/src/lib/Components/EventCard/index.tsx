@@ -33,7 +33,7 @@ export function EventCard({
   return (
     <div
       className={clsx(
-        "flex min-h-fit flex-col-reverse overflow-hidden rounded-2xl bg-white dark:bg-primary-gray-dark md:min-h-[30rem] md:flex-row",
+        "flex min-h-[430px] flex-col-reverse overflow-hidden rounded-2xl bg-white dark:bg-primary-gray-dark md:min-h-[30rem] md:flex-row",
         className
       )}
     >
@@ -53,19 +53,21 @@ export function EventCard({
           </div>
         )}
         <p className="mt-3 pb-6 dark:text-primary-gray-100">{description}</p>
-        <ButtonLink
-          href={href}
-          variant="primary-no-darkmode"
-          className="whitespace-nowrap px-16 py-4 text-center"
-        >
-          {ctaText}
-        </ButtonLink>
+        {ctaText && (
+          <ButtonLink
+            href={href}
+            variant="primary-no-darkmode"
+            className="whitespace-nowrap px-16 py-4 text-center"
+          >
+            {ctaText}
+          </ButtonLink>
+        )}
       </div>
       <div className="flex-none basis-1/2 self-stretch">
         <img
           src={imageSrc}
           alt={imageAlt}
-          className="h-full max-h-[125px] w-full object-cover md:max-h-full"
+          className="h-[125px] w-full object-cover md:h-full"
         />
       </div>
     </div>
