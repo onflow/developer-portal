@@ -3,6 +3,7 @@ import OnFlowIcon from "../../../../images/logos/flow-icon-bw-light.svg"
 import DiscordIcon from "../../../../images/social/discord-light.svg"
 import ForumIcon from "../../../../images/social/forum-light.svg"
 import GithubIcon from "../../../../images/social/github-light.svg"
+import { DISCORD_URL } from "../../../../../../constants"
 
 // reduce repetition of the section layout in Footer component
 const footerSections = [
@@ -169,7 +170,7 @@ export const Footer = ({ sections = footerSections }) => {
             <a href="https://github.com/onflow" className="hover:opacity-75">
               <img src={GithubIcon} height={32} width={32} />
             </a>
-            <a href="https://discord.gg/mDvccFPx" className="hover:opacity-75">
+            <a href={DISCORD_URL} className="hover:opacity-75">
               <img src={DiscordIcon} height={28} width={28} />
             </a>
             <a href="https://forum.onflow.org/" className="hover:opacity-75">
