@@ -4,11 +4,14 @@ import { fetchNetworkStatus } from "~/cms/utils/fetch-network-status"
 import NetworkPage, {
   NetworkPageProps,
 } from "~/ui/design-system/src/lib/Pages/NetworkPage"
+import { temporarilyRedirectToComingSoon } from "~/utils/features"
 import { featuredArticle } from "./data"
 
 type DynamicNetworkPageProps = Pick<NetworkPageProps, "networkStatuses">
 
 export const loader: LoaderFunction = async () => {
+  temporarilyRedirectToComingSoon()
+
   const networkStatuses = await fetchNetworkStatus()
   const data = { networkStatuses }
   return data

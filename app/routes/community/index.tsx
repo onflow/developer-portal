@@ -9,6 +9,7 @@ import { Default as DefaultUpcomingEvents } from "~/ui/design-system/src/lib/Com
 import CommunityPage, {
   CommunityPageProps,
 } from "~/ui/design-system/src/lib/Pages/CommunityPage"
+import { temporarilyRedirectToComingSoon } from "~/utils/features"
 import { articles, contentNavigationItems, projects, tools } from "./data"
 
 type DynamicCommunityPageProps = Pick<
@@ -22,6 +23,7 @@ type DynamicCommunityPageProps = Pick<
 >
 
 export const loader: LoaderFunction = async () => {
+  temporarilyRedirectToComingSoon()
   const { openFlips, goodPlacesToStartFlips } = await fetchFlips()
   const upcomingEvents = DefaultUpcomingEvents?.args as UpcomingEventsProps
   const forumTopics = await fetchLatestTopics()

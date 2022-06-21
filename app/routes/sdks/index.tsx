@@ -1,6 +1,8 @@
 import { LoaderFunction } from "@remix-run/server-runtime"
+import { temporarilyRedirectToComingSoon } from "~/utils/features"
 
 export const loader: LoaderFunction = async () => {
+  temporarilyRedirectToComingSoon()
   return {}
 }
 
