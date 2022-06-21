@@ -72,7 +72,9 @@ const FlipCell = ({
         </svg>
       </div>
       <div className="flex flex-col">
-        <p className="mb-1 text-lg font-semibold md:text-xl">{heading}</p>
+        <p className="mb-1 text-lg font-semibold text-black dark:text-white md:text-xl">
+          {heading}
+        </p>
         <div>
           {tags.map((tag) => (
             <Tag key={tag} name={tag} />
