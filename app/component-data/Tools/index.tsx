@@ -113,7 +113,7 @@ const faucetTool: SDKCardProps = {
 }
 // SDKs
 const fclSDK: SDKCardProps = {
-  title: "FCL SDK",
+  title: "Javascript SDK (FCL)",
   authorIcon: "https://avatars.githubusercontent.com/u/62387156?s=64&v=4",
   authorName: "onflow",
   tags: ["documentation", "active"],
@@ -134,7 +134,7 @@ const goSDK: SDKCardProps = {
 }
 
 const jvmSDK: SDKCardProps = {
-  title: "Kotlin/JVM SDK",
+  title: "Kotlin SDK",
   authorIcon: "https://avatars.githubusercontent.com/u/80722240?s=200&v=4",
   authorName: "The NFT Company",
   tags: ["examples", "active"],
@@ -156,7 +156,7 @@ const httpSDK: SDKCardProps = {
 }
 
 const pythonSDK: SDKCardProps = {
-  title: "Python",
+  title: "Python SDK",
   authorIcon: "https://avatars.githubusercontent.com/u/67895329?v=4",
   authorName: "janezpodhostnik",
   tags: ["documentation", "active"],
@@ -167,7 +167,7 @@ const pythonSDK: SDKCardProps = {
 }
 
 const dartSDK: SDKCardProps = {
-  title: "Dart",
+  title: "Dart SDK",
   authorIcon: "https://avatars.githubusercontent.com/u/3136647?s=48&v=4",
   authorName: "MaxStalker",
   tags: ["documentation", "active"],
@@ -178,7 +178,7 @@ const dartSDK: SDKCardProps = {
 }
 
 const rustSDK: SDKCardProps = {
-  title: "Rust",
+  title: "Rust SDK",
   authorIcon: "https://avatars.githubusercontent.com/u/43851243?s=48&v=4",
   authorName: "fee1-dead",
   tags: ["documentation"],
@@ -189,7 +189,7 @@ const rustSDK: SDKCardProps = {
 }
 
 const rubySDK: SDKCardProps = {
-  title: "Ruby",
+  title: "Ruby SDK",
   authorIcon: "https://avatars.githubusercontent.com/u/1345497?s=200&v=4",
   authorName: "glucode",
   tags: ["documentation"],
@@ -200,7 +200,7 @@ const rubySDK: SDKCardProps = {
 }
 
 const elixirSDK: SDKCardProps = {
-  title: "Elixer",
+  title: "Elixer SDK",
   authorIcon: "https://avatars.githubusercontent.com/u/20113?s=48&v=4",
   authorName: "nkezhaya",
   tags: ["documentation"],
@@ -211,7 +211,7 @@ const elixirSDK: SDKCardProps = {
 }
 
 const swiftSDK: SDKCardProps = {
-  title: "Swift",
+  title: "Swift SDK",
   authorIcon: "https://avatars.githubusercontent.com/u/94294508?s=200&v=4",
   authorName: "Outblock",
   tags: ["documentation", "active"],
@@ -222,7 +222,7 @@ const swiftSDK: SDKCardProps = {
 }
 
 const dotNetSDK: SDKCardProps = {
-  title: ".NET",
+  title: ".NET SDK",
   authorIcon: "https://avatars.githubusercontent.com/u/44845449?s=48&v=4",
   authorName: "tyronbrand",
   tags: ["documentation", "active"],
@@ -233,7 +233,7 @@ const dotNetSDK: SDKCardProps = {
 }
 
 const phpSDK: SDKCardProps = {
-  title: "PHP",
+  title: "PHP SDK",
   authorIcon: "https://avatars.githubusercontent.com/u/17953578?s=200&v=4",
   authorName: "mayvenstudios",
   tags: ["in-development"],

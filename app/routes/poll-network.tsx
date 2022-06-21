@@ -1,3 +1,4 @@
+// This route is only for testing network API functionalities. This page should not be discoverable by the navigation.
 import { useFetcher, useLoaderData } from "@remix-run/react"
 import { useEffect, useState } from "react"
 import { POLLING_INTERVAL_FIVE_SECONDS } from "~/cms/utils/constants"

@@ -27,8 +27,8 @@ const upcomingEvents = [
     isPrimary: true,
   },
   {
-    ctaText: "More Info",
-    description: `Network and learn from "the world's best speakers", including Dapper Labs CEO Roham Gharegozlou, at the Collision Toronto tech conference`,
+    ctaText: "More Details",
+    description: `Network and learn from "the world's best speakers", including Dapper Labs CEO Roham Gharegozlou, at the Collision Toronto conference`,
     eventDate: "June 20-23",
     href: "https://collisionconf.com/",
     imageSrc:
@@ -49,6 +49,7 @@ const upcomingEvents = [
     title: "Flow Tokenomics",
   },
   {
+    ctaText: "More Details",
     href: "https://share.onflow.org/nft-nyc-2022#:~:text=Andbox%20and%20more.-,Blocto,-(3%2D6pm%20ET",
     eventType: "New York",
     description: "",
@@ -59,6 +60,7 @@ const upcomingEvents = [
     eventDate: "June 21, 3:00pm - 6:00pm ET",
   },
   {
+    ctaText: "More Details",
     href: "https://share.onflow.org/nft-nyc-2022#:~:text=Building%20the%20NFT%20Marketplace%20of%20the%20Future",
     eventType: "New York",
     description: "",
@@ -69,6 +71,7 @@ const upcomingEvents = [
     eventDate: "June 22, 2:00pm ET",
   },
   {
+    ctaText: "More Details",
     href: "https://share.onflow.org/nft-nyc-2022#:~:text=Fireside%20Chat%20with%20Roham",
     eventType: "New York",
     description: "",
@@ -79,7 +82,7 @@ const upcomingEvents = [
     eventDate: "June 23, 10:00am ET",
   },
   {
-    ctaText: "",
+    ctaText: "More Details",
     description: "",
     eventDate: "June 22, 11:30am ET",
     href: "https://nftnycmpc.rsvpify.com/",
@@ -90,7 +93,7 @@ const upcomingEvents = [
     title: "NFT NYC x Meta Panda Club",
   },
   {
-    ctaText: "",
+    ctaText: "More Details",
     href: "https://upstreamapp.com/home/zU994MU3D5/events/S_muix6MdF",
     description: "",
     eventDate: "June 22, 5:00pm ET",
@@ -99,33 +102,6 @@ const upcomingEvents = [
     eventType: "New York",
     tags: ["Cryptoys", "NFT_NYC"],
     title: "Cryptoys: Web3 Party",
-  },
-]
-
-const workingHoursEvents = [
-  {
-    ctaText: "CTA Here",
-    description:
-      "Everything you need to start building on Flow verything you need to start building on Flow everything you need to start building on Flow",
-    eventDate: "Mar 23",
-    href: "#todo",
-    imageSrc:
-      "https://assets.website-files.com/5f6294c0c7a8cdf432b1c827/61689102d3325e237fd44b76_unnamed%20(8).png",
-    location: "Online",
-    tags: ["Flow official"],
-    title: "Upcoming Event Title 1",
-  },
-  {
-    ctaText: "CTA Here",
-    description:
-      "Everything you need to start building on Flow verything you need to start building on Flow everything you need to start building on Flow",
-    eventDate: "Mar 23",
-    href: "#todo",
-    imageSrc:
-      "https://assets.website-files.com/5f6294c0c7a8cdf432b1c827/61689102d3325e237fd44b76_unnamed%20(8).png",
-    location: "Online",
-    tags: ["Flow official"],
-    title: "Upcoming Event Title 2",
   },
 ]
 
@@ -157,9 +133,7 @@ const officeHoursEvents = [
 
 const DefaultArgs = {
   goToCommunityHref: "#todo",
-  submitEventHref: "#todo",
   upcoming: upcomingEvents,
-  workingHours: workingHoursEvents,
   officeHours: officeHoursEvents,
 }
 
@@ -171,7 +145,6 @@ const singleEvent = upcomingEvents.slice(0, 1)
 SingleEvent.args = {
   ...Default.args,
   upcoming: singleEvent,
-  workingHours: singleEvent,
   officeHours: singleEvent,
 }
 

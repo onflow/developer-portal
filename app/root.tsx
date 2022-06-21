@@ -16,7 +16,7 @@ import {
   useLocation,
 } from "@remix-run/react"
 import clsx from "clsx"
-import { useCallback } from "react"
+import { useCallback, useEffect } from "react"
 import {
   Theme,
   ThemeBody,
@@ -24,42 +24,64 @@ import {
   ThemeProvider,
   useTheme,
 } from "~/cms/utils/theme.provider"
+import { getRequiredServerEnvVar } from "./cms/helpers"
 import { navBarData } from "./component-data/NavigationBar"
+import * as gtag from "./gtags.client"
 import styles from "./main.css"
 import { getThemeSession } from "./theme.server"
 import { Footer } from "./ui/design-system/src"
 import { ErrorPage } from "./ui/design-system/src/lib/Components/ErrorPage"
 import { NavigationBar } from "./ui/design-system/src/lib/Components/NavigationBar"
 
+export const getMetaTitle = (title?: string) =>
+  [title, "Flow Developer Portal"].filter(Boolean).join(" | ")
+
 export const links: LinksFunction = () => {
-  return [{ rel: "stylesheet", href: styles }]
+  return [
+    { rel: "stylesheet", href: styles },
+    {
+      rel: "icon",
+      href: "https://assets.website-files.com/5f6294c0c7a8cdd643b1c820/5f6294c0c7a8cd5e06b1c938_Asset%201%405x.png",
+      type: "image/png",
+    },
+  ]
 }
 
 export const meta: MetaFunction = () => ({
   charset: "utf-8",
-  title: "Flow Documentation",
+  title: getMetaTitle(),
   viewport: "width=device-width,initial-scale=1",
 })
 
 export type LoaderData = {
   theme: Theme | null
+  gaTrackingId: string | undefined
 }
 
 export const loader: LoaderFunction = async ({ request }) => {
   const themeSession = await getThemeSession(request)
   return json<LoaderData>({
     theme: themeSession.getTheme(),
+    gaTrackingId: getRequiredServerEnvVar("GA_TRACKING_ID"),
   })
 }
 
 function App() {
   const data = useLoaderData<LoaderData>()
+
   const [theme, setTheme] = useTheme()
   const toggleTheme = useCallback(() => {
     setTheme((currentTheme) =>
       currentTheme === Theme.DARK ? Theme.LIGHT : Theme.DARK
     )
   }, [setTheme])
+
+  const location = useLocation()
+  useEffect(() => {
+    if (data.gaTrackingId?.length) {
+      gtag.pageview(location.pathname, data.gaTrackingId)
+    }
+  }, [location, data.gaTrackingId])
 
   return (
     <html
@@ -72,12 +94,35 @@ function App() {
         <ThemeHead ssrTheme={Boolean(data.theme)} />
       </head>
       <body className="root">
+        {!data.gaTrackingId ? null : (
+          <>
+            <script
+              async
+              src={`https://www.googletagmanager.com/gtag/js?id=${data.gaTrackingId}`}
+            />
+            <script
+              async
+              id="gtag-init"
+              dangerouslySetInnerHTML={{
+                __html: `
+                window.dataLayer = window.dataLayer || [];
+                function gtag(){dataLayer.push(arguments);}
+                gtag('js', new Date());
+                gtag('config', '${data.gaTrackingId}', {
+                  page_path: window.location.pathname,
+                });
+              `,
+              }}
+            />
+          </>
+        )}
+
         <ThemeBody ssrTheme={Boolean(data.theme)} />
         <NavigationBar
           menuItems={navBarData.menuItems}
           onDarkModeToggle={toggleTheme}
         />
-        <div className="flex-auto	overflow-auto">
+        <div className="flex-auto overflow-auto">
           <Outlet />
           <Footer />
         </div>

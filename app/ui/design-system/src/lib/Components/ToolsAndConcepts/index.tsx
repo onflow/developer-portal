@@ -25,11 +25,9 @@ const ToolsAndConcepts = ({
       <div className="flex items-center justify-between">
         <div>
           <div className="text-h2 mb-2">
-            {concepts.length > 0 ? "Tools and Concepts" : "Tools"}
+            {concepts.length > 0 ? "SDKs & Tools" : "Tools"}
           </div>
-          <p>
-            Core concepts and tools you’ll need to get started building on Flow
-          </p>
+          <p>Some of our new and popular tooling to build on Flow.</p>
         </div>
         {!!headerButtontext.length && (
           <div className="hidden md:block">
@@ -62,13 +60,13 @@ const ToolsAndConcepts = ({
       )}
       {!!bottomButtons && (
         <div className="mt-9 flex flex-col justify-between md:flex-row">
-          <ButtonLink
+          {/* <ButtonLink
             href="https://google.com"
             className="mb-4 w-full md:mr-9 md:w-1/2"
             rightIcon="external"
           >
             Submit a tool
-          </ButtonLink>
+          </ButtonLink> */}
           <ButtonLink
             className="mb-4 w-full md:w-1/2"
             href="/tools"

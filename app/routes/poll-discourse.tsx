@@ -1,3 +1,4 @@
+// This route is only for testing Discourse API functionalities. This page should not be discoverable by the navigation.
 import { useFetcher, useLoaderData } from "@remix-run/react"
 import { useEffect, useState } from "react"
 import {

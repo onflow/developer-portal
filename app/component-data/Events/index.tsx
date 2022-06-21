@@ -127,8 +127,7 @@ const july7OfficeHours = {
 }
 
 const allEvents: UpcomingEventsProps = {
-  submitEventHref: "#todo",
-  goToCommunityHref: "#todo",
+  goToCommunityHref: "/coming-soon",
   upcoming: [
     nftNYCEvent,
     collisionTorontoEvent,
@@ -140,7 +139,6 @@ const allEvents: UpcomingEventsProps = {
     cryptotoysWeb3PartyEvent,
   ],
   officeHours: [tokenomicsOfficeHours, july7OfficeHours],
-  workingHours: [],
 }
 
 export { allEvents }

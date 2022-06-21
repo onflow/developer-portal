@@ -17,21 +17,25 @@ import {
   jvmSDK,
   swiftSDK,
   httpSDK,
-  dotNetSDK,
+  pythonSDK,
   overflowTool,
   flowserTool,
   eventIndexingTool,
 } from "../../component-data/Tools"
-import { introToFlowBlockchainArticle } from "../../component-data/Articles"
+import {
+  introToFlowBlockchainArticle,
+  getTheFlowDownArticle,
+  redSquirrelGetStartedArticle,
+} from "../../component-data/Articles"
 import { FeaturedArticleCardProps } from "~/ui/design-system/src/lib/Components/FeaturedArticleCard"
 import { ToolCardProps } from "~/ui/design-system/src/lib/Components/ToolCard"
 
 const landingHeaderItems: LandingHeaderProps = {
   buttonText: "View Course",
-  buttonUrl: "https://github.com/emerald-dao/0-hello-world",
-  callout: "Emerald Academy",
-  description:
-    "Emerald Academy guides you from zero to hero on all things Flow it's smart contract language - Cadence.",
+  buttonUrl: "https://academy.ecdao.org/",
+  callout: "Cadence Bootcamps",
+  description: `Learn everything about the Flow Blockchain and the Cadence smart contract programming language with Emerald Academy -  
+    a Flow partner for open source educational content.`,
   title: "Getting Started",
   imageSrc: "https://academy.ecdao.org/thumb-beginner-cadence.png",
 }
@@ -40,14 +44,13 @@ const linkCard3ColumnItems: LinkCard3ColumnProps = {
   items: [
     {
       title: "Try",
-      description:
-        "A package used to interact with user wallets and the Flow blockchain.",
+      description: "Examples curated to get you up and running in minutes.",
       icon: <Icon1 />,
       links: [
         {
           title: "Hello, World on Flow!",
           href: "https://docs.onflow.org/cadence/tutorial/02-hello-world/",
-          tags: ["tutorial", "cadence", "playground"],
+          tags: ["cadence", "playground"],
         },
         {
           title: "Javascript Quickstart",
@@ -62,7 +65,7 @@ const linkCard3ColumnItems: LinkCard3ColumnProps = {
         {
           title: "Cadence Cookbook",
           href: "https://open-cadence.onflow.org/",
-          tags: ["sample", "playground"],
+          tags: ["samples", "playground"],
         },
         {
           title: "Flow Block Explorer",
@@ -73,23 +76,13 @@ const linkCard3ColumnItems: LinkCard3ColumnProps = {
     {
       title: "Learn",
       description:
-        "An up to 3-line blurb here describing the section lorem ipsum dolor sit amet proin.",
+        "Resources to help you understand how the Flow blockchain works.",
       icon: <Icon2 />,
       links: [
         {
-          title: "Flow Architecture",
+          title: "Flow technical papers",
           href: "https://www.onflow.org/technical-paper",
-          tags: ["protocol", "security"],
-        },
-        {
-          title: "Dapp Architecture on Flow",
-          href: "#tutorial1",
-          tags: ["guide", "overview"],
-        },
-        {
-          title: "Solidity to Cadence",
-          href: "#tutorial2",
-          tags: ["guide", "beginner"],
+          tags: ["protocol", "overview"],
         },
         {
           title: "Youtube Tutorials",
@@ -97,14 +90,24 @@ const linkCard3ColumnItems: LinkCard3ColumnProps = {
           tags: ["tutorial", "beginner", "video"],
         },
         {
-          title: "Learn Web3",
-          href: "https://web3-learning-roadmap.vercel.app/",
+          title: "Dapp architecture",
+          href: "https://docs.onflow.org/dapp-development/DappArchitectures/",
+          tags: ["guide", "overview"],
+        },
+        {
+          title: "Beginner Cadence course",
+          href: "https://github.com/emerald-dao/beginner-cadence-course",
+          tags: ["guide", "beginner"],
+        },
+        {
+          title: "View more learning resources",
+          href: "/coming-soon",
         },
       ],
     },
     {
       title: "Build",
-      description: "Smart contracts description.",
+      description: "First steps to start the development process on Flow.",
       icon: <Icon3 />,
       links: [
         {
@@ -113,22 +116,22 @@ const linkCard3ColumnItems: LinkCard3ColumnProps = {
           tags: ["install"],
         },
         {
-          title: "VS Code Extension",
-          href: "https://docs.onflow.org/vscode-extension/",
-          tags: ["ide", "cadence"],
-        },
-        {
-          title: "Testnet Account Creation",
+          title: "Create a testnet account",
           href: "https://flow-faucet.vercel.app/",
           tags: ["faucet", "create", "fund"],
         },
         {
-          title: "Dapp Development on Flow",
-          href: "#todo",
-          tags: ["guide", "overview"],
+          title: "Core contracts & standards",
+          href: "https://docs.onflow.org/core-contracts",
+          tags: ["nft", "ft", "metadata"],
         },
         {
-          title: "View all Tools",
+          title: "Launch a simple NFT",
+          href: "https://github.com/emerald-dao/1-simple-nft",
+          tags: ["tutorial", "beginner"],
+        },
+        {
+          title: "View all tools and services",
           href: "/tools",
         },
       ],
@@ -138,9 +141,8 @@ const linkCard3ColumnItems: LinkCard3ColumnProps = {
 
 const linkCard2ColumnItems: LinkCard2ColumnProps = {
   buttonText: "View Concepts",
-  buttonUrl: "/concepts",
-  description:
-    "Building on Flow is easy. Start building now with lorem ipsum et sigitus loranum prospitarius.",
+  buttonUrl: "https://docs.onflow.org/concepts/",
+  description: `Learn the fundamental concepts that power the overall dapp experience on Flow.`,
   title: "Core Concepts",
   items: [
     {
@@ -153,7 +155,7 @@ const linkCard2ColumnItems: LinkCard2ColumnProps = {
     {
       title: "Flow Client Library",
       description:
-        "The Flow Client Library (FCL) JS is a package used to interact with user wallets and the Flow blockchain.",
+        "The Flow Client Library (FCL) JS is a package used to interact with user wallets, dapps, and the blockchain.",
       href: "https://docs.onflow.org/fcl/",
       icon: svgToDataUri(<FCLIcon />),
     },
@@ -167,7 +169,7 @@ const sdkCardItems: [
   SDKCardProps,
   SDKCardProps,
   SDKCardProps
-] = [goSDK, fclSDK, jvmSDK, swiftSDK, httpSDK, dotNetSDK]
+] = [httpSDK, fclSDK, goSDK, pythonSDK, swiftSDK, jvmSDK]
 
 const contentNavigationItems: [
   ContentNavigationProps,
@@ -187,10 +189,10 @@ const contentNavigationItems: [
     icon: "tools",
   },
   {
-    title: "Concepts",
-    text: "Understand how Flow and dapps on Flow work.",
-    link: "/concepts",
-    icon: "concepts",
+    title: "Community",
+    text: "Learn more about Flow's ecosystem and get involved.",
+    link: "/community",
+    icon: "community",
   },
 ]
 
@@ -200,9 +202,10 @@ const recentArticleItems: [
   FeaturedArticleCardProps
 ] = [
   introToFlowBlockchainArticle,
-  introToFlowBlockchainArticle,
-  introToFlowBlockchainArticle,
+  redSquirrelGetStartedArticle,
+  getTheFlowDownArticle,
 ]
+
 const recentToolItems: [ToolCardProps, ToolCardProps, ToolCardProps] = [
   overflowTool,
   flowserTool,

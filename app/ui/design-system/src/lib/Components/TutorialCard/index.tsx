@@ -53,7 +53,9 @@ const TutorialCard = ({
               </span>
             ))}
           </div>
-          <div className="line-clamp-3">{description}</div>
+          <div className={imageUri ? "line-clamp-6" : "line-clamp-8"}>
+            {description}
+          </div>
         </div>
         <div className="mt-6 flex justify-between text-xs text-primary-gray-300 dark:text-primary-gray-200">
           {lastUpdated && (

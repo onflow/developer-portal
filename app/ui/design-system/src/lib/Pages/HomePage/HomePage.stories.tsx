@@ -43,7 +43,10 @@ const Template: Story<HomePageProps> = (args) => <HomePage {...args} />
 
 const args: HomePageProps = {
   startProjectItems,
-  flips: DefaultFlips.args.flips,
+  flips: {
+    openFlips: DefaultFlips.args.openFlips,
+    goodPlacesToStartFlips: DefaultFlips.args.goodPlacesToStartFlips,
+  },
   tools: DefaultToolsAndConcepts.args.tools,
   concepts: DefaultToolsAndConcepts.args.concepts,
   threeColumnItems: DefaultLinkCard3Column.args.items,

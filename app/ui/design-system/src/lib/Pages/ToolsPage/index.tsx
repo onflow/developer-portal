@@ -5,14 +5,13 @@ import {
 import { LandingHeader } from "../../Components/LandingHeader"
 import { SDKCardProps } from "../../Components/SDKCard"
 import { SDKCards } from "../../Components/SDKCards"
-import { ToolCardProps } from "../../Components/ToolCard"
 import PageBackground from "../shared/PageBackground"
 import PageSection from "../shared/PageSection"
 import PageSections from "../shared/PageSections"
-// import Arches from "../../../../images/misc/arches.png"
+import ArchesImageSrc from "../../../../images/misc/arches.png"
 
 export type ToolsPageProps = {
-  tools: ToolCardProps[]
+  tools: SDKCardProps[]
   sdks: SDKCardProps[]
   explorers: SDKCardProps[]
   apisAndServices: SDKCardProps[]
@@ -40,7 +39,7 @@ const ToolsPage = ({
             callout="Flow Dapp Architecture Guide"
             description="Wondering what tools you need? See our dapp architectures guide to help you out."
             title="Tools"
-            // imageSrc={Arches} TODO: FIX.
+            imageSrc={ArchesImageSrc}
           />
         </PageSection>
         <PageSection>

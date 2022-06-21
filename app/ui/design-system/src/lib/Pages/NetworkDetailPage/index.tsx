@@ -22,15 +22,18 @@ export type NetworkDetailPageProps = {
   featuredArticle: Article
 }
 
+export const getNetworkNameFromParam = (param: string) =>
+  param
+    .split("-")
+    .map((name) => name[0].toUpperCase() + name.slice(1))
+    .join(" ")
+
 const NetworkDetailPage = ({
   networkName,
   networkStatuses,
   featuredArticle,
 }: NetworkDetailPageProps) => {
-  const convertedName = networkName
-    .split("-")
-    .map((name) => name[0].toUpperCase() + name.slice(1))
-    .join(" ")
+  const convertedName = getNetworkNameFromParam(networkName)
   const defaultIndex = networkStatuses.findIndex((object) => {
     return object.name === convertedName
   })
