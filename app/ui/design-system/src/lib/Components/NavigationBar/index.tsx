@@ -1,7 +1,6 @@
 import { Transition } from "@headlessui/react"
 import { Fragment, useState } from "react"
 import { ReactComponent as FlowDocsLogo } from "../../../../images/logos/flow-docs-logo"
-import { ReactComponent as FlowDocsLogoLight } from "../../../../images/logos/flow-docs-logo-light"
 import { ReactComponent as ModeDark } from "../../../../images/toggles/mode-dark"
 import { ReactComponent as ModeLight } from "../../../../images/toggles/mode-light"
 import { DesktopMenu } from "./DesktopMenu"
@@ -24,8 +23,7 @@ export function NavigationBar({
     <nav className="z-10 flex min-h-[96px] items-center bg-white p-4 text-primary-gray-400 dark:bg-black dark:text-white lg:px-8">
       <div className="flex items-center">
         <a href="/" className="py-2 hover:opacity-75">
-          <FlowDocsLogo className="shrink-0 dark:hidden" />
-          <FlowDocsLogoLight className="hidden dark:block" />
+          <FlowDocsLogo className="shrink-0" />
         </a>
       </div>
       <div className="mt-1 flex flex-1 justify-end">
