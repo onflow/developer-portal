@@ -1,9 +1,7 @@
-/* TODO: A non-variable Acumin would be much smaller for the number of weights we need.
-Consider switching after we source the missing 600 weight */
 @font-face {
   font-family: "Acumin Variable Concept";
   src: local("Acumin Variable Concept"),
-    url(/fonts/acumin-pro/AcuminVariableConcept.otf) format("opentype");
+    url(/fonts/acumin-pro/AcuminVariableConcept.woff2) format("woff2");
   font-weight: 400 700;
 }
 
