@@ -288,7 +288,7 @@ const gettingStartedPageData = {
   recentArticleItems: [
     {
       heading: "Get the Flow Down",
-      tags: ["protocol", "network"],
+      tags: ["resource-list"],
       description:
         "Get the Flow Down is a curated collection of the best Flow blockchain tools, tutorials, articles and more!",
       link: "https://github.com/ph0ph0/Get-The-Flow-Down",
