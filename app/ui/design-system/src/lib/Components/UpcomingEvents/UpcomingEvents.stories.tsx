@@ -33,7 +33,7 @@ const upcomingEvents = [
     href: "https://collisionconf.com/",
     imageSrc:
       "https://scontent-yyz1-1.xx.fbcdn.net/v/t1.6435-9/187273412_1595714430632959_188138787470379979_n.png?_nc_cat=111&ccb=1-7&_nc_sid=09cbfe&_nc_ohc=vXibBwZGxWAAX9_Iv7Y&_nc_ht=scontent-yyz1-1.xx&oh=00_AT8jXVugKzGRdVlwzW0kO1ZwyTCGjDmCpyBhBengY6WIGw&oe=62D5C74A",
-    location: "Enercare Centre, Toronto",
+    eventType: "Enercare Centre, Toronto",
     tags: ["Conference"],
     title: "Collision",
   },
@@ -51,6 +51,7 @@ const upcomingEvents = [
   {
     href: "https://share.onflow.org/nft-nyc-2022#:~:text=Andbox%20and%20more.-,Blocto,-(3%2D6pm%20ET",
     eventType: "New York",
+    description: "",
     imageSrc:
       "https://assets.website-files.com/5f6294c0c7a8cdf432b1c827/61410bc0c8d0522eea319058_Hack-blog_Flow.png",
     tags: ["NFT_NYC", "Flow Booth"],
@@ -60,6 +61,7 @@ const upcomingEvents = [
   {
     href: "https://share.onflow.org/nft-nyc-2022#:~:text=Building%20the%20NFT%20Marketplace%20of%20the%20Future",
     eventType: "New York",
+    description: "",
     imageSrc:
       "https://assets.website-files.com/5f6294c0c7a8cdf432b1c827/61410bc0c8d0522eea319058_Hack-blog_Flow.png",
     tags: ["Flow", "NFT_NYC", "Panel"],
@@ -69,6 +71,7 @@ const upcomingEvents = [
   {
     href: "https://share.onflow.org/nft-nyc-2022#:~:text=Fireside%20Chat%20with%20Roham",
     eventType: "New York",
+    description: "",
     imageSrc:
       "https://assets.website-files.com/5f6294c0c7a8cdf432b1c827/61410bc0c8d0522eea319058_Hack-blog_Flow.png",
     tags: ["Flow", "NFT_NYC", "Panel"],
@@ -76,23 +79,26 @@ const upcomingEvents = [
     eventDate: "June 23, 10:00am ET",
   },
   {
+    ctaText: "",
+    description: "",
+    eventDate: "June 22, 11:30am ET",
     href: "https://nftnycmpc.rsvpify.com/",
-    eventType: "New York",
     imageSrc:
       "https://assets.website-files.com/5f6294c0c7a8cdf432b1c827/61410bc0c8d0522eea319058_Hack-blog_Flow.png",
+    eventType: "New York",
     tags: ["NFT_NYC", "Partner"],
     title: "NFT NYC x Meta Panda Club",
-    eventDate: "June 22, 11:30am ET",
   },
   {
     ctaText: "",
     href: "https://upstreamapp.com/home/zU994MU3D5/events/S_muix6MdF",
-    eventType: "New York",
+    description: "",
+    eventDate: "June 22, 5:00pm ET",
     imageSrc:
       "https://assets.website-files.com/5f6294c0c7a8cdf432b1c827/61410bc0c8d0522eea319058_Hack-blog_Flow.png",
+    eventType: "New York",
     tags: ["Cryptoys", "NFT_NYC"],
     title: "Cryptoys: Web3 Party",
-    eventDate: "June 22, 5:00pm ET",
   },
 ]
 
