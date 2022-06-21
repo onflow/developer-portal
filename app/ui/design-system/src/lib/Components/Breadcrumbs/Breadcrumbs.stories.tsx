@@ -4,6 +4,9 @@ import { Breadcrumbs, BreadcrumbsProps } from "."
 export default {
   component: Breadcrumbs,
   title: "Components/Breadcrumbs",
+  parameters: {
+    layout: "padded",
+  },
 } as Meta
 
 const Template: Story<BreadcrumbsProps> = (args) => <Breadcrumbs {...args} />

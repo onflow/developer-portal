@@ -4,6 +4,9 @@ import RoundImage, { RoundImageProps } from "."
 export default {
   component: RoundImage,
   title: "Components/RoundImage",
+  parameters: {
+    layout: "padded",
+  },
 } as Meta
 
 const Template: Story<RoundImageProps> = (args) => {

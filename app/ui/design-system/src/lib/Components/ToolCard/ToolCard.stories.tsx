@@ -4,14 +4,13 @@ import { ToolCard, ToolCardProps } from "."
 export default {
   component: ToolCard,
   title: "Components/ToolCard",
+  parameters: {
+    layout: "padded",
+  },
 } as Meta
 
 const Template: Story<ToolCardProps> = (args) => {
-  return (
-    <div className="bg-gray-100 p-4 dark:bg-black">
-      <ToolCard {...args} />
-    </div>
-  )
+  return <ToolCard {...args} />
 }
 
 export const Primary = Template.bind({})

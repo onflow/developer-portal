@@ -4,6 +4,9 @@ import { InternalLandingCard, InternalLandingCardProps } from "."
 export default {
   component: InternalLandingCard,
   title: "Components/InternalLandingCard",
+  parameters: {
+    layout: "padded",
+  },
 } as Meta
 
 const Template: Story<InternalLandingCardProps> = (args) => {

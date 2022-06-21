@@ -4,14 +4,13 @@ import { SDKCard, SDKCardProps } from "."
 export default {
   component: SDKCard,
   title: "Components/SDKCard",
+  parameters: {
+    layout: "padded",
+  },
 } as Meta
 
 const Template: Story<SDKCardProps> = (args) => {
-  return (
-    <div className="bg-gray-100 p-4 dark:bg-black">
-      <SDKCard {...args} />
-    </div>
-  )
+  return <SDKCard {...args} />
 }
 
 export const Default = Template.bind({})

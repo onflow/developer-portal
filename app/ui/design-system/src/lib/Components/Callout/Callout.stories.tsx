@@ -4,6 +4,9 @@ import Callout, { CalloutProps } from "."
 export default {
   component: Callout,
   title: "Components/Callout",
+  parameters: {
+    layout: "padded",
+  },
 } as Meta
 
 const Template: Story<CalloutProps> = (args) => {

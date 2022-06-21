@@ -14,6 +14,9 @@ export default {
   component: LinkCard2Column,
   title: "Components/LinkCard2Column",
   excludeStories: ["svgToDataUri"],
+  parameters: {
+    layout: "centered",
+  },
 } as Meta
 
 const Template: Story<LinkCard2ColumnProps> = (args) => {

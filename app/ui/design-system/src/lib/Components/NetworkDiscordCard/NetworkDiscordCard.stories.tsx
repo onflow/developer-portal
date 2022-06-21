@@ -5,14 +5,13 @@ import { endOfDay } from "date-fns"
 export default {
   component: NetworkDiscordCard,
   title: "Components/NetworkDiscordCard",
+  parameters: {
+    layout: "padded",
+  },
 } as Meta
 
 const Template: Story<NetworkDiscordCardProps> = (args) => {
-  return (
-    <div style={{ backgroundColor: "#f1f1f1", padding: "14px" }}>
-      <NetworkDiscordCard {...args} />
-    </div>
-  )
+  return <NetworkDiscordCard {...args} />
 }
 
 export const Default = Template.bind({})

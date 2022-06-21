@@ -4,14 +4,13 @@ import { InternalSidebarMenu, InternalSidebarMenuProps } from "."
 export default {
   component: InternalSidebarMenu,
   title: "Components/InternalSidebarMenu",
+  parameters: {
+    layout: "padded",
+  },
 } as Meta
 
 const Template: Story<InternalSidebarMenuProps> = (args) => {
-  return (
-    <div style={{ padding: "1rem" }}>
-      <InternalSidebarMenu {...args} />
-    </div>
-  )
+  return <InternalSidebarMenu {...args} />
 }
 
 export const Default = Template.bind({})
