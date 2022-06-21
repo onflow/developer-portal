@@ -27,6 +27,12 @@ import {
   eventIndexingTool,
   accountApiTool,
   flowMarketplaceMonitorTool,
+  alchemyAccessTool,
+  alchemyNFTTool,
+  intellijTool,
+  vsCodeTool,
+  commandLineLinter,
+  cdcWebpackPlugin,
 } from "../../component-data/Tools"
 
 export const data: ToolsPageProps = {
@@ -38,6 +44,10 @@ export const data: ToolsPageProps = {
     flowserTool,
     cadutTool,
     faucetTool,
+    intellijTool,
+    vsCodeTool,
+    commandLineLinter,
+    cdcWebpackPlugin,
   ],
   sdks: [
     httpSDK,
@@ -53,23 +63,15 @@ export const data: ToolsPageProps = {
     rustSDK,
     elixirSDK,
   ],
-  explorers: [flowScanTool, flowViewSourceTool, bigDipperTool],
-  hostedApis: [
-    cliTool,
-    emulatorTool,
-    jsTestingLibTool,
-    overflowTool,
-    flowserTool,
-    cadutTool,
-    faucetTool,
-  ],
-  ossservices: [
+  apisAndServices: [
     walletApiTool,
     eventIndexingTool,
     accountApiTool,
     flowMarketplaceMonitorTool,
+    alchemyAccessTool,
+    alchemyNFTTool,
   ],
-  cadenceTools: [cliTool],
+  explorers: [flowScanTool, flowViewSourceTool, bigDipperTool],
   contentNavigationItems: [
     {
       title: "Concepts",

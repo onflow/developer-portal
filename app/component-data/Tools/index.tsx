@@ -35,6 +35,52 @@ const emulatorTool: SDKCardProps = {
     "The Flow Emulator is a lightweight tool that emulates the behavior of the real Flow network. Packaged via CLI.",
 }
 
+const vsCodeTool: SDKCardProps = {
+  title: "VS Code Extension",
+  authorIcon: "https://avatars.githubusercontent.com/u/62387156?s=64&v=4",
+  authorName: "onflow",
+  tags: ["documentation", "active", "local-dev"],
+  link: "https://github.com/onflow/vscode-cadence",
+  stars: 33,
+  iconSrc: ToolEmulatorIconSrc,
+  description:
+    "The Visual Studio Code extension for Cadence. Extensive features such as code generation, deploying contracts, and a lot more.",
+}
+
+const intellijTool: SDKCardProps = {
+  title: "Intellij Cadence Plugin",
+  authorIcon: "https://avatars.githubusercontent.com/u/92172623?s=200&v=4",
+  authorName: "cadence-tools",
+  tags: ["documentation"],
+  link: "https://github.com/cadence-tools/cadence-for-intellij-platform",
+  stars: 6,
+  iconSrc: CodeIcon,
+  description:
+    "Support for Cadence, the resource-oriented smart contract language of Flow, in Intellij Platform IDEs.",
+}
+
+const commandLineLinter: SDKCardProps = {
+  title: "Command Line Cadence Linter",
+  authorIcon: "https://avatars.githubusercontent.com/u/76526021?s=200&v=4",
+  authorName: "samatechtw",
+  tags: ["documentation", "local-dev"],
+  link: "https://github.com/samatechtw/cadence-lint",
+  stars: 3,
+  iconSrc: CodeIcon,
+  description: "CLI linter for Cadence projects and files.",
+}
+
+const cdcWebpackPlugin: SDKCardProps = {
+  title: "Cadence Linter",
+  authorIcon: "https://avatars.githubusercontent.com/u/831220?s=200&v=4",
+  authorName: "agencyenterprise",
+  tags: ["javascript", "webpack", "cadence"],
+  link: "https://github.com/agencyenterprise/cadence-webpack-plugin",
+  stars: 6,
+  iconSrc: CodeIcon,
+  description: "Webpack plugin that helps importing Cadence files.",
+}
+
 const jsTestingLibTool: SDKCardProps = {
   title: "JS Testing Library",
   authorIcon: "https://avatars.githubusercontent.com/u/62387156?s=64&v=4",
@@ -303,6 +349,22 @@ const flowMarketplaceMonitorTool = {
     "An AWS Cloudformation stack that listens to Flow events and stores them for querying.",
 }
 
+const alchemyAccessTool = {
+  title: "Alchemy HTTP API",
+  tags: ["api", "service", "monitoring"],
+  link: "https://docs.alchemy.com/flow/",
+  iconSrc: "https://res.cloudinary.com/apideck/icons/alchemy",
+  description: `An API for the Flow Access Node and provides dashboard tools for debugging and monitoring.`,
+}
+
+const alchemyNFTTool = {
+  title: "Alchemy Flow NFT API",
+  tags: ["api", "service", "monitoring"],
+  link: "https://docs.alchemy.com/flow/documentation/flow-nft-apis",
+  iconSrc: "https://res.cloudinary.com/apideck/icons/alchemy",
+  description: `A NFT API to retrieve on and off chain metadata for all NFTs of a given account and more.`,
+}
+
 export {
   flowserTool,
   overflowTool,
@@ -330,4 +392,10 @@ export {
   eventIndexingTool,
   accountApiTool,
   flowMarketplaceMonitorTool,
+  alchemyAccessTool,
+  alchemyNFTTool,
+  intellijTool,
+  vsCodeTool,
+  commandLineLinter,
+  cdcWebpackPlugin,
 }

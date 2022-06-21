@@ -5,9 +5,7 @@ export default function Page() {
   return (
     <ToolsPage
       explorers={data.explorers}
-      ossservices={data.ossservices}
-      hostedApis={data.hostedApis}
-      cadenceTools={data.cadenceTools}
+      apisAndServices={data.apisAndServices}
       contentNavigationItems={data.contentNavigationItems}
       sdks={data.sdks}
       tools={data.tools}

@@ -1,4 +1,3 @@
-import { ToolsAndConcepts } from "../../Components"
 import {
   ContentNavigation,
   ContentNavigationProps,
@@ -7,7 +6,6 @@ import { LandingHeader } from "../../Components/LandingHeader"
 import { SDKCardProps } from "../../Components/SDKCard"
 import { SDKCards } from "../../Components/SDKCards"
 import { ToolCardProps } from "../../Components/ToolCard"
-import TutorialCard, { TutorialCardProps } from "../../Components/TutorialCard"
 import PageBackground from "../shared/PageBackground"
 import PageSection from "../shared/PageSection"
 import PageSections from "../shared/PageSections"
@@ -17,9 +15,7 @@ export type ToolsPageProps = {
   tools: ToolCardProps[]
   sdks: SDKCardProps[]
   explorers: SDKCardProps[]
-  ossservices: SDKCardProps[]
-  hostedApis: SDKCardProps[]
-  cadenceTools: SDKCardProps[]
+  apisAndServices: SDKCardProps[]
   contentNavigationItems: [
     ContentNavigationProps,
     ContentNavigationProps,
@@ -31,9 +27,7 @@ const ToolsPage = ({
   tools,
   sdks,
   explorers,
-  ossservices,
-  hostedApis,
-  cadenceTools,
+  apisAndServices,
   contentNavigationItems,
 }: ToolsPageProps) => {
   return (
@@ -66,7 +60,7 @@ const ToolsPage = ({
         <PageSection>
           <SDKCards
             header="Open Source Services"
-            cards={ossservices}
+            cards={apisAndServices}
             description="Blurb aboud SDK's here lorem ipsum dolor sit amet proin."
           />
         </PageSection>
