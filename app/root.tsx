@@ -24,14 +24,14 @@ import {
   ThemeProvider,
   useTheme,
 } from "~/cms/utils/theme.provider"
-import { getRequiredServerEnvVar } from "./cms/helpers"
-import { navBarData } from "./component-data/NavigationBar"
+import { getRequiredServerEnvVar } from "~/cms/helpers"
+import { navBarData } from "~/component-data/NavigationBar"
 import styles from "./main.css"
-import { getThemeSession } from "./theme.server"
-import { Footer } from "./ui/design-system/src"
-import { ErrorPage } from "./ui/design-system/src/lib/Components/ErrorPage"
-import { NavigationBar } from "./ui/design-system/src/lib/Components/NavigationBar"
-import * as gtag from "./gtags.client"
+import { getThemeSession } from "~/utils/theme.server"
+import { Footer } from "~/ui/design-system/src"
+import { ErrorPage } from "~/ui/design-system/src/lib/Components/ErrorPage"
+import { NavigationBar } from "~/ui/design-system/src/lib/Components/NavigationBar"
+import * as gtag from "~/utils/gtags.client"
 
 export const links: LinksFunction = () => {
   return [{ rel: "stylesheet", href: styles }]
@@ -112,7 +112,7 @@ function App() {
           menuItems={navBarData.menuItems}
           onDarkModeToggle={toggleTheme}
         />
-        <div className="flex-auto	overflow-auto">
+        <div className="flex-auto overflow-auto">
           <Outlet />
           <Footer />
         </div>
