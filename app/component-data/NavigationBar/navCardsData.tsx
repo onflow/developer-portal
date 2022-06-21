@@ -40,8 +40,9 @@ const gettingStartedCard: IntroCardProps = {
 
 const sporkProcessCard: IntroCardProps = {
   href: "/getting-started",
-  ctaText: "Get Started",
-  description: "New to Flow? Start here to understand and learn the basics.",
+  ctaText: "Learn more",
+  description:
+    "A spork is a coordinated network upgrade process where nodes upgrade their software. Typically this means there will be downtime in the network.",
   imageHref: AbstractImage6,
   title: "Spork Process",
 }
@@ -49,7 +50,8 @@ const sporkProcessCard: IntroCardProps = {
 const networkStatusCard: IntroCardProps = {
   href: "https://docs.onflow.org/status/",
   ctaText: "View status",
-  description: "New to Flow? Start here to understand and learn the basics.",
+  description:
+    "Check the status of testnet and mainnet and the latest announcements related to Flow networks.",
   imageHref: AbstractImage8,
   title: "Network Status",
 }
