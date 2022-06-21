@@ -95,7 +95,7 @@ const homepageThreeColumnData: LinkCard3ColumnItems = [
       },
       {
         title: "View more learning resources",
-        href: "/learn",
+        href: "https://web3-learning-roadmap.vercel.app/",
       },
     ],
   },
