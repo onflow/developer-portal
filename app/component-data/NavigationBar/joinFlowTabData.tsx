@@ -8,7 +8,7 @@ export const eventsSection: Section = {
   links: [
     {
       title: "View more of the Flow community",
-      href: "/community",
+      href: "/coming-soon",
     },
   ],
   title: "Flow Ecosystem",
