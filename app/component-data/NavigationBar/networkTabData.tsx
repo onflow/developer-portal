@@ -9,7 +9,7 @@ export const nodeOperation: Section = {
   links: [
     {
       title: "View Community",
-      href: "#todo",
+      href: "/coming-soon",
     },
   ],
   title: "Node Operation & Staking",

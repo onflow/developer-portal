@@ -17,11 +17,10 @@ const footerSections = [
         link: "/tools",
         text: "SDK's & Tools",
       },
-      /* TODO: We need to expose this footer once the /learn page is production ready
       {
-        link: "/learn",
+        link: "/coming-soon",
         text: "Learning Resources",
-      }, */
+      },
       {
         link: "https://docs.onflow.org/cadence/",
         text: "Cadence",
@@ -52,12 +51,11 @@ const footerSections = [
       },
     ],
   },
-  // TODO: We need to expose this footer once the /community page is production ready
-  /*{
+  {
     header: "Community",
     links: [
       {
-        link: "/community",
+        link: "/coming-soon",
         text: "Ecosystem",
       },
       {
@@ -65,11 +63,11 @@ const footerSections = [
         text: "Flow Port",
       },
       {
-        link: "/community",
+        link: "/coming-soon",
         text: "Developer Grants",
       },
       {
-        link: "/community",
+        link: "/coming-soon",
         text: "Bug Bounties",
       },
       {
@@ -89,7 +87,7 @@ const footerSections = [
         text: "FLOATs (Attendance NFTs)",
       },
     ],
-  },*/
+  },
   {
     header: "Start Building",
     links: [
@@ -182,9 +180,9 @@ export const Footer = ({ sections = footerSections }) => {
             </a>
           </div>
         </div>
-        <div className="grid auto-cols-min gap-y-4 border-y border-y-primary-gray-400 px-2 pb-6 pt-9 xs:grid-cols-1 sm:grid-cols-2 sm:gap-x-12 md:grid-cols-[fit-content(33%)_fit-content(34%)_fit-content(33%)] md:gap-x-20 md:px-4">
+        <div className="grid auto-cols-min gap-y-4 border-y border-y-primary-gray-400 px-2 pb-6 pt-9 xs:grid-cols-1 sm:grid-cols-2 sm:gap-x-12 md:grid-cols-[fit-content(25%)_fit-content(25%)_fit-content(25%)_fit-content(25%)] md:gap-x-20 md:px-4">
           {sections.map((section, i) => (
-            <section key={i} className="pb-15 w-fit md:pb-0">
+            <section key={i} className="w-fit pb-12 md:pb-0">
               <div className="pb-3">
                 <h3 className="whitespace-nowrap text-base font-bold lg:text-2xl">
                   {section.header}
