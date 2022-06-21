@@ -50,7 +50,7 @@ const homepageThreeColumnData: LinkCard3ColumnItems = [
     title: "Quickstarts",
     description:
       "Quick ways to get started in the environments for development.",
-    icon: <UseCaseIcon />,
+    icon: <UseCaseIcon height="1.5em" width="1.5em" />,
     links: [
       {
         title: "Get started locally",
@@ -76,7 +76,7 @@ const homepageThreeColumnData: LinkCard3ColumnItems = [
   {
     title: "Guides & Tutorials",
     description: "A more in-depth look at how dapp development works.",
-    icon: <EcosystemIcon />,
+    icon: <EcosystemIcon height="1.5em" width="1.5em" />,
     links: [
       {
         title: "Anatomy of a Flow dapp",
@@ -103,7 +103,7 @@ const homepageThreeColumnData: LinkCard3ColumnItems = [
     title: "Smart Contracts",
     description:
       "Use Cadence to interact with and create smart contracts on chain.",
-    icon: <SDKIcon />,
+    icon: <SDKIcon height="1.5em" width="1.5em" />,
     links: [
       {
         title: "Why Cadence?",
