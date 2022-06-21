@@ -1,11 +1,11 @@
 import { IntroCardProps } from "~/ui/design-system/src/lib/Components/NavigationBar/IntroCard"
-
+import RadarIcon from "~/ui/design-system/images/misc/radar.png"
 const learnCard: IntroCardProps = {
   href: "/learn",
   ctaText: "View all",
   description:
     "We have aggregated and categorized the best content on building dapps on Flow across the ecosystem.",
-  imageHref: "https://academy.ecdao.org/favicon_TODO.png",
+  imageHref: RadarIcon,
   title: "Flow Resource Library",
 }
 
@@ -14,7 +14,7 @@ const emeraldDaoCard: IntroCardProps = {
   ctaText: "View details",
   description:
     "Emerald DAO partners with Flow to produce educational material for Flow. Go from zero to a hero on Flow development with their live bootcamps.",
-  imageHref: "https://academy.ecdao.org/favicon_TODO.png",
+  imageHref: "https://academy.ecdao.org/thumb-beginner-cadence.png",
   title: "Flow Live Bootcamps",
 }
 
@@ -69,7 +69,7 @@ const kittyItemsCard: IntroCardProps = {
   description:
     "A full stack example NFT storefront and marketplace built with the latest standards and tooling on Flow. Get it up and running in a few minutes.",
   imageHref:
-    "https://www.dropbox.com/sh/5z8cfonblsycxj1/AACbXQwa8aFbgkM23GX5gnnSa?dl=0&preview=Asset+6%403x.png",
+    "https://kitty-items-flow-testnet-prod.herokuapp.com/images/kitty-items-logo.svg",
   title: "Kitty Items: Example Dapp",
 }
 
