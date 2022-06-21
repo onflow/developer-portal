@@ -95,7 +95,7 @@ const homepageThreeColumnData: LinkCard3ColumnItems = [
       },
       {
         title: "View more learning resources",
-        href: "/learn",
+        href: "/coming-soon", // TODO: We need to expose this footer once the /learn page is production ready
       },
     ],
   },

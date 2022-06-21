@@ -1,7 +1,9 @@
+import { MetaFunction } from "@remix-run/node"
 import { useLoaderData } from "@remix-run/react"
 import { LoaderFunction } from "@remix-run/server-runtime"
 import { fetchLatestTopics } from "~/cms/utils/fetch-discourse-api"
 import { fetchFlips } from "~/cms/utils/fetch-flips"
+import { getMetaTitle } from "~/root"
 import { CommunityMembersProps } from "~/ui/design-system/src/lib/Components/CommunityMembers"
 import { Default as DefaultCommunityMembers } from "~/ui/design-system/src/lib/Components/CommunityMembers/CommunityMembers.stories"
 import { UpcomingEventsProps } from "~/ui/design-system/src/lib/Components/UpcomingEvents"
@@ -21,6 +23,10 @@ type DynamicCommunityPageProps = Pick<
   | "upcomingEvents"
   | "forumTopics"
 >
+
+export const meta: MetaFunction = () => ({
+  title: getMetaTitle("Community"),
+})
 
 export const loader: LoaderFunction = async () => {
   temporarilyRedirectToComingSoon()

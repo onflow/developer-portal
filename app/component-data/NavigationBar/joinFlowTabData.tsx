@@ -8,7 +8,7 @@ export const eventsSection: Section = {
   links: [
     {
       title: "View more of the Flow community",
-      href: "/community",
+      href: "/coming-soon",
     },
   ],
   title: "Flow Ecosystem",
@@ -19,23 +19,23 @@ export const eventsSection: Section = {
     },
     {
       title: "Emerald Dao Bootcamp",
-      href: "https://github.com/onflow/fcl-js",
+      href: "https://academy.ecdao.org/",
     },
     {
       title: "FLOATs: Participation NFTs",
-      href: "https://github.com/onflow/flow-jvm-sdk",
+      href: "https://floats.city/",
     },
     {
       title: "FNS: Flow Name Service",
-      href: "https://github.com/Outblock/flow-swift",
+      href: "https://www.flowns.org/",
     },
     {
       title: ".find: Flow Name Service",
-      href: "https://github.com/Outblock/flow-swift",
+      href: "https://find.xyz/",
     },
     {
       title: "Jobs on Flow",
-      href: "https://github.com/onflow/flow-go-sdk",
+      href: "https://jobs.flowverse.co/",
     },
   ],
   icon: <EcosystemIcon height="1.5em" width="1.5em" />,
@@ -60,7 +60,7 @@ export const socialsSection: Section = {
     },
     {
       title: "Blog",
-      href: "http://blog.onflow.com/",
+      href: "https://www.onflow.org/blog",
     },
     {
       title: "Youtube",

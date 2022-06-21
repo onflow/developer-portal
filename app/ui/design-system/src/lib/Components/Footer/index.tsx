@@ -18,7 +18,7 @@ const footerSections = [
         text: "SDK's & Tools",
       },
       {
-        link: "/learn",
+        link: "/coming-soon",
         text: "Learning Resources",
       },
       {
@@ -55,7 +55,7 @@ const footerSections = [
     header: "Community",
     links: [
       {
-        link: "/community",
+        link: "/coming-soon",
         text: "Ecosystem",
       },
       {
@@ -63,11 +63,11 @@ const footerSections = [
         text: "Flow Port",
       },
       {
-        link: "/community",
+        link: "/coming-soon",
         text: "Developer Grants",
       },
       {
-        link: "/community",
+        link: "/coming-soon",
         text: "Bug Bounties",
       },
       {
