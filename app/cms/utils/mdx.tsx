@@ -283,6 +283,7 @@ function mapFromMdxPageToMdxListItem(page: MdxPage): MdxListItem {
   const { code, ...mdxListItem } = page
   return mdxListItem
 }
+
 const isLinkExternal = (href?: string) => !!href?.match(/^(www|http)/i)
 
 function GetMdxComponents(theme: Theme | null) {
@@ -335,12 +336,13 @@ function getMdxComponent(page: MdxPage, theme: Theme | null) {
   const { code } = page
 
   const Component = getMDXComponent(code)
+  // const headings = getHeadingsFromMdxComponent(Component);
   function MdxComponent({
     components,
     ...rest
   }: Parameters<typeof Component>["0"]) {
-    /* @ts-expect-error: TODO: Needs types. */
-    ;<Component components={GetMdxComponents(theme)} {...rest} />
+    /* @ts-expect-error: Does not like the link tage type definition above */
+    return <Component components={GetMdxComponents(theme)} {...rest} />
   }
   return MdxComponent
 }
