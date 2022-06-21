@@ -1,6 +1,5 @@
 import clsx from "clsx"
 import { useState } from "react"
-import { Link } from "../Link"
 
 type Tab = {
   name: string
@@ -42,11 +41,10 @@ const TabMenu = ({
           { block: isCurrentIndex, hidden: !isCurrentIndex }
         )
 
-        if (onTabChange) {
+        if (onTabChange && link) {
           return (
-            <Link
+            <a
               key={name}
-              id={name}
               href={link}
               className={tabClasses}
               onClick={() => {
@@ -63,7 +61,7 @@ const TabMenu = ({
                 {name}
               </span>
               <div className={indicatorClasses} />
-            </Link>
+            </a>
           )
         }
 
