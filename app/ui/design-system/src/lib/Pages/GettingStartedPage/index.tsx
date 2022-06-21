@@ -68,6 +68,7 @@ export function GettingStartedPage({
             description={landingHeaderItems.description}
             title={landingHeaderItems.title}
             imageSrc={landingHeaderItems.imageSrc}
+            imagePadding={false}
           />
         </PageSection>
         <PageSection>
