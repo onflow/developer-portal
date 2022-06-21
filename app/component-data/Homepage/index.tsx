@@ -5,7 +5,7 @@ import {
   LinkCard2ColumnProps,
   LinkCard3ColumnItems,
 } from "~/ui/design-system/src"
-
+import FlowIcon from "../../ui/design-system/images/logos/flow-icon.svg"
 const homepageStartProjectData: LinkCard2ColumnProps = {
   buttonText: "Get started",
   buttonUrl: "/getting-started",
@@ -26,18 +26,18 @@ const homepageStartProjectData: LinkCard2ColumnProps = {
       title: "Mint NFTs on the Playground with Cadence",
       description:
         "A series of tutorials that explain how to build your first NFT (Non-Fungible Token).",
-      icon: "https://avatars.githubusercontent.com/u/62387156?s=64&v=4",
+      icon: FlowIcon,
       links: [
         {
           href: "https://docs.onflow.org/cadence/tutorial/02-hello-world/",
           title: "Hello, World!",
         },
         {
-          href: "https://docs.onflow.org/cadence/tutorial/05-marketplace-setup/",
+          href: "https://docs.onflow.org/cadence/tutorial/04-non-fungible-tokens/",
           title: "NFTs",
         },
         {
-          href: "https://docs.onflow.org/cadence/tutorial/04-non-fungible-tokens/",
+          href: "https://docs.onflow.org/cadence/tutorial/05-marketplace-setup/",
           title: "Marketplaces",
         },
       ],
@@ -49,7 +49,7 @@ const homepageThreeColumnData: LinkCard3ColumnItems = [
   {
     title: "Quickstarts",
     description:
-      "A quick way to familiarize yourself with the environments you can use to build on Flow.",
+      "Quick ways to get started in the environments for development.",
     icon: <UseCaseIcon />,
     links: [
       {
@@ -75,23 +75,23 @@ const homepageThreeColumnData: LinkCard3ColumnItems = [
   },
   {
     title: "Guides & Tutorials",
-    description: "A more in-depth look at how dapp development works on Flow.",
+    description: "A more in-depth look at how dapp development works.",
     icon: <EcosystemIcon />,
     links: [
       {
-        title: "NFT dapp development guide",
-        href: "#tutorial1",
+        title: "Anatomy of a Flow dapp",
+        href: "https://docs.onflow.org/dapp-development/flow-dapp-anatomy/",
         tags: ["overview"],
-      },
-      {
-        title: "Deploying your project",
-        href: "https://docs.onflow.org/flow-cli/deploy-project-contracts/",
-        tags: ["cli", "tutorial"],
       },
       {
         title: "Flow key concepts",
         href: "https://docs.onflow.org/concepts/accounts-and-keys/",
         tags: ["accounts", "signing"],
+      },
+      {
+        title: "Deploy your project",
+        href: "https://docs.onflow.org/flow-cli/deploy-project-contracts/",
+        tags: ["cli", "tutorial"],
       },
       {
         title: "View more learning resources",
@@ -101,27 +101,28 @@ const homepageThreeColumnData: LinkCard3ColumnItems = [
   },
   {
     title: "Smart Contracts",
-    description: "Smart contracts description.",
+    description:
+      "Use Cadence to interact with and create smart contracts on chain.",
     icon: <SDKIcon />,
     links: [
       {
         title: "Why Cadence?",
-        href: "https://docs.onflow.org/cadence/tutorial/02-hello-world/",
-        tags: ["cadence"],
+        href: "https://medium.com/coinmonks/how-cadence-and-flow-will-revolutionize-smart-contract-programming-607bd05b49b",
+        tags: ["blog"],
       },
       {
         title: "Introduction to Cadence",
-        href: "https://docs.onflow.org/core-contracts",
-        tags: ["nft", "ft", "metadata"],
-      },
-      {
-        title: "Core Contracts & Standards",
-        href: "https://docs.onflow.org/core-contracts",
-        tags: ["nft", "ft", "metadata"],
+        href: "https://docs.onflow.org/cadence/",
+        tags: ["overview"],
       },
       {
         title: "Cadence cookbook",
         href: "https://open-cadence.onflow.org/",
+        tags: ["samples", "playground"],
+      },
+      {
+        title: "View all Cadence content",
+        href: "https://docs.onflow.org/cadence/",
       },
     ],
   },
