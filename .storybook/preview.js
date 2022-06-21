@@ -80,11 +80,12 @@ const withDarkMode = (Story, context) => {
   const isDarkModeSelected = globals.backgrounds?.value === "#000000"
   const isDarkMode = isDarkModeSelected || isDefaultDarkModeStory
 
-  return (
-    <div className={clsx("root", { dark: isDarkMode })}>
-      <Story {...context} />
-    </div>
-  )
+  useEffect(() => {
+    document.body.classList.add("root")
+    document.body.classList[isDarkMode ? "add" : "remove"]("dark")
+  })
+
+  return <Story {...context} />
 }
 
 export const decorators = [withDarkMode]
