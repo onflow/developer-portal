@@ -1,4 +1,4 @@
-import { GITHUB_URL } from "../../constants"
+import { GITHUB_URL } from "../../../../../../constants"
 import { ButtonLink } from "../Button"
 import TabMenu from "../TabMenu"
 import FlipCell, { FlipCellHeader, FlipCellProps } from "./FlipCell"
