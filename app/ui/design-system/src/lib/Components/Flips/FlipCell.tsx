@@ -94,7 +94,7 @@ const FlipCell = ({
           />
         </div>
         <div className="flex items-center justify-center">
-          <CalendarIcon />{" "}
+          <CalendarIcon width="24" height="24" />{" "}
           <span className="ml-1 sm:ml-2">{dateYYMMDD(date)}</span>
         </div>
         <div className="flex items-center justify-center">

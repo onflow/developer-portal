@@ -180,11 +180,11 @@ export const Footer = ({ sections = footerSections }) => {
             </a>
           </div>
         </div>
-        <div className="grid auto-cols-min gap-y-4 border-y border-y-primary-gray-400 px-2 pb-6 pt-9 xs:grid-cols-1 sm:grid-cols-2 sm:gap-x-12 md:grid-cols-[fit-content(25%)_fit-content(25%)_fit-content(25%)_fit-content(25%)] md:gap-x-20 md:px-4">
+        <div className="grid auto-cols-min gap-y-4 border-y border-y-primary-gray-400 px-2 pb-6 pt-9 xs:grid-cols-1 sm:grid-cols-2 sm:gap-x-12 md:gap-x-20 md:px-4 lg:grid-cols-[fit-content(25%)_fit-content(25%)_fit-content(25%)_fit-content(25%)]">
           {sections.map((section, i) => (
             <section key={i} className="w-fit pb-12 md:pb-0">
               <div className="pb-3">
-                <h3 className="whitespace-nowrap text-base font-bold lg:text-2xl">
+                <h3 className="whitespace-nowrap text-base font-bold md:text-xl lg:text-2xl">
                   {section.header}
                 </h3>
               </div>
@@ -192,7 +192,7 @@ export const Footer = ({ sections = footerSections }) => {
                 {section.links.map((link, j) => (
                   <li className="py-1 pl-0" key={j}>
                     <a
-                      className="whitespace-nowrap text-xs text-primary-gray-200 hover:text-primary-gray-100 lg:text-base"
+                      className="whitespace-nowrap text-xs text-primary-gray-200 hover:text-primary-gray-100 md:text-sm lg:text-base"
                       href={link.link}
                     >
                       {link.text}
