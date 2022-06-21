@@ -287,12 +287,12 @@ const gettingStartedPageData = {
   ],
   recentArticleItems: [
     {
-      heading: "This is a featured article with two rows title",
-      tags: ["Tag"],
+      heading: "Get the Flow Down",
+      tags: ["resource-list"],
       description:
-        "Everything you need to start building on,  Flow verything you need to start building on start building on start building on",
-      link: "/article",
-      ctaText: "Click me!",
+        "Get the Flow Down is a curated collection of the best Flow blockchain tools, tutorials, articles and more!",
+      link: "https://github.com/ph0ph0/Get-The-Flow-Down",
+      ctaText: "View List",
     },
     {
       heading: "This is a featured article with two rows title",
