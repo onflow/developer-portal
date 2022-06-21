@@ -61,8 +61,12 @@ export function LandingHeader({
             {buttonText}
           </ButtonLink>
         </div>
-        <div className="hidden rounded-r-lg border px-10 py-6 dark:bg-white/40 md:block md:block md:basis-1/2 md:px-20 md:py-12">
-          <img src={imageSrc} alt={title} />
+        <div className="hidden items-center justify-center rounded-r-lg border px-10 py-6 dark:bg-white/40 md:flex md:basis-1/2 md:px-20 md:py-12">
+          <img
+            src={imageSrc}
+            alt={title}
+            className="max-h-[340px] max-w-[570px]"
+          />
         </div>
       </div>
       <LandingHeaderLinks />
