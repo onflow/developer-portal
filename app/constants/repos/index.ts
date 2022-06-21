@@ -30,4 +30,4 @@ const repoPresets: Partial<Record<Repo[number]["repo"], RepoSchema>> = {
   "flow-js-testing": flowJsTesting as RepoSchema,
 }
 
-export { repoList, repoPresets }
+export { repoList, repoPresets, SITE_TITLE }

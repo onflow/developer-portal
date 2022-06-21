@@ -1,9 +1,16 @@
-import { LoaderFunction } from "@remix-run/node"
+import { LoaderFunction, MetaFunction } from "@remix-run/node"
 import { getMdxPage, useMdxComponent } from "~/cms/utils/mdx"
 import { json } from "@remix-run/node"
 import { Link, useCatch, useLoaderData, useLocation } from "@remix-run/react"
 import invariant from "tiny-invariant"
 import { ErrorPage } from "~/ui/design-system/src/lib/Components/ErrorPage"
+import { getSocialMetas } from "~/utils/seo"
+
+export const meta: MetaFunction = ({ parentsData, data, params }) => {
+  return getSocialMetas({
+    url: "",
+  })
+}
 
 export const loader: LoaderFunction = async ({ params, request }) => {
   const [repo, fileOrDirPath] = [params["repo"], params["*"] || "index"]

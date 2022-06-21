@@ -1,12 +1,12 @@
+import { DEFAULT_SITE_DESCRIPTION, DEFAULT_SITE_TITLE } from "~/constants"
+
 export function getSocialMetas({
   url,
-  title = "Welcome to the Flow Developer Portal",
-  description = "Your resource for everything you'll need to build in Flow",
-  origin,
-  image,
+  title = DEFAULT_SITE_TITLE,
+  description = DEFAULT_SITE_DESCRIPTION,
+  image = "",
   keywords = "",
 }: {
-  origin: string
   image?: string
   url: string
   title?: string
