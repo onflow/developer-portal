@@ -17,10 +17,11 @@ const footerSections = [
         link: "/tools",
         text: "SDK's & Tools",
       },
+      /* TODO: We need to expose this footer once the /learn page is production ready
       {
         link: "/learn",
         text: "Learning Resources",
-      },
+      }, */
       {
         link: "https://docs.onflow.org/cadence/",
         text: "Cadence",
@@ -181,7 +182,7 @@ export const Footer = ({ sections = footerSections }) => {
             </a>
           </div>
         </div>
-        <div className="md:gap-x-50 grid auto-cols-min gap-y-4 border-y border-y-primary-gray-400 px-2 pb-6 pt-9 xs:grid-cols-1 sm:grid-cols-2 sm:gap-x-12 md:grid-cols-[fit-content(33%)_fit-content(33%)_fit-content(33%)] md:px-4">
+        <div className="grid auto-cols-min gap-y-4 border-y border-y-primary-gray-400 px-2 pb-6 pt-9 xs:grid-cols-1 sm:grid-cols-2 sm:gap-x-12 md:grid-cols-[fit-content(33%)_fit-content(34%)_fit-content(33%)] md:gap-x-20 md:px-4">
           {sections.map((section, i) => (
             <section key={i} className="pb-15 w-fit md:pb-0">
               <div className="pb-3">
