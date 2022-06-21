@@ -1,4 +1,4 @@
-import FlowDocsLogo from "../../../../images/logos/flow-docs-logo-light.svg"
+import { ReactComponent as FlowDocsLogo } from "../../../../images/logos/flow-docs-logo"
 import OnFlowIcon from "../../../../images/logos/flow-icon-bw-light.svg"
 import DiscordIcon from "../../../../images/social/discord-light.svg"
 import ForumIcon from "../../../../images/social/forum-light.svg"
@@ -157,7 +157,14 @@ export const Footer = ({ sections = footerSections }) => {
     <footer className="bg-black px-6 text-white">
       <div className="container mx-auto">
         <div className="block items-center justify-between px-2 pt-8 pb-6 md:flex md:px-4 md:pt-16">
-          <img src={FlowDocsLogo} alt="Flow Docs" width="150" />
+          <a href="/" className="py-2 hover:opacity-75">
+            <FlowDocsLogo
+              className="origin-top-left scale-75"
+              style={{
+                transformOrigin: "center left",
+              }}
+            />
+          </a>
           <div className="flex items-center gap-6 pt-8 md:pt-0">
             <a href="https://github.com/onflow" className="hover:opacity-75">
               <img src={GithubIcon} height={32} width={32} />
