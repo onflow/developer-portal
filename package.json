@@ -91,7 +91,7 @@
     "build:remix": "remix build",
     "dev": "run-p dev:*",
     "dev:css": "yarn generate:css -- --watch",
-    "dev:remix": "remix dev --port 3002",
+    "dev:remix": "remix dev",
     "dev:svg": "yarn svgr --silent --template svgr/template.js --filename-case kebab --out-dir ./app/ui/design-system/images ./app/ui/design-system/images",
     "format:app": "prettier --write app",
     "format:check:app": "prettier --check app",
