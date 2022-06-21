@@ -27,8 +27,8 @@ const upcomingEvents = [
     isPrimary: true,
   },
   {
-    ctaText: "More Info",
-    description: `Network and learn from "the world's best speakers", including Dapper Labs CEO Roham Gharegozlou, at the Collision Toronto tech conference`,
+    ctaText: "More Details",
+    description: `Network and learn from "the world's best speakers", including Dapper Labs CEO Roham Gharegozlou, at the Collision Toronto conference`,
     eventDate: "June 20-23",
     href: "https://collisionconf.com/",
     imageSrc:
@@ -49,6 +49,7 @@ const upcomingEvents = [
     title: "Flow Tokenomics",
   },
   {
+    ctaText: "More Details",
     href: "https://share.onflow.org/nft-nyc-2022#:~:text=Andbox%20and%20more.-,Blocto,-(3%2D6pm%20ET",
     eventType: "New York",
     description: "",
@@ -59,6 +60,7 @@ const upcomingEvents = [
     eventDate: "June 21, 3:00pm - 6:00pm ET",
   },
   {
+    ctaText: "More Details",
     href: "https://share.onflow.org/nft-nyc-2022#:~:text=Building%20the%20NFT%20Marketplace%20of%20the%20Future",
     eventType: "New York",
     description: "",
@@ -69,6 +71,7 @@ const upcomingEvents = [
     eventDate: "June 22, 2:00pm ET",
   },
   {
+    ctaText: "More Details",
     href: "https://share.onflow.org/nft-nyc-2022#:~:text=Fireside%20Chat%20with%20Roham",
     eventType: "New York",
     description: "",
@@ -79,7 +82,7 @@ const upcomingEvents = [
     eventDate: "June 23, 10:00am ET",
   },
   {
-    ctaText: "",
+    ctaText: "More Details",
     description: "",
     eventDate: "June 22, 11:30am ET",
     href: "https://nftnycmpc.rsvpify.com/",
@@ -90,7 +93,7 @@ const upcomingEvents = [
     title: "NFT NYC x Meta Panda Club",
   },
   {
-    ctaText: "",
+    ctaText: "More Details",
     href: "https://upstreamapp.com/home/zU994MU3D5/events/S_muix6MdF",
     description: "",
     eventDate: "June 22, 5:00pm ET",
