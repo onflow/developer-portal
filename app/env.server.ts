@@ -9,6 +9,7 @@ function getEnv() {
     REDIS_CA: process.env.REDIS_CA,
     REFRESH_CACHE_SECRET: process.env.REFRESH_CACHE_SECRET,
     STATUSPAGE_API_KEY: process.env.STATUSPAGE_API_KEY,
+    GA_TRACKING_ID: process.env.GA_TRACKING_ID,
   }
 }
 
