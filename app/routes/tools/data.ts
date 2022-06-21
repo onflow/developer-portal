@@ -10,6 +10,20 @@ import ToolPortIconSrc from "../../ui/design-system/images/tools/tool-port.svg"
 import ToolTestingIconSrc from "../../ui/design-system/images/tools/tool-testing.svg"
 import ToolVsCodeIconSrc from "../../ui/design-system/images/tools/tool-vscode.svg"
 import { ToolsPageProps } from "../../ui/design-system/src/lib/Pages/ToolsPage"
+
+import {
+  flowScannerTool,
+  flowserTool,
+  overflowTool,
+  dotNetSDK,
+  swiftSDK,
+  rustSDK,
+  httpSDK,
+  jvmSDK,
+  goSDK,
+  fclSDK,
+} from "../../component-data/Tools"
+
 export const data: ToolsPageProps = {
   tools: [
     {
@@ -80,63 +94,7 @@ export const data: ToolsPageProps = {
         "Lorem ipsum text here can go a two liner sentence or a one liner",
     },
   ],
-  sdks: [
-    {
-      title: "Swift",
-      authorIcon: "https://avatars.githubusercontent.com/u/62387156?s=64&v=4",
-      authorName: "mini flow",
-      tags: ["Tool"],
-      link: "#",
-      stars: 52,
-      iconSrc: SdkSwiftIconSrc,
-      lastCommit: "22/3",
-      lastRelease: "207",
-    },
-    {
-      title: "Elixir",
-      authorIcon: "https://avatars.githubusercontent.com/u/62387156?s=64&v=4",
-      authorName: "mini flow",
-      tags: ["Tool"],
-      link: "#",
-      stars: 52,
-      iconSrc: SdkElixirIconSrc,
-      lastCommit: "22/3",
-      lastRelease: "207",
-    },
-    {
-      title: "Go",
-      authorIcon: "https://avatars.githubusercontent.com/u/62387156?s=64&v=4",
-      authorName: "mini flow",
-      tags: ["Tool"],
-      link: "#",
-      stars: 52,
-      iconSrc: SdkGoIconSrc,
-      lastCommit: "22/3",
-      lastRelease: "207",
-    },
-    {
-      title: "Rust",
-      authorIcon: "https://avatars.githubusercontent.com/u/62387156?s=64&v=4",
-      authorName: "mini flow",
-      tags: ["Tool"],
-      link: "#",
-      stars: 52,
-      iconSrc: SdkRustIconSrc,
-      lastCommit: "22/3",
-      lastRelease: "207",
-    },
-    {
-      title: ".Net",
-      authorIcon: "https://avatars.githubusercontent.com/u/62387156?s=64&v=4",
-      authorName: "mini flow",
-      tags: ["Tool"],
-      link: "#",
-      stars: 52,
-      iconSrc: SdkNetIconSrc,
-      lastCommit: "22/3",
-      lastRelease: "207",
-    },
-  ],
+  sdks: [dotNetSDK, swiftSDK, rustSDK, httpSDK, jvmSDK, goSDK, fclSDK],
   contentNavigationItems: [
     {
       title: "Concepts",

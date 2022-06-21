@@ -1,6 +1,19 @@
 import { SDKCardProps } from "~/ui/design-system/src/lib/Components/SDKCard"
 import { ToolCardProps } from "~/ui/design-system/src/lib/Components/ToolCard"
 
+// Flow Dev Tools
+const CLI: SDKCardProps = {
+  title: "FCL SDK",
+  authorIcon: "https://avatars.githubusercontent.com/u/62387156?s=64&v=4",
+  authorName: "onflow",
+  tags: ["documentation", "active"],
+  link: "https://github.com/onflow/fcl-js",
+  stars: 268,
+  iconSrc:
+    "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/javascript/javascript-original.svg",
+}
+
+// SDKs
 const fclSDK: SDKCardProps = {
   title: "FCL SDK",
   authorIcon: "https://avatars.githubusercontent.com/u/62387156?s=64&v=4",
@@ -44,6 +57,7 @@ const httpSDK: SDKCardProps = {
   stars: 417,
   iconSrc:
     "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/fastapi/fastapi-original.svg",
+  description: "This is a sample.",
 }
 
 const rustSDK: SDKCardProps = {
@@ -78,6 +92,8 @@ const dotNetSDK: SDKCardProps = {
   iconSrc:
     "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/dot-net/dot-net-original.svg",
 }
+
+// Community Tools
 
 const overflowTool: ToolCardProps = {
   title: "Overflow",

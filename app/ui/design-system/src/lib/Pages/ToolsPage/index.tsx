@@ -42,10 +42,11 @@ const ToolsPage = ({
           />
         </PageSection>
         <PageSection>
-          <ToolsAndConcepts tools={tools} />
+          <ToolsAndConcepts bottomButtons={false} tools={tools} />
         </PageSection>
         <PageSection>
           <SDKCards
+            header="Something"
             cards={sdks}
             description="Blurb aboud SDK's here lorem ipsum dolor sit amet proin."
           />
