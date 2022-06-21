@@ -33,7 +33,7 @@ export function EventCard({
   return (
     <div
       className={clsx(
-        "flex min-h-[430px] flex-col-reverse overflow-hidden rounded-2xl bg-white dark:bg-primary-gray-dark md:min-h-[30rem] md:flex-row",
+        "flex max-h-[450px] flex-col-reverse overflow-hidden rounded-2xl bg-white dark:bg-primary-gray-dark md:min-h-[30rem] md:flex-row",
         className
       )}
     >
@@ -67,7 +67,7 @@ export function EventCard({
         <img
           src={imageSrc}
           alt={imageAlt}
-          className="h-[125px] w-full object-cover md:h-full"
+          className="min-h-[125px] w-full object-cover md:h-full"
         />
       </div>
     </div>
