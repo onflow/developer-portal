@@ -11,8 +11,11 @@ export function SubsectionLink({
   title,
 }: SubsectionLinkProps) {
   return (
-    <a href={href} className="flex items-center truncate truncate py-1 md:px-2">
-      <span className="mr-1 rounded border p-px	text-primary-gray-200 drop-shadow-sm">
+    <a
+      href={href}
+      className="flex items-center truncate py-1 hover:text-primary-blue dark:hover:text-blue-hover-dark md:px-2"
+    >
+      <span className="mr-1 hidden rounded border p-px	text-primary-gray-200 drop-shadow-sm">
         {icon}
       </span>
       {title}

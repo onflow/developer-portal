@@ -14,7 +14,7 @@ export function SectionHeading({
   return (
     <h6
       className={clsx(
-        "flex items-center border-b py-1 text-sm uppercase text-primary-gray-300 dark:text-primary-gray-100 md:px-2",
+        "mb-5 flex items-center border-b border-primary-gray-100 py-2 text-sm uppercase text-primary-gray-300 dark:border-primary-gray-400 dark:text-primary-gray-200 md:px-2",
         className
       )}
     >

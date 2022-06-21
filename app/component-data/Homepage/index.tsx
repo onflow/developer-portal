@@ -8,7 +8,7 @@ import {
 
 const homepageStartProjectData: LinkCard2ColumnProps = {
   buttonText: "Get started",
-  buttonUrl: "/builders",
+  buttonUrl: "/getting-started",
   description: `Building on Flow is easy. 
       Start building now on web3 with the power of resource-oriented programming, multi-node architecture, 
       and a host of other features and tooling to make your dapp development easy and efficient.`,

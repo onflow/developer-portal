@@ -28,7 +28,7 @@ const playgroundCard: IntroCardProps = {
 }
 
 const gettingStartedCard: IntroCardProps = {
-  href: "/builders",
+  href: "/getting-started",
   ctaText: "Get started",
   description: "New to Flow? Start here to understand and learn the basics.",
   imageHref:
@@ -37,7 +37,7 @@ const gettingStartedCard: IntroCardProps = {
 }
 
 const sporkProcessCard: IntroCardProps = {
-  href: "/builders",
+  href: "/getting-started",
   ctaText: "Get Started",
   description: "New to Flow? Start here to understand and learn the basics.",
   imageHref:
@@ -55,7 +55,7 @@ const networkStatusCard: IntroCardProps = {
 }
 
 const flowVerseCard: IntroCardProps = {
-  href: "/builders",
+  href: "/getting-started",
   ctaText: "Get Started",
   description: "New to Flow? Start here to understand and learn the basics.",
   imageHref:

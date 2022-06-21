@@ -24,7 +24,7 @@ export function MenuContent({
   const hasCards = cards.length > 0
 
   return (
-    <div className="flex max-h-full flex-col gap-6 bg-white p-4 dark:bg-black md:flex-row">
+    <div className="flex h-full flex-col gap-6 bg-white p-4 dark:bg-primary-gray-dark md:flex-row">
       {cards.length > 0 && (
         <div>
           <IntroCardCarousel cards={cards} />
@@ -61,7 +61,7 @@ export function MenuContent({
         </div>
       ) : (
         <MenuContentGrid
-          className="flex-1 gap-4"
+          className="flex-1 gap-4 md:gap-x-12 md:gap-y-8"
           hasCards={cards.length > 0}
           isTabContent={isTabContent}
         >
@@ -70,7 +70,7 @@ export function MenuContent({
               <div key={sectionIndex} className="flex flex-col justify-between">
                 <div>
                   <SectionHeading title={title} icon={icon} />
-                  <div className="mt-2">
+                  <div className="mt-2 flex flex-col gap-y-1">
                     {subSections.map((subsection, subSectionIndex) => (
                       <SubsectionLink
                         key={subSectionIndex}
@@ -81,7 +81,10 @@ export function MenuContent({
                   </div>
                 </div>
                 {links && (
-                  <SectionLinkList className="border-t" links={links} />
+                  <SectionLinkList
+                    className="border-t border-primary-gray-100 dark:border-primary-gray-400"
+                    links={links}
+                  />
                 )}
               </div>
             )

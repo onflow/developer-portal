@@ -20,7 +20,7 @@ import {
   dotNetSDK,
   overflowTool,
   flowserTool,
-  flowScannerTool,
+  eventIndexingTool,
 } from "../../component-data/Tools"
 import { introToFlowBlockchainArticle } from "../../component-data/Articles"
 import { FeaturedArticleCardProps } from "~/ui/design-system/src/lib/Components/FeaturedArticleCard"
@@ -206,7 +206,7 @@ const recentArticleItems: [
 const recentToolItems: [ToolCardProps, ToolCardProps, ToolCardProps] = [
   overflowTool,
   flowserTool,
-  flowScannerTool,
+  eventIndexingTool,
 ]
 
 export {

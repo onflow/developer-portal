@@ -22,13 +22,13 @@ export function UpcomingEvents({
   const [selectedTab, setSelectedTab] = useState(0)
   const allEvents = [
     { events: upcoming },
-    { events: officeHours },
     { events: workingHours },
+    { events: officeHours },
   ]
   const events = allEvents[selectedTab].events
   const primaryEvent =
     events.filter((event: EventCardProps) => event.isPrimary)[0] || events[0]
-  const remainingEvents = events.slice(1)
+  const remainingEvents = events.filter((event) => !event.isPrimary)
 
   return (
     <div className="container">
@@ -44,9 +44,9 @@ export function UpcomingEvents({
       <div className="py-6">
         <div className="hidden md:block">
           <EventCard {...primaryEvent} className="mb-4" />
-          <ul className="hidden list-none flex-row justify-between gap-6 overflow-x-auto md:flex">
+          <ul className="hidden list-none flex-row gap-6 overflow-x-auto md:flex">
             {remainingEvents.map((event: EventCardProps, index: number) => (
-              <li key={index} className="mr-12">
+              <li key={index}>
                 <EventCardSmall {...event} />
               </li>
             ))}

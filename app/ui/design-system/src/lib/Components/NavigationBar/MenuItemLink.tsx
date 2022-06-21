@@ -24,7 +24,7 @@ export function MenuItemLink({
     >
       <span>{title}</span>
       {isExternal && (
-        <span className="ml-1">
+        <span className="ml-2">
           <ExternalLinkIcon />
         </span>
       )}
