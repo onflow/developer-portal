@@ -1,13 +1,9 @@
 import { SDKCardProps } from "~/ui/design-system/src/lib/Components/SDKCard"
-import { ToolCardProps } from "~/ui/design-system/src/lib/Components/ToolCard"
 import ToolCliIconSrc from "../../ui/design-system/images/tools/tool-cli.svg"
 import ToolEmulatorIconSrc from "../../ui/design-system/images/tools/tool-emulator.svg"
 import ToolFclIconSrc from "../../ui/design-system/images/tools/tool-fcl.svg"
-import ToolPortIconSrc from "../../ui/design-system/images/tools/tool-port.svg"
-import FaucetIcon from "../../ui/design-system/images/content/faucet.png"
 import ToolTestingIconSrc from "../../ui/design-system/images/tools/tool-testing.svg"
 import ToolVsCodeIconSrc from "../../ui/design-system/images/tools/tool-vscode.svg"
-import GithubIcon from "../../ui/design-system/images/social/github-light.svg"
 import CodeIcon from "../../ui/design-system/images/content/code.svg"
 
 // Flow Dev Tools
@@ -42,7 +38,7 @@ const vsCodeTool: SDKCardProps = {
   tags: ["documentation", "active", "local-dev"],
   link: "https://github.com/onflow/vscode-cadence",
   stars: 33,
-  iconSrc: ToolEmulatorIconSrc,
+  iconSrc: ToolVsCodeIconSrc,
   description:
     "The Visual Studio Code extension for Cadence. Extensive features such as code generation, deploying contracts, and a lot more.",
 }
@@ -123,8 +119,7 @@ const fclSDK: SDKCardProps = {
   tags: ["documentation", "active"],
   link: "https://github.com/onflow/fcl-js",
   stars: 268,
-  iconSrc:
-    "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/javascript/javascript-original.svg",
+  iconSrc: ToolFclIconSrc,
 }
 
 const goSDK: SDKCardProps = {
@@ -351,7 +346,7 @@ const flowMarketplaceMonitorTool = {
 
 const alchemyAccessTool = {
   title: "Alchemy HTTP API",
-  tags: ["api", "service", "monitoring"],
+  tags: ["api", "hosted", "monitoring"],
   link: "https://docs.alchemy.com/flow/",
   iconSrc: "https://res.cloudinary.com/apideck/icons/alchemy",
   description: `An API for the Flow Access Node and provides dashboard tools for debugging and monitoring.`,
@@ -359,10 +354,18 @@ const alchemyAccessTool = {
 
 const alchemyNFTTool = {
   title: "Alchemy Flow NFT API",
-  tags: ["api", "service", "monitoring"],
+  tags: ["api", "hosted", "nfts"],
   link: "https://docs.alchemy.com/flow/documentation/flow-nft-apis",
   iconSrc: "https://res.cloudinary.com/apideck/icons/alchemy",
   description: `A NFT API to retrieve on and off chain metadata for all NFTs of a given account and more.`,
+}
+
+const graffleTool = {
+  title: "Graffle",
+  tags: ["api", "hosted", "webhooks"],
+  link: "https://graffle.io/",
+  iconSrc: "https://graffle.io/static/brand/logo_single.svg",
+  description: `Hosted infrastructure and APIs to index, monitor and store on-chain events alongside other extensive features.`,
 }
 
 export {
@@ -398,4 +401,5 @@ export {
   vsCodeTool,
   commandLineLinter,
   cdcWebpackPlugin,
+  graffleTool,
 }

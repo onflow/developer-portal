@@ -54,21 +54,21 @@ const ToolsPage = ({
           <SDKCards
             header="SDKs"
             cards={sdks}
-            description="Blurb aboud SDK's here lorem ipsum dolor sit amet proin."
+            description="Libraries that make it easy to connect to Flow in multiple languages and frameworks."
           />
         </PageSection>
         <PageSection>
           <SDKCards
-            header="Open Source Services"
+            header="APIs & Services"
             cards={apisAndServices}
-            description="Blurb aboud SDK's here lorem ipsum dolor sit amet proin."
+            description="Hosted and open source services that abstract some of the most difficult parts of building on the blockchain."
           />
         </PageSection>
         <PageSection>
           <SDKCards
             header="Flow Blockchain Explorers"
             cards={explorers}
-            description="Blurb aboud SDK's here lorem ipsum dolor sit amet proin."
+            description="Different ways of looking up on-chain metrics, events, transactions, accounts, and more."
           />
         </PageSection>
         <PageSection>

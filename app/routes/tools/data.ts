@@ -31,6 +31,7 @@ import {
   alchemyNFTTool,
   intellijTool,
   vsCodeTool,
+  graffleTool,
   commandLineLinter,
   cdcWebpackPlugin,
 } from "../../component-data/Tools"
@@ -48,6 +49,7 @@ export const data: ToolsPageProps = {
     vsCodeTool,
     commandLineLinter,
     cdcWebpackPlugin,
+    graffleTool,
   ],
   sdks: [
     httpSDK,
@@ -70,6 +72,7 @@ export const data: ToolsPageProps = {
     flowMarketplaceMonitorTool,
     alchemyAccessTool,
     alchemyNFTTool,
+    graffleTool,
   ],
   explorers: [flowScanTool, flowViewSourceTool, bigDipperTool],
   contentNavigationItems: [
