@@ -5,26 +5,18 @@ import { EventCardSmall } from "../EventCardSmall"
 import TabMenu from "../TabMenu"
 
 export type UpcomingEventsProps = {
-  submitEventHref: string
   goToCommunityHref: string
   upcoming: EventCardProps[]
   officeHours: EventCardProps[]
-  workingHours: EventCardProps[]
 }
 
 export function UpcomingEvents({
-  submitEventHref,
   goToCommunityHref,
   upcoming,
   officeHours,
-  workingHours,
 }: UpcomingEventsProps) {
   const [selectedTab, setSelectedTab] = useState(0)
-  const allEvents = [
-    { events: upcoming },
-    { events: workingHours },
-    { events: officeHours },
-  ]
+  const allEvents = [{ events: upcoming }, { events: officeHours }]
   const events = allEvents[selectedTab].events
   const primaryEvent =
     events.filter((event: EventCardProps) => event.isPrimary)[0] || events[0]
@@ -36,7 +28,6 @@ export function UpcomingEvents({
       <TabMenu
         tabs={[
           { name: "Upcoming events", link: "#" },
-          { name: "Working hours", link: "#" },
           { name: "Flow office hours", link: "#" },
         ]}
         onTabChange={setSelectedTab}
@@ -60,20 +51,14 @@ export function UpcomingEvents({
         />
         <div className="mt-10 flex flex-col justify-items-stretch gap-6 md:flex-row">
           <ButtonLink
-            className="flex-1"
-            href={submitEventHref}
-            rightIcon="right"
-          >
-            Submit an Event
-          </ButtonLink>
-          <ButtonLink
-            className="flex-1"
+            className="flex-1 md:max-w-[50%]"
             variant="secondary"
             href={goToCommunityHref}
             rightIcon="external"
           >
             Go to Community
           </ButtonLink>
+          <div className="flex-1" />
         </div>
       </div>
     </div>

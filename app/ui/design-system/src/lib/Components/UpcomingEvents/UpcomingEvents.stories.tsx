@@ -102,33 +102,6 @@ const upcomingEvents = [
   },
 ]
 
-const workingHoursEvents = [
-  {
-    ctaText: "CTA Here",
-    description:
-      "Everything you need to start building on Flow verything you need to start building on Flow everything you need to start building on Flow",
-    eventDate: "Mar 23",
-    href: "#todo",
-    imageSrc:
-      "https://assets.website-files.com/5f6294c0c7a8cdf432b1c827/61689102d3325e237fd44b76_unnamed%20(8).png",
-    location: "Online",
-    tags: ["Flow official"],
-    title: "Upcoming Event Title 1",
-  },
-  {
-    ctaText: "CTA Here",
-    description:
-      "Everything you need to start building on Flow verything you need to start building on Flow everything you need to start building on Flow",
-    eventDate: "Mar 23",
-    href: "#todo",
-    imageSrc:
-      "https://assets.website-files.com/5f6294c0c7a8cdf432b1c827/61689102d3325e237fd44b76_unnamed%20(8).png",
-    location: "Online",
-    tags: ["Flow official"],
-    title: "Upcoming Event Title 2",
-  },
-]
-
 const officeHoursEvents = [
   {
     ctaText: "Learn More",
@@ -157,9 +130,7 @@ const officeHoursEvents = [
 
 const DefaultArgs = {
   goToCommunityHref: "#todo",
-  submitEventHref: "#todo",
   upcoming: upcomingEvents,
-  workingHours: workingHoursEvents,
   officeHours: officeHoursEvents,
 }
 
@@ -171,7 +142,6 @@ const singleEvent = upcomingEvents.slice(0, 1)
 SingleEvent.args = {
   ...Default.args,
   upcoming: singleEvent,
-  workingHours: singleEvent,
   officeHours: singleEvent,
 }
 
