@@ -38,7 +38,7 @@ const HomePage = ({
     <PageBackground gradient="home">
       <LandingHeaderHome
         title="Developer Portal"
-        description="Understand the foundational concepts of Flow and its language, Cadence"
+        description="Discover the developer ecosystem and master the Flow blockchain"
         tag="preview"
       />
       <LinkCard2Column
