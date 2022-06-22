@@ -30,7 +30,10 @@ export const loader: LoaderFunction = async () => {
 export default function Page() {
   const { networkStatuses } = useLoaderData<DynamicNetworkDetailPageProps>()
   const params = useParams()
-  const networkName = params.networkName as string
+
+  if (!params.networkName) throw new Error("Missing network name")
+
+  const networkName = params.networkName
 
   return (
     <NetworkDetailPage

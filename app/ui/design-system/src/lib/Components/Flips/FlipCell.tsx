@@ -72,7 +72,9 @@ const FlipCell = ({
         </svg>
       </div>
       <div className="flex flex-col">
-        <p className="mb-1 text-lg font-semibold md:text-xl">{heading}</p>
+        <p className="mb-1 text-lg font-semibold text-black dark:text-white md:text-xl">
+          {heading}
+        </p>
         <div>
           {tags.map((tag) => (
             <Tag key={tag} name={tag} />
@@ -92,7 +94,7 @@ const FlipCell = ({
           />
         </div>
         <div className="flex items-center justify-center">
-          <CalendarIcon />{" "}
+          <CalendarIcon width="24" height="24" />{" "}
           <span className="ml-1 sm:ml-2">{dateYYMMDD(date)}</span>
         </div>
         <div className="flex items-center justify-center">

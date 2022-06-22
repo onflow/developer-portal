@@ -44,7 +44,7 @@ export function Heading({
       <a
         href={`#${anchor}`}
         title={text}
-        className="-mt-1 mr-3 flex h-8 w-8 scale-75 items-center justify-center rounded-md bg-gray-100 hover:bg-gray-200 group-hover:visible dark:bg-primary-gray-dark dark:hover:bg-gray-700 md:invisible md:scale-100"
+        className="mr-3 -mt-1 flex h-8 w-8 scale-75 items-center justify-center rounded-md bg-gray-100 hover:bg-gray-200 group-hover:visible dark:bg-primary-gray-dark dark:hover:bg-gray-700 md:invisible md:scale-100"
       >
         <LinkIcon />
       </a>

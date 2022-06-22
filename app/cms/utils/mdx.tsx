@@ -18,6 +18,7 @@ import {
   InternalCodeblock,
   Link,
   StaticCheckbox,
+  LargeVideoCard,
 } from "~/ui/design-system"
 import type { LoaderData as RootLoaderData } from "../../root"
 import { Theme, useTheme } from "./theme.provider"
@@ -283,14 +284,23 @@ function mapFromMdxPageToMdxListItem(page: MdxPage): MdxListItem {
   return mdxListItem
 }
 
+const isLinkExternal = (href?: string) => !!href?.match(/^(www|http)/i)
+
 function GetMdxComponents(theme: Theme | null) {
   return {
-    a: (props: LinkProps & { href: string }) => (
-      <RemixLink to={props.href}>
-        {/* @ts-expect-error: We need to figure out how to type this */}
-        <Link {...props} />
-      </RemixLink>
-    ),
+    a: (props: LinkProps & { href: string }) => {
+      if (isLinkExternal(props.href)) {
+        // @ts-expect-error: TODO: Needs types.
+        return <Link {...props} isExternal={true} rel="noreferrer" />
+      } else {
+        return (
+          <RemixLink to={props.href}>
+            {/* @ts-expect-error: TODO: Nees types. */}
+            <Link {...props} isExternal={false} />
+          </RemixLink>
+        )
+      }
+    },
     input: (props: InputProps) =>
       props.type === "checkbox" ? (
         <StaticCheckbox {...props} asInternalChecklist={true} />
@@ -305,6 +315,14 @@ function GetMdxComponents(theme: Theme | null) {
     h6: (props: HeadingProps) => <Heading type="h6" {...props} />,
     pre: ({ children }: { className: string; children: JSX.Element }) => {
       return <InternalCodeblock children={children} theme={theme} />
+    },
+    Callout: (props: React.PropsWithChildren<{}>) => (
+      <div>{props.children}</div>
+    ),
+    Img: (props: React.PropsWithRef<{}>) => <img {...props} />,
+    iframe: (props: React.PropsWithRef<{ src: string; title: string }>) => {
+      const { src, title, ...rest } = props
+      return <LargeVideoCard link={src} title={title} length={0} {...rest} />
     },
   }
 }
@@ -323,14 +341,8 @@ function getMdxComponent(page: MdxPage, theme: Theme | null) {
     components,
     ...rest
   }: Parameters<typeof Component>["0"]) {
-    return (
-      <div className="container flex flex-row">
-        <div className="mdx-content">
-          {/* @ts-expect-error: We need to figure out how to type this */}
-          <Component components={GetMdxComponents(theme)} {...rest} />
-        </div>
-      </div>
-    )
+    /* @ts-expect-error: Does not like the link tage type definition above */
+    return <Component components={GetMdxComponents(theme)} {...rest} />
   }
   return MdxComponent
 }

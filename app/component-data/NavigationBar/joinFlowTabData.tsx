@@ -2,6 +2,7 @@ import EcosystemIcon from "~/ui/design-system/images/content/ecosystem"
 import AmbassadorsIcon from "~/ui/design-system/images/nav/ambassadors"
 import SocialsIcon from "~/ui/design-system/images/nav/socials"
 import { Section } from "~/ui/design-system/src/lib/Components/NavigationBar/types"
+import { DISCORD_URL } from "~/constants"
 import { emeraldDaoCard, flowVerseCard, grantsCard } from "./navCardsData"
 // Connect Tab
 export const eventsSection: Section = {
@@ -45,7 +46,7 @@ export const socialsSection: Section = {
   links: [
     {
       title: "Chat with Flow developers now on Discord",
-      href: "https://discord.gg/mDvccFPx",
+      href: DISCORD_URL,
     },
   ],
   title: "Socials & Platforms",
@@ -68,7 +69,7 @@ export const socialsSection: Section = {
     },
     {
       title: "Discord",
-      href: "https://discord.gg/mDvccFPx",
+      href: DISCORD_URL,
     },
     {
       title: "Twitter",

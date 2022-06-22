@@ -8,8 +8,8 @@ import { networkStatusCard, sporkProcessCard } from "./navCardsData"
 export const nodeOperation: Section = {
   links: [
     {
-      title: "View our sustainability report",
-      href: "https://flow.com/sustainability",
+      title: "Read the node operation guide",
+      href: "https://docs.onflow.org/node-operation/",
     },
   ],
   title: "Node Operation & Staking",
@@ -87,8 +87,8 @@ export const grantsSection: Section = {
 export const governanceSection: Section = {
   links: [
     {
-      title: "Javascript Testnet Quickstart",
-      href: "https://docs.onflow.org/fcl/tutorials/flow-app-quickstart/",
+      title: "View our sustainability report",
+      href: "https://flow.com/sustainability",
     },
   ],
   title: "Network Information",

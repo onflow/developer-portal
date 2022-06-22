@@ -40,7 +40,7 @@ const NetworkDetailPage = ({
   const [selectedNetworkIndex, setSelectedNetworkIndex] = useState(defaultIndex)
   const tabs = networkStatuses.map((network: StatuspageApiResponse) => ({
     name: network.name,
-    link: `/${networkName}`,
+    link: `/network/${network.name.replace(" ", "-").toLowerCase()}`,
   }))
   const currentNetwork = networkStatuses[selectedNetworkIndex]
 
@@ -57,7 +57,7 @@ const NetworkDetailPage = ({
             </a>
           </div>
           <TabMenu tabs={tabs} onTabChange={setSelectedNetworkIndex} centered />
-          <div className="text-h3 md:text-h1 mt-16 mb-14 md:text-center md:text-5xl">
+          <div className="text-h3 md:text-h1 mt-16 mb-14 pl-4 md:text-center md:text-5xl">
             {currentNetwork.name}
           </div>
           <NetworkDetailsCard

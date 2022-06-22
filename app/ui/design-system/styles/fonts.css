@@ -1,9 +1,7 @@
-/* TODO: A non-variable Acumin would be much smaller for the number of weights we need.
-Consider switching after we source the missing 600 weight */
 @font-face {
   font-family: "Acumin Variable Concept";
   src: local("Acumin Variable Concept"),
-    url(/fonts/acumin-pro/AcuminVariableConcept.otf) format("opentype");
+    url(/fonts/acumin-pro/AcuminVariableConcept.woff2) format("woff2");
   font-weight: 400 700;
 }
 
@@ -53,23 +51,23 @@ Consider switching after we source the missing 600 weight */
 }
 
 .text-h1 {
-  @apply font-display text-5xl font-bold leading-[3.5rem] md:text-7xl md:leading-[5rem];
+  @apply font-display text-5xl font-bold leading-[3.5rem] text-gray-900 dark:text-blue-50 md:text-7xl md:leading-[5rem];
 }
 
 .text-h2 {
-  @apply font-display text-2xl font-bold leading-[2.25rem] md:text-4xl md:leading-[2.375rem];
+  @apply font-display text-2xl font-bold leading-[2.25rem] text-gray-900 dark:text-blue-50 md:text-4xl md:leading-[2.375rem];
 }
 
 .text-h3 {
-  @apply font-display text-2xl font-extrabold leading-[2.25rem] md:text-4xl md:leading-[2.375rem];
+  @apply font-display text-2xl font-extrabold leading-[2.25rem] text-gray-900 dark:text-blue-50 md:text-4xl md:leading-[2.375rem];
 }
 
 .text-h4 {
-  @apply font-display text-xl font-bold leading-[2rem] md:text-2xl md:leading-[2.5rem];
+  @apply font-display text-xl font-bold leading-[2rem] text-gray-900 dark:text-blue-50 md:text-2xl md:leading-[2.5rem];
 }
 
 .text-h5 {
-  @apply text-xl font-bold leading-[2rem] md:text-2xl md:font-semibold md:leading-[2rem];
+  @apply text-xl font-bold leading-[2rem] text-gray-900 dark:text-blue-50 md:text-2xl md:font-semibold md:leading-[2rem];
 }
 
 .text-h6 {
