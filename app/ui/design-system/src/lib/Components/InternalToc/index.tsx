@@ -16,6 +16,10 @@ export function InternalToc({
   currentHash,
   updateHash,
 }: InternalTocProps) {
+  if (headings == null) {
+    throw new Error(`headings missing`)
+  }
+
   return (
     <div className="sticky top-0 ml-auto h-auto w-full shrink-0 flex-col self-start p-4">
       <div className="mb-6 px-5 text-2xs uppercase text-gray-500">

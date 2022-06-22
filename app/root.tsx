@@ -145,7 +145,7 @@ export default function AppWithProviders() {
 }
 
 export function ErrorBoundary({ error }: { error: Error }) {
-  console.error(error)
+  console.error(`ErrorBoundary`, error)
   const location = useLocation()
   return (
     <html className="flex min-h-full bg-red-300">

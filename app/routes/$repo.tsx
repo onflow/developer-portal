@@ -54,8 +54,9 @@ export default function Repo() {
 
 export function CatchBoundary() {
   const caught = useCatch()
-  console.error("CatchBoundary", caught)
+  console.error("CatchBoundary $repo", caught)
   if (caught.data.status === "unknownRepo") {
+    console.log("HERE!")
     return (
       <ErrorPage
         title={"404 – Unknown repo"}
@@ -67,6 +68,8 @@ export function CatchBoundary() {
         }
       />
     )
+  } else {
+    console.log(`THERE`, caught.data)
   }
 
   throw new Error(`Unhandled error: ${caught.status}`)

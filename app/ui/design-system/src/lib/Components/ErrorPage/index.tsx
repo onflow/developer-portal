@@ -2,7 +2,7 @@ import { ReactNode } from "react"
 
 export const ErrorPage = (props: {
   title: string
-  subtitle: string
+  subtitle: string | ReactNode
   /** e.g. a link to go back to a working state */
   actions: ReactNode
 }) => {
