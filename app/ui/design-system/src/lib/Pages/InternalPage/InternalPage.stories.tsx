@@ -4,14 +4,13 @@ import { InternalPage } from "."
 export default {
   component: InternalPage,
   title: "Pages/InternalPage",
+  parameters: {
+    layout: "padded",
+  },
 } as Meta
 
 const Template: Story = (args) => {
-  return (
-    <div style={{ padding: "1rem" }}>
-      <InternalPage />
-    </div>
-  )
+  return <InternalPage />
 }
 
 export const Primary = Template.bind({})

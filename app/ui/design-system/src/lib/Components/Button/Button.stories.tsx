@@ -13,6 +13,9 @@ export default {
       control: { type: "select" },
     },
   },
+  parameters: {
+    layout: "padded",
+  },
 } as Meta
 
 const Template: Story<ButtonProps> = (args) => {
@@ -20,9 +23,9 @@ const Template: Story<ButtonProps> = (args) => {
     <div
       style={{
         gap: "1rem",
-        padding: "1rem",
         display: "inline-flex",
         flexDirection: "column",
+        width: "15rem",
       }}
     >
       <Button variant="primary">Primary</Button>
@@ -41,11 +44,4 @@ const Template: Story<ButtonProps> = (args) => {
 export const Default = Template.bind({})
 Default.args = {
   children: "Button",
-}
-export const defaultDark = Template.bind({})
-defaultDark.args = Default.args
-defaultDark.parameters = {
-  backgrounds: {
-    default: "dark",
-  },
 }

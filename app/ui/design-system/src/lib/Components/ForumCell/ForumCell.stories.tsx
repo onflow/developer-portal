@@ -4,14 +4,13 @@ import ForumCell, { ForumCellProps } from "."
 export default {
   component: ForumCell,
   title: "Components/ForumCell",
+  parameters: {
+    layout: "padded",
+  },
 } as Meta
 
 const Template: Story<ForumCellProps> = (args) => {
-  return (
-    <div style={{ backgroundColor: "#f1f1f1", padding: "14px" }}>
-      <ForumCell {...args} />
-    </div>
-  )
+  return <ForumCell {...args} />
 }
 
 export const Default = Template.bind({})

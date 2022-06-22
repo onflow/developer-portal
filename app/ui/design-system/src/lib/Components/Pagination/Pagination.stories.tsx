@@ -4,13 +4,12 @@ import Pagination, { PaginationProps } from "."
 export default {
   component: Pagination,
   title: "Components/Pagination",
+  parameters: {
+    layout: "padded",
+  },
 } as Meta
 
-const Template: Story<PaginationProps> = (args) => (
-  <div style={{ padding: "1em" }}>
-    <Pagination {...args} />
-  </div>
-)
+const Template: Story<PaginationProps> = (args) => <Pagination {...args} />
 
 export const Default = Template.bind({})
 Default.args = {

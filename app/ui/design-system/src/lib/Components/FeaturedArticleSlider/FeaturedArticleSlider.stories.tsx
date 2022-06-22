@@ -4,14 +4,13 @@ import FeaturedArticleSlider, { FeaturedArticleSliderProps } from "."
 export default {
   component: FeaturedArticleSlider,
   title: "Components/FeaturedArticleSlider",
+  parameters: {
+    layout: "padded",
+  },
 } as Meta
 
 const Template: Story<FeaturedArticleSliderProps> = (args) => {
-  return (
-    <div style={{ backgroundColor: "#f1f1f1", padding: "30px" }}>
-      <FeaturedArticleSlider {...args} />
-    </div>
-  )
+  return <FeaturedArticleSlider {...args} />
 }
 const args = {
   articles: [

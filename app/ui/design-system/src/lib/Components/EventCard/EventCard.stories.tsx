@@ -4,14 +4,13 @@ import { EventCard, EventCardList, EventCardProps, EventCardListProps } from "."
 export default {
   component: EventCard,
   title: "Components/EventCard",
+  parameters: {
+    layout: "padded",
+  },
 } as Meta
 
 const TemplateSingle: Story<EventCardProps> = (args) => {
-  return (
-    <div style={{ backgroundColor: "#f1f1f1", padding: "14px" }}>
-      <EventCard {...args} />
-    </div>
-  )
+  return <EventCard {...args} />
 }
 
 export const Default = TemplateSingle.bind({})
@@ -29,11 +28,7 @@ Default.args = {
 }
 
 const TemplateList: Story<EventCardListProps> = (args) => {
-  return (
-    <div style={{ backgroundColor: "#f1f1f1", padding: "14px" }}>
-      <EventCardList {...args} />
-    </div>
-  )
+  return <EventCardList {...args} />
 }
 
 export const EventList = TemplateList.bind({})

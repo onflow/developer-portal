@@ -5,14 +5,13 @@ import { endOfDay } from "date-fns"
 export default {
   component: AnnouncementCard,
   title: "Components/AnnouncementCard",
+  parameters: {
+    layout: "padded",
+  },
 } as Meta
 
 const Template: Story<AnnouncementCardProps> = (args) => {
-  return (
-    <div style={{ backgroundColor: "#f1f1f1", padding: "14px" }}>
-      <AnnouncementCard {...args} />
-    </div>
-  )
+  return <AnnouncementCard {...args} />
 }
 
 const args = {

@@ -4,12 +4,13 @@ import { UpcomingEvents, UpcomingEventsProps } from "."
 export default {
   component: UpcomingEvents,
   title: "Components/UpcomingEvents",
+  parameters: {
+    layout: "centered",
+  },
 } as Meta
 
 const Template: Story<UpcomingEventsProps> = (args) => (
-  <div className="bg-primary-gray-50 dark:bg-black" style={{ padding: "14px" }}>
-    <UpcomingEvents {...args} />
-  </div>
+  <UpcomingEvents {...args} />
 )
 
 const upcomingEvents = [
