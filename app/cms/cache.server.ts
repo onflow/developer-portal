@@ -187,8 +187,8 @@ async function cachified<
     timings,
   }).catch((error: unknown) => {
     console.error(
-      `getting a fresh value for ${key} failed`,
-      { fallbackToCache, forceFresh },
+      `getting a fresh value failed`,
+      { cacheKey: key, fallbackToCache, forceFresh },
       error
     )
     // If we got this far without forceFresh then we know there's nothing
