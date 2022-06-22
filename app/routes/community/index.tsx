@@ -12,7 +12,7 @@ import CommunityPage, {
   CommunityPageProps,
 } from "~/ui/design-system/src/lib/Pages/CommunityPage"
 import { temporarilyRedirectToComingSoon } from "~/utils/features"
-import { articles, contentNavigationItems, projects, tools } from "./data"
+import { articles, contentNavigationListItems, projects, tools } from "./data"
 
 type DynamicCommunityPageProps = Pick<
   CommunityPageProps,
@@ -63,7 +63,7 @@ export default function Page() {
       upcomingEvents={upcomingEvents}
       articles={articles}
       tools={tools}
-      contentNavigationItems={contentNavigationItems}
+      contentNavigationListItems={contentNavigationListItems}
       forumTopics={forumTopics}
     />
   )
