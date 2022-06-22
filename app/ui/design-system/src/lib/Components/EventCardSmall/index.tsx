@@ -1,4 +1,3 @@
-import { ReactComponent as ExternalLinkIcon } from "../../../../images/content/external-link"
 import { EventCardProps } from "../EventCard"
 import Tag from "../Tag"
 
