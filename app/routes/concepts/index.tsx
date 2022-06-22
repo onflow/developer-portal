@@ -9,8 +9,7 @@ export const meta: MetaFunction = () => ({
 })
 
 export const loader: LoaderFunction = async () => {
-  // temporarilyRedirectToComingSoon()
-  return {}
+  temporarilyRedirectToComingSoon()
 }
 
 export default function Page() {
