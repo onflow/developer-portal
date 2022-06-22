@@ -13,7 +13,7 @@ const Template: Story<UpcomingEventsProps> = (args) => (
   <UpcomingEvents {...args} />
 )
 
-const upcomingEvents = [
+const events = [
   {
     ctaText: "Learn More",
     description:
@@ -22,7 +22,7 @@ const upcomingEvents = [
     href: "https://share.onflow.org/nft-nyc-2022",
     imageSrc:
       "https://510411.fs1.hubspotusercontent-na1.net/hubfs/510411/nftnyc2021-eventbrite-header.png",
-    location: "New York",
+    location: "Online",
     tags: ["Conference", "Sponsor", "NFT_NYC"],
     title: "NFT NYC",
     isPrimary: true,
@@ -34,7 +34,6 @@ const upcomingEvents = [
     href: "https://collisionconf.com/",
     imageSrc:
       "https://scontent-yyz1-1.xx.fbcdn.net/v/t1.6435-9/187273412_1595714430632959_188138787470379979_n.png?_nc_cat=111&ccb=1-7&_nc_sid=09cbfe&_nc_ohc=vXibBwZGxWAAX9_Iv7Y&_nc_ht=scontent-yyz1-1.xx&oh=00_AT8jXVugKzGRdVlwzW0kO1ZwyTCGjDmCpyBhBengY6WIGw&oe=62D5C74A",
-    eventType: "Enercare Centre, Toronto",
     tags: ["Conference"],
     title: "Collision",
   },
@@ -52,7 +51,6 @@ const upcomingEvents = [
   {
     ctaText: "More Details",
     href: "https://share.onflow.org/nft-nyc-2022#:~:text=Andbox%20and%20more.-,Blocto,-(3%2D6pm%20ET",
-    eventType: "New York",
     description: "",
     imageSrc:
       "https://assets.website-files.com/5f6294c0c7a8cdf432b1c827/61410bc0c8d0522eea319058_Hack-blog_Flow.png",
@@ -63,7 +61,7 @@ const upcomingEvents = [
   {
     ctaText: "More Details",
     href: "https://share.onflow.org/nft-nyc-2022#:~:text=Building%20the%20NFT%20Marketplace%20of%20the%20Future",
-    eventType: "New York",
+    eventType: "Flow office hours",
     description: "",
     imageSrc:
       "https://assets.website-files.com/5f6294c0c7a8cdf432b1c827/61410bc0c8d0522eea319058_Hack-blog_Flow.png",
@@ -74,7 +72,7 @@ const upcomingEvents = [
   {
     ctaText: "More Details",
     href: "https://share.onflow.org/nft-nyc-2022#:~:text=Fireside%20Chat%20with%20Roham",
-    eventType: "New York",
+    eventType: "Flow office hours",
     description: "",
     imageSrc:
       "https://assets.website-files.com/5f6294c0c7a8cdf432b1c827/61410bc0c8d0522eea319058_Hack-blog_Flow.png",
@@ -89,7 +87,7 @@ const upcomingEvents = [
     href: "https://nftnycmpc.rsvpify.com/",
     imageSrc:
       "https://assets.website-files.com/5f6294c0c7a8cdf432b1c827/61410bc0c8d0522eea319058_Hack-blog_Flow.png",
-    eventType: "New York",
+    eventType: "Flow office hours",
     tags: ["NFT_NYC", "Partner"],
     title: "NFT NYC x Meta Panda Club",
   },
@@ -100,53 +98,25 @@ const upcomingEvents = [
     eventDate: "June 22, 5:00pm ET",
     imageSrc:
       "https://assets.website-files.com/5f6294c0c7a8cdf432b1c827/61410bc0c8d0522eea319058_Hack-blog_Flow.png",
-    eventType: "New York",
+    eventType: "Flow office hours",
     tags: ["Cryptoys", "NFT_NYC"],
     title: "Cryptoys: Web3 Party",
   },
 ]
 
-const officeHoursEvents = [
-  {
-    ctaText: "Learn More",
-    description:
-      "Join us this week at Discord office hours to learn more about Flow Tokenomics!",
-    eventDate: "June 30th",
-    href: "https://www.onflow.org/token-distribution",
-    imageSrc: "https://www.svgrepo.com/show/353655/discord-icon.svg",
-    location: "Online",
-    tags: ["Flow", "Community", "Discord"],
-    title: "Flow Tokenomics",
-    isPrimary: true,
-  },
-  {
-    ctaText: "Join the Flow Discord",
-    description:
-      "Join us for office hours to learn more about developments in the Flow community!",
-    eventDate: "July 7th",
-    href: "https://www.onflow.org/discord",
-    imageSrc: "https://wallpaperaccess.com/full/5578398.jpg",
-    location: "Online",
-    tags: ["Flow", "Community", "Discord"],
-    title: "Office Hours",
-  },
-]
-
 const DefaultArgs = {
   goToCommunityHref: "#todo",
-  upcoming: upcomingEvents,
-  officeHours: officeHoursEvents,
+  events,
 }
 
 export const Default = Template.bind({})
 Default.args = DefaultArgs
 
 export const SingleEvent = Template.bind({})
-const singleEvent = upcomingEvents.slice(0, 1)
+const singleEvent = events.slice(0, 1)
 SingleEvent.args = {
   ...Default.args,
-  upcoming: singleEvent,
-  officeHours: singleEvent,
+  events: singleEvent,
 }
 
 export const mobile = Template.bind({})

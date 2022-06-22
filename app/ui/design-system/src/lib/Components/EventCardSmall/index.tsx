@@ -1,10 +1,8 @@
-import { ReactComponent as ExternalLinkIcon } from "../../../../images/content/external-link"
 import { EventCardProps } from "../EventCard"
 import Tag from "../Tag"
 
 export function EventCardSmall({
-  eventType = "Online",
-  href,
+  location = "Online",
   imageAlt = "",
   imageSrc,
   tags,
@@ -12,11 +10,9 @@ export function EventCardSmall({
   eventDate,
 }: EventCardProps) {
   return (
-    <a
-      href={href}
-      target="_blank"
-      rel="noreferrer"
-      className="mb-4 flex min-w-max max-w-sm items-start rounded-lg bg-white px-6 py-5 hover:shadow-2xl dark:bg-primary-gray-dark dark:hover:shadow-2xl-dark"
+    <div
+      role="button"
+      className="mb-4 flex min-w-max max-w-sm items-start rounded-lg bg-white px-6 py-5 hover:cursor-pointer hover:shadow-2xl dark:bg-primary-gray-dark dark:hover:shadow-2xl-dark"
     >
       <img
         src={imageSrc}
@@ -35,11 +31,8 @@ export function EventCardSmall({
         <span className="mt-1 mb-2 text-primary-gray-300 dark:text-primary-gray-100">
           {eventDate}
         </span>
-        <span className="text-sm text-primary-gray-200">{eventType}</span>
+        <span className="text-sm text-primary-gray-200">{location}</span>
       </span>
-      <span className="flex-0 dark:text-primary-gray-200">
-        <ExternalLinkIcon />
-      </span>
-    </a>
+    </div>
   )
 }
