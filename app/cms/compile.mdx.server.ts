@@ -10,6 +10,7 @@ import { visit } from "unist-util-visit"
 import formatLinks from "./utils/format-links"
 import { generateTOC } from "./utils/generate-toc"
 import type { GitHubFile } from "./github.server"
+import rehypeSanitize from "rehype-sanitize"
 
 if (process.platform === "win32") {
   process.env.ESBUILD_BINARY_PATH = path.resolve(
@@ -53,7 +54,11 @@ const remarkPlugins: U.PluggableList = [
   ],
 ]
 
-const rehypePlugins: U.PluggableList = [removePreContainerDivs, formatLinks]
+const rehypePlugins: U.PluggableList = [
+  removePreContainerDivs,
+  formatLinks,
+  rehypeSanitize,
+]
 
 async function compileMdx<FrontmatterType extends Record<string, unknown>>(
   slug: string,
