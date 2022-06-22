@@ -14,8 +14,11 @@ export function UpcomingEvents({
   events,
 }: UpcomingEventsProps) {
   const [allEvents, setAllEvents] = useState(events)
-  const [selectedEventIndex, setSelectedEventIndex] = useState(0)
-  const primaryEvent = allEvents[selectedEventIndex]
+  const [selectedEvent, setSelectedEvent] = useState(allEvents[0])
+  console.log(selectedEvent)
+  const primaryEvent =
+    allEvents.filter((event) => event.title === selectedEvent.title)[0] ||
+    allEvents[0]
   const remainingEvents = allEvents.filter(
     (event) => event.title !== primaryEvent.title
   )
@@ -48,7 +51,7 @@ export function UpcomingEvents({
           <EventCard {...primaryEvent} className="mb-4" />
           <ul className="hidden list-none flex-row gap-6 overflow-x-auto md:flex">
             {remainingEvents.map((event: EventCardProps, index: number) => (
-              <li key={index} onClick={() => setSelectedEventIndex(index - 1)}>
+              <li key={index} onClick={() => setSelectedEvent(event)}>
                 <EventCardSmall {...event} />
               </li>
             ))}
