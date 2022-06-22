@@ -6,21 +6,32 @@ import TabMenu from "../TabMenu"
 
 export type UpcomingEventsProps = {
   goToCommunityHref: string
-  upcoming: EventCardProps[]
-  officeHours: EventCardProps[]
+  events: EventCardProps[]
 }
 
 export function UpcomingEvents({
   goToCommunityHref,
-  upcoming,
-  officeHours,
+  events,
 }: UpcomingEventsProps) {
-  const [selectedTab, setSelectedTab] = useState(0)
-  const allEvents = [{ events: upcoming }, { events: officeHours }]
-  const events = allEvents[selectedTab].events
-  const primaryEvent =
-    events.filter((event: EventCardProps) => event.isPrimary)[0] || events[0]
-  const remainingEvents = events.filter((event) => !event.isPrimary)
+  const [allEvents, setAllEvents] = useState(events)
+  const [selectedEventIndex, setSelectedEventIndex] = useState(0)
+  const primaryEvent = allEvents[selectedEventIndex]
+  const remainingEvents = allEvents.filter(
+    (event) => event.title !== primaryEvent.title
+  )
+  const filterMapping = ["Flow office hours"]
+
+  const onTabChange = (filterIndex: number) => {
+    if (filterIndex === 0) {
+      setAllEvents(events)
+      return
+    }
+
+    const filteredEvents = allEvents.filter(
+      (event) => event.eventType === filterMapping[filterIndex - 1]
+    )
+    setAllEvents(filteredEvents)
+  }
 
   return (
     <div className="container">
@@ -30,14 +41,14 @@ export function UpcomingEvents({
           { name: "Upcoming events", link: "#" },
           { name: "Flow office hours", link: "#" },
         ]}
-        onTabChange={setSelectedTab}
+        onTabChange={onTabChange}
       />
       <div className="py-6">
         <div className="hidden md:block">
           <EventCard {...primaryEvent} className="mb-4" />
           <ul className="hidden list-none flex-row gap-6 overflow-x-auto md:flex">
             {remainingEvents.map((event: EventCardProps, index: number) => (
-              <li key={index}>
+              <li key={index} onClick={() => setSelectedEventIndex(index - 1)}>
                 <EventCardSmall {...event} />
               </li>
             ))}
