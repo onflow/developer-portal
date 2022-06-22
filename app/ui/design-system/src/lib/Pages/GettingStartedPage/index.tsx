@@ -2,9 +2,9 @@ import { SocialLinksSignup } from "../../Components"
 import { ButtonLink } from "../../Components/Button"
 import { Carousel } from "../../Components/Carousel"
 import {
-  ContentNavigation,
-  ContentNavigationProps,
-} from "../../Components/ContentNavigation"
+  ContentNavigationList,
+  ContentNavigationListProps,
+} from "../../Components/ContentNavigationList"
 import FeaturedArticleCard, {
   FeaturedArticleCardProps,
 } from "../../Components/FeaturedArticleCard"
@@ -41,11 +41,7 @@ export interface GettingStartedPageProps {
   ]
   recentArticleItems: FeaturedArticleCardProps[]
   recentToolItems: [ToolCardProps, ToolCardProps, ToolCardProps]
-  contentNavigationItems: [
-    ContentNavigationProps,
-    ContentNavigationProps,
-    ContentNavigationProps
-  ]
+  contentNavigationListItems: ContentNavigationListProps
 }
 
 export function GettingStartedPage({
@@ -55,7 +51,7 @@ export function GettingStartedPage({
   sdkCardItems,
   recentArticleItems,
   recentToolItems,
-  contentNavigationItems,
+  contentNavigationListItems,
 }: GettingStartedPageProps) {
   return (
     <PageBackground gradient="getting-started">
@@ -137,21 +133,12 @@ export function GettingStartedPage({
           </div>
         </PageSection>
         <PageSection>
-          {/* TODO: Extract into shared component */}
-          <div className="container">
-            <h4 className="text-h2 mb-10">Explore More Content</h4>
-            <div className="grid grid-cols-1 gap-4 md:grid-cols-3 md:gap-8">
-              {contentNavigationItems.map((contentNav, i) => (
-                <ContentNavigation
-                  key={i}
-                  title={contentNav.title}
-                  text={contentNav.text}
-                  link={contentNav.link}
-                  icon={contentNav.icon}
-                />
-              ))}
-            </div>
-          </div>
+          <ContentNavigationList
+            header={contentNavigationListItems.header}
+            contentNavigationItems={
+              contentNavigationListItems.contentNavigationItems
+            }
+          />
         </PageSection>
       </PageSections>
       <SocialLinksSignup />

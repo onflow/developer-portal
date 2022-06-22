@@ -1,9 +1,9 @@
 import { ToolsAndConcepts } from "../../Components"
 import { ButtonLink } from "../../Components/Button"
 import {
-  ContentNavigation,
-  ContentNavigationProps,
-} from "../../Components/ContentNavigation"
+  ContentNavigationList,
+  ContentNavigationListProps,
+} from "../../Components/ContentNavigationList"
 import { EventCard, EventCardProps } from "../../Components/EventCard"
 import {
   FeatureLinkBlock,
@@ -29,11 +29,7 @@ export interface ConceptsPageProps {
     ToolCardProps,
     ToolCardProps
   ]
-  contentNavigationItems: [
-    ContentNavigationProps,
-    ContentNavigationProps,
-    ContentNavigationProps
-  ]
+  contentNavigationListItems: ContentNavigationListProps
   eventCardItems: EventCardProps
 }
 
@@ -41,7 +37,7 @@ export function ConceptsPage({
   landingHeaderItems,
   featureLinkBlockItems,
   toolCardItems,
-  contentNavigationItems,
+  contentNavigationListItems,
   eventCardItems,
 }: ConceptsPageProps) {
   return (
@@ -87,24 +83,6 @@ export function ConceptsPage({
             </ButtonLink>
           </div>
         </PageSection>
-        <PageSection>
-          <div className="container">
-            <h4 className="text-h4 md:text-h2 pb-6  md:pb-10">
-              Explore More Content
-            </h4>
-            <div className="grid grid-cols-1 gap-4 md:grid-cols-3 md:gap-6">
-              {contentNavigationItems.map((contentNavigationItem, i) => (
-                <ContentNavigation
-                  key={i}
-                  title={contentNavigationItem.title}
-                  text={contentNavigationItem.text}
-                  link={contentNavigationItem.link}
-                  icon={contentNavigationItem.icon}
-                />
-              ))}
-            </div>
-          </div>
-        </PageSection>
         <PageSection className="hidden md:block">
           <div className="container">
             <EventCard
@@ -118,6 +96,14 @@ export function ConceptsPage({
               title={eventCardItems.title}
             />
           </div>
+        </PageSection>
+        <PageSection>
+          <ContentNavigationList
+            header={contentNavigationListItems.header}
+            contentNavigationItems={
+              contentNavigationListItems.contentNavigationItems
+            }
+          />
         </PageSection>
       </PageSections>
     </PageBackground>

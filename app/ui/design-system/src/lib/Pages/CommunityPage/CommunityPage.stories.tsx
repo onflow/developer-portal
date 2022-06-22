@@ -26,19 +26,26 @@ Default.args = {
   projects: DefaultProjects.args.projects,
   articles: DefaultFeaturedArticles.args.articles,
   tools: DefaultTools.args.tools,
-  contentNavigationItems: [
-    { ...DefaultContentNavigationItem.args, title: "Bug bounty", icon: "bug" },
-    {
-      ...DefaultContentNavigationItem.args,
-      title: "Contribute",
-      icon: "community",
-    },
-    {
-      ...DefaultContentNavigationItem.args,
-      title: "Get funding",
-      icon: "funding",
-    },
-  ],
+  contentNavigationListItems: {
+    header: "Explore More Content",
+    contentNavigationItems: [
+      {
+        ...DefaultContentNavigationItem.args,
+        title: "Bug bounty",
+        icon: "bug",
+      },
+      {
+        ...DefaultContentNavigationItem.args,
+        title: "Contribute",
+        icon: "community",
+      },
+      {
+        ...DefaultContentNavigationItem.args,
+        title: "Get funding",
+        icon: "funding",
+      },
+    ],
+  },
   forumTopics: Array(3).fill(DefaultForumCell.args),
 }
 
