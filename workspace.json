@@ -5,6 +5,7 @@
     "design-system": "libs/design-system",
     "docs-e2e": "apps/docs-e2e",
     "flow-docs": "apps/flow-docs",
-    "nft-metadata": "apps/nft-metadata"
+    "nft-metadata": "apps/nft-metadata",
+    "nft-metadata-e2e": "apps/nft-metadata-e2e"
   }
 }

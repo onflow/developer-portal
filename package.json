@@ -21,11 +21,12 @@
   },
   "dependencies": {
     "@docsearch/react": "^3.1.0",
+    "@flow-docs/ui": "0.0.1",
     "@headlessui/react": "^1.6.4",
-    "@remix-run/react": "^1.0.6",
-    "@remix-run/serve": "^1.0.6",
     "@onflow/fcl": "^1.0.0",
     "@onflow/types": "^1.0.1",
+    "@remix-run/react": "^1.0.6",
+    "@remix-run/serve": "^1.0.6",
     "core-js": "^3.6.5",
     "npm-run-all": "^4.1.5",
     "react": "18.1.0",
@@ -35,14 +36,13 @@
     "rollup-plugin-peer-deps-external": "^2.2.4",
     "tailwind-scrollbar-hide": "^1.1.7",
     "tailwindcss": "^3.0.24",
-    "tslib": "^2.0.0",
-    "@flow-docs/ui": "0.0.1"
+    "tslib": "^2.0.0"
   },
   "devDependencies": {
     "@babel/core": "7.12.13",
     "@babel/preset-typescript": "7.12.13",
     "@nrwl/cli": "14.2.1",
-    "@nrwl/cypress": "14.2.1",
+    "@nrwl/cypress": "^14.3.6",
     "@nrwl/eslint-plugin-nx": "14.2.1",
     "@nrwl/jest": "14.2.1",
     "@nrwl/linter": "14.2.1",
@@ -118,4 +118,3 @@
     "react-dom": "^18.0.0"
   }
 }
-
