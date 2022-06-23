@@ -2,15 +2,15 @@ import { TutorialCardProps } from "~/ui/design-system/src/lib/Components/Tutoria
 import { LargeVideoCardProps } from "~/ui/design-system/src/lib/Components/VideoCard/LargeVideoCard"
 import { SmallVideoCardProps } from "~/ui/design-system/src/lib/Components/VideoCard/SmallVideoCard"
 import {
-  getTheFlowDownTutorial,
+  getTheFlowDown,
   organizingCadenceTutorial,
-  introToFlowBlockchainTutorial,
+  introToFlow,
 } from "../../component-data/Articles"
 
 const cadenceTutorials: TutorialCardProps[] = [
-  getTheFlowDownTutorial,
+  getTheFlowDown,
   organizingCadenceTutorial,
-  introToFlowBlockchainTutorial,
+  introToFlow,
   {
     heading: "This Title Is A Two Liner",
     tags: ["TODO", "Tool", "Intermediate"],

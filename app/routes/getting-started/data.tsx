@@ -23,8 +23,8 @@ import {
   eventIndexingTool,
 } from "../../component-data/Tools"
 import {
-  introToFlowBlockchainArticle,
-  getTheFlowDownArticle,
+  introToFlow,
+  getTheFlowDown,
   redSquirrelGetStartedArticle,
 } from "../../component-data/Articles"
 import { FeaturedArticleCardProps } from "~/ui/design-system/src/lib/Components/FeaturedArticleCard"
@@ -34,7 +34,7 @@ const landingHeaderItems: LandingHeaderProps = {
   buttonText: "View Course",
   buttonUrl: "https://academy.ecdao.org/",
   callout: "Cadence Bootcamps",
-  description: `Learn everything about the Flow Blockchain and the Cadence smart contract programming language with Emerald Academy -  
+  description: `Learn everything about the Flow Blockchain and the Cadence smart contract programming language with Emerald Academy -
     a Flow partner for open source educational content.`,
   title: "Getting Started",
   imageSrc: "https://academy.ecdao.org/thumb-beginner-cadence.png",
@@ -200,11 +200,7 @@ const recentArticleItems: [
   FeaturedArticleCardProps,
   FeaturedArticleCardProps,
   FeaturedArticleCardProps
-] = [
-  introToFlowBlockchainArticle,
-  redSquirrelGetStartedArticle,
-  getTheFlowDownArticle,
-]
+] = [introToFlow, redSquirrelGetStartedArticle, getTheFlowDown]
 
 const recentToolItems: [ToolCardProps, ToolCardProps, ToolCardProps] = [
   overflowTool,
