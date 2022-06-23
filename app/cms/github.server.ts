@@ -57,7 +57,6 @@ const customPaths = Object.fromEntries(
   flowContentNames.map((content) => [content, `docs/content/${content}`])
 )
 const getContentPath = (repo: string) => {
-  console.log("CUSTOM PATHS", customPaths, repo)
   return customPaths[repo] ?? DEFAULT_CONTENT_PATH
 }
 
