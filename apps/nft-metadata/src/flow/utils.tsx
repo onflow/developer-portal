@@ -71,18 +71,20 @@ export async function retrieveContractInformation(address: string, name: string,
   }
 }
 
-export async function retrieveMetadataInformation(sampleAddress: string, publicPath: string): Promise<any> {
+export async function retrieveMetadataInformation(sampleAddress: string, storagePath: string, nftID: string): Promise<any> {
   try {
     const scriptResult = await fcl.send([
-      fcl.script(json.scripts.check_for_recommended_v1_views),
+      fcl.script(catalogJson.scripts.check_for_recommended_v1_views),
       fcl.args([
         fcl.arg(sampleAddress, t.Address),
-        fcl.arg({ domain: "public", identifier: publicPath.replace('/public/', '') }, t.Path)
+        fcl.arg({ domain: "storage", identifier: storagePath.replace('/storage/', '') }, t.Path),
+        fcl.arg(nftID, t.UInt64)
       ])
     ])
       .then(fcl.decode)
     return scriptResult
   } catch (e) {
+    console.error(e);
     return null;
   }
 }
@@ -128,13 +130,13 @@ export async function getProposal(proposalID: string): Promise<any> {
   }
 }
 
-export async function getNFTsInAccount(sampleAddress: string, publicPath: string): Promise<any> {
+export async function getNFTsInAccount(sampleAddress: string, storagePath: string): Promise<any> {
   try {
     const scriptResult = await fcl.send([
       fcl.script(catalogJson.scripts.get_nfts_in_account_from_path),
       fcl.args([
         fcl.arg(sampleAddress, t.Address),
-        fcl.arg(publicPath.replace('/public/', ''), t.String),
+        fcl.arg(storagePath.replace('/storage/', ''), t.String),
       ])
     ]).then(fcl.decode)
     return scriptResult
@@ -143,13 +145,30 @@ export async function getNFTsInAccount(sampleAddress: string, publicPath: string
   }
 }
 
-export async function getNFTInAccount(sampleAddress: string, publicPath: string, id: string): Promise<any> {
+export async function getNFTInAccountFromPath(ownerAddress: string, storagePath: string, nftID: string) {
+  try {
+    const scriptResult = await fcl.send([
+      fcl.script(catalogJson.scripts.get_nft_in_account_from_path),
+      fcl.args([
+        fcl.arg(ownerAddress, t.Address),
+        fcl.arg(storagePath.replace('/storage/', ''), t.String),
+        fcl.arg(nftID, t.UInt64)
+      ])
+    ]).then(fcl.decode)
+    return scriptResult
+  } catch (e) {
+    console.error(e);
+    return null;
+  }
+}
+
+export async function getNFTInAccount(sampleAddress: string, collectionIdentifier: string, id: string): Promise<any> {
   try {
     const scriptResult = await fcl.send([
       fcl.script(catalogJson.scripts.get_nft_in_account),
       fcl.args([
         fcl.arg(sampleAddress, t.Address),
-        fcl.arg(publicPath.replace('/public/', ''), t.String),
+        fcl.arg(collectionIdentifier, t.String),
         fcl.arg(id, t.UInt64)
       ])
     ]).then(fcl.decode)
@@ -286,11 +305,19 @@ export async function proposeNFTToCatalog(
   collectionIdentifier: string,
   sampleAddress: string,
   nftID: string,
-  publicPath: string,
+  storagePath: string,
   contractName: string,
   contractAddress: string,
   message: string
 ): Promise<any> {
+  const sampleNFTView = await getNFTInAccountFromPath(sampleAddress, storagePath, nftID);
+
+  let socialsDictionary: any = []
+  for (const key in sampleNFTView.NFTCollectionDisplay.socials) {
+    let socialsObj = { key: key, value: sampleNFTView.NFTCollectionDisplay.socials[key].url }
+    socialsDictionary.push(socialsObj);
+  }
+
   const cadence = catalogJson.transactions.propose_nft_to_catalog
   try {
     const txId = await fcl.mutate({
@@ -301,9 +328,21 @@ export async function proposeNFTToCatalog(
         fcl.arg(contractName, t.String),
         fcl.arg(contractAddress, t.Address),
         fcl.arg(`A.${fcl.sansPrefix(contractAddress)}.${contractName}.NFT`, t.String),
-        fcl.arg(sampleAddress, t.Address),
-        fcl.arg(nftID, t.UInt64),
-        fcl.arg(publicPath.replace('/public/', ''), t.String),
+        fcl.arg(sampleNFTView.NFTCollectionData.storagePath.identifier, t.String),
+        fcl.arg(sampleNFTView.NFTCollectionData.publicPath.identifier, t.String),
+        fcl.arg(sampleNFTView.NFTCollectionData.privatePath.identifier, t.String),
+        fcl.arg(sampleNFTView.NFTCollectionData.publicLinkedType.type.type.typeID, t.String),
+        fcl.arg(buildRestrictedType(sampleNFTView.NFTCollectionData.publicLinkedType.type), t.Array(t.String)),
+        fcl.arg(sampleNFTView.NFTCollectionData.privateLinkedType.type.type.typeID, t.String),
+        fcl.arg(buildRestrictedType(sampleNFTView.NFTCollectionData.privateLinkedType.type), t.Array(t.String)),
+        fcl.arg(sampleNFTView.NFTCollectionDisplay.collectionName, t.String),
+        fcl.arg(sampleNFTView.NFTCollectionDisplay.collectionDescription, t.String),
+        fcl.arg(sampleNFTView.ExternalURL.externalURL, t.String),
+        fcl.arg(sampleNFTView.NFTCollectionDisplay.collectionSquareImage.file.url, t.String),
+        fcl.arg(sampleNFTView.NFTCollectionDisplay.collectionSquareImage.mediaType, t.String),
+        fcl.arg(sampleNFTView.NFTCollectionDisplay.collectionBannerImage.file.url, t.String),
+        fcl.arg(sampleNFTView.NFTCollectionDisplay.collectionBannerImage.mediaType, t.String),
+        fcl.arg(socialsDictionary, t.Dictionary({ key: t.String, value: t.String })),
         fcl.arg(message, t.String)
       ]
     });
@@ -315,4 +354,12 @@ export async function proposeNFTToCatalog(
     console.error(e);
     throw e;
   }
+}
+
+function buildRestrictedType(restrictedType: any) {
+  let res: any[] = []
+  restrictedType.restrictions.forEach((value: { typeID: string; }) => {
+    res.push(value.typeID);
+  })
+  return res
 }

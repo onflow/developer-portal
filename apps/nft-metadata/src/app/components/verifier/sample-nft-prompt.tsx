@@ -15,10 +15,10 @@ export function SampleNFTPrompt({
   setError: any
 }) {
   const navigate = useNavigate()
-  const [publicPath, setPublicPath] = useState<string>(defaultValues.publicPath || "")
+  const [storagePath, setStoragePath] = useState<string>(defaultValues.storagePath || "")
   const [sampleAddress, setSampleAddress] = useState<string>(defaultValues.sampleAddress || "")
   const [showLogIn, setShowLogIn] = useState<boolean>(false)
-  const possiblePublicPaths: Array<string> = contractCode.match(/\/public\/[A-Za-z0-9]*/gmi) || []
+  const possibleStoragePahts: Array<string> = contractCode.match(/\/storage\/[A-Za-z0-9]*/gmi) || []
   const [user, setUser] = useState({ loggedIn: null, addr: null })
 
   useEffect(() => fcl.currentUser().subscribe(setUser), [])
@@ -27,7 +27,7 @@ export function SampleNFTPrompt({
     <form onSubmit={(e) => {
       e.preventDefault();
       const address = showLogIn ? user.addr : sampleAddress
-      if (publicPath.indexOf("/public/") !== 0) {
+      if (storagePath.indexOf("/storage/") !== 0) {
         setError("The public path must include the /public/ prefix")
         return false
       }
@@ -37,23 +37,23 @@ export function SampleNFTPrompt({
       }
       navigate({
         pathname: window.location.pathname,
-        search: `?path=${publicPath}&sampleAddress=${address}`
+        search: `?path=${storagePath}&sampleAddress=${address}`
       })
       return false;
     }}>
       <p></p>
       <b>Enter the public path your NFT collection uses</b>
       {
-        possiblePublicPaths.length > 0 &&
+        possibleStoragePahts.length > 0 &&
           <>
             <p className="text-xs pb-2">We found some possible paths from your contract, you may click one to autofill</p>
             {
-              possiblePublicPaths.map((path) => {
+              possibleStoragePahts.map((path) => {
                 return (
                   <a
                     className="bg-blue-100 hover:bg-blue-200 text-blue-800 text-xs font-semibold mr-2 px-2.5 py-0.5 rounded dark:bg-blue-200 dark:text-blue-800 dark:hover:bg-blue-300 cursor-pointer"
                     key={path}
-                    onClick={() => setPublicPath(path)}
+                    onClick={() => setStoragePath(path)}
                   >
                     {path}
                   </a>
@@ -64,9 +64,9 @@ export function SampleNFTPrompt({
       }
       <p className="mt-2"></p>
       <TextInput
-        value={publicPath}
-        updateValue={setPublicPath}
-        placeholder="e.g. /public/MomentsCollection"
+        value={storagePath}
+        updateValue={setStoragePath}
+        placeholder="e.g. /storage/exampleNFTCollection"
       />
       <br />
       

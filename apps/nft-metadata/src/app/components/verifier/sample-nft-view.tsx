@@ -9,15 +9,14 @@ import { CollectionDisplayView } from "../shared/views/collection-display-view";
 import { DisplayView } from "../shared/views/display-view";
 import { CollectionDataView } from "../shared/views/collection-data-view";
 import { SubmitButton } from "../shared/submit-button";
-import * as fcl from "@onflow/fcl"
 
 export function SampleNFTView({
   sampleAddress,
-  publicPath,
+  storagePath,
   nftID
 }: {
   sampleAddress: string | null,
-  publicPath: string | null,
+  storagePath: string | null,
   nftID: string | null
 }) {
   const navigate = useNavigate()
@@ -31,17 +30,11 @@ export function SampleNFTView({
 
   useEffect(() => {
     const getMetadataConformity = async () => {
-      if (!sampleAddress || !publicPath) { return }
+      if (!sampleAddress || !storagePath) { return }
       setLoading(true)
       setError(null)
-      const metadataConformities = await retrieveMetadataInformation(sampleAddress, publicPath);
+      const metadataConformities = await retrieveMetadataInformation(sampleAddress, storagePath, nftID ?? "0");
       if (!metadataConformities) {
-        const user = await fcl.currentUser().snapshot()
-        if (user.loggedIn && sampleAddress === user.addr) {
-          const linksSetup = await getAreLinksSetup(user.addr as unknown as string, publicPath)
-          // TODO: Implement one-off new public path linking to metadataviews for the case where the
-          // logged in user might be able to fix it themself.
-        }
         setError("Failed to retrieve metadata")
       } else {
         const hasInvalidViews = Object.values(metadataConformities).filter((conforms) => {
@@ -50,7 +43,7 @@ export function SampleNFTView({
         if (hasInvalidViews) {
           setViewsImplemented(metadataConformities)
         } else {
-          const allNFTs = await getNFTsInAccount(sampleAddress, publicPath);
+          const allNFTs = await getNFTsInAccount(sampleAddress, storagePath);
           setOwnedNFTs(allNFTs)
           const uniqueCollections: any = {}
           allNFTs.forEach((nft: any, i: number) => {
@@ -81,6 +74,7 @@ export function SampleNFTView({
                 setError("The given ID does not exist in the account")
               }
             } else {
+              setUniqueCollections(null);
               // We have just one possible collection from this account, so we can take any to be set as the query param
               const selectedNftID = (Object.values(uniqueCollections)[0] as any).id
               const nftIndex = (Object.values(uniqueCollections)[0] as any).index
@@ -94,7 +88,7 @@ export function SampleNFTView({
       setLoading(false)
     }
     getMetadataConformity()
-  }, [sampleAddress, publicPath, nftID])
+  }, [sampleAddress, storagePath, nftID])
 
   let invalidViews: any = []
 
@@ -153,8 +147,8 @@ export function SampleNFTView({
           title="Failed to retrieve sample NFT"
           body={
             <>
-              We were unable to retrieve the MetadataViews.ResolverCollection capability from the public path and address provided.
-              Ensure your setup transactions link the MetadataViews.ResolverCollection interface on the given public path.
+              We were unable to retrieve an from your account.
+              Ensure you have an NFT in this account at the storage path provided.
             </>
           }
         />
@@ -175,9 +169,9 @@ export function SampleNFTView({
                         navigate(`${window.location.pathname}${window.location.search.replace(/&nftID=.*/, '')}&nftID=${uniqueCollections[key].id}`)
                       }}
                     >
-                        {key}
+                      {key}
                     </a>
-                    <br/>
+                    <br />
                   </React.Fragment>
                 )
               })
