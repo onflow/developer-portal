@@ -4,13 +4,12 @@ import { Attribution, AttributionProps } from "./Attribution"
 export default {
   component: Attribution,
   title: "Components/Attribution",
+  parameters: {
+    layout: "padded",
+  },
 } as Meta
 
-const Template: Story<AttributionProps> = (args) => (
-  <div style={{ padding: "1rem" }}>
-    <Attribution {...args} />
-  </div>
-)
+const Template: Story<AttributionProps> = (args) => <Attribution {...args} />
 
 export const Default = Template.bind({})
 

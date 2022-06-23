@@ -18,6 +18,9 @@ export default {
       control: { type: "select" },
     },
   },
+  parameters: {
+    layout: "padded",
+  },
 } as Meta
 
 const Template: Story<ContentNavigationProps> = (args) => (

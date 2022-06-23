@@ -1,4 +1,4 @@
-import { useGlobals, useParameter } from "@storybook/addons"
+import { useGlobals, useParameter, useEffect } from "@storybook/addons"
 import clsx from "clsx"
 import "../app/main.css"
 import tailwindConfig from "../tailwind.config"
@@ -17,7 +17,7 @@ export const parameters = {
     values: [
       {
         name: "light",
-        value: "#ffffff",
+        value: "#f6f7f9",
       },
       {
         name: "dark",
@@ -80,11 +80,12 @@ const withDarkMode = (Story, context) => {
   const isDarkModeSelected = globals.backgrounds?.value === "#000000"
   const isDarkMode = isDarkModeSelected || isDefaultDarkModeStory
 
-  return (
-    <div className={clsx("root", { dark: isDarkMode })}>
-      <Story {...context} />
-    </div>
-  )
+  useEffect(() => {
+    document.body.classList.add("root")
+    document.body.classList[isDarkMode ? "add" : "remove"]("dark")
+  })
+
+  return <Story {...context} />
 }
 
 export const decorators = [withDarkMode]

@@ -4,14 +4,13 @@ import NetworkDetailsCard, { NetworkDetailsCardProps } from "."
 export default {
   component: NetworkDetailsCard,
   title: "Components/NetworkDetailsCard",
+  parameters: {
+    layout: "padded",
+  },
 } as Meta
 
 const Template: Story<NetworkDetailsCardProps> = (args) => {
-  return (
-    <div style={{ backgroundColor: "#f1f1f1", padding: "14px" }}>
-      <NetworkDetailsCard {...args} />
-    </div>
-  )
+  return <NetworkDetailsCard {...args} />
 }
 const args = {
   status: "Healthy",

@@ -3,15 +3,18 @@ import { Heading, HeadingProps } from "."
 
 export default {
   component: Heading,
+  parameters: {
+    layout: "padded",
+  },
   title: "Components/Heading",
 } as Meta
 
 const Template: Story<HeadingProps> = (args) => {
   return (
-    <div style={{ padding: 40 }}>
+    <>
       <Heading {...args} />
       <p>Paragraph</p>
-    </div>
+    </>
   )
 }
 

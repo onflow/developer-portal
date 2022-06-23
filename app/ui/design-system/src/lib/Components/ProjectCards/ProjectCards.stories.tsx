@@ -1,19 +1,17 @@
 import { Meta, Story } from "@storybook/react"
 import ProjectCards, { ProjectCardsProps } from "."
-import PageBackground from "../../Pages/shared/PageBackground"
 import { ProjectCardProps } from "../ProjectCard"
 import { Default as DefaultProjectCard } from "../ProjectCard/ProjectCard.stories"
 
 export default {
   component: ProjectCards,
   title: "Components/ProjectCards",
+  parameters: {
+    layout: "centered",
+  },
 } as Meta
 
-const Template: Story<ProjectCardsProps> = (args) => (
-  <PageBackground className="py-4">
-    <ProjectCards {...args} />
-  </PageBackground>
-)
+const Template: Story<ProjectCardsProps> = (args) => <ProjectCards {...args} />
 
 const projectCardArgs = DefaultProjectCard.args as ProjectCardProps
 export const Default = Template.bind({})

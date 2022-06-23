@@ -5,14 +5,13 @@ import { endOfDay, endOfWeek } from "date-fns"
 export default {
   component: SporksCard,
   title: "Components/SporksCard",
+  parameters: {
+    layout: "padded",
+  },
 } as Meta
 
 const Template: Story<SporksCardProps> = (args) => {
-  return (
-    <div style={{ backgroundColor: "#f1f1f1", padding: "14px" }}>
-      <SporksCard {...args} />
-    </div>
-  )
+  return <SporksCard {...args} />
 }
 
 const args = {

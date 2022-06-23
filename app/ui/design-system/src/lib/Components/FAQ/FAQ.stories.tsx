@@ -6,11 +6,7 @@ export default {
   title: "Components/FAQ",
 } as Meta
 
-const Template: Story<FAQProps> = (args) => (
-  <div className="bg-primary-gray-50 p-4 dark:bg-black">
-    <FAQ {...args} />
-  </div>
-)
+const Template: Story<FAQProps> = (args) => <FAQ {...args} />
 
 const faqList = [
   {

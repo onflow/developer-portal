@@ -112,6 +112,7 @@ const tokenomicsOfficeHours = {
   tags: ["Flow", "Community", "Discord"],
   title: "Flow Tokenomics",
   isPrimary: true,
+  eventType: "Flow office hours",
 }
 
 const july7OfficeHours = {
@@ -124,11 +125,12 @@ const july7OfficeHours = {
   location: "Online",
   tags: ["Flow", "Community", "Discord"],
   title: "Office Hours",
+  eventType: "Flow office hours",
 }
 
 const allEvents: UpcomingEventsProps = {
   goToCommunityHref: "/coming-soon",
-  upcoming: [
+  events: [
     nftNYCEvent,
     collisionTorontoEvent,
     flowTokenomicsEvent,
@@ -137,8 +139,9 @@ const allEvents: UpcomingEventsProps = {
     firesideChatRohamEvent,
     metaPandaClubEvent,
     cryptotoysWeb3PartyEvent,
+    tokenomicsOfficeHours,
+    july7OfficeHours,
   ],
-  officeHours: [tokenomicsOfficeHours, july7OfficeHours],
 }
 
 export { allEvents }

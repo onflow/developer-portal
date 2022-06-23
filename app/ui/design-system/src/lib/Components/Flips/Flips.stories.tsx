@@ -4,14 +4,13 @@ import { default as FlipCell, default as Flips, FlipsProps } from "."
 export default {
   component: FlipCell,
   title: "Components/Flips",
+  parameters: {
+    layout: "padded",
+  },
 } as Meta
 
 const Template: Story<FlipsProps> = (args) => {
-  return (
-    <div style={{ padding: "1rem" }}>
-      <Flips {...args} />
-    </div>
-  )
+  return <Flips {...args} />
 }
 
 export const Default = Template.bind({})

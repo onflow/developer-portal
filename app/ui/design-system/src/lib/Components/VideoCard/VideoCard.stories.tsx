@@ -6,15 +6,16 @@ import { SmallVideoCard, SmallVideoCardProps } from "./SmallVideoCard"
 export default {
   component: LargeVideoCard,
   title: "Components/VideoCard",
+  parameters: {
+    layout: "padded",
+  },
 } as Meta
 
 const LargeTemplate: Story<LargeVideoCardProps> = (args) => (
   <LargeVideoCard {...args} />
 )
 const SmallTemplate: Story<SmallVideoCardProps> = (args) => (
-  <div style={{ backgroundColor: "#f1f1f1", padding: "14px" }}>
-    <SmallVideoCard {...args} />
-  </div>
+  <SmallVideoCard {...args} />
 )
 const SmallDarkTemplate: Story<SmallVideoCardProps> = (args) => (
   <SmallVideoCard {...args} />

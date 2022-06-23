@@ -363,6 +363,7 @@ const gettingStartedPageData = {
 export default {
   component: GettingStartedPage,
   title: "Pages/GettingStartedPage",
+  excludeStories: ["Icon1", "Icon2", "Icon3"],
 } as Meta
 
 const Template: Story<GettingStartedPageProps> = (args) => {

@@ -7,6 +7,7 @@ import invariant from "tiny-invariant"
 import { ErrorPage } from "~/ui/design-system/src/lib/Components/ErrorPage"
 import { flowContentNames } from "~/constants/repos"
 import { InternalToc } from "~/ui/design-system/src/lib/Components/InternalToc"
+export { InternalErrorBoundary as ErrorBoundary } from "~/errors/error-boundaries"
 
 export const loader: LoaderFunction = async ({ params, request }) => {
   const content = params["repo"]
@@ -71,7 +72,7 @@ export default function () {
 
 export function CatchBoundary() {
   const caught = useCatch()
-  console.error("CatchBoundary", caught)
+  console.error("CatchBoundary $.tsx", caught)
   const location = useLocation()
 
   switch (caught.data.status) {

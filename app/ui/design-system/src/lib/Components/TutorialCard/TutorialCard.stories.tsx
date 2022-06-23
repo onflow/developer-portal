@@ -4,13 +4,12 @@ import TutorialCard, { TutorialCardProps } from "."
 export default {
   component: TutorialCard,
   title: "Components/TutorialCard",
+  parameters: {
+    layout: "padded",
+  },
 } as Meta
 
-const Template: Story<TutorialCardProps> = (args) => (
-  <div style={{ backgroundColor: "#f1f1f1", padding: "14px" }}>
-    <TutorialCard {...args} />
-  </div>
-)
+const Template: Story<TutorialCardProps> = (args) => <TutorialCard {...args} />
 
 const args = {
   heading: "This is a title with a header in a two line sentence",

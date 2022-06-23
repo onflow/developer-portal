@@ -4,14 +4,13 @@ import { EventCardSmall, EventCardSmallProps } from "."
 export default {
   component: EventCardSmall,
   title: "Components/EventCardSmall",
+  parameters: {
+    layout: "padded",
+  },
 } as Meta
 
 const Template: Story<EventCardSmallProps> = (args) => {
-  return (
-    <div style={{ backgroundColor: "#f1f1f1", padding: "14px" }}>
-      <EventCardSmall {...args} />
-    </div>
-  )
+  return <EventCardSmall {...args} />
 }
 
 export const Default = Template.bind({})

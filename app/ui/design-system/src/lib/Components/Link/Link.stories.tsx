@@ -5,6 +5,9 @@ import { Link, LinkProps } from "."
 export default {
   component: Link,
   title: "Components/Link",
+  parameters: {
+    layout: "padded",
+  },
 } as Meta
 
 const Template: Story<LinkProps> = (args) => (

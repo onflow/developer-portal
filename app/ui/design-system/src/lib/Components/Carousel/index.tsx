@@ -44,7 +44,7 @@ export function Carousel({
   indicatorSize = "md",
 }: CarouselProps) {
   const [selectedIndex, setSelectedIndex] = useState(0)
-  const scrollContainer = useRef<HTMLUListElement>()
+  const scrollContainer = useRef<HTMLUListElement>(null)
   const childCount = React.Children.count(children)
 
   const onScrollHandler = useCallback<React.UIEventHandler<HTMLUListElement>>(
@@ -69,7 +69,6 @@ export function Carousel({
           }
         )}
         onScroll={onScrollHandler}
-        // @ts-expect-error please fix
         ref={scrollContainer}
       >
         {React.Children.map(children, (child, index) => (

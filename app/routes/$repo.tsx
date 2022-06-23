@@ -66,7 +66,7 @@ export default function Repo() {
 
 export function CatchBoundary() {
   const caught = useCatch()
-  console.error("CatchBoundary", caught)
+  console.error("CatchBoundary $repo", caught)
   if (caught.data.status === "unknownRepo") {
     return (
       <ErrorPage

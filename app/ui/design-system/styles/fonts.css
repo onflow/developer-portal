@@ -1,7 +1,7 @@
 @font-face {
   font-family: "Acumin Variable Concept";
   src: local("Acumin Variable Concept"),
-    url(/fonts/acumin-pro/AcuminVariableConcept.woff2) format("woff2");
+    url(/fonts/acumin-pro/AcuminVariableConcept.otf) format("opentype");
   font-weight: 400 700;
 }
 
