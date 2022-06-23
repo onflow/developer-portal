@@ -83,6 +83,14 @@ export function ConceptsPage({
             </ButtonLink>
           </div>
         </PageSection>
+        <PageSection>
+          <ContentNavigationList
+            header={contentNavigationListItems.header}
+            contentNavigationItems={
+              contentNavigationListItems.contentNavigationItems
+            }
+          />
+        </PageSection>
         <PageSection className="hidden md:block">
           <div className="container">
             <EventCard
@@ -96,14 +104,6 @@ export function ConceptsPage({
               title={eventCardItems.title}
             />
           </div>
-        </PageSection>
-        <PageSection>
-          <ContentNavigationList
-            header={contentNavigationListItems.header}
-            contentNavigationItems={
-              contentNavigationListItems.contentNavigationItems
-            }
-          />
         </PageSection>
       </PageSections>
     </PageBackground>
