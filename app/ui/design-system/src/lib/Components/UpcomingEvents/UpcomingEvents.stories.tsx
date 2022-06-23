@@ -1,4 +1,5 @@
 import { Meta, Story } from "@storybook/react"
+import { OFFICE_HOURS_EVENT_TYPE } from "~/component-data/Events"
 import { UpcomingEvents, UpcomingEventsProps } from "."
 
 export default {
@@ -25,7 +26,6 @@ const events = [
     location: "Online",
     tags: ["Conference", "Sponsor", "NFT_NYC"],
     title: "NFT NYC",
-    isPrimary: true,
   },
   {
     ctaText: "More Details",
@@ -61,7 +61,7 @@ const events = [
   {
     ctaText: "More Details",
     href: "https://share.onflow.org/nft-nyc-2022#:~:text=Building%20the%20NFT%20Marketplace%20of%20the%20Future",
-    eventType: "Flow office hours",
+    eventType: OFFICE_HOURS_EVENT_TYPE,
     description: "",
     imageSrc:
       "https://assets.website-files.com/5f6294c0c7a8cdf432b1c827/61410bc0c8d0522eea319058_Hack-blog_Flow.png",
@@ -72,7 +72,7 @@ const events = [
   {
     ctaText: "More Details",
     href: "https://share.onflow.org/nft-nyc-2022#:~:text=Fireside%20Chat%20with%20Roham",
-    eventType: "Flow office hours",
+    eventType: OFFICE_HOURS_EVENT_TYPE,
     description: "",
     imageSrc:
       "https://assets.website-files.com/5f6294c0c7a8cdf432b1c827/61410bc0c8d0522eea319058_Hack-blog_Flow.png",
@@ -87,7 +87,7 @@ const events = [
     href: "https://nftnycmpc.rsvpify.com/",
     imageSrc:
       "https://assets.website-files.com/5f6294c0c7a8cdf432b1c827/61410bc0c8d0522eea319058_Hack-blog_Flow.png",
-    eventType: "Flow office hours",
+    eventType: OFFICE_HOURS_EVENT_TYPE,
     tags: ["NFT_NYC", "Partner"],
     title: "NFT NYC x Meta Panda Club",
   },
@@ -98,7 +98,7 @@ const events = [
     eventDate: "June 22, 5:00pm ET",
     imageSrc:
       "https://assets.website-files.com/5f6294c0c7a8cdf432b1c827/61410bc0c8d0522eea319058_Hack-blog_Flow.png",
-    eventType: "Flow office hours",
+    eventType: OFFICE_HOURS_EVENT_TYPE,
     tags: ["Cryptoys", "NFT_NYC"],
     title: "Cryptoys: Web3 Party",
   },
