@@ -14,7 +14,7 @@ const conceptsPageArgs = {
   landingHeaderItems: data.landingHeaderItems,
   featureLinkBlockItems: data.featureLinkBlockItems,
   toolCardItems: data.toolCardItems,
-  contentNavigationItems: data.contentNavigationItems,
+  contentNavigationListItems: data.contentNavigationListItems,
   eventCardItems: data.eventCardItems,
 }
 export const Default = Template.bind({})

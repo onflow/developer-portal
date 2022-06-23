@@ -7,7 +7,6 @@ import { svgToDataUri } from "~/ui/design-system/src/lib/Components/LinkCard2Col
 import { ReactComponent as CadenceIcon } from "~/ui/design-system/images/tools/tool-cadence"
 import { ReactComponent as FCLIcon } from "~/ui/design-system/images/tools/tool-fcl"
 import { SDKCardProps } from "~/ui/design-system/src/lib/Components/SDKCard"
-import { ContentNavigationProps } from "~/ui/design-system/src/lib/Components/ContentNavigation"
 import { LandingHeaderProps } from "~/ui/design-system/src/lib/Components/LandingHeader"
 import { LinkCard3ColumnProps } from "~/ui/design-system/src/lib/Components/LinkCard3Column"
 import { LinkCard2ColumnProps } from "~/ui/design-system/src/lib/Components/LinkCard2Column"
@@ -29,6 +28,7 @@ import {
 } from "../../component-data/Articles"
 import { FeaturedArticleCardProps } from "~/ui/design-system/src/lib/Components/FeaturedArticleCard"
 import { ToolCardProps } from "~/ui/design-system/src/lib/Components/ToolCard"
+import { ContentNavigationListProps } from "~/ui/design-system/src/lib/Components/ContentNavigationList"
 
 const landingHeaderItems: LandingHeaderProps = {
   buttonText: "View Course",
@@ -171,30 +171,29 @@ const sdkCardItems: [
   SDKCardProps
 ] = [httpSDK, fclSDK, goSDK, pythonSDK, swiftSDK, jvmSDK]
 
-const contentNavigationItems: [
-  ContentNavigationProps,
-  ContentNavigationProps,
-  ContentNavigationProps
-] = [
-  {
-    title: "Learn",
-    text: "All the resources you need to learn and build.",
-    link: "/learn",
-    icon: "learn",
-  },
-  {
-    title: "Tools",
-    text: "Curated list of developer tools, services, SDKs.",
-    link: "/tools",
-    icon: "tools",
-  },
-  {
-    title: "Community",
-    text: "Learn more about Flow's ecosystem and get involved.",
-    link: "/community",
-    icon: "community",
-  },
-]
+const contentNavigationListItems: ContentNavigationListProps = {
+  header: "Explore More Content",
+  contentNavigationItems: [
+    {
+      title: "Learn",
+      text: "All the resources you need to learn and build.",
+      link: "/learn",
+      icon: "learn",
+    },
+    {
+      title: "Tools",
+      text: "Curated list of developer tools, services, SDKs.",
+      link: "/tools",
+      icon: "tools",
+    },
+    {
+      title: "Community",
+      text: "Learn more about Flow's ecosystem and get involved.",
+      link: "/community",
+      icon: "community",
+    },
+  ],
+}
 
 const recentArticleItems: [
   FeaturedArticleCardProps,
@@ -209,7 +208,7 @@ const recentToolItems: [ToolCardProps, ToolCardProps, ToolCardProps] = [
 ]
 
 export {
-  contentNavigationItems,
+  contentNavigationListItems,
   recentArticleItems,
   recentToolItems,
   sdkCardItems,

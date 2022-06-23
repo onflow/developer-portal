@@ -3,10 +3,6 @@ import { ButtonLink } from "../../Components/Button"
 import CommunityMembers, {
   CommunityMembersProps,
 } from "../../Components/CommunityMembers"
-import {
-  ContentNavigation,
-  ContentNavigationProps,
-} from "../../Components/ContentNavigation"
 import FeaturedArticleSlider, {
   FeaturedArticleSliderProps,
 } from "../../Components/FeaturedArticleSlider"
@@ -20,6 +16,10 @@ import { DISCOURSE_URL, GITHUB_URL } from "../../../../../../constants"
 import PageBackground from "../shared/PageBackground"
 import PageSection from "../shared/PageSection"
 import PageSections from "../shared/PageSections"
+import {
+  ContentNavigationList,
+  ContentNavigationListProps,
+} from "../../Components/ContentNavigationList"
 
 export type CommunityPageProps = FlipsProps &
   ProjectCardsProps &
@@ -27,7 +27,7 @@ export type CommunityPageProps = FlipsProps &
   ToolsAndConceptsProps & {
     communityMembers: CommunityMembersProps
     upcomingEvents: UpcomingEventsProps
-    contentNavigationItems: ContentNavigationProps[]
+    contentNavigationListItems: ContentNavigationListProps
     forumTopics: ForumCellProps[]
   }
 
@@ -39,7 +39,7 @@ export default function CommunityPage({
   upcomingEvents,
   articles,
   tools,
-  contentNavigationItems,
+  contentNavigationListItems,
   forumTopics,
 }: CommunityPageProps) {
   return (
@@ -91,17 +91,12 @@ export default function CommunityPage({
           <ToolsAndConcepts tools={tools} />
         </PageSection>
         <PageSection>
-          {/* TODO: Extract into shared component */}
-          <div className="container">
-            <h4 className="text-h2 mb-10">Explore More Content</h4>
-            <div className="grid grid-cols-1 gap-4 md:grid-cols-3 md:gap-8">
-              {contentNavigationItems.map(
-                (contentNav: ContentNavigationProps, index: number) => (
-                  <ContentNavigation key={index} {...contentNav} />
-                )
-              )}
-            </div>
-          </div>
+          <ContentNavigationList
+            header={contentNavigationListItems.header}
+            contentNavigationItems={
+              contentNavigationListItems.contentNavigationItems
+            }
+          />
         </PageSection>
         <PageSection>
           <FeaturedArticleSlider articles={articles} />
