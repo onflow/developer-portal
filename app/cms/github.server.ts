@@ -3,12 +3,14 @@
 import { throttling } from "@octokit/plugin-throttling"
 import { Octokit as createOctokit } from "@octokit/rest"
 import nodePath from "path"
+import { flowContentNames } from "~/constants/repos"
 
 type GitHubFile = { path: string; content: string }
 
 const Octokit = createOctokit.plugin(throttling)
 
 const OWNER = process.env.GITHUB_REPO_OWNER || "onflow"
+const DEFAULT_CONTENT_PATH = "docs"
 
 type ThrottleOptions = {
   method: string
@@ -51,6 +53,13 @@ async function downloadFirstMdxFile(
   return null
 }
 
+const customPaths = Object.fromEntries(
+  flowContentNames.map((content) => [content, `docs/content/${content}`])
+)
+const getContentPath = (repo: string) => {
+  return customPaths[repo] ?? DEFAULT_CONTENT_PATH
+}
+
 /**
  *
  * @param relativeMdxFileOrDirectory the path to the content. For example:
@@ -62,7 +71,12 @@ async function downloadMdxFileOrDirectory(
   repo: string,
   fileOrDirPath: string
 ): Promise<{ entry: string; files: Array<GitHubFile> }> {
-  const mdxFileOrDirectory = `docs/${fileOrDirPath}`
+  /* If the repository is internal /flow content
+   * - Map Flow Content Paths to the right repository paths
+   * - Reassign repository to Flow
+   */
+  const mdxFileOrDirectory = `${getContentPath(repo)}/${fileOrDirPath}`
+  repo = flowContentNames.includes(repo) ? "flow" : repo
 
   console.log(`Downloading ${repo}/${mdxFileOrDirectory}`)
 

@@ -143,7 +143,6 @@ export const fetchFlips = async () => {
     repositoryName: string,
     fetchIssue: number
   ): Promise<number> => {
-    console.log()
     const comments = await octokit
       .request("GET /repos/{owner}/{repo}/issues/{issueNumber}/comments", {
         owner: "onflow",
