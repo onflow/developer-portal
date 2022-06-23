@@ -1,9 +1,10 @@
+import { useLocation } from "@remix-run/react"
 import clsx from "clsx"
 import { useState } from "react"
 
 type Tab = {
   name: string
-  link: string
+  link?: string
 }
 
 export type TabMenuProps = {
@@ -22,6 +23,7 @@ const TabMenu = ({
   centered,
   defaultTabIndex = 0,
 }: TabMenuProps) => {
+  const location = useLocation()
   const [activeIndex, setActiveIndex] = useState(defaultTabIndex)
 
   return (
@@ -34,24 +36,18 @@ const TabMenu = ({
       )}
     >
       {tabs.map(({ name, link }: Tab, index) => {
-        const isCurrentIndex = activeIndex === index
+        const isCurrentIndex = link
+          ? location.pathname === link
+          : activeIndex === index
 
         const indicatorClasses = clsx(
           "absolute bottom-0 w-full bg-black rounded-tr-lg rounded-tl-lg h-[6px] dark:bg-white",
           { block: isCurrentIndex, hidden: !isCurrentIndex }
         )
 
-        if (onTabChange && link) {
+        if (link) {
           return (
-            <a
-              key={name}
-              href={link}
-              className={tabClasses}
-              onClick={() => {
-                setActiveIndex(index)
-                onTabChange(index, name)
-              }}
-            >
+            <a key={name} href={link} className={tabClasses}>
               <span
                 className={clsx(
                   "whitespace-nowrap px-4 text-sm md:px-6 md:text-base",
@@ -71,6 +67,7 @@ const TabMenu = ({
             role="button"
             onClick={() => {
               setActiveIndex(index)
+              onTabChange(index, name)
             }}
             className={tabClasses}
           >
