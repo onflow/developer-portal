@@ -9,7 +9,6 @@ export type BreadcrumbLinkProps = {
 
 export type BreadcrumbsProps = {
   items: BreadcrumbLinkProps[]
-  className?: string
 }
 
 function Separator() {
@@ -26,8 +25,8 @@ function BreadcrumbLink({
   isCurrent = false,
 }: BreadcrumbLinkProps) {
   const className = clsx(
-    isCurrent && "CURRENT text-primary-gray-400 dark:text-primary-gray-100",
-    !isCurrent && "NOT_CURRENT text-primary-gray-300 dark:text-primary-gray-200"
+    isCurrent && "text-primary-gray-400 dark:text-primary-gray-100",
+    !isCurrent && "text-primary-gray-300 dark:text-primary-gray-200"
   )
 
   if (!href) {
@@ -47,9 +46,9 @@ function BreadcrumbLink({
   )
 }
 
-export function Breadcrumbs({ className, items }: BreadcrumbsProps) {
+export function Breadcrumbs({ items }: BreadcrumbsProps) {
   return (
-    <div className={clsx("flex flex-wrap items-center text-sm", className)}>
+    <div className="flex flex-wrap items-center text-sm">
       {items.map((item, index) => (
         <Fragment key={index}>
           {index > 0 && <Separator />}
