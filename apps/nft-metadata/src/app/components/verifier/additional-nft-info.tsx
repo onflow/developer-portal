@@ -74,7 +74,7 @@ export function AdditionalNftInfo({
           <br />
           <SampleNFTPrompt
             contractCode={account.contracts[selectedContract]}
-            defaultValues={{ sampleAddress: "", publicPath: "" }}
+            defaultValues={{ sampleAddress: "", storagePath: "" }}
             setError={(error: string) => { setError(error) }}
           />
         </>

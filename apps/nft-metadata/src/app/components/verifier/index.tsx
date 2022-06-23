@@ -15,7 +15,7 @@ export default function ({
   const navigate = useNavigate()
   const { selectedNetwork, selectedAddress, selectedContract } = useParams<any>()
 
-  const publicPath = query.get("path")
+  const storagePath = query.get("path")
   const sampleAddress = query.get("sampleAddress")
   const nftID = query.get("nftID")
   const confirmed = query.get("confirmed")
@@ -34,23 +34,23 @@ export default function ({
       href: `/v/${selectedNetwork}/${selectedAddress}/${selectedContract}`,
       isActive: selectedNetwork && selectedAddress && selectedContract,
       isComplete: selectedNetwork && selectedAddress && selectedContract &&
-        sampleAddress && publicPath
+        sampleAddress && storagePath
     },
     {
       id: "S3",
       title: "Review Metadata",
-      href: `/v/${selectedNetwork}/${selectedAddress}/${selectedContract}?path=${publicPath}&sampleAddress=${sampleAddress}`,
+      href: `/v/${selectedNetwork}/${selectedAddress}/${selectedContract}?path=${storagePath}&sampleAddress=${sampleAddress}`,
       isActive: selectedNetwork && selectedAddress && selectedContract &&
-        sampleAddress && publicPath,
+        sampleAddress && storagePath,
       isComplete: selectedNetwork && selectedAddress && selectedContract &&
-        sampleAddress && publicPath && confirmed
+        sampleAddress && storagePath && confirmed
     },
     {
       id: "S4",
       title: "Add to Catalog",
       onClick: () => { },
       isActive: selectedNetwork && selectedAddress && selectedContract &&
-        sampleAddress && publicPath && confirmed,
+        sampleAddress && storagePath && confirmed,
       isComplete: false
     }
   ]
@@ -79,13 +79,13 @@ export default function ({
         }
         {
           steps[2].isActive && !steps[2].isComplete && (
-            <SampleNFTView sampleAddress={sampleAddress} publicPath={publicPath} nftID={nftID} />
+            <SampleNFTView sampleAddress={sampleAddress} storagePath={storagePath} nftID={nftID} />
           )
         }
 
         {
           steps[3].isActive && !steps[3].isComplete && (
-            <AddToCatalog sampleAddress={sampleAddress} publicPath={publicPath} nftID={nftID} />
+            <AddToCatalog sampleAddress={sampleAddress} storagePath={storagePath} nftID={nftID} />
           )
         }
       </div>
