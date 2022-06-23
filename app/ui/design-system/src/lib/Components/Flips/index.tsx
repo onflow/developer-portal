@@ -1,8 +1,8 @@
+import { useState } from "react"
 import { GITHUB_URL } from "../../../../../../constants"
 import { ButtonLink } from "../Button"
 import TabMenu from "../TabMenu"
 import FlipCell, { FlipCellHeader, FlipCellProps } from "./FlipCell"
-import { useState } from "react"
 
 export type FlipsProps = {
   openFlips: FlipCellProps[]
@@ -36,10 +36,7 @@ export default function Flips({
 
       <div className="mb-6">
         <TabMenu
-          tabs={[
-            { name: "Open FLIPS", link: "#" },
-            { name: " Good places to start", link: "#" },
-          ]}
+          tabs={[{ name: "Open FLIPS" }, { name: " Good places to start" }]}
           onTabChange={setSelectedTab}
         />
         <div className="py-6">

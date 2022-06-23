@@ -39,10 +39,7 @@ const ToolsAndConcepts = ({
       </div>
       {concepts.length > 0 && (
         <TabMenu
-          tabs={[
-            { name: " Tools", link: "#" },
-            { name: " Concepts", link: "#" },
-          ]}
+          tabs={[{ name: "Tools" }, { name: "Concepts" }]}
           onTabChange={(index: number) => setSelectedTabIndex(index)}
         />
       )}
