@@ -1,5 +1,4 @@
 import { Meta, Story } from "@storybook/react"
-import { MemoryRouter } from "react-router"
 import { Link, LinkProps } from "."
 
 export default {
@@ -10,16 +9,13 @@ export default {
   },
 } as Meta
 
-const Template: Story<LinkProps> = (args) => (
-  <MemoryRouter>
-    <Link {...args} />
-  </MemoryRouter>
-)
+const Template: Story<LinkProps> = (args) => <Link {...args} />
 
 export const ExternalLink = Template.bind({})
 ExternalLink.args = {
   href: "http://www.example.com",
   children: "External Link",
+  isExternal: true,
 }
 
 export const InternalLink = Template.bind({})

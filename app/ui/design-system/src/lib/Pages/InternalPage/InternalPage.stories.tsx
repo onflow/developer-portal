@@ -7,6 +7,9 @@ export default {
   title: "Pages/InternalPage",
   parameters: {
     layout: "padded",
+    router: {
+      disable: true,
+    },
   },
 } as Meta
 
