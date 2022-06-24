@@ -61,7 +61,7 @@ export function DesktopMenuItem({ divider, ...props }: DesktopMenuItemProps) {
             leaveFrom="transform opacity-100 scale-100"
             leaveTo="transform opacity-0 scale-95"
           >
-            <Popover.Panel className="fixed top-[96px] left-0 right-0 bottom-0 z-10 origin-top-right">
+            <Popover.Panel className="fixed top-[96px] left-0 right-0 bottom-0 z-40 origin-top-right">
               <div className="relative z-20 max-h-full">
                 {"tabs" in contentProps ? (
                   <DesktopMenuTabbed {...contentProps} />

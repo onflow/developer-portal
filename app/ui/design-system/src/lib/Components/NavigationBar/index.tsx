@@ -20,7 +20,7 @@ export function NavigationBar({
   const [isMobileNavOpen, setMobileNavOpen] = useState(false)
 
   return (
-    <nav className="z-10 flex min-h-[96px] items-center bg-white p-4 text-primary-gray-400 dark:bg-black dark:text-white lg:px-8">
+    <nav className="z-40 flex min-h-[96px] items-center bg-white p-4 text-primary-gray-400 dark:bg-black dark:text-white lg:px-8">
       <div className="flex items-center">
         <a href="/" className="py-2 hover:opacity-75">
           <FlowDocsLogo className="shrink-0" />
@@ -66,7 +66,7 @@ export function NavigationBar({
         leaveFrom="opacity-100 scale-100"
         leaveTo="opacity-0 scale-95"
       >
-        <div className="fixed top-[96px] left-0 right-0 bottom-0 z-10 origin-top-right overflow-auto bg-white dark:bg-black md:hidden">
+        <div className="fixed top-[96px] left-0 right-0 bottom-0 z-40 origin-top-right overflow-auto bg-white dark:bg-black md:hidden">
           <MobileMenu menuItems={menuItems} />
         </div>
       </Transition>
