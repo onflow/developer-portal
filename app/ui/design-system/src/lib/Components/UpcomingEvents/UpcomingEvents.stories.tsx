@@ -107,6 +107,7 @@ const events = [
 const DefaultArgs = {
   goToCommunityHref: "#todo",
   events,
+  headerLink: "#",
 }
 
 export const Default = Template.bind({})

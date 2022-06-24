@@ -20,6 +20,7 @@ import {
   ContentNavigationList,
   ContentNavigationListProps,
 } from "../../Components/ContentNavigationList"
+import { HeaderWithLink } from "../../Components/HeaderWithLink"
 
 export type CommunityPageProps = FlipsProps &
   ProjectCardsProps &
@@ -54,16 +55,19 @@ export default function CommunityPage({
             title="Community"
           />
         </PageSection>
-        <PageSection>
-          <UpcomingEvents {...upcomingEvents} />
+        <PageSection sectionId="upcoming-events">
+          <UpcomingEvents {...upcomingEvents} headerLink="upcoming-events" />
         </PageSection>
-        <PageSection>
+        <PageSection sectionId="community-members">
           <div className="container mb-8">
             <div className="flex items-center justify-between">
-              <div className="text-h2">
+              <HeaderWithLink
+                headerLink="community-members"
+                className="text-h2"
+              >
                 <div>Designed by experts</div>
                 <div>Refined by the community</div>
-              </div>
+              </HeaderWithLink>
               <ButtonLink
                 rightIcon="right"
                 href={GITHUB_URL}
@@ -78,33 +82,40 @@ export default function CommunityPage({
           </div>
           <CommunityMembers {...communityMembers} />
         </PageSection>
-        <PageSection>
+        <PageSection sectionId="flips">
           <Flips
             openFlips={openFlips}
             goodPlacesToStartFlips={goodPlacesToStartFlips}
+            headerLink="flips"
           />
         </PageSection>
-        <PageSection>
-          <ProjectCards projects={projects} />
+        <PageSection sectionId="featured-initiatives">
+          <ProjectCards projects={projects} headerLink="featured-initiatives" />
         </PageSection>
-        <PageSection>
-          <ToolsAndConcepts tools={tools} />
+        <PageSection sectionId="tools">
+          <ToolsAndConcepts tools={tools} headerLink="tools" />
         </PageSection>
-        <PageSection>
+        <PageSection sectionId="explore-more-content">
           <ContentNavigationList
             header={contentNavigationListItems.header}
             contentNavigationItems={
               contentNavigationListItems.contentNavigationItems
             }
+            headerLink="explore-more-content"
           />
         </PageSection>
-        <PageSection>
-          <FeaturedArticleSlider articles={articles} />
+        <PageSection sectionId="featured-articles">
+          <FeaturedArticleSlider
+            articles={articles}
+            headerLink="featured-articles"
+          />
         </PageSection>
-        <PageSection>
+        <PageSection sectionId="from-the-forum">
           <div className="container mb-8">
             <div className="mb-10 flex items-center justify-between">
-              <h4 className="text-h2">From the forum</h4>
+              <HeaderWithLink headerLink="from-the-forum" className="text-h2">
+                From the forum
+              </HeaderWithLink>
               <ButtonLink
                 rightIcon="right"
                 href={DISCOURSE_URL}

@@ -6,6 +6,7 @@ import {
   SocialLinksSignup,
 } from "../../Components"
 import { FeaturedArticle } from "../../Components/FeaturedArticleSlider"
+import { HeaderWithLink } from "../../Components/HeaderWithLink"
 import { Article, StatuspageApiResponse } from "../../interfaces"
 import PageBackground from "../shared/PageBackground"
 import PageSection from "../shared/PageSection"
@@ -45,9 +46,11 @@ const NetworkPage = ({
           </div>
         </div>
       </PageSection>
-      <PageSection>
+      <PageSection sectionId="live-updates">
         <div className="container">
-          <h3 className="text-h3 mb-10">Live updates</h3>
+          <HeaderWithLink headerLink="live-updates" className="text-h3 mb-10">
+            Live updates
+          </HeaderWithLink>
           <div className="mt-6 flex flex-col gap-4 md:flex-row md:gap-8">
             {[1, 2, 3].map((index) => (
               <NetworkDiscordCard
@@ -61,9 +64,11 @@ const NetworkPage = ({
           </div>
         </div>
       </PageSection>
-      <PageSection>
+      <PageSection sectionId="announcements">
         <div className="container">
-          <h3 className="text-h3 mb-6">Announcements</h3>
+          <HeaderWithLink headerLink="announcements" className="text-h3 mb-6">
+            Announcements
+          </HeaderWithLink>
           <div className="flex flex-col gap-4 md:gap-8">
             {[1, 2, 3].map((index) => (
               <div key={index}>

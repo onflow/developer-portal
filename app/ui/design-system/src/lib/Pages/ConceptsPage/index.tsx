@@ -67,8 +67,9 @@ export function ConceptsPage({
             ))}
           </div>
         </PageSection>
-        <PageSection>
+        <PageSection sectionId="tools">
           <ToolsAndConcepts
+            headerLink="tools"
             tools={toolCardItems}
             headerButtontext="View all Tools"
             bottomButtons={false}
@@ -83,8 +84,9 @@ export function ConceptsPage({
             </ButtonLink>
           </div>
         </PageSection>
-        <PageSection>
+        <PageSection sectionId="explore-more-content">
           <ContentNavigationList
+            headerLink="explore-more-content"
             header={contentNavigationListItems.header}
             contentNavigationItems={
               contentNavigationListItems.contentNavigationItems

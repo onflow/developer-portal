@@ -2,6 +2,7 @@ import { useMemo, useState } from "react"
 import { ReactComponent as Filter } from "../../../../images/action/filter2"
 import { SocialLinksSignup } from "../../Components"
 import { ButtonLink } from "../../Components/Button"
+import { HeaderWithLink } from "../../Components/HeaderWithLink"
 import { LandingHeader } from "../../Components/LandingHeader"
 import { ToggleButton } from "../../Components/ToggleButton"
 import { TutorialCardProps } from "../../Components/TutorialCard"
@@ -71,10 +72,12 @@ export function LearnPage({
             description="Learn header Lorem ipsum dolor sit amet proin gravida lorem ipsum dolor sit."
           />
         </PageSection>
-        <PageSection className="flex-col items-stretch">
+        <PageSection className="flex-col items-stretch" sectionId="cadence">
           <div className="container">
             <div className="mb-6 flex items-baseline justify-between">
-              <h2 className="text-h2">Cadence</h2>
+              <HeaderWithLink className="text-h2" headerLink="cadence">
+                Cadence
+              </HeaderWithLink>
               <ButtonLink
                 variant="secondary"
                 className="hidden whitespace-nowrap md:flex"
@@ -95,16 +98,20 @@ export function LearnPage({
             </ButtonLink>
           </div>
         </PageSection>
-        <PageSection className="flex-col items-stretch ">
+        <PageSection className="flex-col items-stretch " sectionId="nfts">
           <div className="container">
-            <h2 className="text-h2 f mb-6">NFTs</h2>
+            <HeaderWithLink headerLink="nfts" className="text-h2 f mb-6">
+              NFTs
+            </HeaderWithLink>
             <PaginatedTutorialCardList tutorials={nftTutorials} />
           </div>
         </PageSection>
-        <PageSection>
+        <PageSection sectionId="featured-videos">
           <div className="container">
             <div className="mb-6 flex items-baseline justify-between">
-              <h2 className="text-h2">Featured videos</h2>
+              <HeaderWithLink headerLink="featured-videos" className="text-h2">
+                Featured videos
+              </HeaderWithLink>
               <ButtonLink
                 variant="secondary"
                 className="hidden whitespace-nowrap md:flex"
@@ -134,9 +141,11 @@ export function LearnPage({
             </ButtonLink>
           </div>
         </PageSection>
-        <PageSection>
+        <PageSection sectionId="all-content">
           <div className="container">
-            <h2 className="text-h2 mb-6">All content</h2>
+            <HeaderWithLink headerLink="all-content" className="text-h2 mb-6">
+              All content
+            </HeaderWithLink>
             <div className="mb-6 flex flex-wrap gap-4">
               <div className="flow flow-col inline-flex items-center justify-center py-2 text-center text-base font-semibold">
                 <Filter className="mr-2" /> Filter

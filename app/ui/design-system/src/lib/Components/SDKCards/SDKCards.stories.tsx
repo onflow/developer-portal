@@ -15,6 +15,7 @@ const Template: Story<SDKCardsProps> = (args) => {
 
 export const Primary = Template.bind({})
 Primary.args = {
+  headerLink: "#",
   cards: [
     {
       title: "Flow Port",

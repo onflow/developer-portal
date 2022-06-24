@@ -13,6 +13,7 @@ const Template: Story<FeaturedArticleSliderProps> = (args) => {
   return <FeaturedArticleSlider {...args} />
 }
 const args = {
+  headerLink: "#",
   articles: [
     {
       heading: "Node operator callout",
