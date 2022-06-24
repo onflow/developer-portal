@@ -6,6 +6,7 @@ import flowGoSdk from "./presets/flow-go-sdk.json"
 import flowJsTesting from "./presets/flow-js-testing.json"
 import dappDevelopment from "./presets/dapp-development.json"
 import { RepoSchema } from "./repo-schema"
+import { capitalCase } from "change-case"
 
 /* Repository names and Flow internal content names */
 const repositoryNames = [
@@ -18,31 +19,67 @@ const repositoryNames = [
   "flow-emulator",
   "flow-cadut",
   "mock-developer-doc",
-]
+] as const
 
-const flowContentNames = ["kitty-items", "vscode-extension", "dapp-development"]
-
-const repoList = [...repositoryNames, ...flowContentNames].map(
-  (repositoryName) => ({
-    org: "onflow",
-    repo: repositoryName,
-  })
-)
-
-type Repo = typeof repoList
+export const flowContentNames = [
+  "kitty-items",
+  "vscode-extension",
+  "dapp-development",
+] as const
 
 /* Sidebar presets for all repositories and content names */
-const flowContentPresets: Partial<Record<string, RepoSchema>> = {
+export const schemas: Partial<Record<ContentName, RepoSchema>> = {
+  cadence: cadence as RepoSchema,
+  "fcl-js": fclJs as RepoSchema,
+  "flow-go-sdk": flowGoSdk as RepoSchema,
+  "flow-js-testing": flowJsTesting as RepoSchema,
+
+  // flow content
   "kitty-items": kittyItems as RepoSchema,
   "vscode-extension": vscodeExtension as RepoSchema,
   "dapp-development": dappDevelopment as RepoSchema,
 }
 
-const repoPresets: Partial<Record<Repo[number]["repo"], RepoSchema>> = {
-  cadence: cadence as RepoSchema,
-  "fcl-js": fclJs as RepoSchema,
-  "flow-go-sdk": flowGoSdk as RepoSchema,
-  "flow-js-testing": flowJsTesting as RepoSchema,
+/* Overriden display names (defaults to dashes converted to spaces then capitalized) */
+export const displayNames: Partial<Record<ContentName, string>> = {
+  "flow-cli": "FLow CLI",
+  "flow-js-testing": "Flow JS Testing",
+  "flow-go-sdk": "Flow Go SDK",
+  "fcl-js": "Flow Content Library JS",
+  "vscode-extension": "VS Code Extension",
+  "dapp-development": "DApp Development",
 }
 
-export { repoList, repoPresets, flowContentNames, flowContentPresets }
+type RepoName = typeof repositoryNames[number]
+type FlowContentName = typeof flowContentNames[number]
+export type ContentName = RepoName | FlowContentName
+
+export type ContentSpec = {
+  repoName: string
+  contentName: string
+  displayName: string
+  schema?: RepoSchema
+}
+
+export const contentSpecMap = [...repositoryNames, ...flowContentNames].reduce(
+  (accum, name) => ({
+    ...accum,
+    [name]: {
+      repoName: repositoryNames.includes(name as RepoName) ? name : "flow",
+      contentName: name,
+      displayName: displayNames[name] || capitalCase(name),
+      schema: schemas[name],
+    },
+  }),
+  {} as Record<ContentName, ContentSpec>
+)
+
+export function isContentName(name: string): name is ContentName {
+  return (contentSpecMap as Object).hasOwnProperty(name)
+}
+
+export const getContentSpec = (name: string) => {
+  if (isContentName(name)) {
+    return contentSpecMap[name]
+  }
+}
