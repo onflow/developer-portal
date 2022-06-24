@@ -64,6 +64,35 @@ List of repository sources:
 - [/flow-emulator](https://github.com/onflow/flow-emulator)
 - [/flow-cadut](https://github.com/onflow/flow-cadut)
 
-## Further help
+## Deployment
 
-Visit the [Nx Documentation](https://nx.dev) to learn more.
+Commits pushed to the `main` branch are automatically deployed to staging. Commits pushed to `production` are automatically deployed to production. See [deploy.yml](.github/workflows/deploy.yml) for details.
+
+Recommended workflow to promote changes from `main` (staging) to production is:
+
+```bash
+git fetch
+git switch production
+git reset --hard origin/main
+git push --force
+```
+
+### Deployment takes forever or fails due to memory errors
+
+If deploys fail to go out, and the github actions hang indefinitely, a workaround to fix this is:
+
+1. cancel the build
+1. delete the fly app that is prefixed with `fly-builder-`, this can be done through CLI as shown below, or through the [fly dashboard](https://fly.io/dashboard/flow-docs)
+
+   ```bash
+   $ fly apps list
+   NAME                                    OWNER           STATUS  LATEST DEPLOY
+   flow-docs                               flow-docs       running 2022-06-22T00:07:40Z
+   flow-docs-staging                       flow-docs       running 7m45s ago
+   fly-builder-muddy-wildflower-4301       flow-docs       pending
+   $ fly apps destroy fly-builder-muddy-wildflower-4301
+   ...
+   ```
+
+1. re-run the build by going to the latest commit on the appropriate branch, clicking "Re-run jobs", and then "Re-run failed jobs"
+1. build should succeed
