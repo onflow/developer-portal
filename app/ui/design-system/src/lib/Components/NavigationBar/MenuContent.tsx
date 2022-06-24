@@ -42,25 +42,24 @@ export function MenuContent({
           <MenuContentGrid hasCards={hasCards} isTabContent={isTabContent}>
             <SectionHeading
               className="col-span-full mb-2"
-              title={sections[0].title}
-              icon={sections[0].icon}
+              title={sections[0]!.title}
+              icon={sections[0]!.icon}
             />
-            {sections[0].subSections &&
-              sections[0].subSections.map((subsection, index) => (
-                <SubsectionLink
-                  key={index}
-                  href={subsection.href}
-                  title={subsection.title}
-                />
-              ))}
+            {sections[0]?.subSections?.map((subsection, index) => (
+              <SubsectionLink
+                key={index}
+                href={subsection.href}
+                title={subsection.title}
+              />
+            ))}
           </MenuContentGrid>
-          {sections[0].links && (
+          {sections[0]!.links && (
             <MenuContentGrid
               className="mt-2 border-t"
               hasCards={hasCards}
               isTabContent={isTabContent}
             >
-              <SectionLinkList links={sections[0].links} />
+              <SectionLinkList links={sections[0]!.links} />
             </MenuContentGrid>
           )}
         </div>

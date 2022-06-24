@@ -8,7 +8,7 @@ import TabMenu from "../TabMenu"
 
 export type UpcomingEventsProps = {
   goToCommunityHref: string
-  events: EventCardProps[]
+  events: [EventCardProps, ...EventCardProps[]]
   headerLink?: string
 }
 
@@ -21,7 +21,7 @@ export function UpcomingEvents({
 }: UpcomingEventsProps) {
   const [tabIndex, setTabIndex] = useState(0)
   const [selectedEventTitle, setSelectedEventTitle] = useState<string | null>(
-    events[0].title
+    events[0]?.title ?? null
   )
   const onTabChange = (filterIndex: number) => {
     setSelectedEventTitle(null)
@@ -52,7 +52,7 @@ export function UpcomingEvents({
       />
       <div className="py-6">
         <div className="hidden md:block">
-          <EventCard {...primaryEvent} className="mb-4" />
+          {primaryEvent && <EventCard {...primaryEvent} className="mb-4" />}
           <ul className="hidden list-none flex-row gap-6 overflow-x-auto md:flex">
             {filteredEvents.map((event: EventCardProps, index: number) => (
               <li key={index}>
