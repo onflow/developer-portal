@@ -75,11 +75,11 @@ export const contentSpecMap = [...repositoryNames, ...flowContentNames].reduce(
 )
 
 export function isRepo(name: string): name is RepoName {
-  return (repositoryNames as Object).hasOwnProperty(name)
+  return (repositoryNames as Readonly<Array<string>>).includes(name)
 }
 
 export function isFlowContent(name: string): name is FlowContentName {
-  return (flowContentNames as Object).hasOwnProperty(name)
+  return (flowContentNames as Readonly<Array<string>>).includes(name)
 }
 
 export function isContent(name: string): name is ContentName {
@@ -90,4 +90,5 @@ export const getContentSpec = (name: string) => {
   if (isContent(name)) {
     return contentSpecMap[name]
   }
+  throw new Error(`Unknown name: ${name}`)
 }
