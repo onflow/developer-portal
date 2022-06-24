@@ -6,7 +6,7 @@ type InternalSidebarSectionItem = {
   href: string
 }
 
-type InternalSidebarSection = {
+export type InternalSidebarSection = {
   title: string
   items: InternalSidebarSectionItem[]
 }

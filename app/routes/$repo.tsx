@@ -1,5 +1,11 @@
 import { json, LoaderFunction } from "@remix-run/node"
-import { Link, Outlet, useCatch, useLoaderData } from "@remix-run/react"
+import {
+  Link,
+  Outlet,
+  useCatch,
+  useLoaderData,
+  useMatches,
+} from "@remix-run/react"
 import invariant from "tiny-invariant"
 import {
   repoList,
@@ -9,8 +15,8 @@ import {
 } from "~/constants/repos"
 import { RepoSchema } from "~/constants/repos/repo-schema"
 import { ErrorPage } from "~/ui/design-system/src/lib/Components/ErrorPage"
-import { InternalSidebar } from "~/ui/design-system/src/lib/Components/InternalSidebar"
 import { temporarilyRedirectToComingSoon } from "~/utils/features"
+import { InternalPage } from "../ui/design-system/src/lib/Pages/InternalPage"
 
 type LoaderData = {
   repo: string
@@ -51,17 +57,17 @@ export const loader: LoaderFunction = async ({
 
 export default function Repo() {
   const data = useLoaderData<LoaderData>()
+  const matches = useMatches()
+  const [match] = matches.slice(-1)
+
   return (
-    <div className="flex h-full">
-      {data.repoSchema ? (
-        <InternalSidebar config={data.repoSchema.sidebar} />
-      ) : (
-        <div>⚠️ D'oh. Failed to load sidebar content.</div>
-      )}
-      <div className="overflow-auto">
-        <Outlet />
-      </div>
-    </div>
+    <InternalPage
+      activePath={match.params["*"] || "index"}
+      repo={data.repo}
+      sidebarConfig={data.repoSchema?.sidebar}
+    >
+      <Outlet />
+    </InternalPage>
   )
 }
 
