@@ -5,7 +5,7 @@ import { HeaderWithLink } from "../HeaderWithLink"
 
 export type FeaturedArticleSliderProps = CarouselProps & {
   articles: Article[]
-  headerLink: string
+  headerLink?: string
 }
 
 export const FeaturedArticle = ({
@@ -47,7 +47,7 @@ const FeaturedArticleSlider = ({
   articles,
   breakpoint = "none",
   carouselItemWidth = "w-10/12 md:w-full",
-  headerLink,
+  headerLink = "",
   ...carouselProps
 }: FeaturedArticleSliderProps) => {
   return (
