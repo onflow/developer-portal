@@ -128,13 +128,13 @@ function App() {
           <Outlet />
           <Footer />
         </div>
+        <ScrollRestoration />
         <script
           suppressHydrationWarning
           dangerouslySetInnerHTML={{
             __html: `window.GLOBALS=${data.sentryDsn};`,
           }}
         />
-        <ScrollRestoration />
         <Scripts />
         <LiveReload />
       </body>

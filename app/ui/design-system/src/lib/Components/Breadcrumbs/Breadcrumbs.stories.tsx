@@ -13,7 +13,11 @@ const Template: Story<BreadcrumbsProps> = (args) => <Breadcrumbs {...args} />
 
 export const Default = Template.bind({})
 Default.args = {
-  current: "Quick reference",
+  items: [
+    { href: "#home", name: "Home" },
+    { href: "#tool", name: "Tool" },
+    { href: "#quick-reference", name: "Quick reference" },
+  ],
 }
 
 export const dark = Template.bind({})

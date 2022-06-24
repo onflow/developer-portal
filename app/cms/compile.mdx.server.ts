@@ -8,7 +8,7 @@ import calculateReadingTime from "reading-time"
 import type * as U from "unified"
 import { visit } from "unist-util-visit"
 import formatLinks from "./utils/format-links"
-import { generateTOC } from "./utils/generate-toc"
+import { markdownToToc } from "./utils/generate-toc"
 import type { GitHubFile } from "./github.server"
 import rehypeSanitize from "rehype-sanitize"
 
@@ -102,7 +102,7 @@ async function compileMdx<FrontmatterType extends Record<string, unknown>>(
       },
     })
     const readTime = calculateReadingTime(indexFile.content)
-    const toc = generateTOC(indexFile.content)
+    const toc = markdownToToc(indexFile.content)
 
     return {
       code,

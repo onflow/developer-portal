@@ -1,14 +1,14 @@
 import type { EntryContext } from "@remix-run/node"
 import { RemixServer } from "@remix-run/react"
-import * as Sentry from "@sentry/node"
 import { renderToString } from "react-dom/server"
-import { getRequiredGlobalEnvVar } from "./cms/helpers"
 
+/*
 Sentry.init({
   dsn: getRequiredGlobalEnvVar("SENTRY_DSN"),
   tracesSampleRate: 0.3,
   environment: getRequiredGlobalEnvVar("NODE_ENV"),
 })
+*/
 
 /* Uncomment this block for testing Sentry connection
 const transaction = Sentry.startTransaction({

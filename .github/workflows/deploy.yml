@@ -41,6 +41,19 @@ jobs:
       - name: Eslint
         run: yarn lint
 
+  jest:
+    name: Jest
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v3
+      - uses: actions/setup-node@v3
+        with:
+          cache: "yarn"
+      - name: Install modules
+        run: yarn install
+      - run: yarn jest
+
+
   typecheck:
     name: TypeScript
     runs-on: ubuntu-latest
