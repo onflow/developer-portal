@@ -54,16 +54,18 @@ export default function () {
 
   return (
     <div className="pl-[55px]">
-      <div className="flex">
-        <div className="w-[80%] flex-col">
+      <div className="grid grid-cols-5">
+        <div className="col-span-4">
           <MDXContent />
         </div>
         <div className="pt-[55px]">
-          <InternalToc
-            headings={toc}
-            currentHash={currentHash}
-            updateHash={(e) => setHash("#test")}
-          />
+          {toc != null ? (
+            <InternalToc
+              headings={toc}
+              currentHash={currentHash}
+              updateHash={(e) => setHash("#test")}
+            />
+          ) : null}
         </div>
       </div>
     </div>
