@@ -74,12 +74,20 @@ export const contentSpecMap = [...repositoryNames, ...flowContentNames].reduce(
   {} as Record<ContentName, ContentSpec>
 )
 
-export function isContentName(name: string): name is ContentName {
-  return (contentSpecMap as Object).hasOwnProperty(name)
+export function isRepo(name: string): name is RepoName {
+  return (repositoryNames as Object).hasOwnProperty(name)
+}
+
+export function isFlowContent(name: string): name is FlowContentName {
+  return (flowContentNames as Object).hasOwnProperty(name)
+}
+
+export function isContent(name: string): name is ContentName {
+  return isRepo(name) || isFlowContent(name)
 }
 
 export const getContentSpec = (name: string) => {
-  if (isContentName(name)) {
+  if (isContent(name)) {
     return contentSpecMap[name]
   }
 }
