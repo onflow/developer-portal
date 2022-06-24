@@ -2,6 +2,10 @@ import { markdownToToc } from "./generate-toc"
 
 test(`simple case`, () => {
   let subject = `
+---
+title: Example
+---
+
 # Acme
 
 beta
@@ -36,6 +40,10 @@ end
 
 test(`backticks`, () => {
   let subject = `
+---
+title: Example
+---
+
 ## Avoid using \`AuthAccount\` as a function parameter
 bar
   `

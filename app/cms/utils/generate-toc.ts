@@ -19,6 +19,9 @@ export const markdownToToc = (mdContent: string): HeadingList | null => {
   }
 
   const items = processItems(tocData.map.children)
+
+  // we assume all documents have the weird github yaml metadata,
+  // room for improvement here
   const itemsWithoutTitle = items.slice(1, items.length)
   if (itemsWithoutTitle.length === 0) return null
 
