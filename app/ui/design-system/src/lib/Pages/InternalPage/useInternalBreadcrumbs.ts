@@ -10,9 +10,14 @@ export type UseInternalBreadcrumbsOptions = {
   activePath: string
 
   /**
-   * The name of the related github repo
+   * THe name to display in the breadcrumbs for this content section
    */
-  repo: string
+  contentDisplayName: string
+
+  /**
+   * The name of the path in the URL used to access this content section
+   */
+  contentPath: string
 
   /**
    * The site's root URL.
@@ -40,23 +45,25 @@ const findItem = (sidebarConfig: InternalSidebarConfig, activePath: string) => {
  */
 export const useInternalBreadcrumbs = ({
   activePath,
-  sidebarConfig,
-  repo,
+  contentDisplayName,
+  contentPath,
   rootUrl = "/",
+  sidebarConfig,
 }: UseInternalBreadcrumbsOptions) =>
   useMemo(() => {
     const item = sidebarConfig && findItem(sidebarConfig, activePath)
 
     const breadcrumbs = [
       { href: rootUrl, name: "Home" },
-
-      // TODO: How do we get a "displayable" name?
-      { name: repo, href: `${rootUrl}/${repo}` },
+      { name: contentDisplayName, href: `${rootUrl}${contentPath}` },
     ]
 
     if (item) {
-      breadcrumbs.push({ name: item.label, href: `/${repo}/${item.href}` })
+      breadcrumbs.push({
+        name: item.label,
+        href: `${rootUrl}${contentPath}/${item.href}`,
+      })
     }
 
     return breadcrumbs
-  }, [activePath, sidebarConfig, rootUrl, repo])
+  }, [activePath, contentDisplayName, contentPath, rootUrl, sidebarConfig])

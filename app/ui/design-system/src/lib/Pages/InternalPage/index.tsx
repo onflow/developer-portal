@@ -10,16 +10,18 @@ export type InternalPageProps = React.PropsWithChildren<{}> &
 
 export function InternalPage({
   activePath,
-  rootUrl = "/",
   children,
-  repo,
+  contentDisplayName,
+  contentPath,
+  rootUrl = "/",
   sidebarConfig,
 }: InternalPageProps) {
   const breadcrumbs = useInternalBreadcrumbs({
     activePath,
+    contentDisplayName,
+    contentPath,
     rootUrl,
     sidebarConfig,
-    repo,
   })
 
   return (

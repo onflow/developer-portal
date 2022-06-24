@@ -3,7 +3,7 @@
 import { throttling } from "@octokit/plugin-throttling"
 import { Octokit as createOctokit } from "@octokit/rest"
 import nodePath from "path"
-import { flowContentNames } from "~/constants/repos"
+import { flowContentNames, isFlowContent } from "~/constants/repos"
 
 type GitHubFile = { path: string; content: string }
 
@@ -76,7 +76,7 @@ async function downloadMdxFileOrDirectory(
    * - Reassign repository to Flow
    */
   const mdxFileOrDirectory = `${getContentPath(repo)}/${fileOrDirPath}`
-  repo = flowContentNames.includes(repo) ? "flow" : repo
+  repo = isFlowContent(repo) ? "flow" : repo
 
   console.log(`Downloading ${repo}/${mdxFileOrDirectory}`)
 
