@@ -1,4 +1,8 @@
-import { InternalSidebar } from "../../Components/InternalSidebar"
+import {
+  InternalSidebar,
+  InternalSidebarContainer,
+} from "../../Components/InternalSidebar"
+import { InternalSidebarMenu } from "../../Components/InternalSidebarMenu"
 import { InternalSubnav } from "../../Components/InternalSubnav"
 import {
   useInternalBreadcrumbs,
@@ -26,9 +30,16 @@ export function InternalPage({
 
   return (
     <div className="flex flex-col">
-      <InternalSubnav items={breadcrumbs} className="sticky top-0 z-10" />
+      <InternalSubnav items={breadcrumbs} className="sticky top-0 z-20" />
       <div className="flex flex-1 flex-row overflow-auto">
-        {sidebarConfig && <InternalSidebar config={sidebarConfig} />}
+        {sidebarConfig && (
+          <div className="flex flex-col">
+            <InternalSidebarContainer>
+              <InternalSidebarMenu selectedTool="cadence" />
+              <InternalSidebar config={sidebarConfig} />
+            </InternalSidebarContainer>
+          </div>
+        )}
         <div className="flex-1 overflow-auto">{children}</div>
       </div>
     </div>

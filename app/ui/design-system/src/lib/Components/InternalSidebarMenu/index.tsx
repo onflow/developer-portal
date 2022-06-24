@@ -133,7 +133,7 @@ export function InternalSidebarMenu({
               </div>
             </Popover.Button>
             <div
-              className="absolute mt-8 w-full md:min-w-[15rem]"
+              className="absolute z-10 mt-8 w-screen px-4 md:min-w-[15rem]"
               ref={floating}
               style={{ top: y || 0, left: x || 0 }}
             >
