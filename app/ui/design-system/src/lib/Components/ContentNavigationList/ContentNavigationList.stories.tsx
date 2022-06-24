@@ -15,6 +15,7 @@ const Template: Story<ContentNavigationListProps> = (args) => (
 export const Default = Template.bind({})
 Default.args = {
   header: "Explore more content",
+  headerLink: "#",
   contentNavigationItems: [
     {
       title: "Learn",

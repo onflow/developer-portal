@@ -1,6 +1,7 @@
 import { useState } from "react"
 import { TabMenu } from ".."
 import { ButtonLink } from "../Button"
+import { HeaderWithLink } from "../HeaderWithLink"
 import { ToolCard, ToolCardProps } from "../ToolCard"
 import { TutorialCardProps } from "../TutorialCard"
 import { PaginatedTutorialCardList } from "../TutorialCard/PaginatedTutorialCardList"
@@ -10,6 +11,7 @@ export type ToolsAndConceptsProps = {
   bottomButtons?: boolean
   headerButtontext?: string
   concepts?: TutorialCardProps[] // Not sure what this looks like yet.
+  headerLink?: string
 }
 
 const ToolsAndConcepts = ({
@@ -17,6 +19,7 @@ const ToolsAndConcepts = ({
   concepts = [],
   headerButtontext = "",
   bottomButtons = true,
+  headerLink = "",
 }: ToolsAndConceptsProps) => {
   const [selectedTabIndex, setSelectedTabIndex] = useState(0)
 
@@ -24,9 +27,9 @@ const ToolsAndConcepts = ({
     <div className="container">
       <div className="flex items-center justify-between">
         <div>
-          <div className="text-h2 mb-2">
+          <HeaderWithLink className="text-h2 mb-2" headerLink={headerLink}>
             {concepts.length > 0 ? "SDKs & Tools" : "Tools"}
-          </div>
+          </HeaderWithLink>
           <p>Some of our new and popular tooling to build on Flow.</p>
         </div>
         {!!headerButtontext.length && (
