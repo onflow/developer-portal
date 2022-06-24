@@ -18,7 +18,14 @@ type SectionGroup = { name: string; sections: ToolName[] }
 const SIDEBAR_SECTION_GROUPS: SectionGroup[] = [
   {
     name: "Switch tool",
-    sections: ["emulator", "vscode", "cli", "testing"],
+    sections: [
+      // temporarily disabled
+      // "emulator",
+      "vscode",
+      // temporarily disabled
+      // "cli",
+      "testing",
+    ],
   },
   {
     name: "Concepts",
