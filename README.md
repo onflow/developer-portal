@@ -66,6 +66,8 @@ List of repository sources:
 
 ## Deployment
 
+⚠ currently data cached in redis is not invalidated from new bbuilds, so e.g. you might see cached mdx and markdown data from previous builds. to work around this, you need to manually remove keys from redis.
+
 Commits pushed to the `main` branch are automatically deployed to staging. Commits pushed to `production` are automatically deployed to production. See [deploy.yml](.github/workflows/deploy.yml) for details.
 
 Recommended workflow to promote changes from `main` (staging) to production is:
