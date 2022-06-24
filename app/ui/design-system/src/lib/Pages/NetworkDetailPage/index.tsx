@@ -11,6 +11,7 @@ import {
   TabMenu,
 } from "../../Components"
 import { FeaturedArticle } from "../../Components/FeaturedArticleSlider"
+import { HeaderWithLink } from "../../Components/HeaderWithLink"
 import { Article, StatuspageApiResponse } from "../../interfaces"
 import PageBackground from "../shared/PageBackground"
 import PageSection from "../shared/PageSection"
@@ -73,9 +74,14 @@ const NetworkDetailPage = ({
             rssFeed="/link"
           />
         </PageSection>
-        <PageSection>
+        <PageSection sectionId="upcoming-spork">
           <div className="container">
-            <div className="text-h2 xs:font-md mb-8">Upcoming Spork</div>
+            <HeaderWithLink
+              headerLink="upcoming-spork"
+              className="text-h2 xs:font-md mb-8"
+            >
+              Upcoming Spork
+            </HeaderWithLink>
             <SporksCard
               heading={currentNetwork.name}
               timestamp={endOfWeek(new Date())}
@@ -95,9 +101,14 @@ const NetworkDetailPage = ({
             />
           </div>
         </PageSection>
-        <PageSection>
+        <PageSection sectionId="past-sporks">
           <div className="container">
-            <div className="text-h4 xs:font-md mb-8">Past Sporks</div>
+            <HeaderWithLink
+              headerLink="past-sporks"
+              className="text-h4 xs:font-md mb-8"
+            >
+              Past Sporks
+            </HeaderWithLink>
             <div className="mb-4 divide-y dark:divide-primary-gray-400">
               {[1, 2, 3, 4].map((index) => (
                 <div className="divided-item-hover" key={index}>

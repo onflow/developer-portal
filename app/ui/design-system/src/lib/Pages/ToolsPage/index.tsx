@@ -38,36 +38,41 @@ const ToolsPage = ({
             imageSrc={ArchesImageSrc}
           />
         </PageSection>
-        <PageSection>
+        <PageSection sectionId="development-tools">
           <SDKCards
             header="Development Tools"
+            headerLink="development-tools"
             cards={tools}
             description="These essential tools will help you build, test, and debug your dapp on Flow."
           />
         </PageSection>
-        <PageSection>
+        <PageSection sectionId="sdks">
           <SDKCards
+            headerLink="sdks"
             header="SDKs"
             cards={sdks}
             description="Libraries that make it easy to connect to Flow in multiple languages and frameworks."
           />
         </PageSection>
-        <PageSection>
+        <PageSection sectionId="apis-and-services">
           <SDKCards
+            headerLink="apis-and-services"
             header="APIs & Services"
             cards={apisAndServices}
             description="Hosted and open source services that abstract some of the most difficult parts of building on the blockchain."
           />
         </PageSection>
-        <PageSection>
+        <PageSection sectionId="flow-blockchain-explorers">
           <SDKCards
             header="Flow Blockchain Explorers"
+            headerLink="flow-blockchain-explorers"
             cards={explorers}
             description="Different ways of looking up on-chain metrics, events, transactions, accounts, and more."
           />
         </PageSection>
-        <PageSection>
+        <PageSection sectionId="explore-more-content">
           <ContentNavigationList
+            headerLink="explore-more-content"
             header={contentNavigationListItems.header}
             contentNavigationItems={
               contentNavigationListItems.contentNavigationItems

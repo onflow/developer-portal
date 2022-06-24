@@ -13,13 +13,13 @@ export function HeaderWithLink({
   className,
 }: HeaderWithLinkProps) {
   return (
-    <div className={`${className} group`}>
-      <span>{children}</span>
+    <div className={`${className} group flex items-center`}>
+      <span className="inline">{children}</span>
       <a href={`#${headerLink}`}>
         <Anchor
           width={32}
           height={32}
-          className="inline opacity-0 group-hover:opacity-100"
+          className="inline fill-white opacity-0 group-hover:opacity-100 dark:fill-black"
         />
       </a>
     </div>
