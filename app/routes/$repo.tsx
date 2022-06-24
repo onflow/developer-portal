@@ -7,8 +7,9 @@ import {
   useMatches,
 } from "@remix-run/react"
 import invariant from "tiny-invariant"
-import { ContentSpec, getContentSpec } from "~/constants/repos"
+import { ContentName, ContentSpec, getContentSpec } from "~/constants/repos"
 import { ErrorPage } from "~/ui/design-system/src/lib/Components/ErrorPage"
+import { ToolName } from "~/ui/design-system/src/lib/Components/Internal/tools"
 import { temporarilyRedirectToComingSoon } from "~/utils/features"
 import { InternalPage } from "../ui/design-system/src/lib/Pages/InternalPage"
 
@@ -49,10 +50,37 @@ export default function Repo() {
       contentDisplayName={content.displayName}
       contentPath={content.contentName}
       sidebarConfig={content.schema?.sidebar}
+      internalSidebarMenu={{
+        selectedTool: contentToolMap[content.contentName],
+        toolLinks: toolLinks,
+      }}
     >
       <Outlet />
     </InternalPage>
   )
+}
+
+const toolContentMap: Record<ToolName, ContentName> = {
+  cadence: "cadence",
+  cli: "flow-cli",
+  emulator: "flow-emulator",
+  fcl: "fcl-js",
+  testing: "flow-js-testing",
+  vscode: "vscode-extension",
+}
+
+const toolLinks: Record<ToolName, string> = { ...toolContentMap }
+for (let [key, value] of Object.entries(toolLinks)) {
+  toolLinks[key as ToolName] = `/${value}`
+}
+
+const contentToolMap: Record<string, ToolName> = {
+  cadence: "cadence",
+  "flow-cli": "cli",
+  "flow-emulator": "emulator",
+  "fcl-js": "fcl",
+  "flow-js-testing": "testing",
+  "vscode-extension": "vscode",
 }
 
 export function CatchBoundary() {
