@@ -40,7 +40,7 @@ export const loader: LoaderFunction = async ({ params, request }) => {
   }
 }
 
-export default function () {
+export default function RepoDocument() {
   const data = useLoaderData()
   const location = useLocation()
   const { code, frontmatter, toc } = data.page
@@ -55,7 +55,7 @@ export default function () {
   return (
     <div className="pl-[55px]">
       <div className="grid grid-cols-5">
-        <div className="col-span-4">
+        <div className="col-span-4 pt-8">
           <MDXContent />
         </div>
         <div className="pt-[55px]">
