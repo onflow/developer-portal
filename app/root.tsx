@@ -24,7 +24,7 @@ import {
   ThemeProvider,
   useTheme,
 } from "~/cms/utils/theme.provider"
-import { getRequiredServerEnvVar } from "./cms/helpers"
+import { getRequiredGlobalEnvVar, getRequiredServerEnvVar } from "./cms/helpers"
 import { navBarData } from "./component-data/NavigationBar"
 import * as gtag from "./gtags.client"
 import styles from "./main.css"
@@ -56,6 +56,7 @@ export const meta: MetaFunction = () => ({
 export type LoaderData = {
   theme: Theme | null
   gaTrackingId: string | undefined
+  sentryDsn?: string
 }
 
 export const loader: LoaderFunction = async ({ request }) => {
@@ -63,6 +64,7 @@ export const loader: LoaderFunction = async ({ request }) => {
   return json<LoaderData>({
     theme: themeSession.getTheme(),
     gaTrackingId: getRequiredServerEnvVar("GA_TRACKING_ID"),
+    sentryDsn: getRequiredGlobalEnvVar("SENTRY_DSN"),
   })
 }
 
@@ -126,6 +128,12 @@ function App() {
           <Outlet />
           <Footer />
         </div>
+        <script
+          suppressHydrationWarning
+          dangerouslySetInnerHTML={{
+            __html: `window.GLOBALS=${data.sentryDsn};`,
+          }}
+        />
         <ScrollRestoration />
         <Scripts />
         <LiveReload />

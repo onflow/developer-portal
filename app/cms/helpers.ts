@@ -24,7 +24,7 @@ function getRequiredGlobalEnvVar(
   key: keyof ReturnType<typeof getEnv>,
   devValue?: string
 ) {
-  return getRequiredEnvVarFromObj(ENV, key, devValue)
+  return getRequiredEnvVarFromObj(process.env, key, devValue)
 }
 
 export { getRequiredServerEnvVar, getRequiredGlobalEnvVar }
