@@ -1,18 +1,25 @@
-import { fromMarkdown } from "mdast-util-from-markdown"
-
 import { toc } from "mdast-util-toc"
 import { ListItem } from "mdast-util-toc/lib/contents"
 import invariant from "tiny-invariant"
 import { InternalTocProps } from "~/ui/design-system/src/lib/Components/InternalToc"
 import { isNotNull } from "~/utils/filters"
 
+import { fromMarkdown } from "mdast-util-from-markdown"
+import { frontmatterFromMarkdown } from "mdast-util-frontmatter"
+import { frontmatter } from "micromark-extension-frontmatter"
+
 type HeadingList = InternalTocProps["headings"]
 type InternalTocItem = HeadingList[number]
 
 // NOTE: gets the relavent information we need to build the
 // table of contents from the mdast!
-export const markdownToToc = (mdContent: string): HeadingList | null => {
-  const tocData = toc(fromMarkdown(mdContent), { maxDepth: 2 })
+export const markdownToToc = (doc: string): HeadingList | null => {
+  const tree = fromMarkdown(doc, {
+    extensions: [frontmatter(["yaml", "toml"])],
+    mdastExtensions: [frontmatterFromMarkdown(["yaml", "toml"])],
+  })
+
+  const tocData = toc(tree, { maxDepth: 2 })
 
   if (tocData.map == null) {
     return null
@@ -20,12 +27,7 @@ export const markdownToToc = (mdContent: string): HeadingList | null => {
 
   const items = processItems(tocData.map.children)
 
-  // we assume all documents have the weird github yaml metadata,
-  // room for improvement here
-  const itemsWithoutTitle = items.slice(1, items.length)
-  if (itemsWithoutTitle.length === 0) return null
-
-  return itemsWithoutTitle
+  return items
 }
 
 function processItems(items: Array<ListItem>): Array<InternalTocItem> {
