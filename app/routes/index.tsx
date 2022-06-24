@@ -1,20 +1,19 @@
 import { LoaderFunction } from "@remix-run/node"
 import { useLoaderData } from "@remix-run/react"
 import { fetchFlips } from "~/cms/utils/fetch-flips"
+import { allEvents } from "~/component-data/Events"
 import { HomePage, HomePageProps } from "~/ui/design-system/src/"
 import { ToolCardProps } from "~/ui/design-system/src/lib/Components/ToolCard"
-import { UpcomingEventsProps } from "~/ui/design-system/src/lib/Components/UpcomingEvents"
-import { Default as DefaultUpcomingEvents } from "~/ui/design-system/src/lib/Components/UpcomingEvents/UpcomingEvents.stories"
 import {
-  homepageThreeColumnData,
   homepageStartProjectData,
+  homepageThreeColumnData,
 } from "../component-data/Homepage"
 import {
-  httpSDK,
-  goSDK,
-  fclSDK,
   eventIndexingTool,
+  fclSDK,
   flowserTool,
+  goSDK,
+  httpSDK,
   overflowTool,
 } from "../component-data/Tools"
 
@@ -33,7 +32,7 @@ export const loader: LoaderFunction = async () => {
     flowserTool,
     overflowTool,
   ] as ToolCardProps[]
-  const upcomingEvents = DefaultUpcomingEvents?.args as UpcomingEventsProps
+  const upcomingEvents = allEvents
   const data: DynamicHomePageProps = { flips, tools, upcomingEvents }
   return data
 }

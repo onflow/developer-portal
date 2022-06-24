@@ -1,26 +1,32 @@
 import { json, LoaderFunction } from "@remix-run/node"
-import { Link, Outlet, useCatch, useLoaderData } from "@remix-run/react"
+import {
+  Link,
+  Outlet,
+  useCatch,
+  useLoaderData,
+  useMatches,
+} from "@remix-run/react"
 import invariant from "tiny-invariant"
-import { repoList, repoPresets } from "~/constants/repos"
-import { RepoSchema } from "~/constants/repos/repo-schema"
+import { ContentSpec, getContentSpec } from "~/constants/repos"
 import { ErrorPage } from "~/ui/design-system/src/lib/Components/ErrorPage"
-import { InternalSidebar } from "~/ui/design-system/src/lib/Components/InternalSidebar"
 import { temporarilyRedirectToComingSoon } from "~/utils/features"
+import { InternalPage } from "../ui/design-system/src/lib/Pages/InternalPage"
 
 type LoaderData = {
-  repo: string
-  repoSchema: RepoSchema | null
+  content: ContentSpec
 }
 
 export const loader: LoaderFunction = async ({
   params,
 }): Promise<LoaderData> => {
-  invariant(params.repo, `expected repo param`)
-
   temporarilyRedirectToComingSoon()
 
-  const isKnownRepo = repoList.map((r) => r.repo).includes(params.repo)
-  if (!isKnownRepo) {
+  const contentName = params.repo
+  invariant(contentName, `expected repo param`)
+
+  const contentSpec = getContentSpec(contentName)
+
+  if (!contentSpec) {
     throw json({ status: "unknownRepo" }, { status: 404 })
   }
 
@@ -28,27 +34,24 @@ export const loader: LoaderFunction = async ({
   // use the github api to see if a configuration file (e.g. onflowdocs.json)
   // exists, validate it against repo-schema, and use that instead. for now,
   // we'll use the definitions in this repo
-  const sidebar = repoPresets[params.repo] ?? null
 
-  return {
-    repo: params.repo,
-    repoSchema: sidebar,
-  }
+  return { content: contentSpec }
 }
 
 export default function Repo() {
-  const data = useLoaderData<LoaderData>()
+  const { content } = useLoaderData<LoaderData>()
+  const matches = useMatches()
+  const [match] = matches.slice(-1)
+
   return (
-    <div className="flex h-full">
-      {data.repoSchema ? (
-        <InternalSidebar config={data.repoSchema.sidebar} />
-      ) : (
-        <div>⚠️ D'oh. Failed to load sidebar content.</div>
-      )}
-      <div className="overflow-auto">
-        <Outlet />
-      </div>
-    </div>
+    <InternalPage
+      activePath={match.params["*"] || "index"}
+      contentDisplayName={content.displayName}
+      contentPath={content.contentName}
+      sidebarConfig={content.schema?.sidebar}
+    >
+      <Outlet />
+    </InternalPage>
   )
 }
 

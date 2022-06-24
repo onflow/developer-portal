@@ -5,13 +5,19 @@ import { json } from "@remix-run/node"
 import { Link, useCatch, useLoaderData, useLocation } from "@remix-run/react"
 import invariant from "tiny-invariant"
 import { ErrorPage } from "~/ui/design-system/src/lib/Components/ErrorPage"
+import { isFlowContent } from "~/constants/repos"
 import { InternalToc } from "~/ui/design-system/src/lib/Components/InternalToc"
 export { InternalErrorBoundary as ErrorBoundary } from "~/errors/error-boundaries"
 
 export const loader: LoaderFunction = async ({ params, request }) => {
-  const [repo, fileOrDirPath] = [params["repo"], params["*"] || "index"]
-  invariant(repo, `expected a value`)
+  const content = params["repo"]!
+  const repo = isFlowContent(content) ? "flow" : content
+  const pathParams = params["*"] || "index"
+  const fileOrDirPath = isFlowContent(content)
+    ? `content/${content}/${pathParams}`
+    : pathParams
 
+  invariant(repo, `expected a value`)
   let page
   try {
     page = await getMdxPage(

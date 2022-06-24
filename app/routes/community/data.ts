@@ -1,4 +1,4 @@
-import { ContentNavigationProps } from "~/ui/design-system/src/lib/Components/ContentNavigation"
+import { ContentNavigationListProps } from "~/ui/design-system/src/lib/Components/ContentNavigationList"
 import { Default as DefaultFeaturedArticleSlider } from "~/ui/design-system/src/lib/Components/FeaturedArticleSlider/FeaturedArticleSlider.stories"
 import { ProjectCardProps } from "~/ui/design-system/src/lib/Components/ProjectCard"
 import { Default as DefaultProjectCards } from "~/ui/design-system/src/lib/Components/ProjectCards/ProjectCards.stories"
@@ -80,26 +80,29 @@ export const tools = [
   },
 ]
 
-export const contentNavigationItems: ContentNavigationProps[] = [
-  {
-    title: "Concepts",
-    text: "Lorem ipsum dolor sit amet proin gravida lorem ipsum",
-    link: "#",
-    icon: "concepts",
-  },
-  {
-    title: "Learn",
-    text: "Lorem ipsum dolor sit amet proin gravida lorem ipsum",
-    link: "#",
-    icon: "learn",
-  },
-  {
-    title: "Tools",
-    text: "Lorem ipsum dolor sit amet proin gravida lorem ipsum",
-    link: "#",
-    icon: "tools",
-  },
-]
+export const contentNavigationListItems: ContentNavigationListProps = {
+  header: "Explore More Content",
+  contentNavigationItems: [
+    {
+      title: "Concepts",
+      text: "Lorem ipsum dolor sit amet proin gravida lorem ipsum",
+      link: "#",
+      icon: "concepts",
+    },
+    {
+      title: "Learn",
+      text: "Lorem ipsum dolor sit amet proin gravida lorem ipsum",
+      link: "#",
+      icon: "learn",
+    },
+    {
+      title: "Tools",
+      text: "Lorem ipsum dolor sit amet proin gravida lorem ipsum",
+      link: "#",
+      icon: "tools",
+    },
+  ],
+}
 
 export const projects = DefaultProjectCards?.args
   ?.projects as ProjectCardProps[]

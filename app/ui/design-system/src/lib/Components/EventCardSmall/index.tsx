@@ -1,18 +1,27 @@
+import clsx from "clsx"
 import { EventCardProps } from "../EventCard"
 import Tag from "../Tag"
 
 export function EventCardSmall({
+  onClick,
   location = "Online",
   imageAlt = "",
   imageSrc,
   tags,
   title,
   eventDate,
-}: EventCardProps) {
+  selected,
+}: EventCardProps & { selected?: boolean }) {
   return (
     <div
       role="button"
-      className="mb-4 flex min-w-max max-w-sm items-start rounded-lg bg-white px-6 py-5 hover:cursor-pointer hover:shadow-2xl dark:bg-primary-gray-dark dark:hover:shadow-2xl-dark"
+      className={clsx(
+        "mb-4 flex min-w-max max-w-sm items-start rounded-lg border-4 bg-white px-6 py-5 dark:bg-primary-gray-dark",
+        selected
+          ? "cursor-default border-primary-gray-100/50 bg-primary-gray-50/20 dark:border-primary-gray-400/50 dark:bg-primary-gray-dark/20"
+          : "cursor-pointer border-transparent hover:shadow-2xl dark:hover:shadow-2xl-dark"
+      )}
+      onClick={onClick}
     >
       <img
         src={imageSrc}

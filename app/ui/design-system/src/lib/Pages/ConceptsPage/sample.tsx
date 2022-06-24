@@ -144,26 +144,29 @@ export const data: ConceptsPageProps = {
         "Lorem ipsum text here can go a two liner sentence or a one liner",
     },
   ],
-  contentNavigationItems: [
-    {
-      title: "Get Started",
-      text: "Lorem ipsum dolor sit amet proin gravida lorem ipsum",
-      link: "#",
-      icon: "get-started",
-    },
-    {
-      title: "Learn",
-      text: "Lorem ipsum dolor sit amet proin gravida lorem ipsum",
-      link: "#",
-      icon: "learn",
-    },
-    {
-      title: "Tools",
-      text: "Lorem ipsum dolor sit amet proin gravida lorem ipsum",
-      link: "#",
-      icon: "tools",
-    },
-  ],
+  contentNavigationListItems: {
+    header: "Explore More Content",
+    contentNavigationItems: [
+      {
+        title: "Get Started",
+        text: "Lorem ipsum dolor sit amet proin gravida lorem ipsum",
+        link: "#",
+        icon: "get-started",
+      },
+      {
+        title: "Learn",
+        text: "Lorem ipsum dolor sit amet proin gravida lorem ipsum",
+        link: "#",
+        icon: "learn",
+      },
+      {
+        title: "Tools",
+        text: "Lorem ipsum dolor sit amet proin gravida lorem ipsum",
+        link: "#",
+        icon: "tools",
+      },
+    ],
+  },
   eventCardItems: {
     ctaText: "CTA text",
     description:

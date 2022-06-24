@@ -1,7 +1,3 @@
-import {
-  ContentNavigation,
-  ContentNavigationProps,
-} from "../../Components/ContentNavigation"
 import { LandingHeader } from "../../Components/LandingHeader"
 import { SDKCardProps } from "../../Components/SDKCard"
 import { SDKCards } from "../../Components/SDKCards"
@@ -9,17 +5,17 @@ import PageBackground from "../shared/PageBackground"
 import PageSection from "../shared/PageSection"
 import PageSections from "../shared/PageSections"
 import ArchesImageSrc from "../../../../images/misc/arches.png"
+import {
+  ContentNavigationList,
+  ContentNavigationListProps,
+} from "../../Components/ContentNavigationList"
 
 export type ToolsPageProps = {
   tools: SDKCardProps[]
   sdks: SDKCardProps[]
   explorers: SDKCardProps[]
   apisAndServices: SDKCardProps[]
-  contentNavigationItems: [
-    ContentNavigationProps,
-    ContentNavigationProps,
-    ContentNavigationProps
-  ]
+  contentNavigationListItems: ContentNavigationListProps
 }
 
 const ToolsPage = ({
@@ -27,7 +23,7 @@ const ToolsPage = ({
   sdks,
   explorers,
   apisAndServices,
-  contentNavigationItems,
+  contentNavigationListItems,
 }: ToolsPageProps) => {
   return (
     <PageBackground gradient="tools">
@@ -71,17 +67,12 @@ const ToolsPage = ({
           />
         </PageSection>
         <PageSection>
-          {/* TODO: Extract into shared component */}
-          <div className="container">
-            <h4 className="text-h2 mb-10">Explore More Content</h4>
-            <div className="grid grid-cols-1 gap-4 md:grid-cols-3 md:gap-8">
-              {contentNavigationItems.map(
-                (contentNav: ContentNavigationProps, index: number) => (
-                  <ContentNavigation key={index} {...contentNav} />
-                )
-              )}
-            </div>
-          </div>
+          <ContentNavigationList
+            header={contentNavigationListItems.header}
+            contentNavigationItems={
+              contentNavigationListItems.contentNavigationItems
+            }
+          />
         </PageSection>
       </PageSections>
     </PageBackground>

@@ -338,26 +338,29 @@ const gettingStartedPageData = {
         "Lorem ipsum text here can go a two liner sentence or a one liner",
     },
   ],
-  contentNavigationItems: [
-    {
-      title: "Learn",
-      text: "Lorem ipsum dolor sit amet proin gravida lorem ipsum",
-      link: "#",
-      icon: "learn",
-    },
-    {
-      title: "Tools",
-      text: "Lorem ipsum dolor sit amet proin gravida lorem ipsum",
-      link: "#",
-      icon: "tools",
-    },
-    {
-      title: "Concepts",
-      text: "Lorem ipsum dolor sit amet proin gravida lorem ipsum",
-      link: "#",
-      icon: "concepts",
-    },
-  ],
+  contentNavigationListItems: {
+    header: "Explore More Content",
+    contentNavigationItems: [
+      {
+        title: "Learn",
+        text: "Lorem ipsum dolor sit amet proin gravida lorem ipsum",
+        link: "#",
+        icon: "learn",
+      },
+      {
+        title: "Tools",
+        text: "Lorem ipsum dolor sit amet proin gravida lorem ipsum",
+        link: "#",
+        icon: "tools",
+      },
+      {
+        title: "Concepts",
+        text: "Lorem ipsum dolor sit amet proin gravida lorem ipsum",
+        link: "#",
+        icon: "concepts",
+      },
+    ],
+  },
 } as GettingStartedPageProps
 
 export default {

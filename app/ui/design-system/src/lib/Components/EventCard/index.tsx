@@ -4,6 +4,7 @@ import { Carousel, CarouselProps } from "../Carousel"
 import Tag from "../Tag"
 
 export type EventCardProps = {
+  onClick?: () => void
   className?: string
   ctaText?: string
   description: string
@@ -15,7 +16,6 @@ export type EventCardProps = {
   tags?: string[]
   title: string
   eventType?: string
-  isPrimary?: boolean
 }
 
 export function EventCard({
@@ -53,15 +53,13 @@ export function EventCard({
           </div>
         )}
         <p className="mt-3 pb-6 dark:text-primary-gray-100">{description}</p>
-        {ctaText && (
-          <ButtonLink
-            href={href}
-            variant="primary-no-darkmode"
-            className="whitespace-nowrap px-16 py-4 text-center"
-          >
-            {ctaText}
-          </ButtonLink>
-        )}
+        <ButtonLink
+          href={href}
+          variant="primary-no-darkmode"
+          className="whitespace-nowrap px-16 py-4 text-center"
+        >
+          {ctaText || "More Details"}
+        </ButtonLink>
       </div>
       <div className="flex-none basis-1/2 self-stretch">
         <img

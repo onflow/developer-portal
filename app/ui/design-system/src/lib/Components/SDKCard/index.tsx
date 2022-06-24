@@ -34,10 +34,10 @@ export function SDKCard({
 }: SDKCardProps) {
   return (
     <a
-      className="flex gap-4 rounded-lg bg-white py-6 px-8 hover:shadow-2xl dark:bg-primary-gray-dark dark:text-white dark:hover:shadow-2xl-dark"
+      className="flex gap-4 rounded-lg bg-white px-8 py-6 hover:shadow-2xl dark:bg-primary-gray-dark dark:text-white dark:hover:shadow-2xl-dark"
       href={link}
     >
-      <div>
+      <div className="shrink-0 grow-0 sm:basis-10 md:basis-16">
         <img
           className="dark:hidden"
           src={iconSrc || CodeIconSrc}
@@ -68,7 +68,11 @@ export function SDKCard({
           </div>
           {stars !== undefined && (
             <div className="flex shrink-0 items-center gap-1">
-              <StarIcon className="text-amber-400" height={16} width={16} />
+              <StarIcon
+                className="mb-1 text-amber-400"
+                height={16}
+                width={16}
+              />
               <div className="md:leading-1 h-fit text-sm text-gray-500 dark:text-gray-300">
                 {stars}
               </div>
@@ -85,7 +89,7 @@ export function SDKCard({
             {description}
           </div>
         ) : (
-          <div className="align-center -mb-1 grid w-fit grid-cols-1 gap-x-4 justify-self-center pt-6 text-gray-500 md:grid-cols-2	">
+          <div className="align-center -mb-1 grid w-fit grid-cols-1 gap-x-4 justify-self-center pt-6 text-gray-500 md:grid-cols-2 ">
             {lastRelease && (
               <div className="flex items-center">
                 <CalendarIcon
