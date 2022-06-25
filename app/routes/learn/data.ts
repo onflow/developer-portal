@@ -88,6 +88,6 @@ export const data = {
   cadenceTutorials,
   allTutorials,
   youtubeHref: "https://www.youtube.com/c/FlowBlockchain",
-  cadenceHref: "https://example.com",
+  cadenceHref: "https://docs.onflow.org/cadence/",
   architectureTutorials,
 }
