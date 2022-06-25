@@ -29,6 +29,7 @@ export type LearnPageProps = {
     secondary: SmallVideoCardProps[]
   }
   youtubeHref: string
+  architectureTutorials: TutorialCardProps[]
 }
 
 export function LearnPage({
@@ -38,6 +39,7 @@ export function LearnPage({
   nftTutorials,
   videos,
   youtubeHref,
+  architectureTutorials,
 }: LearnPageProps) {
   const [filters, setFilters] = useState<string[]>([])
 
@@ -66,10 +68,13 @@ export function LearnPage({
         <PageSection className="pt-0 pb-0">
           <LandingHeader
             title="Learn"
-            buttonText="Button Text"
-            buttonUrl="#fixme"
-            callout="Featured"
-            description="Learn header Lorem ipsum dolor sit amet proin gravida lorem ipsum dolor sit."
+            buttonText="View Article"
+            buttonUrl="https://jan-bernatik.medium.com/introduction-to-flow-blockchain-7532977c8af8"
+            callout="Introduction to Flow Blockchain"
+            description="When Dapper Labs built Crypto Kitties we learned a lot.
+            Most importantly, we realized that the technology at the time was not ready for this kind of application.
+            Being the visionaries we are, we set to build a better tech for what we plan to do.
+            We set to build what is now Flow blockchain."
           />
         </PageSection>
         <PageSection className="flex-col items-stretch" sectionId="cadence">
@@ -104,6 +109,14 @@ export function LearnPage({
               NFTs
             </HeaderWithLink>
             <PaginatedTutorialCardList tutorials={nftTutorials} />
+          </div>
+        </PageSection>
+        <PageSection className="flex-col items-stretch">
+          <div className="container">
+            <div className="mb-6 flex items-baseline justify-between">
+              <h2 className="text-h2">Architecture</h2>
+            </div>
+            <PaginatedTutorialCardList tutorials={architectureTutorials} />
           </div>
         </PageSection>
         <PageSection sectionId="featured-videos">

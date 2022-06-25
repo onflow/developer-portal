@@ -9,7 +9,6 @@ export const meta: MetaFunction = () => ({
 })
 
 export const loader: LoaderFunction = () => {
-  temporarilyRedirectToComingSoon()
   return {}
 }
 
@@ -22,6 +21,7 @@ export default function Page() {
       allTutorials={data.allTutorials}
       cadenceTutorials={data.cadenceTutorials}
       youtubeHref={data.youtubeHref}
+      architectureTutorials={data.architectureTutorials}
     />
   )
 }
