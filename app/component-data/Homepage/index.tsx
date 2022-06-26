@@ -33,11 +33,11 @@ const homepageStartProjectData: LinkCard2ColumnProps = {
           title: "Hello, World!",
         },
         {
-          href: "https://docs.onflow.org/cadence/tutorial/04-non-fungible-tokens/",
+          href: "https://docs.onflow.org/cadence/tutorial/05-non-fungible-tokens-1/",
           title: "NFTs",
         },
         {
-          href: "https://docs.onflow.org/cadence/tutorial/05-marketplace-setup/",
+          href: "https://docs.onflow.org/cadence/tutorial/07-marketplace-setup/",
           title: "Marketplaces",
         },
       ],

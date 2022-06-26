@@ -53,7 +53,6 @@ jobs:
         run: yarn install
       - run: yarn jest
 
-
   typecheck:
     name: TypeScript
     runs-on: ubuntu-latest
@@ -85,6 +84,7 @@ jobs:
   deploy:
     name: Deploy Staging
     runs-on: ubuntu-latest
+    timeout-minutes: 10
     needs: [lint, typecheck, build]
     # only build/deploy main branch on pushes
     if: ${{ github.ref == 'refs/heads/main' && github.event_name == 'push' }}
@@ -96,6 +96,7 @@ jobs:
   deploy-production:
     name: Deploy Production
     runs-on: ubuntu-latest
+    timeout-minutes: 10
     needs: [lint, typecheck, build]
     # only build/deploy main branch on pushes
     if: ${{ github.ref == 'refs/heads/production' && github.event_name == 'push' }}

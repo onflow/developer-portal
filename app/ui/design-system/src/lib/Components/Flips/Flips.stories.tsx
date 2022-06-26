@@ -29,6 +29,7 @@ const flip = {
 const args = {
   openFlips: [flip, flip, flip],
   goodPlacesToStartFlips: [flip, flip, flip],
+  headerLink: "#",
 }
 Default.args = args
 

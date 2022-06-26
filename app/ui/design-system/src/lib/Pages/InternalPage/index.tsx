@@ -1,4 +1,11 @@
-import { InternalSidebar } from "../../Components/InternalSidebar"
+import {
+  InternalSidebar,
+  InternalSidebarContainer,
+} from "../../Components/InternalSidebar"
+import {
+  InternalSidebarMenu,
+  InternalSidebarMenuProps,
+} from "../../Components/InternalSidebarMenu"
 import { InternalSubnav } from "../../Components/InternalSubnav"
 import {
   useInternalBreadcrumbs,
@@ -6,7 +13,9 @@ import {
 } from "./useInternalBreadcrumbs"
 
 export type InternalPageProps = React.PropsWithChildren<{}> &
-  UseInternalBreadcrumbsOptions
+  UseInternalBreadcrumbsOptions & {
+    internalSidebarMenu: InternalSidebarMenuProps
+  }
 
 export function InternalPage({
   activePath,
@@ -15,6 +24,7 @@ export function InternalPage({
   contentPath,
   rootUrl = "/",
   sidebarConfig,
+  internalSidebarMenu,
 }: InternalPageProps) {
   const breadcrumbs = useInternalBreadcrumbs({
     activePath,
@@ -26,9 +36,16 @@ export function InternalPage({
 
   return (
     <div className="flex flex-col">
-      <InternalSubnav items={breadcrumbs} className="sticky top-0 z-10" />
-      <div className="flex flex-1 flex-row overflow-auto">
-        {sidebarConfig && <InternalSidebar config={sidebarConfig} />}
+      <InternalSubnav items={breadcrumbs} className="sticky top-0 z-20" />
+      <div className="flex flex-1 flex-row">
+        {sidebarConfig && (
+          <div className="flex flex-col">
+            <InternalSidebarContainer>
+              <InternalSidebarMenu {...internalSidebarMenu} />
+              <InternalSidebar config={sidebarConfig} />
+            </InternalSidebarContainer>
+          </div>
+        )}
         <div className="flex-1 overflow-auto">{children}</div>
       </div>
     </div>

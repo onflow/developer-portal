@@ -17,6 +17,7 @@ const projectCardArgs = DefaultProjectCard.args as ProjectCardProps
 export const Default = Template.bind({})
 
 Default.args = {
+  headerLink: "#",
   projects: [
     projectCardArgs,
     projectCardArgs,

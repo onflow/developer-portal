@@ -8,6 +8,7 @@ import {
 import FeaturedArticleCard, {
   FeaturedArticleCardProps,
 } from "../../Components/FeaturedArticleCard"
+import { HeaderWithLink } from "../../Components/HeaderWithLink"
 import {
   LandingHeader,
   LandingHeaderProps,
@@ -67,13 +68,18 @@ export function GettingStartedPage({
             imagePadding={false}
           />
         </PageSection>
-        <PageSection>
+        <PageSection sectionId="first-steps">
           <div className="container">
-            <h2 className="text-h2 hidden pb-14 md:block">First Steps</h2>
+            <HeaderWithLink
+              className="text-h2 hidden pb-14 md:block"
+              headerLink="first-steps"
+            >
+              First Steps
+            </HeaderWithLink>
             <LinkCard3Column items={linkCard3ColumnItems.items} />
           </div>
         </PageSection>
-        <PageSection>
+        <PageSection sectionId="core-concepts">
           <LinkCard2Column
             buttonText={linkCard2ColumnItems.buttonText}
             buttonUrl={linkCard2ColumnItems.buttonUrl}
@@ -83,16 +89,26 @@ export function GettingStartedPage({
             items={linkCard2ColumnItems.items}
           />
         </PageSection>
-        <PageSection>
-          <SDKCards cards={sdkCardItems} />
+        <PageSection sectionId="sdks">
+          <SDKCards cards={sdkCardItems} headerLink="sdks" />
         </PageSection>
-        <PageSection>
+        <PageSection sectionId="recent-tools-and-articles">
           <div className="container mx-auto grid grid-cols-1 gap-x-8 gap-y-4 align-middle md:grid-cols-2">
             <div className="hidden items-center md:flex">
-              <h4 className="text-h4">Recent Articles</h4>
+              <HeaderWithLink
+                className="text-h4"
+                headerLink="recent-tools-and-articles"
+              >
+                Recent Articles
+              </HeaderWithLink>
             </div>
             <div className="flex items-end justify-between md:items-center ">
-              <h4 className="text-h4">Recent Tools</h4>
+              <HeaderWithLink
+                headerLink="recent-tools-and-articles"
+                className="text-h4"
+              >
+                Recent Tools
+              </HeaderWithLink>
               <ButtonLink
                 rightIcon="right"
                 variant="secondary"
@@ -132,8 +148,9 @@ export function GettingStartedPage({
             </div>
           </div>
         </PageSection>
-        <PageSection>
+        <PageSection sectionId="explore-more-content">
           <ContentNavigationList
+            headerLink="explore-more-content"
             header={contentNavigationListItems.header}
             contentNavigationItems={
               contentNavigationListItems.contentNavigationItems
