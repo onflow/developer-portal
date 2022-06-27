@@ -21,7 +21,13 @@ export function InternalToc({
   }
 
   return (
-    <div className="sticky top-0 ml-auto h-auto w-full shrink-0 flex-col self-start p-4">
+    <div
+      className="sticky top-[92px] ml-auto h-auto w-full shrink-0 flex-col self-start overflow-y-auto p-4"
+      // 96px (main nav height) + 37px (bread crumb height) + 55px (top padding) + 20px (bottom padding) = 208px
+      // if this list overflows, make it fit within the space between
+      // the breadcrumbs and bottom of the viewport
+      style={{ maxHeight: "calc(100vh - 208px)" }}
+    >
       <div className="mb-6 px-5 text-2xs uppercase text-gray-500">
         On this page
       </div>
