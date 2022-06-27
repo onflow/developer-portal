@@ -1,6 +1,5 @@
-import { useLoaderData } from "@remix-run/react"
-import { LoaderFunction, MetaFunction } from "@remix-run/node"
-import { RedocStandalone } from "redoc"
+import { MetaFunction } from "@remix-run/node"
+import { RedocYep } from "~/components/redoc"
 
 export const meta: MetaFunction = () => {
   return {
@@ -10,22 +9,10 @@ export const meta: MetaFunction = () => {
   }
 }
 
-export const loader: LoaderFunction = () => {
-  return { process: { env: {} } }
-}
-
 export default function Page() {
-  const data = useLoaderData()
-
   return (
     <div>
-      <RedocStandalone
-        options={{
-          scrollYOffset: 101,
-          nativeScrollbars: true,
-        }}
-        specUrl="https://raw.githubusercontent.com/onflow/flow/master/openapi/access.yaml"
-      />
+      <RedocYep />
     </div>
   )
 }

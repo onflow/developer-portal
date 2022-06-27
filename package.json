@@ -16,6 +16,7 @@
     "bcryptjs": "^2.4.3",
     "change-case": "^4.1.2",
     "clsx": "^1.1.1",
+    "colorette": "2.0.19",
     "date-fns": "^2.28.0",
     "ioredis": "^5.0.6",
     "lodash": "^4.17.21",
@@ -130,5 +131,8 @@
     "moduleNameMapper": {
       "~/(.*)": "<rootDir>/app/$1"
     }
+  },
+  "resolutions": {
+    "colorette": "2.0.19"
   }
 }
