@@ -3,17 +3,15 @@ import type { getEnv } from "../env.server"
 function getRequiredEnvVarFromObj(
   obj: Record<string, string | undefined>,
   key: string,
-  // eslint-disable-next-line
-  devValue: string = `${key}-dev-value`
+  devValue?: string
 ) {
-  let value = devValue
   const envVal = obj[key]
   if (envVal) {
-    value = envVal
-  } else if (obj["NODE_ENV"] === "production") {
-    throw new Error(`${key} is a required env variable`)
+    return envVal
+  } else if (devValue != null && obj["NODE_ENV"] !== "production") {
+    return devValue
   }
-  return value
+  throw new Error(`${key} is a required env variable`)
 }
 
 function getRequiredServerEnvVar(key: string, devValue?: string) {
