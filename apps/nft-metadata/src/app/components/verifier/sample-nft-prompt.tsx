@@ -42,7 +42,7 @@ export function SampleNFTPrompt({
       return false;
     }}>
       <p></p>
-      <b>Enter the public path your NFT collection uses</b>
+      <b>Enter the storage path your NFT collection uses</b>
       {
         possibleStoragePahts.length > 0 &&
           <>

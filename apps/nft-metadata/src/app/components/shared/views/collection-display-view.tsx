@@ -7,8 +7,8 @@ type GenericViewProps = {
 
 
 export function CollectionDisplayView({ view, withRawView }: GenericViewProps) {
-  const collectionSquareImage = view.squareImage && view.squareImage.file ? view.squareImage.file.url : view.collectionSquareImage
-  const collectionBannerImage = view.bannerImage && view.bannerImage.file ? view.bannerImage.file.url : view.collectionBannerImage
+  const collectionSquareImage = view.squareImage && view.squareImage.file ? view.squareImage.file.url : view.collectionSquareImage.file.url
+  const collectionBannerImage = view.bannerImage && view.bannerImage.file ? view.bannerImage.file.url : view.collectionBannerImage.file.url
   const externalURL = view && view.externalURL && view.externalURL.url ? view.externalURL.url : view.externalURL
   return (
     <>

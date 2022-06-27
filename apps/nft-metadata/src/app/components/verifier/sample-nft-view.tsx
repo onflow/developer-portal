@@ -9,6 +9,7 @@ import { CollectionDisplayView } from "../shared/views/collection-display-view";
 import { DisplayView } from "../shared/views/display-view";
 import { CollectionDataView } from "../shared/views/collection-data-view";
 import { SubmitButton } from "../shared/submit-button";
+import { RoyaltiesView } from "../shared/views/royalties-view";
 
 export function SampleNFTView({
   sampleAddress,
@@ -98,7 +99,7 @@ export function SampleNFTView({
     if (item.indexOf('MetadataViews.Royalties') >= 0) {
       title = 'Royalties View'
       content = viewData["Royalties"] ?
-        <GenericView view={viewData["Royalties"]} />
+        <RoyaltiesView view={viewData["Royalties"]} />
         :
         <div>No royalties view was found.</div>
     } else if (item.indexOf('MetadataViews.Display') >= 0) {
