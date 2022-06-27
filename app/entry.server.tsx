@@ -8,7 +8,7 @@ import "@sentry/tracing"
 Sentry.init({
   dsn: getRequiredGlobalEnvVar("SENTRY_DSN"),
   tracesSampleRate: 0.3,
-  environment: getRequiredGlobalEnvVar("NODE_ENV"),
+  environment: getRequiredGlobalEnvVar("SENTRY_ENV"),
 })
 
 export default function handleRequest(

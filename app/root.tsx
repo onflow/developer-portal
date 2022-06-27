@@ -56,7 +56,6 @@ export const meta: MetaFunction = () => ({
 export type LoaderData = {
   theme: Theme | null
   gaTrackingId: string | undefined
-  sentryDsn?: string
 }
 
 export const loader: LoaderFunction = async ({ request }) => {
@@ -64,7 +63,6 @@ export const loader: LoaderFunction = async ({ request }) => {
   return json<LoaderData>({
     theme: themeSession.getTheme(),
     gaTrackingId: getRequiredServerEnvVar("GA_TRACKING_ID"),
-    sentryDsn: getRequiredGlobalEnvVar("SENTRY_DSN"),
   })
 }
 
@@ -129,12 +127,6 @@ function App() {
           <Footer />
         </div>
         <ScrollRestoration />
-        <script
-          suppressHydrationWarning
-          dangerouslySetInnerHTML={{
-            __html: `window.GLOBALS=${data.sentryDsn};`,
-          }}
-        />
         <Scripts />
         <LiveReload />
       </body>
