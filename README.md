@@ -84,7 +84,7 @@ git push --force
 If deploys fail to go out, and the github actions hang indefinitely, a workaround to fix this is:
 
 1. Cancel the build
-1. delete the fly app that is prefixed with `fly-builder-`, this can be done through CLI as shown below, or through the [fly dashboard](https://fly.io/dashboard/flow-docs)
+1. Delete the fly app that is prefixed with `fly-builder-`, this can be done through CLI as shown below, or through the [fly dashboard](https://fly.io/dashboard/flow-docs)
 
    ```bash
    $ fly apps list
