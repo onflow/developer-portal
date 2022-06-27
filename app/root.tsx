@@ -56,17 +56,16 @@ export const meta: MetaFunction = () => ({
 export type LoaderData = {
   theme: Theme | null
   gaTrackingId: string | undefined
-  ENV: { [key: string]: string }
 }
 
 export const loader: LoaderFunction = async ({ request }) => {
   const themeSession = await getThemeSession(request)
   return json<LoaderData>({
     theme: themeSession.getTheme(),
-    gaTrackingId: getRequiredServerEnvVar("GA_TRACKING_ID"),
-    ENV: {
-      NODE_ENV: process.env.NODE_ENV,
-    },
+    gaTrackingId: getRequiredServerEnvVar(
+      "GA_TRACKING_ID",
+      "GA_TRACKING_ID-dev-value"
+    ),
   })
 }
 
@@ -131,11 +130,6 @@ function App() {
           <Footer />
         </div>
         <ScrollRestoration />
-        <script
-          dangerouslySetInnerHTML={{
-            __html: `window.ENV = ${JSON.stringify(data.ENV)}`,
-          }}
-        />
         <Scripts />
         <LiveReload />
       </body>
