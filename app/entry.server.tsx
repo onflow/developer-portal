@@ -1,31 +1,15 @@
 import type { EntryContext } from "@remix-run/node"
 import { RemixServer } from "@remix-run/react"
 import { renderToString } from "react-dom/server"
+import { getRequiredGlobalEnvVar } from "./cms/helpers"
+import * as Sentry from "@sentry/node"
+import "@sentry/tracing"
 
-/*
 Sentry.init({
   dsn: getRequiredGlobalEnvVar("SENTRY_DSN"),
   tracesSampleRate: 0.3,
   environment: getRequiredGlobalEnvVar("NODE_ENV"),
 })
-*/
-
-/* Uncomment this block for testing Sentry connection
-const transaction = Sentry.startTransaction({
-  op: "test",
-  name: "My First Test Transaction",
-});
-
-setTimeout(() => {
-  try {
-    foo();
-  } catch (e) {
-    Sentry.captureException(e);
-  } finally {
-    transaction.finish();
-  }
-}, 99);
-*/
 
 export default function handleRequest(
   request: Request,
@@ -38,6 +22,12 @@ export default function handleRequest(
   )
 
   responseHeaders.set("Content-Type", "text/html")
+
+  // Temporary Sentry setup until Remix SDK is created
+  if (responseStatusCode === 500) {
+    console.log(`Notifying Sentry of 500 response`)
+    Sentry.captureException(remixContext.appState.error)
+  }
 
   return new Response("<!DOCTYPE html>" + markup, {
     status: responseStatusCode,
