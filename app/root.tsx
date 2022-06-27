@@ -24,7 +24,7 @@ import {
   ThemeProvider,
   useTheme,
 } from "~/cms/utils/theme.provider"
-import { getRequiredGlobalEnvVar, getRequiredServerEnvVar } from "./cms/helpers"
+import { getRequiredServerEnvVar } from "./cms/helpers"
 import { navBarData } from "./component-data/NavigationBar"
 import * as gtag from "./gtags.client"
 import styles from "./main.css"
