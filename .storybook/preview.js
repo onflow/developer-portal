@@ -1,5 +1,6 @@
 import { useGlobals, useParameter, useEffect } from "@storybook/addons"
 import clsx from "clsx"
+import { MemoryRouter } from "react-router"
 import "../app/main.css"
 import tailwindConfig from "../tailwind.config"
 
@@ -88,4 +89,16 @@ const withDarkMode = (Story, context) => {
   return <Story {...context} />
 }
 
-export const decorators = [withDarkMode]
+const withRouter = (Story, context) => {
+  if (context.parameters.router?.disable === true) {
+    return <Story {...context} />
+  }
+
+  return (
+    <MemoryRouter>
+      <Story {...context} />
+    </MemoryRouter>
+  )
+}
+
+export const decorators = [withDarkMode, withRouter]

@@ -6,13 +6,13 @@ import { fetchNetworkStatus } from "~/cms/utils/fetch-network-status"
 import { StatuspageApiResponse } from "~/ui/design-system/src/lib/interfaces"
 
 export type LoaderData = {
-  statuseResponses: StatuspageApiResponse[]
+  statusResponses: StatuspageApiResponse[]
 }
 
 export async function loader(): Promise<LoaderData> {
   const networkStatus = await fetchNetworkStatus()
   return {
-    statuseResponses: networkStatus,
+    statusResponses: networkStatus,
   }
 }
 
@@ -44,16 +44,24 @@ export default function () {
   }, [fetcher.data])
 
   return (
-    <div>
-      <h1>NETWORKS</h1>
-      Number of Networks: {status.statuseResponses.length}
+    <>
       <div className="w-full">
-        {status.statuseResponses.map((s) => (
-          <li id="user-content-fn-1" key={s.id}>
-            Network: {s.name} - {s.status} - {s.updated_at}
-          </li>
-        ))}
+        {!status.statusResponses && <span>Loading...</span>}
+        {status.statusResponses &&
+          status.statusResponses.map((s) => (
+            <li id="user-content-fn-1" key={s.id} className="flex items-center">
+              <div
+                className="mb-1 mr-2 inline-block h-4 w-4 rounded-full"
+                style={{
+                  backgroundColor:
+                    s.status === "operational" ? "#05CE7A" : "#F67D65",
+                }}
+              ></div>
+              {s.name} (
+              {s.status === "operational" ? "Healthy" : "Under Maintenance"})
+            </li>
+          ))}
       </div>
-    </div>
+    </>
   )
 }

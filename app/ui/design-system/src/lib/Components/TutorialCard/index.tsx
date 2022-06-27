@@ -75,7 +75,7 @@ const TutorialCard = forwardRef<HTMLAnchorElement, TutorialCardProps>(
                   width="36"
                   height="36"
                 />
-                Updated: {lastUpdated}
+                {lastUpdated}
               </div>
             )}
             {level && (

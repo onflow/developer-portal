@@ -1,3 +1,4 @@
+import clsx from "clsx"
 import { IntroCardCarousel } from "./IntroCardCarousel"
 import { MenuContentGrid } from "./MenuContentGrid"
 import { SectionHeading } from "./SectionHeading"
@@ -22,9 +23,12 @@ export function MenuContent({
 }: MenuContentProps) {
   const isSingleSection = sections.length === 1
   const hasCards = cards.length > 0
-
+  const contentClasses = clsx(
+    "flex h-full flex-col gap-6 bg-white p-4 dark:bg-primary-gray-dark md:flex-row",
+    className
+  )
   return (
-    <div className="flex h-full flex-col gap-6 bg-white p-4 dark:bg-primary-gray-dark md:flex-row">
+    <div className={contentClasses}>
       {cards.length > 0 && (
         <div>
           <IntroCardCarousel cards={cards} />
@@ -41,13 +45,14 @@ export function MenuContent({
               title={sections[0].title}
               icon={sections[0].icon}
             />
-            {sections[0].subSections.map((subsection, index) => (
-              <SubsectionLink
-                key={index}
-                href={subsection.href}
-                title={subsection.title}
-              />
-            ))}
+            {sections[0].subSections &&
+              sections[0].subSections.map((subsection, index) => (
+                <SubsectionLink
+                  key={index}
+                  href={subsection.href}
+                  title={subsection.title}
+                />
+              ))}
           </MenuContentGrid>
           {sections[0].links && (
             <MenuContentGrid
@@ -66,18 +71,29 @@ export function MenuContent({
           isTabContent={isTabContent}
         >
           {sections.map(
-            ({ links, subSections, title, icon, ...section }, sectionIndex) => (
+            (
+              {
+                links,
+                subSections,
+                subSectionComponent: SubSection,
+                title,
+                icon,
+              },
+              sectionIndex
+            ) => (
               <div key={sectionIndex} className="flex flex-col justify-between">
                 <div>
                   <SectionHeading title={title} icon={icon} />
                   <div className="mt-2 flex flex-col gap-y-1">
-                    {subSections.map((subsection, subSectionIndex) => (
-                      <SubsectionLink
-                        key={subSectionIndex}
-                        href={subsection.href}
-                        title={subsection.title}
-                      />
-                    ))}
+                    {subSections &&
+                      subSections.map((subsection, subSectionIndex) => (
+                        <SubsectionLink
+                          key={subSectionIndex}
+                          href={subsection.href}
+                          title={subsection.title}
+                        />
+                      ))}
+                    {SubSection && <SubSection />}
                   </div>
                 </div>
                 {links && (
