@@ -286,7 +286,7 @@ function mapFromMdxPageToMdxListItem(page: MdxPage): MdxListItem {
 
 const isLinkExternal = (href?: string) => !!href?.match(/^(www|http)/i)
 
-function GetMdxComponents(theme: Theme, title: string | null) {
+function GetMdxComponents(theme: Theme) {
   return {
     a: (props: LinkProps & { href: string }) => {
       if (isLinkExternal(props.href)) {
@@ -349,7 +349,7 @@ function getMdxComponent(page: MdxPage, theme: Theme | null) {
         </header>
         <Component
           /* @ts-expect-error: Does not like the link tage type definition above */
-          components={GetMdxComponents(theme, frontmatter.title)}
+          components={GetMdxComponents(theme)}
           {...rest}
         />
       </>
