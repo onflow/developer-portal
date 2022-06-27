@@ -2,171 +2,51 @@ import { TutorialCardProps } from "~/ui/design-system/src/lib/Components/Tutoria
 import { LargeVideoCardProps } from "~/ui/design-system/src/lib/Components/VideoCard/LargeVideoCard"
 import { SmallVideoCardProps } from "~/ui/design-system/src/lib/Components/VideoCard/SmallVideoCard"
 import {
-  getTheFlowDownTutorial,
+  getTheFlowDown,
   organizingCadenceTutorial,
-  introToFlowBlockchainTutorial,
+  introToFlow,
+  redSquirrelGetStartedArticle,
+  guideToFlowForEthereumUsers,
+  FCLQuickstartNextJs,
+  FCLQuickstartNuxtJs,
+  FCLQuickstartSvelteKit,
+  flowNFTPetStore,
+  learnCadenceVideoSeries,
+  flowMetaDataStandard,
+  NBATopShotExample,
+  flowMultiNodeArchitecture,
+  zeroToJacobFlow,
+  revolutionizeSmartContractProgramming,
+  cadenceAtAGlance,
+  firstStepsWithCadence,
+  accessControlCadence,
 } from "../../component-data/Articles"
 
 const cadenceTutorials: TutorialCardProps[] = [
-  getTheFlowDownTutorial,
+  cadenceAtAGlance,
   organizingCadenceTutorial,
-  introToFlowBlockchainTutorial,
-  {
-    heading: "This Title Is A Two Liner",
-    tags: ["TODO", "Tool", "Intermediate"],
-    description: "Text following the title, small  two description",
-    lastUpdated: "23/3/2022",
-    imageUri:
-      "https://assets.website-files.com/5f6294c0c7a8cdf432b1c827/5f6294c0c7a8cda922b1c968_Flow%2520Wide%2520Design-p-3200.png",
-    link: "https://example.com",
-  },
-  {
-    heading: "This Title Is A Two Liner",
-    tags: ["TODO", "Tool", "Intermediate"],
-    description: "Text following the title, small  two description",
-    lastUpdated: "23/3/2022",
-    imageUri:
-      "https://assets.website-files.com/5f6294c0c7a8cdf432b1c827/5f6294c0c7a8cda922b1c968_Flow%2520Wide%2520Design-p-3200.png",
-    link: "https://example.com",
-  },
-  {
-    heading: "This Title Is A Two Liner",
-    tags: ["TODO", "Tool", "Intermediate"],
-    description: "Text following the title, small  two description",
-    lastUpdated: "23/3/2022",
-    imageUri:
-      "https://assets.website-files.com/5f6294c0c7a8cdf432b1c827/5f6294c0c7a8cda922b1c968_Flow%2520Wide%2520Design-p-3200.png",
-    link: "https://example.com",
-  },
-  {
-    heading: "This Title Is A Two Liner",
-    tags: ["TODO", "Tool", "Intermediate"],
-    description: "Text following the title, small  two description",
-    lastUpdated: "23/3/2022",
-    imageUri:
-      "https://assets.website-files.com/5f6294c0c7a8cdf432b1c827/5f6294c0c7a8cda922b1c968_Flow%2520Wide%2520Design-p-3200.png",
-    link: "https://example.com",
-  },
-  {
-    heading: "This Title Is A Two Liner",
-    tags: ["TODO", "Tool", "Intermediate"],
-    description: "Text following the title, small  two description",
-    lastUpdated: "23/3/2022",
-    imageUri:
-      "https://assets.website-files.com/5f6294c0c7a8cdf432b1c827/5f6294c0c7a8cda922b1c968_Flow%2520Wide%2520Design-p-3200.png",
-    link: "https://example.com",
-  },
+  learnCadenceVideoSeries,
+  zeroToJacobFlow,
+  firstStepsWithCadence,
+  FCLQuickstartNextJs,
+  FCLQuickstartNuxtJs,
+  FCLQuickstartSvelteKit,
 ]
 
 const nftTutorials: TutorialCardProps[] = [
-  {
-    heading: "This Title Is A Two Liner",
-    tags: ["TODO", "Tool", "Intermediate"],
-    description: "Text following the title, small  two description",
-    lastUpdated: "23/3/2022",
-    imageUri:
-      "https://assets.website-files.com/5f6294c0c7a8cdf432b1c827/5f6294c0c7a8cda922b1c968_Flow%2520Wide%2520Design-p-3200.png",
-    link: "https://example.com",
-  },
-  {
-    heading: "This Title Is A Two Liner",
-    tags: ["TODO", "Tool", "Intermediate"],
-    description: "Text following the title, small  two description",
-    lastUpdated: "23/3/2022",
-    imageUri:
-      "https://assets.website-files.com/5f6294c0c7a8cdf432b1c827/5f6294c0c7a8cda922b1c968_Flow%2520Wide%2520Design-p-3200.png",
-    link: "https://example.com",
-  },
-  {
-    heading: "This Title Is A Two Liner",
-    tags: ["TODO", "Tool", "Intermediate"],
-    description: "Text following the title, small  two description",
-    lastUpdated: "23/3/2022",
-    imageUri:
-      "https://assets.website-files.com/5f6294c0c7a8cdf432b1c827/5f6294c0c7a8cda922b1c968_Flow%2520Wide%2520Design-p-3200.png",
-    link: "https://example.com",
-  },
-  {
-    heading: "This Title Is A Two Liner",
-    tags: ["TODO", "Tool", "Intermediate"],
-    description: "Text following the title, small  two description",
-    lastUpdated: "23/3/2022",
-    imageUri:
-      "https://assets.website-files.com/5f6294c0c7a8cdf432b1c827/5f6294c0c7a8cda922b1c968_Flow%2520Wide%2520Design-p-3200.png",
-    link: "https://example.com",
-  },
-  {
-    heading: "This Title Is A Two Liner",
-    tags: ["TODO", "Tool", "Intermediate"],
-    description: "Text following the title, small  two description",
-    lastUpdated: "23/3/2022",
-    imageUri:
-      "https://assets.website-files.com/5f6294c0c7a8cdf432b1c827/5f6294c0c7a8cda922b1c968_Flow%2520Wide%2520Design-p-3200.png",
-    link: "https://example.com",
-  },
-  {
-    heading: "This Title Is A Two Liner",
-    tags: ["TODO", "Tool", "Intermediate"],
-    description: "Text following the title, small  two description",
-    lastUpdated: "23/3/2022",
-    imageUri:
-      "https://assets.website-files.com/5f6294c0c7a8cdf432b1c827/5f6294c0c7a8cda922b1c968_Flow%2520Wide%2520Design-p-3200.png",
-    link: "https://example.com",
-  },
-  {
-    heading: "This Title Is A Two Liner",
-    tags: ["TODO", "Tool", "Intermediate"],
-    description: "Text following the title, small  two description",
-    lastUpdated: "23/3/2022",
-    imageUri:
-      "https://assets.website-files.com/5f6294c0c7a8cdf432b1c827/5f6294c0c7a8cda922b1c968_Flow%2520Wide%2520Design-p-3200.png",
-    link: "https://example.com",
-  },
-  {
-    heading: "This Title Is A Two Liner",
-    tags: ["TODO", "Tool", "Intermediate"],
-    description: "Text following the title, small  two description",
-    lastUpdated: "23/3/2022",
-    imageUri:
-      "https://assets.website-files.com/5f6294c0c7a8cdf432b1c827/5f6294c0c7a8cda922b1c968_Flow%2520Wide%2520Design-p-3200.png",
-    link: "https://example.com",
-  },
-  {
-    heading: "This Title Is A Two Liner",
-    tags: ["TODO", "Tool", "Intermediate"],
-    description: "Text following the title, small  two description",
-    lastUpdated: "23/3/2022",
-    imageUri:
-      "https://assets.website-files.com/5f6294c0c7a8cdf432b1c827/5f6294c0c7a8cda922b1c968_Flow%2520Wide%2520Design-p-3200.png",
-    link: "https://example.com",
-  },
-  {
-    heading: "This Title Is A Two Liner",
-    tags: ["TODO", "Tool", "Intermediate"],
-    description: "Text following the title, small  two description",
-    lastUpdated: "23/3/2022",
-    imageUri:
-      "https://assets.website-files.com/5f6294c0c7a8cdf432b1c827/5f6294c0c7a8cda922b1c968_Flow%2520Wide%2520Design-p-3200.png",
-    link: "https://example.com",
-  },
-  {
-    heading: "This Title Is A Two Liner",
-    tags: ["TODO", "Tool", "Intermediate"],
-    description: "Text following the title, small  two description",
-    lastUpdated: "23/3/2022",
-    imageUri:
-      "https://assets.website-files.com/5f6294c0c7a8cdf432b1c827/5f6294c0c7a8cda922b1c968_Flow%2520Wide%2520Design-p-3200.png",
-    link: "https://example.com",
-  },
-  {
-    heading: "This Title Is A Two Liner",
-    tags: ["TODO", "Tool", "Intermediate"],
-    description: "Text following the title, small  two description",
-    lastUpdated: "23/3/2022",
-    imageUri:
-      "https://assets.website-files.com/5f6294c0c7a8cdf432b1c827/5f6294c0c7a8cda922b1c968_Flow%2520Wide%2520Design-p-3200.png",
-    link: "https://example.com",
-  },
+  NBATopShotExample,
+  redSquirrelGetStartedArticle,
+  flowNFTPetStore,
+  flowMetaDataStandard,
+]
+
+const architectureTutorials: TutorialCardProps[] = [
+  introToFlow,
+  flowMultiNodeArchitecture,
+  getTheFlowDown,
+  guideToFlowForEthereumUsers,
+  revolutionizeSmartContractProgramming,
+  accessControlCadence,
 ]
 
 type VideoProps = {
@@ -196,7 +76,11 @@ const videos: VideoProps = {
   ],
 }
 
-const allTutorials: TutorialCardProps[] = [...nftTutorials, ...cadenceTutorials]
+const allTutorials: TutorialCardProps[] = [
+  ...nftTutorials,
+  ...cadenceTutorials,
+  ...architectureTutorials,
+]
 
 export const data = {
   videos,
@@ -204,5 +88,6 @@ export const data = {
   cadenceTutorials,
   allTutorials,
   youtubeHref: "https://www.youtube.com/c/FlowBlockchain",
-  cadenceHref: "https://example.com",
+  cadenceHref: "https://docs.onflow.org/cadence/",
+  architectureTutorials,
 }

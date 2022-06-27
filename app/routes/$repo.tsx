@@ -1,20 +1,20 @@
 import { json, LoaderFunction } from "@remix-run/node"
-import { Link, Outlet, useCatch, useLoaderData } from "@remix-run/react"
-import invariant from "tiny-invariant"
 import {
-  repoList,
-  repoPresets,
-  flowContentPresets,
-  flowContentNames,
-} from "~/constants/repos"
-import { RepoSchema } from "~/constants/repos/repo-schema"
+  Link,
+  Outlet,
+  useCatch,
+  useLoaderData,
+  useMatches,
+} from "@remix-run/react"
+import invariant from "tiny-invariant"
+import { ContentName, ContentSpec, getContentSpec } from "~/constants/repos"
 import { ErrorPage } from "~/ui/design-system/src/lib/Components/ErrorPage"
-import { InternalSidebar } from "~/ui/design-system/src/lib/Components/InternalSidebar"
+import { ToolName } from "~/ui/design-system/src/lib/Components/Internal/tools"
 import { temporarilyRedirectToComingSoon } from "~/utils/features"
+import { InternalPage } from "../ui/design-system/src/lib/Pages/InternalPage"
 
 type LoaderData = {
-  repo: string
-  repoSchema: RepoSchema | null
+  content: ContentSpec
 }
 
 export const loader: LoaderFunction = async ({
@@ -22,47 +22,67 @@ export const loader: LoaderFunction = async ({
 }): Promise<LoaderData> => {
   temporarilyRedirectToComingSoon()
 
-  const content = params.repo
-  invariant(content, `expected repo param`)
+  const contentName = params.repo
+  invariant(contentName, `expected repo param`)
 
-  const isKnownRepo = repoList.map((r) => r.repo).includes(content)
-  if (!isKnownRepo) {
+  const contentSpec = getContentSpec(contentName)
+
+  if (!contentSpec) {
     throw json({ status: "unknownRepo" }, { status: 404 })
-  }
-
-  // Flow Repository has additional internal content. If Flow repository is loaded, look for different sidebars
-  if (flowContentNames.includes(content)) {
-    return {
-      repo: "flow",
-      repoSchema: flowContentPresets[content] ?? null,
-    }
-  } else {
-    return {
-      repo: content,
-      repoSchema: repoPresets[content] ?? null,
-    }
   }
 
   // currently we are using only the presets, evnetually here we could
   // use the github api to see if a configuration file (e.g. onflowdocs.json)
   // exists, validate it against repo-schema, and use that instead. for now,
   // we'll use the definitions in this repo
+
+  return { content: contentSpec }
 }
 
 export default function Repo() {
-  const data = useLoaderData<LoaderData>()
+  const { content } = useLoaderData<LoaderData>()
+  const matches = useMatches()
+  const [match] = matches.slice(-1)
+  const path = match.params["*"] || "index"
+
   return (
-    <div className="flex h-full">
-      {data.repoSchema ? (
-        <InternalSidebar config={data.repoSchema.sidebar} />
-      ) : (
-        <div>⚠️ D'oh. Failed to load sidebar content.</div>
-      )}
-      <div className="overflow-auto">
-        <Outlet />
-      </div>
-    </div>
+    <InternalPage
+      activePath={path}
+      contentDisplayName={content.displayName}
+      contentPath={content.contentName}
+      header={path === "index" ? content.landingHeader : undefined}
+      sidebarConfig={content.schema?.sidebar}
+      internalSidebarMenu={{
+        selectedTool: contentToolMap[content.contentName],
+        toolLinks: toolLinks,
+      }}
+    >
+      <Outlet />
+    </InternalPage>
   )
+}
+
+const toolContentMap: Record<ToolName, ContentName> = {
+  cadence: "cadence",
+  cli: "flow-cli",
+  emulator: "flow-emulator",
+  fcl: "fcl-js",
+  testing: "flow-js-testing",
+  vscode: "vscode-extension",
+}
+
+const toolLinks: Record<ToolName, string> = { ...toolContentMap }
+for (let [key, value] of Object.entries(toolLinks)) {
+  toolLinks[key as ToolName] = `/${value}`
+}
+
+const contentToolMap: Record<string, ToolName> = {
+  cadence: "cadence",
+  "flow-cli": "cli",
+  "flow-emulator": "emulator",
+  "fcl-js": "fcl",
+  "flow-js-testing": "testing",
+  "vscode-extension": "vscode",
 }
 
 export function CatchBoundary() {

@@ -7,8 +7,6 @@ import { ReactComponent as EmulatorIcon } from "../../../../images/tools/tool-em
 import { ReactComponent as EmulatorGradientIcon } from "../../../../images/tools/tool-emulator-gradient"
 import { ReactComponent as FclIcon } from "../../../../images/tools/tool-fcl"
 import { ReactComponent as FclGradientIcon } from "../../../../images/tools/tool-fcl-gradient"
-import { ReactComponent as PortIcon } from "../../../../images/tools/tool-port"
-import { ReactComponent as PortGradientIcon } from "../../../../images/tools/tool-port-gradient"
 import { ReactComponent as TestingIcon } from "../../../../images/tools/tool-testing"
 import { ReactComponent as TestingGradientIcon } from "../../../../images/tools/tool-testing-gradient"
 import { ReactComponent as VsCodeIcon } from "../../../../images/tools/tool-vscode"
@@ -19,7 +17,6 @@ import { ReactComponent as VsCodeGradientIcon } from "../../../../images/tools/t
 export type ToolName =
   | "emulator"
   | "vscode"
-  | "port"
   | "cli"
   | "testing"
   | "fcl"
@@ -44,12 +41,6 @@ export const TOOLS: Record<ToolName, Tool> = {
     icon: VsCodeIcon,
     iconLanding: CadenceLandingIcon,
     gradientIcon: VsCodeGradientIcon,
-  },
-  port: {
-    name: "Port",
-    icon: PortIcon,
-    iconLanding: CadenceLandingIcon,
-    gradientIcon: PortGradientIcon,
   },
   cli: {
     name: "CLI",

@@ -1,24 +1,29 @@
 import { useState } from "react"
 import { GITHUB_URL } from "../../../../../../constants"
 import { ButtonLink } from "../Button"
+import { HeaderWithLink } from "../HeaderWithLink"
 import TabMenu from "../TabMenu"
 import FlipCell, { FlipCellHeader, FlipCellProps } from "./FlipCell"
 
 export type FlipsProps = {
   openFlips: FlipCellProps[]
   goodPlacesToStartFlips: FlipCellProps[]
+  headerLink?: string
 }
 
 export default function Flips({
   openFlips,
   goodPlacesToStartFlips,
+  headerLink = "",
 }: FlipsProps) {
   const [selectedTab, setSelectedTab] = useState(0)
 
   return (
     <div className="container">
       <div className="flex items-center justify-between">
-        <div className="text-h2">FLIPs</div>
+        <HeaderWithLink className="text-h2" headerLink={headerLink}>
+          FLIPs
+        </HeaderWithLink>
         <ButtonLink
           rightIcon="right"
           href={GITHUB_URL}

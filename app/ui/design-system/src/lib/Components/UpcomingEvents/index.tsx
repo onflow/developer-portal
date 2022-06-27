@@ -3,11 +3,13 @@ import { OFFICE_HOURS_EVENT_TYPE } from "~/component-data/Events"
 import { ButtonLink } from "../Button"
 import { EventCard, EventCardList, EventCardProps } from "../EventCard"
 import { EventCardSmall } from "../EventCardSmall"
+import { HeaderWithLink } from "../HeaderWithLink"
 import TabMenu from "../TabMenu"
 
 export type UpcomingEventsProps = {
   goToCommunityHref: string
   events: EventCardProps[]
+  headerLink?: string
 }
 
 const FILTERS = [OFFICE_HOURS_EVENT_TYPE]
@@ -15,6 +17,7 @@ const FILTERS = [OFFICE_HOURS_EVENT_TYPE]
 export function UpcomingEvents({
   goToCommunityHref,
   events,
+  headerLink = "",
 }: UpcomingEventsProps) {
   const [tabIndex, setTabIndex] = useState(0)
   const [selectedEventTitle, setSelectedEventTitle] = useState<string | null>(
@@ -40,7 +43,9 @@ export function UpcomingEvents({
 
   return (
     <div className="container">
-      <div className="text-h2 mb-2">Upcoming events</div>
+      <HeaderWithLink className="text-h2 mb-2" headerLink={headerLink}>
+        Upcoming events
+      </HeaderWithLink>
       <TabMenu
         tabs={[{ name: "Upcoming events" }, { name: "Flow office hours" }]}
         onTabChange={onTabChange}

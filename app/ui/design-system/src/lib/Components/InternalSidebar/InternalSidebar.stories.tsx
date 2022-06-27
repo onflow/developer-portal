@@ -1,5 +1,4 @@
 import { Meta, Story } from "@storybook/react"
-import { MemoryRouter } from "react-router"
 import { InternalSidebar, InternalSidebarProps, TEMP_SIDEBAR_CONFIG } from "."
 
 export default {
@@ -8,9 +7,7 @@ export default {
 } as Meta
 
 const Template: Story<InternalSidebarProps> = (args) => (
-  <MemoryRouter>
-    <InternalSidebar {...args} />
-  </MemoryRouter>
+  <InternalSidebar {...args} />
 )
 
 export const Default = Template.bind({})

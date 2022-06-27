@@ -3,10 +3,6 @@ import { ButtonLink } from "../../Components/Button"
 import CommunityMembers, {
   CommunityMembersProps,
 } from "../../Components/CommunityMembers"
-import {
-  ContentNavigation,
-  ContentNavigationProps,
-} from "../../Components/ContentNavigation"
 import FeaturedArticleSlider, {
   FeaturedArticleSliderProps,
 } from "../../Components/FeaturedArticleSlider"
@@ -20,6 +16,11 @@ import { DISCOURSE_URL, GITHUB_URL } from "../../../../../../constants"
 import PageBackground from "../shared/PageBackground"
 import PageSection from "../shared/PageSection"
 import PageSections from "../shared/PageSections"
+import {
+  ContentNavigationList,
+  ContentNavigationListProps,
+} from "../../Components/ContentNavigationList"
+import { HeaderWithLink } from "../../Components/HeaderWithLink"
 
 export type CommunityPageProps = FlipsProps &
   ProjectCardsProps &
@@ -27,7 +28,7 @@ export type CommunityPageProps = FlipsProps &
   ToolsAndConceptsProps & {
     communityMembers: CommunityMembersProps
     upcomingEvents: UpcomingEventsProps
-    contentNavigationItems: ContentNavigationProps[]
+    contentNavigationListItems: ContentNavigationListProps
     forumTopics: ForumCellProps[]
   }
 
@@ -39,7 +40,7 @@ export default function CommunityPage({
   upcomingEvents,
   articles,
   tools,
-  contentNavigationItems,
+  contentNavigationListItems,
   forumTopics,
 }: CommunityPageProps) {
   return (
@@ -54,16 +55,19 @@ export default function CommunityPage({
             title="Community"
           />
         </PageSection>
-        <PageSection>
-          <UpcomingEvents {...upcomingEvents} />
+        <PageSection sectionId="upcoming-events">
+          <UpcomingEvents {...upcomingEvents} headerLink="upcoming-events" />
         </PageSection>
-        <PageSection>
+        <PageSection sectionId="community-members">
           <div className="container mb-8">
             <div className="flex items-center justify-between">
-              <div className="text-h2">
+              <HeaderWithLink
+                headerLink="community-members"
+                className="text-h2"
+              >
                 <div>Designed by experts</div>
                 <div>Refined by the community</div>
-              </div>
+              </HeaderWithLink>
               <ButtonLink
                 rightIcon="right"
                 href={GITHUB_URL}
@@ -78,38 +82,40 @@ export default function CommunityPage({
           </div>
           <CommunityMembers {...communityMembers} />
         </PageSection>
-        <PageSection>
+        <PageSection sectionId="flips">
           <Flips
             openFlips={openFlips}
             goodPlacesToStartFlips={goodPlacesToStartFlips}
+            headerLink="flips"
           />
         </PageSection>
-        <PageSection>
-          <ProjectCards projects={projects} />
+        <PageSection sectionId="featured-initiatives">
+          <ProjectCards projects={projects} headerLink="featured-initiatives" />
         </PageSection>
-        <PageSection>
-          <ToolsAndConcepts tools={tools} />
+        <PageSection sectionId="tools">
+          <ToolsAndConcepts tools={tools} headerLink="tools" />
         </PageSection>
-        <PageSection>
-          {/* TODO: Extract into shared component */}
-          <div className="container">
-            <h4 className="text-h2 mb-10">Explore More Content</h4>
-            <div className="grid grid-cols-1 gap-4 md:grid-cols-3 md:gap-8">
-              {contentNavigationItems.map(
-                (contentNav: ContentNavigationProps, index: number) => (
-                  <ContentNavigation key={index} {...contentNav} />
-                )
-              )}
-            </div>
-          </div>
+        <PageSection sectionId="explore-more-content">
+          <ContentNavigationList
+            header={contentNavigationListItems.header}
+            contentNavigationItems={
+              contentNavigationListItems.contentNavigationItems
+            }
+            headerLink="explore-more-content"
+          />
         </PageSection>
-        <PageSection>
-          <FeaturedArticleSlider articles={articles} />
+        <PageSection sectionId="featured-articles">
+          <FeaturedArticleSlider
+            articles={articles}
+            headerLink="featured-articles"
+          />
         </PageSection>
-        <PageSection>
+        <PageSection sectionId="from-the-forum">
           <div className="container mb-8">
             <div className="mb-10 flex items-center justify-between">
-              <h4 className="text-h2">From the forum</h4>
+              <HeaderWithLink headerLink="from-the-forum" className="text-h2">
+                From the forum
+              </HeaderWithLink>
               <ButtonLink
                 rightIcon="right"
                 href={DISCOURSE_URL}

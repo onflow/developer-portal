@@ -21,7 +21,20 @@ const Template: Story<InternalSubnavProps> = (args) => (
 
 export const Default = Template.bind({})
 Default.args = {
-  current: "Quick reference",
+  items: [
+    {
+      name: "Home",
+      href: "/",
+    },
+    {
+      name: "Category",
+      href: "#",
+    },
+    {
+      name: "Page",
+      href: "#",
+    },
+  ],
   versions: VERSIONS,
   selectedVersionName: VERSIONS[0].name,
 }

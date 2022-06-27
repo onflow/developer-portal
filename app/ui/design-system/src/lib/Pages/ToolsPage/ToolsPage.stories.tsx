@@ -33,26 +33,28 @@ const args = {
     lastCommit: "22/3",
     lastRelease: "207",
   }),
-  contentNavigationItems: [
-    {
-      title: "Learn",
-      text: "Lorem ipsum dolor sit amet proin gravida lorem ipsum",
-      link: "#",
-      icon: "learn",
-    },
-    {
-      title: "Tools",
-      text: "Lorem ipsum dolor sit amet proin gravida lorem ipsum",
-      link: "#",
-      icon: "tools",
-    },
-    {
-      title: "Concepts",
-      text: "Lorem ipsum dolor sit amet proin gravida lorem ipsum",
-      link: "#",
-      icon: "concepts",
-    },
-  ],
+  contentNavigationListItems: {
+    contentNavigationItems: [
+      {
+        title: "Learn",
+        text: "Lorem ipsum dolor sit amet proin gravida lorem ipsum",
+        link: "#",
+        icon: "learn",
+      },
+      {
+        title: "Tools",
+        text: "Lorem ipsum dolor sit amet proin gravida lorem ipsum",
+        link: "#",
+        icon: "tools",
+      },
+      {
+        title: "Concepts",
+        text: "Lorem ipsum dolor sit amet proin gravida lorem ipsum",
+        link: "#",
+        icon: "concepts",
+      },
+    ],
+  },
   apisAndServices: Array(6).fill({
     heading: "Such title, much heading",
     tags: ["Tool"],
@@ -73,7 +75,8 @@ const args = {
       "https://upload.wikimedia.org/wikipedia/commons/thumb/4/49/A_black_image.jpg/2560px-A_black_image.jpg",
     link: "/tutorials",
   }),
-}
+} as ToolsPageProps
+
 export const Default = Template.bind({})
 Default.args = args
 

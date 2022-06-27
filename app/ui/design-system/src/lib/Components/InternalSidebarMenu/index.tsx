@@ -15,14 +15,17 @@ export type Version = {
 
 type SectionGroup = { name: string; sections: ToolName[] }
 
-export type InternalSidebarMenuProps = {
-  selectedTool: ToolName
-}
-
 const SIDEBAR_SECTION_GROUPS: SectionGroup[] = [
   {
     name: "Switch tool",
-    sections: ["emulator", "vscode", "port", "cli", "testing"],
+    sections: [
+      // temporarily disabled
+      // "emulator",
+      "vscode",
+      // temporarily disabled
+      // "cli",
+      "testing",
+    ],
   },
   {
     name: "Concepts",
@@ -30,7 +33,13 @@ const SIDEBAR_SECTION_GROUPS: SectionGroup[] = [
   },
 ]
 
-function Group({ group }: { group: SectionGroup }) {
+function Group({
+  group,
+  toolLinks,
+}: {
+  group: SectionGroup
+  toolLinks: ToolLinkMap
+}) {
   return (
     <>
       {group.sections.map((section: ToolName) => {
@@ -42,7 +51,7 @@ function Group({ group }: { group: SectionGroup }) {
             className="border-b border-b-primary-gray-100 last:border-none md:border-none md:p-0"
           >
             <a
-              href="#"
+              href={toolLinks[section]}
               className={clsx(
                 "group flex items-center px-1 py-2 text-center text-sm hover:bg-primary-gray-100/50 dark:bg-black hover:dark:bg-primary-gray-400/5 md:h-[7.5rem] md:w-[7rem] md:flex-col md:rounded-lg md:px-4 md:py-5 md:shadow-2xl dark:md:shadow-2xl-dark"
               )}
@@ -70,10 +79,12 @@ function SidebarSectionGroup({
   group,
   index,
   close,
+  toolLinks,
 }: {
   group: SectionGroup
   index: number
   close: () => void
+  toolLinks: ToolLinkMap
 }) {
   return (
     <div className="mb-2 md:mb-6 md:divide-y md:divide-solid dark:md:divide-primary-gray-300">
@@ -92,14 +103,22 @@ function SidebarSectionGroup({
         )}
       </div>
       <div className="flex flex-col py-4 md:flex-row md:flex-wrap md:gap-4 md:py-6">
-        <Group group={group} />
+        <Group group={group} toolLinks={toolLinks} />
       </div>
     </div>
   )
 }
 
+type ToolLinkMap = Record<ToolName, string>
+
+export type InternalSidebarMenuProps = {
+  selectedTool: ToolName
+  toolLinks: ToolLinkMap
+}
+
 export function InternalSidebarMenu({
   selectedTool,
+  toolLinks,
 }: InternalSidebarMenuProps) {
   const arrowRef = useRef(null)
   const {
@@ -133,12 +152,13 @@ export function InternalSidebarMenu({
               </div>
             </Popover.Button>
             <div
-              className="absolute mt-8 w-full md:min-w-[15rem]"
+              className="absolute z-10 mt-8 w-screen px-4 md:min-w-[15rem]"
               ref={floating}
               style={{ top: y || 0, left: x || 0 }}
             >
               <DropdownTransition>
-                <Popover.Panel className="relative mr-2 min-w-[17rem] max-w-[34rem] overflow-y-auto rounded-lg bg-white px-4 py-2 shadow-2xl dark:bg-primary-gray-dark dark:shadow-2xl-dark dark:hover:shadow-2xl-dark dark:hover:shadow-2xl-dark md:px-6 md:py-4">
+                {/* fyi max-w-[34rem] is the intended full width here, using max-w-[18rem] since some entries are temporarily disabled */}
+                <Popover.Panel className="relative mr-2 min-w-[17rem] max-w-[18rem] overflow-y-auto rounded-lg bg-white px-4 py-2 shadow-2xl dark:bg-primary-gray-dark dark:shadow-2xl-dark dark:hover:shadow-2xl-dark dark:hover:shadow-2xl-dark md:px-6 md:py-4">
                   {({ close }) =>
                     SIDEBAR_SECTION_GROUPS.map((group, index) => (
                       <SidebarSectionGroup
@@ -146,6 +166,7 @@ export function InternalSidebarMenu({
                         index={index}
                         key={index}
                         close={close}
+                        toolLinks={toolLinks}
                       />
                     ))
                   }

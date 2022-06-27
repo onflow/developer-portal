@@ -38,6 +38,7 @@ const tools = Array(6).fill({
 const DefaultArgs: ToolsAndConceptsProps = {
   tools,
   concepts: Array(10).fill(tutorialCard),
+  headerLink: "#",
 }
 export const Default = Template.bind({})
 Default.args = DefaultArgs

@@ -12,7 +12,7 @@ export default function Page() {
     <ToolsPage
       explorers={data.explorers}
       apisAndServices={data.apisAndServices}
-      contentNavigationItems={data.contentNavigationItems}
+      contentNavigationListItems={data.contentNavigationListItems}
       sdks={data.sdks}
       tools={data.tools}
     />

@@ -45,11 +45,8 @@ export function InternalLandingHeader({
             Getting Started
           </div>
           <div className="flex flex-col gap-10 md:flex-row">
-            {headerCards.map((headerCard) => (
-              <InternalLandingHeaderCard
-                key={headerCard.title}
-                {...headerCard}
-              />
+            {headerCards.map((headerCard, index) => (
+              <InternalLandingHeaderCard key={index} {...headerCard} />
             ))}
           </div>
         </div>
