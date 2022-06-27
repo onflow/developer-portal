@@ -14,7 +14,14 @@ export type LinkProps = React.DetailedHTMLProps<
 >
 
 //@ts-ignore: We need to figure out how to type this
-export function Link({ children, className, id, href, isExternal, ...props }) {
+export function Link({
+  children,
+  className,
+  id,
+  href,
+  isExternal,
+  ...props
+}: any) {
   const isFootnote = !!props["data-footnote-ref"]
 
   const classes = clsx(defaultClasses, {
