@@ -62,7 +62,10 @@ export const loader: LoaderFunction = async ({ request }) => {
   const themeSession = await getThemeSession(request)
   return json<LoaderData>({
     theme: themeSession.getTheme(),
-    gaTrackingId: getRequiredServerEnvVar("GA_TRACKING_ID"),
+    gaTrackingId: getRequiredServerEnvVar(
+      "GA_TRACKING_ID",
+      "GA_TRACKING_ID-dev-value"
+    ),
   })
 }
 
