@@ -6,9 +6,9 @@ import * as Sentry from "@sentry/node"
 import "@sentry/tracing"
 
 Sentry.init({
-  dsn: getRequiredGlobalEnvVar("SENTRY_DSN"),
+  ...(process.env.SENTRY_DSN && { dsn: process.env.SENTRY_DSN }),
   tracesSampleRate: 0.3,
-  environment: getRequiredGlobalEnvVar("SENTRY_ENV"),
+  environment: getRequiredGlobalEnvVar("SENTRY_ENV", "development"),
 })
 
 export default function handleRequest(
