@@ -1,4 +1,8 @@
 import {
+  InternalLandingHeader,
+  InternalLandingHeaderProps,
+} from "../../Components/InternalLandingHeader"
+import {
   InternalSidebar,
   InternalSidebarContainer,
 } from "../../Components/InternalSidebar"
@@ -12,16 +16,18 @@ import {
   UseInternalBreadcrumbsOptions,
 } from "./useInternalBreadcrumbs"
 
-export type InternalPageProps = React.PropsWithChildren<{}> &
-  UseInternalBreadcrumbsOptions & {
-    internalSidebarMenu: InternalSidebarMenuProps
-  }
+export type InternalPageProps = React.PropsWithChildren<{
+  header?: InternalLandingHeaderProps
+  internalSidebarMenu: InternalSidebarMenuProps
+}> &
+  UseInternalBreadcrumbsOptions
 
 export function InternalPage({
   activePath,
   children,
   contentDisplayName,
   contentPath,
+  header,
   rootUrl = "/",
   sidebarConfig,
   internalSidebarMenu,
@@ -37,6 +43,7 @@ export function InternalPage({
   return (
     <div className="flex flex-col">
       <InternalSubnav items={breadcrumbs} className="sticky top-0 z-20" />
+      {header && <InternalLandingHeader {...header} />}
       <div className="flex flex-1 flex-row">
         {sidebarConfig && (
           <div className="flex flex-col">

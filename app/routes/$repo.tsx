@@ -43,12 +43,14 @@ export default function Repo() {
   const { content } = useLoaderData<LoaderData>()
   const matches = useMatches()
   const [match] = matches.slice(-1)
+  const path = match.params["*"] || "index"
 
   return (
     <InternalPage
-      activePath={match.params["*"] || "index"}
+      activePath={path}
       contentDisplayName={content.displayName}
       contentPath={content.contentName}
+      header={path === "index" ? content.landingHeader : undefined}
       sidebarConfig={content.schema?.sidebar}
       internalSidebarMenu={{
         selectedTool: contentToolMap[content.contentName],
