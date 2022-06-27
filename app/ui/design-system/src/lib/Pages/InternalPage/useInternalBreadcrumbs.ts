@@ -1,13 +1,11 @@
 import { useMemo } from "react"
-import { InternalSidebarConfig } from "../../Components/InternalSidebar"
+import { InternalSidebarSectionItem } from "../../Components/InternalSidebar"
 
 export type UseInternalBreadcrumbsOptions = {
   /**
-   * The path of the currently active item. This should be a path
-   * relative to the repo (excluding the repo name), matching the item's href
-   * as it is defined in the sidebar configuration object.
+   * The currently active item taken from the sidebar configuration object.
    */
-  activePath: string
+  activeItem?: InternalSidebarSectionItem
 
   /**
    * THe name to display in the breadcrumbs for this content section
@@ -23,47 +21,30 @@ export type UseInternalBreadcrumbsOptions = {
    * The site's root URL.
    */
   rootUrl?: string
-
-  /**
-   * The configuration object that describes the page hierarchy.
-   */
-  sidebarConfig?: InternalSidebarConfig
-}
-
-const findItem = (sidebarConfig: InternalSidebarConfig, activePath: string) => {
-  for (const section of sidebarConfig.sections) {
-    for (const item of section.items) {
-      if (item.href === activePath) {
-        return item
-      }
-    }
-  }
 }
 
 /**
- * Returns a list of breadcrumbs based on the `activePath`
+ * Returns a list of breadcrumbs to display based on the current `activeItem`
+ * of the sidebar configuration (if any)
  */
 export const useInternalBreadcrumbs = ({
-  activePath,
+  activeItem,
   contentDisplayName,
   contentPath,
   rootUrl = "/",
-  sidebarConfig,
 }: UseInternalBreadcrumbsOptions) =>
   useMemo(() => {
-    const item = sidebarConfig && findItem(sidebarConfig, activePath)
-
     const breadcrumbs = [
       { href: rootUrl, name: "Home" },
       { name: contentDisplayName, href: `${rootUrl}${contentPath}` },
     ]
 
-    if (item) {
+    if (activeItem) {
       breadcrumbs.push({
-        name: item.label,
-        href: `${rootUrl}${contentPath}/${item.href}`,
+        name: activeItem.label,
+        href: `${rootUrl}${contentPath}/${activeItem.href}`,
       })
     }
 
     return breadcrumbs
-  }, [activePath, contentDisplayName, contentPath, rootUrl, sidebarConfig])
+  }, [activeItem, contentDisplayName, contentPath, rootUrl])
