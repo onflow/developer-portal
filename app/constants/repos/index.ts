@@ -1,5 +1,6 @@
 import cadence from "./presets/cadence.json"
 import fclJs from "./presets/fcl-js.json"
+import flowCli from "./presets/flow-cli.json"
 import kittyItems from "./presets/kitty-items.json"
 import vscodeExtension from "./presets/vscode-extension.json"
 import flowGoSdk from "./presets/flow-go-sdk.json"
@@ -30,6 +31,7 @@ export const flowContentNames = [
 /* Sidebar presets for all repositories and content names */
 export const schemas: Partial<Record<ContentName, RepoSchema>> = {
   cadence: cadence as RepoSchema,
+  "flow-cli": flowCli as RepoSchema,
   "fcl-js": fclJs as RepoSchema,
   "flow-go-sdk": flowGoSdk as RepoSchema,
   "flow-js-testing": flowJsTesting as RepoSchema,
@@ -42,7 +44,7 @@ export const schemas: Partial<Record<ContentName, RepoSchema>> = {
 
 /* Overriden display names (defaults to dashes converted to spaces then capitalized) */
 export const displayNames: Partial<Record<ContentName, string>> = {
-  "flow-cli": "FLow CLI",
+  "flow-cli": "Flow CLI",
   "flow-js-testing": "Flow JS Testing",
   "flow-go-sdk": "Flow Go SDK",
   "fcl-js": "Flow Content Library JS",
