@@ -91,7 +91,7 @@ jobs:
     steps:
       - uses: actions/checkout@v2
       - uses: superfly/flyctl-actions/setup-flyctl@master
-      - run: flyctl deploy --config fly.staging.toml --remote-only
+      - run: flyctl deploy --config fly.staging.toml --remote-only -e GIT_SHA=$(git rev-parse HEAD)
 
   deploy-production:
     name: Deploy Production
@@ -103,4 +103,4 @@ jobs:
     steps:
       - uses: actions/checkout@v2
       - uses: superfly/flyctl-actions/setup-flyctl@master
-      - run: flyctl deploy --config fly.production.toml --remote-only
+      - run: flyctl deploy --config fly.production.toml --remote-only -e GIT_SHA=$(git rev-parse HEAD)
