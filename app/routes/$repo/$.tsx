@@ -58,7 +58,7 @@ export default function RepoDocument() {
         <div className="prose col-span-4 max-w-none pt-8 dark:prose-invert">
           <MDXContent />
         </div>
-        <div className="pt-[55px]">
+        <div className="pr-16">
           {toc != null ? (
             <InternalToc
               headings={toc}
