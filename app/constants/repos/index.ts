@@ -8,6 +8,10 @@ import kittyItems from "./presets/kitty-items.json"
 import vscodeExtension from "./presets/vscode-extension.json"
 import flowGoSdk from "./presets/flow-go-sdk.json"
 import flowJsTesting from "./presets/flow-js-testing.json"
+import flowNFT from "./presets/flow-nft.json"
+import flowFT from "./presets/flow-ft.json"
+import nftStorefront from "./presets/nft-storefront.json"
+import flowEmulator from "./presets/flow-emulator.json"
 import { RepoSchema } from "./repo-schema"
 
 /* Repository names and Flow internal content names */
@@ -21,6 +25,10 @@ const repositoryNames = [
   "flow-emulator",
   "flow-cadut",
   "mock-developer-doc",
+  "flow-nft",
+  "flow-ft",
+  "nft-storefront",
+  "flow-emulator",
 ] as const
 
 export const flowContentNames = [
@@ -36,6 +44,10 @@ export const schemas: Partial<Record<ContentName, RepoSchema>> = {
   "fcl-js": fclJs as RepoSchema,
   "flow-go-sdk": flowGoSdk as RepoSchema,
   "flow-js-testing": flowJsTesting as RepoSchema,
+  "flow-nft": flowNFT as RepoSchema,
+  "flow-ft": flowFT as RepoSchema,
+  "nft-storefront": nftStorefront as RepoSchema,
+  "flow-emulator": flowEmulator as RepoSchema,
 
   // flow content
   "kitty-items": kittyItems as RepoSchema,
