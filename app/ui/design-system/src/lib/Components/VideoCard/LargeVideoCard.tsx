@@ -1,3 +1,4 @@
+import clsx from "clsx"
 import { useState } from "react"
 
 import PlayCircle from "../../../../images/action/play-circle.svg"
@@ -7,9 +8,15 @@ export interface LargeVideoCardProps {
   link: string // NOTE: link should be in the format that youtubes site uses ie: https://www.youtube.com/watch?v=...
   title: string
   length: number // seconds
+  className?: string
 }
 
-export function LargeVideoCard({ link, title, length }: LargeVideoCardProps) {
+export function LargeVideoCard({
+  link,
+  title,
+  length,
+  className,
+}: LargeVideoCardProps) {
   const [showOverlay, setShowOverlay] = useState(true)
 
   const minutes = String(Math.floor(length / 60)).padStart(2, "0")
@@ -23,7 +30,12 @@ export function LargeVideoCard({ link, title, length }: LargeVideoCardProps) {
   }
 
   return (
-    <div className="relative h-full w-full cursor-pointer rounded-lg">
+    <div
+      className={clsx(
+        className,
+        "relative h-full w-full cursor-pointer rounded-lg"
+      )}
+    >
       {showOverlay ? (
         <>
           <div

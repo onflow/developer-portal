@@ -290,12 +290,17 @@ function GetMdxComponents(theme: Theme | null) {
   return {
     a: (props: LinkProps & { href: string }) => {
       if (isLinkExternal(props.href)) {
-        // @ts-expect-error: TODO: Needs types.
-        return <Link {...props} isExternal={true} rel="noreferrer" />
+        return (
+          <Link
+            {...props}
+            isExternal={true}
+            rel="noreferrer"
+            className="not-prose"
+          />
+        )
       } else {
         return (
-          <RemixLink to={props.href}>
-            {/* @ts-expect-error: TODO: Nees types. */}
+          <RemixLink to={props.href} className="not-prose">
             <Link {...props} isExternal={false} />
           </RemixLink>
         )
@@ -303,26 +308,58 @@ function GetMdxComponents(theme: Theme | null) {
     },
     input: (props: InputProps) =>
       props.type === "checkbox" ? (
-        <StaticCheckbox {...props} asInternalChecklist={true} />
+        <StaticCheckbox
+          {...props}
+          asInternalChecklist={true}
+          className="not-prose"
+        />
       ) : (
         <input {...props} />
       ),
-    h1: (props: HeadingProps) => <Heading type="h1" {...props} />,
-    h2: (props: HeadingProps) => <Heading type="h2" {...props} />,
-    h3: (props: HeadingProps) => <Heading type="h3" {...props} />,
-    h4: (props: HeadingProps) => <Heading type="h4" {...props} />,
-    h5: (props: HeadingProps) => <Heading type="h5" {...props} />,
-    h6: (props: HeadingProps) => <Heading type="h6" {...props} />,
+    h1: (props: HeadingProps) => (
+      <Heading type="h1" {...props} className="not-prose" />
+    ),
+    h2: (props: HeadingProps) => (
+      <Heading type="h2" {...props} className="not-prose" />
+    ),
+    h3: (props: HeadingProps) => (
+      <Heading type="h3" {...props} className="not-prose" />
+    ),
+    h4: (props: HeadingProps) => (
+      <Heading type="h4" {...props} className="not-prose" />
+    ),
+    h5: (props: HeadingProps) => (
+      <Heading type="h5" {...props} className="not-prose" />
+    ),
+    h6: (props: HeadingProps) => (
+      <Heading type="h6" {...props} className="not-prose" />
+    ),
     pre: ({ children }: { className: string; children: JSX.Element }) => {
-      return <InternalCodeblock children={children} theme={theme} />
+      return (
+        <InternalCodeblock
+          children={children}
+          theme={theme}
+          className="not-prose"
+        />
+      )
     },
     Callout: (props: React.PropsWithChildren<{}>) => (
       <div>{props.children}</div>
     ),
-    Img: (props: React.PropsWithRef<{}>) => <img {...props} />,
+    Img: (props: React.PropsWithRef<{}>) => (
+      <img {...props} className="not-prose" />
+    ),
     iframe: (props: React.PropsWithRef<{ src: string; title: string }>) => {
       const { src, title, ...rest } = props
-      return <LargeVideoCard link={src} title={title} length={0} {...rest} />
+      return (
+        <LargeVideoCard
+          link={src}
+          title={title}
+          length={0}
+          {...rest}
+          className="not-prose"
+        />
+      )
     },
   }
 }
