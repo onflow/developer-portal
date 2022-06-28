@@ -23,7 +23,7 @@ import {
 
 export type InternalPageProps = React.PropsWithChildren<{
   header?: InternalLandingHeaderProps
-  internalSidebarMenu: InternalSidebarMenuProps
+  internalSidebarMenu?: InternalSidebarMenuProps
 
   /**
    * The path of the currently active item. This should be a path
@@ -75,7 +75,9 @@ export function InternalPage({
         {sidebarConfig && (
           <div className="flex flex-col">
             <InternalSidebarContainer>
-              <InternalSidebarMenu {...internalSidebarMenu} />
+              {internalSidebarMenu ? (
+                <InternalSidebarMenu {...internalSidebarMenu} />
+              ) : null}
               <InternalSidebar config={sidebarConfig} />
             </InternalSidebarContainer>
           </div>

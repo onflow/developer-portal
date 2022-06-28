@@ -52,10 +52,14 @@ export default function Repo() {
       contentPath={content.contentName}
       header={path === "index" ? content.landingHeader : undefined}
       sidebarConfig={content.schema?.sidebar}
-      internalSidebarMenu={{
-        selectedTool: contentToolMap[content.contentName],
-        toolLinks: toolLinks,
-      }}
+      internalSidebarMenu={
+        contentToolMap[content.contentName] != null
+          ? {
+              selectedTool: contentToolMap[content.contentName],
+              toolLinks: toolLinks,
+            }
+          : undefined
+      }
     >
       <Outlet />
     </InternalPage>
