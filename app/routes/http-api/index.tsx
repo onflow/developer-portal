@@ -1,5 +1,5 @@
 import { MetaFunction } from "@remix-run/node"
-import { RedocYep } from "~/components/redoc"
+import { RedocStandalone } from "redoc"
 
 export const meta: MetaFunction = () => {
   return {
@@ -11,8 +11,11 @@ export const meta: MetaFunction = () => {
 
 export default function Page() {
   return (
-    <div>
-      <RedocYep />
-    </div>
+    <RedocStandalone
+      options={{
+        nativeScrollbars: true,
+      }}
+      specUrl="https://raw.githubusercontent.com/onflow/flow/master/openapi/access.yaml"
+    />
   )
 }
