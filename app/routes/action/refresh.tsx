@@ -1,9 +1,9 @@
-import path from "path"
-import { json, redirect } from "@remix-run/node"
 import type { ActionFunction } from "@remix-run/node"
+import { json, redirect } from "@remix-run/node"
 import { getMdxPage } from "~/cms/utils/mdx"
 // import { getRequiredServerEnvVar } from "~/utils/cms/helpers";
 import { redisCache } from "~/cms/redis.server"
+import { getContentSpec } from "~/constants/repos"
 
 type Body = {
   keys: Array<string>
@@ -57,17 +57,38 @@ export const action: ActionFunction = async ({ request }) => {
     const refreshingContentPaths: [string?] = []
     const paths: string[] = body.contentPaths[0].split(" ")
     for (const contentPath of paths) {
-      if (typeof contentPath !== "string") continue
-      const [contentDir, dirOrFilename] = contentPath.split("/")
-      if (!contentDir || !dirOrFilename) continue
-
-      const slug = path.parse(dirOrFilename).name
+      if (typeof contentPath !== "string") {
+        return json(
+          {
+            message: `Invalid contentPath: "${contentPath}"`,
+            status: "invalidContentPath",
+          },
+          { status: 400 }
+        )
+      }
 
       refreshingContentPaths.push(contentPath)
       console.log(`Refreshing ${contentPath}...`)
 
+      const contentSpec = getContentSpec(body.repo)
+
+      if (!contentSpec) {
+        return json(
+          {
+            message: "Unknown repo",
+            status: "noRepo",
+          },
+          { status: 404 }
+        )
+      }
+
       void getMdxPage(
-        { repo: body.repo, fileOrDirPath: slug },
+        {
+          branch: contentSpec.branch,
+          owner: contentSpec.owner,
+          repo: contentSpec.repoName,
+          fileOrDirPath: contentPath,
+        },
         { forceFresh: true }
       )
     }

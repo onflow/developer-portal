@@ -9,6 +9,10 @@ import vscodeExtension from "./presets/vscode-extension.json"
 import flowGoSdk from "./presets/flow-go-sdk.json"
 import flowJsTesting from "./presets/flow-js-testing.json"
 import { RepoSchema } from "./repo-schema"
+import { ToolName } from "../../ui/design-system/src/lib/Components/Internal/tools"
+
+export const DEFAULT_REPO_OWNER = process.env.GITHUB_REPO_OWNER || "onflow"
+export const DEFAULT_CONTENT_PATH = "docs"
 
 /* Repository names and Flow internal content names */
 const repositoryNames = [
@@ -53,6 +57,15 @@ export const displayNames: Partial<Record<ContentName, string>> = {
   "dapp-development": "DApp Development",
 }
 
+export const contentTools: Partial<Record<ContentName, ToolName>> = {
+  cadence: "cadence",
+  "flow-cli": "cli",
+  "flow-emulator": "emulator",
+  "fcl-js": "fcl",
+  "flow-js-testing": "testing",
+  "vscode-extension": "vscode",
+}
+
 /**
  * Custom headers that can optionally be applied per-content section and will
  * be shown on the section's landing page.
@@ -92,8 +105,29 @@ type FlowContentName = typeof flowContentNames[number]
 export type ContentName = RepoName | FlowContentName
 
 export type ContentSpec = {
+  /**
+   * The name of the github owner of the repo.
+   */
+  owner: string
+
+  /**
+   * The name of the repo itself that contains the content data.
+   */
   repoName: string
-  contentName: string
+
+  /**
+   * The branch to pull data from.
+   */
+  branch: string
+
+  /**
+   * The path within the repo where the  underlying content can be found
+   * (typically "/docs", but may differ in some cases)
+   */
+  basePath: string
+
+  contentName: ContentName
+
   displayName: string
   schema?: RepoSchema
   landingHeader?: InternalLandingHeaderProps
@@ -103,7 +137,12 @@ export const contentSpecMap = [...repositoryNames, ...flowContentNames].reduce(
   (accum, name) => ({
     ...accum,
     [name]: {
-      repoName: isRepo(name) ? name : "flow",
+      owner: DEFAULT_REPO_OWNER,
+      repoName: isFlowContent(name) ? "flow" : name,
+      branch: "master",
+      basePath: isFlowContent(name)
+        ? `docs/content/${name}`
+        : DEFAULT_CONTENT_PATH,
       contentName: name,
       displayName: displayNames[name] || capitalCase(name),
       schema: schemas[name],

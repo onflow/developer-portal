@@ -183,7 +183,8 @@ export type MdxFrontmatter = {
 type MdxPage = {
   code: string
   // slug: string;
-  // editLink: string;
+  editLink: string
+
   readTime?: ReturnType<typeof calculateReadingTime>
 
   /**

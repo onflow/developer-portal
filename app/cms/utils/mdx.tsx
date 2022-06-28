@@ -39,23 +39,32 @@ type CachifiedOptions = {
 
 const defaultMaxAge = 1000 * 60 * 60 * 24 * 30
 
-const getCompiledKey = (contentDir: string, slug: string) =>
-  `${contentDir}:${slug}:compiled`
+const getCompiledKey = (
+  owner: string,
+  repo: string,
+  branch: string,
+  path: string
+) => `${owner}:${repo}:${branch}:${path}:compiled`
+
 const checkCompiledValue = (value: unknown) =>
   typeof value === "object" &&
   (value === null || ("code" in value && "frontmatter" in value))
 
 async function getMdxPage(
   {
+    owner,
     repo,
+    branch,
     fileOrDirPath,
   }: {
+    owner: string
     repo: string
+    branch: string
     fileOrDirPath: string
   },
   options: CachifiedOptions
 ): Promise<MdxPage | null> {
-  const key = getCompiledKey(repo, fileOrDirPath)
+  const key = getCompiledKey(owner, repo, branch, fileOrDirPath)
   const page = await cachified({
     cache: redisCache,
     maxAge: defaultMaxAge,
@@ -66,12 +75,16 @@ async function getMdxPage(
     checkValue: checkCompiledValue,
     getFreshValue: async () => {
       const pageFiles = await downloadMdxFilesCached(
+        owner,
         repo,
+        branch,
         fileOrDirPath,
         options
       )
       const compiledPage = await compileMdxCached({
+        owner,
         repo,
+        branch,
         fileOrDirPath,
         ...pageFiles,
         options,
@@ -94,17 +107,31 @@ async function getMdxPage(
 }
 
 async function getMdxPagesInDirectory(
+  owner: string,
   repo: string,
+  branch: string,
   fileOrDirPath: string,
   options: CachifiedOptions
 ) {
-  const dirList = await getMdxDirList(repo, fileOrDirPath, options)
+  const dirList = await getMdxDirList(
+    owner,
+    repo,
+    branch,
+    fileOrDirPath,
+    options
+  )
 
   // our octokit throttle plugin will make sure we don't hit the rate limit
   const pageDatas = await Promise.all(
     dirList.map(async ({ slug }) => {
       return {
-        ...(await downloadMdxFilesCached(repo, fileOrDirPath, options)),
+        ...(await downloadMdxFilesCached(
+          owner,
+          repo,
+          branch,
+          fileOrDirPath,
+          options
+        )),
         slug,
       }
     })
@@ -112,7 +139,14 @@ async function getMdxPagesInDirectory(
 
   const pages = await Promise.all(
     pageDatas.map((pageData) =>
-      compileMdxCached({ repo, fileOrDirPath, ...pageData, options })
+      compileMdxCached({
+        owner,
+        repo,
+        branch,
+        fileOrDirPath,
+        ...pageData,
+        options,
+      })
     )
   )
   return pages.filter(typedBoolean)
@@ -121,7 +155,9 @@ async function getMdxPagesInDirectory(
 const getDirListKey = (contentDir: string) => `${contentDir}:dir-list`
 
 async function getMdxDirList(
+  owner: string,
   repo: string,
+  branch: string,
   fileOrDirPath: string,
   options?: CachifiedOptions
 ) {
@@ -132,13 +168,12 @@ async function getMdxDirList(
     key: getDirListKey(fileOrDirPath),
     checkValue: (value: unknown) => Array.isArray(value),
     getFreshValue: async () => {
-      const fullContentDirPath = `docs/${fileOrDirPath}`
-      const dirList = (await downloadDirList(repo, fullContentDirPath))
+      const dirList = (
+        await downloadDirList(owner, repo, branch, fileOrDirPath)
+      )
         .map(({ name, path }) => ({
           name,
-          slug: path
-            .replace(`${fullContentDirPath}/`, "")
-            .replace(/\.mdx$/, ""),
+          slug: path.replace(`${fileOrDirPath}/`, "").replace(/\.mdx$/, ""),
         }))
         .filter(({ name }) => name !== "README.md")
       return dirList
@@ -146,15 +181,21 @@ async function getMdxDirList(
   })
 }
 
-const getDownloadKey = (contentDir: string, slug: string) =>
-  `${contentDir}:${slug}:downloaded`
+const getDownloadKey = (
+  owner: string,
+  repo: string,
+  branch: string,
+  fileOrDirPath: string
+) => `${owner}:${repo}:${branch}:${fileOrDirPath}:downloaded`
 
 async function downloadMdxFilesCached(
+  owner: string,
   repo: string,
+  branch: string,
   fileOrDirPath: string,
   options: CachifiedOptions
 ) {
-  const key = getDownloadKey(repo, fileOrDirPath)
+  const key = getDownloadKey(owner, repo, branch, fileOrDirPath)
   const downloaded = await cachified({
     cache: redisCache,
     maxAge: defaultMaxAge,
@@ -178,7 +219,8 @@ async function downloadMdxFilesCached(
 
       return true
     },
-    getFreshValue: async () => downloadMdxFileOrDirectory(repo, fileOrDirPath),
+    getFreshValue: async () =>
+      downloadMdxFileOrDirectory(owner, repo, branch, fileOrDirPath),
   })
   // if there aren't any files, remove it from the cache
   if (!downloaded.files.length) {
@@ -188,19 +230,23 @@ async function downloadMdxFilesCached(
 }
 
 async function compileMdxCached({
+  owner,
   repo,
+  branch,
   fileOrDirPath,
   entry,
   files,
   options,
 }: {
+  owner: string
   repo: string
+  branch: string
   fileOrDirPath: string
   entry: string
   files: Array<GitHubFile>
   options: CachifiedOptions
 }) {
-  const key = getCompiledKey(repo, fileOrDirPath)
+  const key = getCompiledKey(owner, repo, branch, fileOrDirPath)
   const page = await cachified({
     cache: redisCache,
     maxAge: defaultMaxAge,
@@ -209,13 +255,21 @@ async function compileMdxCached({
     checkValue: checkCompiledValue,
     getFreshValue: async () => {
       const compiledPage = await compileMdx<MdxPage["frontmatter"]>(
-        `docs/${fileOrDirPath}`,
+        fileOrDirPath,
         files
       )
       if (compiledPage) {
         return {
           ...compiledPage,
           fileOrDirPath,
+          editLink: [
+            "https://github.com",
+            owner,
+            repo,
+            "blob",
+            branch,
+            entry,
+          ].join("/"),
         }
       } else {
         return null
