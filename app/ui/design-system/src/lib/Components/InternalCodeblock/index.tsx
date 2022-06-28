@@ -9,12 +9,6 @@ import { ReactComponent as ScreenFullIcon } from "../../../../images/content/scr
 import { Dialog } from "../Dialog"
 import { Code } from "./Code"
 
-export type InternalCodeblockProps = {
-  tall?: boolean
-  theme: Theme | null
-  children: JSX.Element
-}
-
 function Header({
   open,
   openDialog,
@@ -56,10 +50,18 @@ function Header({
   )
 }
 
+export type InternalCodeblockProps = {
+  tall?: boolean
+  theme: Theme | null
+  children: JSX.Element
+  className?: string
+}
+
 export function InternalCodeblock({
   tall,
   theme,
   children,
+  className,
 }: InternalCodeblockProps) {
   const [open, setOpen] = useState(false)
   const openDialog = () => setOpen(true)
@@ -69,7 +71,12 @@ export function InternalCodeblock({
 
   return (
     <>
-      <div className="my-10 rounded-lg border border-primary-gray-100 text-xs dark:border-0">
+      <div
+        className={clsx(
+          className,
+          `my-10 rounded-lg border border-primary-gray-100 text-xs dark:border-0`
+        )}
+      >
         <Header
           openDialog={openDialog}
           closeDialog={closeDialog}

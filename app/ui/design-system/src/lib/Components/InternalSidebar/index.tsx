@@ -1,7 +1,7 @@
 import { NavLink } from "@remix-run/react"
 import clsx from "clsx"
 
-type InternalSidebarSectionItem = {
+export type InternalSidebarSectionItem = {
   label: string
   href: string
 }

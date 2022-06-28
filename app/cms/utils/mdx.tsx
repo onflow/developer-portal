@@ -286,16 +286,21 @@ function mapFromMdxPageToMdxListItem(page: MdxPage): MdxListItem {
 
 const isLinkExternal = (href?: string) => !!href?.match(/^(www|http)/i)
 
-function GetMdxComponents(theme: Theme | null) {
+function GetMdxComponents(theme: Theme) {
   return {
     a: (props: LinkProps & { href: string }) => {
       if (isLinkExternal(props.href)) {
-        // @ts-expect-error: TODO: Needs types.
-        return <Link {...props} isExternal={true} rel="noreferrer" />
+        return (
+          <Link
+            {...props}
+            isExternal={true}
+            rel="noreferrer"
+            className="not-prose"
+          />
+        )
       } else {
         return (
-          <RemixLink to={props.href}>
-            {/* @ts-expect-error: TODO: Nees types. */}
+          <RemixLink to={props.href} className="not-prose">
             <Link {...props} isExternal={false} />
           </RemixLink>
         )
@@ -303,26 +308,58 @@ function GetMdxComponents(theme: Theme | null) {
     },
     input: (props: InputProps) =>
       props.type === "checkbox" ? (
-        <StaticCheckbox {...props} asInternalChecklist={true} />
+        <StaticCheckbox
+          {...props}
+          asInternalChecklist={true}
+          className="not-prose"
+        />
       ) : (
         <input {...props} />
       ),
-    h1: (props: HeadingProps) => <Heading type="h1" {...props} />,
-    h2: (props: HeadingProps) => <Heading type="h2" {...props} />,
-    h3: (props: HeadingProps) => <Heading type="h3" {...props} />,
-    h4: (props: HeadingProps) => <Heading type="h4" {...props} />,
-    h5: (props: HeadingProps) => <Heading type="h5" {...props} />,
-    h6: (props: HeadingProps) => <Heading type="h6" {...props} />,
+    h1: (props: HeadingProps) => (
+      <Heading type="h1" {...props} className="not-prose" />
+    ),
+    h2: (props: HeadingProps) => (
+      <Heading type="h2" {...props} className="not-prose" />
+    ),
+    h3: (props: HeadingProps) => (
+      <Heading type="h3" {...props} className="not-prose" />
+    ),
+    h4: (props: HeadingProps) => (
+      <Heading type="h4" {...props} className="not-prose" />
+    ),
+    h5: (props: HeadingProps) => (
+      <Heading type="h5" {...props} className="not-prose" />
+    ),
+    h6: (props: HeadingProps) => (
+      <Heading type="h6" {...props} className="not-prose" />
+    ),
     pre: ({ children }: { className: string; children: JSX.Element }) => {
-      return <InternalCodeblock children={children} theme={theme} />
+      return (
+        <InternalCodeblock
+          children={children}
+          theme={theme}
+          className="not-prose"
+        />
+      )
     },
     Callout: (props: React.PropsWithChildren<{}>) => (
       <div>{props.children}</div>
     ),
-    Img: (props: React.PropsWithRef<{}>) => <img {...props} />,
+    Img: (props: React.PropsWithRef<{}>) => (
+      <img {...props} className="not-prose" />
+    ),
     iframe: (props: React.PropsWithRef<{ src: string; title: string }>) => {
       const { src, title, ...rest } = props
-      return <LargeVideoCard link={src} title={title} length={0} {...rest} />
+      return (
+        <LargeVideoCard
+          link={src}
+          title={title}
+          length={0}
+          {...rest}
+          className="not-prose"
+        />
+      )
     },
   }
 }
@@ -333,16 +370,27 @@ function GetMdxComponents(theme: Theme | null) {
  * @returns the component
  */
 function getMdxComponent(page: MdxPage, theme: Theme | null) {
-  const { code } = page
+  const { code, frontmatter } = page
+  const Component = getMDXComponent(code, frontmatter)
 
-  const Component = getMDXComponent(code)
   // const headings = getHeadingsFromMdxComponent(Component);
   function MdxComponent({
     components,
     ...rest
   }: Parameters<typeof Component>["0"]) {
-    /* @ts-expect-error: Does not like the link tage type definition above */
-    return <Component components={GetMdxComponents(theme)} {...rest} />
+    return (
+      <>
+        <header>
+          <Heading type="h1" children={frontmatter.title} />
+          <p>{frontmatter.description}</p>
+        </header>
+        <Component
+          /* @ts-expect-error: Does not like the link tage type definition above */
+          components={GetMdxComponents(theme)}
+          {...rest}
+        />
+      </>
+    )
   }
   return MdxComponent
 }

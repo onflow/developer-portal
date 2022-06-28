@@ -35,7 +35,7 @@ export function InternalLandingHeader({
         <div className="flex origin-top-left scale-75 md:scale-100 md:justify-center">
           <Icon />
         </div>
-        <h1 className="text-h2 mt-2 mb-4 md:mt-10">{tool.name}</h1>
+        <h1 className="text-h2 mt-2 mb-4 text-white md:mt-10">{tool.name}</h1>
         {description}
       </div>
 

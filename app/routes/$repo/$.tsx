@@ -55,7 +55,7 @@ export default function RepoDocument() {
   return (
     <div className="pl-[55px]">
       <div className="grid grid-cols-5">
-        <div className="col-span-4 pt-8">
+        <div className="prose col-span-4 max-w-none pt-8 dark:prose-invert">
           <MDXContent />
         </div>
         <div className="pt-[55px]">
