@@ -15,7 +15,7 @@ import flowEmulator from "./presets/flow-emulator.json"
 import { RepoSchema } from "./repo-schema"
 import { ToolName } from "../../ui/design-system/src/lib/Components/Internal/tools"
 
-export const DEFAULT_REPO_OWNER = process.env.GITHUB_REPO_OWNER || "onflow"
+export const DEFAULT_REPO_OWNER = "onflow"
 export const DEFAULT_CONTENT_PATH = "docs"
 
 /* Repository names and Flow internal content names */
