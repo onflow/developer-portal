@@ -91,6 +91,14 @@ module.exports = {
         "2xl-dark": "0px 4px 40px #FFFFFF22",
         "2xl-dark-strong": "0px 0px 40px #FFFFFF32",
       },
+      typography: (theme) => ({
+        gray: {
+          css: {
+            "--tw-prose-bullets": theme("colors.[primary-gray][400]"),
+            "--tw-prose-invert-bullets": theme("colors.[primary-gray][50]"),
+          },
+        },
+      }),
     },
   },
   variants: {
