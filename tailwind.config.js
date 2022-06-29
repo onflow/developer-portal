@@ -92,10 +92,40 @@ module.exports = {
         "2xl-dark-strong": "0px 0px 40px #FFFFFF32",
       },
       typography: (theme) => ({
+        DEFAULT: {
+          css: {
+            code: {
+              borderRadius: theme("borderRadius.DEFAULT"),
+              borderWidth: theme("borderWidth.DEFAULT"),
+              borderStyle: "solid",
+              borderColor: theme("colors[primary-gray][100]"),
+              backgroundColor: theme("colors[primary-gray][50]"),
+              paddingLeft: theme("padding[1]"),
+              paddingRight: theme("padding[1]"),
+              color: theme("colors[primary-gray][400]"),
+              fontWeight: "400",
+            },
+            "code::before": {
+              content: "",
+            },
+            "code::after": {
+              content: "",
+            },
+          },
+        },
+        invert: {
+          css: {
+            code: {
+              color: theme("colors[primary-gray][100]"),
+              backgroundColor: theme("colors[primary-gray][400]"),
+              borderColor: theme("colors[primary-gray][300]"),
+            },
+          },
+        },
         gray: {
           css: {
-            "--tw-prose-bullets": theme("colors.[primary-gray][400]"),
-            "--tw-prose-invert-bullets": theme("colors.[primary-gray][50]"),
+            "--tw-prose-bullets": theme("colors[primary-gray][400]"),
+            "--tw-prose-invert-bullets": theme("colors[primary-gray][50]"),
           },
         },
       }),
