@@ -22,8 +22,9 @@ import {
 } from "./useInternalBreadcrumbs"
 
 export type InternalPageProps = React.PropsWithChildren<{
+  githubUrl?: string
   header?: InternalLandingHeaderProps
-  internalSidebarMenu: InternalSidebarMenuProps
+  internalSidebarMenu?: InternalSidebarMenuProps
 
   /**
    * The path of the currently active item. This should be a path
@@ -44,6 +45,7 @@ export function InternalPage({
   children,
   contentDisplayName,
   contentPath,
+  githubUrl,
   header,
   rootUrl = "/",
   sidebarConfig,
@@ -69,13 +71,19 @@ export function InternalPage({
 
   return (
     <div className="flex flex-col">
-      <InternalSubnav items={breadcrumbs} className="sticky top-0 z-20" />
+      <InternalSubnav
+        items={breadcrumbs}
+        className="sticky top-0 z-20"
+        githubUrl={githubUrl}
+      />
       {header && <InternalLandingHeader {...header} />}
       <div className="flex flex-1 flex-row">
         {sidebarConfig && (
           <div className="flex flex-col">
             <InternalSidebarContainer>
-              <InternalSidebarMenu {...internalSidebarMenu} />
+              {internalSidebarMenu ? (
+                <InternalSidebarMenu {...internalSidebarMenu} />
+              ) : null}
               <InternalSidebar config={sidebarConfig} />
             </InternalSidebarContainer>
           </div>

@@ -3,14 +3,10 @@
 import { throttling } from "@octokit/plugin-throttling"
 import { Octokit as createOctokit } from "@octokit/rest"
 import nodePath from "path"
-import { flowContentNames, isFlowContent } from "~/constants/repos"
 
 type GitHubFile = { path: string; content: string }
 
 const Octokit = createOctokit.plugin(throttling)
-
-const OWNER = process.env.GITHUB_REPO_OWNER || "onflow"
-const DEFAULT_CONTENT_PATH = "docs"
 
 type ThrottleOptions = {
   method: string
@@ -42,46 +38,37 @@ const octokit = new Octokit({
 })
 
 async function downloadFirstMdxFile(
+  owner: string,
   repo: string,
   list: Array<{ name: string; type: string; path: string; sha: string }>
 ) {
   const filesOnly = list.filter(({ type }) => type === "file")
   for (const extension of [".mdx", ".md"]) {
     const file = filesOnly.find(({ name }) => name.endsWith(extension))
-    if (file) return downloadFileBySha(repo, file.sha)
+    if (file) return downloadFileBySha(owner, repo, file.sha)
   }
   return null
-}
-
-const customPaths = Object.fromEntries(
-  flowContentNames.map((content) => [content, `docs/content/${content}`])
-)
-const getContentPath = (repo: string) => {
-  return customPaths[repo] ?? DEFAULT_CONTENT_PATH
 }
 
 /**
  *
  * @param relativeMdxFileOrDirectory the path to the content. For example:
- * content/workshops/react-fundamentals.mdx (pass "workshops/react-fudnamentals")
- * content/workshops/react-hooks/index.mdx (pass "workshops/react-hooks")
+ * "docs/content/workshops/react-fundamentals" (would resolve ot the file
+ * "docs/content/workshops/react-fundamentals.mdx");
+ * "docs/content/workshops/react-hooks" (would resolve to
+ * "docs/content/workshops/react-hooks/index.mdx")
  * @returns A promise that resolves to an Array of GitHubFiles for the necessary files
  */
 async function downloadMdxFileOrDirectory(
+  owner: string,
   repo: string,
-  fileOrDirPath: string
+  branch: string,
+  mdxFileOrDirectory: string
 ): Promise<{ entry: string; files: Array<GitHubFile> }> {
-  /* If the repository is internal /flow content
-   * - Map Flow Content Paths to the right repository paths
-   * - Reassign repository to Flow
-   */
-  const mdxFileOrDirectory = `${getContentPath(repo)}/${fileOrDirPath}`
-  repo = isFlowContent(repo) ? "flow" : repo
-
-  console.log(`Downloading ${repo}/${mdxFileOrDirectory}`)
+  console.log(`Downloading ${owner}/${repo}/${mdxFileOrDirectory}`)
 
   const parentDir = nodePath.dirname(mdxFileOrDirectory)
-  const dirList = await downloadDirList(repo, parentDir)
+  const dirList = await downloadDirList(owner, repo, branch, parentDir)
 
   const basename = nodePath.basename(mdxFileOrDirectory)
   const mdxFileWithoutExt = nodePath.parse(mdxFileOrDirectory).name
@@ -92,6 +79,7 @@ async function downloadMdxFileOrDirectory(
   const dirPotential = potentials.find(({ type }) => type === "dir")
 
   const content = await downloadFirstMdxFile(
+    owner,
     repo,
     exactMatch ? [exactMatch] : potentials
   )
@@ -110,7 +98,7 @@ async function downloadMdxFileOrDirectory(
     files = [{ path: nodePath.join(mdxFileOrDirectory, "index.mdx"), content }]
   } else if (dirPotential) {
     entry = dirPotential.path
-    files = await downloadDirectory(repo, mdxFileOrDirectory)
+    files = await downloadDirectory(owner, repo, branch, mdxFileOrDirectory)
   }
   return { entry, files }
 }
@@ -122,20 +110,22 @@ async function downloadMdxFileOrDirectory(
  * @returns An array of file paths with their content
  */
 async function downloadDirectory(
+  owner: string,
   repo: string,
+  branch: string,
   dir: string
 ): Promise<Array<GitHubFile>> {
-  const dirList = await downloadDirList(repo, dir)
+  const dirList = await downloadDirList(owner, repo, branch, dir)
 
   const result = await Promise.all(
     dirList.map(async ({ path: fileDir, type, sha }) => {
       switch (type) {
         case "file": {
-          const content = await downloadFileBySha(repo, sha)
+          const content = await downloadFileBySha(owner, repo, sha)
           return { path: fileDir, content }
         }
         case "dir": {
-          return downloadDirectory(repo, fileDir)
+          return downloadDirectory(owner, repo, branch, fileDir)
         }
         default: {
           throw new Error(`Unexpected repo file type: ${type}`)
@@ -152,11 +142,11 @@ async function downloadDirectory(
  * @param sha the hash for the file (retrieved via `downloadDirList`)
  * @returns a promise that resolves to a string of the contents of the file
  */
-async function downloadFileBySha(repo: string, sha: string) {
+async function downloadFileBySha(owner: string, repo: string, sha: string) {
   const { data } = await octokit.request(
     "GET /repos/{owner}/{repo}/git/blobs/{file_sha}",
     {
-      owner: OWNER,
+      owner,
       repo,
       file_sha: sha,
     }
@@ -166,13 +156,19 @@ async function downloadFileBySha(repo: string, sha: string) {
   return Buffer.from(data.content, encoding).toString()
 }
 
-async function downloadFile(repo: string, path: string) {
+async function downloadFile(
+  owner: string,
+  repo: string,
+  branch: string,
+  path: string
+) {
   const { data } = (await octokit.request(
     "GET /repos/{owner}/{repo}/contents/{path}",
     {
-      owner: OWNER,
+      owner,
       repo,
       path,
+      headers: { branch },
     }
   )) as { data: { content?: string; encoding?: string } }
 
@@ -192,11 +188,17 @@ async function downloadFile(repo: string, path: string) {
  * @param path the full path to list
  * @returns a promise that resolves to a file ListItem of the files/directories in the given directory (not recursive)
  */
-async function downloadDirList(repo: string, path: string) {
+async function downloadDirList(
+  owner: string,
+  repo: string,
+  branch: string,
+  path: string
+) {
   const resp = await octokit.repos.getContent({
-    owner: OWNER,
+    owner,
     repo,
     path,
+    headers: { branch },
   })
 
   const data = resp.data

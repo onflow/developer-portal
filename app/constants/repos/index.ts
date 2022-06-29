@@ -8,7 +8,15 @@ import kittyItems from "./presets/kitty-items.json"
 import vscodeExtension from "./presets/vscode-extension.json"
 import flowGoSdk from "./presets/flow-go-sdk.json"
 import flowJsTesting from "./presets/flow-js-testing.json"
+import flowNFT from "./presets/flow-nft.json"
+import flowFT from "./presets/flow-ft.json"
+import nftStorefront from "./presets/nft-storefront.json"
+import flowEmulator from "./presets/flow-emulator.json"
 import { RepoSchema } from "./repo-schema"
+import { ToolName } from "../../ui/design-system/src/lib/Components/Internal/tools"
+
+export const DEFAULT_REPO_OWNER = "onflow"
+export const DEFAULT_CONTENT_PATH = "docs"
 
 /* Repository names and Flow internal content names */
 const repositoryNames = [
@@ -21,6 +29,10 @@ const repositoryNames = [
   "flow-emulator",
   "flow-cadut",
   "mock-developer-doc",
+  "flow-nft",
+  "flow-ft",
+  "nft-storefront",
+  "flow-emulator",
 ] as const
 
 export const flowContentNames = [
@@ -36,6 +48,10 @@ export const schemas: Partial<Record<ContentName, RepoSchema>> = {
   "fcl-js": fclJs as RepoSchema,
   "flow-go-sdk": flowGoSdk as RepoSchema,
   "flow-js-testing": flowJsTesting as RepoSchema,
+  "flow-nft": flowNFT as RepoSchema,
+  "flow-ft": flowFT as RepoSchema,
+  "nft-storefront": nftStorefront as RepoSchema,
+  "flow-emulator": flowEmulator as RepoSchema,
 
   // flow content
   "kitty-items": kittyItems as RepoSchema,
@@ -51,6 +67,15 @@ export const displayNames: Partial<Record<ContentName, string>> = {
   "fcl-js": "Flow Content Library JS",
   "vscode-extension": "VS Code Extension",
   "dapp-development": "DApp Development",
+}
+
+export const contentTools: Partial<Record<ContentName, ToolName>> = {
+  cadence: "cadence",
+  "flow-cli": "cli",
+  "flow-emulator": "emulator",
+  "fcl-js": "fcl",
+  "flow-js-testing": "testing",
+  "vscode-extension": "vscode",
 }
 
 /**
@@ -92,8 +117,29 @@ type FlowContentName = typeof flowContentNames[number]
 export type ContentName = RepoName | FlowContentName
 
 export type ContentSpec = {
+  /**
+   * The name of the github owner of the repo.
+   */
+  owner: string
+
+  /**
+   * The name of the repo itself that contains the content data.
+   */
   repoName: string
-  contentName: string
+
+  /**
+   * The branch to pull data from.
+   */
+  branch: string
+
+  /**
+   * The path within the repo where the  underlying content can be found
+   * (typically "/docs", but may differ in some cases)
+   */
+  basePath: string
+
+  contentName: ContentName
+
   displayName: string
   schema?: RepoSchema
   landingHeader?: InternalLandingHeaderProps
@@ -103,7 +149,12 @@ export const contentSpecMap = [...repositoryNames, ...flowContentNames].reduce(
   (accum, name) => ({
     ...accum,
     [name]: {
-      repoName: isRepo(name) ? name : "flow",
+      owner: DEFAULT_REPO_OWNER,
+      repoName: isFlowContent(name) ? "flow" : name,
+      branch: "master",
+      basePath: isFlowContent(name)
+        ? `docs/content/${name}`
+        : DEFAULT_CONTENT_PATH,
       contentName: name,
       displayName: displayNames[name] || capitalCase(name),
       schema: schemas[name],
