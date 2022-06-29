@@ -20,8 +20,6 @@ type LoaderData = {
 export const loader: LoaderFunction = async ({
   params,
 }): Promise<LoaderData> => {
-  temporarilyRedirectToComingSoon()
-
   const contentName = params.repo
   invariant(contentName, `expected repo param`)
 
