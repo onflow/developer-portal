@@ -81,6 +81,7 @@ async function getMdxPage(
         fileOrDirPath,
         options
       )
+
       const compiledPage = await compileMdxCached({
         owner,
         repo,
