@@ -1,5 +1,5 @@
 import { useEffect, useState } from "react"
-import { LoaderFunction } from "@remix-run/node"
+import { LoaderFunction, redirect } from "@remix-run/node"
 import { getMdxPage, useMdxComponent } from "~/cms/utils/mdx"
 import { json } from "@remix-run/node"
 import { Link, useCatch, useLoaderData, useLocation } from "@remix-run/react"
@@ -36,6 +36,15 @@ export const loader: LoaderFunction = async ({
 
   if (!contentSpec) {
     throw json({ status: "noRepo" }, { status: 404 })
+  }
+
+  const isDocument =
+    !path.includes(".") ||
+    path.toLowerCase().endsWith(".md") ||
+    path.toLowerCase().endsWith(".mdx")
+
+  if (!isDocument) {
+    throw redirect(`/${params.repo}/_raw/${path}`)
   }
 
   let page: MdxPage | null
