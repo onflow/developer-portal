@@ -6,11 +6,10 @@ import { ReactComponent as FileCopyIcon } from "../../../../images/content/file-
 import { ReactComponent as HashIcon } from "../../../../images/content/hash"
 import { ReactComponent as ScreenFullIcon } from "../../../../images/content/screen-full"
 import { Dialog } from "../Dialog"
-import { INTERNAL_SUBNAV_HEIGHT } from "../InternalSubnav"
 import { NAV_HEIGHT } from "../NavigationBar"
 import { Code } from "./Code"
 
-const NAV_BARS_HEIGHT = NAV_HEIGHT + INTERNAL_SUBNAV_HEIGHT + 100
+const DEFAULT_MAX_HEIGHT = 280
 
 function Header({
   open,
@@ -51,16 +50,16 @@ function Header({
 }
 
 export type InternalCodeblockProps = {
-  constrained?: boolean
   theme: Theme | null
   children: JSX.Element
+  autoHeight?: boolean
   className?: string
 }
 
 export function InternalCodeblock({
-  constrained,
   theme,
   children,
+  autoHeight,
   className,
 }: InternalCodeblockProps) {
   const [open, setOpen] = useState(false)
@@ -86,9 +85,12 @@ export function InternalCodeblock({
         <Code
           language={children.props.className}
           code={codeString}
-          innerClasses={clsx("w-full")}
+          innerClasses="w-full"
           innerStyle={{
-            maxHeight: constrained ? 280 : `calc(100vh - ${NAV_BARS_HEIGHT}px)`,
+            minHeight: 60,
+            maxHeight: autoHeight
+              ? `calc(100vh - ${NAV_HEIGHT + 220}px)`
+              : DEFAULT_MAX_HEIGHT,
           }}
           theme={theme}
         />

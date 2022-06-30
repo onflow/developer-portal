@@ -16,9 +16,9 @@ import {
   HeadingProps,
   InputProps,
   InternalCodeblock,
+  LargeVideoCard,
   Link,
   StaticCheckbox,
-  LargeVideoCard,
 } from "~/ui/design-system"
 import type { LoaderData as RootLoaderData } from "../../root"
 import { Theme, useTheme } from "./theme.provider"
@@ -394,6 +394,7 @@ function GetMdxComponents(theme: Theme) {
         <InternalCodeblock
           children={children}
           theme={theme}
+          autoHeight={true}
           className="not-prose"
         />
       )
