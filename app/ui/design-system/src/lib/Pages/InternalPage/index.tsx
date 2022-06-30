@@ -8,8 +8,8 @@ import {
   InternalSidebarContainer,
   InternalSidebarSectionItem,
 } from "../../Components/InternalSidebar"
-import { flattenSidebarSectionItems } from "../../Components/InternalSidebar/flattenSidebarSectionItems"
 import { findSidebarSectionItem } from "../../Components/InternalSidebar/findSidebarSectionItem"
+import { flattenSidebarSectionItems } from "../../Components/InternalSidebar/flattenSidebarSectionItems"
 import {
   InternalSidebarMenu,
   InternalSidebarMenuProps,
