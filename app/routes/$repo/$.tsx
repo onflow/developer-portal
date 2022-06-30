@@ -1,20 +1,19 @@
-import { useEffect, useState } from "react"
-import { LoaderFunction } from "@remix-run/node"
-import { getMdxPage, useMdxComponent } from "~/cms/utils/mdx"
-import { json } from "@remix-run/node"
+import { json, LoaderFunction, redirect } from "@remix-run/node"
 import { Link, useCatch, useLoaderData, useLocation } from "@remix-run/react"
+import { useEffect, useState } from "react"
 import invariant from "tiny-invariant"
-import { ErrorPage } from "~/ui/design-system/src/lib/Components/ErrorPage"
+import { getMdxPage, useMdxComponent } from "~/cms/utils/mdx"
 import {
   ContentName,
   ContentSpec,
   contentTools,
   getContentSpec,
 } from "~/constants/repos"
+import { ErrorPage } from "~/ui/design-system/src/lib/Components/ErrorPage"
 import { InternalToc } from "~/ui/design-system/src/lib/Components/InternalToc"
 import { MdxPage } from "../../cms"
-import { InternalPage } from "../../ui/design-system/src/lib/Pages/InternalPage"
 import { ToolName } from "../../ui/design-system/src/lib/Components/Internal/tools"
+import { InternalPage } from "../../ui/design-system/src/lib/Pages/InternalPage"
 export { InternalErrorBoundary as ErrorBoundary } from "~/errors/error-boundaries"
 
 type LoaderData = {
@@ -36,6 +35,15 @@ export const loader: LoaderFunction = async ({
 
   if (!contentSpec) {
     throw json({ status: "noRepo" }, { status: 404 })
+  }
+
+  const isDocument =
+    !path.includes(".") ||
+    path.toLowerCase().endsWith(".md") ||
+    path.toLowerCase().endsWith(".mdx")
+
+  if (!isDocument) {
+    throw redirect(`/${params.repo}/_raw/${path}`)
   }
 
   let page: MdxPage | null
@@ -89,7 +97,7 @@ export default function RepoDocument() {
     >
       <div className="pl-[55px]">
         <div className="grid grid-cols-5">
-          <div className="prose col-span-4 max-w-none pt-8 dark:prose-invert">
+          <div className="mdx-content prose col-span-4 max-w-none pt-8 dark:prose-invert">
             <MDXContent />
           </div>
           <div className="pt-[55px]">

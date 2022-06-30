@@ -18,7 +18,7 @@ function debugEnv(): string {
   return JSON.stringify(process.env, null, 2)
 }
 
-const octokit = new Octokit({
+export const octokit = new Octokit({
   auth: process.env["BOT_GITHUB_TOKEN"],
   throttle: {
     onRateLimit: (retryAfter: number, options: ThrottleOptions) => {

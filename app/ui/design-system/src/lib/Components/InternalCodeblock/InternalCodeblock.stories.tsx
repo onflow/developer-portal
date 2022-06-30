@@ -152,5 +152,5 @@ DefaultMobile.parameters = {
 export const Tall = Template.bind({})
 Tall.args = {
   ...Default.args,
-  tall: true,
+  constrained: true,
 }

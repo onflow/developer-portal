@@ -25,20 +25,21 @@ export function Link({
   const isFootnote = !!props["data-footnote-ref"]
 
   const classes = clsx(defaultClasses, {
-    "border-b border-b-1 border-primary-blue mr-1.5 stroke-primary-blue border-solid":
-      !isFootnote,
+    "stroke-primary-blue inline-flex": !isFootnote,
     "ml-0.5": isFootnote,
   })
 
   if (isExternal) {
     return (
       <a target="blank" rel="noreferrer" href={href || ""} className={classes}>
-        <span className="pr-3.5">{children}</span>
-        {isExternal && (
-          <span className="absolute -right-2">
-            <ExternalLinkIcon />
-          </span>
-        )}
+        <span
+          className={clsx({
+            "pr-px": isExternal,
+          })}
+        >
+          {children}
+        </span>
+        {isExternal && <ExternalLinkIcon />}
       </a>
     )
   }
