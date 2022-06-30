@@ -55,30 +55,32 @@ const remarkPlugins: U.PluggableList = [
   ],
 ]
 
-const rehypePlugins: U.PluggableList = [
-  removePreContainerDivs,
-  formatLinks,
-  [
-    rehypeSanitize,
-    {
-      ...defaultSchema,
-      attributes: {
-        ...defaultSchema.attributes,
-        code: [
-          ...(defaultSchema?.attributes?.code || []),
-          [
-            "className",
-            ...HIGHLIGHT_LANGUAGES.map((name) => `language-${name}`),
+const rehypePlugins = (repoName: string): U.PluggableList => {
+  return [
+    removePreContainerDivs,
+    () => formatLinks(repoName),
+    [
+      rehypeSanitize,
+      {
+        ...defaultSchema,
+        attributes: {
+          ...defaultSchema.attributes,
+          code: [
+            ...(defaultSchema?.attributes?.code || []),
+            [
+              "className",
+              ...HIGHLIGHT_LANGUAGES.map((name) => `language-${name}`),
+            ],
           ],
-        ],
+        },
       },
-    },
-  ],
-]
-
+    ],
+  ]
+}
 async function compileMdx<FrontmatterType extends Record<string, unknown>>(
   slug: string,
-  githubFiles: Array<GitHubFile>
+  githubFiles: Array<GitHubFile>,
+  repoName: string
 ) {
   const { default: remarkSlug } = await import("remark-slug")
   const { default: gfm } = await import("remark-gfm")
@@ -112,7 +114,7 @@ async function compileMdx<FrontmatterType extends Record<string, unknown>>(
         ]
         options.rehypePlugins = [
           ...(options.rehypePlugins ?? []),
-          ...rehypePlugins,
+          ...rehypePlugins(repoName),
         ]
         return {
           ...options,
