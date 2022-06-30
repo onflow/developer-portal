@@ -1,5 +1,4 @@
 import clsx from "clsx"
-// import { ReactComponent as FileCopyIcon } from "../../../../images/content/file-copy"
 import Highlight, { defaultProps, Language, Prism } from "prism-react-renderer"
 import darkTheme from "prism-react-renderer/themes/vsDark"
 import lightTheme from "prism-react-renderer/themes/vsLight"
@@ -23,13 +22,15 @@ export function Code({
   theme,
   code,
   language,
+  innerStyle,
 }: {
   innerClasses: string
   theme: Theme | null
   code: string
   language: string
+  innerStyle?: React.CSSProperties
 }) {
-  language = language?.replace(/language-/, "") || "language-javascript"
+  language = language?.replace(/language-/, "") || "javascript"
   const [highlightTheme, setHighlightTheme] = useState(lightTheme)
 
   useEffect(() => {
@@ -50,7 +51,7 @@ export function Code({
         <pre
           className={clsx(
             className,
-            "!m-0 flex h-full w-full overflow-hidden rounded-bl-lg rounded-br-lg !bg-white !p-0 text-xs dark:!bg-[#111111]"
+            "not-prose !m-0 flex h-full w-full overflow-hidden rounded-bl-lg rounded-br-lg !bg-white !p-0 text-xs dark:!bg-[#111111]"
           )}
           style={{
             ...style,
@@ -58,7 +59,10 @@ export function Code({
             boxShadow: "rgb(0 0 0 / 3%) 0px 11px 15px 0px inset",
           }}
         >
-          <div className={clsx("overflow-auto p-3 font-mono", innerClasses)}>
+          <div
+            className={clsx("overflow-auto p-3 font-mono", innerClasses)}
+            style={innerStyle}
+          >
             {tokens.map((line, i) => (
               <div
                 key={i}
