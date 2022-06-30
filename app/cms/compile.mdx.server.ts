@@ -5,12 +5,13 @@ import { bundleMDX } from "mdx-bundler"
 import type TPQueue from "p-queue"
 import path from "path"
 import calculateReadingTime from "reading-time"
+import rehypeSanitize, { defaultSchema } from "rehype-sanitize"
 import type * as U from "unified"
 import { visit } from "unist-util-visit"
+import type { GitHubFile } from "./github.server"
+import { HIGHLIGHT_LANGUAGES } from "./utils/constants"
 import formatLinks from "./utils/format-links"
 import { markdownToToc } from "./utils/generate-toc"
-import type { GitHubFile } from "./github.server"
-import rehypeSanitize from "rehype-sanitize"
 
 if (process.platform === "win32") {
   process.env.ESBUILD_BINARY_PATH = path.resolve(
@@ -57,7 +58,22 @@ const remarkPlugins: U.PluggableList = [
 const rehypePlugins: U.PluggableList = [
   removePreContainerDivs,
   formatLinks,
-  rehypeSanitize,
+  [
+    rehypeSanitize,
+    {
+      ...defaultSchema,
+      attributes: {
+        ...defaultSchema.attributes,
+        code: [
+          ...(defaultSchema?.attributes?.code || []),
+          [
+            "className",
+            ...HIGHLIGHT_LANGUAGES.map((name) => `language-${name}`),
+          ],
+        ],
+      },
+    },
+  ],
 ]
 
 async function compileMdx<FrontmatterType extends Record<string, unknown>>(

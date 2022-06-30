@@ -2,12 +2,15 @@ import clsx from "clsx"
 import { useState } from "react"
 import { Theme } from "~/cms/utils/theme.provider"
 import { ReactComponent as CollapseIcon } from "../../../../images/content/collapse"
-import { ReactComponent as FileCodeIcon } from "../../../../images/content/file-code"
 import { ReactComponent as FileCopyIcon } from "../../../../images/content/file-copy"
 import { ReactComponent as HashIcon } from "../../../../images/content/hash"
 import { ReactComponent as ScreenFullIcon } from "../../../../images/content/screen-full"
 import { Dialog } from "../Dialog"
+import { INTERNAL_SUBNAV_HEIGHT } from "../InternalSubnav"
+import { NAV_HEIGHT } from "../NavigationBar"
 import { Code } from "./Code"
+
+const NAV_BARS_HEIGHT = NAV_HEIGHT + INTERNAL_SUBNAV_HEIGHT + 100
 
 function Header({
   open,
@@ -24,9 +27,6 @@ function Header({
     <div className="flex min-h-[50px] items-center rounded-tl-lg rounded-tr-lg bg-white px-2 text-primary-gray-300 dark:bg-primary-gray-dark dark:text-primary-gray-200">
       <div className="p-2">
         <HashIcon />
-      </div>
-      <div className="p-2">
-        <FileCodeIcon />
       </div>
       <div className="ml-auto text-primary-blue">
         <button
@@ -51,14 +51,14 @@ function Header({
 }
 
 export type InternalCodeblockProps = {
-  tall?: boolean
+  constrained?: boolean
   theme: Theme | null
   children: JSX.Element
   className?: string
 }
 
 export function InternalCodeblock({
-  tall,
+  constrained,
   theme,
   children,
   className,
@@ -86,10 +86,10 @@ export function InternalCodeblock({
         <Code
           language={children.props.className}
           code={codeString}
-          innerClasses={clsx(
-            "w-full",
-            tall ? "max-h-[280px]" : "max-h-[130px]"
-          )}
+          innerClasses={clsx("w-full")}
+          innerStyle={{
+            maxHeight: constrained ? 280 : `calc(100vh - ${NAV_BARS_HEIGHT}px)`,
+          }}
           theme={theme}
         />
       </div>

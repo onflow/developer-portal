@@ -13,6 +13,8 @@ export type NavigationBarProps = {
   onDarkModeToggle: () => void
 }
 
+export const NAV_HEIGHT = 96
+
 export function NavigationBar({
   menuItems,
   onDarkModeToggle,
@@ -20,7 +22,10 @@ export function NavigationBar({
   const [isMobileNavOpen, setMobileNavOpen] = useState(false)
 
   return (
-    <nav className="z-40 flex min-h-[96px] items-center bg-white p-4 text-primary-gray-400 dark:bg-black dark:text-white lg:px-8">
+    <nav
+      style={{ height: NAV_HEIGHT }}
+      className="z-40 flex items-center bg-white p-4 text-primary-gray-400 dark:bg-black dark:text-white lg:px-8"
+    >
       <div className="flex items-center">
         <a href="/" className="py-2 hover:opacity-75">
           <FlowDocsLogo className="shrink-0" />

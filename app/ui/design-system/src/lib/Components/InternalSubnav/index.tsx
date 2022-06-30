@@ -1,7 +1,9 @@
 import clsx from "clsx"
+import { ReactComponent as GithubLogo } from "../../../../images/social/github"
 import { Breadcrumbs, BreadcrumbsProps } from "../Breadcrumbs"
 import { InternalVersionSelect, Version } from "../InternalVersionSelect"
-import { ReactComponent as GithubLogo } from "../../../../images/social/github"
+
+export const INTERNAL_SUBNAV_HEIGHT = 42
 
 export type InternalSubnavProps = BreadcrumbsProps & {
   className?: string
@@ -20,9 +22,12 @@ export function InternalSubnav({
   return (
     <div
       className={clsx(
-        "flex flex-wrap items-center items-center justify-between border-b border-b-primary-gray-100 bg-white py-2 px-6 dark:border-b-primary-gray-300 dark:bg-black",
+        "flex flex-wrap items-center justify-between border-b border-b-primary-gray-100 bg-white py-2 px-6 dark:border-b-primary-gray-300 dark:bg-black",
         className
       )}
+      style={{
+        height: INTERNAL_SUBNAV_HEIGHT,
+      }}
     >
       <div className="pr-2">
         <Breadcrumbs items={items} />

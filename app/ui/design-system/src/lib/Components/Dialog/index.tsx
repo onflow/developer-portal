@@ -16,7 +16,7 @@ export function Dialog({
     <HeadlessDialog open={open} onClose={closeDialog}>
       <HeadlessDialog.Panel
         className={
-          "fixed inset-0 z-20 mx-auto flex items-center justify-center"
+          "fixed inset-0 z-50 mx-auto flex items-center justify-center"
         }
       >
         <button
