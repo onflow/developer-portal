@@ -9,6 +9,7 @@ import rehypeSanitize, { defaultSchema } from "rehype-sanitize"
 import type * as U from "unified"
 import { visit } from "unist-util-visit"
 import type { GitHubFile } from "./github.server"
+import { HIGHLIGHT_LANGUAGES } from "./utils/constants"
 import formatLinks from "./utils/format-links"
 import { markdownToToc } from "./utils/generate-toc"
 
@@ -63,7 +64,13 @@ const rehypePlugins: U.PluggableList = [
       ...defaultSchema,
       attributes: {
         ...defaultSchema.attributes,
-        code: [...(defaultSchema?.attributes?.code || []), ["className"]],
+        code: [
+          ...(defaultSchema?.attributes?.code || []),
+          [
+            "className",
+            ...HIGHLIGHT_LANGUAGES.map((name) => `language-${name}`),
+          ],
+        ],
       },
     },
   ],
