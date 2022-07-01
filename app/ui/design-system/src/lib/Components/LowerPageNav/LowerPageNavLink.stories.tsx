@@ -4,6 +4,9 @@ import { LowerPageNav, LowerPageNavProps } from "."
 export default {
   component: LowerPageNav,
   title: "Components/LowerPageNav",
+  parameters: {
+    layout: "padded",
+  },
 } as Meta
 
 const Template: Story<LowerPageNavProps> = (args) => <LowerPageNav {...args} />

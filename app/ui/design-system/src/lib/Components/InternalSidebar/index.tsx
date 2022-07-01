@@ -54,17 +54,6 @@ export const TEMP_SIDEBAR_CONFIG: InternalSidebarConfig = {
   ],
 }
 
-export function InternalSidebarContainer(props: {
-  children?: React.ReactNode
-}) {
-  return (
-    <div
-      className="mb-8 w-full min-w-min flex-1 shrink-0 bg-gray-100 bg-opacity-80 p-8 dark:bg-primary-gray-dark md:mb-0 md:w-80"
-      {...props}
-    />
-  )
-}
-
 export function InternalSidebar({ config }: InternalSidebarProps) {
   return (
     <>
