@@ -1,5 +1,6 @@
-import { useEffect, useLayoutEffect, useRef, useState } from "react"
+import { useEffect, useRef, useState } from "react"
 import TutorialCard, { TutorialCardProps } from "."
+import { useIsomorphicLayoutEffect } from "../../utils/useIsomorphicLayoutEffect"
 import Pagination from "../Pagination"
 
 export type PaginatedTutorialCardListProps = {
@@ -42,7 +43,7 @@ export const PaginatedTutorialCardList = ({
     setPage(1)
   }, [listId])
 
-  useLayoutEffect(() => {
+  useIsomorphicLayoutEffect(() => {
     if (!scrollRef.current || resetScroll === 0 || !scrollOnPaginate) {
       return
     }
