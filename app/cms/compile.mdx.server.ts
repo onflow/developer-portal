@@ -114,10 +114,8 @@ async function compileMdx<FrontmatterType extends Record<string, unknown>>(
           ...(options.rehypePlugins ?? []),
           ...rehypePlugins,
         ]
-        return {
-          ...options,
-          jsx: true,
-        }
+
+        return options
       },
     })
     const readTime = calculateReadingTime(indexFile.content)
