@@ -33,14 +33,15 @@ export const loader: LoaderFunction = async ({
 
   const contentSpec = getContentSpec(contentName)
 
+  const isRawMDXFileRequest = path.toLowerCase().endsWith(".mdx")
+  const isRawMarkdownFileRequest = path.toLowerCase().endsWith(".md")
+
   if (!contentSpec) {
     throw json({ status: "noRepo" }, { status: 404 })
   }
 
   const isDocument =
-    !path.includes(".") ||
-    path.toLowerCase().endsWith(".md") ||
-    path.toLowerCase().endsWith(".mdx")
+    !path.includes(".") || isRawMDXFileRequest || isRawMarkdownFileRequest
 
   if (!isDocument) {
     throw redirect(`/${params.repo}/_raw/${path}`)
