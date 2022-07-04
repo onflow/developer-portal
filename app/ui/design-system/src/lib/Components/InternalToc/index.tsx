@@ -9,10 +9,9 @@ export type InternalTocItem = {
 
 export type InternalTocProps = {
   headings: InternalTocItem[]
-  updateHash: (hash: string) => void
 }
 
-export function InternalToc({ headings, updateHash }: InternalTocProps) {
+export function InternalToc({ headings }: InternalTocProps) {
   const headingsRef = useRef<Record<string, IntersectionObserverEntry>>({})
   const location = useLocation()
   const [activeId, setActiveId] = useState("")
@@ -61,7 +60,7 @@ export function InternalToc({ headings, updateHash }: InternalTocProps) {
     headingElements.forEach((headingElement: HTMLElement) =>
       observer.observe(headingElement)
     )
-  }, [setActiveId, location.hash])
+  }, [setActiveId, location.hash, headings])
 
   return (
     <div>
