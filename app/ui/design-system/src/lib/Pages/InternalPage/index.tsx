@@ -130,7 +130,6 @@ export function InternalPage({
               >
                 <InternalToc
                   headings={toc}
-                  currentHash={currentHash}
                   updateHash={(e) => setHash("#test")}
                 />
               </div>

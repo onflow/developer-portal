@@ -1,4 +1,6 @@
+import { useEffect, useRef, useState } from "react"
 import clsx from "clsx"
+import { useLocation } from "@remix-run/react"
 
 export type InternalTocItem = {
   title: string
@@ -7,18 +9,59 @@ export type InternalTocItem = {
 
 export type InternalTocProps = {
   headings: InternalTocItem[]
-  currentHash: URL["hash"]
   updateHash: (hash: string) => void
 }
 
-export function InternalToc({
-  headings,
-  currentHash,
-  updateHash,
-}: InternalTocProps) {
+export function InternalToc({ headings, updateHash }: InternalTocProps) {
+  const headingsRef = useRef<Record<string, IntersectionObserverEntry>>({})
+  const location = useLocation()
+  const [activeId, setActiveId] = useState("")
+
   if (headings == null) {
     throw new Error(`headings missing`)
   }
+
+  useEffect(() => {
+    const onIntersectionObserved = (headings: IntersectionObserverEntry[]) => {
+      headingsRef.current = headings.reduce((map: any, headingElement) => {
+        map[headingElement.target.id] = headingElement
+        return map
+      }, headingsRef.current)
+      const visibleHeadings: IntersectionObserverEntry[] = []
+      Object.keys(headingsRef.current).forEach((key: string) => {
+        const headingElement = headingsRef.current[key]
+        if (headingElement.isIntersecting) visibleHeadings.push(headingElement)
+      })
+
+      const getIndexFromId = (id: string) =>
+        headingElements.findIndex((heading) => heading.id === id)
+
+      if (visibleHeadings.length === 1) {
+        setActiveId(visibleHeadings[0].target.id)
+      } else if (visibleHeadings.length > 1) {
+        const sortedVisibleHeadings = visibleHeadings.sort((a, b) =>
+          Number(getIndexFromId(a.target.id) > getIndexFromId(b.target.id))
+        )
+        setActiveId(sortedVisibleHeadings[0].target.id)
+      }
+    }
+
+    const observer = new IntersectionObserver(onIntersectionObserved)
+
+    const headingElements = headings.reduce(
+      (headingElementsArr: HTMLElement[], heading: InternalTocItem) => {
+        const headingElem = document.getElementById(
+          heading.hash.substring(1, heading.hash.length)
+        )
+        if (headingElem) headingElementsArr.push(headingElem)
+        return headingElementsArr
+      },
+      []
+    )
+    headingElements.forEach((headingElement: HTMLElement) =>
+      observer.observe(headingElement)
+    )
+  }, [setActiveId, location.hash])
 
   return (
     <div>
@@ -34,7 +77,7 @@ export function InternalToc({
                 "mb-1 cursor-pointer py-2 px-5 text-sm text-primary-gray-400 hover:opacity-75 dark:text-gray-200",
                 {
                   "bg-gray-100 bg-opacity-75 font-semibold text-primary-blue dark:bg-primary-gray-dark dark:text-gray-300":
-                    hash === currentHash,
+                    activeId === hash.substring(1, hash.length),
                 }
               )}
             >
