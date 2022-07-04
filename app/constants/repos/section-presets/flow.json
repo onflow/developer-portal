@@ -1,0 +1,32 @@
+{
+  "$schema": "../repo-schema.json",
+  "sidebar": {
+    "sections": [
+      {
+        "title": "Flow",
+        "items": [
+          {
+            "label": "Concepts",
+            "href": "concepts"
+          },
+          {
+            "label": "DApp Development",
+            "href": "dapp-development"
+          },
+          {
+            "label": "Core Contracts",
+            "href": "core-contracts"
+          },
+          {
+            "label": "Flow Token",
+            "href": "flow-token"
+          },
+          {
+            "label": "FUSD",
+            "href": "usd"
+          }
+        ]
+      }
+    ]
+  }
+}
