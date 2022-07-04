@@ -3,12 +3,11 @@ import { Link, useCatch, useLoaderData, useLocation } from "@remix-run/react"
 import { useEffect, useState } from "react"
 import invariant from "tiny-invariant"
 import { getMdxPage, useMdxComponent } from "~/cms/utils/mdx"
+import { ContentSpec, contentTools, getContentSpec } from "~/constants/repos"
 import {
   ContentName,
-  ContentSpec,
-  contentTools,
-  getContentSpec,
-} from "~/constants/repos"
+  flowSectionNames,
+} from "~/constants/repos/contents-structure"
 import { ErrorPage } from "~/ui/design-system/src/lib/Components/ErrorPage"
 import { InternalToc } from "~/ui/design-system/src/lib/Components/InternalToc"
 import { MdxPage } from "../../cms"
@@ -26,12 +25,20 @@ export const loader: LoaderFunction = async ({
   params,
   request,
 }): Promise<LoaderData> => {
-  const contentName = params.repo
+  /* 
+  Because of added complexity of routing, the 'repo' is no longer necessarily the name of the repository.
+  For instance, params.repo could be a section name, repo name, or /flow's internal content name.
+  For less confusion, we will call this firstRoute.
+  Examples: 
+  - Repository = /cadence/... then firstRoute = cadence, cadence is a repo
+  - Section = /learn/kitty-items/... then firstRoute = learn, learn is a section, and kitty-items is flow's content
+  */
+  const firstRoute = params.repo
   const path = params["*"] || "index"
 
-  invariant(contentName, `expected repo param`)
+  invariant(firstRoute, `expected repo param`)
 
-  const contentSpec = getContentSpec(contentName)
+  const contentSpec = getContentSpec(firstRoute)
 
   if (!contentSpec) {
     throw json({ status: "noRepo" }, { status: 404 })
