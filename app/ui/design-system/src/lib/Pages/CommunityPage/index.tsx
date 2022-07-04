@@ -12,7 +12,10 @@ import { LandingHeader } from "../../Components/LandingHeader"
 import ProjectCards, { ProjectCardsProps } from "../../Components/ProjectCards"
 import { ToolsAndConceptsProps } from "../../Components/ToolsAndConcepts"
 import { UpcomingEventsProps } from "../../Components/UpcomingEvents"
-import { DISCOURSE_URL, GITHUB_URL } from "../../../../../../constants"
+import {
+  DISCOURSE_URL,
+  // GITHUB_URL
+} from "../../../../../../constants"
 import PageBackground from "../shared/PageBackground"
 import PageSection from "../shared/PageSection"
 import PageSections from "../shared/PageSections"
@@ -35,10 +38,10 @@ export type CommunityPageProps = FlipsProps &
 export default function CommunityPage({
   openFlips,
   goodPlacesToStartFlips,
-  communityMembers,
+  // communityMembers,
   projects,
   upcomingEvents,
-  articles,
+  // articles,
   tools,
   contentNavigationListItems,
   forumTopics,

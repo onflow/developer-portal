@@ -11,12 +11,6 @@ import { Default as DefaultFeaturedArticleSlider } from "~/ui/design-system/src/
 import { ProjectCardProps } from "~/ui/design-system/src/lib/Components/ProjectCard"
 import { Default as DefaultProjectCards } from "~/ui/design-system/src/lib/Components/ProjectCards/ProjectCards.stories"
 import { Article } from "~/ui/design-system/src/lib/interfaces"
-import ToolCliIconSrc from "../../ui/design-system/images/tools/tool-cli.svg"
-import ToolEmulatorIconSrc from "../../ui/design-system/images/tools/tool-emulator.svg"
-import ToolFclIconSrc from "../../ui/design-system/images/tools/tool-fcl.svg"
-import ToolPortIconSrc from "../../ui/design-system/images/tools/tool-port.svg"
-import ToolTestingIconSrc from "../../ui/design-system/images/tools/tool-testing.svg"
-import ToolVsCodeIconSrc from "../../ui/design-system/images/tools/tool-vscode.svg"
 
 export const tools = [
   flowPortTool,

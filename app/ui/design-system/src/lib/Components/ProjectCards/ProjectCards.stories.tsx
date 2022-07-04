@@ -13,7 +13,7 @@ export default {
 
 const Template: Story<ProjectCardsProps> = (args) => <ProjectCards {...args} />
 
-const projectCardArgs = DefaultProjectCard.args as ProjectCardProps
+// const projectCardArgs = DefaultProjectCard.args as ProjectCardProps
 const devToArgs: ProjectCardProps = {
   projectImage:
     "https://dev-to-uploads.s3.amazonaws.com/uploads/logos/resized_logo_UQww2soKuUsjaOGNB38o.png",
