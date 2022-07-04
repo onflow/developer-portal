@@ -1,3 +1,11 @@
+import {
+  cliTool,
+  emulatorTool,
+  fclSDK,
+  flowPortTool,
+  jsTestingLibTool,
+  vsCodeTool,
+} from "~/component-data/Tools"
 import { ContentNavigationListProps } from "~/ui/design-system/src/lib/Components/ContentNavigationList"
 import { Default as DefaultFeaturedArticleSlider } from "~/ui/design-system/src/lib/Components/FeaturedArticleSlider/FeaturedArticleSlider.stories"
 import { ProjectCardProps } from "~/ui/design-system/src/lib/Components/ProjectCard"
@@ -11,95 +19,34 @@ import ToolTestingIconSrc from "../../ui/design-system/images/tools/tool-testing
 import ToolVsCodeIconSrc from "../../ui/design-system/images/tools/tool-vscode.svg"
 
 export const tools = [
-  {
-    title: "Flow Port",
-    authorIcon: "https://avatars.githubusercontent.com/u/62387156?s=64&v=4",
-    authorName: "mini flow",
-    tags: ["Tool"],
-    link: "#",
-    stars: 52,
-    iconSrc: ToolPortIconSrc,
-    description:
-      "Lorem ipsum text here can go a two liner sentence or a one liner",
-  },
-  {
-    title: "Emulator",
-    authorIcon: "https://avatars.githubusercontent.com/u/62387156?s=64&v=4",
-    authorName: "mini flow",
-    tags: ["Tool"],
-    link: "#",
-    stars: 52,
-    iconSrc: ToolEmulatorIconSrc,
-    description:
-      "Lorem ipsum text here can go a two liner sentence or a one liner",
-  },
-  {
-    title: "CLI",
-    authorIcon: "https://avatars.githubusercontent.com/u/62387156?s=64&v=4",
-    authorName: "mini flow",
-    tags: ["Tool"],
-    link: "#",
-    stars: 52,
-    iconSrc: ToolCliIconSrc,
-    description:
-      "Lorem ipsum text here can go a two liner sentence or a one liner",
-  },
-  {
-    title: "VS Code Extension",
-    authorIcon: "https://avatars.githubusercontent.com/u/62387156?s=64&v=4",
-    authorName: "mini flow",
-    tags: ["Tool"],
-    link: "#",
-    stars: 52,
-    iconSrc: ToolVsCodeIconSrc,
-    description:
-      "Lorem ipsum text here can go a two liner sentence or a one liner",
-  },
-  {
-    title: "Flow Client Lbrary",
-    authorIcon: "https://avatars.githubusercontent.com/u/62387156?s=64&v=4",
-    authorName: "mini flow",
-    tags: ["Tool"],
-    link: "#",
-    stars: 52,
-    iconSrc: ToolFclIconSrc,
-    description:
-      "Lorem ipsum text here can go a two liner sentence or a one liner",
-  },
-
-  {
-    title: "Testing Library",
-    authorIcon: "https://avatars.githubusercontent.com/u/62387156?s=64&v=4",
-    authorName: "mini flow",
-    tags: ["Tool"],
-    link: "#",
-    stars: 52,
-    iconSrc: ToolTestingIconSrc,
-    description:
-      "Lorem ipsum text here can go a two liner sentence or a one liner",
-  },
+  flowPortTool,
+  emulatorTool,
+  cliTool,
+  vsCodeTool,
+  fclSDK,
+  jsTestingLibTool,
 ]
 
 export const contentNavigationListItems: ContentNavigationListProps = {
   header: "Explore More Content",
   contentNavigationItems: [
     {
-      title: "Concepts",
-      text: "Lorem ipsum dolor sit amet proin gravida lorem ipsum",
-      link: "#",
-      icon: "concepts",
-    },
-    {
       title: "Learn",
-      text: "Lorem ipsum dolor sit amet proin gravida lorem ipsum",
-      link: "#",
+      text: "Learn more about the Flow blockchain, Cadence, and NFTs",
+      link: "/learn",
       icon: "learn",
     },
     {
       title: "Tools",
-      text: "Lorem ipsum dolor sit amet proin gravida lorem ipsum",
-      link: "#",
+      text: "Tools that can help your development experience on Flow",
+      link: "/tools",
       icon: "tools",
+    },
+    {
+      title: "Concepts",
+      text: "Important concepts about Cadence and FCL",
+      link: "#",
+      icon: "concepts",
     },
   ],
 }
