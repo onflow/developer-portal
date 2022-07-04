@@ -40,5 +40,7 @@ module.exports = {
     "parse-entities",
     "periscopic",
     "zwitch",
+    "html-void-elements",
+    "longest-streak",
   ],
 }

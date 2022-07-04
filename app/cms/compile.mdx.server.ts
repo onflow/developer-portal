@@ -89,6 +89,7 @@ async function compileMdx<FrontmatterType extends Record<string, unknown>>(
 ) {
   const { default: remarkSlug } = await import("remark-slug")
   const { default: gfm } = await import("remark-gfm")
+  const { removeComments } = await import("./markdown.server")
 
   const indexRegex = new RegExp(`${slug}\\/index.mdx?$`)
   const indexFile = githubFiles.find(({ path }) => indexRegex.test(path))
@@ -111,9 +112,11 @@ async function compileMdx<FrontmatterType extends Record<string, unknown>>(
   const readTime = calculateReadingTime(indexFile.content)
   const toc = markdownToToc(indexFile.content)
 
+  const clean = await removeComments(indexFile.content)
+
   try {
     const { frontmatter, code } = await bundleMDX({
-      source: indexFile.content,
+      source: clean,
       files,
       mdxOptions(options) {
         options.remarkPlugins = [
@@ -144,6 +147,7 @@ async function compileMdx<FrontmatterType extends Record<string, unknown>>(
       source: indexFile.content,
       files,
     })
+
     if (!code) throw error
 
     return {

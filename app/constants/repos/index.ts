@@ -64,7 +64,7 @@ export const displayNames: Partial<Record<ContentName, string>> = {
   "flow-cli": "Flow CLI",
   "flow-js-testing": "Flow JS Testing",
   "flow-go-sdk": "Flow Go SDK",
-  "fcl-js": "Flow Content Library JS",
+  "fcl-js": "Flow Client Library (JS)",
   "vscode-extension": "VS Code Extension",
   "dapp-development": "DApp Development",
 }

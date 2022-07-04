@@ -43,10 +43,15 @@
     "rehype-parse": "^8.0.4",
     "rehype-sanitize": "^5.0.1",
     "rehype-stringify": "^9.0.3",
+    "remark": "^14.0.2",
     "remark-gfm": "^3.0.1",
+    "remark-parse": "^10.0.1",
+    "remark-rehype": "^10.1.0",
+    "remark-remove-comments": "^0.2.0",
     "remark-slug": "^7.0.1",
     "styled-components": "^5.3.5",
     "tiny-invariant": "^1.2.0",
+    "unified": "^10.1.2",
     "unist-util-visit": "^4.1.0"
   },
   "devDependencies": {

@@ -344,6 +344,9 @@ const isLinkExternal = (href?: string) => !!href?.match(/^(www|http)/i)
 
 function GetMdxComponents(theme: Theme) {
   return {
+    TrackingLink: ({ children }: any) => {
+      return <div>{children}</div>
+    },
     a: (props: LinkProps & { href: string }) => {
       if (isLinkExternal(props.href)) {
         return (
