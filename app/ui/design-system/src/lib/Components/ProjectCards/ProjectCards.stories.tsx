@@ -1,7 +1,7 @@
 import { Meta, Story } from "@storybook/react"
 import ProjectCards, { ProjectCardsProps } from "."
 import { ProjectCardProps } from "../ProjectCard"
-import { Default as DefaultProjectCard } from "../ProjectCard/ProjectCard.stories"
+// import { Default as DefaultProjectCard } from "../ProjectCard/ProjectCard.stories"
 
 export default {
   component: ProjectCards,

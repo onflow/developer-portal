@@ -1,11 +1,13 @@
 import { ToolsAndConcepts, UpcomingEvents } from "../../Components"
 import { ButtonLink } from "../../Components/Button"
-import CommunityMembers, {
-  CommunityMembersProps,
-} from "../../Components/CommunityMembers"
-import FeaturedArticleSlider, {
-  FeaturedArticleSliderProps,
-} from "../../Components/FeaturedArticleSlider"
+// import CommunityMembers, {
+//   CommunityMembersProps,
+// } from "../../Components/CommunityMembers"
+// import FeaturedArticleSlider, {
+//   FeaturedArticleSliderProps,
+// } from "../../Components/FeaturedArticleSlider"
+import { CommunityMembersProps } from "../../Components/CommunityMembers"
+import { FeaturedArticleSliderProps } from "../../Components/FeaturedArticleSlider"
 import Flips, { FlipsProps } from "../../Components/Flips"
 import ForumCell, { ForumCellProps } from "../../Components/ForumCell"
 import { LandingHeader } from "../../Components/LandingHeader"
