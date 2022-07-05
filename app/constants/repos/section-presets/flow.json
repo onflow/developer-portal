@@ -26,6 +26,15 @@
             "href": "fusd"
           }
         ]
+      },
+      {
+        "title": "Frequently Asked Questions",
+        "items": [
+          {
+            "label": "FAQ",
+            "href": "faq"
+          }
+        ]
       }
     ]
   }

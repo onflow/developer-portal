@@ -33,21 +33,27 @@ const deconstructPath = (
     const second = split[0]
     const rest = split.slice(1).join("/") || "index"
 
+    // If additional path does not exist, just return index
+    // except for broken paths which should be rerouted to the index of their first sections
+    // TODO: These landing pages should auto configure the index. Remove this with a better solution.
+
     if (isFlowSection(firstRoute) && isFlowContent(second)) {
+      /* >> Start of custom landing pages >> */
+      if (second == "faq") {
+        return { secondRoute: second, path: "backers" }
+      }
+      /* << End of custom landing pages << */
       return { secondRoute: second, path: rest }
     }
     return { secondRoute: undefined, path: rawPath }
   } else {
-    // If additional path does not exist, just return index
-    // except for broken paths which should be rerouted to the index of their first sections
-    // TODO: These landing pages should auto configure the index
-
-    // Redirecting indexes for 'flow/.../index' section landing pages
+    /* >> Start of custom landing pages >> */
     if (firstRoute === "flow") {
       return { secondRoute: undefined, path: "concepts/index" }
     } else if (firstRoute === "nodes") {
       return { secondRoute: undefined, path: "node-operation/index" }
     }
+    /* << End of custom landing pages << */
 
     return { secondRoute: undefined, path: "index" }
   }
@@ -83,7 +89,6 @@ export const loader: LoaderFunction = async ({
   if (!isDocument) {
     throw redirect(`/${params.repo}/_raw/${path}`)
   }
-
   let page: MdxPage | null
 
   try {

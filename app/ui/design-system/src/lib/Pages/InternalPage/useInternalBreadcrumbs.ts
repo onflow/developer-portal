@@ -1,6 +1,6 @@
-import { capitalize } from "lodash"
+import { capitalCase } from "change-case"
 import { useMemo } from "react"
-import { isFlowContent } from "~/constants/repos"
+import { displayNames, isFlowContent } from "~/constants/repos"
 import { flowContentSectionMap } from "~/constants/repos/contents-structure"
 import { InternalSidebarSectionItem } from "../../Components/InternalSidebar"
 
@@ -42,9 +42,9 @@ export const useInternalBreadcrumbs = ({
     var basePath = `${rootUrl}${contentPath}`
 
     if (isFlowContent(contentPath)) {
-      const sectionName = flowContentSectionMap[contentPath]
+      const sectionName = flowContentSectionMap[contentPath] ?? "flow"
       breadcrumbs.push({
-        name: capitalize(sectionName ?? "flow"),
+        name: displayNames[sectionName] || capitalCase(sectionName),
         href: `${rootUrl}${sectionName}`,
       })
       breadcrumbs.push({

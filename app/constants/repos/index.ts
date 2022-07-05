@@ -24,11 +24,15 @@ import flowPort from "./repo-presets/flow-port.json"
 import nftMarketPlace from "./repo-presets/nft-marketplace.json"
 import staking from "./repo-presets/staking.json"
 import nodeOperation from "./repo-presets/node-operation.json"
+import emulator from "./repo-presets/emulator.json"
+import faq from "./repo-presets/faq.json"
 
 // Flow Section Presets
 import flow from "./section-presets/flow.json"
 import learn from "./section-presets/learn.json"
 import nodes from "./section-presets/nodes.json"
+import community from "./section-presets/community.json"
+import tools from "./section-presets/tools.json"
 
 import { RepoSchema } from "./repo-schema"
 import { ToolName } from "../../ui/design-system/src/lib/Components/Internal/tools"
@@ -61,11 +65,13 @@ export const schemas: Partial<Record<ContentName, RepoSchema>> = {
   // Flow: lower lever internal contents
   "kitty-items": kittyItems as RepoSchema,
   "vscode-extension": vscodeExtension as RepoSchema,
+  emulator: emulator as RepoSchema,
   concepts: concepts as RepoSchema,
   "dapp-development": dappDevelopment as RepoSchema,
   "core-contracts": coreContracts as RepoSchema,
   "flow-token": flowToken as RepoSchema,
   fusd: fusd as RepoSchema,
+  faq: faq as RepoSchema,
   "node-operation": nodeOperation as RepoSchema,
   staking: staking as RepoSchema,
   "flow-port": flowPort as RepoSchema,
@@ -75,6 +81,8 @@ export const schemas: Partial<Record<ContentName, RepoSchema>> = {
   flow: flow as RepoSchema,
   learn: learn as RepoSchema,
   nodes: nodes as RepoSchema,
+  tools: tools as RepoSchema,
+  community: community as RepoSchema,
 }
 
 /* Overriden display names (defaults to dashes converted to spaces then capitalized) */
@@ -87,6 +95,7 @@ export const displayNames: Partial<Record<ContentName, string>> = {
   "dapp-development": "DApp Development",
   "nft-marketplace": "NFT Marketplace",
   fusd: "FUSD",
+  faq: "FAQ",
 }
 
 export const contentTools: Partial<Record<ContentName, ToolName>> = {
