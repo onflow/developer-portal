@@ -39,7 +39,7 @@ class SharedResizeObserver {
  * reasons.
  * @see {@link https://github.com/WICG/resize-observer/issues/59#issuecomment-408098151}
  */
-const sharedResizeObserver = new SharedResizeObserver()
+const resizeObserverSingleton = new SharedResizeObserver()
 
 /**
  * A hook that observers an element and calls a function when it is resized.
@@ -59,10 +59,10 @@ export const useResizeObserver = <T extends HTMLElement>(
       return
     }
 
-    sharedResizeObserver.observe(current, callback)
+    resizeObserverSingleton.observe(current, callback)
 
     return () => {
-      sharedResizeObserver.unobserve(current)
+      resizeObserverSingleton.unobserve(current)
     }
   }, [ref, callback])
 }
