@@ -1,7 +1,8 @@
 import { capitalCase } from "change-case"
 import { InternalLandingHeaderProps } from "../../ui/design-system/src/lib/Components/InternalLandingHeader"
 import cadence from "./repo-presets/cadence.json"
-import dappDevelopment from "./repo-presets/dapp-development.json"
+
+// Individual Repo Content Presets
 import fclJs from "./repo-presets/fcl-js.json"
 import flowCli from "./repo-presets/flow-cli.json"
 import kittyItems from "./repo-presets/kitty-items.json"
@@ -12,8 +13,23 @@ import flowNFT from "./repo-presets/flow-nft.json"
 import flowFT from "./repo-presets/flow-ft.json"
 import nftStorefront from "./repo-presets/nft-storefront.json"
 import flowEmulator from "./repo-presets/flow-emulator.json"
+
+// Flow Internal Content Presets
+import concepts from "./repo-presets/concepts.json"
+import dappDevelopment from "./repo-presets/dapp-development.json"
+import coreContracts from "./repo-presets/core-contracts.json"
+import flowToken from "./repo-presets/flow-token.json"
+import fusd from "./repo-presets/FUSD.json"
+import flowPort from "./repo-presets/flow-port.json"
+import nftMarketPlace from "./repo-presets/nft-marketplace.json"
+import staking from "./repo-presets/staking.json"
+import nodeOperation from "./repo-presets/node-operation.json"
+
+// Flow Section Presets
 import flow from "./section-presets/flow.json"
 import learn from "./section-presets/learn.json"
+import nodes from "./section-presets/nodes.json"
+
 import { RepoSchema } from "./repo-schema"
 import { ToolName } from "../../ui/design-system/src/lib/Components/Internal/tools"
 import {
@@ -45,11 +61,20 @@ export const schemas: Partial<Record<ContentName, RepoSchema>> = {
   // Flow: lower lever internal contents
   "kitty-items": kittyItems as RepoSchema,
   "vscode-extension": vscodeExtension as RepoSchema,
+  concepts: concepts as RepoSchema,
   "dapp-development": dappDevelopment as RepoSchema,
+  "core-contracts": coreContracts as RepoSchema,
+  "flow-token": flowToken as RepoSchema,
+  fusd: fusd as RepoSchema,
+  "node-operation": nodeOperation as RepoSchema,
+  staking: staking as RepoSchema,
+  "flow-port": flowPort as RepoSchema,
+  "nft-marketplace": nftMarketPlace as RepoSchema,
 
   // Flow: higher lever section schemas
   flow: flow as RepoSchema,
   learn: learn as RepoSchema,
+  nodes: nodes as RepoSchema,
 }
 
 /* Overriden display names (defaults to dashes converted to spaces then capitalized) */
@@ -60,6 +85,8 @@ export const displayNames: Partial<Record<ContentName, string>> = {
   "fcl-js": "Flow Content Library JS",
   "vscode-extension": "VS Code Extension",
   "dapp-development": "DApp Development",
+  "nft-marketplace": "NFT Marketplace",
+  fusd: "FUSD",
 }
 
 export const contentTools: Partial<Record<ContentName, ToolName>> = {
@@ -110,12 +137,16 @@ function getBasePath(name: string) {
   return DEFAULT_CONTENT_PATH
 }
 
-export const contentSpecMap = [...repositoryNames, ...flowContentNames].reduce(
+export const contentSpecMap = [
+  ...repositoryNames,
+  ...flowSectionNames,
+  ...flowContentNames,
+].reduce(
   (accum, name) => ({
     ...accum,
     [name]: {
       owner: DEFAULT_REPO_OWNER,
-      repoName: isFlowContent(name) ? "flow" : name,
+      repoName: isFlowContent(name) || isFlowSection(name) ? "flow" : name,
       branch: "master",
       basePath: getBasePath(name),
       contentName: name,
@@ -139,18 +170,17 @@ export function isFlowSection(name: string): name is FlowContentName {
   return flowSectionNames.includes(name as FlowContentName)
 }
 
-export function isValidFirstRoute(
-  firstRoute: string
-): firstRoute is ContentName {
-  return (
-    isRepo(firstRoute) || isFlowSection(firstRoute) || isFlowContent(firstRoute)
-  )
-}
-
-export const getContentSpec = (firstRoute: string) => {
-  console.log("getContentSpec", firstRoute)
-  if (isValidFirstRoute(firstRoute)) {
-    console.log("Valid First Route", firstRoute, contentSpecMap[firstRoute])
+export const getContentSpec = (
+  firstRoute: string,
+  secondRoute?: string | undefined
+) => {
+  if (isRepo(firstRoute)) {
     return contentSpecMap[firstRoute]
+  } else if (isFlowSection(firstRoute)) {
+    if (secondRoute) {
+      return contentSpecMap[secondRoute]
+    } else {
+      return contentSpecMap[firstRoute]
+    }
   }
 }

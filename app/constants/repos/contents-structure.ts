@@ -2,7 +2,6 @@ import { consoleSandbox } from "@sentry/utils"
 
 /* Repository names and Flow internal content names */
 export const repositoryNames = [
-  "flow",
   "cadence",
   "flow-cli",
   "flow-js-testing",
@@ -48,5 +47,6 @@ function mapContentSection() {
 export const flowContentSectionMap = mapContentSection()
 
 export type RepoName = typeof repositoryNames[number]
+export type FlowSectionName = typeof flowSectionNames[number]
 export type FlowContentName = typeof flowContentNames[number]
-export type ContentName = RepoName | FlowContentName
+export type ContentName = RepoName | FlowSectionName | FlowContentName

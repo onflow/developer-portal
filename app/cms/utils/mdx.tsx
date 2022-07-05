@@ -65,7 +65,6 @@ async function getMdxPage(
   options: CachifiedOptions
 ): Promise<MdxPage | null> {
   const key = getCompiledKey(owner, repo, branch, fileOrDirPath)
-  console.log(`key: ${key}`)
   const page = await cachified({
     cache: redisCache,
     maxAge: defaultMaxAge,

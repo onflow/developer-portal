@@ -3,11 +3,14 @@ import { Link, useCatch, useLoaderData, useLocation } from "@remix-run/react"
 import { useEffect, useState } from "react"
 import invariant from "tiny-invariant"
 import { getMdxPage, useMdxComponent } from "~/cms/utils/mdx"
-import { ContentSpec, contentTools, getContentSpec } from "~/constants/repos"
 import {
-  ContentName,
-  flowSectionNames,
-} from "~/constants/repos/contents-structure"
+  ContentSpec,
+  contentTools,
+  getContentSpec,
+  isFlowContent,
+  isFlowSection,
+} from "~/constants/repos"
+import { ContentName } from "~/constants/repos/contents-structure"
 import { ErrorPage } from "~/ui/design-system/src/lib/Components/ErrorPage"
 import { InternalToc } from "~/ui/design-system/src/lib/Components/InternalToc"
 import { MdxPage } from "../../cms"
@@ -19,6 +22,35 @@ type LoaderData = {
   content: ContentSpec
   path: string
   page: MdxPage
+}
+
+const deconstructPath = (
+  firstRoute: string | undefined,
+  rawPath: string | undefined
+) => {
+  if (firstRoute && rawPath) {
+    const split = rawPath.split("/")
+    const second = split[0]
+    const rest = split.slice(1).join("/") || "index"
+
+    if (isFlowSection(firstRoute) && isFlowContent(second)) {
+      return { secondRoute: second, path: rest }
+    }
+    return { secondRoute: undefined, path: rawPath }
+  } else {
+    // If additional path does not exist, just return index
+    // except for broken paths which should be rerouted to the index of their first sections
+    // TODO: These landing pages should auto configure the index
+
+    // Redirecting indexes for 'flow/.../index' section landing pages
+    if (firstRoute === "flow") {
+      return { secondRoute: undefined, path: "concepts/index" }
+    } else if (firstRoute === "nodes") {
+      return { secondRoute: undefined, path: "node-operation/index" }
+    }
+
+    return { secondRoute: undefined, path: "index" }
+  }
 }
 
 export const loader: LoaderFunction = async ({
@@ -34,12 +66,11 @@ export const loader: LoaderFunction = async ({
   - Section = /learn/kitty-items/... then firstRoute = learn, learn is a section, and kitty-items is flow's content
   */
   const firstRoute = params.repo
-  const path = params["*"] || "index"
+  const { secondRoute, path } = deconstructPath(firstRoute, params["*"])
 
   invariant(firstRoute, `expected repo param`)
 
-  const contentSpec = getContentSpec(firstRoute)
-
+  const contentSpec = getContentSpec(firstRoute, secondRoute)
   if (!contentSpec) {
     throw json({ status: "noRepo" }, { status: 404 })
   }
