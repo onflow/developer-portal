@@ -31,7 +31,7 @@ const deconstructPath = (
   if (firstRoute && rawPath) {
     const split = rawPath.split("/") ?? []
     const second = split.length > 0 ? split[0] : ""
-    // @ts-ignore: the right side of assignment should be string, but claims to be undefined
+    /* @ts-ignore:next-line */
     const rest = split.slice(1).length > 0 ? split.slice(1).join("/") : "index"
 
     if (isFlowSection(firstRoute) && isFlowContent(second)) {
