@@ -1,4 +1,3 @@
-import { useLocation } from "@remix-run/react"
 import clsx from "clsx"
 import { useCallback, useRef, useState } from "react"
 import {
@@ -80,9 +79,6 @@ export function InternalPage({
     nextItem = activeItemIndex >= 0 ? allItems[activeItemIndex + 1] : undefined
   }
 
-  const location = useLocation()
-  const [currentHash, setHash] = useState(location.hash)
-
   const subnavRef = useRef<HTMLDivElement>(null)
   const [subnavRect, setSubnavRect] = useState<DOMRect>()
   const resizeObserverCallback = useCallback<UseResizeObserverCallback>(() => {
@@ -128,11 +124,7 @@ export function InternalPage({
                   maxHeight: `calc(100vh - ${subnavRect?.bottom ?? 0}px)`,
                 }}
               >
-                <InternalToc
-                  headings={toc}
-                  currentHash={currentHash}
-                  updateHash={(e) => setHash("#test")}
-                />
+                <InternalToc headings={toc} />
               </div>
             </div>
           )}
