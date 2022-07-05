@@ -29,19 +29,22 @@ export function InternalToc({ headings }: InternalTocProps) {
       const visibleHeadings: IntersectionObserverEntry[] = []
       Object.keys(headingsRef.current).forEach((key: string) => {
         const headingElement = headingsRef.current[key]
-        if (headingElement.isIntersecting) visibleHeadings.push(headingElement)
+        if (headingElement?.isIntersecting) visibleHeadings.push(headingElement)
       })
 
       const getIndexFromId = (id: string) =>
         headingElements.findIndex((heading) => heading.id === id)
 
-      if (visibleHeadings.length === 1) {
+      if (visibleHeadings.length === 1 && visibleHeadings[0]) {
         setActiveId(visibleHeadings[0].target.id)
       } else if (visibleHeadings.length > 1) {
         const sortedVisibleHeadings = visibleHeadings.sort((a, b) =>
           Number(getIndexFromId(a.target.id) > getIndexFromId(b.target.id))
         )
-        setActiveId(sortedVisibleHeadings[0].target.id)
+
+        if (sortedVisibleHeadings.length > 1 && sortedVisibleHeadings[0]) {
+          setActiveId(sortedVisibleHeadings[0].target.id)
+        }
       }
     }
 
