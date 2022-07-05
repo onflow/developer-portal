@@ -1,4 +1,6 @@
-function ExternalLinkIcon() {
+export type ExternalLinkIconProps = React.ComponentPropsWithoutRef<"svg">
+
+function ExternalLinkIcon(props: ExternalLinkIconProps) {
   return (
     <svg
       xmlns="http://www.w3.org/2000/svg"
@@ -6,6 +8,7 @@ function ExternalLinkIcon() {
       height="1em"
       fill="none"
       viewBox="0 0 19 18"
+      {...props}
     >
       <path
         strokeLinecap="round"
