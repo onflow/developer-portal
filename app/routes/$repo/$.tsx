@@ -33,10 +33,6 @@ const deconstructPath = (
     const second = split[0]
     const rest = split.slice(1).join("/") ?? "index"
 
-    /* 
-    If additional path does not exist, just return index except for broken paths which should be rerouted to the index of their first sections. TODO: These landing pages should auto configure the index. Remove this with a better solution
-    */
-
     if (isFlowSection(firstRoute) && isFlowContent(second)) {
       /* >> Start of custom landing pages >> */
       if (second === "faq") {
