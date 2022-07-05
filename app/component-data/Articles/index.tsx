@@ -3,7 +3,7 @@ import { TutorialCardProps } from "~/ui/design-system/src/lib/Components/Tutoria
 import CodeIcon from "~/ui/design-system/images/content/code.svg"
 
 export const redSquirrelGetStartedArticle: TutorialCardProps = {
-  heading: "Getting started on Flow by RedSquirrel",
+  heading: "Getting started on Flow with a RedSquirrel NFT",
   tags: ["tutorial", "nft", "beginner"],
   description: `
   Deploy a Cadence smart contract to a local emulator and interact with it as soon as possible!
@@ -14,7 +14,7 @@ export const redSquirrelGetStartedArticle: TutorialCardProps = {
 }
 
 export const organizingCadenceTutorial: TutorialCardProps = {
-  heading: "How to organize Cadence projects",
+  heading: "How to Organize Cadence Projects",
   tags: ["protocol", "network"],
   description: `How you organize the files for your project in your Github repo by Joshua Hannan - a senior smart contract engineer at Flow.`,
   link: "https://joshuahannan.medium.com/how-i-organize-my-cadence-projects-75b811b700d9",
@@ -33,7 +33,7 @@ export const introToFlow: TutorialCardProps & FeaturedArticleCardProps = {
 }
 
 export const getTheFlowDown: TutorialCardProps & FeaturedArticleCardProps = {
-  heading: "Get the Flow Down",
+  heading: "Get the Flow Down - Learning Resources",
   tags: ["resource-list", "community"],
   description: `Get the Flow Down is a curated collection of the best Flow blockchain tools, tutorials, articles and more!`,
   link: "https://github.com/ph0ph0/Get-The-Flow-Down",
@@ -49,7 +49,7 @@ export const guideToFlowForEthereumUsers: TutorialCardProps = {
   link: "https://www.flowverse.co/articles/guide-to-flow-blockchain-for-ethereum-users",
   imageUri:
     "https://blog.logrocket.com/wp-content/uploads/2022/01/flow-ethereum-blockchain-nfts.png",
-  lastUpdated: "",
+  lastUpdated: "24/02/2022",
 }
 
 export const FCLQuickstartNextJs: TutorialCardProps = {
@@ -78,7 +78,7 @@ export const FCLQuickstartSvelteKit: TutorialCardProps = {
 }
 
 export const flowNFTPetStore: TutorialCardProps = {
-  heading: "Building a Flow NFT Pet Store",
+  heading: "Building an NFT Pet Store on Flow with IPFS",
   tags: ["tutorial", "intermediate", "nft"],
   description: `This tutorial will teach you to create a simple NFT marketplace on the Flow blockchain from scratch with IPFS/Filecoin storage via nft.storage.`,
   link: "https://nftschool.dev/tutorial/flow-nft-marketplace/#prerequisites",
@@ -86,7 +86,7 @@ export const flowNFTPetStore: TutorialCardProps = {
 }
 
 export const learnCadenceVideoSeries: TutorialCardProps = {
-  heading: "Learn Cadence (Video Series)",
+  heading: "Learn Cadence - Video Series",
   tags: ["video", "beginner", "cadence"],
   description: `A series of YouTube videos on learning Cadence from scratch by Jacob Tucker.`,
   link: "https://www.youtube.com/playlist?list=PLvcQxi9WyGdF32YuZABVTx-t3-FsBNCN2",
@@ -95,7 +95,7 @@ export const learnCadenceVideoSeries: TutorialCardProps = {
 }
 
 export const flowMetaDataStandard: TutorialCardProps = {
-  heading: "Metadata Standard on Flow w/ Bjartek (NFT example included)",
+  heading: "Metadata Standard on Flow",
   tags: ["video", "nft", "intermediate"],
   description: `An in-depth video of the Flow Metadata Standard demonstrated through an example on the Flow Playground.`,
   link: "https://youtu.be/rgJRTozG3cw",
@@ -105,8 +105,8 @@ export const flowMetaDataStandard: TutorialCardProps = {
 }
 
 export const NBATopShotExample: TutorialCardProps = {
-  heading: "How to Create NFTs Like NBA Top Shot With Flow and IPFS - Pt 1",
-  tags: ["tutorial", "nft", "beginner", "marketplace"],
+  heading: "How to Create NFTs Like NBA Top Shot - Pt 1",
+  tags: ["tutorial", "nft", "beginner"],
   description: `Learn how to make an NBA Top Shot like NFTs with Flow and IPFS by creating the smart contract, developing an app to view the NFTs and creating a marketplace for transactions`,
   link: "https://medium.com/pinata/how-to-create-nfts-like-nba-top-shot-with-flow-and-ipfs-701296944bf",
   imageUri: "https://miro.medium.com/max/1400/1*SaFqgvNb_6uCxqOmmSqriw.png",
@@ -114,9 +114,9 @@ export const NBATopShotExample: TutorialCardProps = {
 }
 
 export const flowMultiNodeArchitecture: TutorialCardProps = {
-  heading: "Inside Flow: The Multi-Node Architecture that Scales to Millions",
-  tags: ["tutorial", "nft", "beginner"],
-  description: `A deep dive into how Flow's multi-node architecture is able to scale to millions, increase decentralization, and ensure a great end-user experience`,
+  heading: "Flow's Multi-Node Architecture",
+  tags: ["architecture", "intermediate"],
+  description: `A deep dive into how Flow's multi-node architecture scales to millions, increases decentralization, and ensures a great end-user experience`,
   link: "https://www.onflow.org/post/flow-blockchain-multi-node-architecture-advantages",
   imageUri:
     "https://assets.website-files.com/5f6294c0c7a8cdf432b1c827/6143728c4909ca0adba869a4_Flow_Blog-Inside%20Flow.png",

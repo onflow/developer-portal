@@ -35,7 +35,7 @@ const ToolsPage = ({
             callout="Flow Dapp Architecture Guide"
             description="Wondering what tools you need? See our dapp architectures guide to help you out."
             title="Tools"
-            imageSrc={ArchesImageSrc}
+            imageSrc="https://storage.googleapis.com/flow-resources/documentation-assets/new-docsite-assets/Flow-Illustration-abstract-cube-2@2x.png"
           />
         </PageSection>
         <PageSection sectionId="development-tools">
