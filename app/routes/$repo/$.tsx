@@ -1,6 +1,5 @@
 import { json, LoaderFunction, redirect } from "@remix-run/node"
 import { Link, useCatch, useLoaderData, useLocation } from "@remix-run/react"
-import { useEffect, useState } from "react"
 import invariant from "tiny-invariant"
 import { getMdxPage, useMdxComponent } from "~/cms/utils/mdx"
 import {
@@ -10,7 +9,6 @@ import {
   getContentSpec,
 } from "~/constants/repos"
 import { ErrorPage } from "~/ui/design-system/src/lib/Components/ErrorPage"
-import { InternalToc } from "~/ui/design-system/src/lib/Components/InternalToc"
 import { MdxPage } from "../../cms"
 import { ToolName } from "../../ui/design-system/src/lib/Components/Internal/tools"
 import { InternalPage } from "../../ui/design-system/src/lib/Pages/InternalPage"
@@ -72,14 +70,8 @@ export const loader: LoaderFunction = async ({
 
 export default function RepoDocument() {
   const { content, path, page } = useLoaderData<LoaderData>()
-  const location = useLocation()
   const MDXContent = useMdxComponent(page)
-  const [currentHash, setHash] = useState("")
   const tool = contentTools[content.contentName]
-
-  useEffect(() => {
-    setHash(location.hash)
-  }, [location.hash])
 
   return (
     <InternalPage
@@ -95,23 +87,9 @@ export default function RepoDocument() {
         }
       }
       githubUrl={page.editLink}
+      toc={page.toc}
     >
-      <div className="pl-[55px]">
-        <div className="grid grid-cols-5">
-          <div className="mdx-content prose col-span-4 max-w-none pt-8 dark:prose-invert">
-            <MDXContent />
-          </div>
-          <div className="pt-[55px]">
-            {page.toc != null ? (
-              <InternalToc
-                headings={page.toc}
-                currentHash={currentHash}
-                updateHash={(e) => setHash("#test")}
-              />
-            ) : null}
-          </div>
-        </div>
-      </div>
+      <MDXContent />
     </InternalPage>
   )
 }

@@ -66,7 +66,7 @@ const ProjectCard = ({
           className="flex justify-between font-bold text-primary-blue dark:text-blue-dark"
           href={projectLink}
         >
-          This is a link
+          Learn More
           <ChevronRightIcon />
         </a>
       </div>

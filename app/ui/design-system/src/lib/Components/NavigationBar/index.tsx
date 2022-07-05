@@ -3,6 +3,7 @@ import { Fragment, useState } from "react"
 import { ReactComponent as FlowDocsLogo } from "../../../../images/logos/flow-docs-logo"
 import { ReactComponent as ModeDark } from "../../../../images/toggles/mode-dark"
 import { ReactComponent as ModeLight } from "../../../../images/toggles/mode-light"
+import { Search } from "../Search"
 import { DesktopMenu } from "./DesktopMenu"
 import { MobileMenu } from "./MobileMenu"
 import { MobileMenuToggleButton } from "./MobileMenuToggleButton"
@@ -33,14 +34,13 @@ export function NavigationBar({
       </div>
       <div className="mt-1 flex flex-1 justify-end">
         {/* TODO: fetch appId and apiKey from env */}
-        {/* TODO: search is disabled for launch */}
-        {/* <div className="flex items-center mr-4">
+        <div className="mr-4 flex items-center">
           <Search
             appId="DKF9ZIO5WM"
             apiKey="d53324bc00b550f87f608c2c56636bc6"
             indexName="crawler_Flow Docs"
           />
-        </div> */}
+        </div>
         <DesktopMenu menuItems={menuItems} />
         <ul className="flex items-center">
           <li className="flex items-center whitespace-nowrap border-primary-gray-100 pl-4 dark:border-primary-gray-400 md:border-l">

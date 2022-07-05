@@ -1,18 +1,23 @@
 import { ToolsAndConcepts, UpcomingEvents } from "../../Components"
 import { ButtonLink } from "../../Components/Button"
-import CommunityMembers, {
-  CommunityMembersProps,
-} from "../../Components/CommunityMembers"
-import FeaturedArticleSlider, {
-  FeaturedArticleSliderProps,
-} from "../../Components/FeaturedArticleSlider"
+// import CommunityMembers, {
+//   CommunityMembersProps,
+// } from "../../Components/CommunityMembers"
+// import FeaturedArticleSlider, {
+//   FeaturedArticleSliderProps,
+// } from "../../Components/FeaturedArticleSlider"
+import { CommunityMembersProps } from "../../Components/CommunityMembers"
+import { FeaturedArticleSliderProps } from "../../Components/FeaturedArticleSlider"
 import Flips, { FlipsProps } from "../../Components/Flips"
 import ForumCell, { ForumCellProps } from "../../Components/ForumCell"
 import { LandingHeader } from "../../Components/LandingHeader"
 import ProjectCards, { ProjectCardsProps } from "../../Components/ProjectCards"
 import { ToolsAndConceptsProps } from "../../Components/ToolsAndConcepts"
 import { UpcomingEventsProps } from "../../Components/UpcomingEvents"
-import { DISCOURSE_URL, GITHUB_URL } from "../../../../../../constants"
+import {
+  DISCOURSE_URL,
+  // GITHUB_URL
+} from "../../../../../../constants"
 import PageBackground from "../shared/PageBackground"
 import PageSection from "../shared/PageSection"
 import PageSections from "../shared/PageSections"
@@ -35,10 +40,10 @@ export type CommunityPageProps = FlipsProps &
 export default function CommunityPage({
   openFlips,
   goodPlacesToStartFlips,
-  communityMembers,
+  // communityMembers,
   projects,
   upcomingEvents,
-  articles,
+  // articles,
   tools,
   contentNavigationListItems,
   forumTopics,
@@ -48,17 +53,17 @@ export default function CommunityPage({
       <PageSections>
         <PageSection className="pt-0 pb-0">
           <LandingHeader
-            buttonText="Button Text"
-            buttonUrl="#"
-            callout="Featured callout here two lines"
-            description="Lorem ipsum dolor sit amet proin gravida lorem ipsum dolor sit."
+            buttonText="More Information"
+            buttonUrl="https://flow.com/ecosystemsupport"
+            callout="The Flow Ecosystem Fund"
+            description="Our $725 Million Flow Ecosystem Fund is designed to hypercharge innovation and growth across the Flow community."
             title="Community"
           />
         </PageSection>
         <PageSection sectionId="upcoming-events">
           <UpcomingEvents {...upcomingEvents} headerLink="upcoming-events" />
         </PageSection>
-        <PageSection sectionId="community-members">
+        {/* <PageSection sectionId="community-members">
           <div className="container mb-8">
             <div className="flex items-center justify-between">
               <HeaderWithLink
@@ -81,7 +86,7 @@ export default function CommunityPage({
             </div>
           </div>
           <CommunityMembers {...communityMembers} />
-        </PageSection>
+        </PageSection> */}
         <PageSection sectionId="flips">
           <Flips
             openFlips={openFlips}
@@ -104,12 +109,12 @@ export default function CommunityPage({
             headerLink="explore-more-content"
           />
         </PageSection>
-        <PageSection sectionId="featured-articles">
+        {/* <PageSection sectionId="featured-articles">
           <FeaturedArticleSlider
             articles={articles}
             headerLink="featured-articles"
           />
-        </PageSection>
+        </PageSection> */}
         <PageSection sectionId="from-the-forum">
           <div className="container mb-8">
             <div className="mb-10 flex items-center justify-between">

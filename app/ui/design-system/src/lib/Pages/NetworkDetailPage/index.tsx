@@ -26,7 +26,7 @@ export type NetworkDetailPageProps = {
 export const getNetworkNameFromParam = (param: string) =>
   param
     .split("-")
-    .map((name) => name[0].toUpperCase() + name.slice(1))
+    .map((name) => name.slice(0, 1).toUpperCase() + name.slice(1))
     .join(" ")
 
 const NetworkDetailPage = ({
@@ -59,11 +59,11 @@ const NetworkDetailPage = ({
           </div>
           <TabMenu tabs={tabs} onTabChange={setSelectedNetworkIndex} centered />
           <div className="text-h3 md:text-h1 mt-16 mb-14 pl-4 md:text-center md:text-5xl">
-            {currentNetwork.name}
+            {currentNetwork?.name}
           </div>
           <NetworkDetailsCard
             status={
-              currentNetwork.status === "operational"
+              currentNetwork?.status === "operational"
                 ? "Healthy"
                 : "Under Maintenance"
             }
@@ -83,7 +83,7 @@ const NetworkDetailPage = ({
               Upcoming Spork
             </HeaderWithLink>
             <SporksCard
-              heading={currentNetwork.name}
+              heading={currentNetwork?.name || ""}
               timestamp={endOfWeek(new Date())}
               sporkMetadata={{
                 accessNode: "access-001.mainnet15.nodes.onflow.org:9000",
@@ -113,7 +113,7 @@ const NetworkDetailPage = ({
               {[1, 2, 3, 4].map((index) => (
                 <div className="divided-item-hover" key={index}>
                   <SporksCard
-                    heading={currentNetwork.name}
+                    heading={currentNetwork?.name || ""}
                     timestamp={endOfWeek(new Date())}
                     sporkMetadata={{
                       accessNode: "access-001.mainnet15.nodes.onflow.org:9000",

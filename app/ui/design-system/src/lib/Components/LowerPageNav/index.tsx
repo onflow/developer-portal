@@ -12,7 +12,7 @@ export type LowerPageNavProps = {
 
 export function LowerPageNav({ prev, next }: LowerPageNavProps) {
   return (
-    <div className="flex flex-1 flex-wrap place-content-between p-6">
+    <div className="flex flex-1 flex-wrap place-content-between">
       {prev ? <LowerPageNavLink link={prev} /> : <span />}
       {next ? <LowerPageNavLink link={next} next={true} /> : <span />}
     </div>

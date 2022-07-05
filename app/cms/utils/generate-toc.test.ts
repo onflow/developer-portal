@@ -76,7 +76,7 @@ test(`backticks`, () => {
 bar
   `
 
-  expect(markdownToToc(subject)![0].title).toBe(
+  expect(markdownToToc(subject)![0]!.title).toBe(
     `Avoid using AuthAccount as a function parameter`
   )
 })
