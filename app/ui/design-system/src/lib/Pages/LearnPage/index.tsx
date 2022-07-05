@@ -75,6 +75,7 @@ export function LearnPage({
             Most importantly, we realized that the technology at the time was not ready for this kind of application.
             Being the visionaries we are, we set to build a better tech for what we plan to do.
             We set to build what is now Flow blockchain."
+            imageSrc="https://storage.googleapis.com/flow-resources/documentation-assets/new-docsite-assets/Flow-illustration-head@2x.png"
           />
         </PageSection>
         <PageSection className="flex-col items-stretch" sectionId="cadence">

@@ -58,6 +58,7 @@ export default function CommunityPage({
             callout="The Flow Ecosystem Fund"
             description="Our $725 Million Flow Ecosystem Fund is designed to hypercharge innovation and growth across the Flow community."
             title="Community"
+            imageSrc="https://storage.googleapis.com/flow-resources/documentation-assets/new-docsite-assets/Flow_illustration_GreenLeaf.png"
           />
         </PageSection>
         <PageSection sectionId="upcoming-events">

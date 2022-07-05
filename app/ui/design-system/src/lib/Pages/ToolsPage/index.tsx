@@ -4,7 +4,6 @@ import { SDKCards } from "../../Components/SDKCards"
 import PageBackground from "../shared/PageBackground"
 import PageSection from "../shared/PageSection"
 import PageSections from "../shared/PageSections"
-import ArchesImageSrc from "../../../../images/misc/arches.png"
 import {
   ContentNavigationList,
   ContentNavigationListProps,
@@ -35,7 +34,7 @@ const ToolsPage = ({
             callout="Flow Dapp Architecture Guide"
             description="Wondering what tools you need? See our dapp architectures guide to help you out."
             title="Tools"
-            imageSrc={ArchesImageSrc}
+            imageSrc="https://storage.googleapis.com/flow-resources/documentation-assets/new-docsite-assets/Flow-Illustration-abstract-cube-2@2x.png"
           />
         </PageSection>
         <PageSection sectionId="development-tools">
