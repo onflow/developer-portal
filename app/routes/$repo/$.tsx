@@ -19,6 +19,10 @@ export { InternalErrorBoundary as ErrorBoundary } from "~/errors/error-boundarie
 export const meta: MetaFunction = ({ parentsData, data, params }) => {
   return getSocialMetas({
     url: "",
+    title: "",
+    description: "",
+    image: "",
+    keywords: "",
   })
 }
 
