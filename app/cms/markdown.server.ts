@@ -1,5 +1,3 @@
-import rehypeRemoveComments from "rehype-remove-comments"
-
 async function markdownToHtml(markdownString: string) {
   const { unified } = await import("unified")
   const { default: markdown } = await import("remark-parse")
@@ -21,15 +19,17 @@ async function markdownToHtmlUnwrapped(markdownString: string) {
 
 async function removeComments(markdownString: string) {
   const { remark } = await import("remark")
+  const { default: stringify } = await import("remark-stringify")
+  const { default: frontmatter } = await import("remark-frontmatter")
   // @ts-expect-error
   const { default: noComments } = await import("remark-remove-comments")
   const result = await remark()
-    .use({
-      plugins: [noComments],
-    })
+    .use(frontmatter)
+    .use(noComments)
+    .use(stringify)
     .process(markdownString)
 
-  return result.value.toString()
+  return result.value
 }
 
 async function markdownToHtmlDocument(markdownString: string) {

@@ -432,8 +432,8 @@ function GetMdxComponents(theme: Theme) {
  */
 function getMdxComponent(page: MdxPage, theme: Theme | null) {
   const { code, frontmatter } = page
-  const Component = getMDXComponent(code, frontmatter)
 
+  const Component = getMDXComponent(code, frontmatter)
   // const headings = getHeadingsFromMdxComponent(Component);
   function MdxComponent({
     components,

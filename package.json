@@ -49,6 +49,7 @@
     "remark-rehype": "^10.1.0",
     "remark-remove-comments": "^0.2.0",
     "remark-slug": "^7.0.1",
+    "remark-stringify": "^10.0.2",
     "styled-components": "^5.3.5",
     "tiny-invariant": "^1.2.0",
     "unified": "^10.1.2",
