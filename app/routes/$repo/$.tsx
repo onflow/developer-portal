@@ -31,6 +31,7 @@ const deconstructPath = (
   if (firstRoute && rawPath) {
     const split = rawPath.split("/") ?? []
     const second = split.length > 0 ? split[0] : ""
+    // eslint-disable-next-line @typescript-eslint/ban-ts-comment
     // @ts-ignore
     const rest = split.slice(1).length > 0 ? split.slice(1).join("/") : "index"
 
