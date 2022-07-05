@@ -47,4 +47,5 @@ export const data: LearnPageProps = {
     ],
   },
   youtubeHref: "https://www.youtube.com/c/FlowBlockchain",
+  architectureTutorials: Array(5).fill(TUTORIAL_TEMPLATE),
 }

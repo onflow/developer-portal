@@ -1,5 +1,14 @@
-/* TODO: styles only work in storybook */
 .mdx-content {
+  overflow: hidden;
+
+  hr {
+    margin-bottom: calc(1.45rem - 1px);
+  }
+
+  p + h1 {
+    margin-top: 4rem !important;
+  }
+
   & table {
     @apply block overflow-x-auto whitespace-nowrap rounded-md border border-0;
     border-collapse: separate;
@@ -66,12 +75,6 @@
 
   & .task-list-item {
     @apply relative mt-3 pl-8;
-  }
-
-  & :not(pre) > code {
-    @apply bg-[#ebeef0] text-[#2075d6] dark:bg-primary-gray-400 dark:text-white;
-    border-radius: 0.3em;
-    padding: 0.1em 0.3em;
   }
 
   & section.footnotes {

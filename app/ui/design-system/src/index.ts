@@ -14,7 +14,6 @@ export type { InternalSidebarConfig } from "./lib/Components/InternalSidebar"
 //   InternalSidebar,
 //   TEMP_SIDEBAR_CONFIG,
 // } from './lib/Components/InternalSidebar';
-export { getHeadingsFromMdxComponent } from "./lib/Components/InternalToc"
 export { LandingHeader } from "./lib/Components/LandingHeader"
 export { LandingHeaderHome } from "./lib/Components/LandingHeaderHome"
 export { Link } from "./lib/Components/Link"
@@ -31,3 +30,4 @@ export { UpcomingEvents } from "./lib/Components/UpcomingEvents"
 export { default as HomePage } from "./lib/Pages/HomePage"
 export type { HomePageProps } from "./lib/Pages/HomePage"
 export { default as PageBackground } from "./lib/Pages/shared/PageBackground"
+export { LargeVideoCard } from "./lib/Components/VideoCard/LargeVideoCard"

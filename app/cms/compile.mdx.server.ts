@@ -5,9 +5,13 @@ import { bundleMDX } from "mdx-bundler"
 import type TPQueue from "p-queue"
 import path from "path"
 import calculateReadingTime from "reading-time"
+import rehypeSanitize, { defaultSchema } from "rehype-sanitize"
 import type * as U from "unified"
 import { visit } from "unist-util-visit"
 import type { GitHubFile } from "./github.server"
+import { HIGHLIGHT_LANGUAGES } from "./utils/constants"
+import formatLinks from "./utils/format-links"
+import { markdownToToc } from "./utils/generate-toc"
 
 if (process.platform === "win32") {
   process.env.ESBUILD_BINARY_PATH = path.resolve(
@@ -51,11 +55,32 @@ const remarkPlugins: U.PluggableList = [
   ],
 ]
 
-const rehypePlugins: U.PluggableList = [removePreContainerDivs]
-
+const rehypePlugins = (repoName: string): U.PluggableList => {
+  return [
+    removePreContainerDivs,
+    () => formatLinks(repoName),
+    [
+      rehypeSanitize,
+      {
+        ...defaultSchema,
+        attributes: {
+          ...defaultSchema.attributes,
+          code: [
+            ...(defaultSchema?.attributes?.code || []),
+            [
+              "className",
+              ...HIGHLIGHT_LANGUAGES.map((name) => `language-${name}`),
+            ],
+          ],
+        },
+      },
+    ],
+  ]
+}
 async function compileMdx<FrontmatterType extends Record<string, unknown>>(
   slug: string,
-  githubFiles: Array<GitHubFile>
+  githubFiles: Array<GitHubFile>,
+  repoName: string
 ) {
   const { default: remarkSlug } = await import("remark-slug")
   const { default: gfm } = await import("remark-gfm")
@@ -89,17 +114,20 @@ async function compileMdx<FrontmatterType extends Record<string, unknown>>(
         ]
         options.rehypePlugins = [
           ...(options.rehypePlugins ?? []),
-          ...rehypePlugins,
+          ...rehypePlugins(repoName),
         ]
+
         return options
       },
     })
     const readTime = calculateReadingTime(indexFile.content)
+    const toc = markdownToToc(indexFile.content)
 
     return {
       code,
       readTime,
       frontmatter: frontmatter as FrontmatterType,
+      toc,
     }
   } catch (error: unknown) {
     console.error(`Compilation error for slug: `, slug)
@@ -174,8 +202,9 @@ export type MdxFrontmatter = {
 type MdxPage = {
   code: string
   // slug: string;
-  // editLink: string;
-  // readTime?: ReturnType<typeof calculateReadingTime>;
+  editLink: string
+
+  readTime?: ReturnType<typeof calculateReadingTime>
 
   /**
    * It's annoying that all these are set to optional I know, but there's
@@ -185,6 +214,7 @@ type MdxPage = {
    * these values are missing to avoid runtime errors.
    */
   frontmatter: MdxFrontmatter
+  toc?: any
 }
 
 /**

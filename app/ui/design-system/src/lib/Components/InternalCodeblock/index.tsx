@@ -2,18 +2,14 @@ import clsx from "clsx"
 import { useState } from "react"
 import { Theme } from "~/cms/utils/theme.provider"
 import { ReactComponent as CollapseIcon } from "../../../../images/content/collapse"
-import { ReactComponent as FileCodeIcon } from "../../../../images/content/file-code"
 import { ReactComponent as FileCopyIcon } from "../../../../images/content/file-copy"
 import { ReactComponent as HashIcon } from "../../../../images/content/hash"
 import { ReactComponent as ScreenFullIcon } from "../../../../images/content/screen-full"
 import { Dialog } from "../Dialog"
+import { NAV_HEIGHT } from "../NavigationBar"
 import { Code } from "./Code"
 
-export type InternalCodeblockProps = {
-  tall?: boolean
-  theme: Theme | null
-  children: JSX.Element
-}
+const DEFAULT_MAX_HEIGHT = 280
 
 function Header({
   open,
@@ -30,9 +26,6 @@ function Header({
     <div className="flex min-h-[50px] items-center rounded-tl-lg rounded-tr-lg bg-white px-2 text-primary-gray-300 dark:bg-primary-gray-dark dark:text-primary-gray-200">
       <div className="p-2">
         <HashIcon />
-      </div>
-      <div className="p-2">
-        <FileCodeIcon />
       </div>
       <div className="ml-auto text-primary-blue">
         <button
@@ -56,10 +49,18 @@ function Header({
   )
 }
 
+export type InternalCodeblockProps = {
+  theme: Theme | null
+  children: JSX.Element
+  autoHeight?: boolean
+  className?: string
+}
+
 export function InternalCodeblock({
-  tall,
   theme,
   children,
+  autoHeight,
+  className,
 }: InternalCodeblockProps) {
   const [open, setOpen] = useState(false)
   const openDialog = () => setOpen(true)
@@ -69,7 +70,12 @@ export function InternalCodeblock({
 
   return (
     <>
-      <div className="my-10 rounded-lg border border-primary-gray-100 text-xs dark:border-0">
+      <div
+        className={clsx(
+          className,
+          `my-10 rounded-lg border border-primary-gray-100 text-xs dark:border-0`
+        )}
+      >
         <Header
           openDialog={openDialog}
           closeDialog={closeDialog}
@@ -79,10 +85,13 @@ export function InternalCodeblock({
         <Code
           language={children.props.className}
           code={codeString}
-          innerClasses={clsx(
-            "w-full",
-            tall ? "max-h-[280px]" : "max-h-[130px]"
-          )}
+          innerClasses="w-full"
+          innerStyle={{
+            minHeight: 60,
+            maxHeight: autoHeight
+              ? `calc(100vh - ${NAV_HEIGHT + 220}px)`
+              : DEFAULT_MAX_HEIGHT,
+          }}
           theme={theme}
         />
       </div>

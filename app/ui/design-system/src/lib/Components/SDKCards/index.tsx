@@ -1,7 +1,9 @@
+import { HeaderWithLink } from "../HeaderWithLink"
 import { SDKCard, SDKCardProps } from "../SDKCard"
 
 export type SDKCardsProps = {
   header?: string
+  headerLink?: string
   cards: SDKCardProps[]
   description?: string
 }
@@ -10,12 +12,17 @@ export function SDKCards({
   header = "SDK's",
   cards,
   description,
+  headerLink = "",
 }: SDKCardsProps) {
   return (
     <div className="container">
       <div className="mb-10 flex items-center justify-between">
         <div>
-          <h2 className="text-h2">{header}</h2>
+          {header && (
+            <HeaderWithLink className="text-h2" headerLink={headerLink}>
+              {header}
+            </HeaderWithLink>
+          )}
           {description && (
             <p className="mt-2 max-w-[640px] text-primary-gray-400 dark:text-primary-gray-100">
               {description}
@@ -32,7 +39,7 @@ export function SDKCards({
           View All SDKs
         </ButtonLink> */}
       </div>
-      <div className="mb-4 grid grid-cols-1 grid-rows-5 gap-4 md:grid-cols-2 md:grid-rows-3 md:gap-8">
+      <div className="mb-4 grid grid-cols-1 gap-4 md:grid-cols-2 md:grid-rows-3 md:gap-8">
         {cards.map((sdkCard, i) => (
           <SDKCard key={i} {...sdkCard} />
         ))}

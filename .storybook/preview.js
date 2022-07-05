@@ -1,5 +1,6 @@
-import { useGlobals, useParameter } from "@storybook/addons"
+import { useGlobals, useParameter, useEffect } from "@storybook/addons"
 import clsx from "clsx"
+import { MemoryRouter } from "react-router"
 import "../app/main.css"
 import tailwindConfig from "../tailwind.config"
 
@@ -17,7 +18,7 @@ export const parameters = {
     values: [
       {
         name: "light",
-        value: "#ffffff",
+        value: "#f6f7f9",
       },
       {
         name: "dark",
@@ -80,11 +81,24 @@ const withDarkMode = (Story, context) => {
   const isDarkModeSelected = globals.backgrounds?.value === "#000000"
   const isDarkMode = isDarkModeSelected || isDefaultDarkModeStory
 
+  useEffect(() => {
+    document.body.classList.add("root")
+    document.body.classList[isDarkMode ? "add" : "remove"]("dark")
+  })
+
+  return <Story {...context} />
+}
+
+const withRouter = (Story, context) => {
+  if (context.parameters.router?.disable === true) {
+    return <Story {...context} />
+  }
+
   return (
-    <div className={clsx("root", { dark: isDarkMode })}>
+    <MemoryRouter>
       <Story {...context} />
-    </div>
+    </MemoryRouter>
   )
 }
 
-export const decorators = [withDarkMode]
+export const decorators = [withDarkMode, withRouter]

@@ -4,9 +4,10 @@ import { Carousel, CarouselProps } from "../Carousel"
 import Tag from "../Tag"
 
 export type EventCardProps = {
+  onClick?: () => void
   className?: string
   ctaText?: string
-  description: string
+  description?: string
   eventDate: string
   href: string
   imageAlt?: string
@@ -15,7 +16,6 @@ export type EventCardProps = {
   tags?: string[]
   title: string
   eventType?: string
-  isPrimary?: boolean
 }
 
 export function EventCard({
@@ -33,7 +33,7 @@ export function EventCard({
   return (
     <div
       className={clsx(
-        "flex min-h-fit flex-col-reverse overflow-hidden rounded-2xl bg-white dark:bg-primary-gray-dark md:min-h-[30rem] md:flex-row",
+        "flex max-h-[450px] flex-col-reverse overflow-hidden rounded-2xl bg-white dark:bg-primary-gray-dark md:min-h-[30rem] md:flex-row",
         className
       )}
     >
@@ -58,14 +58,14 @@ export function EventCard({
           variant="primary-no-darkmode"
           className="whitespace-nowrap px-16 py-4 text-center"
         >
-          {ctaText}
+          {ctaText || "More Details"}
         </ButtonLink>
       </div>
       <div className="flex-none basis-1/2 self-stretch">
         <img
           src={imageSrc}
           alt={imageAlt}
-          className="h-full max-h-[125px] w-full object-cover md:max-h-full"
+          className="min-h-[125px] w-full object-cover md:h-full"
         />
       </div>
     </div>

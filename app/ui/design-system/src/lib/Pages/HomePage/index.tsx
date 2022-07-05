@@ -38,7 +38,7 @@ const HomePage = ({
     <PageBackground gradient="home">
       <LandingHeaderHome
         title="Developer Portal"
-        description="Understand the foundational concepts of Flow and its language, Cadence"
+        description="Discover the developer ecosystem and master the Flow blockchain"
         tag="preview"
       />
       <LinkCard2Column
@@ -49,14 +49,18 @@ const HomePage = ({
       <LinkCard3Column items={threeColumnItems} topRounded={false} />
       <PageSections>
         <PageSection className="pt-0" />
-        <PageSection>
-          <ToolsAndConcepts tools={tools} concepts={concepts} />
+        <PageSection sectionId="sdks-and-tools">
+          <ToolsAndConcepts
+            tools={tools}
+            concepts={concepts}
+            headerLink={"sdks-and-tools"}
+          />
         </PageSection>
-        <PageSection>
-          <Flips {...flips} />
+        <PageSection sectionId="flips">
+          <Flips {...flips} headerLink="flips" />
         </PageSection>
-        <PageSection>
-          <UpcomingEvents {...upcomingEvents} />
+        <PageSection sectionId="upcoming-events">
+          <UpcomingEvents {...upcomingEvents} headerLink="upcoming-events" />
         </PageSection>
       </PageSections>
       <SocialLinksSignup />

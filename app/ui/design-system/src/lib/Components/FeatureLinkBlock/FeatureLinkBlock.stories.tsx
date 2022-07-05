@@ -5,14 +5,13 @@ import FclIconSrc from "../../../../images/tools/tool-fcl.svg"
 export default {
   component: FeatureLinkBlock,
   title: "Components/FeatureLinkBlock",
+  parameters: {
+    layout: "padded",
+  },
 } as Meta
 
 const Template: Story<FeatureLinkBlockProps> = (args) => {
-  return (
-    <div style={{ backgroundColor: "#f1f1f1", padding: "14px" }}>
-      <FeatureLinkBlock {...args} />
-    </div>
-  )
+  return <FeatureLinkBlock {...args} />
 }
 
 export const Default = Template.bind({})

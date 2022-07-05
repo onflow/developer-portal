@@ -1,10 +1,10 @@
 import { UpcomingEventsProps } from "~/ui/design-system/src/lib/Components/UpcomingEvents"
 
+export const OFFICE_HOURS_EVENT_TYPE = "Flow office hours"
 /**
  * Upcoming Events
  */
 const nftNYCEvent = {
-  ctaText: "Learn More",
   description:
     "Come visit the Flow Booth at NFT NYC to learn more about what builders and teams have been working on!",
   eventDate: "June 20-23",
@@ -14,7 +14,6 @@ const nftNYCEvent = {
   location: "New York",
   tags: ["Conference", "Sponsor", "NFT_NYC"],
   title: "NFT NYC",
-  isPrimary: true,
 }
 
 const collisionTorontoEvent = {
@@ -86,7 +85,6 @@ const metaPandaClubEvent = {
 }
 
 const cryptotoysWeb3PartyEvent = {
-  ctaText: "",
   href: "https://upstreamapp.com/home/zU994MU3D5/events/S_muix6MdF",
   eventType: "New York",
   imageSrc:
@@ -111,7 +109,7 @@ const tokenomicsOfficeHours = {
   location: "Online",
   tags: ["Flow", "Community", "Discord"],
   title: "Flow Tokenomics",
-  isPrimary: true,
+  eventType: OFFICE_HOURS_EVENT_TYPE,
 }
 
 const july7OfficeHours = {
@@ -124,11 +122,14 @@ const july7OfficeHours = {
   location: "Online",
   tags: ["Flow", "Community", "Discord"],
   title: "Office Hours",
+  eventType: OFFICE_HOURS_EVENT_TYPE,
+  isPrimary: true,
 }
 
 const allEvents: UpcomingEventsProps = {
   goToCommunityHref: "/community",
-  upcoming: [
+  events: [
+    july7OfficeHours,
     nftNYCEvent,
     collisionTorontoEvent,
     flowTokenomicsEvent,
@@ -137,8 +138,8 @@ const allEvents: UpcomingEventsProps = {
     firesideChatRohamEvent,
     metaPandaClubEvent,
     cryptotoysWeb3PartyEvent,
+    tokenomicsOfficeHours,
   ],
-  officeHours: [tokenomicsOfficeHours, july7OfficeHours],
 }
 
 export { allEvents }

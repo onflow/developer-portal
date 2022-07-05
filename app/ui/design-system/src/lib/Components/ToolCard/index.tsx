@@ -28,10 +28,10 @@ export function ToolCard({
 }: ToolCardProps) {
   return (
     <a
-      className="flex gap-4 rounded-lg bg-white py-6 px-8 hover:shadow-2xl dark:bg-primary-gray-dark dark:text-white dark:hover:shadow-2xl-dark"
+      className="flex gap-4 rounded-lg bg-white px-8 py-6 hover:shadow-2xl dark:bg-primary-gray-dark dark:text-white dark:hover:shadow-2xl-dark"
       href={link}
     >
-      <div>
+      <div className="shrink-0 grow-0 sm:basis-10 md:basis-16">
         <img
           className="dark:hidden"
           src={iconSrc || CodeIconSrc}
@@ -62,7 +62,11 @@ export function ToolCard({
           </div>
           {stars !== undefined && (
             <div className="flex shrink-0 items-center gap-1">
-              <StarIcon className="text-amber-400" width={16} height={16} />
+              <StarIcon
+                className="mb-1 text-amber-400"
+                width={16}
+                height={16}
+              />
               <div className="text-sm text-gray-500 dark:text-gray-300">
                 {stars}
               </div>

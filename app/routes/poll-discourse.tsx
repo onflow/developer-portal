@@ -85,7 +85,8 @@ export default function () {
         {discourseData.latestTopics.map((t) => (
           <li id="user-content-fn-1" key={t.forumLink}>
             Post: {t.forumLink} - {t.heading} - {t.lastUpdatedDate} -{" "}
-            {t.numComments} - {t.participants[0].name}
+            {t.numComments}
+            {t.participants[0] ? ` - ${t.participants![0].name}` : ""}
           </li>
         ))}
       </div>

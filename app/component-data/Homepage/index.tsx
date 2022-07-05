@@ -33,11 +33,11 @@ const homepageStartProjectData: LinkCard2ColumnProps = {
           title: "Hello, World!",
         },
         {
-          href: "https://docs.onflow.org/cadence/tutorial/04-non-fungible-tokens/",
+          href: "https://docs.onflow.org/cadence/tutorial/05-non-fungible-tokens-1/",
           title: "NFTs",
         },
         {
-          href: "https://docs.onflow.org/cadence/tutorial/05-marketplace-setup/",
+          href: "https://docs.onflow.org/cadence/tutorial/07-marketplace-setup/",
           title: "Marketplaces",
         },
       ],
@@ -50,7 +50,7 @@ const homepageThreeColumnData: LinkCard3ColumnItems = [
     title: "Quickstarts",
     description:
       "Quick ways to get started in the environments for development.",
-    icon: <UseCaseIcon />,
+    icon: <UseCaseIcon height="1.5em" width="1.5em" />,
     links: [
       {
         title: "Get started locally",
@@ -76,7 +76,7 @@ const homepageThreeColumnData: LinkCard3ColumnItems = [
   {
     title: "Guides & Tutorials",
     description: "A more in-depth look at how dapp development works.",
-    icon: <EcosystemIcon />,
+    icon: <EcosystemIcon height="1.5em" width="1.5em" />,
     links: [
       {
         title: "Anatomy of a Flow dapp",
@@ -95,7 +95,7 @@ const homepageThreeColumnData: LinkCard3ColumnItems = [
       },
       {
         title: "View more learning resources",
-        href: "/learn",
+        href: "/coming-soon", // TODO: We need to expose this footer once the /learn page is production ready
       },
     ],
   },
@@ -103,7 +103,7 @@ const homepageThreeColumnData: LinkCard3ColumnItems = [
     title: "Smart Contracts",
     description:
       "Use Cadence to interact with and create smart contracts on chain.",
-    icon: <SDKIcon />,
+    icon: <SDKIcon height="1.5em" width="1.5em" />,
     links: [
       {
         title: "Why Cadence?",

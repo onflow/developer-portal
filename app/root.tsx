@@ -33,13 +33,23 @@ import { ErrorPage } from "~/ui/design-system/src/lib/Components/ErrorPage"
 import { NavigationBar } from "~/ui/design-system/src/lib/Components/NavigationBar"
 import * as gtag from "~/utils/gtags.client"
 
+export const getMetaTitle = (title?: string) =>
+  [title, "Flow Developer Portal"].filter(Boolean).join(" | ")
+
 export const links: LinksFunction = () => {
-  return [{ rel: "stylesheet", href: styles }]
+  return [
+    { rel: "stylesheet", href: styles },
+    {
+      rel: "icon",
+      href: "https://assets.website-files.com/5f6294c0c7a8cdd643b1c820/5f6294c0c7a8cd5e06b1c938_Asset%201%405x.png",
+      type: "image/png",
+    },
+  ]
 }
 
 export const meta: MetaFunction = () => ({
   charset: "utf-8",
-  title: "Flow Documentation",
+  title: getMetaTitle(),
   viewport: "width=device-width,initial-scale=1",
 })
 
@@ -52,7 +62,10 @@ export const loader: LoaderFunction = async ({ request }) => {
   const themeSession = await getThemeSession(request)
   return json<LoaderData>({
     theme: themeSession.getTheme(),
-    gaTrackingId: getRequiredServerEnvVar("GA_TRACKING_ID"),
+    gaTrackingId: getRequiredServerEnvVar(
+      "GA_TRACKING_ID",
+      "GA_TRACKING_ID-dev-value"
+    ),
   })
 }
 
@@ -135,7 +148,7 @@ export default function AppWithProviders() {
 }
 
 export function ErrorBoundary({ error }: { error: Error }) {
-  console.error(error)
+  console.error(`ErrorBoundary`, error)
   const location = useLocation()
   return (
     <html className="flex min-h-full bg-red-300">

@@ -1,18 +1,21 @@
+import { useLocation } from "@remix-run/react"
 import clsx from "clsx"
 import { useState } from "react"
-import { Link } from "../Link"
 
 type Tab = {
   name: string
-  link: string
+  link?: string
 }
 
 export type TabMenuProps = {
   tabs: Tab[]
-  onTabChange: any
+  onTabChange?: any
   defaultTabIndex?: number
   centered?: boolean
 }
+
+const tabClasses =
+  "relative cursor-pointer py-4 text-center text-black hover:text-primary-gray-400 dark:text-white hover:dark:text-primary-gray-100 md:py-6"
 
 const TabMenu = ({
   tabs,
@@ -20,6 +23,7 @@ const TabMenu = ({
   centered,
   defaultTabIndex = 0,
 }: TabMenuProps) => {
+  const location = useLocation()
   const [activeIndex, setActiveIndex] = useState(defaultTabIndex)
 
   return (
@@ -32,23 +36,40 @@ const TabMenu = ({
       )}
     >
       {tabs.map(({ name, link }: Tab, index) => {
-        const isCurrentIndex = activeIndex === index
+        const isCurrentIndex = link
+          ? location.pathname === link
+          : activeIndex === index
 
         const indicatorClasses = clsx(
           "absolute bottom-0 w-full bg-black rounded-tr-lg rounded-tl-lg h-[6px] dark:bg-white",
           { block: isCurrentIndex, hidden: !isCurrentIndex }
         )
 
+        if (link) {
+          return (
+            <a key={name} href={link} className={tabClasses}>
+              <span
+                className={clsx(
+                  "whitespace-nowrap px-4 text-sm md:px-6 md:text-base",
+                  isCurrentIndex ? "-mx-[1px] font-bold" : ""
+                )}
+              >
+                {name}
+              </span>
+              <div className={indicatorClasses} />
+            </a>
+          )
+        }
+
         return (
-          <Link
+          <div
             key={name}
-            id={name}
-            href={link}
-            className="relative cursor-pointer py-4 text-center text-black hover:text-primary-gray-400 dark:text-white hover:dark:text-primary-gray-100 md:py-6"
+            role="button"
             onClick={() => {
               setActiveIndex(index)
               onTabChange(index, name)
             }}
+            className={tabClasses}
           >
             <span
               className={clsx(
@@ -59,7 +80,7 @@ const TabMenu = ({
               {name}
             </span>
             <div className={indicatorClasses} />
-          </Link>
+          </div>
         )
       })}
     </div>

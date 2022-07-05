@@ -4,6 +4,7 @@ import ToolEmulatorIconSrc from "../../ui/design-system/images/tools/tool-emulat
 import ToolFclIconSrc from "../../ui/design-system/images/tools/tool-fcl.svg"
 import ToolTestingIconSrc from "../../ui/design-system/images/tools/tool-testing.svg"
 import ToolVsCodeIconSrc from "../../ui/design-system/images/tools/tool-vscode.svg"
+import ToolPortIconSrc from "../../ui/design-system/images/tools/tool-port.svg"
 import CodeIcon from "../../ui/design-system/images/content/code.svg"
 
 // Flow Dev Tools
@@ -368,6 +369,17 @@ const graffleTool = {
   description: `Hosted infrastructure and APIs to index, monitor and store on-chain events alongside other extensive features.`,
 }
 
+const flowPortTool = {
+  title: "Flow Port",
+  authorIcon: "https://avatars.githubusercontent.com/u/62387156?s=64&v=4",
+  authorName: "mini flow",
+  tags: ["Tool"],
+  link: "https://port.onflow.org/",
+  stars: 52,
+  iconSrc: ToolPortIconSrc,
+  description: "Your portal to the decentralized world of Flow.",
+}
+
 export {
   flowserTool,
   overflowTool,
@@ -402,4 +414,5 @@ export {
   commandLineLinter,
   cdcWebpackPlugin,
   graffleTool,
+  flowPortTool,
 }

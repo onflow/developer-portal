@@ -14,10 +14,13 @@ export type SubSection = Link & {
   icon?: React.ReactChild
 }
 
+export type SubSectionComponent = React.FC<any>
+
 export type Section = {
   icon?: React.ReactChild
   title: string
-  subSections: SubSection[]
+  subSections?: SubSection[]
+  subSectionComponent?: SubSectionComponent
   links?: Link[]
 }
 

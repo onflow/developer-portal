@@ -56,7 +56,7 @@ const ProjectCard = ({
           {author.name}
           <div className="flex">
             <div className="scale-50 text-secondary-yellow">
-              <StarIcon />
+              <StarIcon height={24} width={24} />
             </div>
             {numStars}
           </div>
@@ -66,7 +66,7 @@ const ProjectCard = ({
           className="flex justify-between font-bold text-primary-blue dark:text-blue-dark"
           href={projectLink}
         >
-          This is a link
+          Learn More
           <ChevronRightIcon />
         </a>
       </div>

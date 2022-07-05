@@ -1,22 +1,27 @@
-import { ReactComponent as ExternalLinkIcon } from "../../../../images/content/external-link"
+import clsx from "clsx"
 import { EventCardProps } from "../EventCard"
 import Tag from "../Tag"
 
 export function EventCardSmall({
-  eventType = "Online",
-  href,
+  onClick,
+  location = "Online",
   imageAlt = "",
   imageSrc,
   tags,
   title,
   eventDate,
-}: EventCardProps) {
+  selected,
+}: EventCardProps & { selected?: boolean }) {
   return (
-    <a
-      href={href}
-      target="_blank"
-      rel="noreferrer"
-      className="mb-4 flex min-w-max max-w-sm items-start rounded-lg bg-white px-6 py-5 hover:shadow-2xl dark:bg-primary-gray-dark dark:hover:shadow-2xl-dark"
+    <div
+      role="button"
+      className={clsx(
+        "mb-4 flex min-w-max max-w-sm items-start rounded-lg border-4 bg-white px-6 py-5 dark:bg-primary-gray-dark",
+        selected
+          ? "cursor-default border-primary-gray-100/50 bg-primary-gray-50/20 dark:border-primary-gray-400/50 dark:bg-primary-gray-dark/20"
+          : "cursor-pointer border-transparent hover:shadow-2xl dark:hover:shadow-2xl-dark"
+      )}
+      onClick={onClick}
     >
       <img
         src={imageSrc}
@@ -35,11 +40,8 @@ export function EventCardSmall({
         <span className="mt-1 mb-2 text-primary-gray-300 dark:text-primary-gray-100">
           {eventDate}
         </span>
-        <span className="text-sm text-primary-gray-200">{eventType}</span>
+        <span className="text-sm text-primary-gray-200">{location}</span>
       </span>
-      <span className="flex-0 dark:text-primary-gray-200">
-        <ExternalLinkIcon />
-      </span>
-    </a>
+    </div>
   )
 }

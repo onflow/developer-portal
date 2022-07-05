@@ -4,13 +4,12 @@ import ProjectCard, { ProjectCardProps } from "."
 export default {
   component: ProjectCard,
   title: "Components/ProjectCard",
+  parameters: {
+    layout: "padded",
+  },
 } as Meta
 
-const Template: Story<ProjectCardProps> = (args) => (
-  <div style={{ backgroundColor: "#f1f1f1", padding: "14px" }}>
-    <ProjectCard {...args} />
-  </div>
-)
+const Template: Story<ProjectCardProps> = (args) => <ProjectCard {...args} />
 
 const args = {
   projectImage:

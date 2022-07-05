@@ -1,104 +1,205 @@
-export function InternalPage() {
+import { Transition } from "@headlessui/react"
+import clsx from "clsx"
+import { useCallback, useRef, useState } from "react"
+import {
+  InternalLandingHeader,
+  InternalLandingHeaderProps,
+} from "../../Components/InternalLandingHeader"
+import {
+  InternalSidebar,
+  InternalSidebarConfig,
+  InternalSidebarSectionItem,
+} from "../../Components/InternalSidebar"
+import { findSidebarSectionItem } from "../../Components/InternalSidebar/findSidebarSectionItem"
+import { flattenSidebarSectionItems } from "../../Components/InternalSidebar/flattenSidebarSectionItems"
+import { InternalSidebarMenuProps } from "../../Components/InternalSidebarMenu"
+import { InternalSubnav } from "../../Components/InternalSubnav"
+import {
+  InternalToc,
+  InternalTocDisclosure,
+  InternalTocItem,
+} from "../../Components/InternalToc"
+import { LowerPageNav } from "../../Components/LowerPageNav"
+import { MobileMenuToggleButton } from "../../Components/NavigationBar/MobileMenuToggleButton"
+import {
+  useResizeObserver,
+  UseResizeObserverCallback,
+} from "../../utils/useResizeObserver"
+import {
+  useInternalBreadcrumbs,
+  UseInternalBreadcrumbsOptions,
+} from "./useInternalBreadcrumbs"
+
+export type InternalPageProps = React.PropsWithChildren<{
+  /**
+   * The path of the currently active item. This should be a path
+   * relative to the repo (excluding the repo name), matching the item's href
+   * as it is defined in the sidebar configuration object.
+   */
+  activePath: string
+
+  githubUrl?: string
+
+  header?: InternalLandingHeaderProps
+
+  internalSidebarMenu?: InternalSidebarMenuProps
+
+  /**
+   * The configuration object that describes the page hierarchy.
+   */
+  sidebarConfig?: InternalSidebarConfig
+
+  toc?: InternalTocItem[]
+}> &
+  Omit<UseInternalBreadcrumbsOptions, "activeItem">
+
+export function InternalPage({
+  activePath,
+  children,
+  contentDisplayName,
+  contentPath,
+  githubUrl,
+  header,
+  internalSidebarMenu,
+  rootUrl = "/",
+  sidebarConfig,
+  toc,
+}: InternalPageProps) {
+  const [isMobileSidebarOpen, setMobileSidebarOpen] = useState(false)
+
+  const activeItem = findSidebarSectionItem(sidebarConfig, activePath)
+  const breadcrumbs = useInternalBreadcrumbs({
+    activeItem,
+    contentDisplayName,
+    contentPath,
+    rootUrl,
+  })
+  let prevItem: InternalSidebarSectionItem | undefined
+  let nextItem: InternalSidebarSectionItem | undefined
+
+  if (sidebarConfig && activeItem) {
+    const allItems = flattenSidebarSectionItems(sidebarConfig)
+    const activeItemIndex = allItems.indexOf(activeItem)
+    prevItem = allItems[activeItemIndex - 1]
+    nextItem = activeItemIndex >= 0 ? allItems[activeItemIndex + 1] : undefined
+  }
+
+  const subnavRef = useRef<HTMLDivElement>(null)
+  const [subnavRect, setSubnavRect] = useState<DOMRect>()
+  const resizeObserverCallback = useCallback<UseResizeObserverCallback>(() => {
+    setSubnavRect(subnavRef.current?.getBoundingClientRect())
+  }, [subnavRef, setSubnavRect])
+  useResizeObserver(subnavRef, resizeObserverCallback)
+
   return (
-    <div className="mdx-content">
-      <table>
-        <thead>
-          <tr>
-            <th align="left">Node Operator</th>
-            <th align="left">SDKs</th>
-            <th align="left">TOOLS</th>
-            <th align="left">Left-aligned</th>
-            <th align="center">Center-aligned</th>
-            <th align="right">Right-aligned</th>
-          </tr>
-        </thead>
-        <tbody>
-          <tr>
-            <td align="left">Text</td>
-            <td align="left">Text</td>
-            <td align="left">Text</td>
-            <td align="left">git status</td>
-            <td align="center">git status</td>
-            <td align="right">git status</td>
-          </tr>
-          <tr>
-            <td align="left">Text</td>
-            <td align="left">Text</td>
-            <td align="left">Text</td>
-            <td align="left">git diff</td>
-            <td align="center">git diff</td>
-            <td align="right">git diff</td>
-          </tr>
-        </tbody>
-      </table>
-
-      <br />
-
-      <p>
-        This is a reference
-        <sup>
-          <a href="#user-content-fn-1">
-            <span className="undefined mr-1">[1]</span>
-          </a>
-        </sup>
-      </p>
-
-      <p>
-        This is another reference
-        <sup>
-          <a href="#user-content-fn-1">
-            <span className="undefined mr-1">[1]</span>
-          </a>
-        </sup>
-      </p>
-
-      <section data-footnotes="true" className="footnotes">
-        <h2 id="footnotes" className="sr-only mt-6 mb-6 text-2xl font-semibold">
-          <div className="group -ml-11 flex">
-            <a
-              href="#footnotes"
-              title="Footnotes"
-              className="mr-3 flex h-8 w-8 scale-75 items-center justify-center rounded-md bg-gray-100 hover:bg-gray-200 group-hover:visible dark:bg-primary-gray-dark dark:hover:bg-gray-700 md:invisible md:scale-100"
-            >
-              <svg
-                xmlns="http://www.w3.org/2000/svg"
-                width="20"
-                height="20"
-                fill="none"
-                viewBox="0 0 20 20"
-              >
-                <path
-                  fill="#3B3CFF"
-                  d="M9.778 13.511L8.41 14.867a2.222 2.222 0 01-3.122 0 2.178 2.178 0 010-3.084L7.894 9.2a2.222 2.222 0 013.123 0c.264.263.456.59.555.95.055-.045.105-.095.15-.15l.717-.711a3.273 3.273 0 00-.64-.9 3.334 3.334 0 00-4.688 0L4.5 10.994a3.283 3.283 0 000 4.662 3.333 3.333 0 004.689 0l2.028-2.012h-.278a4.441 4.441 0 01-1.161-.133z"
-                ></path>
-                <path
-                  fill="#3B3CFF"
-                  d="M15.894 4.344a3.333 3.333 0 00-4.688 0L9.178 6.356h.272c.394 0 .786.052 1.167.155l1.366-1.355a2.222 2.222 0 013.122 0 2.178 2.178 0 010 3.083L12.5 10.822a2.222 2.222 0 01-3.122 0 2.144 2.144 0 01-.556-.95c-.055.038-.107.08-.155.128l-.717.711c.16.334.376.639.639.9a3.333 3.333 0 004.689 0l2.605-2.583a3.29 3.29 0 000-4.661l.011-.023z"
-                ></path>
-              </svg>
-            </a>
-            Footnotes
+    <div className="flex flex-col">
+      <div className="sticky top-0 z-20" ref={subnavRef}>
+        <InternalSubnav
+          isSidebarOpen={isMobileSidebarOpen}
+          onSidebarToggle={() => setMobileSidebarOpen(!isMobileSidebarOpen)}
+          items={breadcrumbs}
+          githubUrl={githubUrl}
+        />
+      </div>
+      {header && <InternalLandingHeader {...header} />}
+      {sidebarConfig && (
+        <Transition
+          unmount={false}
+          as="div"
+          className="fixed left-0 right-0 bottom-0 z-40 bg-white dark:bg-black md:hidden"
+          style={{
+            top: subnavRect ? subnavRect.top : 0,
+          }}
+          show={isMobileSidebarOpen}
+          enter="transform transition duration-300 ease-in-out"
+          enterFrom="-translate-x-full"
+          enterTo="translate-x-0"
+          leave="transform duration-300 transition ease-in-out"
+          leaveFrom="translate-x-0"
+          leaveTo="-translate-x-full"
+        >
+          <div className="mb-2 border-b border-b-primary-gray-100 px-6 pt-1 pb-2 dark:border-b-primary-gray-300">
+            <MobileMenuToggleButton
+              className="mr-4 md:hidden"
+              height="20px"
+              isOpen
+              onOpenChanged={() => setMobileSidebarOpen(false)}
+            />
           </div>
-        </h2>
-        <ol>
-          <li id="user-content-fn-1">
-            <p>
-              This is a reference{" "}
-              <a href="#user-content-fnref-1">
-                <span className="data-footnote-backref mr-1">↩</span>
-              </a>
-            </p>
-          </li>
-          <li id="user-content-fn-1">
-            <p>
-              This is another reference{" "}
-              <a href="#user-content-fnref-2">
-                <span className="data-footnote-backref mr-1">↩</span>
-              </a>
-            </p>
-          </li>
-        </ol>
-      </section>
+          <div className="p-6">
+            <InternalSidebar
+              config={sidebarConfig}
+              menu={internalSidebarMenu}
+            />
+          </div>
+        </Transition>
+      )}
+
+      <div className="relative flex flex-1">
+        {sidebarConfig && (
+          <>
+            <aside className="hidden w-[300px] flex-none md:block">
+              <div
+                className="sticky h-full max-h-screen overflow-auto p-8"
+                style={{
+                  top: subnavRect?.height ?? 0,
+                  maxHeight: `calc(100vh - ${subnavRect?.bottom ?? 0}px)`,
+                }}
+              >
+                <InternalSidebar
+                  config={sidebarConfig}
+                  menu={internalSidebarMenu}
+                />
+              </div>
+            </aside>
+          </>
+        )}
+        <main
+          className={clsx("flex max-w-full shrink grow-0 flex-row-reverse", {
+            "md:max-w-[calc(100%_-_300px)]": sidebarConfig,
+          })}
+        >
+          {toc && (
+            <div className="hidden flex-none md:flex md:w-1/4">
+              <div
+                className="sticky h-full max-h-screen overflow-auto p-8"
+                style={{
+                  top: subnavRect?.height ?? 0,
+                  maxHeight: `calc(100vh - ${subnavRect?.bottom ?? 0}px)`,
+                }}
+              >
+                <InternalToc headings={toc} />
+              </div>
+            </div>
+          )}
+          <div
+            className={clsx("w-full flex-none p-8 pl-16", {
+              "md:w-3/4": !!toc,
+            })}
+          >
+            {toc && (
+              <div className="md:hidden">
+                <InternalTocDisclosure headings={toc} />
+              </div>
+            )}
+            <div>{children}</div>
+            <LowerPageNav
+              prev={
+                prevItem && {
+                  href: `${rootUrl}${contentPath}/${prevItem.href}`,
+                  name: prevItem.label,
+                }
+              }
+              next={
+                nextItem && {
+                  href: `${rootUrl}${contentPath}/${nextItem.href}`,
+                  name: nextItem.label,
+                }
+              }
+            />
+          </div>
+        </main>
+      </div>
     </div>
   )
 }

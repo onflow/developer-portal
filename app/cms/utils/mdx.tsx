@@ -16,6 +16,7 @@ import {
   HeadingProps,
   InputProps,
   InternalCodeblock,
+  LargeVideoCard,
   Link,
   StaticCheckbox,
 } from "~/ui/design-system"
@@ -38,23 +39,32 @@ type CachifiedOptions = {
 
 const defaultMaxAge = 1000 * 60 * 60 * 24 * 30
 
-const getCompiledKey = (contentDir: string, slug: string) =>
-  `${contentDir}:${slug}:compiled`
+const getCompiledKey = (
+  owner: string,
+  repo: string,
+  branch: string,
+  path: string
+) => `${owner}:${repo}:${branch}:${path}:compiled`
+
 const checkCompiledValue = (value: unknown) =>
   typeof value === "object" &&
   (value === null || ("code" in value && "frontmatter" in value))
 
 async function getMdxPage(
   {
+    owner,
     repo,
+    branch,
     fileOrDirPath,
   }: {
+    owner: string
     repo: string
+    branch: string
     fileOrDirPath: string
   },
   options: CachifiedOptions
 ): Promise<MdxPage | null> {
-  const key = getCompiledKey(repo, fileOrDirPath)
+  const key = getCompiledKey(owner, repo, branch, fileOrDirPath)
   const page = await cachified({
     cache: redisCache,
     maxAge: defaultMaxAge,
@@ -65,12 +75,17 @@ async function getMdxPage(
     checkValue: checkCompiledValue,
     getFreshValue: async () => {
       const pageFiles = await downloadMdxFilesCached(
+        owner,
         repo,
+        branch,
         fileOrDirPath,
         options
       )
+
       const compiledPage = await compileMdxCached({
+        owner,
         repo,
+        branch,
         fileOrDirPath,
         ...pageFiles,
         options,
@@ -93,17 +108,31 @@ async function getMdxPage(
 }
 
 async function getMdxPagesInDirectory(
+  owner: string,
   repo: string,
+  branch: string,
   fileOrDirPath: string,
   options: CachifiedOptions
 ) {
-  const dirList = await getMdxDirList(repo, fileOrDirPath, options)
+  const dirList = await getMdxDirList(
+    owner,
+    repo,
+    branch,
+    fileOrDirPath,
+    options
+  )
 
   // our octokit throttle plugin will make sure we don't hit the rate limit
   const pageDatas = await Promise.all(
     dirList.map(async ({ slug }) => {
       return {
-        ...(await downloadMdxFilesCached(repo, fileOrDirPath, options)),
+        ...(await downloadMdxFilesCached(
+          owner,
+          repo,
+          branch,
+          fileOrDirPath,
+          options
+        )),
         slug,
       }
     })
@@ -111,7 +140,14 @@ async function getMdxPagesInDirectory(
 
   const pages = await Promise.all(
     pageDatas.map((pageData) =>
-      compileMdxCached({ repo, fileOrDirPath, ...pageData, options })
+      compileMdxCached({
+        owner,
+        repo,
+        branch,
+        fileOrDirPath,
+        ...pageData,
+        options,
+      })
     )
   )
   return pages.filter(typedBoolean)
@@ -120,7 +156,9 @@ async function getMdxPagesInDirectory(
 const getDirListKey = (contentDir: string) => `${contentDir}:dir-list`
 
 async function getMdxDirList(
+  owner: string,
   repo: string,
+  branch: string,
   fileOrDirPath: string,
   options?: CachifiedOptions
 ) {
@@ -131,13 +169,12 @@ async function getMdxDirList(
     key: getDirListKey(fileOrDirPath),
     checkValue: (value: unknown) => Array.isArray(value),
     getFreshValue: async () => {
-      const fullContentDirPath = `docs/${fileOrDirPath}`
-      const dirList = (await downloadDirList(repo, fullContentDirPath))
+      const dirList = (
+        await downloadDirList(owner, repo, branch, fileOrDirPath)
+      )
         .map(({ name, path }) => ({
           name,
-          slug: path
-            .replace(`${fullContentDirPath}/`, "")
-            .replace(/\.mdx$/, ""),
+          slug: path.replace(`${fileOrDirPath}/`, "").replace(/\.mdx$/, ""),
         }))
         .filter(({ name }) => name !== "README.md")
       return dirList
@@ -145,15 +182,21 @@ async function getMdxDirList(
   })
 }
 
-const getDownloadKey = (contentDir: string, slug: string) =>
-  `${contentDir}:${slug}:downloaded`
+const getDownloadKey = (
+  owner: string,
+  repo: string,
+  branch: string,
+  fileOrDirPath: string
+) => `${owner}:${repo}:${branch}:${fileOrDirPath}:downloaded`
 
 async function downloadMdxFilesCached(
+  owner: string,
   repo: string,
+  branch: string,
   fileOrDirPath: string,
   options: CachifiedOptions
 ) {
-  const key = getDownloadKey(repo, fileOrDirPath)
+  const key = getDownloadKey(owner, repo, branch, fileOrDirPath)
   const downloaded = await cachified({
     cache: redisCache,
     maxAge: defaultMaxAge,
@@ -177,7 +220,8 @@ async function downloadMdxFilesCached(
 
       return true
     },
-    getFreshValue: async () => downloadMdxFileOrDirectory(repo, fileOrDirPath),
+    getFreshValue: async () =>
+      downloadMdxFileOrDirectory(owner, repo, branch, fileOrDirPath),
   })
   // if there aren't any files, remove it from the cache
   if (!downloaded.files.length) {
@@ -187,19 +231,23 @@ async function downloadMdxFilesCached(
 }
 
 async function compileMdxCached({
+  owner,
   repo,
+  branch,
   fileOrDirPath,
   entry,
   files,
   options,
 }: {
+  owner: string
   repo: string
+  branch: string
   fileOrDirPath: string
   entry: string
   files: Array<GitHubFile>
   options: CachifiedOptions
 }) {
-  const key = getCompiledKey(repo, fileOrDirPath)
+  const key = getCompiledKey(owner, repo, branch, fileOrDirPath)
   const page = await cachified({
     cache: redisCache,
     maxAge: defaultMaxAge,
@@ -208,13 +256,22 @@ async function compileMdxCached({
     checkValue: checkCompiledValue,
     getFreshValue: async () => {
       const compiledPage = await compileMdx<MdxPage["frontmatter"]>(
-        `docs/${fileOrDirPath}`,
-        files
+        fileOrDirPath,
+        files,
+        repo
       )
       if (compiledPage) {
         return {
           ...compiledPage,
           fileOrDirPath,
+          editLink: [
+            "https://github.com",
+            owner,
+            repo,
+            "blob",
+            branch,
+            entry,
+          ].join("/"),
         }
       } else {
         return null
@@ -283,17 +340,35 @@ function mapFromMdxPageToMdxListItem(page: MdxPage): MdxListItem {
   return mdxListItem
 }
 
-function GetMdxComponents(theme: Theme | null) {
+const isLinkExternal = (href?: string) => !!href?.match(/^(www|http)/i)
+
+function GetMdxComponents(theme: Theme) {
   return {
-    a: (props: LinkProps & { href: string }) => (
-      <RemixLink to={props.href}>
-        {/* @ts-expect-error: We need to figure out how to type this */}
-        <Link {...props} />
-      </RemixLink>
-    ),
+    a: (props: LinkProps & { href: string }) => {
+      if (isLinkExternal(props.href)) {
+        return (
+          <Link
+            {...props}
+            isExternal={true}
+            rel="noreferrer"
+            className="not-prose"
+          />
+        )
+      } else {
+        return (
+          <RemixLink to={props.href} className="not-prose">
+            <Link {...props} isExternal={false} />
+          </RemixLink>
+        )
+      }
+    },
     input: (props: InputProps) =>
       props.type === "checkbox" ? (
-        <StaticCheckbox {...props} asInternalChecklist={true} />
+        <StaticCheckbox
+          {...props}
+          asInternalChecklist={true}
+          className="not-prose"
+        />
       ) : (
         <input {...props} />
       ),
@@ -304,7 +379,32 @@ function GetMdxComponents(theme: Theme | null) {
     h5: (props: HeadingProps) => <Heading type="h5" {...props} />,
     h6: (props: HeadingProps) => <Heading type="h6" {...props} />,
     pre: ({ children }: { className: string; children: JSX.Element }) => {
-      return <InternalCodeblock children={children} theme={theme} />
+      return (
+        <InternalCodeblock
+          children={children}
+          theme={theme}
+          autoHeight={true}
+          className="not-prose"
+        />
+      )
+    },
+    Callout: (props: React.PropsWithChildren<{}>) => (
+      <div>{props.children}</div>
+    ),
+    Img: (props: React.PropsWithRef<{}>) => (
+      <img {...props} className="not-prose" />
+    ),
+    iframe: (props: React.PropsWithRef<{ src: string; title: string }>) => {
+      const { src, title, ...rest } = props
+      return (
+        <LargeVideoCard
+          link={src}
+          title={title}
+          length={0}
+          {...rest}
+          className="not-prose"
+        />
+      )
     },
   }
 }
@@ -315,20 +415,25 @@ function GetMdxComponents(theme: Theme | null) {
  * @returns the component
  */
 function getMdxComponent(page: MdxPage, theme: Theme | null) {
-  const { code } = page
+  const { code, frontmatter } = page
+  const Component = getMDXComponent(code, frontmatter)
 
-  const Component = getMDXComponent(code)
   // const headings = getHeadingsFromMdxComponent(Component);
   function MdxComponent({
     components,
     ...rest
   }: Parameters<typeof Component>["0"]) {
     return (
-      <div className="container flex flex-row">
-        <div className="mdx-content">
-          {/* @ts-expect-error: We need to figure out how to type this */}
-          <Component components={GetMdxComponents(theme)} {...rest} />
-        </div>
+      <div className="prose dark:prose-invert">
+        <header>
+          <Heading type="h1" children={frontmatter.title} />
+          <p>{frontmatter.description}</p>
+        </header>
+        <Component
+          /* @ts-expect-error: Does not like the link tage type definition above */
+          components={GetMdxComponents(theme)}
+          {...rest}
+        />
       </div>
     )
   }

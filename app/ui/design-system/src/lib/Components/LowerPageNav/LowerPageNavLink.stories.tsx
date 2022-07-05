@@ -4,6 +4,9 @@ import { LowerPageNav, LowerPageNavProps } from "."
 export default {
   component: LowerPageNav,
   title: "Components/LowerPageNav",
+  parameters: {
+    layout: "padded",
+  },
 } as Meta
 
 const Template: Story<LowerPageNavProps> = (args) => <LowerPageNav {...args} />
@@ -38,4 +41,14 @@ longName.args = {
     href: "#example",
     name: "Quorum Certificate and Distributed Key Generation",
   },
+}
+
+export const PreviousOnly = Template.bind({})
+PreviousOnly.args = {
+  prev: Default.args.prev,
+}
+
+export const NextOnly = Template.bind({})
+NextOnly.args = {
+  next: Default.args.next,
 }

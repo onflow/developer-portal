@@ -2,13 +2,14 @@ import EcosystemIcon from "~/ui/design-system/images/content/ecosystem"
 import AmbassadorsIcon from "~/ui/design-system/images/nav/ambassadors"
 import SocialsIcon from "~/ui/design-system/images/nav/socials"
 import { Section } from "~/ui/design-system/src/lib/Components/NavigationBar/types"
+import { DISCORD_URL } from "~/constants"
 import { emeraldDaoCard, flowVerseCard, grantsCard } from "./navCardsData"
 // Connect Tab
 export const eventsSection: Section = {
   links: [
     {
       title: "View more of the Flow community",
-      href: "/community",
+      href: "/coming-soon",
     },
   ],
   title: "Flow Ecosystem",
@@ -19,23 +20,23 @@ export const eventsSection: Section = {
     },
     {
       title: "Emerald Dao Bootcamp",
-      href: "https://github.com/onflow/fcl-js",
+      href: "https://academy.ecdao.org/",
     },
     {
       title: "FLOATs: Participation NFTs",
-      href: "https://github.com/onflow/flow-jvm-sdk",
+      href: "https://floats.city/",
     },
     {
       title: "FNS: Flow Name Service",
-      href: "https://github.com/Outblock/flow-swift",
+      href: "https://www.flowns.org/",
     },
     {
       title: ".find: Flow Name Service",
-      href: "https://github.com/Outblock/flow-swift",
+      href: "https://find.xyz/",
     },
     {
       title: "Jobs on Flow",
-      href: "https://github.com/onflow/flow-go-sdk",
+      href: "https://jobs.flowverse.co/",
     },
   ],
   icon: <EcosystemIcon height="1.5em" width="1.5em" />,
@@ -45,7 +46,7 @@ export const socialsSection: Section = {
   links: [
     {
       title: "Chat with Flow developers now on Discord",
-      href: "https://discord.gg/mDvccFPx",
+      href: DISCORD_URL,
     },
   ],
   title: "Socials & Platforms",
@@ -60,7 +61,7 @@ export const socialsSection: Section = {
     },
     {
       title: "Blog",
-      href: "http://blog.onflow.com/",
+      href: "https://www.onflow.org/blog",
     },
     {
       title: "Youtube",
@@ -68,7 +69,7 @@ export const socialsSection: Section = {
     },
     {
       title: "Discord",
-      href: "https://discord.gg/mDvccFPx",
+      href: DISCORD_URL,
     },
     {
       title: "Twitter",

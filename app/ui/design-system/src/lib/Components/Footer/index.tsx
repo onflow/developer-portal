@@ -1,8 +1,9 @@
-import FlowDocsLogo from "../../../../images/logos/flow-docs-logo-light.svg"
+import { ReactComponent as FlowDocsLogo } from "../../../../images/logos/flow-docs-logo"
 import OnFlowIcon from "../../../../images/logos/flow-icon-bw-light.svg"
 import DiscordIcon from "../../../../images/social/discord-light.svg"
 import ForumIcon from "../../../../images/social/forum-light.svg"
 import GithubIcon from "../../../../images/social/github-light.svg"
+import { DISCORD_URL } from "../../../../../../constants"
 
 // reduce repetition of the section layout in Footer component
 const footerSections = [
@@ -18,7 +19,7 @@ const footerSections = [
         text: "SDK's & Tools",
       },
       {
-        link: "/learn",
+        link: "/coming-soon",
         text: "Learning Resources",
       },
       {
@@ -55,7 +56,7 @@ const footerSections = [
     header: "Community",
     links: [
       {
-        link: "/community",
+        link: "/coming-soon",
         text: "Ecosystem",
       },
       {
@@ -63,11 +64,11 @@ const footerSections = [
         text: "Flow Port",
       },
       {
-        link: "/community",
+        link: "/coming-soon",
         text: "Developer Grants",
       },
       {
-        link: "/community",
+        link: "/coming-soon",
         text: "Bug Bounties",
       },
       {
@@ -157,12 +158,19 @@ export const Footer = ({ sections = footerSections }) => {
     <footer className="bg-black px-6 text-white">
       <div className="container mx-auto">
         <div className="block items-center justify-between px-2 pt-8 pb-6 md:flex md:px-4 md:pt-16">
-          <img src={FlowDocsLogo} alt="Flow Docs" width="150" />
+          <a href="/" className="py-2 hover:opacity-75">
+            <FlowDocsLogo
+              className="origin-top-left scale-75"
+              style={{
+                transformOrigin: "center left",
+              }}
+            />
+          </a>
           <div className="flex items-center gap-6 pt-8 md:pt-0">
             <a href="https://github.com/onflow" className="hover:opacity-75">
               <img src={GithubIcon} height={32} width={32} />
             </a>
-            <a href="https://discord.gg/mDvccFPx" className="hover:opacity-75">
+            <a href={DISCORD_URL} className="hover:opacity-75">
               <img src={DiscordIcon} height={28} width={28} />
             </a>
             <a href="https://forum.onflow.org/" className="hover:opacity-75">
@@ -173,11 +181,11 @@ export const Footer = ({ sections = footerSections }) => {
             </a>
           </div>
         </div>
-        <div className="grid auto-cols-min gap-y-4 border-y border-y-primary-gray-400 px-2 pb-6 pt-9 xs:grid-cols-1 sm:grid-cols-2 sm:gap-x-12 md:grid-cols-[fit-content(25%)_fit-content(25%)_fit-content(25%)_fit-content(25%)] md:gap-x-20 md:px-4">
+        <div className="grid auto-cols-min gap-y-4 border-y border-y-primary-gray-400 px-2 pb-6 pt-9 xs:grid-cols-1 sm:grid-cols-2 sm:gap-x-12 md:gap-x-20 md:px-4 lg:grid-cols-[fit-content(25%)_fit-content(25%)_fit-content(25%)_fit-content(25%)]">
           {sections.map((section, i) => (
             <section key={i} className="w-fit pb-12 md:pb-0">
               <div className="pb-3">
-                <h3 className="whitespace-nowrap text-base font-bold lg:text-2xl">
+                <h3 className="whitespace-nowrap text-base font-bold md:text-xl lg:text-2xl">
                   {section.header}
                 </h3>
               </div>
@@ -185,7 +193,7 @@ export const Footer = ({ sections = footerSections }) => {
                 {section.links.map((link, j) => (
                   <li className="py-1 pl-0" key={j}>
                     <a
-                      className="whitespace-nowrap text-xs text-primary-gray-200 hover:text-primary-gray-100 lg:text-base"
+                      className="whitespace-nowrap text-xs text-primary-gray-200 hover:text-primary-gray-100 md:text-sm lg:text-base"
                       href={link.link}
                     >
                       {link.text}

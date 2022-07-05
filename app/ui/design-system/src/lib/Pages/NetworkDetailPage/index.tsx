@@ -11,6 +11,7 @@ import {
   TabMenu,
 } from "../../Components"
 import { FeaturedArticle } from "../../Components/FeaturedArticleSlider"
+import { HeaderWithLink } from "../../Components/HeaderWithLink"
 import { Article, StatuspageApiResponse } from "../../interfaces"
 import PageBackground from "../shared/PageBackground"
 import PageSection from "../shared/PageSection"
@@ -22,22 +23,25 @@ export type NetworkDetailPageProps = {
   featuredArticle: Article
 }
 
+export const getNetworkNameFromParam = (param: string) =>
+  param
+    .split("-")
+    .map((name) => name.slice(0, 1).toUpperCase() + name.slice(1))
+    .join(" ")
+
 const NetworkDetailPage = ({
   networkName,
   networkStatuses,
   featuredArticle,
 }: NetworkDetailPageProps) => {
-  const convertedName = networkName
-    .split("-")
-    .map((name) => name[0].toUpperCase() + name.slice(1))
-    .join(" ")
+  const convertedName = getNetworkNameFromParam(networkName)
   const defaultIndex = networkStatuses.findIndex((object) => {
     return object.name === convertedName
   })
   const [selectedNetworkIndex, setSelectedNetworkIndex] = useState(defaultIndex)
   const tabs = networkStatuses.map((network: StatuspageApiResponse) => ({
     name: network.name,
-    link: `/${networkName}`,
+    link: `/network/${network.name.replace(" ", "-").toLowerCase()}`,
   }))
   const currentNetwork = networkStatuses[selectedNetworkIndex]
 
@@ -54,12 +58,12 @@ const NetworkDetailPage = ({
             </a>
           </div>
           <TabMenu tabs={tabs} onTabChange={setSelectedNetworkIndex} centered />
-          <div className="text-h3 md:text-h1 mt-16 mb-14 md:text-center md:text-5xl">
-            {currentNetwork.name}
+          <div className="text-h3 md:text-h1 mt-16 mb-14 pl-4 md:text-center md:text-5xl">
+            {currentNetwork?.name}
           </div>
           <NetworkDetailsCard
             status={
-              currentNetwork.status === "operational"
+              currentNetwork?.status === "operational"
                 ? "Healthy"
                 : "Under Maintenance"
             }
@@ -70,11 +74,16 @@ const NetworkDetailPage = ({
             rssFeed="/link"
           />
         </PageSection>
-        <PageSection>
+        <PageSection sectionId="upcoming-spork">
           <div className="container">
-            <div className="text-h2 xs:font-md mb-8">Upcoming Spork</div>
+            <HeaderWithLink
+              headerLink="upcoming-spork"
+              className="text-h2 xs:font-md mb-8"
+            >
+              Upcoming Spork
+            </HeaderWithLink>
             <SporksCard
-              heading={currentNetwork.name}
+              heading={currentNetwork?.name || ""}
               timestamp={endOfWeek(new Date())}
               sporkMetadata={{
                 accessNode: "access-001.mainnet15.nodes.onflow.org:9000",
@@ -92,14 +101,19 @@ const NetworkDetailPage = ({
             />
           </div>
         </PageSection>
-        <PageSection>
+        <PageSection sectionId="past-sporks">
           <div className="container">
-            <div className="text-h4 xs:font-md mb-8">Past Sporks</div>
+            <HeaderWithLink
+              headerLink="past-sporks"
+              className="text-h4 xs:font-md mb-8"
+            >
+              Past Sporks
+            </HeaderWithLink>
             <div className="mb-4 divide-y dark:divide-primary-gray-400">
               {[1, 2, 3, 4].map((index) => (
                 <div className="divided-item-hover" key={index}>
                   <SporksCard
-                    heading={currentNetwork.name}
+                    heading={currentNetwork?.name || ""}
                     timestamp={endOfWeek(new Date())}
                     sporkMetadata={{
                       accessNode: "access-001.mainnet15.nodes.onflow.org:9000",

@@ -1,12 +1,16 @@
 import { NavLink } from "@remix-run/react"
 import clsx from "clsx"
+import {
+  InternalSidebarMenu,
+  InternalSidebarMenuProps,
+} from "../InternalSidebarMenu"
 
-type InternalSidebarSectionItem = {
+export type InternalSidebarSectionItem = {
   label: string
   href: string
 }
 
-type InternalSidebarSection = {
+export type InternalSidebarSection = {
   title: string
   items: InternalSidebarSectionItem[]
 }
@@ -17,6 +21,7 @@ export type InternalSidebarConfig = {
 
 export type InternalSidebarProps = {
   config: InternalSidebarConfig
+  menu?: InternalSidebarMenuProps
 }
 
 export const TEMP_SIDEBAR_CONFIG: InternalSidebarConfig = {
@@ -54,9 +59,10 @@ export const TEMP_SIDEBAR_CONFIG: InternalSidebarConfig = {
   ],
 }
 
-export function InternalSidebar({ config }: InternalSidebarProps) {
+export function InternalSidebar({ config, menu }: InternalSidebarProps) {
   return (
-    <div className="mb-8 mr-3 w-full min-w-min shrink-0 bg-gray-100 bg-opacity-80 p-8 dark:bg-primary-gray-dark md:mb-0 md:w-80">
+    <>
+      {menu && <InternalSidebarMenu {...menu} />}
       {config.sections.map((section) => (
         <div
           className="border-b-1 mb-2 border-b border-b-gray-300 py-4 last:border-b-0 dark:border-b-gray-700"
@@ -86,6 +92,6 @@ export function InternalSidebar({ config }: InternalSidebarProps) {
           </div>
         </div>
       ))}
-    </div>
+    </>
   )
 }

@@ -2,6 +2,7 @@
 import { Meta, Story } from "@storybook/react"
 import { InternalCodeblock, InternalCodeblockProps } from "."
 
+// TODO: prism-react-renderer's Highlight throws an error in story
 export default {
   component: InternalCodeblock,
   title: "Components/InternalCodeblock",
@@ -132,6 +133,7 @@ const Template: Story<InternalCodeblockProps> = (args) => {
 export const Default = Template.bind({})
 Default.args = {
   rawText: "Raw code",
+  autoHeight: true,
 }
 
 export const DefaultDark = Template.bind({})
@@ -152,5 +154,4 @@ DefaultMobile.parameters = {
 export const Tall = Template.bind({})
 Tall.args = {
   ...Default.args,
-  tall: true,
 }

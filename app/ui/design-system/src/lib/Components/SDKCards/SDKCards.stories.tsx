@@ -4,18 +4,18 @@ import { SDKCards, SDKCardsProps } from "."
 export default {
   component: SDKCards,
   title: "Components/SDKCards",
+  parameters: {
+    layout: "centered",
+  },
 } as Meta
 
 const Template: Story<SDKCardsProps> = (args) => {
-  return (
-    <div className="bg-gray-100 p-4 dark:bg-black">
-      <SDKCards {...args} />
-    </div>
-  )
+  return <SDKCards {...args} />
 }
 
 export const Primary = Template.bind({})
 Primary.args = {
+  headerLink: "#",
   cards: [
     {
       title: "Flow Port",

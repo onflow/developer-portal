@@ -1,5 +1,6 @@
-import { useEffect, useLayoutEffect, useRef, useState } from "react"
+import { useEffect, useRef, useState } from "react"
 import TutorialCard, { TutorialCardProps } from "."
+import { useIsomorphicLayoutEffect } from "../../utils/useIsomorphicLayoutEffect"
 import Pagination from "../Pagination"
 
 export type PaginatedTutorialCardListProps = {
@@ -25,7 +26,7 @@ export const PaginatedTutorialCardList = ({
   tutorials,
   scrollOnPaginate = true,
 }: PaginatedTutorialCardListProps) => {
-  const topRef = useRef<HTMLDivElement>()
+  const scrollRef = useRef<HTMLAnchorElement>(null)
   const [page, setPage] = useState(1)
 
   // Whenever the page changes we want to scroll to the top of the list -- but
@@ -42,24 +43,25 @@ export const PaginatedTutorialCardList = ({
     setPage(1)
   }, [listId])
 
-  useLayoutEffect(() => {
-    if (resetScroll > 0 && scrollOnPaginate) {
-      // We don't want to scroll on the initial render.
-      topRef.current?.scrollIntoView({ behavior: "smooth" })
+  useIsomorphicLayoutEffect(() => {
+    if (!scrollRef.current || resetScroll === 0 || !scrollOnPaginate) {
+      return
     }
+
+    scrollRef.current.scrollIntoView({ behavior: "smooth", block: "nearest" })
   }, [resetScroll, scrollOnPaginate])
 
   return (
     <div className={className}>
-      <div
-        className="mb-4 grid grid-cols-1 gap-4 md:grid-cols-4 md:gap-6"
-        // @ts-expect-error please fix
-        ref={topRef}
-      >
+      <div className="mb-4 grid grid-cols-1 gap-4 md:grid-cols-4 md:gap-6">
         {tutorials
           .slice((page - 1) * pageSize, page * pageSize)
           .map((tutorialProps, index) => (
-            <TutorialCard key={index} {...tutorialProps} />
+            <TutorialCard
+              key={index}
+              {...tutorialProps}
+              ref={index === 0 ? scrollRef : undefined}
+            />
           ))}
       </div>
       <Pagination

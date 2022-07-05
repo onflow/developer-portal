@@ -43,3 +43,15 @@ mobile.parameters = {
     defaultViewport: "xs",
   },
 }
+
+export const withoutLinks = Template.bind({})
+withoutLinks.args = {
+  tabs: [
+    { name: "Mainnet" },
+    { name: "Testnet" },
+    { name: "Canary" },
+    { name: "Foo" },
+    { name: "Bar" },
+  ],
+  onTabChange: undefined,
+}

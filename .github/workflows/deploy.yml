@@ -4,7 +4,7 @@ on:
   push:
     branches:
       - main
-      - dev
+      - production
   pull_request: {}
 
 env:
@@ -41,6 +41,18 @@ jobs:
       - name: Eslint
         run: yarn lint
 
+  jest:
+    name: Jest
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v3
+      - uses: actions/setup-node@v3
+        with:
+          cache: "yarn"
+      - name: Install modules
+        run: yarn install
+      - run: yarn jest
+
   typecheck:
     name: TypeScript
     runs-on: ubuntu-latest
@@ -72,21 +84,23 @@ jobs:
   deploy:
     name: Deploy Staging
     runs-on: ubuntu-latest
+    timeout-minutes: 10
     needs: [lint, typecheck, build]
     # only build/deploy main branch on pushes
     if: ${{ github.ref == 'refs/heads/main' && github.event_name == 'push' }}
     steps:
       - uses: actions/checkout@v2
       - uses: superfly/flyctl-actions/setup-flyctl@master
-      - run: flyctl deploy --config fly.staging.toml --remote-only
+      - run: flyctl deploy --config fly.staging.toml --remote-only -e GIT_SHA=$(git rev-parse HEAD)
 
   deploy-production:
     name: Deploy Production
     runs-on: ubuntu-latest
+    timeout-minutes: 10
     needs: [lint, typecheck, build]
     # only build/deploy main branch on pushes
     if: ${{ github.ref == 'refs/heads/production' && github.event_name == 'push' }}
     steps:
       - uses: actions/checkout@v2
       - uses: superfly/flyctl-actions/setup-flyctl@master
-      - run: flyctl deploy --config fly.production.toml --remote-only
+      - run: flyctl deploy --config fly.production.toml --remote-only -e GIT_SHA=$(git rev-parse HEAD)

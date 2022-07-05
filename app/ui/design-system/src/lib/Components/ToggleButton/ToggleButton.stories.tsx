@@ -13,6 +13,9 @@ export default {
       control: { type: "select" },
     },
   },
+  parameters: {
+    layout: "padded",
+  },
 } as Meta
 
 const Template: Story<ToggleButtonProps> = (args) => {
@@ -20,7 +23,6 @@ const Template: Story<ToggleButtonProps> = (args) => {
     <div
       style={{
         gap: "1rem",
-        padding: "1rem",
         display: "inline-flex",
         flexDirection: "column",
       }}

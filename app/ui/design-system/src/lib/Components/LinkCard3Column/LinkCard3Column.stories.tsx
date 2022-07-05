@@ -7,14 +7,13 @@ import { ReactComponent as UseCaseIcon } from "../../../../images/content/use-ca
 export default {
   component: LinkCard3Column,
   title: "Components/LinkCard3Column",
+  parameters: {
+    layout: "centered",
+  },
 } as Meta
 
 const Template: Story<LinkCard3ColumnProps> = (args) => {
-  return (
-    <div style={{ backgroundColor: "#f1f1f1", padding: "14px" }}>
-      <LinkCard3Column {...args} />
-    </div>
-  )
+  return <LinkCard3Column {...args} />
 }
 
 export const Default = Template.bind({})

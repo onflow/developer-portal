@@ -1,10 +1,12 @@
 import { Meta, Story } from "@storybook/react"
 import ToolsAndConcepts, { ToolsAndConceptsProps } from "."
-import PageBackground from "../../Pages/shared/PageBackground"
 
 export default {
   component: ToolsAndConcepts,
   title: "Components/ToolsAndConcepts",
+  parameters: {
+    layout: "centered",
+  },
 } as Meta
 
 const tutorialCard = {
@@ -19,11 +21,7 @@ const tutorialCard = {
 }
 
 const Template: Story<ToolsAndConceptsProps> = (args) => {
-  return (
-    <PageBackground className="bg-primary-gray-50 py-6 dark:bg-black">
-      <ToolsAndConcepts {...args} />
-    </PageBackground>
-  )
+  return <ToolsAndConcepts {...args} />
 }
 
 const tools = Array(6).fill({
@@ -40,6 +38,7 @@ const tools = Array(6).fill({
 const DefaultArgs: ToolsAndConceptsProps = {
   tools,
   concepts: Array(10).fill(tutorialCard),
+  headerLink: "#",
 }
 export const Default = Template.bind({})
 Default.args = DefaultArgs
