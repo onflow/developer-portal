@@ -7,7 +7,7 @@ export type EventCardProps = {
   onClick?: () => void
   className?: string
   ctaText?: string
-  description: string
+  description?: string
   eventDate: string
   href: string
   imageAlt?: string

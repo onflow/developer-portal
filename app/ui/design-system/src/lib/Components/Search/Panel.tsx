@@ -48,7 +48,7 @@ export function Panel({
               {items.map((item: HitType, index: number) => {
                 const itemProps = autocomplete.getItemProps({
                   item,
-                  source: collection.source,
+                  source: collection!.source, // defined because `items` is defined
                 })
                 const selected = itemProps["aria-selected"]
                 return (
