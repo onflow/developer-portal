@@ -4,10 +4,15 @@ import { InternalSidebar, InternalSidebarProps, TEMP_SIDEBAR_CONFIG } from "."
 export default {
   component: InternalSidebar,
   title: "Components/InternalSidebar",
+  parameters: {
+    layout: "padded",
+  },
 } as Meta
 
 const Template: Story<InternalSidebarProps> = (args) => (
-  <InternalSidebar {...args} />
+  <div style={{ width: "300px" }}>
+    <InternalSidebar {...args} />
+  </div>
 )
 
 export const Default = Template.bind({})
