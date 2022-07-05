@@ -16,8 +16,7 @@ function updateRelativeDepth(linkText: string, index = false) {
 
 module.exports = updateRelativeDepth
 
-// @ts-expect-error: TODO: Needs parameter types.
-const formatLinks = (...args) => {
+const formatLinks = (repoName: string) => {
   return async function rewriteRelativeLinks(tree: H.Root) {
     visit(
       tree,
@@ -36,6 +35,9 @@ const formatLinks = (...args) => {
 
           href = href.replace(/(?<=[^/])#/, "/#")
           href = href.replace(".mdx", "").replace(".md", "")
+          // remove parent or current directory paths from href, ie. remove: `../` or `./`
+          href = href.replaceAll(/(\.+\/)/g, "")
+          href = `/${repoName}/${href}`
 
           // @ts-expect-error: TODO: Needs type.
           node.properties.href = href

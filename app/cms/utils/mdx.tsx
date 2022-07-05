@@ -257,7 +257,8 @@ async function compileMdxCached({
     getFreshValue: async () => {
       const compiledPage = await compileMdx<MdxPage["frontmatter"]>(
         fileOrDirPath,
-        files
+        files,
+        repo
       )
       if (compiledPage) {
         return {
