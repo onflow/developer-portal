@@ -21,7 +21,7 @@ export type InternalSidebarConfig = {
 
 export type InternalSidebarProps = {
   config: InternalSidebarConfig
-  menu: InternalSidebarMenuProps
+  menu?: InternalSidebarMenuProps
 }
 
 export const TEMP_SIDEBAR_CONFIG: InternalSidebarConfig = {
