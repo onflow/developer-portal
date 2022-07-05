@@ -31,7 +31,7 @@ const deconstructPath = (
   if (firstRoute && rawPath) {
     const split = rawPath.split("/")
     const second = split.length > 0 ? split[0] : ""
-    var rest = split.slice(1) ? split.slice(1).join("/") : "index"
+    const rest = split.slice(1).length > 0 ? split.slice(1).join("/") : "index"
 
     if (isFlowSection(firstRoute) && isFlowContent(second)) {
       /* >> Start of custom landing pages >> */
