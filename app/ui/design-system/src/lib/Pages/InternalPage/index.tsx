@@ -141,7 +141,6 @@ export function InternalPage({
             <aside className="hidden w-[300px] flex-none md:block">
               <div
                 className="sticky h-full max-h-screen overflow-auto p-8"
-                // className="fixed top-0 bottom-0 left-0 right-0 h-full overflow-auto bg-gray-100 bg-opacity-80 p-8 dark:bg-primary-gray-dark md:sticky"
                 style={{
                   top: subnavRect?.height ?? 0,
                   maxHeight: `calc(100vh - ${subnavRect?.bottom ?? 0}px)`,
