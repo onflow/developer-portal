@@ -4,7 +4,6 @@ import { SDKCards } from "../../Components/SDKCards"
 import PageBackground from "../shared/PageBackground"
 import PageSection from "../shared/PageSection"
 import PageSections from "../shared/PageSections"
-import ArchesImageSrc from "../../../../images/misc/arches.png"
 import {
   ContentNavigationList,
   ContentNavigationListProps,
