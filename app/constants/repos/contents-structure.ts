@@ -1,5 +1,3 @@
-import { consoleSandbox } from "@sentry/utils"
-
 /* Repository names and Flow internal content names */
 export const repositoryNames = [
   "cadence",
