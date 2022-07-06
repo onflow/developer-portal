@@ -155,7 +155,7 @@ export function InternalPage({
           </>
         )}
         <main
-          className={clsx("flex max-w-full shrink grow-0 flex-row-reverse", {
+          className={clsx("flex max-w-full shrink-0 grow flex-row-reverse", {
             "md:max-w-[calc(100%_-_300px)]": sidebarConfig,
           })}
         >
