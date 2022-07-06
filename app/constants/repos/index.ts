@@ -49,8 +49,6 @@ import { landingHeaders } from "./custom-headers"
 export const DEFAULT_REPO_OWNER = "onflow"
 export const DEFAULT_CONTENT_PATH = "docs"
 
-const trustedRepositories = [...repositoryNames]
-
 /* Sidebar presets for all repositories and content names */
 export const schemas: Partial<Record<ContentName, RepoSchema>> = {
   // Individual repository
@@ -136,8 +134,6 @@ export type ContentSpec = {
   displayName: string
   schema?: RepoSchema
   landingHeader?: InternalLandingHeaderProps
-
-  isTrusted: boolean
 }
 
 function getBasePath(name: string) {
@@ -150,24 +146,24 @@ function getBasePath(name: string) {
   return DEFAULT_CONTENT_PATH
 }
 
-export const contentSpecMap = [...repositoryNames, ...flowContentNames].reduce(
-  (accum, name) => {
-    const repoName = isFlowContent(name) ? "flow" : name
-    return {
-      ...accum,
-      [name]: {
-        owner: DEFAULT_REPO_OWNER,
-        repoName,
-        branch: "master",
-        basePath: getBasePath(name),
-        contentName: name,
-        displayName: displayNames[name] || capitalCase(name),
-        schema: schemas[name],
-        landingHeader: landingHeaders[name],
-        isTrusted: trustedRepositories.includes(name),
-      },
-    }
-  },
+export const contentSpecMap = [
+  ...repositoryNames,
+  ...flowSectionNames,
+  ...flowContentNames,
+].reduce(
+  (accum, name) => ({
+    ...accum,
+    [name]: {
+      owner: DEFAULT_REPO_OWNER,
+      repoName: isFlowContent(name) || isFlowSection(name) ? "flow" : name,
+      branch: "master",
+      basePath: getBasePath(name),
+      contentName: name,
+      displayName: displayNames[name] || capitalCase(name),
+      schema: schemas[name],
+      landingHeader: landingHeaders[name],
+    },
+  }),
   {} as Record<ContentName, ContentSpec>
 )
 
