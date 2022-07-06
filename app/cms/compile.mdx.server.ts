@@ -55,17 +55,11 @@ const remarkPlugins: U.PluggableList = [
   ],
 ]
 
-const rehypePlugins = (
-  repoName: string,
-  isTrusted: boolean = false
-): U.PluggableList => {
-  const plugins: U.PluggableList = [
+const rehypePlugins = (repoName: string): U.PluggableList => {
+  return [
     removePreContainerDivs,
     () => formatLinks(repoName),
-  ]
-
-  if (!isTrusted) {
-    plugins.push([
+    [
       rehypeSanitize,
       {
         ...defaultSchema,
@@ -80,17 +74,13 @@ const rehypePlugins = (
           ],
         },
       },
-    ])
-  }
-
-  return plugins
+    ],
+  ]
 }
-
 async function compileMdx<FrontmatterType extends Record<string, unknown>>(
   slug: string,
   githubFiles: Array<GitHubFile>,
-  repoName: string,
-  isTrusted: boolean = false
+  repoName: string
 ) {
   const { default: remarkSlug } = await import("remark-slug")
   const { default: gfm } = await import("remark-gfm")
@@ -124,7 +114,7 @@ async function compileMdx<FrontmatterType extends Record<string, unknown>>(
         ]
         options.rehypePlugins = [
           ...(options.rehypePlugins ?? []),
-          ...rehypePlugins(repoName, isTrusted),
+          ...rehypePlugins(repoName),
         ]
 
         return options

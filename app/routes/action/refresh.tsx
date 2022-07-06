@@ -88,7 +88,6 @@ export const action: ActionFunction = async ({ request }) => {
           owner: contentSpec.owner,
           repo: contentSpec.repoName,
           fileOrDirPath: contentPath,
-          isTrusted: contentSpec.isTrusted,
         },
         { forceFresh: true }
       )

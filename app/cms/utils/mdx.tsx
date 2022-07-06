@@ -56,13 +56,11 @@ async function getMdxPage(
     repo,
     branch,
     fileOrDirPath,
-    isTrusted,
   }: {
     owner: string
     repo: string
     branch: string
     fileOrDirPath: string
-    isTrusted: boolean
   },
   options: CachifiedOptions
 ): Promise<MdxPage | null> {
@@ -90,7 +88,6 @@ async function getMdxPage(
         branch,
         fileOrDirPath,
         ...pageFiles,
-        isTrusted,
         options,
       }).catch((err) => {
         console.error(`Failed to get a fresh value for mdx:`, {
@@ -115,7 +112,6 @@ async function getMdxPagesInDirectory(
   repo: string,
   branch: string,
   fileOrDirPath: string,
-  isTrusted: boolean,
   options: CachifiedOptions
 ) {
   const dirList = await getMdxDirList(
@@ -150,7 +146,6 @@ async function getMdxPagesInDirectory(
         branch,
         fileOrDirPath,
         ...pageData,
-        isTrusted,
         options,
       })
     )
@@ -242,7 +237,6 @@ async function compileMdxCached({
   fileOrDirPath,
   entry,
   files,
-  isTrusted,
   options,
 }: {
   owner: string
@@ -251,7 +245,6 @@ async function compileMdxCached({
   fileOrDirPath: string
   entry: string
   files: Array<GitHubFile>
-  isTrusted: boolean
   options: CachifiedOptions
 }) {
   const key = getCompiledKey(owner, repo, branch, fileOrDirPath)
@@ -265,8 +258,7 @@ async function compileMdxCached({
       const compiledPage = await compileMdx<MdxPage["frontmatter"]>(
         fileOrDirPath,
         files,
-        repo,
-        isTrusted
+        repo
       )
       if (compiledPage) {
         return {
