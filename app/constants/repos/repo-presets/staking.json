@@ -1,0 +1,87 @@
+{
+  "$schema": "../repo-schema.json",
+  "sidebar": {
+    "sections": [
+      {
+        "title": "Overview",
+        "items": [
+          {
+            "label": "Introduction",
+            "href": "staking/index"
+          },
+          {
+            "label": "Epoch and Reward Schedule",
+            "href": "staking/schedule"
+          },
+          {
+            "label": "Stake Slashing",
+            "href": "staking/stake-slashing"
+          },
+          {
+            "label": "FAQs",
+            "href": "staking/faq"
+          }
+        ]
+      },
+      {
+        "title": "Technical Docs",
+        "items": [
+          {
+            "label": "Epoch and Staking Terminology",
+            "href": "staking/epoch-terminology"
+          },
+          {
+            "label": "Epoch Preparation Protocol",
+            "href": "staking/epoch-preparation"
+          },
+          {
+            "label": "Epoch Scripts and Events",
+            "href": "staking/epoch-scripts-events"
+          },
+          {
+            "label": "Staking Auction",
+            "href": "staking/technical-overview"
+          },
+          {
+            "label": "Staking Scripts and Events",
+            "href": "staking/staking-scripts-events"
+          },
+          {
+            "label": "QC and DKG",
+            "href": "staking/qc-dkg"
+          },
+          {
+            "label": "QC/DKG Scripts and Events",
+            "href": "staking/qc-dkg-scripts-events"
+          },
+          {
+            "label": "Machine Account",
+            "href": "staking/machine-account"
+          }
+        ]
+      },
+      {
+        "title": "Technical Guides",
+        "items": [
+          {
+            "label": "Technical Staking Options",
+            "href": "staking/staking-options"
+          },
+          {
+            "label": "Staking Collection Guide",
+            "href": "staking/staking-collection"
+          }
+        ]
+      },
+      {
+        "title": "Custody Providers",
+        "items": [
+          {
+            "label": "Staking Using a Custody Provider",
+            "href": "staking/custody-providers"
+          }
+        ]
+      }
+    ]
+  }
+}

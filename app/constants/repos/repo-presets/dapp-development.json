@@ -7,7 +7,7 @@
         "items": [
           {
             "label": "Introduction",
-            "href": "index"
+            "href": "dapp-development/index"
           }
         ]
       },
@@ -16,31 +16,31 @@
         "items": [
           {
             "label": "Anatomy of a Flow Dapp",
-            "href": "flow-dapp-anatomy"
+            "href": "dapp-development/flow-dapp-anatomy"
           },
           {
             "label": "User Accounts & Wallets",
-            "href": "user-accounts-and-wallets"
+            "href": "dapp-development/user-accounts-and-wallets"
           },
           {
             "label": "In-dapp Payments",
-            "href": "in-dapp-payments"
+            "href": "dapp-development/in-dapp-payments"
           },
           {
             "label": "Smart Contracts",
-            "href": "smart-contracts"
+            "href": "dapp-development/smart-contracts"
           },
           {
             "label": "Off-chain Infrastructure",
-            "href": "dapp-infrastructure"
+            "href": "dapp-development/dapp-infrastructure"
           },
           {
             "label": "Dapp Architecture on the Flow Blockchain",
-            "href": "DappArchitectures"
+            "href": "dapp-development/DappArchitectures"
           },
           {
             "label": "NFT Drop Strategies",
-            "href": "NFT-drop-styles"
+            "href": "dapp-development/NFT-drop-styles"
           }
         ]
       },
@@ -49,27 +49,27 @@
         "items": [
           {
             "label": "The Road to Mainnet",
-            "href": "deployment"
+            "href": "dapp-development/deployment"
           },
           {
             "label": "1. Smart Contract Testing",
-            "href": "contract-testing"
+            "href": "dapp-development/contract-testing"
           },
           {
             "label": "2. Testnet Deployment",
-            "href": "testnet-deployment"
+            "href": "dapp-development/testnet-deployment"
           },
           {
             "label": "3. Testnet Testing",
-            "href": "testnet-testing"
+            "href": "dapp-development/testnet-testing"
           },
           {
             "label": "4. Mainnet Account Setup",
-            "href": "mainnet-account-setup"
+            "href": "dapp-development/mainnet-account-setup"
           },
           {
             "label": "5. Mainnet Deployment",
-            "href": "mainnet-deployment"
+            "href": "dapp-development/mainnet-deployment"
           }
         ]
       }
