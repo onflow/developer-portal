@@ -4,6 +4,7 @@ import { SocialLinksSignup } from "../../Components"
 import { ButtonLink } from "../../Components/Button"
 import { HeaderWithLink } from "../../Components/HeaderWithLink"
 import { LandingHeader } from "../../Components/LandingHeader"
+import { LandingPageSecondaryNav } from "../../Components/LandingPageSecondaryNav"
 import { ToggleButton } from "../../Components/ToggleButton"
 import { TutorialCardProps } from "../../Components/TutorialCard"
 import { PaginatedTutorialCardList } from "../../Components/TutorialCard/PaginatedTutorialCardList"
@@ -63,8 +64,32 @@ export function LearnPage({
     )
   ).sort()
 
+  const sections = [
+    {
+      title: "Cadence",
+      elementId: "cadence",
+    },
+    {
+      title: "NFTs",
+      elementId: "nfts",
+    },
+    {
+      title: "Architecture",
+      elementId: "architecture",
+    },
+    {
+      title: "Featured Videos",
+      elementId: "featured-videos",
+    },
+    {
+      title: "All Content",
+      elementId: "all-content",
+    },
+  ]
+
   return (
     <PageBackground gradient="tools">
+      <LandingPageSecondaryNav sections={sections} />
       <PageSections>
         <PageSection className="pt-0 pb-0">
           <LandingHeader
@@ -113,7 +138,10 @@ export function LearnPage({
             <PaginatedTutorialCardList tutorials={nftTutorials} />
           </div>
         </PageSection>
-        <PageSection className="flex-col items-stretch">
+        <PageSection
+          className="flex-col items-stretch"
+          sectionId="architecture"
+        >
           <div className="container">
             <div className="mb-6 flex items-baseline justify-between">
               <h2 className="text-h2">Architecture</h2>

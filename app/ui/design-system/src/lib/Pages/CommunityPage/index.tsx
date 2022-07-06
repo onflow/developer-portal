@@ -27,6 +27,7 @@ import {
 } from "../../Components/ContentNavigationList"
 import { HeaderWithLink } from "../../Components/HeaderWithLink"
 import CommunityImage from "../../../../images/page/community.png"
+import { LandingPageSecondaryNav } from "../../Components/LandingPageSecondaryNav"
 
 export type CommunityPageProps = FlipsProps &
   ProjectCardsProps &
@@ -49,8 +50,24 @@ export default function CommunityPage({
   contentNavigationListItems,
   forumTopics,
 }: CommunityPageProps) {
+  const sections = [
+    { title: "Upcoming Events", elementId: "upcoming-events" },
+    { title: "FLIPs", elementId: "flips" },
+    { title: "Featured Initiatives", elementId: "featured-initiatives" },
+    {
+      title: "Tools",
+      elementId: "tools",
+    },
+    {
+      title: "Explore More Content",
+      elementId: "explore-more-content",
+    },
+    { title: "From the Forum", elementId: "from-the-forum" },
+  ]
+
   return (
     <PageBackground gradient="community">
+      <LandingPageSecondaryNav sections={sections} />
       <PageSections>
         <PageSection className="pt-0 pb-0">
           <LandingHeader

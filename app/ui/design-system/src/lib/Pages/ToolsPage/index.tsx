@@ -9,6 +9,7 @@ import {
   ContentNavigationListProps,
 } from "../../Components/ContentNavigationList"
 import ToolsImage from "../../../../images/page/tools.png"
+import { LandingPageSecondaryNav } from "../../Components/LandingPageSecondaryNav"
 
 export type ToolsPageProps = {
   tools: SDKCardProps[]
@@ -25,8 +26,19 @@ const ToolsPage = ({
   apisAndServices,
   contentNavigationListItems,
 }: ToolsPageProps) => {
+  const sections = [
+    { title: "Development Tools", elementId: "development-tools" },
+    { title: "SDKs", elementId: "sdks" },
+    { title: "APIs and Services", elementId: "apis-and-services" },
+    {
+      title: "Flow Blockchain Explorers",
+      elementId: "flow-blockchain-explorers",
+    },
+  ]
+
   return (
     <PageBackground gradient="tools">
+      <LandingPageSecondaryNav sections={sections} />
       <PageSections>
         <PageSection className="pt-0 pb-0">
           <LandingHeader
