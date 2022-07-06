@@ -29,11 +29,10 @@ const deconstructPath = (
   rawPath: string | undefined
 ): { secondRoute: string | undefined; path: string } => {
   if (firstRoute && rawPath) {
-    // @ts-ignore
     const split: string[] = rawPath.split("/") ?? []
-    const second: string = split.length > 0 ? split[0] : ""
-    // @ts-ignore
+    const second: string = split.length > 0 ? split[0]! : ""
     const splitAfterSecond: string[] = split.length > 1 ? split.slice(1) : []
+
     const rest: string =
       splitAfterSecond.length > 0 ? splitAfterSecond.join("/") : "index"
 
