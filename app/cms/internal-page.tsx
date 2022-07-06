@@ -1,4 +1,4 @@
-import { ActionFunction, json, redirect } from "@remix-run/node"
+import { json } from "@remix-run/node"
 import {
   Form,
   Link,
@@ -6,11 +6,9 @@ import {
   useLoaderData,
   useLocation,
 } from "@remix-run/react"
-import invariant from "tiny-invariant"
 import { getMdxPage, useMdxComponent } from "~/cms/utils/mdx"
 import { ContentSpec, contentTools } from "~/constants/repos"
 import { ContentName } from "~/constants/repos/contents-structure"
-import { Button } from "~/ui/design-system/src/lib/Components/Button"
 import { ErrorPage } from "~/ui/design-system/src/lib/Components/ErrorPage"
 import { ToolName } from "~/ui/design-system/src/lib/Components/Internal/tools"
 import { InternalPage } from "~/ui/design-system/src/lib/Pages/InternalPage"
@@ -75,14 +73,6 @@ export function isPathDocument(path: string) {
     path.toLowerCase().endsWith(".md") ||
     path.toLowerCase().endsWith(".mdx")
   )
-}
-
-export const action: ActionFunction = async ({ params, request }) => {
-  const repo = params.repo
-  invariant(repo, `expected repo param`)
-  const body = await request.formData()
-  console.log(`redirecting1!!`)
-  return redirect(`/${repo}/version/${body.get("version")}`)
 }
 
 export function InternalPageRoute() {
