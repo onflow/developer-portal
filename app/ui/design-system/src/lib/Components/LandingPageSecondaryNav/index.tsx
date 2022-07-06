@@ -71,7 +71,7 @@ export function LandingPageSecondaryNav({
     sectionElements.forEach((sectionElement: HTMLElement) =>
       observer.observe(sectionElement)
     )
-  }, [])
+  }, [sections])
 
   return (
     <div className="sticky top-0 z-10 hidden h-12 items-center justify-center gap-7 bg-accent-light-gray py-3 px-1 dark:bg-[#30353E] dark:text-white md:flex">
