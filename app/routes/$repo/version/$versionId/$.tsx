@@ -1,7 +1,12 @@
-import { json, LoaderFunction, redirect } from "@remix-run/node"
+import { json, LoaderFunction, MetaFunction, redirect } from "@remix-run/node"
 import invariant from "tiny-invariant"
-import { internalPageLoader, isPathDocument } from "~/cms/internal-page"
+import {
+  internalPageLoader,
+  InternalPageLoaderData,
+  isPathDocument,
+} from "~/cms/internal-page"
 import { getContentSpec } from "~/constants/repos"
+import { getMetaTitle } from "~/root"
 export { InternalPageRoute as default } from "~/cms/internal-page"
 export { InternalErrorBoundary as ErrorBoundary } from "~/errors/error-boundaries"
 
@@ -9,8 +14,7 @@ export const loader: LoaderFunction = async ({ params, request }) => {
   const repo = params.repo
   invariant(repo, `expected repo param`)
 
-  const path = params["*"]
-  invariant(path, `expected * param`)
+  const path = params["*"] ?? "index"
 
   const versionId = params.versionId
   invariant(versionId, `expected version param`)
@@ -33,4 +37,13 @@ export const loader: LoaderFunction = async ({ params, request }) => {
     contentSpec,
     request,
   })
+}
+
+export const meta: MetaFunction = ({ data }) => {
+  const typedData = data as InternalPageLoaderData
+  const title = typedData.page.frontmatter.title ?? `Untitled`
+
+  return {
+    title: getMetaTitle(`${title} · Version ${typedData.selectedVersion}`),
+  }
 }

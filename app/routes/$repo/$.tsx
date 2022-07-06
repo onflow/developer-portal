@@ -7,7 +7,10 @@ import {
 } from "~/cms/internal-page"
 import { getContentSpec, isFlowContent, isFlowSection } from "~/constants/repos"
 import { getMetaTitle } from "~/root"
-export { InternalPageRoute as default } from "~/cms/internal-page"
+export {
+  InternalPageRoute as default,
+  CatchBoundary,
+} from "~/cms/internal-page"
 export { InternalErrorBoundary as ErrorBoundary } from "~/errors/error-boundaries"
 
 export const loader: LoaderFunction = ({ params, request }) => {
