@@ -60,11 +60,11 @@ export const loader: LoaderFunction = async ({
   params,
   request,
 }): Promise<LoaderData> => {
-  /* 
+  /*
   Because of added complexity of routing, the 'repo' is no longer necessarily the name of the repository.
   For instance, params.repo could be a section name, repo name, or /flow's internal content name.
   For less confusion, we will call this firstRoute.
-  Examples: 
+  Examples:
   - Repository = /cadence/... then firstRoute = cadence, cadence is a repo
   - Section = /learn/kitty-items/... then firstRoute = learn, learn is a section, and kitty-items is flow's content
   */
