@@ -29,6 +29,7 @@ const deconstructPath = (
   rawPath: string | undefined
 ): { secondRoute: string | undefined; path: string } => {
   if (firstRoute && rawPath) {
+    // Route format looks like this: repository/inner/..., flowSection/flowContent/...
     const split = rawPath.split("/") ?? []
     const second = split.length > 0 ? split[0] : ""
     const rest = split.slice(1).length > 0 ? split.slice(1).join("/") : "index"
