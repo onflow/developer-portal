@@ -142,22 +142,7 @@ async function compileMdx<FrontmatterType extends Record<string, unknown>>(
       toc,
     }
   } catch (error: unknown) {
-    console.error(`Compilation error for slug: `, slug)
-    console.log("Attempting to compile as Markdown only...")
-
-    const { code, frontmatter } = await bundleMarkdown({
-      source: indexFile.content,
-      files,
-    })
-
-    if (!code) throw error
-
-    return {
-      code,
-      readTime,
-      frontmatter: frontmatter as FrontmatterType,
-      toc,
-    }
+    throw error
   }
 }
 
