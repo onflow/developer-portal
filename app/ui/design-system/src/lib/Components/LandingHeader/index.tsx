@@ -66,14 +66,13 @@ export function LandingHeader({
         </div>
         <div
           className={clsx(
-            "hidden rounded-r-lg border dark:bg-white/40 md:flex md:basis-1/2 md:items-center md:justify-center",
-            { "px-10 py-6 md:px-20 md:py-12": imagePadding }
+            "hidden rounded-r-lg border dark:bg-white/40 md:flex md:basis-1/2 md:items-center md:justify-center"
           )}
         >
           <img
             src={imageSrc}
             alt={title}
-            className="max-h-[340px] max-w-[570px] object-contain"
+            className="max-h-[374px] max-w-[570px] object-contain"
           />
         </div>
       </div>
