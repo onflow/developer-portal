@@ -7,8 +7,7 @@ import {
 } from "~/cms/internal-page"
 import { getContentSpec } from "~/constants/repos"
 import { getMetaTitle } from "~/root"
-export { InternalPageRoute as default } from "~/cms/internal-page"
-export { InternalErrorBoundary as ErrorBoundary } from "~/errors/error-boundaries"
+export { CatchBoundary, default, ErrorBoundary } from "../../$"
 
 export const loader: LoaderFunction = async ({ params, request }) => {
   const repo = params.repo
