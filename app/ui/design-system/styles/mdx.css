@@ -1,16 +1,12 @@
 .mdx-content {
   overflow: hidden;
 
-  hr {
-    margin-bottom: calc(1.45rem - 1px);
-  }
-
   p + h1 {
     margin-top: 4rem !important;
   }
 
   & table {
-    @apply block overflow-x-auto whitespace-nowrap rounded-md border border-0;
+    @apply block overflow-x-auto whitespace-nowrap rounded-md border-0;
     border-collapse: separate;
     border-spacing: 0;
     position: relative;
@@ -38,11 +34,6 @@
 
   & ul li {
     @apply relative;
-  }
-
-  & ul li::before {
-    content: "";
-    @apply absolute -left-4 top-2.5 h-1 w-1 bg-gray-700;
   }
 
   & ol {
