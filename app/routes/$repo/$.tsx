@@ -36,7 +36,7 @@ const deconstructPath = (
 
     if (isFlowSection(firstRoute) && isFlowContent(second)) {
       /* >> Start of custom landing pages >> */
-      if (second === "faq") {
+      if (second === "faq" && rest === "index") {
         return { secondRoute: second, path: "backers" }
       }
       /* << End of custom landing pages << */
