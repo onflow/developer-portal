@@ -147,5 +147,6 @@
   },
   "resolutions": {
     "redoc/**/colorette": "2.0.19"
-  }
+  },
+  "version": "1.22.19"
 }

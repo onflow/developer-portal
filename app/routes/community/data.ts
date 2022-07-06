@@ -36,12 +36,12 @@ export const contentNavigationListItems: ContentNavigationListProps = {
       link: "/tools",
       icon: "tools",
     },
-    {
-      title: "Concepts",
-      text: "Important concepts about Cadence and FCL",
-      link: "#",
-      icon: "concepts",
-    },
+    // {
+    //   title: "Concepts",
+    //   text: "Important concepts about Cadence and FCL",
+    //   link: "#",
+    //   icon: "concepts",
+    // },
   ],
 }
 

@@ -1,6 +1,9 @@
 import { useEffect, useRef, useState } from "react"
 import clsx from "clsx"
 import { useLocation } from "@remix-run/react"
+import { Disclosure } from "@headlessui/react"
+import { ReactComponent as ChevronDownIcon } from "../../../../images/arrows/chevron-down"
+import { ReactComponent as ChevronUpIcon } from "../../../../images/arrows/chevron-up"
 
 export type InternalTocItem = {
   title: string
@@ -88,6 +91,36 @@ export function InternalToc({ headings }: InternalTocProps) {
           </div>
         ))}
       </div>
+    </div>
+  )
+}
+
+export function InternalTocDisclosure({
+  headings,
+}: Omit<InternalTocProps, "currentHash" | "updateHash">) {
+  return (
+    <div className="rounded-md bg-primary-gray-50 p-2 dark:bg-primary-gray-400">
+      <Disclosure>
+        {({ open }) => (
+          <>
+            <Disclosure.Button className="flex w-full justify-between">
+              On this page
+              <span>{open ? <ChevronUpIcon /> : <ChevronDownIcon />}</span>
+            </Disclosure.Button>
+            <Disclosure.Panel className="mt-2 flex flex-col border-t border-t-gray-400 pt-1">
+              {headings.map(({ title, hash }, index) => (
+                <a
+                  key={index}
+                  href={hash}
+                  className="my-1 text-primary-gray-400 hover:opacity-75 dark:text-gray-200"
+                >
+                  {title}
+                </a>
+              ))}
+            </Disclosure.Panel>
+          </>
+        )}
+      </Disclosure>
     </div>
   )
 }

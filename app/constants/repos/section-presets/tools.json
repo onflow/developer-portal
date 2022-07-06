@@ -1,0 +1,20 @@
+{
+  "$schema": "../repo-schema.json",
+  "sidebar": {
+    "sections": [
+      {
+        "title": "Tools",
+        "items": [
+          {
+            "label": "Emulator",
+            "href": "tools/emulator"
+          },
+          {
+            "label": "VS Code Extension",
+            "href": "tools/vscode-extension"
+          }
+        ]
+      }
+    ]
+  }
+}

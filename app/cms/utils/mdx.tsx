@@ -376,24 +376,12 @@ function GetMdxComponents(theme: Theme) {
       ) : (
         <input {...props} />
       ),
-    h1: (props: HeadingProps) => (
-      <Heading type="h1" {...props} className="not-prose" />
-    ),
-    h2: (props: HeadingProps) => (
-      <Heading type="h2" {...props} className="not-prose" />
-    ),
-    h3: (props: HeadingProps) => (
-      <Heading type="h3" {...props} className="not-prose" />
-    ),
-    h4: (props: HeadingProps) => (
-      <Heading type="h4" {...props} className="not-prose" />
-    ),
-    h5: (props: HeadingProps) => (
-      <Heading type="h5" {...props} className="not-prose" />
-    ),
-    h6: (props: HeadingProps) => (
-      <Heading type="h6" {...props} className="not-prose" />
-    ),
+    h1: (props: HeadingProps) => <Heading type="h1" {...props} />,
+    h2: (props: HeadingProps) => <Heading type="h2" {...props} />,
+    h3: (props: HeadingProps) => <Heading type="h3" {...props} />,
+    h4: (props: HeadingProps) => <Heading type="h4" {...props} />,
+    h5: (props: HeadingProps) => <Heading type="h5" {...props} />,
+    h6: (props: HeadingProps) => <Heading type="h6" {...props} />,
     pre: ({ children }: { className: string; children: JSX.Element }) => {
       return (
         <InternalCodeblock
@@ -440,7 +428,7 @@ function getMdxComponent(page: MdxPage, theme: Theme | null) {
     ...rest
   }: Parameters<typeof Component>["0"]) {
     return (
-      <>
+      <div className="prose dark:prose-invert">
         <header>
           <Heading type="h1" children={frontmatter.title} />
           <p>{frontmatter.description}</p>
@@ -450,7 +438,7 @@ function getMdxComponent(page: MdxPage, theme: Theme | null) {
           components={GetMdxComponents(theme)}
           {...rest}
         />
-      </>
+      </div>
     )
   }
   return MdxComponent

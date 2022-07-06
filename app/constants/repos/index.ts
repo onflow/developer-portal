@@ -1,48 +1,57 @@
 import { capitalCase } from "change-case"
 import { InternalLandingHeaderProps } from "../../ui/design-system/src/lib/Components/InternalLandingHeader"
-import cadence from "./presets/cadence.json"
-import dappDevelopment from "./presets/dapp-development.json"
-import fclJs from "./presets/fcl-js.json"
-import flowCli from "./presets/flow-cli.json"
-import kittyItems from "./presets/kitty-items.json"
-import vscodeExtension from "./presets/vscode-extension.json"
-import flowGoSdk from "./presets/flow-go-sdk.json"
-import flowJsTesting from "./presets/flow-js-testing.json"
-import flowNFT from "./presets/flow-nft.json"
-import flowFT from "./presets/flow-ft.json"
-import nftStorefront from "./presets/nft-storefront.json"
-import flowEmulator from "./presets/flow-emulator.json"
+import cadence from "./repo-presets/cadence.json"
+
+// Individual Repo Content Presets
+import fclJs from "./repo-presets/fcl-js.json"
+import flowCli from "./repo-presets/flow-cli.json"
+import kittyItems from "./repo-presets/kitty-items.json"
+import vscodeExtension from "./repo-presets/vscode-extension.json"
+import flowGoSdk from "./repo-presets/flow-go-sdk.json"
+import flowJsTesting from "./repo-presets/flow-js-testing.json"
+import flowNFT from "./repo-presets/flow-nft.json"
+import flowFT from "./repo-presets/flow-ft.json"
+import nftStorefront from "./repo-presets/nft-storefront.json"
+import flowEmulator from "./repo-presets/flow-emulator.json"
+
+// Flow Internal Content Presets
+import concepts from "./repo-presets/concepts.json"
+import dappDevelopment from "./repo-presets/dapp-development.json"
+import coreContracts from "./repo-presets/core-contracts.json"
+import flowToken from "./repo-presets/flow-token.json"
+import fusd from "./repo-presets/fusd.json"
+import flowPort from "./repo-presets/flow-port.json"
+import nftMarketPlace from "./repo-presets/nft-marketplace.json"
+import staking from "./repo-presets/staking.json"
+import nodeOperation from "./repo-presets/node-operation.json"
+import emulator from "./repo-presets/emulator.json"
+import faq from "./repo-presets/faq.json"
+
+// Flow Section Presets
+import flow from "./section-presets/flow.json"
+import learn from "./section-presets/learn.json"
+import nodes from "./section-presets/nodes.json"
+import community from "./section-presets/community.json"
+import tools from "./section-presets/tools.json"
+
 import { RepoSchema } from "./repo-schema"
 import { ToolName } from "../../ui/design-system/src/lib/Components/Internal/tools"
+import {
+  ContentName,
+  FlowContentName,
+  flowContentNames,
+  flowSectionNames,
+  RepoName,
+  repositoryNames,
+} from "./contents-structure"
+import { landingHeaders } from "./custom-headers"
 
 export const DEFAULT_REPO_OWNER = "onflow"
 export const DEFAULT_CONTENT_PATH = "docs"
 
-/* Repository names and Flow internal content names */
-const repositoryNames = [
-  "flow",
-  "cadence",
-  "flow-cli",
-  "flow-js-testing",
-  "flow-go-sdk",
-  "fcl-js",
-  "flow-emulator",
-  "flow-cadut",
-  "mock-developer-doc",
-  "flow-nft",
-  "flow-ft",
-  "nft-storefront",
-  "flow-emulator",
-] as const
-
-export const flowContentNames = [
-  "kitty-items",
-  "vscode-extension",
-  "dapp-development",
-] as const
-
 /* Sidebar presets for all repositories and content names */
 export const schemas: Partial<Record<ContentName, RepoSchema>> = {
+  // Individual repository
   cadence: cadence as RepoSchema,
   "flow-cli": flowCli as RepoSchema,
   "fcl-js": fclJs as RepoSchema,
@@ -53,10 +62,27 @@ export const schemas: Partial<Record<ContentName, RepoSchema>> = {
   "nft-storefront": nftStorefront as RepoSchema,
   "flow-emulator": flowEmulator as RepoSchema,
 
-  // flow content
+  // Flow: lower lever internal contents
   "kitty-items": kittyItems as RepoSchema,
   "vscode-extension": vscodeExtension as RepoSchema,
+  emulator: emulator as RepoSchema,
+  concepts: concepts as RepoSchema,
   "dapp-development": dappDevelopment as RepoSchema,
+  "core-contracts": coreContracts as RepoSchema,
+  "flow-token": flowToken as RepoSchema,
+  fusd: fusd as RepoSchema,
+  faq: faq as RepoSchema,
+  "node-operation": nodeOperation as RepoSchema,
+  staking: staking as RepoSchema,
+  "flow-port": flowPort as RepoSchema,
+  "nft-marketplace": nftMarketPlace as RepoSchema,
+
+  // Flow: higher lever section schemas
+  flow: flow as RepoSchema,
+  learn: learn as RepoSchema,
+  nodes: nodes as RepoSchema,
+  tools: tools as RepoSchema,
+  community: community as RepoSchema,
 }
 
 /* Overriden display names (defaults to dashes converted to spaces then capitalized) */
@@ -67,6 +93,9 @@ export const displayNames: Partial<Record<ContentName, string>> = {
   "fcl-js": "Flow Client Library (JS)",
   "vscode-extension": "VS Code Extension",
   "dapp-development": "DApp Development",
+  "nft-marketplace": "NFT Marketplace",
+  fusd: "FUSD",
+  faq: "FAQ",
 }
 
 export const contentTools: Partial<Record<ContentName, ToolName>> = {
@@ -77,44 +106,6 @@ export const contentTools: Partial<Record<ContentName, ToolName>> = {
   "flow-js-testing": "testing",
   "vscode-extension": "vscode",
 }
-
-/**
- * Custom headers that can optionally be applied per-content section and will
- * be shown on the section's landing page.
- */
-export const landingHeaders: Partial<
-  Record<ContentName, InternalLandingHeaderProps>
-> = {
-  cadence: {
-    toolName: "cadence",
-    description:
-      "Cadence is a resource-oriented programming language that introduces new features to smart contract programming that help developers ensure that their code is safe, secure, clear, and approachable. Some of these features are:",
-    headerCards: [
-      {
-        title: "Key reference",
-        tags: ["Tutorial"],
-        description: "Lorem ipsum about this link",
-        href: "/cadence/design-patterns",
-      },
-      {
-        title: "Key reference",
-        tags: ["Tutorial", "Cadence"],
-        description: "Lorem ipsum about this link",
-        href: "/cadence/anti-patterns",
-      },
-      {
-        title: "Key reference",
-        tags: ["Tutorial"],
-        description: "Lorem ipsum about this link",
-        href: "/cadence/migration-guide",
-      },
-    ],
-  },
-}
-
-type RepoName = typeof repositoryNames[number]
-type FlowContentName = typeof flowContentNames[number]
-export type ContentName = RepoName | FlowContentName
 
 export type ContentSpec = {
   /**
@@ -145,16 +136,28 @@ export type ContentSpec = {
   landingHeader?: InternalLandingHeaderProps
 }
 
-export const contentSpecMap = [...repositoryNames, ...flowContentNames].reduce(
+function getBasePath(name: string) {
+  if (isFlowContent(name)) {
+    return `docs/content/${name}`
+  }
+  if (isFlowSection(name)) {
+    return `docs/content`
+  }
+  return DEFAULT_CONTENT_PATH
+}
+
+export const contentSpecMap = [
+  ...repositoryNames,
+  ...flowSectionNames,
+  ...flowContentNames,
+].reduce(
   (accum, name) => ({
     ...accum,
     [name]: {
       owner: DEFAULT_REPO_OWNER,
-      repoName: isFlowContent(name) ? "flow" : name,
+      repoName: isFlowContent(name) || isFlowSection(name) ? "flow" : name,
       branch: "master",
-      basePath: isFlowContent(name)
-        ? `docs/content/${name}`
-        : DEFAULT_CONTENT_PATH,
+      basePath: getBasePath(name),
       contentName: name,
       displayName: displayNames[name] || capitalCase(name),
       schema: schemas[name],
@@ -172,12 +175,21 @@ export function isFlowContent(name: string): name is FlowContentName {
   return flowContentNames.includes(name as FlowContentName)
 }
 
-export function isContent(name: string): name is ContentName {
-  return isRepo(name) || isFlowContent(name)
+export function isFlowSection(name: string): name is FlowContentName {
+  return flowSectionNames.includes(name as FlowContentName)
 }
 
-export const getContentSpec = (name: string) => {
-  if (isContent(name)) {
-    return contentSpecMap[name]
+export const getContentSpec = (
+  firstRoute: string,
+  secondRoute?: string | undefined
+) => {
+  if (isRepo(firstRoute)) {
+    return contentSpecMap[firstRoute]
+  } else if (isFlowSection(firstRoute)) {
+    if (secondRoute) {
+      return contentSpecMap[secondRoute]
+    } else {
+      return contentSpecMap[firstRoute]
+    }
   }
 }

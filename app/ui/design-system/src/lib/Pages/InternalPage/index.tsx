@@ -1,3 +1,4 @@
+import { Transition } from "@headlessui/react"
 import clsx from "clsx"
 import { useCallback, useRef, useState } from "react"
 import {
@@ -11,13 +12,15 @@ import {
 } from "../../Components/InternalSidebar"
 import { findSidebarSectionItem } from "../../Components/InternalSidebar/findSidebarSectionItem"
 import { flattenSidebarSectionItems } from "../../Components/InternalSidebar/flattenSidebarSectionItems"
-import {
-  InternalSidebarMenu,
-  InternalSidebarMenuProps,
-} from "../../Components/InternalSidebarMenu"
+import { InternalSidebarMenuProps } from "../../Components/InternalSidebarMenu"
 import { InternalSubnav } from "../../Components/InternalSubnav"
-import { InternalToc, InternalTocItem } from "../../Components/InternalToc"
+import {
+  InternalToc,
+  InternalTocDisclosure,
+  InternalTocItem,
+} from "../../Components/InternalToc"
 import { LowerPageNav } from "../../Components/LowerPageNav"
+import { MobileMenuToggleButton } from "../../Components/NavigationBar/MobileMenuToggleButton"
 import {
   useResizeObserver,
   UseResizeObserverCallback,
@@ -62,6 +65,8 @@ export function InternalPage({
   sidebarConfig,
   toc,
 }: InternalPageProps) {
+  const [isMobileSidebarOpen, setMobileSidebarOpen] = useState(false)
+
   const activeItem = findSidebarSectionItem(sidebarConfig, activePath)
   const breadcrumbs = useInternalBreadcrumbs({
     activeItem,
@@ -89,34 +94,73 @@ export function InternalPage({
   return (
     <div className="flex flex-col">
       <div className="sticky top-0 z-20" ref={subnavRef}>
-        <InternalSubnav items={breadcrumbs} githubUrl={githubUrl} />
+        <InternalSubnav
+          isSidebarOpen={isMobileSidebarOpen}
+          onSidebarToggle={() => setMobileSidebarOpen(!isMobileSidebarOpen)}
+          items={breadcrumbs}
+          githubUrl={githubUrl}
+        />
       </div>
       {header && <InternalLandingHeader {...header} />}
-      <div className="flex flex-1">
+      {sidebarConfig && (
+        <Transition
+          unmount={false}
+          as="div"
+          className="fixed left-0 right-0 bottom-0 z-40 bg-white dark:bg-black md:hidden"
+          style={{
+            top: subnavRect ? subnavRect.top : 0,
+          }}
+          show={isMobileSidebarOpen}
+          enter="transform transition duration-300 ease-in-out"
+          enterFrom="-translate-x-full"
+          enterTo="translate-x-0"
+          leave="transform duration-300 transition ease-in-out"
+          leaveFrom="translate-x-0"
+          leaveTo="-translate-x-full"
+        >
+          <div className="mb-2 border-b border-b-primary-gray-100 px-6 pt-1 pb-2 dark:border-b-primary-gray-300">
+            <MobileMenuToggleButton
+              className="mr-4 md:hidden"
+              height="20px"
+              isOpen
+              onOpenChanged={() => setMobileSidebarOpen(false)}
+            />
+          </div>
+          <div className="p-6">
+            <InternalSidebar
+              config={sidebarConfig}
+              menu={internalSidebarMenu}
+            />
+          </div>
+        </Transition>
+      )}
+
+      <div className="relative flex flex-1">
         {sidebarConfig && (
-          <aside className="w-[300px] flex-none bg-gray-100 bg-opacity-80 dark:bg-primary-gray-dark">
-            <div
-              className="sticky h-full max-h-screen overflow-auto p-8"
-              style={{
-                top: subnavRect?.height ?? 0,
-                maxHeight: `calc(100vh - ${subnavRect?.bottom ?? 0}px)`,
-              }}
-            >
-              {internalSidebarMenu ? (
-                <InternalSidebarMenu {...internalSidebarMenu} />
-              ) : null}
-              <InternalSidebar config={sidebarConfig} />
-            </div>
-          </aside>
+          <>
+            <aside className="hidden w-[300px] flex-none md:block">
+              <div
+                className="sticky h-full max-h-screen overflow-auto p-8"
+                style={{
+                  top: subnavRect?.height ?? 0,
+                  maxHeight: `calc(100vh - ${subnavRect?.bottom ?? 0}px)`,
+                }}
+              >
+                <InternalSidebar
+                  config={sidebarConfig}
+                  menu={internalSidebarMenu}
+                />
+              </div>
+            </aside>
+          </>
         )}
         <main
-          className={clsx("flex shrink grow-0 flex-row-reverse	", {
-            "max-w-[calc(100%_-_300px)]": sidebarConfig,
-            "max-w-full": !sidebarConfig,
+          className={clsx("flex max-w-full shrink grow-0 flex-row-reverse", {
+            "md:max-w-[calc(100%_-_300px)]": sidebarConfig,
           })}
         >
           {toc && (
-            <div className="w-1/4 flex-none">
+            <div className="hidden flex-none md:flex md:w-1/4">
               <div
                 className="sticky h-full max-h-screen overflow-auto p-8"
                 style={{
@@ -129,12 +173,16 @@ export function InternalPage({
             </div>
           )}
           <div
-            className={clsx("flex-none p-8 pl-16", {
-              "w-3/4": !!toc,
-              "w-full": !toc,
+            className={clsx("w-full flex-none p-8 pl-16", {
+              "md:w-3/4": !!toc,
             })}
           >
-            <div className="">{children}</div>
+            {toc && (
+              <div className="md:hidden">
+                <InternalTocDisclosure headings={toc} />
+              </div>
+            )}
+            <div>{children}</div>
             <LowerPageNav
               prev={
                 prevItem && {
