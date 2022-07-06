@@ -95,6 +95,7 @@ export const loader: LoaderFunction = async ({
         repo: contentSpec.repoName,
         branch: contentSpec.branch,
         fileOrDirPath: [contentSpec.basePath, path].join("/"),
+        isTrusted: contentSpec.isTrusted,
       },
       { request, forceFresh: process.env.FORCE_REFRESH === "true" }
     )
