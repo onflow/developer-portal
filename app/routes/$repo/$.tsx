@@ -1,5 +1,11 @@
 import { json, LoaderFunction, redirect } from "@remix-run/node"
-import { Link, useCatch, useLoaderData, useLocation } from "@remix-run/react"
+import {
+  Form,
+  Link,
+  useCatch,
+  useLoaderData,
+  useLocation,
+} from "@remix-run/react"
 import invariant from "tiny-invariant"
 import { getMdxPage, useMdxComponent } from "~/cms/utils/mdx"
 import {
@@ -20,7 +26,13 @@ type LoaderData = {
   content: ContentSpec
   path: string
   page: MdxPage
-}
+} & (
+  | {
+      versions: Array<string>
+      selectedVersion: string
+    }
+  | { versions?: undefined; selectedVersion?: undefined }
+)
 
 const deconstructPath = (
   firstRoute: string | undefined,
@@ -60,11 +72,11 @@ export const loader: LoaderFunction = async ({
   params,
   request,
 }): Promise<LoaderData> => {
-  /* 
+  /*
   Because of added complexity of routing, the 'repo' is no longer necessarily the name of the repository.
   For instance, params.repo could be a section name, repo name, or /flow's internal content name.
   For less confusion, we will call this firstRoute.
-  Examples: 
+  Examples:
   - Repository = /cadence/... then firstRoute = cadence, cadence is a repo
   - Section = /learn/kitty-items/... then firstRoute = learn, learn is a section, and kitty-items is flow's content
   */
@@ -106,32 +118,55 @@ export const loader: LoaderFunction = async ({
     throw json({ status: "noPage" }, { status: 404 })
   }
 
-  return { content: contentSpec, path, page }
+  return {
+    content: contentSpec,
+    path,
+    page,
+    versions: ["latest", "1.1.0"],
+    selectedVersion: "latest",
+  }
 }
 
 export default function RepoDocument() {
-  const { content, path, page } = useLoaderData<LoaderData>()
-  const MDXContent = useMdxComponent(page)
-  const tool = contentTools[content.contentName]
+  const data = useLoaderData<LoaderData>()
+  const MDXContent = useMdxComponent(data.page)
+  const tool = contentTools[data.content.contentName]
 
   return (
-    <InternalPage
-      activePath={path}
-      contentDisplayName={content.displayName}
-      contentPath={content.contentName}
-      header={path === "index" ? content.landingHeader : undefined}
-      sidebarConfig={content.schema?.sidebar}
-      internalSidebarMenu={
-        tool && {
-          selectedTool: tool,
-          toolLinks: toolLinks,
+    <>
+      {data.versions ? (
+        <Form>
+          <select
+            defaultValue={data.selectedVersion}
+            name="version"
+            className="bg-black"
+          >
+            {data.versions.map((version) => (
+              <option key={version} value={version}>
+                {version}
+              </option>
+            ))}
+          </select>
+        </Form>
+      ) : null}
+      <InternalPage
+        activePath={data.path}
+        contentDisplayName={data.content.displayName}
+        contentPath={data.content.contentName}
+        header={data.path === "index" ? data.content.landingHeader : undefined}
+        sidebarConfig={data.content.schema?.sidebar}
+        internalSidebarMenu={
+          tool && {
+            selectedTool: tool,
+            toolLinks: toolLinks,
+          }
         }
-      }
-      githubUrl={page.editLink}
-      toc={page.toc}
-    >
-      <MDXContent />
-    </InternalPage>
+        githubUrl={data.page.editLink}
+        toc={data.page.toc}
+      >
+        <MDXContent />
+      </InternalPage>
+    </>
   )
 }
 
