@@ -14,7 +14,7 @@ export type NavigationBarProps = {
   onDarkModeToggle: () => void
 }
 
-export const NAV_HEIGHT = 96
+export const NAV_HEIGHT = 90
 
 export function NavigationBar({
   menuItems,
@@ -71,7 +71,10 @@ export function NavigationBar({
         leaveFrom="opacity-100 scale-100"
         leaveTo="opacity-0 scale-95"
       >
-        <div className="fixed top-[96px] left-0 right-0 bottom-0 z-40 origin-top-right overflow-auto bg-white dark:bg-black md:hidden">
+        <div
+          className="fixed left-0 right-0 bottom-0 z-40 origin-top-right overflow-auto bg-white dark:bg-black md:hidden"
+          style={{ top: NAV_HEIGHT }}
+        >
           <MobileMenu menuItems={menuItems} />
         </div>
       </Transition>
