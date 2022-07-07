@@ -32,7 +32,6 @@ export const loader = () => {
   const internalIndexPaths = Object.keys(schemas).map(
     (schemaKey) => `/${schemaKey}`
   )
-  console.log(`x`, internalIndexPaths)
 
   let entries: Array<Entry> = [staticRoutes, internalIndexPaths].flatMap(
     (paths) => paths.map((p) => ({ pathname: p }))
