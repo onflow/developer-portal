@@ -62,7 +62,7 @@ export const internalPageLoader = async ({
     content: contentSpec,
     path: shortPath,
     page,
-    versions: ["latest", "1.1.0"],
+    versions: ["latest", "2.0.0", "1.1.0"],
     selectedVersion: "latest",
   }
 }
