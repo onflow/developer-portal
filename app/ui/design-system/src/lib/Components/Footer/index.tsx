@@ -19,11 +19,11 @@ const footerSections = [
         text: "SDK's & Tools",
       },
       {
-        link: "/coming-soon",
+        link: "/learn",
         text: "Learning Resources",
       },
       {
-        link: "https://docs.onflow.org/cadence/",
+        link: "/cadence",
         text: "Cadence",
       },
       {
@@ -56,7 +56,7 @@ const footerSections = [
     header: "Community",
     links: [
       {
-        link: "/coming-soon",
+        link: "/community",
         text: "Ecosystem",
       },
       {
