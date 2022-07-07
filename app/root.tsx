@@ -24,16 +24,16 @@ import {
   ThemeProvider,
   useTheme,
 } from "~/cms/utils/theme.provider"
-import { getRequiredServerEnvVar } from "./cms/helpers"
-import { navBarData } from "./component-data/NavigationBar"
-import { getPublicEnv, PUBLIC_ENV } from "./env.server"
-import * as gtag from "./gtags.client"
+import { getRequiredServerEnvVar } from "~/cms/helpers"
+import { navBarData } from "~/component-data/NavigationBar"
 import styles from "./main.css"
-import { getThemeSession } from "./theme.server"
-import { Footer } from "./ui/design-system/src"
-import { ErrorPage } from "./ui/design-system/src/lib/Components/ErrorPage"
-import { NavigationBar } from "./ui/design-system/src/lib/Components/NavigationBar"
+import { getThemeSession } from "~/utils/theme.server"
+import { Footer } from "~/ui/design-system/src"
+import { ErrorPage } from "~/ui/design-system/src/lib/Components/ErrorPage"
+import { NavigationBar } from "~/ui/design-system/src/lib/Components/NavigationBar"
+import * as gtag from "~/utils/gtags.client"
 import { SearchProps } from "./ui/design-system/src/lib/Components/Search"
+import { getPublicEnv, PUBLIC_ENV } from "./utils/env.server"
 
 export const getMetaTitle = (title?: string) =>
   [title, "Flow Developer Portal"].filter(Boolean).join(" | ")

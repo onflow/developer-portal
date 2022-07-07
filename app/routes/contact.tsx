@@ -3,7 +3,7 @@ import type { ActionFunction } from "@remix-run/node"
 import { json } from "@remix-run/node"
 import { Form } from "@remix-run/react"
 import type { SyntheticEvent } from "react"
-import * as gtag from "~/gtags.client"
+import * as gtag from "~/utils/gtags.client"
 
 export const action: ActionFunction = () => {
   return json({})
