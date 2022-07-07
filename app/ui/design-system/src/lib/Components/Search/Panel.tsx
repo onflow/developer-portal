@@ -42,7 +42,7 @@ export function Panel({
         <>
           {items.length > 0 && (
             <ul
-              className="divide-y divide-primary-gray-100 dark:divide-primary-gray-400"
+              className="grow divide-y divide-primary-gray-100 dark:divide-primary-gray-400"
               {...autocomplete.getListProps()}
             >
               {items.map((item: HitType, index: number) => {
