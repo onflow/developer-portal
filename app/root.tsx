@@ -132,6 +132,11 @@ function App() {
         <NavigationBar
           menuItems={navBarData.menuItems}
           onDarkModeToggle={toggleTheme}
+          algolia={{
+            appId: "DKF9ZIO5WM",
+            apiKey: "d53324bc00b550f87f608c2c56636bc6",
+            indexName: "crawler_Flow Docs",
+          }}
         />
         <div className="flex-auto overflow-auto">
           <Outlet />

@@ -3,7 +3,7 @@ import { Fragment, useState } from "react"
 import { ReactComponent as FlowDocsLogo } from "../../../../images/logos/flow-docs-logo"
 import { ReactComponent as ModeDark } from "../../../../images/toggles/mode-dark"
 import { ReactComponent as ModeLight } from "../../../../images/toggles/mode-light"
-import { Search } from "../Search"
+import { Search, SearchProps } from "../Search"
 import { DesktopMenu } from "./DesktopMenu"
 import { MobileMenu } from "./MobileMenu"
 import { MobileMenuToggleButton } from "./MobileMenuToggleButton"
@@ -12,6 +12,7 @@ import { MenuItem } from "./types"
 export type NavigationBarProps = {
   menuItems: MenuItem[]
   onDarkModeToggle: () => void
+  algolia: SearchProps
 }
 
 export const NAV_HEIGHT = 90
@@ -19,6 +20,7 @@ export const NAV_HEIGHT = 90
 export function NavigationBar({
   menuItems,
   onDarkModeToggle,
+  algolia,
 }: NavigationBarProps) {
   const [isMobileNavOpen, setMobileNavOpen] = useState(false)
 
@@ -35,11 +37,7 @@ export function NavigationBar({
       <div className="mt-1 flex flex-1 justify-end">
         {/* TODO: fetch appId and apiKey from env */}
         <div className="mr-4 flex items-center">
-          <Search
-            appId="DKF9ZIO5WM"
-            apiKey="d53324bc00b550f87f608c2c56636bc6"
-            indexName="crawler_Flow Docs"
-          />
+          <Search {...algolia} />
         </div>
         <DesktopMenu menuItems={menuItems} />
         <ul className="flex items-center">
