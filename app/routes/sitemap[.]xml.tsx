@@ -1,4 +1,6 @@
 import { getRequiredServerEnvVar } from "~/cms/helpers"
+import { schemas } from "~/constants/repos"
+import { isNotNull } from "~/utils/filters"
 
 function entryNode(entry: Entry, origin: string): string {
   const url = new URL(entry.pathname, origin)
@@ -27,7 +29,14 @@ export const loader = () => {
     "/tools",
   ]
 
-  let entries: Array<Entry> = [...staticRoutes].map((p) => ({ pathname: p }))
+  const internalIndexPaths = Object.keys(schemas).map(
+    (schemaKey) => `/${schemaKey}`
+  )
+  console.log(`x`, internalIndexPaths)
+
+  let entries: Array<Entry> = [staticRoutes, internalIndexPaths].flatMap(
+    (paths) => paths.map((p) => ({ pathname: p }))
+  )
 
   let origin: string = getRequiredServerEnvVar(
     "ORIGIN",
