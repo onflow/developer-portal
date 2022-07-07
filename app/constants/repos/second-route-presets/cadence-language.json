@@ -6,7 +6,7 @@
         "title": "Cadence Language",
         "items": [
           { "href": "language/syntax", "label": "" },
-          { "href": "language/constants-and-variables", "label": ""},
+          { "href": "language/constants-and-variables", "label": "" },
           { "href": "language/type-annotations", "label": "" },
           { "href": "language/values-and-types", "label": "" },
           { "href": "language/operators", "label": "" },
