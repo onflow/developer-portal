@@ -1,12 +1,13 @@
 import { json, LoaderFunction, redirect } from "@remix-run/node"
 import { Link, useCatch, useLoaderData, useLocation } from "@remix-run/react"
+import { Params } from "react-router"
 import invariant from "tiny-invariant"
 import { getMdxPage, useMdxComponent } from "~/cms/utils/mdx"
 import {
   ContentSpec,
   contentTools,
   getContentSpec,
-  isFlowContent,
+  isFlowInnerContent,
   isFlowSection,
 } from "~/constants/repos"
 import { ContentName } from "~/constants/repos/contents-structure"
@@ -22,58 +23,69 @@ type LoaderData = {
   page: MdxPage
 }
 
-const deconstructPath = (
-  firstRoute: string | undefined,
-  rawPath: string | undefined
-): { secondRoute: string | undefined; path: string } => {
-  if (firstRoute && rawPath) {
-    const split: string[] = rawPath.split("/") ?? []
-    const second: string = split.length > 0 ? split[0]! : ""
-    const splitAfterSecond: string[] = split.length > 1 ? split.slice(1) : []
+type NestedRoute = {
+  firstRoute: string
+  secondRoute: string | undefined
+  path: string
+}
 
-    const rest: string =
-      splitAfterSecond.length > 0 ? splitAfterSecond.join("/") : "index"
-
-    if (isFlowSection(firstRoute) && isFlowContent(second)) {
-      /* >> Start of custom landing pages >> */
-      if (second === "faq" && rest === "index") {
-        return { secondRoute: second, path: "backers" }
-      }
-      /* << End of custom landing pages << */
-      return { secondRoute: second, path: rest }
+/* TODO: We shouldn't have to manually redirect landing for subfolders without 'index' files */
+const customRedirectLanding = (nestedRoute: NestedRoute) => {
+  // Redirecting missing "index" pages
+  if (nestedRoute.path === "index") {
+    if (nestedRoute.firstRoute === "flow" && !nestedRoute.secondRoute) {
+      nestedRoute.path = "concepts/index"
+    } else if (nestedRoute.firstRoute === "nodes" && !nestedRoute.secondRoute) {
+      nestedRoute.path = "node-operation/index"
+    } else if (
+      nestedRoute.firstRoute === "flow" &&
+      nestedRoute.secondRoute === "faq"
+    ) {
+      nestedRoute.path = "backers"
+    } else if (
+      nestedRoute.firstRoute === "cadence" &&
+      nestedRoute.secondRoute === "language"
+    ) {
+      nestedRoute.path = "syntax"
     }
-    return { secondRoute: undefined, path: rawPath }
-  } else {
-    /* >> Start of custom landing pages >> */
-    if (firstRoute === "flow") {
-      return { secondRoute: undefined, path: "concepts/index" }
-    } else if (firstRoute === "nodes") {
-      return { secondRoute: undefined, path: "node-operation/index" }
-    }
-    /* << End of custom landing pages << */
-
-    return { secondRoute: undefined, path: "index" }
   }
+
+  return nestedRoute
+}
+
+const isValidSecondRoute = (firstRoute: string, secondRoute: string) => {
+  return (
+    (isFlowSection(firstRoute) && isFlowInnerContent(secondRoute)) ||
+    (firstRoute === "cadence" && secondRoute === "language")
+  )
+}
+
+const deconstructPath = (params: Params<string>) => {
+  const firstRoute = params.repo
+  invariant(firstRoute, `expected repo param`)
+
+  const remainingRoute = params["*"]
+
+  // Assume there is a valid secondRoute
+  var secondRoute = remainingRoute?.split("/")[0]
+  var path: string = remainingRoute?.split("/")?.slice(1)?.join("/") || "index"
+
+  // If secondRoute is invalid, invalidate path
+  if (!secondRoute || !isValidSecondRoute(firstRoute, secondRoute)) {
+    secondRoute = undefined
+    path = remainingRoute ?? "index"
+  }
+  return customRedirectLanding({ firstRoute, secondRoute, path })
 }
 
 export const loader: LoaderFunction = async ({
   params,
   request,
 }): Promise<LoaderData> => {
-  /*
-  Because of added complexity of routing, the 'repo' is no longer necessarily the name of the repository.
-  For instance, params.repo could be a section name, repo name, or /flow's internal content name.
-  For less confusion, we will call this firstRoute.
-  Examples:
-  - Repository = /cadence/... then firstRoute = cadence, cadence is a repo
-  - Section = /learn/kitty-items/... then firstRoute = learn, learn is a section, and kitty-items is flow's content
-  */
-  const firstRoute = params.repo
-  const { secondRoute, path } = deconstructPath(firstRoute, params["*"])
-
-  invariant(firstRoute, `expected repo param`)
+  const { firstRoute, secondRoute, path }: NestedRoute = deconstructPath(params)
 
   const contentSpec = getContentSpec(firstRoute, secondRoute)
+
   if (!contentSpec) {
     throw json({ status: "noRepo" }, { status: 404 })
   }

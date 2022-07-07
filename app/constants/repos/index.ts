@@ -1,40 +1,43 @@
 import { capitalCase } from "change-case"
 import { InternalLandingHeaderProps } from "../../ui/design-system/src/lib/Components/InternalLandingHeader"
-import cadence from "./repo-presets/cadence.json"
 
-// Individual Repo Content Presets
-import fclJs from "./repo-presets/fcl-js.json"
-import flowCli from "./repo-presets/flow-cli.json"
-import kittyItems from "./repo-presets/kitty-items.json"
-import vscodeExtension from "./repo-presets/vscode-extension.json"
-import flowGoSdk from "./repo-presets/flow-go-sdk.json"
-import flowJsTesting from "./repo-presets/flow-js-testing.json"
-import flowNFT from "./repo-presets/flow-nft.json"
-import flowFT from "./repo-presets/flow-ft.json"
-import nftStorefront from "./repo-presets/nft-storefront.json"
-import flowEmulator from "./repo-presets/flow-emulator.json"
+// First Level: Individual Repo Presets
+import cadence from "./first-route-presets/cadence.json"
+import fclJs from "./first-route-presets/fcl-js.json"
+import flowCli from "./first-route-presets/flow-cli.json"
+import kittyItems from "./first-route-presets/kitty-items.json"
+import vscodeExtension from "./first-route-presets/vscode-extension.json"
+import flowGoSdk from "./first-route-presets/flow-go-sdk.json"
+import flowJsTesting from "./first-route-presets/flow-js-testing.json"
+import flowNFT from "./first-route-presets/flow-nft.json"
+import flowFT from "./first-route-presets/flow-ft.json"
+import nftStorefront from "./first-route-presets/nft-storefront.json"
+import flowEmulator from "./first-route-presets/flow-emulator.json"
 
-// Flow Internal Content Presets
-import concepts from "./repo-presets/concepts.json"
-import dappDevelopment from "./repo-presets/dapp-development.json"
-import coreContracts from "./repo-presets/core-contracts.json"
-import flowToken from "./repo-presets/flow-token.json"
-import fusd from "./repo-presets/fusd.json"
-import flowPort from "./repo-presets/flow-port.json"
-import nftMarketPlace from "./repo-presets/nft-marketplace.json"
-import staking from "./repo-presets/staking.json"
-import nodeOperation from "./repo-presets/node-operation.json"
-import emulator from "./repo-presets/emulator.json"
-import faq from "./repo-presets/faq.json"
+// Second Level: Individual Repo Inner Content Presents
+import cadenceLanguage from "./second-route-presets/cadence-language.json"
 
-// Flow Section Presets
-import flow from "./section-presets/flow.json"
-import learn from "./section-presets/learn.json"
-import nodes from "./section-presets/nodes.json"
-import community from "./section-presets/community.json"
-import tools from "./section-presets/tools.json"
+// First Level: Flow Section Presets
+import flow from "./first-route-presets/flow.json"
+import learn from "./first-route-presets/learn.json"
+import nodes from "./first-route-presets/nodes.json"
+import community from "./first-route-presets/community.json"
+import tools from "./first-route-presets/tools.json"
 
-import { RepoSchema } from "./repo-schema"
+// Second Level: Flow Inner Content Presets
+import concepts from "./second-route-presets/concepts.json"
+import dappDevelopment from "./second-route-presets/dapp-development.json"
+import coreContracts from "./second-route-presets/core-contracts.json"
+import flowToken from "./second-route-presets/flow-token.json"
+import fusd from "./second-route-presets/fusd.json"
+import flowPort from "./second-route-presets/flow-port.json"
+import nftMarketPlace from "./second-route-presets/nft-marketplace.json"
+import staking from "./second-route-presets/staking.json"
+import nodeOperation from "./second-route-presets/node-operation.json"
+import emulator from "./second-route-presets/emulator.json"
+import faq from "./second-route-presets/faq.json"
+
+import { populateRepoSchema, RepoSchema } from "./repo-schema"
 import { ToolName } from "../../ui/design-system/src/lib/Components/Internal/tools"
 import {
   ContentName,
@@ -42,6 +45,8 @@ import {
   flowContentNames,
   flowSectionNames,
   RepoName,
+  repositoryContentNames,
+  repositoryMap,
   repositoryNames,
 } from "./contents-structure"
 import { landingHeaders } from "./custom-headers"
@@ -51,7 +56,7 @@ export const DEFAULT_CONTENT_PATH = "docs"
 
 /* Sidebar presets for all repositories and content names */
 export const schemas: Partial<Record<ContentName, RepoSchema>> = {
-  // Individual repository
+  // First Level: Individual repository ({repository}/...)
   cadence: cadence as RepoSchema,
   "flow-cli": flowCli as RepoSchema,
   "fcl-js": fclJs as RepoSchema,
@@ -62,7 +67,17 @@ export const schemas: Partial<Record<ContentName, RepoSchema>> = {
   "nft-storefront": nftStorefront as RepoSchema,
   "flow-emulator": flowEmulator as RepoSchema,
 
-  // Flow: lower lever internal contents
+  // Second Level: Individual repository inner content schema (repository/{inner}/...)
+  language: populateRepoSchema(cadenceLanguage as RepoSchema),
+
+  // First Level: Flow Section (flow/{section}/...)
+  flow: flow as RepoSchema,
+  learn: learn as RepoSchema,
+  nodes: nodes as RepoSchema,
+  tools: tools as RepoSchema,
+  community: community as RepoSchema,
+
+  // Second Level: Flow Inner Contents (flow/section/{inner}/...)
   "kitty-items": kittyItems as RepoSchema,
   "vscode-extension": vscodeExtension as RepoSchema,
   emulator: emulator as RepoSchema,
@@ -76,13 +91,6 @@ export const schemas: Partial<Record<ContentName, RepoSchema>> = {
   staking: staking as RepoSchema,
   "flow-port": flowPort as RepoSchema,
   "nft-marketplace": nftMarketPlace as RepoSchema,
-
-  // Flow: higher lever section schemas
-  flow: flow as RepoSchema,
-  learn: learn as RepoSchema,
-  nodes: nodes as RepoSchema,
-  tools: tools as RepoSchema,
-  community: community as RepoSchema,
 }
 
 /* Overriden display names (defaults to dashes converted to spaces then capitalized) */
@@ -137,17 +145,25 @@ export type ContentSpec = {
 }
 
 function getBasePath(name: string) {
-  if (isFlowContent(name)) {
+  if (isFlowInnerContent(name)) {
     return `docs/content/${name}`
   }
   if (isFlowSection(name)) {
     return `docs/content`
   }
-  return DEFAULT_CONTENT_PATH
+  return isRepoInnerContent(name) ? `docs/${name}` : DEFAULT_CONTENT_PATH
+}
+
+const getRepoName = (name: string) => {
+  if (isFlowInnerContent(name) || isFlowSection(name)) {
+    return "flow"
+  }
+  return isRepo(name) ? name : repositoryMap[name]
 }
 
 export const contentSpecMap = [
   ...repositoryNames,
+  ...repositoryContentNames,
   ...flowSectionNames,
   ...flowContentNames,
 ].reduce(
@@ -155,7 +171,7 @@ export const contentSpecMap = [
     ...accum,
     [name]: {
       owner: DEFAULT_REPO_OWNER,
-      repoName: isFlowContent(name) || isFlowSection(name) ? "flow" : name,
+      repoName: getRepoName(name),
       branch: "master",
       basePath: getBasePath(name),
       contentName: name,
@@ -170,13 +186,15 @@ export const contentSpecMap = [
 export function isRepo(name: string): name is RepoName {
   return repositoryNames.includes(name as RepoName)
 }
-
-export function isFlowContent(name: string): name is FlowContentName {
-  return flowContentNames.includes(name as FlowContentName)
+export function isRepoInnerContent(name: string): name is RepoName {
+  return repositoryContentNames.includes(name as RepoName)
 }
 
 export function isFlowSection(name: string): name is FlowContentName {
   return flowSectionNames.includes(name as FlowContentName)
+}
+export function isFlowInnerContent(name: string): name is FlowContentName {
+  return flowContentNames.includes(name as FlowContentName)
 }
 
 export const getContentSpec = (
@@ -184,12 +202,16 @@ export const getContentSpec = (
   secondRoute?: string | undefined
 ) => {
   if (isRepo(firstRoute)) {
-    return contentSpecMap[firstRoute]
-  } else if (isFlowSection(firstRoute)) {
-    if (secondRoute) {
+    if (secondRoute && isRepoInnerContent(secondRoute)) {
       return contentSpecMap[secondRoute]
-    } else {
-      return contentSpecMap[firstRoute]
     }
+    return contentSpecMap[firstRoute]
+  }
+
+  if (isFlowSection(firstRoute)) {
+    if (secondRoute && isFlowInnerContent(secondRoute)) {
+      return contentSpecMap[secondRoute]
+    }
+    return contentSpecMap[firstRoute]
   }
 }
