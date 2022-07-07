@@ -8,6 +8,7 @@ import {
   ContentNavigationList,
   ContentNavigationListProps,
 } from "../../Components/ContentNavigationList"
+import ToolsImage from "../../../../images/page/tools.png"
 
 export type ToolsPageProps = {
   tools: SDKCardProps[]
@@ -34,7 +35,7 @@ const ToolsPage = ({
             callout="Flow Dapp Architecture Guide"
             description="Wondering what tools you need? See our dapp architectures guide to help you out."
             title="Tools"
-            imageSrc="https://storage.googleapis.com/flow-resources/documentation-assets/new-docsite-assets/Flow-Illustration-abstract-cube-2@2x.png"
+            imageSrc={ToolsImage}
           />
         </PageSection>
         <PageSection sectionId="development-tools">

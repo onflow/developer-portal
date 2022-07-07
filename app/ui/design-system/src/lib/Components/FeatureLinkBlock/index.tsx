@@ -27,9 +27,9 @@ export function FeatureLinkBlock({
     <div className="flex flex-col items-start items-stretch rounded-lg bg-white p-6 dark:bg-primary-gray-dark md:flex-row md:items-center md:p-12">
       <div className="basis-1/2 md:mr-10">
         <div>
-          <img src={iconSrc} alt={title} />
+          <img src={iconSrc} alt={title} className="max-h-[100px]" />
         </div>
-        <h2 className="text-h2 mb-2 mt-6">{title}</h2>
+        <h2 className="text-h2 mt-6 mb-2">{title}</h2>
         <p className="mb-10 text-primary-gray-400 dark:text-primary-gray-100">
           {description}
         </p>

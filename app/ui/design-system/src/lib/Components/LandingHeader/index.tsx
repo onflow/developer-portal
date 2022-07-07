@@ -11,7 +11,6 @@ export type LandingHeaderProps = {
   callout: string
   description: string
   imageSrc?: string
-  imagePadding?: boolean
   title: string
 }
 
@@ -44,7 +43,6 @@ export function LandingHeader({
   callout,
   description,
   imageSrc = LandingImage,
-  imagePadding = true,
   title,
 }: LandingHeaderProps) {
   return (
@@ -52,28 +50,23 @@ export function LandingHeader({
       <h1 className="text-h1 mb-14 max-w-full overflow-hidden text-ellipsis !text-4xl md:mt-12 md:!text-7xl md:!leading-tight">
         {title}
       </h1>
-      <div className="flex flex-row items-stretch rounded-lg bg-primary-gray-100/30">
-        <div className="px-5 py-10 md:basis-1/2 md:px-20 md:py-12">
-          <h2 className="text-h2 mb-2 md:mb-4">{callout}</h2>
-          <p>{description}</p>
+      <div className="flex flex-row items-stretch justify-between overflow-hidden rounded-lg bg-primary-gray-100/30">
+        <div className="pl-8 pr-8 md:basis-1/2 md:px-20 md:pr-0">
+          <h2 className="text-h2 mb-2 pt-10 md:mb-4 md:pt-14">{callout}</h2>
+          <p className="mr-0 md:mr-[-50px]">{description}</p>
           <ButtonLink
-            className="mt-4 mb-4 transition duration-200 md:mt-12"
+            className="mt-4 mb-8 transition duration-200 md:mb-12"
             href={buttonUrl}
             variant="primary-no-darkmode"
           >
             {buttonText}
           </ButtonLink>
         </div>
-        <div
-          className={clsx(
-            "hidden rounded-r-lg border dark:bg-white/40 md:flex md:basis-1/2 md:items-center md:justify-center",
-            { "px-10 py-6 md:px-20 md:py-12": imagePadding }
-          )}
-        >
+        <div className={clsx("hidden dark:bg-white/40 md:flex")}>
           <img
             src={imageSrc}
             alt={title}
-            className="max-h-[340px] max-w-[570px] object-contain"
+            className="max-h-[370px] max-w-[554px] object-contain"
           />
         </div>
       </div>

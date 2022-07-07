@@ -2,6 +2,7 @@ import { IntroCardProps } from "~/ui/design-system/src/lib/Components/Navigation
 import RadarIcon from "~/ui/design-system/images/misc/radar.png"
 import AbstractImage6 from "~/ui/design-system/images/misc/Asset_6@3x.png"
 import AbstractImage8 from "~/ui/design-system/images/misc/Asset_8@3x.png"
+import PlaygroundImage from "~/ui/design-system/images/misc/playground-nav.png"
 
 const learnCard: IntroCardProps = {
   href: "/coming-soon", // Replace with /learn
@@ -26,7 +27,7 @@ const playgroundCard: IntroCardProps = {
   ctaText: "Go to tutorial",
   description:
     "No tools needed. Learn and experiment with Cadence and smart contracts on Flow in an isolated environment.",
-  imageHref: AbstractImage6,
+  imageHref: PlaygroundImage,
   title: "Flow Playground",
 }
 
