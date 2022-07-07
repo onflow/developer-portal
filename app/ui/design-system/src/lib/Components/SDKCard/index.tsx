@@ -1,8 +1,8 @@
 import { ReactComponent as CalendarIcon } from "../../../../images/action/date-calendar"
 import { ReactComponent as StarIcon } from "../../../../images/action/star"
 import { ReactComponent as CommitIcon } from "../../../../images/content/commit"
-import CodeIconSrc from "../../../../images/content/code.svg"
-import CodeIconLightSrc from "../../../../images/content/code-light.svg"
+import CodeIconSrc from "../../../../images/tools/tool-default.svg"
+import CodeIconLightSrc from "../../../../images/tools/tool-default.svg"
 import Tag from "../Tag"
 
 export type SDKCardProps = {

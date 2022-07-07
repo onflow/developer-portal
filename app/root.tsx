@@ -26,6 +26,7 @@ import {
 } from "~/cms/utils/theme.provider"
 import { getRequiredServerEnvVar } from "./cms/helpers"
 import { navBarData } from "./component-data/NavigationBar"
+import { getPublicEnv, PUBLIC_ENV } from "./env.server"
 import * as gtag from "./gtags.client"
 import styles from "./main.css"
 import { getThemeSession } from "./theme.server"
@@ -56,6 +57,7 @@ export const meta: MetaFunction = () => ({
 export type LoaderData = {
   theme: Theme | null
   gaTrackingId: string | undefined
+  ENV: PUBLIC_ENV
 }
 
 export const loader: LoaderFunction = async ({ request }) => {
@@ -66,6 +68,7 @@ export const loader: LoaderFunction = async ({ request }) => {
       "GA_TRACKING_ID",
       "GA_TRACKING_ID-dev-value"
     ),
+    ENV: getPublicEnv(),
   })
 }
 
@@ -115,6 +118,11 @@ function App() {
                   page_path: window.location.pathname,
                 });
               `,
+              }}
+            />
+            <script
+              dangerouslySetInnerHTML={{
+                __html: `window.ENV = ${JSON.stringify(data.ENV)};`,
               }}
             />
           </>

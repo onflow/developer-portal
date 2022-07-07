@@ -5,12 +5,13 @@ import {
   LinkCard2ColumnProps,
   LinkCard3ColumnItems,
 } from "~/ui/design-system/src"
-import FlowIcon from "../../ui/design-system/images/logos/flow-icon.svg"
+import PlaygroundIcon from "../../ui/design-system/images/misc/playground-default.png"
+
 const homepageStartProjectData: LinkCard2ColumnProps = {
   buttonText: "Get started",
   buttonUrl: "/getting-started",
-  description: `Building on Flow is easy. 
-      Start building now on web3 with the power of resource-oriented programming, multi-node architecture, 
+  description: `Building on Flow is easy.
+      Start building now on web3 with the power of resource-oriented programming, multi-node architecture,
       and a host of other features and tooling to make your dapp development easy and efficient.`,
   title: "Start Your Project",
   tags: ["onflow"],
@@ -26,7 +27,7 @@ const homepageStartProjectData: LinkCard2ColumnProps = {
       title: "Mint NFTs on the Playground with Cadence",
       description:
         "A series of tutorials that explain how to build your first NFT (Non-Fungible Token).",
-      icon: FlowIcon,
+      icon: PlaygroundIcon,
       links: [
         {
           href: "https://docs.onflow.org/cadence/tutorial/02-hello-world/",
