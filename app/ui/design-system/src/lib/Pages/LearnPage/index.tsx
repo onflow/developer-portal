@@ -20,6 +20,7 @@ import PageBackground from "../shared/PageBackground"
 import PageSection from "../shared/PageSection"
 import PageSections from "../shared/PageSections"
 import LearnImage from "../../../../images/page/learn.png"
+import { learnSections } from "~/constants/landingPages/learnSections"
 
 export type LearnPageProps = {
   allTutorials: TutorialCardProps[]
@@ -64,32 +65,9 @@ export function LearnPage({
     )
   ).sort()
 
-  const sections = [
-    {
-      title: "Cadence",
-      elementId: "cadence",
-    },
-    {
-      title: "NFTs",
-      elementId: "nfts",
-    },
-    {
-      title: "Architecture",
-      elementId: "architecture",
-    },
-    {
-      title: "Featured Videos",
-      elementId: "featured-videos",
-    },
-    {
-      title: "All Content",
-      elementId: "all-content",
-    },
-  ]
-
   return (
     <PageBackground gradient="tools">
-      <LandingPageSecondaryNav sections={sections} />
+      <LandingPageSecondaryNav sections={learnSections} />
       <PageSections>
         <PageSection className="pt-0 pb-0">
           <LandingHeader
