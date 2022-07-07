@@ -1,5 +1,7 @@
+import invariant from "tiny-invariant"
 import { getRequiredServerEnvVar } from "~/cms/helpers"
-import { isRepo, schemas } from "~/constants/repos"
+import { isFlowInnerContent, isRepo, schemas } from "~/constants/repos"
+import { flowContentSectionMap } from "~/constants/repos/contents-structure"
 import { isNotNull } from "~/utils/filters"
 
 function entryNode(entry: Entry, origin: string): string {
@@ -30,25 +32,35 @@ export const loader = () => {
     "/tools",
   ]
 
-  const internalIndexPaths = Object.entries(schemas).flatMap(
-    ([key, schema]) => {
+  const internalIndexPaths = Object.entries(schemas)
+    .flatMap(([key, schema]) => {
       return (
         schema?.sidebar.sections.flatMap((section) =>
           section.items.flatMap((item) => {
             if (isRepo(key)) {
               return `${key}/${item.href}`
-            } else {
-              return item.href
             }
+
+            if (isFlowInnerContent(key)) {
+              let section = flowContentSectionMap[key]
+              invariant(section, `expected section for ${key}`)
+              return `${section}/${item.href}`
+            }
+
+            // TODO: handle other sidebar items
+
+            return null
           })
         ) ?? []
       )
-    }
-  )
+    })
+    .filter(isNotNull)
 
-  let entries: Array<Entry> = [staticRoutes, internalIndexPaths].flatMap(
-    (paths) => paths.map((p) => ({ pathname: p }))
-  )
+  let paths = [...staticRoutes, ...internalIndexPaths]
+  // remove duplicates
+  paths = [...new Set(paths)]
+
+  let entries: Array<Entry> = paths.map((p) => ({ pathname: p }))
 
   let origin: string = getRequiredServerEnvVar(
     "ORIGIN",

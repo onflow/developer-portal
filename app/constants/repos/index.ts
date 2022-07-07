@@ -190,9 +190,16 @@ export function isRepoInnerContent(name: string): name is RepoName {
   return repositoryContentNames.includes(name as RepoName)
 }
 
+/**
+ * examples of flow sections: learn, flow
+ */
 export function isFlowSection(name: string): name is FlowContentName {
   return flowSectionNames.includes(name as FlowContentName)
 }
+
+/**
+ * examples of flow inner content: dapp-development, kitty-items
+ */
 export function isFlowInnerContent(name: string): name is FlowContentName {
   return flowContentNames.includes(name as FlowContentName)
 }
