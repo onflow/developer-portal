@@ -16,6 +16,7 @@ function entryNode(entry: Entry, origin: string): string {
 type Entry = { pathname: string }
 
 export const loader = () => {
+  // pages defined in app/routes
   const staticRoutes = [
     "/",
     "/action",
@@ -29,8 +30,14 @@ export const loader = () => {
     "/tools",
   ]
 
-  const internalIndexPaths = Object.keys(schemas).map(
-    (schemaKey) => `/${schemaKey}`
+  const internalIndexPaths = Object.entries(schemas).flatMap(
+    ([key, schema]) => {
+      return (
+        schema?.sidebar.sections.flatMap((section) =>
+          section.items.flatMap((item) => `${key}/${item.href}`)
+        ) ?? []
+      )
+    }
   )
 
   let entries: Array<Entry> = [staticRoutes, internalIndexPaths].flatMap(
