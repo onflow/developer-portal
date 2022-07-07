@@ -38,6 +38,15 @@
             "href": "json-cadence-spec"
           }
         ]
+      },
+      {
+        "title": "Cadence",
+        "items": [
+          {
+            "label": "Language Reference",
+            "href": "language"
+          }
+        ]
       }
     ]
   }
