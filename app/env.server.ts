@@ -16,13 +16,29 @@ function getEnv() {
 
 type ENV = ReturnType<typeof getEnv>
 
-// App puts these on
-declare global {
-  // eslint-disable-next-line
-  var ENV: ENV
-  interface Window {
-    ENV: ENV
+/**
+ * these values are exposed on window, don't put secrets here
+ */
+function getPublicEnv() {
+  return {
+    NODE_ENV: process.env.NODE_ENV,
+    /**
+     * the url origin, e.g. https://developers.onflow.org or http://localhost:3000
+     */
+    ORIGIN: process.env.ORIGIN,
   }
 }
 
-export { getEnv }
+type PUBLIC_ENV = ReturnType<typeof getPublicEnv>
+
+// App puts these on
+declare global {
+  // eslint-disable-next-line
+  var ENV: PUBLIC_ENV
+  interface Window {
+    ENV: PUBLIC_ENV
+  }
+}
+
+export { getEnv, getPublicEnv }
+export type { ENV, PUBLIC_ENV }
