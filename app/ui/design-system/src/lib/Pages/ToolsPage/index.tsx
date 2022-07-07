@@ -4,11 +4,11 @@ import { SDKCards } from "../../Components/SDKCards"
 import PageBackground from "../shared/PageBackground"
 import PageSection from "../shared/PageSection"
 import PageSections from "../shared/PageSections"
-import ArchesImageSrc from "../../../../images/misc/arches.png"
 import {
   ContentNavigationList,
   ContentNavigationListProps,
 } from "../../Components/ContentNavigationList"
+import ToolsImage from "../../../../images/page/tools.png"
 
 export type ToolsPageProps = {
   tools: SDKCardProps[]
@@ -35,7 +35,7 @@ const ToolsPage = ({
             callout="Flow Dapp Architecture Guide"
             description="Wondering what tools you need? See our dapp architectures guide to help you out."
             title="Tools"
-            imageSrc={ArchesImageSrc}
+            imageSrc={ToolsImage}
           />
         </PageSection>
         <PageSection sectionId="development-tools">

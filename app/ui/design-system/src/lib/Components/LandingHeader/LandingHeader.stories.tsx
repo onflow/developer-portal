@@ -1,5 +1,11 @@
 import { Meta, Story } from "@storybook/react"
 import { LandingHeader, LandingHeaderProps } from "."
+// @ts-ignore
+import LearnImage from "../../../../images/page/learn.png"
+// @ts-ignore
+import CommunityImage from "../../../../images/page/community.png"
+// @ts-ignore
+import ToolsImage from "../../../../images/page/tools.png"
 
 export default {
   component: LandingHeader,
@@ -31,6 +37,7 @@ Community.args = {
   description:
     "Lorem ipsum dolor sit amet proin gravida lorem ipsum dolor sit.",
   title: "Community",
+  imageSrc: CommunityImage,
 }
 
 export const GettingStarted = Template.bind({})
@@ -45,6 +52,7 @@ export const Learn = Template.bind({})
 Learn.args = {
   ...Community.args,
   title: "Learn",
+  imageSrc: LearnImage,
 }
 
 export const Concepts = Template.bind({})
@@ -57,4 +65,5 @@ export const Tools = Template.bind({})
 Tools.args = {
   ...Community.args,
   title: "Tools",
+  imageSrc: ToolsImage,
 }
