@@ -1,5 +1,5 @@
 import { getRequiredServerEnvVar } from "~/cms/helpers"
-import { schemas } from "~/constants/repos"
+import { isRepo, schemas } from "~/constants/repos"
 import { isNotNull } from "~/utils/filters"
 
 function entryNode(entry: Entry, origin: string): string {
@@ -34,7 +34,13 @@ export const loader = () => {
     ([key, schema]) => {
       return (
         schema?.sidebar.sections.flatMap((section) =>
-          section.items.flatMap((item) => `${key}/${item.href}`)
+          section.items.flatMap((item) => {
+            if (isRepo(key)) {
+              return `${key}/${item.href}`
+            } else {
+              return item.href
+            }
+          })
         ) ?? []
       )
     }
