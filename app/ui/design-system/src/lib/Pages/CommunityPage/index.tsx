@@ -6,29 +6,26 @@ import { ButtonLink } from "../../Components/Button"
 // import FeaturedArticleSlider, {
 //   FeaturedArticleSliderProps,
 // } from "../../Components/FeaturedArticleSlider"
+import { communitySections } from "~/constants/landingPages/communitySections"
+import { DISCOURSE_URL } from "../../../../../../constants"
+import CommunityImage from "../../../../images/page/community.png"
 import { CommunityMembersProps } from "../../Components/CommunityMembers"
-import { FeaturedArticleSliderProps } from "../../Components/FeaturedArticleSlider"
-import Flips, { FlipsProps } from "../../Components/Flips"
-import ForumCell, { ForumCellProps } from "../../Components/ForumCell"
-import { LandingHeader } from "../../Components/LandingHeader"
-import ProjectCards, { ProjectCardsProps } from "../../Components/ProjectCards"
-import { ToolsAndConceptsProps } from "../../Components/ToolsAndConcepts"
-import { UpcomingEventsProps } from "../../Components/UpcomingEvents"
-import {
-  DISCOURSE_URL,
-  // GITHUB_URL
-} from "../../../../../../constants"
-import PageBackground from "../shared/PageBackground"
-import PageSection from "../shared/PageSection"
-import PageSections from "../shared/PageSections"
 import {
   ContentNavigationList,
   ContentNavigationListProps,
 } from "../../Components/ContentNavigationList"
+import { FeaturedArticleSliderProps } from "../../Components/FeaturedArticleSlider"
+import Flips, { FlipsProps } from "../../Components/Flips"
+import ForumCell, { ForumCellProps } from "../../Components/ForumCell"
 import { HeaderWithLink } from "../../Components/HeaderWithLink"
-import CommunityImage from "../../../../images/page/community.png"
+import { LandingHeader } from "../../Components/LandingHeader"
 import { LandingPageSecondaryNav } from "../../Components/LandingPageSecondaryNav"
-import { communitySections } from "~/constants/landingPages/communitySections"
+import ProjectCards, { ProjectCardsProps } from "../../Components/ProjectCards"
+import { ToolsAndConceptsProps } from "../../Components/ToolsAndConcepts"
+import { UpcomingEventsProps } from "../../Components/UpcomingEvents"
+import PageBackground from "../shared/PageBackground"
+import PageSection from "../shared/PageSection"
+import PageSections from "../shared/PageSections"
 
 export type CommunityPageProps = FlipsProps &
   ProjectCardsProps &
@@ -130,8 +127,6 @@ export default function CommunityPage({
                 rightIcon="right"
                 href={DISCOURSE_URL}
                 variant="secondary"
-                target="_blank"
-                rel="noreferrer"
                 className="ml-4 hidden md:flex"
               >
                 Go to Forum

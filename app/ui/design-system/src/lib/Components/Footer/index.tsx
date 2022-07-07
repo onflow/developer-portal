@@ -1,9 +1,10 @@
+import { DISCORD_URL } from "../../../../../../constants"
 import { ReactComponent as FlowDocsLogo } from "../../../../images/logos/flow-docs-logo"
 import OnFlowIcon from "../../../../images/logos/flow-icon-bw-light.svg"
 import DiscordIcon from "../../../../images/social/discord-light.svg"
 import ForumIcon from "../../../../images/social/forum-light.svg"
 import GithubIcon from "../../../../images/social/github-light.svg"
-import { DISCORD_URL } from "../../../../../../constants"
+import AppLink from "../AppLink"
 
 // reduce repetition of the section layout in Footer component
 const footerSections = [
@@ -158,27 +159,27 @@ export const Footer = ({ sections = footerSections }) => {
     <footer className="bg-black px-6 text-white">
       <div className="container mx-auto">
         <div className="block items-center justify-between px-2 pt-8 pb-6 md:flex md:px-4 md:pt-16">
-          <a href="/" className="py-2 hover:opacity-75">
+          <AppLink to="/" className="py-2 hover:opacity-75">
             <FlowDocsLogo
               className="origin-top-left scale-75"
               style={{
                 transformOrigin: "center left",
               }}
             />
-          </a>
+          </AppLink>
           <div className="flex items-center gap-6 pt-8 md:pt-0">
-            <a href="https://github.com/onflow" className="hover:opacity-75">
+            <AppLink to="https://github.com/onflow">
               <img src={GithubIcon} height={32} width={32} />
-            </a>
-            <a href={DISCORD_URL} className="hover:opacity-75">
+            </AppLink>
+            <AppLink to={DISCORD_URL}>
               <img src={DiscordIcon} height={28} width={28} />
-            </a>
-            <a href="https://forum.onflow.org/" className="hover:opacity-75">
+            </AppLink>
+            <AppLink to="https://forum.onflow.org/">
               <img src={ForumIcon} height={24} width={24} />
-            </a>
-            <a href="https://onflow.org/" className="hover:opacity-75">
+            </AppLink>
+            <AppLink to="https://onflow.org/">
               <img src={OnFlowIcon} height={28} width={28} />
-            </a>
+            </AppLink>
           </div>
         </div>
         <div className="grid auto-cols-min gap-y-4 border-y border-y-primary-gray-400 px-2 pb-6 pt-9 xs:grid-cols-1 sm:grid-cols-2 sm:gap-x-12 md:gap-x-20 md:px-4 lg:grid-cols-[fit-content(25%)_fit-content(25%)_fit-content(25%)_fit-content(25%)]">
@@ -192,12 +193,12 @@ export const Footer = ({ sections = footerSections }) => {
               <ul>
                 {section.links.map((link, j) => (
                   <li className="py-1 pl-0" key={j}>
-                    <a
+                    <AppLink
                       className="whitespace-nowrap text-xs text-primary-gray-200 hover:text-primary-gray-100 md:text-sm lg:text-base"
-                      href={link.link}
+                      to={link.link}
                     >
                       {link.text}
-                    </a>
+                    </AppLink>
                   </li>
                 ))}
               </ul>

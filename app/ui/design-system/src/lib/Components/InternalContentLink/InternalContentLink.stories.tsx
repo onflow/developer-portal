@@ -1,21 +1,20 @@
 import { Meta, Story } from "@storybook/react"
-import { Link, LinkProps } from "."
+import { InternalContentLink, LinkProps } from "."
 
 export default {
-  component: Link,
-  title: "Components/Link",
+  component: InternalContentLink,
+  title: "Components/InternalContentLink",
   parameters: {
     layout: "padded",
   },
 } as Meta
 
-const Template: Story<LinkProps> = (args) => <Link {...args} />
+const Template: Story<LinkProps> = (args) => <InternalContentLink {...args} />
 
 export const ExternalLink = Template.bind({})
 ExternalLink.args = {
   href: "http://www.example.com",
   children: "External Link",
-  isExternal: true,
 }
 
 export const InternalLink = Template.bind({})

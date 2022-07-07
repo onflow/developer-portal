@@ -1,6 +1,7 @@
 import { formatDistance } from "date-fns"
 import { ReactComponent as ChevronRightIcon } from "../../../../images/arrows/chevron-right"
 import { ReactComponent as TimeIcon } from "../../../../images/content/date"
+import AppLink from "../AppLink"
 
 export type AnnouncementCardProps = {
   sourceIcon: string
@@ -18,8 +19,8 @@ const AnnouncementCard = ({
   link,
 }: AnnouncementCardProps) => {
   return (
-    <a
-      href={link}
+    <AppLink
+      to={link}
       className="flex items-center justify-between rounded-2xl bg-white px-4 py-6 hover:shadow-2xl dark:bg-primary-gray-dark dark:hover:shadow-2xl-dark md:px-8 md:py-8"
     >
       <div className="mr-4 self-start">
@@ -43,7 +44,7 @@ const AnnouncementCard = ({
       <div className="md:mt-0">
         <ChevronRightIcon />
       </div>
-    </a>
+    </AppLink>
   )
 }
 

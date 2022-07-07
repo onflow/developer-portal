@@ -1,6 +1,6 @@
 import clsx from "clsx"
 import { ReactComponent as ExternalLinkIcon } from "../../../../images/content/external-link"
-import { isLinkExternal } from "../Link/isLinkExternal"
+import AppLink, { isLinkExternal } from "../AppLink"
 
 export type LinkCard2ColumnItemContainerProps = React.PropsWithChildren<{
   href?: string
@@ -21,7 +21,7 @@ export function LinkCard2ColumnItemContainer({
     const isExternal = isLinkExternal(href)
 
     return (
-      <a
+      <AppLink
         className={clsx(
           className,
           "cursor-pointer  hover:shadow-2xl",
@@ -29,8 +29,7 @@ export function LinkCard2ColumnItemContainer({
             ? "dark:hover:shadow-2xl-dark-soft"
             : "dark:bg-black dark:hover:shadow-2xl-dark"
         )}
-        rel={isExternal ? "noreferrer" : undefined}
-        href={href}
+        to={href}
       >
         {isExternal && (
           <span className="absolute right-4">
@@ -38,7 +37,7 @@ export function LinkCard2ColumnItemContainer({
           </span>
         )}
         {children}
-      </a>
+      </AppLink>
     )
   }
 

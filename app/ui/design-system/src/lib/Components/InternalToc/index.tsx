@@ -1,9 +1,10 @@
-import { useEffect, useRef, useState } from "react"
-import clsx from "clsx"
-import { useLocation } from "@remix-run/react"
 import { Disclosure } from "@headlessui/react"
+import { useLocation } from "@remix-run/react"
+import clsx from "clsx"
+import { useEffect, useRef, useState } from "react"
 import { ReactComponent as ChevronDownIcon } from "../../../../images/arrows/chevron-down"
 import { ReactComponent as ChevronUpIcon } from "../../../../images/arrows/chevron-up"
+import AppLink from "../AppLink"
 
 export type InternalTocItem = {
   title: string
@@ -76,8 +77,8 @@ export function InternalToc({ headings }: InternalTocProps) {
       <div className="border-l-1 border-l border-l-gray-100 bg-opacity-80 dark:border-l-gray-800">
         {headings.map(({ title, hash }, index) => (
           <div className="flex" key={index}>
-            <a
-              href={hash}
+            <AppLink
+              to={hash}
               className={clsx(
                 "mb-1 cursor-pointer py-2 px-5 text-sm text-primary-gray-400 hover:opacity-75 dark:text-gray-200",
                 {
@@ -87,7 +88,7 @@ export function InternalToc({ headings }: InternalTocProps) {
               )}
             >
               {title}
-            </a>
+            </AppLink>
           </div>
         ))}
       </div>
@@ -109,13 +110,13 @@ export function InternalTocDisclosure({
             </Disclosure.Button>
             <Disclosure.Panel className="mt-2 flex flex-col border-t border-t-gray-400 pt-1">
               {headings.map(({ title, hash }, index) => (
-                <a
+                <AppLink
                   key={index}
-                  href={hash}
+                  to={hash}
                   className="my-1 text-primary-gray-400 hover:opacity-75 dark:text-gray-200"
                 >
                   {title}
-                </a>
+                </AppLink>
               ))}
             </Disclosure.Panel>
           </>

@@ -1,5 +1,6 @@
 import clsx from "clsx"
 import { ReactComponent as GithubLogo } from "../../../../images/social/github"
+import AppLink from "../AppLink"
 import { Breadcrumbs, BreadcrumbsProps } from "../Breadcrumbs"
 import { InternalVersionSelect, Version } from "../InternalVersionSelect"
 import { MobileMenuToggleButton } from "../NavigationBar/MobileMenuToggleButton"
@@ -49,9 +50,9 @@ export function InternalSubnav({
           />
         )}
         {githubUrl && (
-          <a href={githubUrl} className="whitespace-nowrap text-sm">
+          <AppLink to={githubUrl} className="whitespace-nowrap text-sm">
             <GithubLogo className="inline scale-90" /> Edit on Github
-          </a>
+          </AppLink>
         )}
       </div>
     </div>

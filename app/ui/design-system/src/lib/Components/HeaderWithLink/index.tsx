@@ -15,7 +15,7 @@ export function HeaderWithLink({
   return (
     <div className={`${className} group flex items-center`}>
       <span className="inline">{children}</span>
-      <a href={`#${headerLink}`}>
+      <a href={`#${headerLink}`} className="ml-2 hover:opacity-75">
         <Anchor
           width={32}
           height={32}

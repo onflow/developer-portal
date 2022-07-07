@@ -35,6 +35,7 @@ const TutorialCard = forwardRef<HTMLAnchorElement, TutorialCardProps>(
     ref
   ) => {
     return (
+      // TODO: switch to AppLink
       <a
         ref={ref}
         href={link}

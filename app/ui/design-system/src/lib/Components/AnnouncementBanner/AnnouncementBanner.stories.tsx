@@ -1,5 +1,6 @@
 import { Meta, Story } from "@storybook/react"
 import { AnnouncementBanner } from "."
+import AppLink from "../AppLink"
 
 export default {
   component: AnnouncementBanner,
@@ -12,13 +13,7 @@ const Template: Story = (args) => {
       <div>
         Permissionless deployment is coming to Flow! Read more{" "}
         <span style={{ textDecoration: "underline" }}>
-          <a
-            href="https://permissionless.onflow.org/"
-            target="_blank"
-            rel="noreferrer"
-          >
-            here
-          </a>
+          <AppLink to="https://permissionless.onflow.org/">here</AppLink>
         </span>
       </div>
     </AnnouncementBanner>

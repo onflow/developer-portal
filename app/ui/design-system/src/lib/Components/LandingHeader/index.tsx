@@ -1,9 +1,10 @@
+import clsx from "clsx"
+import { DISCORD_URL, GITHUB_URL } from "../../../../../../constants"
+import LandingImage from "../../../../images/misc/landing-home.png"
 import { ReactComponent as DiscordIcon } from "../../../../images/social/discord"
 import { ReactComponent as GithubIcon } from "../../../../images/social/github"
-import { DISCORD_URL, GITHUB_URL } from "../../../../../../constants"
+import AppLink from "../AppLink"
 import { ButtonLink } from "../Button"
-import LandingImage from "../../../../images/misc/landing-home.png"
-import clsx from "clsx"
 
 export type LandingHeaderProps = {
   buttonText: string
@@ -16,24 +17,20 @@ export type LandingHeaderProps = {
 
 export const LandingHeaderLinks = () => (
   <div className="fixed right-14 top-1/4 hidden flex-col text-center text-primary-gray-400 dark:text-white lg:flex">
-    <a
-      href={DISCORD_URL}
+    <AppLink
+      to={DISCORD_URL}
       className="scale-150 pb-4 hover:opacity-75"
-      target="_blank"
-      rel="noreferrer"
       title="Discord"
     >
       <DiscordIcon />
-    </a>
-    <a
-      href={GITHUB_URL}
+    </AppLink>
+    <AppLink
+      to={GITHUB_URL}
       className="scale-150 hover:opacity-75"
-      target="_blank"
-      rel="noreferrer"
       title="GitHub"
     >
       <GithubIcon />
-    </a>
+    </AppLink>
   </div>
 )
 

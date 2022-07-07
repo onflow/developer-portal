@@ -79,6 +79,7 @@ export function ConceptsPage({
               className="w-full cursor-pointer"
               variant="primary"
               rightIcon="right"
+              href="/tools"
             >
               View all Tools
             </ButtonLink>

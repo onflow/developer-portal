@@ -16,6 +16,8 @@ export function Item({ item, selected }: { item: HitType; selected: boolean }) {
         }
       )}
       href={item.url}
+      target="_blank"
+      rel="noreferrer"
       role="option"
       aria-selected="false"
     >

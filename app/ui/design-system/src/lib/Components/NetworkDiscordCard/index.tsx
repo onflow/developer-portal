@@ -1,6 +1,7 @@
 import { formatDistance } from "date-fns"
 import { ReactComponent as TimeIcon } from "../../../../images/content/date"
 import { ReactComponent as ExternalLinkIcon } from "../../../../images/content/external-link"
+import AppLink from "../AppLink"
 
 export type NetworkDiscordCardProps = {
   message: string
@@ -16,8 +17,8 @@ const NetworkDiscordCard = ({
   messageLink,
 }: NetworkDiscordCardProps) => {
   return (
-    <a
-      href={messageLink}
+    <AppLink
+      to={messageLink}
       className="w-full rounded-xl bg-white hover:cursor-pointer hover:shadow-2xl dark:bg-primary-gray-dark dark:hover:shadow-2xl-dark"
     >
       <div className="border-b-1 flex-col border-b border-b-primary-gray-100 px-6 pt-6 dark:border-b-primary-gray-400">
@@ -40,7 +41,7 @@ const NetworkDiscordCard = ({
           {formatDistance(timestamp, new Date())} ago
         </span>
       </div>
-    </a>
+    </AppLink>
   )
 }
 
