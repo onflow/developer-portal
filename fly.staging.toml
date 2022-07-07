@@ -7,6 +7,10 @@ kill_timeout = 5
 processes = []
 
 [env]
+  ORIGIN="https://flow-docs-staging.fly.dev"
+  ALGOLIA_APP_ID="DKF9ZIO5WM"
+  ALGOLIA_API_KEY="08ee46273565730f4d08cb1a063e1275"
+  ALGOLIA_INDEX_NAME="crawler_Flow Docs Staging"
 
 [experimental]
   allowed_public_ports = []
