@@ -3,11 +3,11 @@
   "sidebar": {
     "sections": [
       {
-        "title": "Cadence VS Code Extension",
+        "title": "Flow Emulator",
         "items": [
           {
             "label": "Introduction",
-            "href": "index"
+            "href": "emulator/index"
           }
         ]
       }

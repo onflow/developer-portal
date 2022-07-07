@@ -1,4 +1,14 @@
+import { capitalCase } from "change-case"
 import { useMemo } from "react"
+import {
+  displayNames,
+  isFlowInnerContent,
+  isRepoInnerContent,
+} from "~/constants/repos"
+import {
+  flowContentSectionMap,
+  repositoryMap,
+} from "~/constants/repos/contents-structure"
 import { InternalSidebarSectionItem } from "../../Components/InternalSidebar"
 
 export type UseInternalBreadcrumbsOptions = {
@@ -34,15 +44,32 @@ export const useInternalBreadcrumbs = ({
   rootUrl = "/",
 }: UseInternalBreadcrumbsOptions) =>
   useMemo(() => {
-    const breadcrumbs = [
-      { href: rootUrl, name: "Home" },
-      { name: contentDisplayName, href: `${rootUrl}${contentPath}` },
-    ]
+    const breadcrumbs = [{ href: rootUrl, name: "Home" }]
+
+    var basePath = `${rootUrl}${contentPath}`
+
+    if (isFlowInnerContent(contentPath) || isRepoInnerContent(contentPath)) {
+      const firstRouteName = isFlowInnerContent(contentPath)
+        ? flowContentSectionMap[contentPath]!
+        : repositoryMap[contentPath]!
+
+      breadcrumbs.push({
+        name: displayNames[firstRouteName] || capitalCase(firstRouteName),
+        href: `${rootUrl}${firstRouteName}`,
+      })
+      breadcrumbs.push({
+        name: contentDisplayName,
+        href: `${rootUrl}${firstRouteName}/${contentPath}`,
+      })
+      basePath = `${rootUrl}${firstRouteName}/${contentPath}`
+    } else {
+      breadcrumbs.push({ name: contentDisplayName, href: basePath })
+    }
 
     if (activeItem) {
       breadcrumbs.push({
         name: activeItem.label,
-        href: `${rootUrl}${contentPath}/${activeItem.href}`,
+        href: `${basePath}/${activeItem.href}`,
       })
     }
 

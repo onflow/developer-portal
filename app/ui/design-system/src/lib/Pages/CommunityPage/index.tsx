@@ -26,6 +26,9 @@ import {
   ContentNavigationListProps,
 } from "../../Components/ContentNavigationList"
 import { HeaderWithLink } from "../../Components/HeaderWithLink"
+import CommunityImage from "../../../../images/page/community.png"
+import { LandingPageSecondaryNav } from "../../Components/LandingPageSecondaryNav"
+import { communitySections } from "~/constants/landingPages/communitySections"
 
 export type CommunityPageProps = FlipsProps &
   ProjectCardsProps &
@@ -50,6 +53,7 @@ export default function CommunityPage({
 }: CommunityPageProps) {
   return (
     <PageBackground gradient="community">
+      <LandingPageSecondaryNav sections={communitySections} />
       <PageSections>
         <PageSection className="pt-0 pb-0">
           <LandingHeader
@@ -58,7 +62,7 @@ export default function CommunityPage({
             callout="The Flow Ecosystem Fund"
             description="Our $725 Million Flow Ecosystem Fund is designed to hypercharge innovation and growth across the Flow community."
             title="Community"
-            imageSrc="https://storage.googleapis.com/flow-resources/documentation-assets/new-docsite-assets/Flow_illustration_GreenLeaf.png"
+            imageSrc={CommunityImage}
           />
         </PageSection>
         <PageSection sectionId="upcoming-events">
@@ -80,7 +84,7 @@ export default function CommunityPage({
                 variant="secondary"
                 target="_blank"
                 rel="noreferrer"
-                className="ml-4 hidden md:flex"
+                className="hidden ml-4 md:flex"
               >
                 Go to GitHub
               </ButtonLink>

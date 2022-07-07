@@ -5,7 +5,7 @@ import ToolFclIconSrc from "../../ui/design-system/images/tools/tool-fcl.svg"
 import ToolTestingIconSrc from "../../ui/design-system/images/tools/tool-testing.svg"
 import ToolVsCodeIconSrc from "../../ui/design-system/images/tools/tool-vscode.svg"
 import ToolPortIconSrc from "../../ui/design-system/images/tools/tool-port.svg"
-import CodeIcon from "../../ui/design-system/images/content/code.svg"
+import CodeIcon from "../../ui/design-system/images/tools/tool-default.svg"
 
 // Flow Dev Tools
 const cliTool: SDKCardProps = {

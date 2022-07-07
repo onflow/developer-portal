@@ -32,6 +32,8 @@ import { Footer } from "~/ui/design-system/src"
 import { ErrorPage } from "~/ui/design-system/src/lib/Components/ErrorPage"
 import { NavigationBar } from "~/ui/design-system/src/lib/Components/NavigationBar"
 import * as gtag from "~/utils/gtags.client"
+import { SearchProps } from "./ui/design-system/src/lib/Components/Search"
+import { getPublicEnv, PUBLIC_ENV } from "./utils/env.server"
 
 export const getMetaTitle = (title?: string) =>
   [title, "Flow Developer Portal"].filter(Boolean).join(" | ")
@@ -56,16 +58,31 @@ export const meta: MetaFunction = () => ({
 export type LoaderData = {
   theme: Theme | null
   gaTrackingId: string | undefined
+  ENV: PUBLIC_ENV
+  algolia?: SearchProps
 }
 
 export const loader: LoaderFunction = async ({ request }) => {
   const themeSession = await getThemeSession(request)
+
+  let algolia: SearchProps | undefined = undefined
+
+  if (process.env.ALGOLIA_APP_ID) {
+    algolia = {
+      apiKey: getRequiredServerEnvVar("ALGOLIA_API_KEY"),
+      appId: getRequiredServerEnvVar("ALGOLIA_APP_ID"),
+      indexName: getRequiredServerEnvVar("ALGOLIA_INDEX_NAME"),
+    }
+  }
+
   return json<LoaderData>({
     theme: themeSession.getTheme(),
     gaTrackingId: getRequiredServerEnvVar(
       "GA_TRACKING_ID",
       "GA_TRACKING_ID-dev-value"
     ),
+    ENV: getPublicEnv(),
+    algolia,
   })
 }
 
@@ -117,6 +134,11 @@ function App() {
               `,
               }}
             />
+            <script
+              dangerouslySetInnerHTML={{
+                __html: `window.ENV = ${JSON.stringify(data.ENV)};`,
+              }}
+            />
           </>
         )}
 
@@ -124,6 +146,7 @@ function App() {
         <NavigationBar
           menuItems={navBarData.menuItems}
           onDarkModeToggle={toggleTheme}
+          algolia={data.algolia}
         />
         <div className="flex-auto overflow-auto">
           <Outlet />

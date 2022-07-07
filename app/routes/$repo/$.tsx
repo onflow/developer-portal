@@ -1,13 +1,16 @@
 import { json, LoaderFunction, MetaFunction, redirect } from "@remix-run/node"
 import { Link, useCatch, useLoaderData, useLocation } from "@remix-run/react"
+import { Params } from "react-router"
 import invariant from "tiny-invariant"
 import { getMdxPage, useMdxComponent } from "~/cms/utils/mdx"
 import {
-  ContentName,
   ContentSpec,
   contentTools,
   getContentSpec,
+  isFlowInnerContent,
+  isFlowSection,
 } from "~/constants/repos"
+import { ContentName } from "~/constants/repos/contents-structure"
 import { ErrorPage } from "~/ui/design-system/src/lib/Components/ErrorPage"
 import { MdxPage } from "../../cms"
 import { ToolName } from "../../ui/design-system/src/lib/Components/Internal/tools"
@@ -32,16 +35,68 @@ type LoaderData = {
   page: MdxPage
 }
 
+type NestedRoute = {
+  firstRoute: string
+  secondRoute: string | undefined
+  path: string
+}
+
+/* TODO: We shouldn't have to manually redirect landing for subfolders without 'index' files */
+const customRedirectLanding = (nestedRoute: NestedRoute) => {
+  // Redirecting missing "index" pages
+  if (nestedRoute.path === "index") {
+    if (nestedRoute.firstRoute === "flow" && !nestedRoute.secondRoute) {
+      nestedRoute.path = "concepts/index"
+    } else if (nestedRoute.firstRoute === "nodes" && !nestedRoute.secondRoute) {
+      nestedRoute.path = "node-operation/index"
+    } else if (
+      nestedRoute.firstRoute === "flow" &&
+      nestedRoute.secondRoute === "faq"
+    ) {
+      nestedRoute.path = "backers"
+    } else if (
+      nestedRoute.firstRoute === "cadence" &&
+      nestedRoute.secondRoute === "language"
+    ) {
+      nestedRoute.path = "syntax"
+    }
+  }
+
+  return nestedRoute
+}
+
+const isValidSecondRoute = (firstRoute: string, secondRoute: string) => {
+  return (
+    (isFlowSection(firstRoute) && isFlowInnerContent(secondRoute)) ||
+    (firstRoute === "cadence" && secondRoute === "language")
+  )
+}
+
+const deconstructPath = (params: Params<string>) => {
+  const firstRoute = params.repo
+  invariant(firstRoute, `expected repo param`)
+
+  const remainingRoute = params["*"]
+
+  // Assume there is a valid secondRoute
+  var secondRoute = remainingRoute?.split("/")[0]
+  var path: string = remainingRoute?.split("/")?.slice(1)?.join("/") || "index"
+
+  // If secondRoute is invalid, invalidate path
+  if (!secondRoute || !isValidSecondRoute(firstRoute, secondRoute)) {
+    secondRoute = undefined
+    path = remainingRoute ?? "index"
+  }
+  return customRedirectLanding({ firstRoute, secondRoute, path })
+}
+
 export const loader: LoaderFunction = async ({
   params,
   request,
 }): Promise<LoaderData> => {
-  const contentName = params.repo
-  const path = params["*"] || "index"
+  const { firstRoute, secondRoute, path }: NestedRoute = deconstructPath(params)
 
-  invariant(contentName, `expected repo param`)
-
-  const contentSpec = getContentSpec(contentName)
+  const contentSpec = getContentSpec(firstRoute, secondRoute)
 
   if (!contentSpec) {
     throw json({ status: "noRepo" }, { status: 404 })
@@ -55,7 +110,6 @@ export const loader: LoaderFunction = async ({
   if (!isDocument) {
     throw redirect(`/${params.repo}/_raw/${path}`)
   }
-
   let page: MdxPage | null
 
   try {

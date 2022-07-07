@@ -1,0 +1,43 @@
+{
+  "$schema": "../repo-schema.json",
+  "sidebar": {
+    "sections": [
+      {
+        "title": "Cadence Language",
+        "items": [
+          { "href": "language/syntax", "label": "" },
+          { "href": "language/constants-and-variables", "label": "" },
+          { "href": "language/type-annotations", "label": "" },
+          { "href": "language/values-and-types", "label": "" },
+          { "href": "language/operators", "label": "" },
+          { "href": "language/functions", "label": "" },
+          { "href": "language/control-flow", "label": "" },
+          { "href": "language/scope", "label": "" },
+          { "href": "language/type-safety", "label": "" },
+          { "href": "language/type-inference", "label": "" },
+          { "href": "language/composite-types", "label": "" },
+          { "href": "language/resources", "label": "" },
+          { "href": "language/access-control", "label": "" },
+          { "href": "language/interfaces", "label": "" },
+          { "href": "language/enumerations", "label": "" },
+          { "href": "language/restricted-types", "label": "" },
+          { "href": "language/references", "label": "" },
+          { "href": "language/imports", "label": "" },
+          { "href": "language/accounts", "label": "" },
+          { "href": "language/capability-based-access-control", "label": "" },
+          { "href": "language/contracts", "label": "" },
+          { "href": "language/contract-updatability", "label": "" },
+          { "href": "language/events", "label": "" },
+          { "href": "language/core-events", "label": "" },
+          { "href": "language/transactions", "label": "" },
+          { "href": "language/run-time-types", "label": "" },
+          { "href": "language/built-in-functions", "label": "" },
+          { "href": "language/environment-information", "label": "" },
+          { "href": "language/crypto", "label": "" },
+          { "href": "language/type-hierarchy", "label": "" },
+          { "href": "language/glossary", "label": "" }
+        ]
+      }
+    ]
+  }
+}

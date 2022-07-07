@@ -1,0 +1,16 @@
+{
+  "$schema": "../repo-schema.json",
+  "sidebar": {
+    "sections": [
+      {
+        "title": "Flow Port",
+        "items": [
+          {
+            "label": "How to Use Flow Port",
+            "href": "flow-port/index"
+          }
+        ]
+      }
+    ]
+  }
+}

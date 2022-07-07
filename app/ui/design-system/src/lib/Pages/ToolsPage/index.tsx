@@ -8,6 +8,9 @@ import {
   ContentNavigationList,
   ContentNavigationListProps,
 } from "../../Components/ContentNavigationList"
+import ToolsImage from "../../../../images/page/tools.png"
+import { LandingPageSecondaryNav } from "../../Components/LandingPageSecondaryNav"
+import { toolsSections } from "~/constants/landingPages/toolsSectionts"
 
 export type ToolsPageProps = {
   tools: SDKCardProps[]
@@ -26,6 +29,7 @@ const ToolsPage = ({
 }: ToolsPageProps) => {
   return (
     <PageBackground gradient="tools">
+      <LandingPageSecondaryNav sections={toolsSections} />
       <PageSections>
         <PageSection className="pt-0 pb-0">
           <LandingHeader
@@ -34,7 +38,7 @@ const ToolsPage = ({
             callout="Flow Dapp Architecture Guide"
             description="Wondering what tools you need? See our dapp architectures guide to help you out."
             title="Tools"
-            imageSrc="https://storage.googleapis.com/flow-resources/documentation-assets/new-docsite-assets/Flow-Illustration-abstract-cube-2@2x.png"
+            imageSrc={ToolsImage}
           />
         </PageSection>
         <PageSection sectionId="development-tools">

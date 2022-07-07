@@ -94,6 +94,7 @@ module.exports = {
       typography: (theme) => ({
         DEFAULT: {
           css: {
+            maxWidth: "unset",
             code: {
               borderRadius: theme("borderRadius.DEFAULT"),
               borderWidth: theme("borderWidth.DEFAULT"),

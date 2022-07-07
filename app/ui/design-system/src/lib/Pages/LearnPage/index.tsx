@@ -4,6 +4,7 @@ import { SocialLinksSignup } from "../../Components"
 import { ButtonLink } from "../../Components/Button"
 import { HeaderWithLink } from "../../Components/HeaderWithLink"
 import { LandingHeader } from "../../Components/LandingHeader"
+import { LandingPageSecondaryNav } from "../../Components/LandingPageSecondaryNav"
 import { ToggleButton } from "../../Components/ToggleButton"
 import { TutorialCardProps } from "../../Components/TutorialCard"
 import { PaginatedTutorialCardList } from "../../Components/TutorialCard/PaginatedTutorialCardList"
@@ -18,6 +19,8 @@ import {
 import PageBackground from "../shared/PageBackground"
 import PageSection from "../shared/PageSection"
 import PageSections from "../shared/PageSections"
+import LearnImage from "../../../../images/page/learn.png"
+import { learnSections } from "~/constants/landingPages/learnSections"
 
 export type LearnPageProps = {
   allTutorials: TutorialCardProps[]
@@ -64,6 +67,7 @@ export function LearnPage({
 
   return (
     <PageBackground gradient="tools">
+      <LandingPageSecondaryNav sections={learnSections} />
       <PageSections>
         <PageSection className="pt-0 pb-0">
           <LandingHeader
@@ -75,7 +79,7 @@ export function LearnPage({
             Most importantly, we realized that the technology at the time was not ready for this kind of application.
             Being the visionaries we are, we set to build a better tech for what we plan to do.
             We set to build what is now Flow blockchain."
-            imageSrc="https://storage.googleapis.com/flow-resources/documentation-assets/new-docsite-assets/Flow-illustration-head@2x.png"
+            imageSrc={LearnImage}
           />
         </PageSection>
         <PageSection className="flex-col items-stretch" sectionId="cadence">
@@ -112,7 +116,10 @@ export function LearnPage({
             <PaginatedTutorialCardList tutorials={nftTutorials} />
           </div>
         </PageSection>
-        <PageSection className="flex-col items-stretch">
+        <PageSection
+          className="flex-col items-stretch"
+          sectionId="architecture"
+        >
           <div className="container">
             <div className="mb-6 flex items-baseline justify-between">
               <h2 className="text-h2">Architecture</h2>

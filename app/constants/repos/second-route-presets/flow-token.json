@@ -1,0 +1,54 @@
+{
+  "$schema": "../repo-schema.json",
+  "sidebar": {
+    "sections": [
+      {
+        "title": "Flow Token",
+        "items": [
+          {
+            "label": "Introduction",
+            "href": "flow-token/index"
+          }
+        ]
+      },
+      {
+        "title": "Overview",
+        "items": [
+          {
+            "label": "Flow Wallets",
+            "href": "flow-token/available-wallets"
+          },
+          {
+            "label": "For Contributors",
+            "href": "flow-token/earn"
+          },
+          {
+            "label": "Key Concepts",
+            "href": "flow-token/concepts"
+          },
+          {
+            "label": "For Backers",
+            "href": "flow-token/backers"
+          },
+          {
+            "label": "Claiming FLOW Tokens",
+            "href": "flow-token/delivery"
+          },
+          {
+            "label": "Token Recipient FAQs",
+            "href": "flow-token/faq"
+          }
+        ]
+      },
+      {
+        "title": "Token Delivery",
+        "items": [
+          {
+            "label": "Locked/Leased FLOW Account Setup",
+            "href": "flow-token/locked-account-setup"
+          }
+        ]
+      }
+    ]
+  }
+}
