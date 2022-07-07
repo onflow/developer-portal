@@ -12,7 +12,7 @@ import { MenuItem } from "./types"
 export type NavigationBarProps = {
   menuItems: MenuItem[]
   onDarkModeToggle: () => void
-  algolia: SearchProps
+  algolia?: SearchProps
 }
 
 export const NAV_HEIGHT = 90
@@ -35,10 +35,11 @@ export function NavigationBar({
         </a>
       </div>
       <div className="mt-1 flex flex-1 justify-end">
-        {/* TODO: fetch appId and apiKey from env */}
-        <div className="mr-4 flex items-center">
-          <Search {...algolia} />
-        </div>
+        {algolia ? (
+          <div className="mr-4 flex items-center">
+            <Search {...algolia} />
+          </div>
+        ) : null}
         <DesktopMenu menuItems={menuItems} />
         <ul className="flex items-center">
           <li className="flex items-center whitespace-nowrap border-primary-gray-100 pl-4 dark:border-primary-gray-400 md:border-l">
