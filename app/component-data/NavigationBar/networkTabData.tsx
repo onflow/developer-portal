@@ -1,4 +1,3 @@
-import EcosystemIcon from "~/ui/design-system/images/content/ecosystem"
 import NetworkIcon from "~/ui/design-system/images/nav/network"
 import NodeIcon from "~/ui/design-system/images/nav/node"
 import TokenIcon from "~/ui/design-system/images/nav/token"
@@ -17,18 +16,18 @@ export const nodeOperation: Section = {
   links: [
     {
       title: "Read the node operation guide",
-      href: "https://docs.onflow.org/node-operation/",
+      href: "/nodes/node-operation/",
     },
   ],
   title: "Node Operation & Staking",
   subSections: [
     {
       title: "Operating a Flow Node",
-      href: "https://docs.onflow.org/node-operation/",
+      href: "/nodes/node-operation/",
     },
     {
       title: "Staking Walkthrough",
-      href: "https://docs.onflow.org/flow-port/staking-guide/",
+      href: "/nodes/flow-port/staking-guide/",
     },
     {
       title: "Flow Port",
@@ -42,18 +41,18 @@ export const flowToken: Section = {
   links: [
     {
       title: "View Flow FAQs",
-      href: "https://flow.com/faq",
+      href: "/faq",
     },
   ],
   title: "Flow Token",
   subSections: [
     {
       title: "Token Distribution",
-      href: "https://www.onflow.org/token-distribution",
+      href: "/flow/token-distribution",
     },
     {
       title: "Token Economics",
-      href: "https://www.onflow.org/flow-token-economics",
+      href: "/flow/flow-token-economics",
     },
     {
       title: "Get FLOW",
@@ -61,35 +60,6 @@ export const flowToken: Section = {
     },
   ],
   icon: <TokenIcon height="1.5em" width="1.5em" />,
-}
-
-export const grantsSection: Section = {
-  links: [
-    {
-      title: "View Developer Grants",
-      href: "https://github.com/emerald-dao/0-hello-world",
-    },
-  ],
-  title: "Network Information",
-  subSections: [
-    {
-      title: "Flow Ecosystem Fund",
-      href: "https://flow.com/ecosystemsupport",
-    },
-    {
-      title: "Flow Developer Fund",
-      href: "https://github.com/onflow/developer-grants",
-    },
-    {
-      title: "Flow Security Bounties",
-      href: "https://docs.onflow.org/bounties",
-    },
-    {
-      title: "FLIP Fest (past)",
-      href: "https://github.com/onflow/flip-fest/blob/main/winners.md",
-    },
-  ],
-  icon: <EcosystemIcon height="1em" width="1em" />,
 }
 
 export const governanceSection: Section = {
@@ -103,15 +73,15 @@ export const governanceSection: Section = {
   subSections: [
     {
       title: "Network Status",
-      href: "https://docs.onflow.org/status/",
+      href: "https://status.onflow.org/",
     },
     {
       title: "Upcoming Sporks",
-      href: "https://docs.onflow.org/node-operation/upcoming-sporks/",
+      href: "/nodes/node-operation/upcoming-sporks",
     },
     {
       title: "Past Sporks",
-      href: "https://docs.onflow.org/node-operation/past-sporks/",
+      href: "/nodes/node-operation/past-sporks",
     },
     {
       title: "Testnet Explorer",

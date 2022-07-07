@@ -9,7 +9,7 @@ export const eventsSection: Section = {
   links: [
     {
       title: "View more of the Flow community",
-      href: "/coming-soon",
+      href: "/community",
     },
   ],
   title: "Flow Ecosystem",
@@ -89,7 +89,7 @@ export const grantsSection: Section = {
   links: [
     {
       title: "View Developer Grants",
-      href: "https://github.com/emerald-dao/0-hello-world",
+      href: "https://github.com/onflow/developer-grants",
     },
   ],
   title: "Grants & Bounties",
@@ -104,7 +104,7 @@ export const grantsSection: Section = {
     },
     {
       title: "Bug Bounty Program",
-      href: "https://docs.onflow.org/bounties",
+      href: "/community/bounties",
     },
     {
       title: "FLIP Fest (past)",
@@ -133,7 +133,7 @@ export const governanceSection: Section = {
     },
     {
       title: "Variable Transaction Fees",
-      href: "https://docs.onflow.org/concepts/variable-transaction-fees/",
+      href: "/flow/concepts/variable-transaction-fees/",
     },
     {
       title: "Road to Permissionless Deployment",
