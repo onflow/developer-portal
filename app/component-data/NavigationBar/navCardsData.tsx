@@ -14,7 +14,7 @@ const learnCard: IntroCardProps = {
 }
 
 const emeraldDaoCard: IntroCardProps = {
-  href: "https://docs.onflow.org/cadence/tutorial/01-first-steps",
+  href: "/cadence/tutorial/01-first-steps",
   ctaText: "View details",
   description:
     "Emerald DAO partners with Flow to produce educational material for Flow. Go from zero to a hero on Flow development with their live bootcamps.",
@@ -23,7 +23,7 @@ const emeraldDaoCard: IntroCardProps = {
 }
 
 const playgroundCard: IntroCardProps = {
-  href: "https://docs.onflow.org/cadence/tutorial/01-first-steps",
+  href: "/cadence/tutorial/01-first-steps",
   ctaText: "Go to tutorial",
   description:
     "No tools needed. Learn and experiment with Cadence and smart contracts on Flow in an isolated environment.",
@@ -49,7 +49,7 @@ const sporkProcessCard: IntroCardProps = {
 }
 
 const networkStatusCard: IntroCardProps = {
-  href: "https://docs.onflow.org/status/",
+  href: "https://status.onflow.org/",
   ctaText: "View status",
   description:
     "Check the status of testnet and mainnet and the latest announcements related to Flow networks.",
@@ -66,7 +66,7 @@ const flowVerseCard: IntroCardProps = {
 }
 
 const kittyItemsCard: IntroCardProps = {
-  href: "https://docs.onflow.org/kitty-items/",
+  href: "/learn/kitty-items/",
   ctaText: "Try it out",
   description:
     "A full stack example NFT storefront and marketplace built with the latest standards and tooling on Flow. Get it up and running in a few minutes.",
