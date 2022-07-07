@@ -13,13 +13,6 @@ import { HIGHLIGHT_LANGUAGES } from "./utils/constants"
 import formatLinks from "./utils/format-links"
 import { markdownToToc } from "./utils/generate-toc"
 
-function bundleMarkdown({ source, files }: { [key: string]: any }) {
-  return {
-    code: "",
-    frontmatter: {},
-  }
-}
-
 if (process.platform === "win32") {
   process.env.ESBUILD_BINARY_PATH = path.resolve(
     process.cwd(),
