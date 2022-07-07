@@ -7,7 +7,7 @@
         "items": [
           {
             "label": "Introduction",
-            "href": "index"
+            "href": "vscode-extension/index"
           }
         ]
       }
