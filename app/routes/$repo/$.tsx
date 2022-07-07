@@ -16,16 +16,16 @@ import { MdxPage } from "../../cms"
 import { ToolName } from "../../ui/design-system/src/lib/Components/Internal/tools"
 import { InternalPage } from "../../ui/design-system/src/lib/Pages/InternalPage"
 import { getSocialMetas } from "~/utils/seo"
+import { getMetaTitle } from "~/root"
 
 export { InternalErrorBoundary as ErrorBoundary } from "~/errors/error-boundaries"
 
-export const meta: MetaFunction = ({ parentsData, data, params }) => {
+export const meta: MetaFunction = ({ parentsData, data, params, location }) => {
+  const typedData = data as LoaderData
   return getSocialMetas({
-    url: "",
-    title: "",
-    description: "",
-    image: "",
-    keywords: "",
+    title: getMetaTitle(typedData.page.frontmatter.title),
+    description: typedData.page.frontmatter.description,
+    url: location.toString(),
   })
 }
 
