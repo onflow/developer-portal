@@ -1,183 +1,42 @@
+import { getRequiredServerEnvVar } from "~/cms/helpers"
+
+function entryNode(entry: Entry, origin: string): string {
+  const url = new URL(entry.pathname, origin)
+  return `
+    <url>
+      <loc>${url}</loc>
+      <changefreq>daily</changefreq>
+      <priority>0.7</priority>
+    </url>
+`
+}
+
+type Entry = { pathname: string }
+
 export const loader = () => {
+  const staticRoutes = [
+    "/",
+    "/action",
+    "/community",
+    "/concepts",
+    "/getting-started",
+    "/http-api",
+    "/learn",
+    "/network",
+    "/sdks",
+    "/tools",
+  ]
+
+  let entries: Array<Entry> = [...staticRoutes].map((p) => ({ pathname: p }))
+
+  let origin: string = getRequiredServerEnvVar(
+    "ORIGIN",
+    `http://localhost:3000`
+  )
+
   const content = `
-  <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
-	<url>
-		<loc>https://developers.onflow.org/</loc>
-	</url>
-	<url>
-		<loc>https://developers.onflow.org/cadence</loc>
-	</url>
-	<url>
-		<loc>https://developers.onflow.org/cadence/FAQ</loc>
-	</url>
-	<url>
-		<loc>https://developers.onflow.org/cadence/README</loc>
-	</url>
-	<url>
-		<loc>https://developers.onflow.org/cadence/contract-upgrades</loc>
-	</url>
-	<url>
-		<loc>https://developers.onflow.org/cadence/goland</loc>
-	</url>
-	<url>
-		<loc>https://developers.onflow.org/cadence/index</loc>
-	</url>
-	<url>
-		<loc>https://developers.onflow.org/cadence/msg-sender</loc>
-	</url>
-	<url>
-		<loc>https://developers.onflow.org/cadence/releasing</loc>
-	</url>
-	<url>
-		<loc>https://developers.onflow.org/cadence/subtyping</loc>
-	</url>
-	<url>
-		<loc>https://developers.onflow.org/cadence/syntax-highlighting</loc>
-	</url>
-	<url>
-		<loc>https://developers.onflow.org/cadence/anti-patterns</loc>
-	</url>
-	<url>
-		<loc>https://developers.onflow.org/cadence/design-patterns</loc>
-	</url>
-	<url>
-		<loc>https://developers.onflow.org/cadence/development</loc>
-	</url>
-	<url>
-		<loc>https://developers.onflow.org/cadence/json-cadence-spec</loc>
-	</url>
-	<url>
-		<loc>https://developers.onflow.org/cadence/measuring-time</loc>
-	</url>
-	<url>
-		<loc>https://developers.onflow.org/cadence/migration-guide</loc>
-	</url>
-	<url>
-		<loc>https://developers.onflow.org/cadence/language</loc>
-	</url>
-	<url>
-		<loc>https://developers.onflow.org/cadence/language/access-control</loc>
-	</url>
-	<url>
-		<loc>https://developers.onflow.org/cadence/language/accounts</loc>
-	</url>
-	<url>
-		<loc>https://developers.onflow.org/cadence/language/built-in-functions</loc>
-	</url>
-	<url>
-		<loc>https://developers.onflow.org/cadence/language/capability-based-access-control</loc>
-	</url>
-	<url>
-		<loc>https://developers.onflow.org/cadence/language/composite-types</loc>
-	</url>
-	<url>
-		<loc>https://developers.onflow.org/cadence/language/constants-and-variables</loc>
-	</url>
-	<url>
-		<loc>https://developers.onflow.org/cadence/language/contract-updatability</loc>
-	</url>
-	<url>
-		<loc>https://developers.onflow.org/cadence/language/contracts</loc>
-	</url>
-	<url>
-		<loc>https://developers.onflow.org/cadence/language/control-flow</loc>
-	</url>
-	<url>
-		<loc>https://developers.onflow.org/cadence/language/core-events</loc>
-	</url>
-	<url>
-		<loc>https://developers.onflow.org/cadence/language/crypto</loc>
-	</url>
-	<url>
-		<loc>https://developers.onflow.org/cadence/language/enumerations</loc>
-	</url>
-	<url>
-		<loc>https://developers.onflow.org/cadence/language/environment-information</loc>
-	</url>
-	<url>
-		<loc>https://developers.onflow.org/cadence/language/events</loc>
-	</url>
-	<url>
-		<loc>https://developers.onflow.org/cadence/language/functions</loc>
-	</url>
-	<url>
-		<loc>https://developers.onflow.org/cadence/language/glossary</loc>
-	</url>
-	<url>
-		<loc>https://developers.onflow.org/cadence/language/imports</loc>
-	</url>
-	<url>
-		<loc>https://developers.onflow.org/cadence/language/index</loc>
-	</url>
-	<url>
-		<loc>https://developers.onflow.org/cadence/language/interfaces</loc>
-	</url>
-	<url>
-		<loc>https://developers.onflow.org/cadence/language/operators</loc>
-	</url>
-	<url>
-		<loc>https://developers.onflow.org/cadence/language/references</loc>
-	</url>
-	<url>
-		<loc>https://developers.onflow.org/cadence/language/resources</loc>
-	</url>
-	<url>
-		<loc>https://developers.onflow.org/cadence/language/restricted-types</loc>
-	</url>
-	<url>
-		<loc>https://developers.onflow.org/cadence/language/run-time-types</loc>
-	</url>
-	<url>
-		<loc>https://developers.onflow.org/cadence/language/scope</loc>
-	</url>
-	<url>
-		<loc>https://developers.onflow.org/cadence/language/syntax</loc>
-	</url>
-	<url>
-		<loc>https://developers.onflow.org/cadence/language/transactions</loc>
-	</url>
-	<url>
-		<loc>https://developers.onflow.org/cadence/language/type-annotations</loc>
-	</url>
-	<url>
-		<loc>https://developers.onflow.org/cadence/language/type-hierarchy</loc>
-	</url>
-	<url>
-		<loc>https://developers.onflow.org/cadence/language/type-inference</loc>
-	</url>
-	<url>
-		<loc>https://developers.onflow.org/cadence/language/type-safety</loc>
-	</url>
-	<url>
-		<loc>https://developers.onflow.org/cadence/language/values-and-types</loc>
-	</url>
-	<url>
-		<loc>https://developers.onflow.org/cadence/tutorial</loc>
-	</url>
-	<url>
-		<loc>https://developers.onflow.org/cadence/tutorial/01-first-steps.mdx</loc>
-	</url>
-	<url>
-		<loc>https://developers.onflow.org/cadence/tutorial/02-hello-world.mdx</loc>
-	</url>
-	<url>
-		<loc>https://developers.onflow.org/cadence/tutorial/03-fungible-tokens.mdx</loc>
-	</url>
-	<url>
-		<loc>https://developers.onflow.org/cadence/tutorial/04-non-fungible-tokens.mdx</loc>
-	</url>
-	<url>
-		<loc>https://developers.onflow.org/cadence/tutorial/05-marketplace-setup.mdx</loc>
-	</url>
-	<url>
-		<loc>https://developers.onflow.org/cadence/tutorial/06-marketplace-compose.mdx</loc>
-	</url>
-	<url>
-		<loc>https://developers.onflow.org/cadence/tutorial/07-resources-compose.mdx</loc>
-	</url>
-	<url>
-		<loc>https://developers.onflow.org/cadence/tutorial/08-voting.mdx</loc>
-	</url>
+<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
+  ${entries.map((entry) => entryNode(entry, origin))}
 </urlset>
   `
 
