@@ -10,7 +10,6 @@ import { Default as DefaultCommunityMembers } from "~/ui/design-system/src/lib/C
 import CommunityPage, {
   CommunityPageProps,
 } from "~/ui/design-system/src/lib/Pages/CommunityPage"
-import { temporarilyRedirectToComingSoon } from "~/utils/features"
 import { articles, contentNavigationListItems, projects, tools } from "./data"
 
 type DynamicCommunityPageProps = Pick<
@@ -28,7 +27,6 @@ export const meta: MetaFunction = () => ({
 })
 
 export const loader: LoaderFunction = async () => {
-  temporarilyRedirectToComingSoon()
   const { openFlips, goodPlacesToStartFlips } = await fetchFlips()
   const upcomingEvents = allEvents
   const forumTopics = await fetchLatestTopics()

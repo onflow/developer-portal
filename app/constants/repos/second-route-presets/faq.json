@@ -1,0 +1,24 @@
+{
+  "$schema": "../repo-schema.json",
+  "sidebar": {
+    "sections": [
+      {
+        "title": "Frequently Asked Questions",
+        "items": [
+          {
+            "label": "Users & Backers",
+            "href": "faq/backers"
+          },
+          {
+            "label": "Builders & Developers",
+            "href": "faq/developers"
+          },
+          {
+            "label": "Operators",
+            "href": "faq/operators"
+          }
+        ]
+      }
+    ]
+  }
+}

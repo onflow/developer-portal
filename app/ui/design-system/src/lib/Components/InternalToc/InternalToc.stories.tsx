@@ -1,5 +1,5 @@
 import { Meta, Story } from "@storybook/react"
-import { InternalToc, InternalTocProps } from "."
+import { InternalToc, InternalTocDisclosure, InternalTocProps } from "."
 
 export default {
   component: InternalToc,
@@ -14,6 +14,25 @@ const Template: Story<InternalTocProps> = (args) => <InternalToc {...args} />
 export const Default = Template.bind({})
 
 Default.args = {
+  headings: [
+    { hash: "introduction", title: "Introduction" },
+    { hash: "links", title: "Links" },
+    { hash: "unordered-list", title: "Unordered List" },
+    { hash: "ordered-list", title: "Ordered List" },
+    { hash: "task-list", title: "Task List" },
+    { hash: "table", title: "Table" },
+    { hash: "footnote", title: "Footnote" },
+  ],
+  location: new URL("localhost:4400/#introduction"),
+}
+
+const DisclosureTemplate: Story<InternalTocProps> = (args) => (
+  <InternalTocDisclosure {...args} />
+)
+
+export const Disclosure = DisclosureTemplate.bind({})
+
+Disclosure.args = {
   headings: [
     { hash: "introduction", title: "Introduction" },
     { hash: "links", title: "Links" },

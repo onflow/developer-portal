@@ -7,7 +7,7 @@
         "items": [
           {
             "label": "Introduction",
-            "href": "index"
+            "href": "kitty-items/index"
           }
         ]
       },
@@ -16,23 +16,23 @@
         "items": [
           {
             "label": "Install",
-            "href": "install"
+            "href": "kitty-items/install"
           },
           {
             "label": "Modify",
-            "href": "modify"
+            "href": "kitty-items/modify"
           },
           {
             "label": "Next Steps",
-            "href": "next-steps"
+            "href": "kitty-items/next-steps"
           },
           {
             "label": "Start",
-            "href": "start"
+            "href": "kitty-items/start"
           },
           {
             "label": "Update",
-            "href": "update"
+            "href": "kitty-items/update"
           }
         ]
       }
