@@ -424,7 +424,7 @@ function getMdxComponent(page: MdxPage, theme: Theme | null) {
     ...rest
   }: Parameters<typeof Component>["0"]) {
     return (
-      <div className="prose dark:prose-invert">
+      <div className="mdx-content prose dark:prose-invert">
         <header>
           <Heading type="h1" children={frontmatter.title} />
           <p>{frontmatter.description}</p>
