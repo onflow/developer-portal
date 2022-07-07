@@ -33,10 +33,9 @@ import { ErrorPage } from "~/ui/design-system/src/lib/Components/ErrorPage"
 import { NavigationBar } from "~/ui/design-system/src/lib/Components/NavigationBar"
 import * as gtag from "~/utils/gtags.client"
 import { SearchProps } from "./ui/design-system/src/lib/Components/Search"
-import { getPublicEnv, PUBLIC_ENV } from "./utils/env.server"
-
-export const getMetaTitle = (title?: string) =>
-  [title, "Flow Developer Portal"].filter(Boolean).join(" | ")
+import { getPublicEnv, PUBLIC_ENV } from "~/utils/env.server"
+import { getMetaTitle } from "./utils/seo"
+export { getMetaTitle } from "./utils/seo"
 
 export const links: LinksFunction = () => {
   return [
