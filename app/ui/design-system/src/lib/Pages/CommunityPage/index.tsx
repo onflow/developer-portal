@@ -27,6 +27,8 @@ import {
 } from "../../Components/ContentNavigationList"
 import { HeaderWithLink } from "../../Components/HeaderWithLink"
 import CommunityImage from "../../../../images/page/community.png"
+import { LandingPageSecondaryNav } from "../../Components/LandingPageSecondaryNav"
+import { communitySections } from "~/constants/landingPages/communitySections"
 
 export type CommunityPageProps = FlipsProps &
   ProjectCardsProps &
@@ -51,6 +53,7 @@ export default function CommunityPage({
 }: CommunityPageProps) {
   return (
     <PageBackground gradient="community">
+      <LandingPageSecondaryNav sections={communitySections} />
       <PageSections>
         <PageSection className="pt-0 pb-0">
           <LandingHeader
