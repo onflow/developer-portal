@@ -24,13 +24,7 @@ export default function Flips({
         <HeaderWithLink className="text-h2" headerLink={headerLink}>
           FLIPs
         </HeaderWithLink>
-        <ButtonLink
-          rightIcon="right"
-          href={GITHUB_URL}
-          variant="secondary"
-          target="_blank"
-          rel="noreferrer"
-        >
+        <ButtonLink rightIcon="right" href={GITHUB_URL} variant="secondary">
           Go to GitHub
         </ButtonLink>
       </div>

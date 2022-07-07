@@ -1,7 +1,7 @@
 import clsx from "clsx"
 import { ReactComponent as ChevronRight } from "../../../../images/arrows/chevron-right"
 import { ReactComponent as ExternalLinkIcon } from "../../../../images/content/external-link"
-import { isLinkExternal } from "../Link/isLinkExternal"
+import AppLink, { isLinkExternal } from "../AppLink"
 import Tag from "../Tag"
 
 export type LinkCard3ColumnItemProps = {
@@ -79,9 +79,9 @@ export function LinkCard3Column({
           >
             {item.links?.map((link) => (
               <div key={link.title} className="divided-item-hover">
-                <a
+                <AppLink
                   className="link-card-3-column-link group flex flex-col rounded-lg px-4 hover:bg-primary-gray-50 dark:hover:bg-primary-gray-400"
-                  href={link.href}
+                  to={link.href}
                 >
                   <span className="display-block py-4">
                     <div className="flex justify-between">
@@ -103,7 +103,7 @@ export function LinkCard3Column({
                       ))}
                     </div>
                   </span>
-                </a>
+                </AppLink>
               </div>
             ))}
           </div>

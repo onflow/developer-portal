@@ -2,6 +2,7 @@ import clsx from "clsx"
 import { ReactComponent as CalendarIcon } from "../../../../images/action/date-calendar"
 import { ReactComponent as CommentIcon } from "../../../../images/arrows/message-circle"
 import { dateYYMMDD } from "../../utils/dates"
+import AppLink from "../AppLink"
 import Tag from "../Tag"
 import RoundImage from "./RoundImage"
 
@@ -49,14 +50,12 @@ const FlipCell = ({
   forumLink,
 }: FlipCellProps) => {
   return (
-    <a
-      href={forumLink}
+    <AppLink
+      to={forumLink}
       className={clsx(
         "rounded-lg bg-white hover:shadow-2xl dark:bg-primary-gray-dark dark:hover:shadow-2xl-dark",
         PARENT_GRID
       )}
-      target="_blank"
-      rel="noreferrer"
     >
       <div className="hidden justify-end md:flex">
         <svg
@@ -101,7 +100,7 @@ const FlipCell = ({
           <CommentIcon /> <span className="ml-1 sm:ml-2">{numComments}</span>
         </div>
       </div>
-    </a>
+    </AppLink>
   )
 }
 

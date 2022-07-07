@@ -1,5 +1,6 @@
 import clsx from "clsx"
 import { Fragment } from "react"
+import AppLink from "../AppLink"
 
 export type BreadcrumbLinkProps = {
   name: string
@@ -34,15 +35,15 @@ function BreadcrumbLink({
   }
 
   return (
-    <a
-      href={href}
+    <AppLink
+      to={href}
       className={clsx(
         className,
         "hover:text-primary-gray-400 dark:hover:text-primary-gray-100"
       )}
     >
       {name}
-    </a>
+    </AppLink>
   )
 }
 

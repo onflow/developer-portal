@@ -4,6 +4,7 @@ import clsx from "clsx"
 import { useRef } from "react"
 import { ReactComponent as Close } from "../../../../images/action/close"
 import { ReactComponent as ChevronDown } from "../../../../images/arrows/chevron-down"
+import AppLink from "../AppLink"
 import { ToolName, TOOLS } from "../Internal/tools"
 import DropdownArrow from "../shared/DropdownArrow"
 import DropdownTransition from "../shared/DropdownTransition"
@@ -50,8 +51,8 @@ function Group({
             key={section}
             className="border-b border-b-primary-gray-100 last:border-none md:border-none md:p-0"
           >
-            <a
-              href={toolLinks[section]}
+            <AppLink
+              to={toolLinks[section]}
               className={clsx(
                 "group flex items-center px-1 py-2 text-center text-sm hover:bg-primary-gray-100/50 dark:bg-black hover:dark:bg-primary-gray-400/5 md:h-[7.5rem] md:w-[7rem] md:flex-col md:rounded-lg md:px-4 md:py-5 md:shadow-2xl dark:md:shadow-2xl-dark"
               )}
@@ -67,7 +68,7 @@ function Group({
               <div className="flex items-center justify-center font-bold text-primary-gray-400 dark:text-primary-gray-100 md:h-[2rem] md:text-sm md:font-normal">
                 {TOOLS[section].name}{" "}
               </div>
-            </a>
+            </AppLink>
           </div>
         )
       })}

@@ -3,6 +3,7 @@ import { Fragment, useState } from "react"
 import { ReactComponent as FlowDocsLogo } from "../../../../images/logos/flow-docs-logo"
 import { ReactComponent as ModeDark } from "../../../../images/toggles/mode-dark"
 import { ReactComponent as ModeLight } from "../../../../images/toggles/mode-light"
+import AppLink from "../AppLink"
 import { Search, SearchProps } from "../Search"
 import { DesktopMenu } from "./DesktopMenu"
 import { MobileMenu } from "./MobileMenu"
@@ -30,9 +31,9 @@ export function NavigationBar({
       className="z-40 flex items-center bg-white p-4 text-primary-gray-400 dark:bg-black dark:text-white lg:px-8"
     >
       <div className="flex items-center">
-        <a href="/" className="py-2 hover:opacity-75">
+        <AppLink to="/" className="py-2 hover:opacity-75">
           <FlowDocsLogo className="shrink-0" />
-        </a>
+        </AppLink>
       </div>
       <div className="mt-1 flex flex-1 justify-end">
         {algolia ? (

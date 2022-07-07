@@ -1,6 +1,7 @@
 import clsx from "clsx"
 import { ReactComponent as ChevronRightIcon } from "../../../../images/arrows/chevron-right-sm"
 import { ReactComponent as ExternalLinkIcon } from "../../../../images/content/external-link-variant"
+import AppLink from "../AppLink"
 
 const BASE_CLASSES =
   "inline-flex items-center justify-center font-semibold text-center border dark:hover:shadow-2xl-dark hover:shadow-2xl"
@@ -94,6 +95,7 @@ export function Button({
 
 export type ButtonLinkProps = React.ComponentPropsWithoutRef<"a"> &
   ButtonBaseProps & {
+    href: string
     children: React.ReactNode
   }
 
@@ -101,21 +103,21 @@ export function ButtonLink({
   className,
   size = "md",
   variant = "primary",
+  href,
   leftIcon,
   rightIcon,
   children,
-  ...props
 }: ButtonLinkProps) {
   return (
-    <a
+    <AppLink
       className={clsx(BASE_CLASSES, SIZES[size], VARIANTS[variant], className)}
-      {...props}
+      to={href}
     >
       <ButtonContent
         leftIcon={leftIcon}
         rightIcon={rightIcon}
         children={children}
       />
-    </a>
+    </AppLink>
   )
 }

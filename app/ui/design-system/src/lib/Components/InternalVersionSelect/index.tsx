@@ -4,6 +4,7 @@ import clsx from "clsx"
 import { Fragment, useRef } from "react"
 import { ReactComponent as Check } from "../../../../images/action/check"
 import { ReactComponent as ChevronDown } from "../../../../images/arrows/chevron-down"
+import AppLink from "../AppLink"
 import DropdownArrow from "../shared/DropdownArrow"
 import DropdownTransition from "../shared/DropdownTransition"
 
@@ -59,8 +60,8 @@ export function InternalVersionSelect({
                     return (
                       <Menu.Item as={Fragment} key={version.name}>
                         {({ active }) => (
-                          <a
-                            href={version.href}
+                          <AppLink
+                            to={version.href}
                             className={clsx(
                               "flex flex-1 flex-row items-center px-4 py-5 text-sm hover:text-primary-gray-400 dark:bg-primary-gray-dark dark:hover:text-primary-gray-100",
                               isSelected
@@ -78,7 +79,7 @@ export function InternalVersionSelect({
                                 <Check />
                               </div>
                             )}
-                          </a>
+                          </AppLink>
                         )}
                       </Menu.Item>
                     )
