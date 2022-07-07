@@ -14,7 +14,7 @@ export function getSocialMetas({
   keywords?: string
 }) {
   return {
-    title,
+    title: getMetaTitle(title),
     description,
     keywords,
     image,
@@ -31,3 +31,6 @@ export function getSocialMetas({
     "twitter:alt": title,
   }
 }
+
+export const getMetaTitle = (title?: string) =>
+  [title, "Flow Developer Portal"].filter(Boolean).join(" | ")
