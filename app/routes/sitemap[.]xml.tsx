@@ -69,7 +69,7 @@ export const loader = () => {
 
   const content = `
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
-  ${entries.map((entry) => entryNode(entry, origin))}
+  ${entries.map((entry) => entryNode(entry, origin)).join("")}
 </urlset>
   `
 
