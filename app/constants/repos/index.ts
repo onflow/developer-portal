@@ -38,7 +38,6 @@ import emulator from "./second-route-presets/emulator.json"
 import faq from "./second-route-presets/faq.json"
 
 import { populateRepoSchema, RepoSchema } from "./repo-schema"
-import { ToolName } from "../../ui/design-system/src/lib/Components/Internal/tools"
 import {
   ContentName,
   secondRoutes,
@@ -104,15 +103,6 @@ export const displayNames: Partial<Record<ContentName, string>> = {
   "nft-marketplace": "NFT Marketplace",
   fusd: "FUSD",
   faq: "FAQ",
-}
-
-export const contentTools: Partial<Record<ContentName, ToolName>> = {
-  cadence: "cadence",
-  "flow-cli": "cli",
-  emulator: "emulator",
-  "fcl-js": "fcl",
-  "flow-js-testing": "testing",
-  "vscode-extension": "vscode",
 }
 
 export type ContentSpec = {

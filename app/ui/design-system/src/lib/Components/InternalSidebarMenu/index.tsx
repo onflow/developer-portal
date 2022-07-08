@@ -20,12 +20,12 @@ const SIDEBAR_SECTION_GROUPS: SectionGroup[] = [
   {
     name: "Switch tool",
     sections: [
-      "cli",
-      "fcl",
+      "flow-cli",
+      "fcl-js",
       "flow-go-sdk",
       "http-api",
       "emulator",
-      "vscode",
+      "vscode-extension",
       "tools",
     ],
   },
@@ -35,7 +35,7 @@ const SIDEBAR_SECTION_GROUPS: SectionGroup[] = [
   },
   {
     name: "Nodes",
-    sections: ["operation", "staking", "flow-port", "nodes"],
+    sections: ["node-operation", "staking", "flow-port", "nodes"],
   },
 ]
 

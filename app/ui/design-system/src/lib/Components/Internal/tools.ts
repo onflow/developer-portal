@@ -16,13 +16,13 @@ import { ReactComponent as VsCodeIcon } from "../../../../images/tools/tool-vsco
 import { ReactComponent as VsCodeGradientIcon } from "../../../../images/tools/tool-vscode-gradient"
 
 // TODO: iconLanding icons are placeholders until we have the assets
-
+// Keeping it consistent with path names
 export type ToolName =
   | "emulator"
-  | "vscode"
-  | "cli"
-  | "testing"
-  | "fcl"
+  | "vscode-extension"
+  | "flow-cli"
+  | "flow-js-testing"
+  | "fcl-js"
   | "cadence"
   | "flow-go-sdk"
   | "http-api"
@@ -30,7 +30,7 @@ export type ToolName =
   | "kitty-items"
   | "concepts"
   | "learn"
-  | "operation"
+  | "node-operation"
   | "staking"
   | "flow-port"
   | "nodes"
@@ -49,25 +49,25 @@ export const TOOLS: Record<ToolName, Tool> = {
     iconLanding: CadenceLandingIcon,
     gradientIcon: EmulatorGradientIcon,
   },
-  vscode: {
+  "vscode-extension": {
     name: "VS Code Extension",
     icon: VsCodeIcon,
     iconLanding: CadenceLandingIcon,
     gradientIcon: VsCodeGradientIcon,
   },
-  cli: {
+  "flow-cli": {
     name: "CLI",
     icon: CliIcon,
     iconLanding: CadenceLandingIcon,
     gradientIcon: CliGradientIcon,
   },
-  testing: {
+  "flow-js-testing": {
     name: "Testing Library",
     icon: TestingIcon,
     iconLanding: CadenceLandingIcon,
     gradientIcon: TestingGradientIcon,
   },
-  fcl: {
+  "fcl-js": {
     name: "Flow Client Library",
     icon: FclIcon,
     iconLanding: CadenceLandingIcon,
@@ -79,7 +79,6 @@ export const TOOLS: Record<ToolName, Tool> = {
     iconLanding: CadenceLandingIcon,
     gradientIcon: CadenceGradientIcon,
   },
-
   "flow-go-sdk": {
     name: "Go SDK",
     icon: DefaultIcon,
@@ -116,7 +115,7 @@ export const TOOLS: Record<ToolName, Tool> = {
     iconLanding: CadenceLandingIcon,
     gradientIcon: DefaultIcon,
   },
-  operation: {
+  "node-operation": {
     name: "Operation",
     icon: DefaultIcon,
     iconLanding: CadenceLandingIcon,

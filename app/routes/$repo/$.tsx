@@ -3,10 +3,11 @@ import { Link, useCatch, useLoaderData, useLocation } from "@remix-run/react"
 import { Params } from "react-router"
 import invariant from "tiny-invariant"
 import { getMdxPage, useMdxComponent } from "~/cms/utils/mdx"
-import { ContentSpec, contentTools, getContentSpec } from "~/constants/repos"
+import { ContentSpec, getContentSpec } from "~/constants/repos"
 import {
   ContentName,
   FirstRoute,
+  firstRouteMap,
   firstRoutes,
   SecondRoute,
   secondRoutes,
@@ -109,7 +110,6 @@ export const loader: LoaderFunction = async ({
   if (params["*"]?.endsWith("index") && request.url.endsWith("/index")) {
     throw redirect(request.url.replace(/\/index$/, "/"))
   }
-
   const { firstRoute, secondRoute, path }: NestedRoute = deconstructPath(params)
   const contentSpec = getContentSpec(firstRoute, secondRoute)
 
@@ -151,7 +151,7 @@ export const loader: LoaderFunction = async ({
 export default function RepoDocument() {
   const { content, path, page } = useLoaderData<LoaderData>()
   const MDXContent = useMdxComponent(page)
-  const tool = contentTools[content.contentName]
+  const tool = content.contentName
 
   return (
     <InternalPage
@@ -163,7 +163,7 @@ export default function RepoDocument() {
       internalSidebarMenu={
         tool && {
           selectedTool: tool,
-          toolLinks: toolLinks,
+          toolLinks: switchLinks,
         }
       }
       githubUrl={page.editLink}
@@ -174,29 +174,33 @@ export default function RepoDocument() {
   )
 }
 
-const toolContentMap: Record<ToolName, ContentName> = {
+const switchContentMap: Record<ToolName, ContentName> = {
   cadence: "cadence",
-  cli: "flow-cli",
-  emulator: "tools/emulator",
-  fcl: "fcl-js",
-  testing: "flow-js-testing",
-  vscode: "tools/vscode-extension",
-  "flow-port": "nodes/flow-port",
+  "flow-cli": "flow-cli",
+  emulator: "emulator",
+  "fcl-js": "fcl-js",
+  "flow-js-testing": "flow-js-testing",
+  "vscode-extension": "vscode-extension",
+  "flow-port": "flow-port",
   "flow-go-sdk": "flow-go-sdk",
   "http-api": "http-api",
-  "kitty-items": "learn/kitty-items",
+  "kitty-items": "kitty-items",
   concepts: "concepts",
   learn: "learn",
   nodes: "nodes",
-  operation: "nodes/node-operation",
-  staking: "nodes/flow-port/staking-guide",
+  "node-operation": "node-operation",
+  staking: "staking",
   tools: "tools",
 }
 
-const toolLinks: Record<ToolName, string> = { ...toolContentMap }
-for (let [key, value] of Object.entries(toolLinks)) {
-  toolLinks[key as ToolName] =
-    value === "cadence" ? `/${value}` : `/tools/${value}`
+const switchLinks: Record<ToolName, string> = { ...switchContentMap }
+for (let [key, value] of Object.entries(switchLinks)) {
+  if (firstRoutes.includes(key)) {
+    switchLinks[key as ToolName] = `/${value}`
+  } else if (secondRoutes.includes(key)) {
+    const first = firstRouteMap[key]
+    switchLinks[key as ToolName] = `/${first}/${value}`
+  }
 }
 
 export function CatchBoundary() {
