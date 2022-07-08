@@ -1,5 +1,6 @@
 import { ReactComponent as CalendarIcon } from "../../../../images/action/date-calendar"
 import { ReactComponent as CommentIcon } from "../../../../images/arrows/message-circle"
+import AppLink from "../AppLink"
 import RoundImage from "../RoundImage"
 import Tag from "../Tag"
 
@@ -26,8 +27,8 @@ const FlipCell = ({
   forumLink,
 }: FlipCellProps) => {
   return (
-    <a
-      href={forumLink}
+    <AppLink
+      to={forumLink}
       className="flex flex-col items-center justify-between rounded-lg bg-white p-6 hover:cursor-pointer hover:shadow-2xl dark:bg-primary-gray-dark dark:hover:shadow-2xl-dark md:flex-row md:p-8"
     >
       <div className="flex items-center">
@@ -65,7 +66,7 @@ const FlipCell = ({
           <CommentIcon /> <span className="ml-3">{numComments}</span>
         </div>
       </div>
-    </a>
+    </AppLink>
   )
 }
 

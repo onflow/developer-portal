@@ -1,4 +1,5 @@
 import { ReactComponent as ChevronRight } from "../../../../images/arrows/chevron-right"
+import AppLink from "../AppLink"
 import Tag from "../Tag"
 
 export type InternalLandingHeaderCardProps = {
@@ -15,9 +16,9 @@ export function InternalLandingHeaderCard({
   href,
 }: InternalLandingHeaderCardProps) {
   return (
-    <a
+    <AppLink
       className="group flex min-h-[9rem] flex-1 flex-row rounded-2xl bg-white px-6 py-5 dark:bg-black"
-      href={href}
+      to={href}
     >
       <div className="pr-2">
         <div className="flex flex-col md:flex-col-reverse">
@@ -37,6 +38,6 @@ export function InternalLandingHeaderCard({
       <div className="ml-auto mt-7 text-black group-hover:opacity-75 dark:text-white">
         <ChevronRight />
       </div>
-    </a>
+    </AppLink>
   )
 }

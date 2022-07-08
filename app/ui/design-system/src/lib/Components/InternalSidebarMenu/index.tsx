@@ -1,9 +1,10 @@
-import { arrow, flip, useFloating } from "@floating-ui/react-dom"
-import { Popover } from "@headlessui/react"
+import { arrow, autoUpdate, flip, useFloating } from "@floating-ui/react-dom"
+import { Popover, Portal } from "@headlessui/react"
 import clsx from "clsx"
 import { useRef } from "react"
 import { ReactComponent as Close } from "../../../../images/action/close"
 import { ReactComponent as ChevronDown } from "../../../../images/arrows/chevron-down"
+import AppLink from "../AppLink"
 import { ToolName, TOOLS } from "../Internal/tools"
 import DropdownArrow from "../shared/DropdownArrow"
 import DropdownTransition from "../shared/DropdownTransition"
@@ -50,8 +51,8 @@ function Group({
             key={section}
             className="border-b border-b-primary-gray-100 last:border-none md:border-none md:p-0"
           >
-            <a
-              href={toolLinks[section]}
+            <AppLink
+              to={toolLinks[section]}
               className={clsx(
                 "group flex items-center px-1 py-2 text-center text-sm hover:bg-primary-gray-100/50 dark:bg-black hover:dark:bg-primary-gray-400/5 md:h-[7.5rem] md:w-[7rem] md:flex-col md:rounded-lg md:px-4 md:py-5 md:shadow-2xl dark:md:shadow-2xl-dark"
               )}
@@ -67,7 +68,7 @@ function Group({
               <div className="flex items-center justify-center font-bold text-primary-gray-400 dark:text-primary-gray-100 md:h-[2rem] md:text-sm md:font-normal">
                 {TOOLS[section].name}{" "}
               </div>
-            </a>
+            </AppLink>
           </div>
         )
       })}
@@ -124,12 +125,17 @@ export function InternalSidebarMenu({
   const {
     x,
     y,
+    strategy,
     reference,
     floating,
     middlewareData: { arrow: { x: arrowX, y: arrowY } = {} },
   } = useFloating({
     middleware: [arrow({ element: arrowRef }), flip()],
     placement: "bottom-start",
+
+    // This is necessary because this menu may be hidden when it's first mounted
+    // (in the case of crossing mobile/desktop breakpoints)
+    whileElementsMounted: autoUpdate,
   })
   const SelectedIcon = TOOLS[selectedTool].icon
   return (
@@ -151,34 +157,36 @@ export function InternalSidebarMenu({
                 <ChevronDown />
               </div>
             </Popover.Button>
-            <div
-              className="absolute z-10 mt-8 w-screen px-4 md:min-w-[15rem]"
-              ref={floating}
-              style={{ top: y || 0, left: x || 0 }}
-            >
-              <DropdownTransition>
-                {/* fyi max-w-[34rem] is the intended full width here, using max-w-[18rem] since some entries are temporarily disabled */}
-                <Popover.Panel className="relative mr-2 min-w-[17rem] max-w-[18rem] overflow-y-auto rounded-lg bg-white px-4 py-2 shadow-2xl dark:bg-primary-gray-dark dark:shadow-2xl-dark dark:hover:shadow-2xl-dark dark:hover:shadow-2xl-dark md:px-6 md:py-4">
-                  {({ close }) =>
-                    SIDEBAR_SECTION_GROUPS.map((group, index) => (
-                      <SidebarSectionGroup
-                        group={group}
-                        index={index}
-                        key={index}
-                        close={close}
-                        toolLinks={toolLinks}
-                      />
-                    ))
-                  }
-                </Popover.Panel>
-              </DropdownTransition>
-              <DropdownArrow
-                arrowRef={arrowRef}
-                x={arrowX}
-                y={arrowY}
-                open={open}
-              />
-            </div>
+            <Portal>
+              <div
+                className="z-40 mt-8 w-screen px-4"
+                ref={floating}
+                style={{ top: y || 0, left: x || 0, position: strategy }}
+              >
+                <DropdownTransition>
+                  {/* fyi max-w-[34rem] is the intended full width here, using max-w-[18rem] since some entries are temporarily disabled */}
+                  <Popover.Panel className="relative mr-2 inline-block max-w-[18rem] overflow-y-auto rounded-lg bg-white px-4 py-2 shadow-2xl dark:bg-primary-gray-dark dark:shadow-2xl-dark dark:hover:shadow-2xl-dark dark:hover:shadow-2xl-dark md:px-6 md:py-4">
+                    {({ close }) =>
+                      SIDEBAR_SECTION_GROUPS.map((group, index) => (
+                        <SidebarSectionGroup
+                          group={group}
+                          index={index}
+                          key={index}
+                          close={close}
+                          toolLinks={toolLinks}
+                        />
+                      ))
+                    }
+                  </Popover.Panel>
+                </DropdownTransition>
+                <DropdownArrow
+                  arrowRef={arrowRef}
+                  x={arrowX}
+                  y={arrowY}
+                  open={open}
+                />
+              </div>
+            </Portal>
           </div>
         )}
       </Popover>

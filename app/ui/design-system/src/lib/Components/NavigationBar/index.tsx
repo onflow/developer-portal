@@ -3,7 +3,8 @@ import { Fragment, useState } from "react"
 import { ReactComponent as FlowDocsLogo } from "../../../../images/logos/flow-docs-logo"
 import { ReactComponent as ModeDark } from "../../../../images/toggles/mode-dark"
 import { ReactComponent as ModeLight } from "../../../../images/toggles/mode-light"
-import { Search } from "../Search"
+import AppLink from "../AppLink"
+import { Search, SearchProps } from "../Search"
 import { DesktopMenu } from "./DesktopMenu"
 import { MobileMenu } from "./MobileMenu"
 import { MobileMenuToggleButton } from "./MobileMenuToggleButton"
@@ -12,13 +13,15 @@ import { MenuItem } from "./types"
 export type NavigationBarProps = {
   menuItems: MenuItem[]
   onDarkModeToggle: () => void
+  algolia?: SearchProps
 }
 
-export const NAV_HEIGHT = 96
+export const NAV_HEIGHT = 90
 
 export function NavigationBar({
   menuItems,
   onDarkModeToggle,
+  algolia,
 }: NavigationBarProps) {
   const [isMobileNavOpen, setMobileNavOpen] = useState(false)
 
@@ -28,19 +31,16 @@ export function NavigationBar({
       className="z-40 flex items-center bg-white p-4 text-primary-gray-400 dark:bg-black dark:text-white lg:px-8"
     >
       <div className="flex items-center">
-        <a href="/" className="py-2 hover:opacity-75">
+        <AppLink to="/" className="py-2 hover:opacity-75">
           <FlowDocsLogo className="shrink-0" />
-        </a>
+        </AppLink>
       </div>
       <div className="mt-1 flex flex-1 justify-end">
-        {/* TODO: fetch appId and apiKey from env */}
-        <div className="mr-4 flex items-center">
-          <Search
-            appId="DKF9ZIO5WM"
-            apiKey="d53324bc00b550f87f608c2c56636bc6"
-            indexName="crawler_Flow Docs"
-          />
-        </div>
+        {algolia ? (
+          <div className="mr-4 flex items-center">
+            <Search {...algolia} />
+          </div>
+        ) : null}
         <DesktopMenu menuItems={menuItems} />
         <ul className="flex items-center">
           <li className="flex items-center whitespace-nowrap border-primary-gray-100 pl-4 dark:border-primary-gray-400 md:border-l">
@@ -71,7 +71,10 @@ export function NavigationBar({
         leaveFrom="opacity-100 scale-100"
         leaveTo="opacity-0 scale-95"
       >
-        <div className="fixed top-[96px] left-0 right-0 bottom-0 z-40 origin-top-right overflow-auto bg-white dark:bg-black md:hidden">
+        <div
+          className="fixed left-0 right-0 bottom-0 z-40 origin-top-right overflow-auto bg-white dark:bg-black md:hidden"
+          style={{ top: NAV_HEIGHT }}
+        >
           <MobileMenu menuItems={menuItems} />
         </div>
       </Transition>

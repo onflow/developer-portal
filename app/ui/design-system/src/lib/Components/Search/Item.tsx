@@ -3,7 +3,6 @@ import { Highlight, Snippet } from "react-instantsearch-hooks-web"
 import { ReactComponent as ChevronRightIcon } from "../../../../images/arrows/chevron-right"
 import { ReactComponent as DocumentIcon } from "../../../../images/content/document"
 import { ReactComponent as ExternalIcon } from "../../../../images/content/external-link-square"
-import Tag from "../Tag"
 import { HitType } from "./Autocomplete"
 
 export function Item({ item, selected }: { item: HitType; selected: boolean }) {
@@ -16,6 +15,8 @@ export function Item({ item, selected }: { item: HitType; selected: boolean }) {
         }
       )}
       href={item.url}
+      target="_blank"
+      rel="noreferrer"
       role="option"
       aria-selected="false"
     >
@@ -23,16 +24,6 @@ export function Item({ item, selected }: { item: HitType; selected: boolean }) {
         {item.depth > 1 ? <ExternalIcon /> : <DocumentIcon />}
       </div>
       <div className="flex flex-col text-sm md:text-base">
-        <div className="mb-1 flex-wrap">
-          {item.headers.map((header: string, i: number) => (
-            <div key={i} className="mb-1.5 inline-flex">
-              <Tag
-                name={header}
-                className={selected ? "!bg-white dark:!bg-black" : undefined}
-              />
-            </div>
-          ))}
-        </div>
         <div className="font-semibold">
           {/* @ts-expect-error */}
           <Highlight hit={item} attribute="title" />

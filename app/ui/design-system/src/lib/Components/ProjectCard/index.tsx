@@ -4,6 +4,7 @@ import { ReactComponent as ChevronRightIcon } from "../../../../images/arrows/ch
 import { ReactComponent as GithubIcon } from "../../../../images/social/github"
 import { ReactComponent as TwitterIcon } from "../../../../images/social/twitter"
 import { User } from "../../interfaces"
+import AppLink from "../AppLink"
 
 export type ProjectCardProps = {
   projectImage: string
@@ -41,12 +42,12 @@ const ProjectCard = ({
           {tags.map((tag) => (
             <Tag name={tag} key={tag} />
           ))}
-          <a href={twitterLink} className="mr-2">
+          <AppLink to={twitterLink} className="mr-2">
             <TwitterIcon />
-          </a>
-          <a href={githubLink}>
+          </AppLink>
+          <AppLink to={githubLink}>
             <GithubIcon />
-          </a>
+          </AppLink>
         </div>
         <div className="mb-2 flex gap-2">
           <img
@@ -62,13 +63,13 @@ const ProjectCard = ({
           </div>
         </div>
         <div className="mb-6">{description}</div>
-        <a
+        <AppLink
           className="flex justify-between font-bold text-primary-blue dark:text-blue-dark"
-          href={projectLink}
+          to={projectLink}
         >
           Learn More
           <ChevronRightIcon />
-        </a>
+        </AppLink>
       </div>
     </div>
   )

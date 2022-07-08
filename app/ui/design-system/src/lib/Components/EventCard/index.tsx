@@ -1,4 +1,5 @@
 import clsx from "clsx"
+import AppLink from "../AppLink"
 import { ButtonLink } from "../Button"
 import { Carousel, CarouselProps } from "../Carousel"
 import Tag from "../Tag"
@@ -52,7 +53,7 @@ export function EventCard({
           <span className="pl-2">{location}</span>
         </div>
         <h3 className="text-h3 mb-3 !text-xl md:mb-3 md:!text-2xl">
-          <a href={href}>{title}</a>
+          <AppLink to={href}>{title}</AppLink>
         </h3>
         {tags && tags.length > 0 && (
           <div>

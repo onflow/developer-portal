@@ -1,15 +1,16 @@
-import { ReactComponent as ContentExternalLinkIcon } from "../../../../images/content/external-link"
-import socialLinksGradientPath from "../../../../images/gradients/social-links.svg"
-import { ReactComponent as DiscordLogo } from "../../../../images/social/discord"
-import { ReactComponent as DiscourseLogo } from "../../../../images/social/forum"
-import { ReactComponent as GithubLogo } from "../../../../images/social/github"
-import { ReactComponent as TwitterLogo } from "../../../../images/social/twitter"
 import {
   DISCORD_URL,
   DISCOURSE_URL,
   GITHUB_URL,
   TWITTER_URL,
 } from "../../../../../../constants"
+import { ReactComponent as ContentExternalLinkIcon } from "../../../../images/content/external-link"
+import socialLinksGradientPath from "../../../../images/gradients/social-links.svg"
+import { ReactComponent as DiscordLogo } from "../../../../images/social/discord"
+import { ReactComponent as DiscourseLogo } from "../../../../images/social/forum"
+import { ReactComponent as GithubLogo } from "../../../../images/social/github"
+import { ReactComponent as TwitterLogo } from "../../../../images/social/twitter"
+import AppLink from "../AppLink"
 
 type SocialLinkProps = {
   header: string
@@ -28,8 +29,8 @@ const SocialLink = ({
 }: SocialLinkProps) => {
   const Logo = logo
   return (
-    <a
-      href={url}
+    <AppLink
+      to={url}
       className={`flex items-center justify-between py-6 px-2 hover:cursor-pointer hover:opacity-70 md:px-10 ${className}`}
       style={{ borderColor: "rgba(105, 113, 126, 0.2)" }}
     >
@@ -43,7 +44,7 @@ const SocialLink = ({
         </div>
       </div>
       <ContentExternalLinkIcon />
-    </a>
+    </AppLink>
   )
 }
 

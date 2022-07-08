@@ -2,7 +2,6 @@ import LRU from "lru-cache"
 import { formatDuration, intervalToDuration } from "date-fns"
 import type { Timings } from "./metrics.server"
 import { time } from "./metrics.server"
-// import { getUser } from './session.server';
 
 function niceFormatDuration(milliseconds: number) {
   const duration = intervalToDuration({ start: 0, end: milliseconds })

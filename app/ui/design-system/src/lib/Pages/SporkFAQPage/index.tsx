@@ -1,4 +1,5 @@
 import { ReactComponent as LeftChevron } from "../../../../images/arrows/chevron-left"
+import AppLink from "../../Components/AppLink"
 import { Attribution } from "../../Components/Attribution/Attribution"
 import { ButtonLink } from "../../Components/Button"
 import { FAQ } from "../../Components/FAQ/FAQ"
@@ -30,13 +31,13 @@ export function SporkFAQPage() {
   return (
     <main className="container bg-zinc-50 px-4 pb-48 dark:bg-black md:bg-white md:px-0 md:pt-16">
       <div>
-        <a
+        <AppLink
           className="mt-2 flex w-fit cursor-pointer items-center rounded-lg py-4 text-primary-blue dark:border-primary-purple dark:text-primary-purple md:hidden"
-          href="#TODO"
+          to="/network"
         >
           <LeftChevron />
           Back to Network
-        </a>
+        </AppLink>
       </div>
       <div className="grid grid-cols-1 items-start pb-6 md:flex md:pb-12">
         <div className="grow">
@@ -54,7 +55,7 @@ export function SporkFAQPage() {
           />
         </div>
         <div className="hidden md:block">
-          <ButtonLink variant="secondary" leftIcon="left">
+          <ButtonLink variant="secondary" leftIcon="left" href="/network">
             Back to Network
           </ButtonLink>
         </div>

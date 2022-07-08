@@ -92,7 +92,7 @@ const flowBounties: ProjectCardProps = {
   description:
     "Get rewarded for finding security vulnerabilities in on of our products or platforms.",
   tags: ["Bounties", "Bugs"],
-  projectLink: "https://docs.onflow.org/bounties/",
+  projectLink: "/community/bounties/",
   author: {
     name: "Flow",
     profileImage: "https://avatars.githubusercontent.com/u/62387156?s=200&v=4",

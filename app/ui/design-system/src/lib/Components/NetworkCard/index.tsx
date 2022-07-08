@@ -1,6 +1,7 @@
 import clsx from "clsx"
 
 import { ReactComponent as ChevronRightIcon } from "../../../../images/arrows/chevron-right"
+import AppLink from "../AppLink"
 
 export type NetworkCardProps = {
   networkName: string
@@ -25,8 +26,8 @@ const NetworkCard = ({
   })
 
   return (
-    <a
-      href={link}
+    <AppLink
+      to={link}
       className="flex flex-col items-center justify-around rounded-2xl bg-white px-4 py-7 text-center hover:shadow-2xl dark:bg-primary-gray-dark dark:hover:shadow-2xl-dark md:flex-row md:text-left"
     >
       <div className="flex flex-col items-center md:flex-row">
@@ -63,7 +64,7 @@ const NetworkCard = ({
       <div className="hidden md:inline-block">
         <ChevronRightIcon />
       </div>
-    </a>
+    </AppLink>
   )
 }
 

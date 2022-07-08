@@ -1,3 +1,5 @@
+import AppLink from "../AppLink"
+
 export type CalloutProps = {
   heading: string
   description: string
@@ -15,12 +17,12 @@ const Callout = ({ heading, description, ctaText, ctaLink }: CalloutProps) => {
         <h4 className="text-h4">{heading}</h4>
         <p className="pt-2 dark:text-primary-gray-100">{description}</p>
       </div>
-      <a
+      <AppLink
         className="h-14 rounded-lg bg-black px-16 py-5 text-sm text-white hover:cursor-pointer"
-        href={ctaLink}
+        to={ctaLink}
       >
         {ctaText}
-      </a>
+      </AppLink>
     </div>
   )
 }

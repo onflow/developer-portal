@@ -1,5 +1,6 @@
 import { ReactComponent as CommentIcon } from "../../../../images/arrows/message-circle"
 import { dateYYMMDD } from "../../utils/dates"
+import AppLink from "../AppLink"
 import CalendarIcon from "../Attribution/CalendarIcon"
 import RoundImage from "../RoundImage"
 
@@ -26,8 +27,8 @@ const ForumCell = ({
   forumLink,
 }: ForumCellProps) => {
   return (
-    <a
-      href={forumLink}
+    <AppLink
+      to={forumLink}
       className="flex flex-col items-center justify-around rounded-lg bg-white px-8 py-6 hover:cursor-pointer hover:shadow-2xl dark:bg-primary-gray-dark dark:hover:shadow-2xl-dark md:flex-row"
     >
       <div className="flex-1">
@@ -53,12 +54,12 @@ const ForumCell = ({
           <CalendarIcon />{" "}
           <span className="ml-1 sm:ml-2">{dateYYMMDD(lastUpdatedDate)}</span>
         </div>
-        <div className="mt-2 ml-3 ml-9 flex items-center text-primary-gray-300 dark:text-primary-gray-100 md:mt-0">
+        <div className="mt-2 ml-9 flex items-center text-primary-gray-300 dark:text-primary-gray-100 md:mt-0">
           <CommentIcon />
           <span className="ml-3">{numComments}</span>
         </div>
       </div>
-    </a>
+    </AppLink>
   )
 }
 

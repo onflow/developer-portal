@@ -1,5 +1,4 @@
 /* eslint-disable react/jsx-no-undef */
-import { Link as RemixLink } from "@remix-run/react"
 import { getMDXComponent } from "mdx-bundler/client"
 import React from "react"
 import type { LinkProps } from "react-router-dom"
@@ -16,8 +15,8 @@ import {
   HeadingProps,
   InputProps,
   InternalCodeblock,
+  InternalContentLink,
   LargeVideoCard,
-  Link,
   StaticCheckbox,
 } from "~/ui/design-system"
 import type { LoaderData as RootLoaderData } from "../../root"
@@ -340,27 +339,10 @@ function mapFromMdxPageToMdxListItem(page: MdxPage): MdxListItem {
   return mdxListItem
 }
 
-const isLinkExternal = (href?: string) => !!href?.match(/^(www|http)/i)
-
 function GetMdxComponents(theme: Theme) {
   return {
     a: (props: LinkProps & { href: string }) => {
-      if (isLinkExternal(props.href)) {
-        return (
-          <Link
-            {...props}
-            isExternal={true}
-            rel="noreferrer"
-            className="not-prose"
-          />
-        )
-      } else {
-        return (
-          <RemixLink to={props.href} className="not-prose">
-            <Link {...props} isExternal={false} />
-          </RemixLink>
-        )
-      }
+      return <InternalContentLink {...props} className="not-prose" />
     },
     input: (props: InputProps) =>
       props.type === "checkbox" ? (

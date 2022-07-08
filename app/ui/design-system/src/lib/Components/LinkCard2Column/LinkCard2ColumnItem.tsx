@@ -1,6 +1,6 @@
 import { ReactComponent as ChevronRight } from "../../../../images/arrows/chevron-right"
 import { ReactComponent as ExternalLinkIcon } from "../../../../images/content/external-link"
-import { isLinkExternal } from "../Link/isLinkExternal"
+import AppLink, { isLinkExternal } from "../AppLink"
 import { LinkCard2ColumnItemContainer } from "./LinkCard2ColumnItemContainer"
 
 export type LinkCard2ColumnItemBaseProps = {
@@ -65,10 +65,10 @@ export function LinkCard2ColumnItem({
         {links && (
           <div className="mt-3">
             {links.map(({ title, href }) => (
-              <a
+              <AppLink
                 className="mb-1 flex items-center justify-between text-sm font-semibold text-primary-blue hover:opacity-75 dark:text-blue-dark"
                 key={title}
-                href={href}
+                to={href}
               >
                 <span>{title}</span>
                 <span>
@@ -78,7 +78,7 @@ export function LinkCard2ColumnItem({
                     <ChevronRight />
                   )}
                 </span>
-              </a>
+              </AppLink>
             ))}
           </div>
         )}
