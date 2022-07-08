@@ -43,7 +43,6 @@ export const loader = () => {
       return (
         schema?.sidebar.sections.flatMap((section) =>
           section.items.flatMap((item) => {
-            console.log(`sitemap section key, item: ${key}, ${item.href}`)
             if (firstRoutes.includes(key)) {
               return `${key}/${item.href}`
             }

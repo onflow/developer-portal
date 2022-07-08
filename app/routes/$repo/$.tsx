@@ -36,9 +36,6 @@ type NestedRoute = {
 
 /* TODO: We shouldn't have to manually redirect landing for subfolders without 'index' files */
 const customRedirectLanding = (nestedRoute: NestedRoute) => {
-  console.log(
-    `LOGGING before redirect ${nestedRoute.firstRoute} - ${nestedRoute.secondRoute} - ${nestedRoute.path}`
-  )
   // Redirecting missing "index" pages
   if (nestedRoute.path === "index") {
     if (nestedRoute.firstRoute === "flow" && !nestedRoute.secondRoute) {
@@ -62,9 +59,6 @@ const customRedirectLanding = (nestedRoute: NestedRoute) => {
       nestedRoute.path = "overview"
     }
   }
-  console.log(
-    `LOGGING before redirect ${nestedRoute.firstRoute} - ${nestedRoute.secondRoute} - ${nestedRoute.path}`
-  )
   return nestedRoute
 }
 
