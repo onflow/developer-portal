@@ -167,7 +167,8 @@ const toolContentMap: Record<ToolName, ContentName> = {
 
 const toolLinks: Record<ToolName, string> = { ...toolContentMap }
 for (let [key, value] of Object.entries(toolLinks)) {
-  toolLinks[key as ToolName] = `/${value}`
+  toolLinks[key as ToolName] =
+    value === "cadence" ? `/${value}` : `/tools/${value}`
 }
 
 export function CatchBoundary() {
