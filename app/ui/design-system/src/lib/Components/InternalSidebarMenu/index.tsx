@@ -57,7 +57,7 @@ function Group({
                 "group flex items-center px-1 py-2 text-center text-sm hover:bg-primary-gray-100/50 dark:bg-black hover:dark:bg-primary-gray-400/5 md:h-[7.5rem] md:w-[7rem] md:flex-col md:rounded-lg md:px-4 md:py-5 md:shadow-2xl dark:md:shadow-2xl-dark"
               )}
             >
-              <div className="mr-2 scale-75 md:mr-0 md:-mt-2">
+              <div className="mr-2 h-12 w-12 md:mb-4 md:mr-0 md:-mt-2">
                 <div className="group-hover:hidden">
                   <SelectedGroupSectionIcon />
                 </div>
@@ -145,9 +145,9 @@ export function InternalSidebarMenu({
           <div className="relative">
             <Popover.Button
               ref={reference}
-              className="mb-4 flex items-center rounded-lg pr-3 text-sm shadow-2xl hover:text-primary-gray-300 dark:bg-black dark:text-primary-gray-200 dark:shadow-2xl-dark-strong dark:hover:text-primary-gray-100"
+              className="mb-4 flex items-center rounded-lg p-2 pr-3 text-sm shadow-2xl hover:text-primary-gray-300 dark:bg-black dark:text-primary-gray-200 dark:shadow-2xl-dark-strong dark:hover:text-primary-gray-100"
             >
-              <div className="scale-50">
+              <div className="mr-2 h-8 w-8 md:mr-0">
                 <SelectedIcon />
               </div>
               <div className="text-small font-bold">
