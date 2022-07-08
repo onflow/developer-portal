@@ -102,7 +102,7 @@ const footerSections = [
         text: "Kitty Items",
       },
       {
-        link: "/cadence/tutorial/01-first-steps/",
+        link: "/cadence/tutorial/",
         text: "Cadence Tutorials",
       },
       {
