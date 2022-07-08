@@ -1,5 +1,6 @@
 import clsx from "clsx"
 import { createElement } from "react"
+import { NAV_HEIGHT } from "../NavigationBar"
 import LinkIcon from "./LinkIcon"
 
 type HeadingType = "h1" | "h2" | "h3" | "h4" | "h5" | "h6"
@@ -50,10 +51,10 @@ export function Heading({
     type,
     {
       ...props,
-      id: anchor,
       className: clsx("mt-6 font-semibold", headingClasses[type], className),
     },
     <div className="group -ml-11 flex items-center">
+      <div className="relative" style={{ top: -NAV_HEIGHT }} id={anchor} />
       <a
         href={`#${anchor}`}
         title={text}
