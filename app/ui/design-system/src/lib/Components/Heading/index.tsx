@@ -1,5 +1,5 @@
 import clsx from "clsx"
-import React, { createElement } from "react"
+import { createElement } from "react"
 import LinkIcon from "./LinkIcon"
 
 type HeadingType = "h1" | "h2" | "h3" | "h4" | "h5" | "h6"
