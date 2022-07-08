@@ -157,15 +157,15 @@ const dappDevelomentSection: Section = {
     },
     {
       title: "NFT Storefront & Marketplace Example",
-      href: "/learn/kitty-items/",
+      href: "/learn/kitty-items",
     },
     {
       title: "Cadence Playground Tutorials",
-      href: "/cadence/tutorial/02-hello-world/",
+      href: "/cadence/tutorial/02-hello-world",
     },
     {
       title: "Web3 Learning Roadmap",
-      href: "https://web3-learning-roadmap.vercel.app/",
+      href: "https://web3-learning-roadmap.vercel.app",
     },
     {
       title: "Community resource list",
@@ -173,7 +173,7 @@ const dappDevelomentSection: Section = {
     },
     {
       title: "Developer quickstart",
-      href: "https://flow-partner-dev-hub.vercel.app/",
+      href: "https://flow-partner-dev-hub.vercel.app",
     },
   ],
   icon: <UsecasesIcon height="1.5em" width="1.5em" />,
@@ -222,7 +222,7 @@ const cadenceConceptsSection: Section = {
   links: [
     {
       title: "Go to Cadence tutorials",
-      href: "/cadence/tutorial/02-hello-world/",
+      href: "/cadence/tutorial/02-hello-world",
     },
   ],
   title: "Cadence Fundamentals",
@@ -233,19 +233,19 @@ const cadenceConceptsSection: Section = {
     },
     {
       title: "Language Reference",
-      href: "/cadence/language/",
+      href: "/cadence/language",
     },
     {
       title: "Design Patterns",
-      href: "/cadence/design-patterns/",
+      href: "/cadence/design-patterns",
     },
     {
       title: "Cadence Account, Keys, & Signatures",
-      href: "/concepts/accounts-and-keys/",
+      href: "/concepts/accounts-and-keys",
     },
     {
       title: "Solidity to Cadence",
-      href: "/cadence/msg-sender/",
+      href: "/cadence/msg-sender",
     },
   ],
   icon: <ConceptsIcon height="1.5em" width="1.5em" />,
@@ -270,7 +270,7 @@ const cadenceResourceSection: Section = {
     },
     {
       title: "Cadence tutorials",
-      href: "/cadence/tutorial/02-hello-world/",
+      href: "/cadence/tutorial/02-hello-world",
     },
     {
       title: "Zero to hero Cadence course",

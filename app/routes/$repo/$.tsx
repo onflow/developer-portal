@@ -22,7 +22,7 @@ export { InternalErrorBoundary as ErrorBoundary } from "~/errors/error-boundarie
 // @ts-ignore
 export const meta: MetaFunction = ({ data, location }) => {
   const typedData = data as LoaderData
-  if (typedData) {
+  if (typedData && typedData.page) {
     return getSocialMetas({
       title: typedData.page.frontmatter?.title,
       description: typedData.page.frontmatter?.description,
