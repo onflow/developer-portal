@@ -54,7 +54,7 @@ const linkCard3ColumnItems: LinkCard3ColumnProps = {
         },
         {
           title: "Javascript Quickstart",
-          href: "/fcl-js/tutorials/flow-app-quickstart/",
+          href: "/tools/fcl-js/tutorials/flow-app-quickstart/",
           tags: ["tutorial", "beginner"],
         },
         {
@@ -156,7 +156,7 @@ const linkCard2ColumnItems: LinkCard2ColumnProps = {
       title: "Flow Client Library",
       description:
         "The Flow Client Library (FCL) JS is a package used to interact with user wallets, dapps, and the blockchain.",
-      href: "/fcl-js",
+      href: "/tools/fcl-js",
       icon: svgToDataUri(<FCLIcon />),
     },
   ],

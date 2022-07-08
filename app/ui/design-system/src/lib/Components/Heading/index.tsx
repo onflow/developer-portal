@@ -37,11 +37,11 @@ export function Heading({
       id: anchor,
       className: clsx("mt-6 font-semibold", headingClasses[type], className),
     },
-    <div className="group -ml-11 flex items-center">
+    <div className="group -ml-11 flex items-center ">
       <a
         href={`#${anchor}`}
         title={text}
-        className="mr-2 -mt-1 flex h-8 w-8 flex-none items-center justify-center rounded-md bg-gray-100 hover:bg-gray-200 group-hover:visible dark:bg-primary-gray-dark dark:hover:bg-gray-700 md:invisible md:scale-100"
+        className="invisible mr-2 -mt-1 flex h-8 w-8 flex-none items-center justify-center rounded-md bg-gray-100 group-hover:visible group-hover:bg-gray-200 dark:bg-primary-gray-dark dark:hover:bg-gray-700 md:scale-100"
       >
         <LinkIcon />
       </a>

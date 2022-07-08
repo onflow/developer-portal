@@ -26,7 +26,7 @@ export const sdkSection: Section = {
     },
     {
       title: "Javascript",
-      href: "/fcl-js",
+      href: "/tools/fcl-js",
     },
     {
       title: "Go",
@@ -153,7 +153,7 @@ const dappDevelomentSection: Section = {
   subSections: [
     {
       title: "Testnet quickstart",
-      href: "/fcl-js/tutorials/flow-app-quickstart",
+      href: "/tools/fcl-js/tutorials/flow-app-quickstart",
     },
     {
       title: "NFT Storefront & Marketplace Example",

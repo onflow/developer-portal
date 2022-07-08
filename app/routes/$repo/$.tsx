@@ -19,12 +19,13 @@ import { InternalPage } from "../../ui/design-system/src/lib/Pages/InternalPage"
 
 export { InternalErrorBoundary as ErrorBoundary } from "~/errors/error-boundaries"
 
-export const meta: MetaFunction = ({ parentsData, data, params, location }) => {
+// @ts-ignore
+export const meta: MetaFunction = ({ data, location }) => {
   const typedData = data as LoaderData
   if (typedData) {
     return getSocialMetas({
-      title: typedData.page.frontmatter.title,
-      description: typedData.page.frontmatter.description,
+      title: typedData.page.frontmatter?.title,
+      description: typedData.page.frontmatter?.description,
       url: location.toString(),
     })
   }
