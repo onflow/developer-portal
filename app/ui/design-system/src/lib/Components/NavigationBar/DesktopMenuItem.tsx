@@ -63,10 +63,10 @@ export function DesktopMenuItem({ divider, ...props }: DesktopMenuItemProps) {
             leaveTo="transform opacity-0 scale-95"
           >
             <Popover.Panel
-              className="fixed left-0 right-0 bottom-0 z-40 origin-top-right"
+              className="fixed bottom-0 left-0 right-0 z-40 origin-top-right"
               style={{ top: NAV_HEIGHT }}
             >
-              <div className="relative z-20 max-h-full">
+              <div className="relative z-20 max-h-full overflow-hidden">
                 {"tabs" in contentProps ? (
                   <DesktopMenuTabbed {...contentProps} />
                 ) : (
@@ -74,7 +74,7 @@ export function DesktopMenuItem({ divider, ...props }: DesktopMenuItemProps) {
                 )}
               </div>
               <Popover.Overlay
-                className="fixed left-0 right-0 bottom-0"
+                className="fixed bottom-0 left-0 right-0"
                 style={{ top: NAV_HEIGHT }}
               />
             </Popover.Panel>
