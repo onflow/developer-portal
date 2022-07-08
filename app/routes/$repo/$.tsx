@@ -3,14 +3,14 @@ import { Link, useCatch, useLoaderData, useLocation } from "@remix-run/react"
 import { Params } from "react-router"
 import invariant from "tiny-invariant"
 import { getMdxPage, useMdxComponent } from "~/cms/utils/mdx"
+import { ContentSpec, contentTools, getContentSpec } from "~/constants/repos"
 import {
-  ContentSpec,
-  contentTools,
-  getContentSpec,
-  isFlowInnerContent,
-  isFlowSection,
-} from "~/constants/repos"
-import { ContentName } from "~/constants/repos/contents-structure"
+  ContentName,
+  FirstRoute,
+  firstRoutes,
+  SecondRoute,
+  secondRoutes,
+} from "~/constants/repos/contents-structure"
 import { ErrorPage } from "~/ui/design-system/src/lib/Components/ErrorPage"
 import { getSocialMetas } from "~/utils/seo"
 import { MdxPage } from "../../cms"
@@ -19,12 +19,13 @@ import { InternalPage } from "../../ui/design-system/src/lib/Pages/InternalPage"
 
 export { InternalErrorBoundary as ErrorBoundary } from "~/errors/error-boundaries"
 
-export const meta: MetaFunction = ({ parentsData, data, params, location }) => {
+// @ts-ignore
+export const meta: MetaFunction = ({ data, location }) => {
   const typedData = data as LoaderData
-  if (typedData) {
+  if (typedData && typedData.page) {
     return getSocialMetas({
-      title: typedData.page.frontmatter.title,
-      description: typedData.page.frontmatter.description,
+      title: typedData.page.frontmatter?.title,
+      description: typedData.page.frontmatter?.description,
       url: location.toString(),
     })
   }
@@ -37,8 +38,8 @@ type LoaderData = {
 }
 
 type NestedRoute = {
-  firstRoute: string
-  secondRoute: string | undefined
+  firstRoute: FirstRoute
+  secondRoute: SecondRoute | undefined
   path: string
 }
 
@@ -48,18 +49,23 @@ const customRedirectLanding = (nestedRoute: NestedRoute) => {
   if (nestedRoute.path === "index") {
     if (nestedRoute.firstRoute === "flow" && !nestedRoute.secondRoute) {
       nestedRoute.path = "concepts/index"
-    } else if (nestedRoute.firstRoute === "nodes" && !nestedRoute.secondRoute) {
-      nestedRoute.path = "node-operation/index"
     } else if (
       nestedRoute.firstRoute === "flow" &&
       nestedRoute.secondRoute === "faq"
     ) {
       nestedRoute.path = "backers"
+    } else if (nestedRoute.firstRoute === "nodes" && !nestedRoute.secondRoute) {
+      nestedRoute.path = "node-operation/index"
     } else if (
       nestedRoute.firstRoute === "cadence" &&
       nestedRoute.secondRoute === "language"
     ) {
       nestedRoute.path = "syntax"
+    } else if (
+      nestedRoute.firstRoute === "tools" &&
+      nestedRoute.secondRoute === "flow-emulator"
+    ) {
+      nestedRoute.path = "overview"
     } else if (
       nestedRoute.firstRoute === "cadence" &&
       nestedRoute.secondRoute === "tutorial"
@@ -70,32 +76,28 @@ const customRedirectLanding = (nestedRoute: NestedRoute) => {
   return nestedRoute
 }
 
-const isValidSecondRoute = (firstRoute: string, secondRoute: string) => {
-  return (
-    (isFlowSection(firstRoute) && isFlowInnerContent(secondRoute)) ||
-    (firstRoute === "cadence" && secondRoute === "language") ||
-    (firstRoute === "cadence" && secondRoute === "tutorial")
-  )
-}
-
 const deconstructPath = (params: Params<string>) => {
   const firstRoute = params.repo
-  invariant(firstRoute, `expected repo param`)
+  invariant(firstRoute, `expected first route`)
+
+  if (!firstRoutes.includes(firstRoute)) {
+    throw json({ status: "noPage" }, { status: 404 })
+  }
 
   const remainingRoute = params["*"]
+  var secondRoute = undefined
+  var path: string = remainingRoute ?? "index"
 
-  // Assume there is a valid secondRoute
-  var secondRoute = remainingRoute?.split("/")[0]
-  var path: string =
-    remainingRoute?.split("/")?.slice(1)?.join("/").replace(/\/+$/, "") ||
-    "index"
-
-  // If secondRoute is invalid, invalidate path
-  if (!secondRoute || !isValidSecondRoute(firstRoute, secondRoute)) {
-    secondRoute = undefined
-    path = remainingRoute ?? "index"
+  // Check if there is a valid secondRoute
+  var second = remainingRoute?.split("/")[0]
+  if (second && secondRoutes.includes(second)) {
+    secondRoute = second
+    path =
+      remainingRoute?.split("/")?.slice(1)?.join("/").replace(/\/+$/, "") ||
+      "index"
   }
-  return customRedirectLanding({ firstRoute, secondRoute, path })
+
+  return customRedirectLanding({ firstRoute, secondRoute, path } as NestedRoute)
 }
 
 export const loader: LoaderFunction = async ({
@@ -181,7 +183,8 @@ const toolContentMap: Record<ToolName, ContentName> = {
 
 const toolLinks: Record<ToolName, string> = { ...toolContentMap }
 for (let [key, value] of Object.entries(toolLinks)) {
-  toolLinks[key as ToolName] = `/${value}`
+  toolLinks[key as ToolName] =
+    value === "cadence" ? `/${value}` : `/tools/${value}`
 }
 
 export function CatchBoundary() {

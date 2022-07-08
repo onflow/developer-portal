@@ -2,6 +2,7 @@ import clsx from "clsx"
 import { createElement } from "react"
 import { NAV_HEIGHT } from "../NavigationBar"
 import LinkIcon from "./LinkIcon"
+import GithubSlugger from "github-slugger"
 
 type HeadingType = "h1" | "h2" | "h3" | "h4" | "h5" | "h6"
 
@@ -19,23 +20,7 @@ const headingClasses = {
   h6: "text-sm",
 }
 
-function parameterize(string: string) {
-  return string
-    .toLowerCase()
-    .replace(/[^a-zA-Z0-9 -]/g, "")
-    .replace(/ /g, "-")
-}
-
-function processChildren(children: any) {
-  return children.reduce((acc: string, curr: any) => {
-    if (typeof curr === "string") {
-      acc += curr
-    } else if (typeof curr === "object") {
-      acc += curr.props.children
-    }
-    return acc
-  }, "")
-}
+const slugger = new GithubSlugger()
 
 export function Heading({
   type = "h1",
@@ -43,9 +28,8 @@ export function Heading({
   className,
   ...props
 }: HeadingProps) {
-  const text =
-    typeof children === "string" ? children : processChildren(children)
-  const anchor = parameterize(text)
+  const text = typeof children === "string" ? children : ""
+  const anchor = slugger.slug(text)
 
   return createElement(
     type,
@@ -58,7 +42,7 @@ export function Heading({
       <a
         href={`#${anchor}`}
         title={text}
-        className="mr-2 -mt-1 flex h-8 w-8 flex-none items-center justify-center rounded-md bg-gray-100 hover:bg-gray-200 group-hover:visible dark:bg-primary-gray-dark dark:hover:bg-gray-700 md:invisible md:scale-100"
+        className="invisible mr-2 -mt-1 flex h-8 w-8 flex-none items-center justify-center rounded-md bg-gray-100 group-hover:visible group-hover:bg-gray-200 dark:bg-primary-gray-dark dark:hover:bg-gray-700 md:scale-100"
       >
         <LinkIcon />
       </a>

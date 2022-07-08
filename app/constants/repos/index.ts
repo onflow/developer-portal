@@ -3,18 +3,17 @@ import { InternalLandingHeaderProps } from "../../ui/design-system/src/lib/Compo
 
 // First Level: Individual Repo Presets
 import cadence from "./first-route-presets/cadence.json"
-import fclJs from "./first-route-presets/fcl-js.json"
-import flowCli from "./first-route-presets/flow-cli.json"
-import kittyItems from "./first-route-presets/kitty-items.json"
-import flowGoSdk from "./first-route-presets/flow-go-sdk.json"
-import flowJsTesting from "./first-route-presets/flow-js-testing.json"
 import flowNFT from "./first-route-presets/flow-nft.json"
 import flowFT from "./first-route-presets/flow-ft.json"
 import nftStorefront from "./first-route-presets/nft-storefront.json"
-import flowEmulator from "./first-route-presets/flow-emulator.json"
 
 // Second Level: Individual Repo Inner Content Presents
 import cadenceLanguage from "./second-route-presets/cadence-language.json"
+import fclJs from "./second-route-presets/fcl-js.json"
+import flowCli from "./second-route-presets/flow-cli.json"
+import kittyItems from "./second-route-presets/kitty-items.json"
+import flowJsTesting from "./second-route-presets/flow-js-testing.json"
+import flowGoSdk from "./second-route-presets/flow-go-sdk.json"
 import cadenceTutorial from "./second-route-presets/cadence-tutorial.json"
 
 // First Level: Flow Section Presets
@@ -34,21 +33,21 @@ import flowPort from "./second-route-presets/flow-port.json"
 import nftMarketPlace from "./second-route-presets/nft-marketplace.json"
 import staking from "./second-route-presets/staking.json"
 import nodeOperation from "./second-route-presets/node-operation.json"
-import emulator from "./second-route-presets/emulator.json"
 import vscodeExtension from "./second-route-presets/vscode-extension.json"
+import emulator from "./second-route-presets/emulator.json"
 import faq from "./second-route-presets/faq.json"
 
 import { populateRepoSchema, RepoSchema } from "./repo-schema"
 import { ToolName } from "../../ui/design-system/src/lib/Components/Internal/tools"
 import {
   ContentName,
-  FlowContentName,
-  flowContentNames,
-  flowSectionNames,
-  RepoName,
-  repositoryContentNames,
+  secondRoutes,
+  firstRoutes,
   repositoryMap,
-  repositoryNames,
+  repoInnerContentNames,
+  flowInnerContents,
+  flowSections,
+  repoNames,
 } from "./contents-structure"
 import { landingHeaders } from "./custom-headers"
 
@@ -59,20 +58,19 @@ export const DEFAULT_CONTENT_PATH = "docs"
 export const schemas: Partial<Record<ContentName, RepoSchema>> = {
   // First Level: Individual repository ({repository}/...)
   cadence: cadence as RepoSchema,
+  "flow-nft": flowNFT as RepoSchema,
+  "flow-ft": flowFT as RepoSchema,
+  "nft-storefront": nftStorefront as RepoSchema,
+
+  // Second Level: Individual repository inner content schema (repository/{inner}/...)
+  language: populateRepoSchema(cadenceLanguage as RepoSchema),
   "flow-cli": flowCli as RepoSchema,
   "fcl-js": fclJs as RepoSchema,
   "flow-go-sdk": flowGoSdk as RepoSchema,
   "flow-js-testing": flowJsTesting as RepoSchema,
-  "flow-nft": flowNFT as RepoSchema,
-  "flow-ft": flowFT as RepoSchema,
-  "nft-storefront": nftStorefront as RepoSchema,
-  "flow-emulator": flowEmulator as RepoSchema,
-
-  // Second Level: Individual repository inner content schema (repository/{inner}/...)
-  language: populateRepoSchema(cadenceLanguage as RepoSchema),
   tutorial: populateRepoSchema(cadenceTutorial as RepoSchema),
 
-  // First Level: Flow Section (flow/{section}/...)
+  // First Level: Flow Repo Sections (flow/{section}/...)
   flow: flow as RepoSchema,
   learn: learn as RepoSchema,
   nodes: nodes as RepoSchema,
@@ -111,7 +109,7 @@ export const displayNames: Partial<Record<ContentName, string>> = {
 export const contentTools: Partial<Record<ContentName, ToolName>> = {
   cadence: "cadence",
   "flow-cli": "cli",
-  "flow-emulator": "emulator",
+  emulator: "emulator",
   "fcl-js": "fcl",
   "flow-js-testing": "testing",
   "vscode-extension": "vscode",
@@ -147,28 +145,28 @@ export type ContentSpec = {
 }
 
 function getBasePath(name: string) {
-  if (isFlowInnerContent(name)) {
-    return `docs/content/${name}`
+  var basePath = DEFAULT_CONTENT_PATH
+  if (flowSections.includes(name)) {
+    basePath = `docs/content`
+  } else if (flowInnerContents.includes(name)) {
+    basePath = `docs/content/${name}`
+  } else if (repoInnerContentNames.includes(name)) {
+    basePath = `docs/${name}`
   }
-  if (isFlowSection(name)) {
-    return `docs/content`
-  }
-  return isRepoInnerContent(name) ? `docs/${name}` : DEFAULT_CONTENT_PATH
+  return basePath
 }
 
 const getRepoName = (name: string) => {
-  if (isFlowInnerContent(name) || isFlowSection(name)) {
+  if (flowSections.includes(name)) {
     return "flow"
   }
-  return isRepo(name) ? name : repositoryMap[name]
+  if (repoNames.includes(name)) {
+    return name
+  }
+  return repositoryMap[name]
 }
 
-export const contentSpecMap = [
-  ...repositoryNames,
-  ...repositoryContentNames,
-  ...flowSectionNames,
-  ...flowContentNames,
-].reduce(
+export const contentSpecMap = [...firstRoutes, ...secondRoutes].reduce(
   (accum, name) => ({
     ...accum,
     [name]: {
@@ -185,40 +183,12 @@ export const contentSpecMap = [
   {} as Record<ContentName, ContentSpec>
 )
 
-export function isRepo(name: string): name is RepoName {
-  return repositoryNames.includes(name as RepoName)
-}
-export function isRepoInnerContent(name: string): name is RepoName {
-  return repositoryContentNames.includes(name as RepoName)
-}
-
-/**
- * examples of flow sections: learn, flow
- */
-export function isFlowSection(name: string): name is FlowContentName {
-  return flowSectionNames.includes(name as FlowContentName)
-}
-
-/**
- * examples of flow inner content: dapp-development, kitty-items
- */
-export function isFlowInnerContent(name: string): name is FlowContentName {
-  return flowContentNames.includes(name as FlowContentName)
-}
-
 export const getContentSpec = (
   firstRoute: string,
   secondRoute?: string | undefined
 ) => {
-  if (isRepo(firstRoute)) {
-    if (secondRoute && isRepoInnerContent(secondRoute)) {
-      return contentSpecMap[secondRoute]
-    }
-    return contentSpecMap[firstRoute]
-  }
-
-  if (isFlowSection(firstRoute)) {
-    if (secondRoute && isFlowInnerContent(secondRoute)) {
+  if (firstRoute) {
+    if (secondRoute && secondRoutes.includes(secondRoute)) {
       return contentSpecMap[secondRoute]
     }
     return contentSpecMap[firstRoute]

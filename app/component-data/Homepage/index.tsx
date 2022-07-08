@@ -60,7 +60,7 @@ const homepageThreeColumnData: LinkCard3ColumnItems = [
       },
       {
         title: "Get started on testnet",
-        href: "/fcl-js/tutorials/flow-app-quickstart/",
+        href: "/tools/fcl-js/tutorials/flow-app-quickstart/",
         tags: ["javascript"],
       },
       {
@@ -91,7 +91,7 @@ const homepageThreeColumnData: LinkCard3ColumnItems = [
       },
       {
         title: "Deploy your project",
-        href: "/flow-cli/deploy-project-contracts/",
+        href: "tools/flow-cli/deploy-project-contracts/",
         tags: ["cli", "tutorial"],
       },
       {

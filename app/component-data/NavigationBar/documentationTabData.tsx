@@ -26,11 +26,11 @@ export const sdkSection: Section = {
     },
     {
       title: "Javascript",
-      href: "/fcl-js",
+      href: "/tools/fcl-js",
     },
     {
       title: "Go",
-      href: "/flow-go-sdk",
+      href: "/tools/flow-go-sdk",
     },
     {
       title: "JVM",
@@ -55,7 +55,7 @@ export const toolsSection: Section = {
   subSections: [
     {
       title: "CLI",
-      href: "/flow-cli/",
+      href: "/tools/flow-cli/",
     },
     {
       title: "Emulator",
@@ -63,7 +63,7 @@ export const toolsSection: Section = {
     },
     {
       title: "JS-Testing",
-      href: "/flow-js-testing",
+      href: "/tools/flow-js-testing",
     },
     {
       title: "Local Dev Wallet",
@@ -90,11 +90,11 @@ export const localSection: Section = {
   subSections: [
     {
       title: "Use the Flow Emulator",
-      href: "/flow-cli/start-emulator/",
+      href: "/tools/flow-cli/start-emulator/",
     },
     {
       title: "Configuring your local network",
-      href: "/flow-cli/configuration/",
+      href: "/tools/flow-cli/configuration/",
     },
     {
       title: "Cadence VS Code Extension",
@@ -153,19 +153,19 @@ const dappDevelomentSection: Section = {
   subSections: [
     {
       title: "Testnet quickstart",
-      href: "/fcl-js/tutorials/flow-app-quickstart",
+      href: "/tools/fcl-js/tutorials/flow-app-quickstart",
     },
     {
       title: "NFT Storefront & Marketplace Example",
-      href: "/learn/kitty-items/",
+      href: "/learn/kitty-items",
     },
     {
       title: "Cadence Playground Tutorials",
-      href: "/cadence/tutorial/02-hello-world/",
+      href: "/cadence/tutorial/02-hello-world",
     },
     {
       title: "Web3 Learning Roadmap",
-      href: "https://web3-learning-roadmap.vercel.app/",
+      href: "https://web3-learning-roadmap.vercel.app",
     },
     {
       title: "Community resource list",
@@ -173,7 +173,7 @@ const dappDevelomentSection: Section = {
     },
     {
       title: "Developer quickstart",
-      href: "https://flow-partner-dev-hub.vercel.app/",
+      href: "https://flow-partner-dev-hub.vercel.app",
     },
   ],
   icon: <UsecasesIcon height="1.5em" width="1.5em" />,
@@ -222,7 +222,7 @@ const cadenceConceptsSection: Section = {
   links: [
     {
       title: "Go to Cadence tutorials",
-      href: "/cadence/tutorial/02-hello-world/",
+      href: "/cadence/tutorial/02-hello-world",
     },
   ],
   title: "Cadence Fundamentals",
@@ -233,19 +233,19 @@ const cadenceConceptsSection: Section = {
     },
     {
       title: "Language Reference",
-      href: "/cadence/language/",
+      href: "/cadence/language",
     },
     {
       title: "Design Patterns",
-      href: "/cadence/design-patterns/",
+      href: "/cadence/design-patterns",
     },
     {
       title: "Cadence Account, Keys, & Signatures",
-      href: "/concepts/accounts-and-keys/",
+      href: "/concepts/accounts-and-keys",
     },
     {
       title: "Solidity to Cadence",
-      href: "/cadence/msg-sender/",
+      href: "/cadence/msg-sender",
     },
   ],
   icon: <ConceptsIcon height="1.5em" width="1.5em" />,
@@ -270,7 +270,7 @@ const cadenceResourceSection: Section = {
     },
     {
       title: "Cadence tutorials",
-      href: "/cadence/tutorial/02-hello-world/",
+      href: "/cadence/tutorial/02-hello-world",
     },
     {
       title: "Zero to hero Cadence course",

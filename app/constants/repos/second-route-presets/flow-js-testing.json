@@ -7,63 +7,63 @@
         "items": [
           {
             "label": "Introduction",
-            "href": "index"
+            "href": "flow-js-testing/index"
           },
           {
             "label": "Accounts",
-            "href": "accounts"
+            "href": "flow-js-testing/accounts"
           },
           {
             "label": "API",
-            "href": "api"
+            "href": "flow-js-testing/api"
           },
           {
             "label": "Contracts",
-            "href": "contracts"
+            "href": "flow-js-testing/contracts"
           },
           {
             "label": "Emulator",
-            "href": "emulator"
+            "href": "flow-js-testing/emulator"
           },
           {
             "label": "Executing Scripts",
-            "href": "execute-scripts"
+            "href": "flow-js-testing/execute-scripts"
           },
           {
             "label": "Flow Token",
-            "href": "flow-token"
+            "href": "flow-js-testing/flow-token"
           },
           {
             "label": "Generator",
-            "href": "generator"
+            "href": "flow-js-testing/generator"
           },
           {
             "label": "Init Framework",
-            "href": "init"
+            "href": "flow-js-testing/init"
           },
           {
             "label": "Installation",
-            "href": "install"
+            "href": "flow-js-testing/install"
           },
           {
             "label": "Jest Helpers",
-            "href": "jest-helpers"
+            "href": "flow-js-testing/jest-helpers"
           },
           {
             "label": "Sending Transactions",
-            "href": "send-transactions"
+            "href": "flow-js-testing/send-transactions"
           },
           {
             "label": "Structure",
-            "href": "structure"
+            "href": "flow-js-testing/structure"
           },
           {
             "label": "Templates",
-            "href": "templates"
+            "href": "flow-js-testing/templates"
           },
           {
             "label": "Types",
-            "href": "types"
+            "href": "flow-js-testing/types"
           }
         ]
       }
