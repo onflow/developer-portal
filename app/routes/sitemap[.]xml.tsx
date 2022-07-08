@@ -51,9 +51,6 @@ export const loader = () => {
             if (secondRoutes.includes(key)) {
               let firstRoute = firstRouteMap[key]
               invariant(firstRoute, `expected section for ${key}`)
-              if (repoNames.includes(key)) {
-                return `${firstRoute}/${key}/${item.href}`
-              }
               return `${firstRoute}/${item.href}`
             }
 

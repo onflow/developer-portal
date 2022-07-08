@@ -30,7 +30,7 @@ export const sdkSection: Section = {
     },
     {
       title: "Go",
-      href: "/flow-go-sdk",
+      href: "/tools/flow-go-sdk",
     },
     {
       title: "JVM",
@@ -55,7 +55,7 @@ export const toolsSection: Section = {
   subSections: [
     {
       title: "CLI",
-      href: "/flow-cli/",
+      href: "/tools/flow-cli/",
     },
     {
       title: "Emulator",
@@ -63,7 +63,7 @@ export const toolsSection: Section = {
     },
     {
       title: "JS-Testing",
-      href: "/flow-js-testing",
+      href: "/tools/flow-js-testing",
     },
     {
       title: "Local Dev Wallet",
@@ -90,11 +90,11 @@ export const localSection: Section = {
   subSections: [
     {
       title: "Use the Flow Emulator",
-      href: "/flow-cli/start-emulator/",
+      href: "/tools/flow-cli/start-emulator/",
     },
     {
       title: "Configuring your local network",
-      href: "/flow-cli/configuration/",
+      href: "/tools/flow-cli/configuration/",
     },
     {
       title: "Cadence VS Code Extension",

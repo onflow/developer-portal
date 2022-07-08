@@ -13,7 +13,7 @@ const cliTool: SDKCardProps = {
   authorIcon: "https://avatars.githubusercontent.com/u/62387156?s=64&v=4",
   authorName: "onflow",
   tags: ["documentation", "active", "required"],
-  link: "/flow-cli/",
+  link: "/tools/flow-cli/",
   stars: 171,
   iconSrc: ToolCliIconSrc,
   description:
@@ -83,7 +83,7 @@ const jsTestingLibTool: SDKCardProps = {
   authorIcon: "https://avatars.githubusercontent.com/u/62387156?s=64&v=4",
   authorName: "onflow",
   tags: ["documentation", "active", "local-dev"],
-  link: "/flow-js-testing/",
+  link: "/tools/flow-js-testing/",
   stars: 38,
   iconSrc: ToolTestingIconSrc,
   description:
@@ -119,7 +119,7 @@ const fclSDK: SDKCardProps = {
   authorIcon: "https://avatars.githubusercontent.com/u/62387156?s=64&v=4",
   authorName: "onflow",
   tags: ["documentation", "active"],
-  link: "/fcl-js",
+  link: "/tools/fcl-js",
   stars: 268,
   iconSrc: ToolFclIconSrc,
 }
@@ -129,7 +129,7 @@ const goSDK: SDKCardProps = {
   authorIcon: "https://avatars.githubusercontent.com/u/62387156?s=64&v=4",
   authorName: "onflow",
   tags: ["documentation", "active"],
-  link: "/flow-go-sdk",
+  link: "/tools/flow-go-sdk",
   stars: 186,
   iconSrc:
     "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/go/go-original.svg",

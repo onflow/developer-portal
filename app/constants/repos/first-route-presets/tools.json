@@ -23,7 +23,7 @@
           },
           {
             "label": "Flow CLI",
-            "href": "flow-cli"
+            "href": "tools/flow-cli"
           },
           {
             "label": "VS Code Extension",

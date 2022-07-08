@@ -91,7 +91,7 @@ const homepageThreeColumnData: LinkCard3ColumnItems = [
       },
       {
         title: "Deploy your project",
-        href: "/flow-cli/deploy-project-contracts/",
+        href: "tools/flow-cli/deploy-project-contracts/",
         tags: ["cli", "tutorial"],
       },
       {
