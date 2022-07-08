@@ -36,11 +36,11 @@ export function NavigationBar({
         </AppLink>
       </div>
       <div className="mt-1 flex flex-1 justify-end">
-        {algolia ? (
+        {!!algolia && (
           <div className="mr-4 flex items-center">
             <Search {...algolia} />
           </div>
-        ) : null}
+        )}
         <DesktopMenu menuItems={menuItems} />
         <ul className="flex items-center">
           <li className="flex items-center whitespace-nowrap border-primary-gray-100 pl-4 dark:border-primary-gray-400 md:border-l">

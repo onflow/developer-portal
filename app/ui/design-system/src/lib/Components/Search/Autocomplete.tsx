@@ -59,7 +59,7 @@ export function Autocomplete({
                       indexName: indexName,
                       query,
                       params: {
-                        hitsPerPage: 20,
+                        hitsPerPage: 10,
                         highlightPreTag: "<mark>",
                         highlightPostTag: "</mark>",
                       },
@@ -82,22 +82,23 @@ export function Autocomplete({
 
   return (
     <div
-      className="h-full rounded-md bg-white dark:bg-black"
+      className="h-full rounded-md"
       {...autocomplete.getRootProps({})}
       style={{ maxWidth: "80vw" }}
     >
       {/* @ts-expect-error */}
       <form
-        className="flex h-full flex-col"
+        className="relative flex h-full flex-col"
         {...autocomplete.getFormProps({ inputElement: inputRef.current })}
       >
+        <button onClick={closeDialog} className="absolute h-full w-full" />
         <div className="relative flex items-center">
-          <div className="absolute left-5 scale-75 dark:text-primary-green">
+          <div className="absolute left-5 z-20 scale-75 dark:text-blue-hover-dark">
             <SearchIcon />
           </div>
           {/* @ts-expect-error */}
           <input
-            className="h-16 w-full rounded-md bg-white px-14 pt-4 pb-3 text-base text-black !ring-0 focus:border-[#02D77E] dark:bg-black dark:text-white"
+            className="z-10 h-16 w-full rounded-md border-transparent bg-white px-14 pt-4 pb-3 text-base text-black !ring-0 focus:border-transparent dark:border-blue-hover-dark dark:bg-black dark:text-white"
             ref={inputRef}
             {...inputProps}
             onKeyDown={(e: KeyboardEvent) => {
@@ -109,18 +110,21 @@ export function Autocomplete({
               inputProps.onKeyDown(e)
             }}
             type="text"
+            placeholder="Search documentation..."
           />
           <button
             onClick={closeDialog}
-            className="absolute right-5 text-primary-gray-300 hover:opacity-75 dark:text-primary-gray-200"
+            className="absolute right-5 z-10 text-primary-gray-300 hover:opacity-75 dark:text-primary-gray-200"
           >
             ESC
           </button>
         </div>
-        <Panel
-          autocomplete={autocomplete}
-          autocompleteState={autocompleteState}
-        />
+        {!!autocompleteState && autocompleteState.query.length > 0 && (
+          <Panel
+            autocomplete={autocomplete}
+            autocompleteState={autocompleteState}
+          />
+        )}
       </form>
     </div>
   )
