@@ -152,7 +152,6 @@ function getBasePath(name: string) {
   } else if (repoInnerContentNames.includes(name)) {
     basePath = `docs/${name}`
   }
-  console.log(`LOGGING getBasePath name ${name} is ${basePath}`)
   return basePath
 }
 

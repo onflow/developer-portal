@@ -3,8 +3,10 @@ import { getRequiredServerEnvVar } from "~/cms/helpers"
 import { schemas } from "~/constants/repos"
 import {
   firstRouteMap,
+  firstRoutes,
   flowInnerContents,
   repoNames,
+  secondRoutes,
 } from "~/constants/repos/contents-structure"
 import { isNotNull } from "~/utils/filters"
 
@@ -41,14 +43,18 @@ export const loader = () => {
       return (
         schema?.sidebar.sections.flatMap((section) =>
           section.items.flatMap((item) => {
-            if (repoNames.includes(key)) {
+            console.log(`sitemap section key, item: ${key}, ${item.href}`)
+            if (firstRoutes.includes(key)) {
               return `${key}/${item.href}`
             }
 
-            if (flowInnerContents.includes(key)) {
-              let section = firstRouteMap[key]
-              invariant(section, `expected section for ${key}`)
-              return `${section}/${item.href}`
+            if (secondRoutes.includes(key)) {
+              let firstRoute = firstRouteMap[key]
+              invariant(firstRoute, `expected section for ${key}`)
+              if (repoNames.includes(key)) {
+                return `${firstRoute}/${key}/${item.href}`
+              }
+              return `${firstRoute}/${item.href}`
             }
 
             // TODO: handle other sidebar items
