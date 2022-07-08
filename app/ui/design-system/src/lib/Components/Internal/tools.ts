@@ -3,10 +3,13 @@ import { ReactComponent as CadenceGradientIcon } from "../../../../images/tools/
 import { ReactComponent as CadenceLandingIcon } from "../../../../images/tools/tool-cadence-landing"
 import { ReactComponent as CliIcon } from "../../../../images/tools/tool-cli"
 import { ReactComponent as CliGradientIcon } from "../../../../images/tools/tool-cli-gradient"
+import { ReactComponent as DefaultIcon } from "../../../../images/tools/tool-default"
 import { ReactComponent as EmulatorIcon } from "../../../../images/tools/tool-emulator"
 import { ReactComponent as EmulatorGradientIcon } from "../../../../images/tools/tool-emulator-gradient"
 import { ReactComponent as FclIcon } from "../../../../images/tools/tool-fcl"
 import { ReactComponent as FclGradientIcon } from "../../../../images/tools/tool-fcl-gradient"
+import { ReactComponent as PortIcon } from "../../../../images/tools/tool-port"
+import { ReactComponent as PortIcionGradient } from "../../../../images/tools/tool-port-gradient"
 import { ReactComponent as TestingIcon } from "../../../../images/tools/tool-testing"
 import { ReactComponent as TestingGradientIcon } from "../../../../images/tools/tool-testing-gradient"
 import { ReactComponent as VsCodeIcon } from "../../../../images/tools/tool-vscode"
@@ -21,6 +24,16 @@ export type ToolName =
   | "testing"
   | "fcl"
   | "cadence"
+  | "flow-go-sdk"
+  | "http-api"
+  | "tools"
+  | "kitty-items"
+  | "concepts"
+  | "learn"
+  | "operation"
+  | "staking"
+  | "flow-port"
+  | "nodes"
 
 export type Tool = {
   name: string
@@ -65,5 +78,66 @@ export const TOOLS: Record<ToolName, Tool> = {
     icon: CadenceIcon,
     iconLanding: CadenceLandingIcon,
     gradientIcon: CadenceGradientIcon,
+  },
+
+  "flow-go-sdk": {
+    name: "Go SDK",
+    icon: DefaultIcon,
+    iconLanding: CadenceLandingIcon,
+    gradientIcon: DefaultIcon,
+  },
+  "http-api": {
+    name: "HTTP API",
+    icon: DefaultIcon,
+    iconLanding: CadenceLandingIcon,
+    gradientIcon: DefaultIcon,
+  },
+  tools: {
+    name: "All tools",
+    icon: DefaultIcon,
+    iconLanding: CadenceLandingIcon,
+    gradientIcon: DefaultIcon,
+  },
+  "kitty-items": {
+    name: "Kitty Items",
+    icon: DefaultIcon,
+    iconLanding: CadenceLandingIcon,
+    gradientIcon: DefaultIcon,
+  },
+  concepts: {
+    name: "Concepts & Guides",
+    icon: DefaultIcon,
+    iconLanding: CadenceLandingIcon,
+    gradientIcon: DefaultIcon,
+  },
+  learn: {
+    name: "All content",
+    icon: DefaultIcon,
+    iconLanding: CadenceLandingIcon,
+    gradientIcon: DefaultIcon,
+  },
+  operation: {
+    name: "Operation",
+    icon: DefaultIcon,
+    iconLanding: CadenceLandingIcon,
+    gradientIcon: DefaultIcon,
+  },
+  staking: {
+    name: "Staking",
+    icon: DefaultIcon,
+    iconLanding: CadenceLandingIcon,
+    gradientIcon: DefaultIcon,
+  },
+  "flow-port": {
+    name: "Flow Port",
+    icon: PortIcon,
+    iconLanding: CadenceLandingIcon,
+    gradientIcon: PortIcionGradient,
+  },
+  nodes: {
+    name: "All nodes",
+    icon: DefaultIcon,
+    iconLanding: CadenceLandingIcon,
+    gradientIcon: DefaultIcon,
   },
 }

@@ -29,6 +29,8 @@ export const meta: MetaFunction = ({ data, location }) => {
       url: location.toString(),
     })
   }
+
+  return {}
 }
 
 type LoaderData = {
@@ -175,10 +177,20 @@ export default function RepoDocument() {
 const toolContentMap: Record<ToolName, ContentName> = {
   cadence: "cadence",
   cli: "flow-cli",
-  emulator: "flow-emulator",
+  emulator: "tools/emulator",
   fcl: "fcl-js",
   testing: "flow-js-testing",
-  vscode: "vscode-extension",
+  vscode: "tools/vscode-extension",
+  "flow-port": "nodes/flow-port",
+  "flow-go-sdk": "flow-go-sdk",
+  "http-api": "http-api",
+  "kitty-items": "learn/kitty-items",
+  concepts: "concepts",
+  learn: "learn",
+  nodes: "nodes",
+  operation: "nodes/node-operation",
+  staking: "nodes/flow-port/staking-guide",
+  tools: "tools",
 }
 
 const toolLinks: Record<ToolName, string> = { ...toolContentMap }
