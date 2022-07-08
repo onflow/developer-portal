@@ -49,7 +49,6 @@ import {
   repoNames,
 } from "./contents-structure"
 import { landingHeaders } from "./custom-headers"
-import { SECURITY_DEFINITIONS_JSX_NAME } from "redoc"
 
 export const DEFAULT_REPO_OWNER = "onflow"
 export const DEFAULT_CONTENT_PATH = "docs"

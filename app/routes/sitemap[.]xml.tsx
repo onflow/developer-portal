@@ -4,8 +4,6 @@ import { schemas } from "~/constants/repos"
 import {
   firstRouteMap,
   firstRoutes,
-  flowInnerContents,
-  repoNames,
   secondRoutes,
 } from "~/constants/repos/contents-structure"
 import { isNotNull } from "~/utils/filters"
