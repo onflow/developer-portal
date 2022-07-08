@@ -81,7 +81,9 @@ const deconstructPath = (params: Params<string>) => {
 
   // Assume there is a valid secondRoute
   var secondRoute = remainingRoute?.split("/")[0]
-  var path: string = remainingRoute?.split("/")?.slice(1)?.join("/") || "index"
+  var path: string =
+    remainingRoute?.split("/")?.slice(1)?.join("/").replace(/\/+$/, "") ||
+    "index"
 
   // If secondRoute is invalid, invalidate path
   if (!secondRoute || !isValidSecondRoute(firstRoute, secondRoute)) {
@@ -100,7 +102,6 @@ export const loader: LoaderFunction = async ({
   }
 
   const { firstRoute, secondRoute, path }: NestedRoute = deconstructPath(params)
-
   const contentSpec = getContentSpec(firstRoute, secondRoute)
 
   if (!contentSpec) {
