@@ -1,7 +1,11 @@
 import invariant from "tiny-invariant"
 import { getRequiredServerEnvVar } from "~/cms/helpers"
-import { isFlowInnerContent, isRepo, schemas } from "~/constants/repos"
-import { flowContentSectionMap } from "~/constants/repos/contents-structure"
+import { schemas } from "~/constants/repos"
+import {
+  firstRouteMap,
+  flowInnerContents,
+  repoNames,
+} from "~/constants/repos/contents-structure"
 import { isNotNull } from "~/utils/filters"
 
 function entryNode(entry: Entry, origin: string): string {
@@ -37,12 +41,12 @@ export const loader = () => {
       return (
         schema?.sidebar.sections.flatMap((section) =>
           section.items.flatMap((item) => {
-            if (isRepo(key)) {
+            if (repoNames.includes(key)) {
               return `${key}/${item.href}`
             }
 
-            if (isFlowInnerContent(key)) {
-              let section = flowContentSectionMap[key]
+            if (flowInnerContents.includes(key)) {
+              let section = firstRouteMap[key]
               invariant(section, `expected section for ${key}`)
               return `${section}/${item.href}`
             }

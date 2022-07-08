@@ -3,14 +3,8 @@ import { Link, useCatch, useLoaderData, useLocation } from "@remix-run/react"
 import { Params } from "react-router"
 import invariant from "tiny-invariant"
 import { getMdxPage, useMdxComponent } from "~/cms/utils/mdx"
-import {
-  ContentSpec,
-  contentTools,
-  getContentSpec,
-  isFlowInnerContent,
-  isFlowSection,
-} from "~/constants/repos"
-import { ContentName } from "~/constants/repos/contents-structure"
+import { ContentSpec, contentTools, getContentSpec } from "~/constants/repos"
+import { ContentName, secondRoutes } from "~/constants/repos/contents-structure"
 import { ErrorPage } from "~/ui/design-system/src/lib/Components/ErrorPage"
 import { getSocialMetas } from "~/utils/seo"
 import { MdxPage } from "../../cms"
@@ -42,33 +36,36 @@ type NestedRoute = {
 
 /* TODO: We shouldn't have to manually redirect landing for subfolders without 'index' files */
 const customRedirectLanding = (nestedRoute: NestedRoute) => {
+  console.log(
+    `LOGGING before redirect ${nestedRoute.firstRoute} - ${nestedRoute.secondRoute} - ${nestedRoute.path}`
+  )
   // Redirecting missing "index" pages
   if (nestedRoute.path === "index") {
     if (nestedRoute.firstRoute === "flow" && !nestedRoute.secondRoute) {
       nestedRoute.path = "concepts/index"
-    } else if (nestedRoute.firstRoute === "nodes" && !nestedRoute.secondRoute) {
-      nestedRoute.path = "node-operation/index"
     } else if (
       nestedRoute.firstRoute === "flow" &&
       nestedRoute.secondRoute === "faq"
     ) {
       nestedRoute.path = "backers"
+    } else if (nestedRoute.firstRoute === "nodes" && !nestedRoute.secondRoute) {
+      nestedRoute.path = "node-operation/index"
     } else if (
       nestedRoute.firstRoute === "cadence" &&
       nestedRoute.secondRoute === "language"
     ) {
       nestedRoute.path = "syntax"
+    } else if (
+      nestedRoute.firstRoute === "tools" &&
+      nestedRoute.secondRoute === "flow-emulator"
+    ) {
+      nestedRoute.path = "overview"
     }
   }
-
-  return nestedRoute
-}
-
-const isValidSecondRoute = (firstRoute: string, secondRoute: string) => {
-  return (
-    (isFlowSection(firstRoute) && isFlowInnerContent(secondRoute)) ||
-    (firstRoute === "cadence" && secondRoute === "language")
+  console.log(
+    `LOGGING before redirect ${nestedRoute.firstRoute} - ${nestedRoute.secondRoute} - ${nestedRoute.path}`
   )
+  return nestedRoute
 }
 
 const deconstructPath = (params: Params<string>) => {
@@ -76,16 +73,16 @@ const deconstructPath = (params: Params<string>) => {
   invariant(firstRoute, `expected repo param`)
 
   const remainingRoute = params["*"]
+  var secondRoute = undefined
+  var path: string = remainingRoute ?? "index"
 
-  // Assume there is a valid secondRoute
-  var secondRoute = remainingRoute?.split("/")[0]
-  var path: string = remainingRoute?.split("/")?.slice(1)?.join("/") || "index"
-
-  // If secondRoute is invalid, invalidate path
-  if (!secondRoute || !isValidSecondRoute(firstRoute, secondRoute)) {
-    secondRoute = undefined
-    path = remainingRoute ?? "index"
+  // Check if there is a valid secondRoute
+  var second = remainingRoute?.split("/")[0]
+  if (second && secondRoutes.includes(second)) {
+    secondRoute = second
+    path = remainingRoute?.split("/")?.slice(1)?.join("/") || "index"
   }
+
   return customRedirectLanding({ firstRoute, secondRoute, path })
 }
 

@@ -24,6 +24,10 @@
           {
             "label": "FUSD",
             "href": "fusd"
+          },
+          {
+            "label": "NFT Marketplace",
+            "href": "nft-marketplace"
           }
         ]
       },

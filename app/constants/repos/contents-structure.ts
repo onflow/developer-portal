@@ -1,3 +1,16 @@
+function mapToKey(structure: Partial<Record<string, any>>, keys: string[]) {
+  var valueToKey: Partial<Record<ContentName, string>> = {}
+
+  keys.forEach((keyName: string) => {
+    let valueContents = structure[keyName]
+    valueContents.forEach((eachValue: string) => {
+      valueToKey[eachValue] = keyName
+    })
+  })
+
+  return valueToKey
+}
+
 /* Repository structure: repository/content/... */
 export const repositoryStructure: Partial<Record<string, any>> = {
   cadence: ["language"],
@@ -5,38 +18,37 @@ export const repositoryStructure: Partial<Record<string, any>> = {
   "flow-js-testing": [],
   "flow-go-sdk": [],
   "fcl-js": [],
-  "flow-emulator": [],
+  // "flow-emulator": [],
   "flow-cadut": [],
   "mock-developer-doc": [],
   "flow-nft": [],
   "flow-ft": [],
   "nft-storefront": [],
+  flow: [
+    // Inner contents of the 'flow' repository
+    "dapp-development",
+    "concepts",
+    "core-contracts",
+    "flow-token",
+    "fusd",
+    "faq",
+    "nft-marketplace",
+    "vscode-extension",
+    "node-operation",
+    "staking",
+    "flow-port",
+    "kitty-items",
+    "bounties",
+    "emulator",
+  ],
 } as const
-export const repositoryNames = Object.keys(repositoryStructure) // First
-export const repositoryContentNames = Object.values(repositoryStructure).flat() // Second
 
-function mapToFirstRoute(
-  structure: Partial<Record<string, any>>,
-  firstRouteNames: string[]
-) {
-  var secondToFirstRoute: Partial<Record<ContentName, string>> = {}
+export const repoNames = Object.keys(repositoryStructure)
+export const repoInnerContentNames = Object.values(repositoryStructure).flat()
+export const repositoryMap = mapToKey(repositoryStructure, repoNames)
+export const flowInnerContents: string[] = repositoryStructure.flow
 
-  firstRouteNames.forEach((firstRouteName: string) => {
-    let secondRouteContents = structure[firstRouteName]
-    secondRouteContents.forEach((secondRouteName: string) => {
-      secondToFirstRoute[secondRouteName] = firstRouteName
-    })
-  })
-
-  return secondToFirstRoute
-}
-export const repositoryMap = mapToFirstRoute(
-  repositoryStructure,
-  repositoryNames
-)
-
-/* Flow Content Structure: (flow/)section/content/... */
-export const flowContentStructure: Partial<Record<string, any>> = {
+export const routingStructure: Partial<Record<string, any>> = {
   flow: [
     "dapp-development",
     "concepts",
@@ -44,20 +56,27 @@ export const flowContentStructure: Partial<Record<string, any>> = {
     "flow-token",
     "fusd",
     "faq",
+    "nft-marketplace",
   ],
-  tools: ["vscode-extension", "emulator"],
+  tools: [
+    "vscode-extension",
+    "emulator",
+    "fcl-js",
+    "flow-js-testing",
+    "flow-go-sdk",
+    "flow-cli",
+  ],
   nodes: ["node-operation", "staking", "flow-port"],
-  learn: ["kitty-items", "nft-marketplace"],
+  learn: ["kitty-items"],
   community: ["bounties"],
+  cadence: ["language"],
 } as const
-export const flowSectionNames = Object.keys(flowContentStructure) // First
-export const flowContentNames = Object.values(flowContentStructure).flat() // Second
-export const flowContentSectionMap = mapToFirstRoute(
-  flowContentStructure,
-  flowSectionNames
-)
 
-export type RepoName = typeof repositoryNames[number]
-export type FlowSectionName = typeof flowSectionNames[number]
-export type FlowContentName = typeof flowContentNames[number]
-export type ContentName = RepoName | FlowSectionName | FlowContentName
+export const flowSections = ["flow", "nodes"]
+export const firstRoutes = Object.keys(routingStructure) // First
+export const secondRoutes = Object.values(routingStructure).flat() // Second
+export const firstRouteMap = mapToKey(routingStructure, firstRoutes)
+
+type FirstRoute = typeof firstRoutes[number]
+type SecondRoute = typeof secondRoutes[number]
+export type ContentName = FirstRoute | SecondRoute

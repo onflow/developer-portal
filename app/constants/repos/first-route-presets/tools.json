@@ -7,7 +7,23 @@
         "items": [
           {
             "label": "Emulator",
-            "href": "tools/emulator"
+            "href": "tools/flow-emulator"
+          },
+          {
+            "label": "FCL JS",
+            "href": "tools/fcl-js"
+          },
+          {
+            "label": "Flow JS Testing",
+            "href": "flow-js-testing"
+          },
+          {
+            "label": "Flow Go SDK",
+            "href": "flow-go-sdk"
+          },
+          {
+            "label": "Flow CLI",
+            "href": "flow-cli"
           },
           {
             "label": "VS Code Extension",
