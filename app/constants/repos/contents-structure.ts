@@ -77,6 +77,6 @@ export const firstRoutes = Object.keys(routingStructure) // First
 export const secondRoutes = Object.values(routingStructure).flat() // Second
 export const firstRouteMap = mapToKey(routingStructure, firstRoutes)
 
-type FirstRoute = typeof firstRoutes[number]
-type SecondRoute = typeof secondRoutes[number]
+export type FirstRoute = typeof firstRoutes[number]
+export type SecondRoute = typeof secondRoutes[number]
 export type ContentName = FirstRoute | SecondRoute

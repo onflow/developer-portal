@@ -4,7 +4,13 @@ import { Params } from "react-router"
 import invariant from "tiny-invariant"
 import { getMdxPage, useMdxComponent } from "~/cms/utils/mdx"
 import { ContentSpec, contentTools, getContentSpec } from "~/constants/repos"
-import { ContentName, secondRoutes } from "~/constants/repos/contents-structure"
+import {
+  ContentName,
+  FirstRoute,
+  firstRoutes,
+  SecondRoute,
+  secondRoutes,
+} from "~/constants/repos/contents-structure"
 import { ErrorPage } from "~/ui/design-system/src/lib/Components/ErrorPage"
 import { getSocialMetas } from "~/utils/seo"
 import { MdxPage } from "../../cms"
@@ -31,13 +37,14 @@ type LoaderData = {
 }
 
 type NestedRoute = {
-  firstRoute: string
-  secondRoute: string | undefined
+  firstRoute: FirstRoute
+  secondRoute: SecondRoute | undefined
   path: string
 }
 
 /* TODO: We shouldn't have to manually redirect landing for subfolders without 'index' files */
 const customRedirectLanding = (nestedRoute: NestedRoute) => {
+  console.log(`LOGGING ${nestedRoute.firstRoute} and ${"abc" as FirstRoute}`)
   // Redirecting missing "index" pages
   if (nestedRoute.path === "index") {
     if (nestedRoute.firstRoute === "flow" && !nestedRoute.secondRoute) {
@@ -66,7 +73,11 @@ const customRedirectLanding = (nestedRoute: NestedRoute) => {
 
 const deconstructPath = (params: Params<string>) => {
   const firstRoute = params.repo
-  invariant(firstRoute, `expected repo param`)
+  invariant(firstRoute, `expected first route`)
+
+  if (!firstRoutes.includes(firstRoute)) {
+    throw json({ status: "noPage" }, { status: 404 })
+  }
 
   const remainingRoute = params["*"]
   var secondRoute = undefined
@@ -81,7 +92,7 @@ const deconstructPath = (params: Params<string>) => {
       "index"
   }
 
-  return customRedirectLanding({ firstRoute, secondRoute, path })
+  return customRedirectLanding({ firstRoute, secondRoute, path } as NestedRoute)
 }
 
 export const loader: LoaderFunction = async ({
