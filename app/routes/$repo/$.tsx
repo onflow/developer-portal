@@ -66,6 +66,11 @@ const customRedirectLanding = (nestedRoute: NestedRoute) => {
       nestedRoute.secondRoute === "flow-emulator"
     ) {
       nestedRoute.path = "overview"
+    } else if (
+      nestedRoute.firstRoute === "cadence" &&
+      nestedRoute.secondRoute === "tutorial"
+    ) {
+      nestedRoute.path = "01-first-steps"
     }
   }
   return nestedRoute

@@ -14,6 +14,7 @@ import flowCli from "./second-route-presets/flow-cli.json"
 import kittyItems from "./second-route-presets/kitty-items.json"
 import flowJsTesting from "./second-route-presets/flow-js-testing.json"
 import flowGoSdk from "./second-route-presets/flow-go-sdk.json"
+import cadenceTutorial from "./second-route-presets/cadence-tutorial.json"
 
 // First Level: Flow Section Presets
 import flow from "./first-route-presets/flow.json"
@@ -67,6 +68,7 @@ export const schemas: Partial<Record<ContentName, RepoSchema>> = {
   "fcl-js": fclJs as RepoSchema,
   "flow-go-sdk": flowGoSdk as RepoSchema,
   "flow-js-testing": flowJsTesting as RepoSchema,
+  tutorial: populateRepoSchema(cadenceTutorial as RepoSchema),
 
   // First Level: Flow Repo Sections (flow/{section}/...)
   flow: flow as RepoSchema,

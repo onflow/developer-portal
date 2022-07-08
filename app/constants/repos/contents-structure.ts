@@ -13,7 +13,7 @@ function mapToKey(structure: Partial<Record<string, any>>, keys: string[]) {
 
 /* Repository structure: repository/content/... */
 export const repositoryStructure: Partial<Record<string, any>> = {
-  cadence: ["language"],
+  cadence: ["language", "tutorial"],
   "flow-cli": [],
   "flow-js-testing": [],
   "flow-go-sdk": [],
@@ -69,7 +69,7 @@ export const routingStructure: Partial<Record<string, any>> = {
   nodes: ["node-operation", "staking", "flow-port"],
   learn: ["kitty-items"],
   community: ["bounties"],
-  cadence: ["language"],
+  cadence: ["language", "tutorial"],
 } as const
 
 export const flowSections = ["flow", "nodes"]
