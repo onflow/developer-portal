@@ -1,42 +1,35 @@
 import { Link } from "@remix-run/react"
-import React from "react"
+import React, { forwardRef } from "react"
 
 export function isLinkExternal(url: string) {
   return /^(https?:\/\/|www\.)/.test(url)
 }
 
-const AppLink = ({
-  to,
-  className,
-  title,
-  style,
-  children,
-}: {
+export interface AppLinkProps
+  extends Omit<React.ComponentPropsWithRef<"a">, "href"> {
   to: string
-  title?: string
-  className?: string
-  style?: React.CSSProperties
-  children: React.ReactNode
-}) => {
-  const classes = className || "hover:opacity-75"
-  if (isLinkExternal(to))
-    return (
-      <a
-        href={to}
-        target="blank"
-        rel="noreferrer"
-        className={classes}
-        title={title}
-      >
-        {children}
-      </a>
-    )
-
-  return (
-    <Link to={to} className={classes} title={title} style={style}>
-      {children}
-    </Link>
-  )
 }
+
+const AppLink = forwardRef<HTMLAnchorElement, AppLinkProps>(
+  ({ to, className, ...props }, ref) => {
+    const classes = className || "hover:opacity-75"
+
+    if (isLinkExternal(to))
+      return (
+        <a
+          ref={ref}
+          href={to}
+          target="blank"
+          rel="noreferrer"
+          className={classes}
+          {...props}
+        />
+      )
+
+    return <Link ref={ref} to={to} className={classes} {...props} />
+  }
+)
+
+AppLink.displayName = "AppLink"
 
 export default AppLink

@@ -104,7 +104,6 @@ export function InternalPage({
       {header && <InternalLandingHeader {...header} />}
       {sidebarConfig && (
         <Transition
-          unmount={false}
           as="div"
           className="fixed left-0 right-0 bottom-0 z-40 bg-white dark:bg-black md:hidden"
           style={{
