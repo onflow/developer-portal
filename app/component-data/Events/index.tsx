@@ -1,5 +1,4 @@
 import { UpcomingEventsProps } from "~/ui/design-system/src/lib/Components/UpcomingEvents"
-import OfficeHoursImage from "~/ui/design-system/images/misc/office-hours@2x.png"
 
 export const OFFICE_HOURS_EVENT_TYPE = "Flow office hours"
 /**
@@ -106,7 +105,6 @@ const tokenomicsOfficeHours = {
     "Join us this week at Discord office hours to learn more about Flow Tokenomics!",
   eventDate: "June 30th",
   href: "https://www.onflow.org/token-distribution",
-  imageSrc: OfficeHoursImage,
   location: "Online",
   tags: ["Flow", "Community", "Discord"],
   title: "Flow Tokenomics",
@@ -119,7 +117,6 @@ const july7OfficeHours = {
     "Join us for office hours to learn more about developments in the Flow community!",
   eventDate: "July 7th",
   href: "https://www.onflow.org/discord",
-  imageSrc: OfficeHoursImage,
   location: "Online",
   tags: ["Flow", "Community", "Discord"],
   title: "Office Hours",

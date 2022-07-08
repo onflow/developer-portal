@@ -1,6 +1,7 @@
 import clsx from "clsx"
-import { EventCardProps } from "../EventCard"
+import { EventCardProps, OFFICE_HOURS_EVENT_TYPE } from "../EventCard"
 import Tag from "../Tag"
+import OfficeHoursImage from "../../../../images/misc/office-hours.png"
 
 export function EventCardSmall({
   onClick,
@@ -11,7 +12,13 @@ export function EventCardSmall({
   title,
   eventDate,
   selected,
+  eventType,
 }: EventCardProps & { selected?: boolean }) {
+  const image =
+    !imageSrc && eventType === OFFICE_HOURS_EVENT_TYPE
+      ? OfficeHoursImage
+      : imageSrc
+
   return (
     <div
       role="button"
@@ -24,7 +31,7 @@ export function EventCardSmall({
       onClick={onClick}
     >
       <img
-        src={imageSrc}
+        src={image}
         alt={imageAlt}
         className="h-[84px] w-[84px] flex-initial basis-[84px] rounded-md object-cover"
       />
