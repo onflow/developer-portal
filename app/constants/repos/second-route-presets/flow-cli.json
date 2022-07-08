@@ -7,11 +7,11 @@
         "items": [
           {
             "label": "Introduction",
-            "href": "index"
+            "href": "flow-cli/index"
           },
           {
             "label": "Installation",
-            "href": "install"
+            "href": "flow-cli/install"
           }
         ]
       },
@@ -20,11 +20,11 @@
         "items": [
           {
             "label": "Generate Keys",
-            "href": "generate-keys"
+            "href": "flow-cli/generate-keys"
           },
           {
             "label": "Decode Keys",
-            "href": "decode-keys"
+            "href": "flow-cli/decode-keys"
           }
         ]
       },
@@ -33,27 +33,27 @@
         "items": [
           {
             "label": "Get an Account",
-            "href": "get-accounts"
+            "href": "flow-cli/get-accounts"
           },
           {
             "label": "Create an Account",
-            "href": "create-accounts"
+            "href": "flow-cli/create-accounts"
           },
           {
             "label": "Deploy a Contract",
-            "href": "account-add-contract"
+            "href": "flow-cli/account-add-contract"
           },
           {
             "label": "Update a Contract",
-            "href": "account-update-contract"
+            "href": "flow-cli/account-update-contract"
           },
           {
             "label": "Remove a Contract",
-            "href": "account-remove-contract"
+            "href": "flow-cli/account-remove-contract"
           },
           {
             "label": "Staking Info",
-            "href": "account-staking-info"
+            "href": "flow-cli/account-staking-info"
           }
         ]
       },
@@ -62,15 +62,15 @@
         "items": [
           {
             "label": "Start Emulator",
-            "href": "start-emulator"
+            "href": "flow-cli/start-emulator"
           },
           {
             "label": "Add Project Contracts",
-            "href": "project-contracts"
+            "href": "flow-cli/project-contracts"
           },
           {
             "label": "Deploy a Project",
-            "href": "deploy-project-contracts"
+            "href": "flow-cli/deploy-project-contracts"
           }
         ]
       },
@@ -79,7 +79,7 @@
         "items": [
           {
             "label": "Execute a Script",
-            "href": "execute-scripts"
+            "href": "flow-cli/execute-scripts"
           }
         ]
       },
@@ -88,31 +88,31 @@
         "items": [
           {
             "label": "Send a Transaction",
-            "href": "send-transactions"
+            "href": "flow-cli/send-transactions"
           },
           {
             "label": "Get a Transaction",
-            "href": "get-transactions"
+            "href": "flow-cli/get-transactions"
           },
           {
             "label": "Build a Transaction",
-            "href": "build-transactions"
+            "href": "flow-cli/build-transactions"
           },
           {
             "label": "Build a Complex Transaction",
-            "href": "complex-transactions"
+            "href": "flow-cli/complex-transactions"
           },
           {
             "label": "Sign a Transaction",
-            "href": "send-transactions"
+            "href": "flow-cli/send-transactions"
           },
           {
             "label": "Send a Signed Transaction",
-            "href": "sign-transaction"
+            "href": "flow-cli/sign-transaction"
           },
           {
             "label": "Decode a Transaction",
-            "href": "decode-transactions"
+            "href": "flow-cli/decode-transactions"
           }
         ]
       },
@@ -121,19 +121,19 @@
         "items": [
           {
             "label": "Initialize Configuration",
-            "href": "initialize-configuration"
+            "href": "flow-cli/initialize-configuration"
           },
           {
             "label": "Configuration",
-            "href": "configuration"
+            "href": "flow-cli/configuration"
           },
           {
             "label": "Manage Configuration",
-            "href": "manage-configuration"
+            "href": "flow-cli/manage-configuration"
           },
           {
             "label": "Security",
-            "href": "security"
+            "href": "flow-cli/security"
           }
         ]
       },
@@ -142,19 +142,19 @@
         "items": [
           {
             "label": "Get Blocks",
-            "href": "get-blocks"
+            "href": "flow-cli/get-blocks"
           },
           {
             "label": "Get Events",
-            "href": "get-events"
+            "href": "flow-cli/get-events"
           },
           {
             "label": "Get Collections",
-            "href": "get-collections"
+            "href": "flow-cli/get-collections"
           },
           {
             "label": "Get Network Status",
-            "href": "get-status"
+            "href": "flow-cli/get-status"
           }
         ]
       },
@@ -163,19 +163,19 @@
         "items": [
           {
             "label": "Create App",
-            "href": "project-app"
+            "href": "flow-cli/project-app"
           },
           {
             "label": "Generate Signature",
-            "href": "signature-generate"
+            "href": "flow-cli/signature-generate"
           },
           {
             "label": "Verify Signature",
-            "href": "signature-verify"
+            "href": "flow-cli/signature-verify"
           },
           {
             "label": "Snapshot Save",
-            "href": "snapshot-save"
+            "href": "flow-cli/snapshot-save"
           }
         ]
       }

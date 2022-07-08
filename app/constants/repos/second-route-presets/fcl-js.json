@@ -7,7 +7,7 @@
         "items": [
           {
             "label": "Introduction",
-            "href": "index"
+            "href": "fcl-js/index"
           }
         ]
       },
@@ -16,7 +16,7 @@
         "items": [
           {
             "label": "Flow App Quickstart",
-            "href": "tutorials/flow-app-quickstart"
+            "href": "fcl-js/tutorials/flow-app-quickstart"
           }
         ]
       },
@@ -25,39 +25,39 @@
         "items": [
           {
             "label": "API",
-            "href": "reference/api"
+            "href": "fcl-js/reference/api"
           },
           {
             "label": "Authentication",
-            "href": "reference/authentication"
+            "href": "fcl-js/reference/authentication"
           },
           {
             "label": "Configuring FCL",
-            "href": "reference/configure-fcl"
+            "href": "fcl-js/reference/configure-fcl"
           },
           {
             "label": "Discovery",
-            "href": "reference/discovery"
+            "href": "fcl-js/reference/discovery"
           },
           {
             "label": "Proving Authentication",
-            "href": "reference/proving-authentication"
+            "href": "fcl-js/reference/proving-authentication"
           },
           {
             "label": "Scripts",
-            "href": "reference/scripts"
+            "href": "fcl-js/reference/scripts"
           },
           {
             "label": "SDK Guidelines",
-            "href": "reference/sdk-guidelines"
+            "href": "fcl-js/reference/sdk-guidelines"
           },
           {
             "label": "Transactions",
-            "href": "reference/transactions"
+            "href": "fcl-js/reference/transactions"
           },
           {
             "label": "User Signatures",
-            "href": "reference/user-signatures"
+            "href": "fcl-js/reference/user-signatures"
           }
         ]
       }

@@ -28,19 +28,19 @@ const footerSections = [
         text: "Cadence",
       },
       {
-        link: "/fcl-js/",
+        link: "/tools/fcl-js/",
         text: "FCL",
       },
       {
-        link: "/flow-js-testing/",
+        link: "/tools/flow-js-testing/",
         text: "JS Testing Library",
       },
       {
-        link: "/flow-cli/",
+        link: "/tools/flow-cli/",
         text: "CLI",
       },
       {
-        link: "/emulator/",
+        link: "/tools/emulator/",
         text: "Emulator",
       },
       {
