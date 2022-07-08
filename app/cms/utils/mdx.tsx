@@ -295,8 +295,8 @@ function mdxPageMeta({
   if (data?.page) {
     // eslint-disable-next-line @typescript-eslint/no-unused-vars
     const { keywords = [], ...extraMeta } = {}
-    let title = data.page.frontmatter?.title
-    const isDraft = data.page.frontmatter?.draft
+    let title = data.page.frontmatter.title
+    const isDraft = data.page.frontmatter.draft
 
     // eslint-disable-next-line @typescript-eslint/no-unused-vars
     if (isDraft) title = `(DRAFT) ${title ?? ""}`
@@ -408,8 +408,8 @@ function getMdxComponent(page: MdxPage, theme: Theme | null) {
     return (
       <div className="mdx-content prose dark:prose-invert">
         <header>
-          <Heading type="h1" children={frontmatter?.title} />
-          <p>{frontmatter?.description}</p>
+          <Heading type="h1" children={frontmatter.title} />
+          <p>{frontmatter.description}</p>
         </header>
         <Component
           /* @ts-expect-error: Does not like the link tage type definition above */
