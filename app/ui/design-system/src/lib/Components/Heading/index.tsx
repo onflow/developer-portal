@@ -1,5 +1,5 @@
 import clsx from "clsx"
-import { createElement } from "react"
+import React, { createElement } from "react"
 import LinkIcon from "./LinkIcon"
 
 type HeadingType = "h1" | "h2" | "h3" | "h4" | "h5" | "h6"
@@ -25,14 +25,27 @@ function parameterize(string: string) {
     .replace(/ /g, "-")
 }
 
+function processChildren(children: any) {
+  return children.reduce((acc: string, curr: any) => {
+    if (typeof curr === "string") {
+      acc += curr
+    } else if (typeof curr === "object") {
+      acc += curr.props.children
+    }
+    return acc
+  }, "")
+}
+
 export function Heading({
   type = "h1",
   children,
   className,
   ...props
 }: HeadingProps) {
-  const text = typeof children === "string" ? children : ""
+  const text =
+    typeof children === "string" ? children : processChildren(children)
   const anchor = parameterize(text)
+
   return createElement(
     type,
     {
