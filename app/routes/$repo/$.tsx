@@ -60,16 +60,21 @@ const customRedirectLanding = (nestedRoute: NestedRoute) => {
       nestedRoute.secondRoute === "language"
     ) {
       nestedRoute.path = "syntax"
+    } else if (
+      nestedRoute.firstRoute === "cadence" &&
+      nestedRoute.secondRoute === "tutorial"
+    ) {
+      nestedRoute.path = "01-first-steps"
     }
   }
-
   return nestedRoute
 }
 
 const isValidSecondRoute = (firstRoute: string, secondRoute: string) => {
   return (
     (isFlowSection(firstRoute) && isFlowInnerContent(secondRoute)) ||
-    (firstRoute === "cadence" && secondRoute === "language")
+    (firstRoute === "cadence" && secondRoute === "language") ||
+    (firstRoute === "cadence" && secondRoute === "tutorial")
   )
 }
 

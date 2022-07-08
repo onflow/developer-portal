@@ -45,6 +45,10 @@
           {
             "label": "Language Reference",
             "href": "language"
+          },
+          {
+            "label": "Tutorial",
+            "href": "tutorial"
           }
         ]
       }
