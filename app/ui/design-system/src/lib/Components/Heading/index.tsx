@@ -21,7 +21,7 @@ const headingClasses = {
 function parameterize(string: string) {
   return string
     .toLowerCase()
-    .replace(/[^a-zA-Z0-9 ]/g, "")
+    .replace(/[^a-zA-Z0-9 -]/g, "")
     .replace(/ /g, "-")
 }
 
