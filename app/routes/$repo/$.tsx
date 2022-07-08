@@ -93,6 +93,10 @@ export const loader: LoaderFunction = async ({
   params,
   request,
 }): Promise<LoaderData> => {
+  if (params["*"]?.endsWith("index") && request.url.endsWith("/index")) {
+    throw redirect(request.url.replace(/\/index$/, "/"))
+  }
+
   const { firstRoute, secondRoute, path }: NestedRoute = deconstructPath(params)
 
   const contentSpec = getContentSpec(firstRoute, secondRoute)
