@@ -21,11 +21,13 @@ export { InternalErrorBoundary as ErrorBoundary } from "~/errors/error-boundarie
 
 export const meta: MetaFunction = ({ parentsData, data, params, location }) => {
   const typedData = data as LoaderData
-  return getSocialMetas({
-    title: typedData.page.frontmatter.title,
-    description: typedData.page.frontmatter.description,
-    url: location.toString(),
-  })
+  if (typedData) {
+    return getSocialMetas({
+      title: typedData.page.frontmatter.title,
+      description: typedData.page.frontmatter.description,
+      url: location.toString(),
+    })
+  }
 }
 
 type LoaderData = {
