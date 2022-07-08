@@ -15,7 +15,7 @@ export const sdkSection: Section = {
   links: [
     {
       title: "View all SDKs",
-      href: `https://docs.onflow.org/sdks/`,
+      href: `/tools#sdks`,
     },
   ],
   title: "SDKs",
@@ -98,7 +98,7 @@ export const localSection: Section = {
     },
     {
       title: "Cadence VS Code Extension",
-      href: "https://docs.onflow.org/vscode-extension/",
+      href: "/tools/vscode-extension/",
     },
     {
       title: "Flowser: GUI for your local network",

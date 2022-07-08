@@ -28,19 +28,19 @@ const footerSections = [
         text: "Cadence",
       },
       {
-        link: "https://docs.onflow.org/fcl/",
+        link: "/fcl-js/",
         text: "FCL",
       },
       {
-        link: "https://docs.onflow.org/flow-js-testing/",
+        link: "/flow-js-testing/",
         text: "JS Testing Library",
       },
       {
-        link: "https://docs.onflow.org/flow-cli/",
+        link: "/flow-cli/",
         text: "CLI",
       },
       {
-        link: "https://docs.onflow.org/emulator/",
+        link: "/emulator/",
         text: "Emulator",
       },
       {
@@ -48,7 +48,7 @@ const footerSections = [
         text: "Dev Wallet",
       },
       {
-        link: "https://docs.onflow.org/vscode-extension/",
+        link: "/tools/vscode-extension/",
         text: "VS Code Extension",
       },
     ],
@@ -98,11 +98,11 @@ const footerSections = [
         text: "Flow Playground",
       },
       {
-        link: "https://docs.onflow.org/kitty-items/",
+        link: "/learn/kitty-items/",
         text: "Kitty Items",
       },
       {
-        link: "https://docs.onflow.org/cadence/tutorial/01-first-steps/",
+        link: "/cadence/tutorial/01-first-steps/",
         text: "Cadence Tutorials",
       },
       {
@@ -110,7 +110,7 @@ const footerSections = [
         text: "Cadence Cookbook",
       },
       {
-        link: "https://docs.onflow.org/core-contracts/",
+        link: "/flow/core-contracts/",
         text: "Core Contracts & Standards",
       },
       {
@@ -123,7 +123,7 @@ const footerSections = [
     header: "Network",
     links: [
       {
-        link: "https://docs.onflow.org/status/",
+        link: "https://status.onflow.org/",
         text: "Network Status",
       },
       {
@@ -135,19 +135,19 @@ const footerSections = [
         text: "Flowscan Testnet",
       },
       {
-        link: "https://docs.onflow.org/node-operation/past-sporks/",
+        link: "/nodes/node-operation/past-sporks/",
         text: "Past Sporks",
       },
       {
-        link: "https://docs.onflow.org/node-operation/upcoming-sporks/",
+        link: "/nodes/node-operation/upcoming-sporks/",
         text: "Upcoming Sporks",
       },
       {
-        link: "https://docs.onflow.org/node-operation/",
+        link: "/nodes/node-operation/",
         text: "Node Operation",
       },
       {
-        link: "https://docs.onflow.org/node-operation/spork/",
+        link: "/nodes/node-operation/spork/",
         text: "Spork Information",
       },
     ],
