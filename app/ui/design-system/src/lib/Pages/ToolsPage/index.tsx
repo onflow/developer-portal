@@ -34,7 +34,7 @@ const ToolsPage = ({
         <PageSection className="pt-0 pb-0">
           <LandingHeader
             buttonText="View guide"
-            buttonUrl="https://docs.onflow.org/dapp-development/DappArchitectures/"
+            buttonUrl="/flow/dapp-development/DappArchitectures/"
             callout="Flow Dapp Architecture Guide"
             description="Wondering what tools you need? See our dapp architectures guide to help you out."
             title="Tools"

@@ -20,7 +20,7 @@ const homepageStartProjectData: LinkCard2ColumnProps = {
       title: "Kitty Items",
       description:
         "A full stack example NFT storefront and marketplace built with the latest standards and tooling on Flow. Get it up and running in a few minutes.",
-      href: "https://docs.onflow.org/kitty-items/",
+      href: "/learn/kitty-items/",
       icon: "https://kitty-items-flow-testnet-prod.herokuapp.com/images/kitty-items-logo.svg",
     },
     {
@@ -30,15 +30,15 @@ const homepageStartProjectData: LinkCard2ColumnProps = {
       icon: PlaygroundIcon,
       links: [
         {
-          href: "https://docs.onflow.org/cadence/tutorial/02-hello-world/",
+          href: "/learn/cadence/tutorial/02-hello-world/",
           title: "Hello, World!",
         },
         {
-          href: "https://docs.onflow.org/cadence/tutorial/05-non-fungible-tokens-1/",
+          href: "/learn/cadence/tutorial/05-non-fungible-tokens-1/",
           title: "NFTs",
         },
         {
-          href: "https://docs.onflow.org/cadence/tutorial/07-marketplace-setup/",
+          href: "/learn/cadence/tutorial/07-marketplace-setup/",
           title: "Marketplaces",
         },
       ],
@@ -60,12 +60,12 @@ const homepageThreeColumnData: LinkCard3ColumnItems = [
       },
       {
         title: "Get started on testnet",
-        href: "https://docs.onflow.org/fcl/tutorials/flow-app-quickstart/",
+        href: "/fcl-js/tutorials/flow-app-quickstart/",
         tags: ["javascript"],
       },
       {
         title: "Get started on the playground",
-        href: "https://docs.onflow.org/cadence/tutorial/02-hello-world/",
+        href: "/cadence/tutorial/02-hello-world/",
         tags: ["playground"],
       },
       {
@@ -81,17 +81,17 @@ const homepageThreeColumnData: LinkCard3ColumnItems = [
     links: [
       {
         title: "Anatomy of a Flow dapp",
-        href: "https://docs.onflow.org/dapp-development/flow-dapp-anatomy/",
+        href: "/flow/dapp-development/flow-dapp-anatomy/",
         tags: ["overview"],
       },
       {
         title: "Flow key concepts",
-        href: "https://docs.onflow.org/concepts/accounts-and-keys/",
+        href: "/flow/concepts/accounts-and-keys/",
         tags: ["accounts", "signing"],
       },
       {
         title: "Deploy your project",
-        href: "https://docs.onflow.org/flow-cli/deploy-project-contracts/",
+        href: "/flow-cli/deploy-project-contracts/",
         tags: ["cli", "tutorial"],
       },
       {
@@ -113,7 +113,7 @@ const homepageThreeColumnData: LinkCard3ColumnItems = [
       },
       {
         title: "Introduction to Cadence",
-        href: "https://docs.onflow.org/cadence/",
+        href: "/cadence/",
         tags: ["overview"],
       },
       {
@@ -123,7 +123,7 @@ const homepageThreeColumnData: LinkCard3ColumnItems = [
       },
       {
         title: "View all Cadence content",
-        href: "https://docs.onflow.org/cadence/",
+        href: "/cadence/",
       },
     ],
   },
