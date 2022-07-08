@@ -15,6 +15,7 @@ import flowEmulator from "./first-route-presets/flow-emulator.json"
 
 // Second Level: Individual Repo Inner Content Presents
 import cadenceLanguage from "./second-route-presets/cadence-language.json"
+import cadenceTutorials from "./second-route-presets/cadence-tutorials.json"
 
 // First Level: Flow Section Presets
 import flow from "./first-route-presets/flow.json"
@@ -69,6 +70,7 @@ export const schemas: Partial<Record<ContentName, RepoSchema>> = {
 
   // Second Level: Individual repository inner content schema (repository/{inner}/...)
   language: populateRepoSchema(cadenceLanguage as RepoSchema),
+  tutorials: populateRepoSchema(cadenceTutorials as RepoSchema),
 
   // First Level: Flow Section (flow/{section}/...)
   flow: flow as RepoSchema,

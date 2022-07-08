@@ -1,6 +1,6 @@
 /* Repository structure: repository/content/... */
 export const repositoryStructure: Partial<Record<string, any>> = {
-  cadence: ["language"],
+  cadence: ["language", "tutorials"],
   "flow-cli": [],
   "flow-js-testing": [],
   "flow-go-sdk": [],
