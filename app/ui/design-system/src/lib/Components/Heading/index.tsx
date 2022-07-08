@@ -21,8 +21,19 @@ const headingClasses = {
 function parameterize(string: string) {
   return string
     .toLowerCase()
-    .replace(/[^a-zA-Z0-9 ]/g, "")
+    .replace(/[^a-zA-Z0-9 -]/g, "")
     .replace(/ /g, "-")
+}
+
+function processChildren(children: any) {
+  return children.reduce((acc: string, curr: any) => {
+    if (typeof curr === "string") {
+      acc += curr
+    } else if (typeof curr === "object") {
+      acc += curr.props.children
+    }
+    return acc
+  }, "")
 }
 
 export function Heading({
@@ -31,8 +42,10 @@ export function Heading({
   className,
   ...props
 }: HeadingProps) {
-  const text = typeof children === "string" ? children : ""
+  const text =
+    typeof children === "string" ? children : processChildren(children)
   const anchor = parameterize(text)
+
   return createElement(
     type,
     {

@@ -15,11 +15,13 @@ export { InternalErrorBoundary as ErrorBoundary } from "~/errors/error-boundarie
 
 export const meta: MetaFunction = ({ parentsData, data, params, location }) => {
   const typedData = data as LoaderData
-  return getSocialMetas({
-    title: typedData.page.frontmatter.title,
-    description: typedData.page.frontmatter.description,
-    url: location.toString(),
-  })
+  if (typedData) {
+    return getSocialMetas({
+      title: typedData.page.frontmatter.title,
+      description: typedData.page.frontmatter.description,
+      url: location.toString(),
+    })
+  }
 }
 
 type LoaderData = {
@@ -74,7 +76,9 @@ const deconstructPath = (params: Params<string>) => {
   var second = remainingRoute?.split("/")[0]
   if (second && secondRoutes.includes(second)) {
     secondRoute = second
-    path = remainingRoute?.split("/")?.slice(1)?.join("/") || "index"
+    path =
+      remainingRoute?.split("/")?.slice(1)?.join("/").replace(/\/+$/, "") ||
+      "index"
   }
 
   return customRedirectLanding({ firstRoute, secondRoute, path })
@@ -84,8 +88,11 @@ export const loader: LoaderFunction = async ({
   params,
   request,
 }): Promise<LoaderData> => {
-  const { firstRoute, secondRoute, path }: NestedRoute = deconstructPath(params)
+  if (params["*"]?.endsWith("index") && request.url.endsWith("/index")) {
+    throw redirect(request.url.replace(/\/index$/, "/"))
+  }
 
+  const { firstRoute, secondRoute, path }: NestedRoute = deconstructPath(params)
   const contentSpec = getContentSpec(firstRoute, secondRoute)
 
   if (!contentSpec) {

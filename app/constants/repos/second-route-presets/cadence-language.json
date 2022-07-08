@@ -34,7 +34,6 @@
           { "href": "language/built-in-functions", "label": "" },
           { "href": "language/environment-information", "label": "" },
           { "href": "language/crypto", "label": "" },
-          { "href": "language/type-hierarchy", "label": "" },
           { "href": "language/glossary", "label": "" }
         ]
       }

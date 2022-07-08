@@ -3,6 +3,9 @@ import AppLink from "../AppLink"
 import { ButtonLink } from "../Button"
 import { Carousel, CarouselProps } from "../Carousel"
 import Tag from "../Tag"
+import OfficeHoursImage from "../../../../images/misc/office-hours@2x.png"
+
+export const OFFICE_HOURS_EVENT_TYPE = "Flow office hours"
 
 export type EventCardProps = {
   onClick?: () => void
@@ -12,7 +15,7 @@ export type EventCardProps = {
   eventDate: string
   href: string
   imageAlt?: string
-  imageSrc: string
+  imageSrc?: string
   location?: string
   tags?: string[]
   title: string
@@ -30,7 +33,13 @@ export function EventCard({
   location = "Online",
   tags,
   title,
+  eventType,
 }: EventCardProps) {
+  const image =
+    !imageSrc && eventType === OFFICE_HOURS_EVENT_TYPE
+      ? OfficeHoursImage
+      : imageSrc
+
   return (
     <div
       className={clsx(
@@ -64,7 +73,7 @@ export function EventCard({
       </div>
       <div className="flex-none basis-1/2 self-stretch">
         <img
-          src={imageSrc}
+          src={image}
           alt={imageAlt}
           className="min-h-[125px] w-full object-cover md:h-full"
         />
