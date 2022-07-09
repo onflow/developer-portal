@@ -151,7 +151,7 @@ export const loader: LoaderFunction = async ({
 export default function RepoDocument() {
   const { content, path, page } = useLoaderData<LoaderData>()
   const MDXContent = useMdxComponent(page)
-  const tool = content.contentName
+  const tool = content.contentName && content.contentName != "flow"
 
   return (
     <InternalPage

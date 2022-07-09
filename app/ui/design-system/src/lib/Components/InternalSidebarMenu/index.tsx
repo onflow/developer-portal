@@ -111,6 +111,7 @@ export function InternalSidebarMenu({
     whileElementsMounted: autoUpdate,
   })
   const SelectedIcon = TOOLS[selectedTool].icon
+
   return (
     <div>
       <Popover>
