@@ -105,7 +105,7 @@ export function InternalPage({
       {sidebarConfig && (
         <Transition
           as="div"
-          className="fixed left-0 right-0 bottom-0 z-40 bg-white dark:bg-black md:hidden"
+          className="fixed bottom-0 left-0 right-0 z-40 bg-white dark:bg-black md:hidden"
           style={{
             top: subnavRect ? subnavRect.top : 0,
           }}
@@ -172,7 +172,7 @@ export function InternalPage({
             </div>
           )}
           <div
-            className={clsx("w-full flex-none p-8 pl-16", {
+            className={clsx("w-full flex-none p-8 pl-16 pb-80", {
               "md:w-3/4": !!toc,
             })}
           >
