@@ -26,7 +26,15 @@ const AppLink = forwardRef<HTMLAnchorElement, AppLinkProps>(
         />
       )
 
-    return <Link ref={ref} to={to} className={classes} {...props} />
+    return (
+      <Link
+        ref={ref}
+        to={to}
+        className={classes}
+        prefetch="intent"
+        {...props}
+      />
+    )
   }
 )
 
