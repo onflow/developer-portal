@@ -112,7 +112,7 @@ const linkCard3ColumnItems: LinkCard3ColumnProps = {
       links: [
         {
           title: "Get the Flow CLI",
-          href: "/flow-cli/install/",
+          href: "/tools/flow-cli/install/",
           tags: ["install"],
         },
         {

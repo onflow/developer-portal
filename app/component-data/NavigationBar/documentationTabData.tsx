@@ -112,7 +112,7 @@ const liveNetworksSection: Section = {
   links: [
     {
       title: "Javascript testnet quickstart",
-      href: "/fcl-js/tutorials/flow-app-quickstart",
+      href: "/tools/fcl-js/tutorials/flow-app-quickstart",
     },
   ],
   title: "Testnet & Mainnet",

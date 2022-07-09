@@ -65,11 +65,11 @@ const footerSections = [
         text: "Flow Port",
       },
       {
-        link: "/coming-soon",
+        link: "https://github.com/onflow/developer-grants",
         text: "Developer Grants",
       },
       {
-        link: "/coming-soon",
+        link: "/community/bounties",
         text: "Bug Bounties",
       },
       {
