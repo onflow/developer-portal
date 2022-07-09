@@ -5,7 +5,7 @@ import AbstractImage8 from "~/ui/design-system/images/misc/Asset_8@3x.png"
 import PlaygroundImage from "~/ui/design-system/images/misc/playground-nav.png"
 
 const learnCard: IntroCardProps = {
-  href: "/coming-soon", // Replace with /learn
+  href: "/learn", // Replace with /learn
   ctaText: "View all",
   description:
     "We have aggregated and categorized the best content on building dapps on Flow across the ecosystem.",

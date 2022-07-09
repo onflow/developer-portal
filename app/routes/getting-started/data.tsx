@@ -101,7 +101,7 @@ const linkCard3ColumnItems: LinkCard3ColumnProps = {
         },
         {
           title: "View more learning resources",
-          href: "/coming-soon",
+          href: "/learn",
         },
       ],
     },
