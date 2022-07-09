@@ -18,6 +18,8 @@ import { MdxPage } from "../../cms"
 import { ToolName } from "../../ui/design-system/src/lib/Components/Internal/tools"
 import { InternalPage } from "../../ui/design-system/src/lib/Pages/InternalPage"
 
+import { routingStructure } from "~/constants/repos/contents-structure"
+
 export { InternalErrorBoundary as ErrorBoundary } from "~/errors/error-boundaries"
 
 // @ts-ignore
@@ -151,7 +153,12 @@ export const loader: LoaderFunction = async ({
 export default function RepoDocument() {
   const { content, path, page } = useLoaderData<LoaderData>()
   const MDXContent = useMdxComponent(page)
-  const tool = content.contentName && content.contentName != "flow"
+
+  // Tools live at top-level URLs like /fcl-js so they will never be nested
+  // under /flow/fcl-js so ... since this is a catch-all route (TODO: refactor to use remix routes)
+  //
+  // Logically a tool is NOT included in the list of flow routes (routes with the parent /flow)
+  const tool = ![...routingStructure.flow].includes(content.contentName)
 
   return (
     <InternalPage
@@ -162,7 +169,7 @@ export default function RepoDocument() {
       sidebarConfig={content.schema?.sidebar}
       internalSidebarMenu={
         tool && {
-          selectedTool: tool,
+          selectedTool: content.contentName,
           toolLinks: switchLinks,
         }
       }
