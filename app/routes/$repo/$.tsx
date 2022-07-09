@@ -232,11 +232,12 @@ export function CatchBoundary() {
     case "mdxError":
       return (
         <ErrorPage
-          title={"Error processing"}
-          subtitle={`An error occured processing the mdx for this document`}
+          title={"🙉 Something went wrong."}
+          subtitle={`The site is being repaired. Please check back later.`}
           actions={
             <Link className="underline" to="/">
-              Go home
+              {" "}
+                Go home
             </Link>
           }
         />
