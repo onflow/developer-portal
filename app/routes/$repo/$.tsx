@@ -1,5 +1,5 @@
 import { json, LoaderFunction, MetaFunction, redirect } from "@remix-run/node"
-import { Link, useCatch, useLoaderData, useLocation } from "@remix-run/react"
+import { useCatch, useLoaderData, useLocation } from "@remix-run/react"
 import { Params } from "react-router"
 import invariant from "tiny-invariant"
 import { getMdxPage, useMdxComponent } from "~/cms/utils/mdx"
@@ -19,6 +19,7 @@ import { ToolName } from "../../ui/design-system/src/lib/Components/Internal/too
 import { InternalPage } from "../../ui/design-system/src/lib/Pages/InternalPage"
 
 import { routingStructure } from "~/constants/repos/contents-structure"
+import AppLink from "~/ui/design-system/src/lib/Components/AppLink"
 
 export { InternalErrorBoundary as ErrorBoundary } from "~/errors/error-boundaries"
 
@@ -222,9 +223,9 @@ export function CatchBoundary() {
           title={"404 – Page not found"}
           subtitle={`there is no page at "${location.pathname}"`}
           actions={
-            <Link className="underline" to="/">
+            <AppLink className="underline" to="/">
               Go home
-            </Link>
+            </AppLink>
           }
         />
       )
@@ -234,9 +235,9 @@ export function CatchBoundary() {
           title={"Error processing"}
           subtitle={`An error occured processing the mdx for this document`}
           actions={
-            <Link className="underline" to="/">
+            <AppLink className="underline" to="/">
               Go home
-            </Link>
+            </AppLink>
           }
         />
       )
@@ -246,9 +247,9 @@ export function CatchBoundary() {
           title={"404 – Repo not found"}
           subtitle={`This repo is not available or does not exist`}
           actions={
-            <Link className="underline" to="/">
+            <AppLink className="underline" to="/">
               Go home
-            </Link>
+            </AppLink>
           }
         />
       )

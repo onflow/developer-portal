@@ -76,6 +76,7 @@ export function InternalSidebar({ config, menu }: InternalSidebarProps) {
               <NavLink
                 to={item.href}
                 key={item.label}
+                prefetch="intent"
                 className={({ isActive }) =>
                   clsx(
                     "mb-1 block rounded-md px-2 py-1.5 text-sm text-primary-gray-400 hover:opacity-75 dark:text-gray-200",

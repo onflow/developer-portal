@@ -5,7 +5,6 @@ import type {
 } from "@remix-run/node"
 import { json } from "@remix-run/node"
 import {
-  Link,
   Links,
   LiveReload,
   Meta,
@@ -17,6 +16,7 @@ import {
 } from "@remix-run/react"
 import clsx from "clsx"
 import { useCallback, useEffect } from "react"
+import { getRequiredServerEnvVar } from "~/cms/helpers"
 import {
   Theme,
   ThemeBody,
@@ -24,16 +24,16 @@ import {
   ThemeProvider,
   useTheme,
 } from "~/cms/utils/theme.provider"
-import { getRequiredServerEnvVar } from "~/cms/helpers"
 import { navBarData } from "~/component-data/NavigationBar"
-import styles from "./main.css"
-import { getThemeSession } from "~/utils/theme.server"
 import { Footer } from "~/ui/design-system/src"
 import { ErrorPage } from "~/ui/design-system/src/lib/Components/ErrorPage"
 import { NavigationBar } from "~/ui/design-system/src/lib/Components/NavigationBar"
-import * as gtag from "~/utils/gtags.client"
-import { SearchProps } from "./ui/design-system/src/lib/Components/Search"
 import { getPublicEnv, PUBLIC_ENV } from "~/utils/env.server"
+import * as gtag from "~/utils/gtags.client"
+import { getThemeSession } from "~/utils/theme.server"
+import styles from "./main.css"
+import AppLink from "./ui/design-system/src/lib/Components/AppLink"
+import { SearchProps } from "./ui/design-system/src/lib/Components/Search"
 import { getMetaTitle } from "./utils/seo"
 export { getMetaTitle } from "./utils/seo"
 
@@ -184,9 +184,9 @@ export function ErrorBoundary({ error }: { error: Error }) {
           title={"500 – An unexpected error occured"}
           subtitle={`"${location.pathname}" is currently not working`}
           actions={
-            <Link className="underline" to="/">
+            <AppLink className="underline" to="/">
               Go home
-            </Link>
+            </AppLink>
           }
         />
         {/* add the UI you want your users to see */}
