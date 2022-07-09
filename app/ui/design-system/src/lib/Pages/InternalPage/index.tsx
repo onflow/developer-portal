@@ -42,7 +42,7 @@ export type InternalPageProps = React.PropsWithChildren<{
 
   header?: InternalLandingHeaderProps
 
-  internalSidebarMenu?: InternalSidebarMenuProps
+  internalSidebarMenu?: InternalSidebarMenuProps | boolean
 
   /**
    * The configuration object that describes the page hierarchy.
