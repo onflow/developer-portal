@@ -101,7 +101,7 @@ const linkCard3ColumnItems: LinkCard3ColumnProps = {
         },
         {
           title: "View more learning resources",
-          href: "/coming-soon",
+          href: "/learn",
         },
       ],
     },
@@ -112,7 +112,7 @@ const linkCard3ColumnItems: LinkCard3ColumnProps = {
       links: [
         {
           title: "Get the Flow CLI",
-          href: "/flow-cli/install/",
+          href: "/tools/flow-cli/install/",
           tags: ["install"],
         },
         {
