@@ -167,8 +167,9 @@ export default function RepoDocument() {
       contentPath={content.contentName}
       header={path === "index" ? content.landingHeader : undefined}
       sidebarConfig={content.schema?.sidebar}
+      // @ts-expect-error: TODO: Fix ambiguous behaviour.
       internalSidebarMenu={
-        tool && {
+        tool ?? {
           selectedTool: content.contentName,
           toolLinks: switchLinks,
         }
