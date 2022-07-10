@@ -203,6 +203,7 @@ const switchContentMap: Record<ToolName, ContentName> = {
   "node-operation": "node-operation",
   staking: "staking",
   tools: "tools",
+  language: "language",
 }
 
 // TODO: I think we need to fix this. I don;t think we should be manually
