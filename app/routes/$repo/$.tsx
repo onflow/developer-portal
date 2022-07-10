@@ -169,10 +169,12 @@ export default function RepoDocument() {
       sidebarConfig={content.schema?.sidebar}
       // @ts-expect-error: TODO: Fix ambiguous behaviour.
       internalSidebarMenu={
-        tool ?? {
-          selectedTool: content.contentName,
-          toolLinks: switchLinks,
-        }
+        tool
+          ? {
+              selectedTool: content.contentName,
+              toolLinks: switchLinks,
+            }
+          : null
       }
       githubUrl={page.editLink}
       toc={page.toc}
@@ -182,6 +184,8 @@ export default function RepoDocument() {
   )
 }
 
+// TODO: Not sure what this is used for?
+// All values are mapped 1:1 ?
 const switchContentMap: Record<ToolName, ContentName> = {
   cadence: "cadence",
   "flow-cli": "flow-cli",
@@ -201,6 +205,8 @@ const switchContentMap: Record<ToolName, ContentName> = {
   tools: "tools",
 }
 
+// TODO: I think we need to fix this. I don;t think we should be manually
+// updating links like this. THere must be a better way (Remix routes).
 const switchLinks: Record<ToolName, string> = { ...switchContentMap }
 for (let [key, value] of Object.entries(switchLinks)) {
   if (firstRoutes.includes(key)) {

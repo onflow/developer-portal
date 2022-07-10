@@ -8,6 +8,7 @@ import AppLink from "../AppLink"
 import { ToolName, TOOLS } from "../Internal/tools"
 import DropdownArrow from "../shared/DropdownArrow"
 import DropdownTransition from "../shared/DropdownTransition"
+import { ReactComponent as DefaultIcon } from "../../../../images/tools/tool-default"
 
 export type Version = {
   name: string
@@ -110,7 +111,8 @@ export function InternalSidebarMenu({
     // (in the case of crossing mobile/desktop breakpoints)
     whileElementsMounted: autoUpdate,
   })
-  const SelectedIcon = TOOLS[selectedTool].icon
+
+  const SelectedIcon = TOOLS[selectedTool]?.icon
 
   return (
     <div>
