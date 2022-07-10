@@ -8,7 +8,6 @@ import AppLink from "../AppLink"
 import { ToolName, TOOLS } from "../Internal/tools"
 import DropdownArrow from "../shared/DropdownArrow"
 import DropdownTransition from "../shared/DropdownTransition"
-import { ReactComponent as DefaultIcon } from "../../../../images/tools/tool-default"
 
 export type Version = {
   name: string
