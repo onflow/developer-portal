@@ -74,12 +74,12 @@ export function LandingPageSecondaryNav({
   }, [sections])
 
   return (
-    <div className="sticky top-0 z-10 hidden h-12 items-center justify-center gap-7 bg-[#30353E] py-3 px-1 text-white md:flex">
+    <div className="sticky top-0 z-10 hidden h-12 items-center justify-center gap-7 bg-black px-1 py-3 text-white dark:bg-primary-gray-dark md:flex">
       {sections.map(({ elementId, title }, i) => (
         <Link
           to={`#${elementId}`}
           className={clsx("px-1.5 py-1 line-clamp-1", {
-            "rounded-lg bg-gray-500": activeId === elementId,
+            "text-primary-purple": activeId === elementId,
           })}
           key={i}
         >

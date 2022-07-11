@@ -13,6 +13,7 @@ export type FlipCellProps = {
   numComments: number
   heading: string
   tags: string[]
+  repository: string
   participant: User
   date: string
   forumLink: string
@@ -22,6 +23,7 @@ const FlipCell = ({
   heading,
   tags,
   participant,
+  repository,
   numComments,
   date,
   forumLink,

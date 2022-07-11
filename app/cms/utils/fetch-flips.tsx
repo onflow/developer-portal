@@ -163,6 +163,7 @@ export const fetchFlips = async () => {
       numComments: await getNumComments("flow", pr.number),
       heading: pr.title,
       tags: pr.labels.map((label) => label.name ?? ""),
+      repository: "flow",
       participant: {
         profileImage: pr.user?.avatar_url ?? "",
         name: pr.user?.login ?? "",
@@ -187,6 +188,7 @@ export const fetchFlips = async () => {
         .map((label) =>
           typeof label !== "string" && label.name ? label.name : ""
         ),
+      repository: getRepositoryName(issue.repository_url),
       participant: {
         profileImage: issue.user?.avatar_url ?? "",
         name: issue.user?.login ?? "",
