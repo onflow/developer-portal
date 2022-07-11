@@ -96,6 +96,12 @@ export const TOOLS: Record<ToolName, Tool> = {
     iconLanding: CadenceLandingIcon,
     gradientIcon: CadenceGradientIcon,
   },
+  tutorial: {
+    name: "Cadence",
+    icon: CadenceIcon,
+    iconLanding: CadenceLandingIcon,
+    gradientIcon: CadenceGradientIcon,
+  },
   "flow-go-sdk": {
     name: "Go SDK",
     icon: DefaultIcon,

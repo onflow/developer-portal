@@ -1,5 +1,5 @@
 import { json, LoaderFunction, MetaFunction, redirect } from "@remix-run/node"
-import { Link, useCatch, useLoaderData, useLocation } from "@remix-run/react"
+import { useCatch, useLoaderData, useLocation } from "@remix-run/react"
 import { Params } from "react-router"
 import invariant from "tiny-invariant"
 import { getMdxPage, useMdxComponent } from "~/cms/utils/mdx"
@@ -15,6 +15,7 @@ import { MdxPage } from "../../cms"
 import { InternalPage } from "../../ui/design-system/src/lib/Pages/InternalPage"
 
 import { routingStructure } from "~/constants/repos/contents-structure"
+import AppLink from "~/ui/design-system/src/lib/Components/AppLink"
 
 export { InternalErrorBoundary as ErrorBoundary } from "~/errors/error-boundaries"
 
@@ -168,7 +169,7 @@ export default function RepoDocument() {
           ? {
               selectedTool: content.contentName,
             }
-          : null
+          : undefined
       }
       githubUrl={page.editLink}
       toc={page.toc}
@@ -190,9 +191,9 @@ export function CatchBoundary() {
           title={"404 – Page not found"}
           subtitle={`there is no page at "${location.pathname}"`}
           actions={
-            <Link className="underline" to="/">
+            <AppLink className="underline" to="/">
               Go home
-            </Link>
+            </AppLink>
           }
         />
       )
@@ -202,10 +203,9 @@ export function CatchBoundary() {
           title={"🙉 Something went wrong."}
           subtitle={`The site is being repaired. Please check back later.`}
           actions={
-            <Link className="underline" to="/">
-              {" "}
-                Go home
-            </Link>
+            <AppLink className="underline" to="/">
+              Go home
+            </AppLink>
           }
         />
       )
@@ -215,9 +215,9 @@ export function CatchBoundary() {
           title={"404 – Repo not found"}
           subtitle={`This repo is not available or does not exist`}
           actions={
-            <Link className="underline" to="/">
+            <AppLink className="underline" to="/">
               Go home
-            </Link>
+            </AppLink>
           }
         />
       )

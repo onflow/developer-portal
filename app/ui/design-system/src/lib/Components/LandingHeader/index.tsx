@@ -1,44 +1,29 @@
 import clsx from "clsx"
-import { DISCORD_URL, GITHUB_URL } from "../../../../../../constants"
 import LandingImage from "../../../../images/misc/landing-home.png"
-import { ReactComponent as DiscordIcon } from "../../../../images/social/discord"
-import { ReactComponent as GithubIcon } from "../../../../images/social/github"
-import AppLink from "../AppLink"
 import { ButtonLink } from "../Button"
+import { LandingPageLinks } from "../LandingPageLinks"
 
 export type LandingHeaderProps = {
   buttonText: string
   buttonUrl: string
   callout: string
   description: string
+
+  /**
+   * The URL to the page on github that allows editing this page's content
+   */
+  editPageUrl?: string
+
   imageSrc?: string
   title: string
 }
-
-export const LandingHeaderLinks = () => (
-  <div className="fixed right-14 top-1/4 hidden flex-col text-center text-primary-gray-400 dark:text-white lg:flex">
-    <AppLink
-      to={DISCORD_URL}
-      className="scale-150 pb-4 hover:opacity-75"
-      title="Discord"
-    >
-      <DiscordIcon />
-    </AppLink>
-    <AppLink
-      to={GITHUB_URL}
-      className="scale-150 hover:opacity-75"
-      title="GitHub"
-    >
-      <GithubIcon />
-    </AppLink>
-  </div>
-)
 
 export function LandingHeader({
   buttonText,
   buttonUrl,
   callout,
   description,
+  editPageUrl,
   imageSrc = LandingImage,
   title,
 }: LandingHeaderProps) {
@@ -67,7 +52,9 @@ export function LandingHeader({
           />
         </div>
       </div>
-      <LandingHeaderLinks />
+      <div className="fixed right-14 top-1/4 hidden lg:block">
+        <LandingPageLinks editPageUrl={editPageUrl} />
+      </div>
     </div>
   )
 }

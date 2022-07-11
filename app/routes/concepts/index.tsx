@@ -13,5 +13,10 @@ export const loader: LoaderFunction = async () => {
 }
 
 export default function Page() {
-  return <ConceptsPage {...data} />
+  return (
+    <ConceptsPage
+      editPageUrl="https://github.com/onflow/next-docs-v1/blob/main/app/routes/concepts/data.ts"
+      {...data}
+    />
+  )
 }
