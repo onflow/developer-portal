@@ -5,17 +5,13 @@ import invariant from "tiny-invariant"
 import { getMdxPage, useMdxComponent } from "~/cms/utils/mdx"
 import { ContentSpec, getContentSpec } from "~/constants/repos"
 import {
-  ContentName,
   FirstRoute,
-  firstRouteMap,
   firstRoutes,
-  SecondRoute,
   secondRoutes,
 } from "~/constants/repos/contents-structure"
 import { ErrorPage } from "~/ui/design-system/src/lib/Components/ErrorPage"
 import { getSocialMetas } from "~/utils/seo"
 import { MdxPage } from "../../cms"
-import { ToolName } from "../../ui/design-system/src/lib/Components/Internal/tools"
 import { InternalPage } from "../../ui/design-system/src/lib/Pages/InternalPage"
 
 import { routingStructure } from "~/constants/repos/contents-structure"
@@ -44,7 +40,7 @@ type LoaderData = {
 
 type NestedRoute = {
   firstRoute: FirstRoute
-  secondRoute: SecondRoute | undefined
+  secondRoute: string
   path: string
 }
 
@@ -167,12 +163,10 @@ export default function RepoDocument() {
       contentPath={content.contentName}
       header={path === "index" ? content.landingHeader : undefined}
       sidebarConfig={content.schema?.sidebar}
-      // @ts-expect-error: TODO: Fix ambiguous behaviour.
       internalSidebarMenu={
         tool
           ? {
               selectedTool: content.contentName,
-              toolLinks: switchLinks,
             }
           : null
       }
@@ -182,40 +176,6 @@ export default function RepoDocument() {
       <MDXContent />
     </InternalPage>
   )
-}
-
-// TODO: Not sure what this is used for?
-// All values are mapped 1:1 ?
-const switchContentMap: Record<ToolName, ContentName> = {
-  cadence: "cadence",
-  "flow-cli": "flow-cli",
-  emulator: "emulator",
-  "fcl-js": "fcl-js",
-  "flow-js-testing": "flow-js-testing",
-  "vscode-extension": "vscode-extension",
-  "flow-port": "flow-port",
-  "flow-go-sdk": "flow-go-sdk",
-  "http-api": "http-api",
-  "kitty-items": "kitty-items",
-  concepts: "concepts",
-  learn: "learn",
-  nodes: "nodes",
-  "node-operation": "node-operation",
-  staking: "staking",
-  tools: "tools",
-  language: "language",
-}
-
-// TODO: I think we need to fix this. I don;t think we should be manually
-// updating links like this. THere must be a better way (Remix routes).
-const switchLinks: Record<ToolName, string> = { ...switchContentMap }
-for (let [key, value] of Object.entries(switchLinks)) {
-  if (firstRoutes.includes(key)) {
-    switchLinks[key as ToolName] = `/${value}`
-  } else if (secondRoutes.includes(key)) {
-    const first = firstRouteMap[key]
-    switchLinks[key as ToolName] = `/${first}/${value}`
-  }
 }
 
 export function CatchBoundary() {

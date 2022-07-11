@@ -39,7 +39,6 @@ import faq from "./second-route-presets/faq.json"
 
 import { populateRepoSchema, RepoSchema } from "./repo-schema"
 import {
-  ContentName,
   secondRoutes,
   firstRoutes,
   repositoryMap,
@@ -54,7 +53,7 @@ export const DEFAULT_REPO_OWNER = "onflow"
 export const DEFAULT_CONTENT_PATH = "docs"
 
 /* Sidebar presets for all repositories and content names */
-export const schemas: Partial<Record<ContentName, RepoSchema>> = {
+export const schemas: Partial<Record<string, RepoSchema>> = {
   // First Level: Individual repository ({repository}/...)
   cadence: cadence as RepoSchema,
   "flow-nft": flowNFT as RepoSchema,
@@ -93,7 +92,7 @@ export const schemas: Partial<Record<ContentName, RepoSchema>> = {
 }
 
 /* Overriden display names (defaults to dashes converted to spaces then capitalized) */
-export const displayNames: Partial<Record<ContentName, string>> = {
+export const displayNames: Partial<Record<string, string>> = {
   "flow-cli": "Flow CLI",
   "flow-js-testing": "Flow JS Testing",
   "flow-go-sdk": "Flow Go SDK",
@@ -127,7 +126,7 @@ export type ContentSpec = {
    */
   basePath: string
 
-  contentName: ContentName
+  contentName: string
 
   displayName: string
   schema?: RepoSchema
@@ -170,7 +169,7 @@ export const contentSpecMap = [...firstRoutes, ...secondRoutes].reduce(
       landingHeader: landingHeaders[name],
     },
   }),
-  {} as Record<ContentName, ContentSpec>
+  {} as Record<string, ContentSpec>
 )
 
 export const getContentSpec = (

@@ -1,3 +1,10 @@
+import { types } from "@babel/core"
+import { json } from "@remix-run/node"
+import {
+  firstRouteMap,
+  firstRoutes,
+  secondRoutes,
+} from "~/constants/repos/contents-structure"
 import { ReactComponent as CadenceIcon } from "../../../../images/tools/tool-cadence"
 import { ReactComponent as CadenceGradientIcon } from "../../../../images/tools/tool-cadence-gradient"
 import { ReactComponent as CadenceLandingIcon } from "../../../../images/tools/tool-cadence-landing"
@@ -17,24 +24,27 @@ import { ReactComponent as VsCodeGradientIcon } from "../../../../images/tools/t
 
 // TODO: iconLanding icons are placeholders until we have the assets
 // Keeping it consistent with path names
-export type ToolName =
-  | "emulator"
-  | "vscode-extension"
-  | "flow-cli"
-  | "flow-js-testing"
-  | "fcl-js"
-  | "cadence"
-  | "language"
-  | "flow-go-sdk"
-  | "http-api"
-  | "tools"
-  | "kitty-items"
-  | "concepts"
-  | "learn"
-  | "node-operation"
-  | "staking"
-  | "flow-port"
-  | "nodes"
+export const toolNames = [
+  "emulator",
+  "vscode-extension",
+  "flow-cli",
+  "flow-js-testing",
+  "fcl-js",
+  "cadence",
+  "language",
+  "flow-go-sdk",
+  "http-api",
+  "tools",
+  "kitty-items",
+  "concepts",
+  "learn",
+  "node-operation",
+  "staking",
+  "flow-port",
+  "nodes",
+] as const
+
+export type ToolName = typeof toolNames[number]
 
 export type Tool = {
   name: string
@@ -146,4 +156,34 @@ export const TOOLS: Record<ToolName, Tool> = {
     iconLanding: CadenceLandingIcon,
     gradientIcon: DefaultIcon,
   },
+}
+
+// TODO: We shouldn't have to manually relink when switchingtools
+export const toolSwitchLinks: Record<ToolName, string> = {
+  emulator: "",
+  "vscode-extension": "",
+  "flow-cli": "",
+  "flow-js-testing": "",
+  "fcl-js": "",
+  cadence: "",
+  language: "",
+  "flow-go-sdk": "",
+  "http-api": "",
+  tools: "",
+  "kitty-items": "",
+  concepts: "",
+  learn: "",
+  "node-operation": "",
+  staking: "",
+  "flow-port": "",
+  nodes: "",
+}
+
+for (let toolName of Object.keys(TOOLS)) {
+  if (firstRoutes.includes(toolName)) {
+    toolSwitchLinks[toolName as ToolName] = `/${toolName}`
+  } else if (secondRoutes.includes(toolName)) {
+    const first = firstRouteMap[toolName]
+    toolSwitchLinks[toolName as ToolName] = `/${first}/${toolName}`
+  }
 }

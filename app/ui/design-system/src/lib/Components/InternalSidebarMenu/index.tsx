@@ -5,7 +5,7 @@ import { Fragment, useRef } from "react"
 import { ReactComponent as Close } from "../../../../images/action/close"
 import { ReactComponent as ChevronDown } from "../../../../images/arrows/chevron-down"
 import AppLink from "../AppLink"
-import { ToolName, TOOLS } from "../Internal/tools"
+import { ToolName, TOOLS, toolSwitchLinks } from "../Internal/tools"
 import DropdownArrow from "../shared/DropdownArrow"
 import DropdownTransition from "../shared/DropdownTransition"
 
@@ -42,11 +42,9 @@ const SIDEBAR_SECTION_GROUPS: SectionGroup[] = [
 function Group({
   group,
   onClick,
-  toolLinks,
 }: {
   group: SectionGroup
   onClick?: React.MouseEventHandler<HTMLAnchorElement>
-  toolLinks: ToolLinkMap
 }) {
   return (
     <>
@@ -59,7 +57,7 @@ function Group({
             className="border-b border-b-primary-gray-100 last:border-none md:border-none md:p-2"
           >
             <AppLink
-              to={toolLinks[section]}
+              to={toolSwitchLinks[section]}
               className={clsx(
                 "group flex items-center px-1 py-2 text-center text-sm hover:bg-primary-gray-100/50 dark:bg-black hover:dark:bg-primary-gray-400/5 md:h-[7.5rem] md:w-[7rem] md:flex-col md:rounded-lg md:px-4 md:py-5 md:shadow-2xl dark:md:shadow-2xl-dark"
               )}
@@ -83,16 +81,13 @@ function Group({
     </>
   )
 }
-type ToolLinkMap = Record<ToolName, string>
 
 export type InternalSidebarMenuProps = {
   selectedTool: ToolName
-  toolLinks: ToolLinkMap
 }
 
 export function InternalSidebarMenu({
   selectedTool,
-  toolLinks,
 }: InternalSidebarMenuProps) {
   const arrowRef = useRef(null)
   const {
@@ -161,11 +156,7 @@ export function InternalSidebarMenu({
                                 {group.name}
                               </div>
                             </div>
-                            <Group
-                              group={group}
-                              toolLinks={toolLinks}
-                              onClick={() => close()}
-                            />
+                            <Group group={group} onClick={() => close()} />
                           </Fragment>
                         ))}
                       </>
