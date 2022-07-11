@@ -126,7 +126,7 @@ export function InternalSidebarMenu({
                 <SelectedIcon />
               </div>
               <div className="text-small font-bold">
-                {TOOLS[selectedTool].name}
+                {TOOLS[selectedTool]?.name}
               </div>
               <div className="ml-auto pl-2">
                 <ChevronDown />
