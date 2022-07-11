@@ -1,6 +1,7 @@
 import { Transition } from "@headlessui/react"
 import clsx from "clsx"
-import { useCallback, useRef, useState } from "react"
+import { useCallback, useRef, useState, useEffect } from "react"
+import { useLocation } from "react-router"
 import {
   InternalLandingHeader,
   InternalLandingHeaderProps,
@@ -91,6 +92,15 @@ export function InternalPage({
   }, [subnavRef, setSubnavRect])
   useResizeObserver(subnavRef, resizeObserverCallback)
 
+  const contentRef = useRef<HTMLDivElement>(null)
+  const { pathname } = useLocation()
+
+  useEffect(() => {
+    if (contentRef.current) {
+      contentRef.current.scrollIntoView(true)
+    }
+  }, [pathname])
+
   return (
     <div className="flex flex-col">
       <div className="sticky top-0 z-20" ref={subnavRef}>
@@ -157,6 +167,7 @@ export function InternalPage({
           className={clsx("flex max-w-full shrink-0 grow flex-row-reverse", {
             "md:max-w-[calc(100%_-_300px)]": sidebarConfig,
           })}
+          ref={contentRef}
         >
           {toc && (
             <div className="hidden flex-none md:flex md:w-1/4">
@@ -172,7 +183,7 @@ export function InternalPage({
             </div>
           )}
           <div
-            className={clsx("w-full flex-none p-8 pl-16 pb-80", {
+            className={clsx("relative w-full flex-none p-8 pl-16 pb-80", {
               "md:w-3/4": !!toc,
             })}
           >
