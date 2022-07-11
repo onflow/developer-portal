@@ -74,7 +74,8 @@ export function InternalSidebar({ config, menu }: InternalSidebarProps) {
           <div className="px-4">
             {section.items.map((item) => (
               <NavLink
-                to={item.href}
+                to={item.href === "index" ? "" : item.href} // allow `/index` pages to be highlighted without having `/index/` in path
+                end
                 key={item.label}
                 className={({ isActive }) =>
                   clsx(
