@@ -53,6 +53,7 @@ export default function Page() {
 
   return (
     <CommunityPage
+      editPageUrl="https://github.com/onflow/next-docs-v1/blob/main/app/routes/community/data.ts"
       openFlips={openFlips}
       goodPlacesToStartFlips={goodPlacesToStartFlips}
       communityMembers={communityMembers}

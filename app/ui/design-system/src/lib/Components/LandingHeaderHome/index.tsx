@@ -1,15 +1,22 @@
 import LandingImage from "../../../../images/misc/landing-home.png"
 import LandingImage2x from "../../../../images/misc/landing-home@2x.png"
-import { LandingHeaderLinks } from "../LandingHeader"
+import { LandingPageLinks } from "../LandingPageLinks"
 
 export type LandingHeaderHomeProps = {
   description: string
+
+  /**
+   * The URL to the page on github that allows editing this page's content
+   */
+  editPageUrl?: string
+
   tag: string
   title: string
 }
 
 export function LandingHeaderHome({
   description,
+  editPageUrl,
   tag,
   title,
 }: LandingHeaderHomeProps) {
@@ -34,7 +41,9 @@ export function LandingHeaderHome({
           className="max-h-[195px] object-cover md:max-h-[540px]"
         />
       </div>
-      <LandingHeaderLinks />
+      <div className="fixed right-14 top-1/4 hidden lg:block">
+        <LandingPageLinks editPageUrl={editPageUrl} />
+      </div>
     </div>
   )
 }

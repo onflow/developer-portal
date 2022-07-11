@@ -10,6 +10,7 @@ export const meta: MetaFunction = () => ({
 export default function Page() {
   return (
     <ToolsPage
+      editPageUrl="https://github.com/onflow/next-docs-v1/blob/main/app/routes/tools/data.ts"
       explorers={data.explorers}
       apisAndServices={data.apisAndServices}
       contentNavigationListItems={data.contentNavigationListItems}

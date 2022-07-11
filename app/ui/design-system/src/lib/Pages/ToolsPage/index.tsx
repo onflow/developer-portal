@@ -13,6 +13,7 @@ import { LandingPageSecondaryNav } from "../../Components/LandingPageSecondaryNa
 import { toolsSections } from "~/constants/landingPages/toolsSectionts"
 
 export type ToolsPageProps = {
+  editPageUrl?: string
   tools: SDKCardProps[]
   sdks: SDKCardProps[]
   explorers: SDKCardProps[]
@@ -21,6 +22,7 @@ export type ToolsPageProps = {
 }
 
 const ToolsPage = ({
+  editPageUrl,
   tools,
   sdks,
   explorers,
@@ -37,6 +39,7 @@ const ToolsPage = ({
             buttonUrl="/flow/dapp-development/DappArchitectures/"
             callout="Flow Dapp Architecture Guide"
             description="Wondering what tools you need? See our dapp architectures guide to help you out."
+            editPageUrl={editPageUrl}
             title="Tools"
             imageSrc={ToolsImage}
           />

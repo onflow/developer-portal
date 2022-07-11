@@ -31,6 +31,7 @@ export type CommunityPageProps = FlipsProps &
   ProjectCardsProps &
   FeaturedArticleSliderProps &
   ToolsAndConceptsProps & {
+    editPageUrl?: string
     communityMembers: CommunityMembersProps
     upcomingEvents: UpcomingEventsProps
     contentNavigationListItems: ContentNavigationListProps
@@ -38,6 +39,7 @@ export type CommunityPageProps = FlipsProps &
   }
 
 export default function CommunityPage({
+  editPageUrl,
   openFlips,
   goodPlacesToStartFlips,
   // communityMembers,
@@ -58,6 +60,7 @@ export default function CommunityPage({
             buttonUrl="https://flow.com/ecosystemsupport"
             callout="The Flow Ecosystem Fund"
             description="Our $725 Million Flow Ecosystem Fund is designed to hypercharge innovation and growth across the Flow community."
+            editPageUrl={editPageUrl}
             title="Community"
             imageSrc={CommunityImage}
           />

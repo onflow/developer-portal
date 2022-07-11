@@ -18,6 +18,7 @@ export const meta: MetaFunction = () => ({
 export default function Page() {
   return (
     <GettingStartedPage
+      editPageUrl="https://github.com/onflow/next-docs-v1/blob/main/app/routes/getting-started/data.tsx"
       landingHeaderItems={landingHeaderItems}
       sdkCardItems={sdkCardItems}
       recentToolItems={recentToolItems}

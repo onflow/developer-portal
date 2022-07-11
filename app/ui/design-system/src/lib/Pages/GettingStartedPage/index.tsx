@@ -29,6 +29,7 @@ import PageSection from "../shared/PageSection"
 import PageSections from "../shared/PageSections"
 
 export interface GettingStartedPageProps {
+  editPageUrl?: string
   landingHeaderItems: LandingHeaderProps
   linkCard3ColumnItems: LinkCard3ColumnProps
   linkCard2ColumnItems: LinkCard2ColumnProps
@@ -46,6 +47,7 @@ export interface GettingStartedPageProps {
 }
 
 export function GettingStartedPage({
+  editPageUrl,
   landingHeaderItems,
   linkCard3ColumnItems,
   linkCard2ColumnItems,
@@ -63,6 +65,7 @@ export function GettingStartedPage({
             buttonUrl={landingHeaderItems.buttonUrl}
             callout={landingHeaderItems.callout}
             description={landingHeaderItems.description}
+            editPageUrl={editPageUrl}
             title={landingHeaderItems.title}
             imageSrc={landingHeaderItems.imageSrc}
           />
