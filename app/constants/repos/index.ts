@@ -39,13 +39,14 @@ import faq from "./second-route-presets/faq.json"
 
 import { populateRepoSchema, RepoSchema } from "./repo-schema"
 import {
-  secondRoutes,
-  firstRoutes,
-  repositoryMap,
-  repoInnerContentNames,
-  flowInnerContents,
-  flowSections,
-  repoNames,
+  SECOND_ROUTES,
+  FIRST_ROUTES,
+  REPO_MAP,
+  REPO_INNER_CONTENT_NAMES,
+  FLOW_INNER_CONTENT_NAMES,
+  FLOW_FIRST_ROUTES,
+  REPO_NAMES,
+  isSecondRoute,
 } from "./contents-structure"
 import { landingHeaders } from "./custom-headers"
 
@@ -135,27 +136,28 @@ export type ContentSpec = {
 
 function getBasePath(name: string) {
   var basePath = DEFAULT_CONTENT_PATH
-  if (flowSections.includes(name)) {
+  if (FLOW_FIRST_ROUTES.includes(name)) {
     basePath = `docs/content`
-  } else if (flowInnerContents.includes(name)) {
+  } else if (FLOW_INNER_CONTENT_NAMES.includes(name)) {
     basePath = `docs/content/${name}`
-  } else if (repoInnerContentNames.includes(name)) {
+  } else if (REPO_INNER_CONTENT_NAMES.includes(name)) {
     basePath = `docs/${name}`
   }
   return basePath
 }
 
 const getRepoName = (name: string) => {
-  if (flowSections.includes(name)) {
+  if (FLOW_FIRST_ROUTES.includes(name)) {
     return "flow"
   }
-  if (repoNames.includes(name)) {
+  if (REPO_NAMES.includes(name)) {
     return name
   }
-  return repositoryMap[name]
+  return REPO_MAP[name]!
 }
 
-export const contentSpecMap = [...firstRoutes, ...secondRoutes].reduce(
+const allRoutes: string[] = [...FIRST_ROUTES, ...SECOND_ROUTES]
+export const contentSpecMap = allRoutes.reduce(
   (accum, name) => ({
     ...accum,
     [name]: {
@@ -177,7 +179,7 @@ export const getContentSpec = (
   secondRoute?: string | undefined
 ) => {
   if (firstRoute) {
-    if (secondRoute && secondRoutes.includes(secondRoute)) {
+    if (secondRoute && isSecondRoute(secondRoute)) {
       return contentSpecMap[secondRoute]
     }
     return contentSpecMap[firstRoute]

@@ -6,15 +6,16 @@ import { getMdxPage, useMdxComponent } from "~/cms/utils/mdx"
 import { ContentSpec, getContentSpec } from "~/constants/repos"
 import {
   FirstRoute,
-  firstRoutes,
-  secondRoutes,
+  isFirstRoute,
+  isSecondRoute,
+  SecondRoute,
 } from "~/constants/repos/contents-structure"
 import { ErrorPage } from "~/ui/design-system/src/lib/Components/ErrorPage"
 import { getSocialMetas } from "~/utils/seo"
 import { MdxPage } from "../../cms"
 import { InternalPage } from "../../ui/design-system/src/lib/Pages/InternalPage"
 
-import { routingStructure } from "~/constants/repos/contents-structure"
+import { ROUTING_STRUCTURE } from "~/constants/repos/contents-structure"
 import AppLink from "~/ui/design-system/src/lib/Components/AppLink"
 
 export { InternalErrorBoundary as ErrorBoundary } from "~/errors/error-boundaries"
@@ -41,7 +42,7 @@ type LoaderData = {
 
 type NestedRoute = {
   firstRoute: FirstRoute
-  secondRoute: string
+  secondRoute: SecondRoute
   path: string
 }
 
@@ -64,11 +65,6 @@ const customRedirectLanding = (nestedRoute: NestedRoute) => {
     ) {
       nestedRoute.path = "syntax"
     } else if (
-      nestedRoute.firstRoute === "tools" &&
-      nestedRoute.secondRoute === "flow-emulator"
-    ) {
-      nestedRoute.path = "overview"
-    } else if (
       nestedRoute.firstRoute === "cadence" &&
       nestedRoute.secondRoute === "tutorial"
     ) {
@@ -82,7 +78,7 @@ const deconstructPath = (params: Params<string>) => {
   const firstRoute = params.repo
   invariant(firstRoute, `expected first route`)
 
-  if (!firstRoutes.includes(firstRoute)) {
+  if (!isFirstRoute(firstRoute)) {
     throw json({ status: "noPage" }, { status: 404 })
   }
 
@@ -92,7 +88,7 @@ const deconstructPath = (params: Params<string>) => {
 
   // Check if there is a valid secondRoute
   var second = remainingRoute?.split("/")[0]
-  if (second && secondRoutes.includes(second)) {
+  if (second && isSecondRoute(second)) {
     secondRoute = second
     path =
       remainingRoute?.split("/")?.slice(1)?.join("/").replace(/\/+$/, "") ||
@@ -155,7 +151,7 @@ export default function RepoDocument() {
   // under /flow/fcl-js so ... since this is a catch-all route (TODO: refactor to use remix routes)
   //
   // Logically a tool is NOT included in the list of flow routes (routes with the parent /flow)
-  const tool = ![...routingStructure.flow].includes(content.contentName)
+  const tool = ![...ROUTING_STRUCTURE.flow].includes(content.contentName)
 
   return (
     <InternalPage

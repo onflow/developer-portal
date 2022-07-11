@@ -2,8 +2,8 @@ import { capitalCase } from "change-case"
 import { useMemo } from "react"
 import { displayNames } from "~/constants/repos"
 import {
-  firstRouteMap,
-  secondRoutes,
+  FIRST_ROUTE_MAP,
+  isSecondRoute,
 } from "~/constants/repos/contents-structure"
 import { InternalSidebarSectionItem } from "../../Components/InternalSidebar"
 
@@ -44,8 +44,8 @@ export const useInternalBreadcrumbs = ({
 
     var basePath = `${rootUrl}${contentPath}`
 
-    if (secondRoutes.includes(contentPath)) {
-      const firstRouteName = firstRouteMap[contentPath]!
+    if (isSecondRoute(contentPath)) {
+      const firstRouteName = FIRST_ROUTE_MAP[contentPath]!
 
       breadcrumbs.push({
         name: displayNames[firstRouteName] || capitalCase(firstRouteName),

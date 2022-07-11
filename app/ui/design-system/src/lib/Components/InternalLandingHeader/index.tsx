@@ -1,5 +1,5 @@
 import clsx from "clsx"
-import { ToolName, TOOLS } from "../Internal/tools"
+import { SwitchContentName, switchContents } from "../Internal/tools"
 import {
   InternalLandingHeaderCard,
   InternalLandingHeaderCardProps,
@@ -10,7 +10,7 @@ const TOOL_GRADIENT_CLASSES = {
 }
 
 export type InternalLandingHeaderProps = {
-  toolName: ToolName
+  toolName: SwitchContentName
   description: string
   headerCards: InternalLandingHeaderCardProps[]
 }
@@ -20,7 +20,7 @@ export function InternalLandingHeader({
   description,
   headerCards,
 }: InternalLandingHeaderProps) {
-  const tool = TOOLS[toolName]
+  const tool = switchContents[toolName]!
   const Icon = tool.iconLanding
 
   return (
