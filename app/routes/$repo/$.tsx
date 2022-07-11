@@ -155,7 +155,7 @@ export default function RepoDocument() {
   // const tool = ![...ROUTING_STRUCTURE.flow].includes(content.contentName)
   const isTool = () => {
     const flowSecondRoutes: string[] = [...ROUTING_STRUCTURE.flow!]
-    return [...flowSecondRoutes].includes(content.contentName)
+    return ![...flowSecondRoutes].includes(content.contentName)
   }
 
   return (

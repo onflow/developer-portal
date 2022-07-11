@@ -1,11 +1,12 @@
 import { InternalLandingHeaderProps } from "~/ui/design-system/src/lib/Components/InternalLandingHeader"
+import { ContentName } from "./contents-structure"
 
 /**
  * Custom headers that can optionally be applied per-content section and will
  * be shown on the section's landing page.
  */
 export const landingHeaders: Partial<
-  Record<string, InternalLandingHeaderProps>
+  Record<ContentName, InternalLandingHeaderProps>
 > = {
   cadence: {
     toolName: "cadence",

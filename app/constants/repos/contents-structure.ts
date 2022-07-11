@@ -61,8 +61,11 @@ export const SECOND_ROUTES = [
   "concepts",
   "core-contracts",
   "flow-token",
+  "flow-nft",
+  "flow-ft",
   "fusd",
   "faq",
+  "nft-storefront",
   "nft-marketplace",
   "vscode-extension",
   "emulator",
@@ -81,6 +84,7 @@ export const SECOND_ROUTES = [
 
 export type FirstRoute = typeof FIRST_ROUTES[number]
 export type SecondRoute = typeof SECOND_ROUTES[number]
+export type ContentName = FirstRoute | SecondRoute
 
 export const isFirstRoute = (name: string) => {
   let notReadOnlyCopy: string[] = [...FIRST_ROUTES]
@@ -99,6 +103,9 @@ export const ROUTING_STRUCTURE: Partial<
     "dapp-development",
     "core-contracts",
     "flow-token",
+    "flow-nft",
+    "flow-ft",
+    "nft-storefront",
     "fusd",
     "faq",
     "nft-marketplace",
@@ -117,4 +124,5 @@ export const ROUTING_STRUCTURE: Partial<
   cadence: ["language", "tutorial"],
 }
 export const FLOW_FIRST_ROUTES = ["flow", "nodes"]
-export const FIRST_ROUTE_MAP = mapToKey(ROUTING_STRUCTURE)
+export const FIRST_ROUTE_MAP: Partial<Record<SecondRoute, FirstRoute>> =
+  mapToKey(ROUTING_STRUCTURE)

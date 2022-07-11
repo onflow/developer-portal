@@ -34,13 +34,12 @@ export type SwitchContentProps = {
 // TODO: We shouldn't have to manually relink when switchingtools
 export const getSwitchLink = (name: SwitchContentName) => {
   if (isSecondRoute(name)) {
-    return `/${FIRST_ROUTE_MAP[name]}/${name}`
+    return `/${FIRST_ROUTE_MAP[name as SecondRoute]}/${name}`
   }
   return `/${name}`
 }
-export const switchContents: Record<
-  SwitchContentName,
-  SwitchContentProps | undefined
+export const switchContents: Partial<
+  Record<SwitchContentName, SwitchContentProps | undefined>
 > = {
   emulator: {
     name: "Emulator",
@@ -168,13 +167,4 @@ export const switchContents: Record<
     gradientIcon: DefaultIcon,
     link: getSwitchLink("nodes"),
   },
-  flow: undefined,
-  community: undefined,
-  "dapp-development": undefined,
-  "core-contracts": undefined,
-  "flow-token": undefined,
-  fusd: undefined,
-  faq: undefined,
-  "nft-marketplace": undefined,
-  bounties: undefined,
 }

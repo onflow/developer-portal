@@ -2,9 +2,11 @@ import invariant from "tiny-invariant"
 import { getRequiredServerEnvVar } from "~/cms/helpers"
 import { schemas } from "~/constants/repos"
 import {
+  FirstRoute,
   FIRST_ROUTE_MAP,
   isFirstRoute,
   isSecondRoute,
+  SecondRoute,
 } from "~/constants/repos/contents-structure"
 import { isNotNull } from "~/utils/filters"
 
@@ -46,7 +48,7 @@ export const loader = () => {
             }
 
             if (isSecondRoute(key)) {
-              let firstRoute = FIRST_ROUTE_MAP[key]
+              let firstRoute = FIRST_ROUTE_MAP[key as SecondRoute]
               invariant(firstRoute, `expected section for ${key}`)
               return `${firstRoute}/${item.href}`
             }

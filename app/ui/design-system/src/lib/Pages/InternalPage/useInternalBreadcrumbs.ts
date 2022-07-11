@@ -4,6 +4,7 @@ import { displayNames } from "~/constants/repos"
 import {
   FIRST_ROUTE_MAP,
   isSecondRoute,
+  SecondRoute,
 } from "~/constants/repos/contents-structure"
 import { InternalSidebarSectionItem } from "../../Components/InternalSidebar"
 
@@ -45,7 +46,7 @@ export const useInternalBreadcrumbs = ({
     var basePath = `${rootUrl}${contentPath}`
 
     if (isSecondRoute(contentPath)) {
-      const firstRouteName = FIRST_ROUTE_MAP[contentPath]!
+      const firstRouteName = FIRST_ROUTE_MAP[contentPath as SecondRoute]!
 
       breadcrumbs.push({
         name: displayNames[firstRouteName] || capitalCase(firstRouteName),

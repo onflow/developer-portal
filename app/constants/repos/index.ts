@@ -47,6 +47,9 @@ import {
   FLOW_FIRST_ROUTES,
   REPO_NAMES,
   isSecondRoute,
+  ContentName,
+  SecondRoute,
+  FirstRoute,
 } from "./contents-structure"
 import { landingHeaders } from "./custom-headers"
 
@@ -54,7 +57,7 @@ export const DEFAULT_REPO_OWNER = "onflow"
 export const DEFAULT_CONTENT_PATH = "docs"
 
 /* Sidebar presets for all repositories and content names */
-export const schemas: Partial<Record<string, RepoSchema>> = {
+export const schemas: Partial<Record<ContentName, RepoSchema>> = {
   // First Level: Individual repository ({repository}/...)
   cadence: cadence as RepoSchema,
   "flow-nft": flowNFT as RepoSchema,
@@ -93,7 +96,7 @@ export const schemas: Partial<Record<string, RepoSchema>> = {
 }
 
 /* Overriden display names (defaults to dashes converted to spaces then capitalized) */
-export const displayNames: Partial<Record<string, string>> = {
+export const displayNames: Partial<Record<ContentName, string>> = {
   "flow-cli": "Flow CLI",
   "flow-js-testing": "Flow JS Testing",
   "flow-go-sdk": "Flow Go SDK",
@@ -134,7 +137,7 @@ export type ContentSpec = {
   landingHeader?: InternalLandingHeaderProps
 }
 
-function getBasePath(name: string) {
+function getBasePath(name: ContentName) {
   var basePath = DEFAULT_CONTENT_PATH
   if (FLOW_FIRST_ROUTES.includes(name)) {
     basePath = `docs/content`
@@ -146,7 +149,7 @@ function getBasePath(name: string) {
   return basePath
 }
 
-const getRepoName = (name: string) => {
+const getRepoName = (name: ContentName) => {
   if (FLOW_FIRST_ROUTES.includes(name)) {
     return "flow"
   }
@@ -156,7 +159,7 @@ const getRepoName = (name: string) => {
   return REPO_MAP[name]!
 }
 
-const allRoutes: string[] = [...FIRST_ROUTES, ...SECOND_ROUTES]
+const allRoutes: ContentName[] = [...FIRST_ROUTES, ...SECOND_ROUTES]
 export const contentSpecMap = allRoutes.reduce(
   (accum, name) => ({
     ...accum,
@@ -171,7 +174,7 @@ export const contentSpecMap = allRoutes.reduce(
       landingHeader: landingHeaders[name],
     },
   }),
-  {} as Record<string, ContentSpec>
+  {} as Record<ContentName, ContentSpec>
 )
 
 export const getContentSpec = (
@@ -180,8 +183,8 @@ export const getContentSpec = (
 ) => {
   if (firstRoute) {
     if (secondRoute && isSecondRoute(secondRoute)) {
-      return contentSpecMap[secondRoute]
+      return contentSpecMap[secondRoute as SecondRoute]
     }
-    return contentSpecMap[firstRoute]
+    return contentSpecMap[firstRoute as FirstRoute]
   }
 }
