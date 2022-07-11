@@ -15,14 +15,15 @@ export type FlipCellProps = {
   numComments: number
   heading: string
   tags: string[]
+  repository: string
   participant: User
   date: string
   forumLink: string
 }
 
 const PARENT_GRID =
-  "p-4 flex flex-col sm:p-6 md:grid gap-[25px] md:grid-cols-[56px_auto_280px]"
-const RIGHT_GRID = "md:grid md:grid-cols-[80px_100px_100px]"
+  "p-4 flex flex-col sm:p-6 md:grid gap-[25px] md:grid-cols-[56px_auto_350px]"
+const RIGHT_GRID = "md:grid md:grid-cols-[80px_100px_100px_100px]"
 
 export const FlipCellHeader = () => (
   <div
@@ -35,6 +36,7 @@ export const FlipCellHeader = () => (
     <div>Topic</div>
     <div className={RIGHT_GRID}>
       <div className="text-center">Submitted by</div>
+      <div className="text-center">Repository</div>
       <div className="text-center">Date submitted</div>
       <div className="text-center">Comments</div>
     </div>
@@ -44,6 +46,7 @@ export const FlipCellHeader = () => (
 const FlipCell = ({
   heading,
   tags,
+  repository,
   participant,
   numComments,
   date,
@@ -89,8 +92,14 @@ const FlipCell = ({
         <div className="flex items-center justify-center">
           <RoundImage
             imageUri={participant.profileImage}
+            imageCaption={participant.name}
             altText={participant.name}
           />
+        </div>
+        <div className="flex items-center justify-center">
+          <div className="dark:gray-400 md:leading-1 whitespace-nowrap text-sm text-gray-600 dark:text-gray-400">
+            {repository}
+          </div>
         </div>
         <div className="flex items-center justify-center">
           <CalendarIcon width="24" height="24" />{" "}
