@@ -17,6 +17,7 @@ import { InternalPage } from "../../ui/design-system/src/lib/Pages/InternalPage"
 
 import { ROUTING_STRUCTURE } from "~/constants/repos/contents-structure"
 import AppLink from "~/ui/design-system/src/lib/Components/AppLink"
+import { SwitchContentName } from "~/ui/design-system/src/lib/Components/Internal/tools"
 
 export { InternalErrorBoundary as ErrorBoundary } from "~/errors/error-boundaries"
 
@@ -151,7 +152,11 @@ export default function RepoDocument() {
   // under /flow/fcl-js so ... since this is a catch-all route (TODO: refactor to use remix routes)
   //
   // Logically a tool is NOT included in the list of flow routes (routes with the parent /flow)
-  const tool = ![...ROUTING_STRUCTURE.flow].includes(content.contentName)
+  // const tool = ![...ROUTING_STRUCTURE.flow].includes(content.contentName)
+  const isTool = () => {
+    const flowSecondRoutes: string[] = [...ROUTING_STRUCTURE.flow!]
+    return [...flowSecondRoutes].includes(content.contentName)
+  }
 
   return (
     <InternalPage
@@ -161,9 +166,9 @@ export default function RepoDocument() {
       header={path === "index" ? content.landingHeader : undefined}
       sidebarConfig={content.schema?.sidebar}
       internalSidebarMenu={
-        tool
+        isTool()
           ? {
-              selectedTool: content.contentName,
+              selectedTool: content.contentName as SwitchContentName,
             }
           : undefined
       }
