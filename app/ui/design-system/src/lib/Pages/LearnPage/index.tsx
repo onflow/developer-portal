@@ -23,6 +23,7 @@ import LearnImage from "../../../../images/page/learn.png"
 import { learnSections } from "~/constants/landingPages/learnSections"
 
 export type LearnPageProps = {
+  editPageUrl?: string
   allTutorials: TutorialCardProps[]
   cadenceHref: string
   cadenceTutorials: TutorialCardProps[]
@@ -39,6 +40,7 @@ export function LearnPage({
   allTutorials = [],
   cadenceHref,
   cadenceTutorials,
+  editPageUrl,
   nftTutorials,
   videos,
   youtubeHref,
@@ -79,6 +81,7 @@ export function LearnPage({
             Most importantly, we realized that the technology at the time was not ready for this kind of application.
             Being the visionaries we are, we set to build a better tech for what we plan to do.
             We set to build what is now Flow blockchain."
+            editPageUrl={editPageUrl}
             imageSrc={LearnImage}
           />
         </PageSection>

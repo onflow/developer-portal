@@ -18,6 +18,7 @@ import PageSection from "../shared/PageSection"
 import PageSections from "../shared/PageSections"
 
 export type HomePageProps = {
+  editPageUrl?: string
   startProjectItems: LinkCard2ColumnProps
   flips: FlipsProps
   tools: ToolCardProps[]
@@ -27,6 +28,7 @@ export type HomePageProps = {
 }
 
 const HomePage = ({
+  editPageUrl,
   startProjectItems,
   flips,
   tools,
@@ -40,6 +42,7 @@ const HomePage = ({
         title="Developer Portal"
         description="Discover the developer ecosystem and master the Flow blockchain"
         tag="preview"
+        editPageUrl={editPageUrl}
       />
       <LinkCard2Column
         {...startProjectItems}
