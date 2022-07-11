@@ -3,10 +3,8 @@ import { getRequiredServerEnvVar } from "~/cms/helpers"
 import { schemas } from "~/constants/repos"
 import {
   FIRST_ROUTE_MAP,
-  FIRST_ROUTES,
   isFirstRoute,
   isSecondRoute,
-  SECOND_ROUTES,
 } from "~/constants/repos/contents-structure"
 import { isNotNull } from "~/utils/filters"
 
