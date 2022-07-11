@@ -92,7 +92,7 @@ export function InternalPage({
   useResizeObserver(subnavRef, resizeObserverCallback)
 
   return (
-    <div className="flex flex-col">
+    <div className="flex flex-col pb-16">
       <div className="sticky top-0 z-20" ref={subnavRef}>
         <InternalSubnav
           isSidebarOpen={isMobileSidebarOpen}
