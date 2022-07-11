@@ -14,9 +14,14 @@ import {
   ScrollRestoration,
   useLoaderData,
   useLocation,
+  useTransition,
 } from "@remix-run/react"
+
+import LoadingBar from "react-top-loading-bar"
+import { ClientOnly } from "remix-utils"
+
 import clsx from "clsx"
-import { useCallback, useEffect } from "react"
+import { useCallback, useEffect, useRef } from "react"
 import {
   Theme,
   ThemeBody,
@@ -85,6 +90,29 @@ export const loader: LoaderFunction = async ({ request }) => {
   })
 }
 
+function TopLoader() {
+  const transition = useTransition()
+  const ref = useRef(null)
+  useEffect(() => {
+    if (transition.state === "loading") {
+      //@ts-ignore
+      ref.current?.continuousStart()
+    }
+    if (transition.state === "idle") {
+      //@ts-ignore
+      ref.current?.complete()
+    }
+  }, [transition])
+
+  return (
+    <ClientOnly>
+      {() => {
+        return <LoadingBar color="#08c466" ref={ref} height={4} />
+      }}
+    </ClientOnly>
+  )
+}
+
 function App() {
   const data = useLoaderData<LoaderData>()
 
@@ -148,6 +176,7 @@ function App() {
           algolia={data.algolia}
         />
         <div className="flex-auto overflow-auto">
+          <TopLoader />
           <Outlet />
           <Footer />
         </div>

@@ -204,6 +204,7 @@ const switchContentMap: Record<ToolName, ContentName> = {
   staking: "staking",
   tools: "tools",
   language: "language",
+  tutorial: "tutorial",
 }
 
 // TODO: I think we need to fix this. I don;t think we should be manually

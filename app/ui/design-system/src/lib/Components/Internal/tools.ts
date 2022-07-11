@@ -25,6 +25,7 @@ export type ToolName =
   | "fcl-js"
   | "cadence"
   | "language"
+  | "tutorial"
   | "flow-go-sdk"
   | "http-api"
   | "tools"
@@ -81,6 +82,12 @@ export const TOOLS: Record<ToolName, Tool> = {
     gradientIcon: CadenceGradientIcon,
   },
   language: {
+    name: "Cadence",
+    icon: CadenceIcon,
+    iconLanding: CadenceLandingIcon,
+    gradientIcon: CadenceGradientIcon,
+  },
+  tutorial: {
     name: "Cadence",
     icon: CadenceIcon,
     iconLanding: CadenceLandingIcon,
