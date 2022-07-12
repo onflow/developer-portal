@@ -14,8 +14,6 @@ import { ErrorPage } from "~/ui/design-system/src/lib/Components/ErrorPage"
 import { getSocialMetas } from "~/utils/seo"
 import { MdxPage } from "../../cms"
 import { InternalPage } from "../../ui/design-system/src/lib/Pages/InternalPage"
-
-import { ROUTING_STRUCTURE } from "~/constants/repos/contents-structure"
 import AppLink from "~/ui/design-system/src/lib/Components/AppLink"
 import {
   SwitchContentName,
