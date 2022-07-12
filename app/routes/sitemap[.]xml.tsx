@@ -2,7 +2,6 @@ import invariant from "tiny-invariant"
 import { getRequiredServerEnvVar } from "~/cms/helpers"
 import { schemas } from "~/constants/repos"
 import {
-  FirstRoute,
   FIRST_ROUTE_MAP,
   isFirstRoute,
   isSecondRoute,
