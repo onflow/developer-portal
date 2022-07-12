@@ -23,6 +23,7 @@ import AppLink from "~/ui/design-system/src/lib/Components/AppLink"
 
 export { InternalErrorBoundary as ErrorBoundary } from "~/errors/error-boundaries"
 
+// @ts-ignore
 export const meta: MetaFunction = ({ data, location }) => {
   const typedData = data as LoaderData
   if (typedData && typedData.page) {
@@ -49,7 +50,7 @@ type NestedRoute = {
 }
 
 /* TODO: We shouldn't have to manually redirect landing for subfolders without 'index' files */
-const customRedirectLanding = (nestedRoute: NestedRoute): NestedRoute => {
+const customRedirectLanding = (nestedRoute: NestedRoute) => {
   // Redirecting missing "index" pages
   if (nestedRoute.path === "index") {
     if (nestedRoute.firstRoute === "flow" && !nestedRoute.secondRoute) {
@@ -102,7 +103,7 @@ export const deconstructPath = (params: Params<string>): NestedRoute => {
       "index"
   }
 
-  return customRedirectLanding({ firstRoute, secondRoute, path })
+  return customRedirectLanding({ firstRoute, secondRoute, path } as NestedRoute)
 }
 
 export const loader: LoaderFunction = async ({
@@ -112,7 +113,7 @@ export const loader: LoaderFunction = async ({
   if (params["*"]?.endsWith("index") && request.url.endsWith("/index")) {
     throw redirect(request.url.replace(/\/index$/, "/"))
   }
-  const { firstRoute, secondRoute, path } = deconstructPath(params)
+  const { firstRoute, secondRoute, path }: NestedRoute = deconstructPath(params)
   const contentSpec = getContentSpec(firstRoute, secondRoute)
 
   if (!contentSpec) {

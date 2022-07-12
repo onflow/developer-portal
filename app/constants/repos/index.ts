@@ -176,7 +176,7 @@ export const contentSpecMap = [...firstRoutes, ...secondRoutes].reduce(
 export const getContentSpec = (
   firstRoute: string,
   secondRoute?: string | undefined
-): ContentSpec | undefined => {
+) => {
   if (firstRoute) {
     if (secondRoute && secondRoutes.includes(secondRoute)) {
       return contentSpecMap[secondRoute]
