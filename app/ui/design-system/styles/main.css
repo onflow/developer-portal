@@ -30,3 +30,17 @@
 .ais-Snippet-highlighted {
   @apply bg-transparent font-bold text-primary-blue dark:text-blue-dark;
 }
+
+/* Custom desktop nav menu breakpoint */
+.main-nav-desktop-menu {
+  @media screen and (min-width: 920px) {
+    @apply flex;
+  }
+}
+
+/* Custom mobile nav menu toggle breakpoint */
+.main-nav-mobile-menu-toggle {
+  @media screen and (min-width: 920px) {
+    @apply hidden;
+  }
+}

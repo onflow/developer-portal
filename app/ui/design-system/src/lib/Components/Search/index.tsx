@@ -84,8 +84,10 @@ export function Search({ appId, apiKey, indexName }: SearchProps) {
         <div className="mr-1 scale-75">
           <SearchIcon />
         </div>
-        <span className="mr-3">Search</span>
-        <KbdShortcuts />
+        Search
+        <div className="hidden md:ml-3 md:flex">
+          <KbdShortcuts />
+        </div>
       </button>
       <InstantSearch searchClient={searchClient} indexName={indexName}>
         <Dialog open={open} closeDialog={closeDialog} maxWidth="695px">
