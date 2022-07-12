@@ -5,7 +5,7 @@ import { Fragment, useRef } from "react"
 import { ReactComponent as Close } from "../../../../images/action/close"
 import { ReactComponent as ChevronDown } from "../../../../images/arrows/chevron-down"
 import AppLink from "../AppLink"
-import { SwitchContentName, switchContents } from "../Internal/tools"
+import { SwitchContentName, switchContents } from "../Internal/switchContent"
 import DropdownArrow from "../shared/DropdownArrow"
 import DropdownTransition from "../shared/DropdownTransition"
 
@@ -84,11 +84,11 @@ function Group({
 }
 
 export type InternalSidebarMenuProps = {
-  selectedTool: SwitchContentName
+  selected: SwitchContentName
 }
 
 export function InternalSidebarMenu({
-  selectedTool,
+  selected: selectedTool,
 }: InternalSidebarMenuProps) {
   const arrowRef = useRef(null)
   const {

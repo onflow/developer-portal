@@ -1,5 +1,5 @@
 import clsx from "clsx"
-import { SwitchContentName, switchContents } from "../Internal/tools"
+import { SwitchContentName, switchContents } from "../Internal/switchContent"
 import {
   InternalLandingHeaderCard,
   InternalLandingHeaderCardProps,

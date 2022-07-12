@@ -18,7 +18,7 @@ import AppLink from "~/ui/design-system/src/lib/Components/AppLink"
 import {
   SwitchContentName,
   switchContents,
-} from "~/ui/design-system/src/lib/Components/Internal/tools"
+} from "~/ui/design-system/src/lib/Components/Internal/switchContent"
 
 export { InternalErrorBoundary as ErrorBoundary } from "~/errors/error-boundaries"
 
@@ -154,7 +154,9 @@ export default function RepoDocument() {
   //
   // Logically a tool is NOT included in the list of flow routes (routes with the parent /flow)
   // const tool = ![...ROUTING_STRUCTURE.flow].includes(content.contentName)
-  const isTool = Object.keys(switchContents).includes(content.contentName)
+  const isSwitchContent = Object.keys(switchContents).includes(
+    content.contentName
+  )
 
   return (
     <InternalPage
@@ -164,9 +166,9 @@ export default function RepoDocument() {
       header={path === "index" ? content.landingHeader : undefined}
       sidebarConfig={content.schema?.sidebar}
       internalSidebarMenu={
-        isTool
+        isSwitchContent
           ? {
-              selectedTool: content.contentName as SwitchContentName,
+              selected: content.contentName as SwitchContentName,
             }
           : undefined
       }
