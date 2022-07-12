@@ -5,7 +5,7 @@ import { Fragment, useRef } from "react"
 import { ReactComponent as Close } from "../../../../images/action/close"
 import { ReactComponent as ChevronDown } from "../../../../images/arrows/chevron-down"
 import AppLink from "../AppLink"
-import { ToolName, TOOLS } from "../Internal/tools"
+import { SwitchContentName, switchContents } from "../Internal/switchContent"
 import DropdownArrow from "../shared/DropdownArrow"
 import DropdownTransition from "../shared/DropdownTransition"
 
@@ -14,11 +14,11 @@ export type Version = {
   href: string
 }
 
-type SectionGroup = { name: string; sections: ToolName[] }
+type SectionGroup = { name: string; sections: SwitchContentName[] }
 
 const SIDEBAR_SECTION_GROUPS: SectionGroup[] = [
   {
-    name: "Switch tool",
+    name: "Tools",
     sections: [
       "flow-cli",
       "fcl-js",
@@ -42,24 +42,23 @@ const SIDEBAR_SECTION_GROUPS: SectionGroup[] = [
 function Group({
   group,
   onClick,
-  toolLinks,
 }: {
   group: SectionGroup
   onClick?: React.MouseEventHandler<HTMLAnchorElement>
-  toolLinks: ToolLinkMap
 }) {
   return (
     <>
-      {group.sections.map((section: ToolName) => {
-        const SelectedGroupSectionIcon = TOOLS[section].icon
-        const SelectedGroupSectionGradientIcon = TOOLS[section].gradientIcon
+      {group.sections.map((section: SwitchContentName) => {
+        const SelectedGroupSectionIcon = switchContents[section]!.icon
+        const SelectedGroupSectionGradientIcon =
+          switchContents[section]!.gradientIcon
         return (
           <div
             key={section}
             className="border-b border-b-primary-gray-100 last:border-none md:border-none md:p-2"
           >
             <AppLink
-              to={toolLinks[section]}
+              to={switchContents[section]!.link}
               className={clsx(
                 "group flex items-center px-1 py-2 text-center text-sm hover:bg-primary-gray-100/50 dark:bg-black hover:dark:bg-primary-gray-400/5 md:h-[7.5rem] md:w-[7rem] md:flex-col md:rounded-lg md:px-4 md:py-5 md:shadow-2xl dark:md:shadow-2xl-dark"
               )}
@@ -74,7 +73,7 @@ function Group({
                 </div>
               </div>
               <div className="flex items-center justify-center font-bold text-primary-gray-400 dark:text-primary-gray-100 md:h-[2rem] md:text-sm md:font-normal">
-                {TOOLS[section].name}{" "}
+                {switchContents[section]!.name}{" "}
               </div>
             </AppLink>
           </div>
@@ -83,16 +82,13 @@ function Group({
     </>
   )
 }
-type ToolLinkMap = Record<ToolName, string>
 
 export type InternalSidebarMenuProps = {
-  selectedTool: ToolName
-  toolLinks: ToolLinkMap
+  selected: SwitchContentName
 }
 
 export function InternalSidebarMenu({
-  selectedTool,
-  toolLinks,
+  selected: selectedTool,
 }: InternalSidebarMenuProps) {
   const arrowRef = useRef(null)
   const {
@@ -111,7 +107,7 @@ export function InternalSidebarMenu({
     whileElementsMounted: autoUpdate,
   })
 
-  const SelectedIcon = TOOLS[selectedTool]?.icon
+  const SelectedIcon = switchContents[selectedTool]!.icon
 
   return (
     <div>
@@ -126,7 +122,7 @@ export function InternalSidebarMenu({
                 <SelectedIcon />
               </div>
               <div className="text-small font-bold">
-                {TOOLS[selectedTool]?.name}
+                {switchContents[selectedTool]?.name}
               </div>
               <div className="ml-auto pl-2">
                 <ChevronDown />
@@ -161,11 +157,7 @@ export function InternalSidebarMenu({
                                 {group.name}
                               </div>
                             </div>
-                            <Group
-                              group={group}
-                              toolLinks={toolLinks}
-                              onClick={() => close()}
-                            />
+                            <Group group={group} onClick={() => close()} />
                           </Fragment>
                         ))}
                       </>

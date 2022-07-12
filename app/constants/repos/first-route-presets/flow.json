@@ -6,10 +6,6 @@
         "title": "Flow",
         "items": [
           {
-            "label": "Concepts",
-            "href": "concepts"
-          },
-          {
             "label": "DApp Development",
             "href": "dapp-development"
           },

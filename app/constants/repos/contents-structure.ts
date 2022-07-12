@@ -1,7 +1,7 @@
-function mapToKey(structure: Partial<Record<string, any>>, keys: string[]) {
-  var valueToKey: Partial<Record<ContentName, string>> = {}
+function mapToKey(structure: Partial<Record<string, any>>) {
+  var valueToKey: Partial<Record<string, string>> = {}
 
-  keys.forEach((keyName: string) => {
+  Object.keys(structure).forEach((keyName: string) => {
     let valueContents = structure[keyName]
     valueContents.forEach((eachValue: string) => {
       valueToKey[eachValue] = keyName
@@ -12,20 +12,18 @@ function mapToKey(structure: Partial<Record<string, any>>, keys: string[]) {
 }
 
 /* Repository structure: repository/content/... */
-export const repositoryStructure: Partial<Record<string, any>> = {
+export const REPOSITORY_STRUCTURE: Partial<Record<string, any>> = {
   cadence: ["language", "tutorial"],
   "flow-cli": [],
   "flow-js-testing": [],
   "flow-go-sdk": [],
   "fcl-js": [],
-  // "flow-emulator": [],
   "flow-cadut": [],
   "mock-developer-doc": [],
   "flow-nft": [],
   "flow-ft": [],
   "nft-storefront": [],
   flow: [
-    // Inner contents of the 'flow' repository
     "dapp-development",
     "concepts",
     "core-contracts",
@@ -43,17 +41,71 @@ export const repositoryStructure: Partial<Record<string, any>> = {
   ],
 } as const
 
-export const repoNames = Object.keys(repositoryStructure)
-export const repoInnerContentNames = Object.values(repositoryStructure).flat()
-export const repositoryMap = mapToKey(repositoryStructure, repoNames)
-export const flowInnerContents: string[] = repositoryStructure.flow
+export const REPO_NAMES = Object.keys(REPOSITORY_STRUCTURE)
+export const REPO_INNER_CONTENT_NAMES =
+  Object.values(REPOSITORY_STRUCTURE).flat()
+export const REPO_MAP = mapToKey(REPOSITORY_STRUCTURE)
+export const FLOW_INNER_CONTENT_NAMES = REPOSITORY_STRUCTURE.flow!
 
-export const routingStructure: Partial<Record<string, any>> = {
+/* Routing Structure */
+export const FIRST_ROUTES = [
+  "flow",
+  "learn",
+  "community",
+  "tools",
+  "cadence",
+  "nodes",
+] as const
+export const SECOND_ROUTES = [
+  "dapp-development",
+  "concepts",
+  "core-contracts",
+  "flow-token",
+  "flow-nft",
+  "flow-ft",
+  "fusd",
+  "faq",
+  "nft-storefront",
+  "nft-marketplace",
+  "vscode-extension",
+  "emulator",
+  "fcl-js",
+  "flow-js-testing",
+  "flow-go-sdk",
+  "flow-cli",
+  "node-operation",
+  "staking",
+  "flow-port",
+  "kitty-items",
+  "bounties",
+  "language",
+  "tutorial",
+] as const
+
+export type FirstRoute = typeof FIRST_ROUTES[number]
+export type SecondRoute = typeof SECOND_ROUTES[number]
+export type ContentName = FirstRoute | SecondRoute
+
+export const isFirstRoute = (name: string) => {
+  let notReadOnlyCopy: string[] = [...FIRST_ROUTES]
+  return notReadOnlyCopy.includes(name)
+}
+
+export const isSecondRoute = (name: string) => {
+  let notReadOnlyCopy: string[] = [...SECOND_ROUTES]
+  return notReadOnlyCopy.includes(name)
+}
+
+export const ROUTING_STRUCTURE: Partial<
+  Record<FirstRoute, ReadonlyArray<SecondRoute>>
+> = {
   flow: [
     "dapp-development",
-    "concepts",
     "core-contracts",
     "flow-token",
+    "flow-nft",
+    "flow-ft",
+    "nft-storefront",
     "fusd",
     "faq",
     "nft-marketplace",
@@ -67,16 +119,10 @@ export const routingStructure: Partial<Record<string, any>> = {
     "flow-cli",
   ],
   nodes: ["node-operation", "staking", "flow-port"],
-  learn: ["kitty-items"],
+  learn: ["kitty-items", "concepts"],
   community: ["bounties"],
   cadence: ["language", "tutorial"],
-} as const
-
-export const flowSections = ["flow", "nodes"]
-export const firstRoutes = Object.keys(routingStructure) // First
-export const secondRoutes = Object.values(routingStructure).flat() // Second
-export const firstRouteMap = mapToKey(routingStructure, firstRoutes)
-
-export type FirstRoute = typeof firstRoutes[number]
-export type SecondRoute = typeof secondRoutes[number]
-export type ContentName = FirstRoute | SecondRoute
+}
+export const FLOW_FIRST_ROUTES = ["flow", "nodes"]
+export const FIRST_ROUTE_MAP: Partial<Record<SecondRoute, FirstRoute>> =
+  mapToKey(ROUTING_STRUCTURE)

@@ -2,9 +2,10 @@ import invariant from "tiny-invariant"
 import { getRequiredServerEnvVar } from "~/cms/helpers"
 import { schemas } from "~/constants/repos"
 import {
-  firstRouteMap,
-  firstRoutes,
-  secondRoutes,
+  FIRST_ROUTE_MAP,
+  isFirstRoute,
+  isSecondRoute,
+  SecondRoute,
 } from "~/constants/repos/contents-structure"
 import { isNotNull } from "~/utils/filters"
 
@@ -41,12 +42,12 @@ export const loader = () => {
       return (
         schema?.sidebar.sections.flatMap((section) =>
           section.items.flatMap((item) => {
-            if (firstRoutes.includes(key)) {
+            if (isFirstRoute(key)) {
               return `${key}/${item.href}`
             }
 
-            if (secondRoutes.includes(key)) {
-              let firstRoute = firstRouteMap[key]
+            if (isSecondRoute(key)) {
+              let firstRoute = FIRST_ROUTE_MAP[key as SecondRoute]
               invariant(firstRoute, `expected section for ${key}`)
               return `${firstRoute}/${item.href}`
             }

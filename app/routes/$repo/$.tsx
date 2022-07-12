@@ -5,21 +5,20 @@ import invariant from "tiny-invariant"
 import { getMdxPage, useMdxComponent } from "~/cms/utils/mdx"
 import { ContentSpec, getContentSpec } from "~/constants/repos"
 import {
-  ContentName,
   FirstRoute,
-  firstRouteMap,
-  firstRoutes,
+  isFirstRoute,
+  isSecondRoute,
   SecondRoute,
-  secondRoutes,
 } from "~/constants/repos/contents-structure"
 import { ErrorPage } from "~/ui/design-system/src/lib/Components/ErrorPage"
 import { getSocialMetas } from "~/utils/seo"
 import { MdxPage } from "../../cms"
-import { ToolName } from "../../ui/design-system/src/lib/Components/Internal/tools"
 import { InternalPage } from "../../ui/design-system/src/lib/Pages/InternalPage"
-
-import { routingStructure } from "~/constants/repos/contents-structure"
 import AppLink from "~/ui/design-system/src/lib/Components/AppLink"
+import {
+  SwitchContentName,
+  switchContents,
+} from "~/ui/design-system/src/lib/Components/Internal/switchContent"
 
 export { InternalErrorBoundary as ErrorBoundary } from "~/errors/error-boundaries"
 
@@ -45,7 +44,7 @@ type LoaderData = {
 
 type NestedRoute = {
   firstRoute: FirstRoute
-  secondRoute: SecondRoute | undefined
+  secondRoute: SecondRoute
   path: string
 }
 
@@ -54,7 +53,7 @@ const customRedirectLanding = (nestedRoute: NestedRoute) => {
   // Redirecting missing "index" pages
   if (nestedRoute.path === "index") {
     if (nestedRoute.firstRoute === "flow" && !nestedRoute.secondRoute) {
-      nestedRoute.path = "concepts/index"
+      nestedRoute.path = "dapp-development/index"
     } else if (
       nestedRoute.firstRoute === "flow" &&
       nestedRoute.secondRoute === "faq"
@@ -67,11 +66,6 @@ const customRedirectLanding = (nestedRoute: NestedRoute) => {
       nestedRoute.secondRoute === "language"
     ) {
       nestedRoute.path = "syntax"
-    } else if (
-      nestedRoute.firstRoute === "tools" &&
-      nestedRoute.secondRoute === "flow-emulator"
-    ) {
-      nestedRoute.path = "overview"
     } else if (
       nestedRoute.firstRoute === "cadence" &&
       nestedRoute.secondRoute === "tutorial"
@@ -86,7 +80,7 @@ export const deconstructPath = (params: Params<string>): NestedRoute => {
   const firstRoute = params.repo
   invariant(firstRoute, `expected first route`)
 
-  if (!firstRoutes.includes(firstRoute)) {
+  if (!isFirstRoute(firstRoute)) {
     throw json({ status: "noPage" }, { status: 404 })
   }
 
@@ -96,7 +90,7 @@ export const deconstructPath = (params: Params<string>): NestedRoute => {
 
   // Check if there is a valid secondRoute
   var second = remainingRoute?.split("/")[0]
-  if (second && secondRoutes.includes(second)) {
+  if (second && isSecondRoute(second)) {
     secondRoute = second
     path =
       remainingRoute?.split("/")?.slice(1)?.join("/").replace(/\/+$/, "") ||
@@ -160,7 +154,10 @@ export default function RepoDocument() {
   // under /flow/fcl-js so ... since this is a catch-all route (TODO: refactor to use remix routes)
   //
   // Logically a tool is NOT included in the list of flow routes (routes with the parent /flow)
-  const tool = ![...routingStructure.flow].includes(content.contentName)
+  // const tool = ![...ROUTING_STRUCTURE.flow].includes(content.contentName)
+  const isSwitchContent = Object.keys(switchContents).includes(
+    content.contentName
+  )
 
   return (
     <InternalPage
@@ -169,14 +166,12 @@ export default function RepoDocument() {
       contentPath={content.contentName}
       header={path === "index" ? content.landingHeader : undefined}
       sidebarConfig={content.schema?.sidebar}
-      // @ts-expect-error: TODO: Fix ambiguous behaviour.
       internalSidebarMenu={
-        tool
+        isSwitchContent
           ? {
-              selectedTool: content.contentName,
-              toolLinks: switchLinks,
+              selected: content.contentName as SwitchContentName,
             }
-          : null
+          : undefined
       }
       githubUrl={page.editLink}
       toc={page.toc}
@@ -184,41 +179,6 @@ export default function RepoDocument() {
       <MDXContent />
     </InternalPage>
   )
-}
-
-// TODO: Not sure what this is used for?
-// All values are mapped 1:1 ?
-const switchContentMap: Record<ToolName, ContentName> = {
-  cadence: "cadence",
-  "flow-cli": "flow-cli",
-  emulator: "emulator",
-  "fcl-js": "fcl-js",
-  "flow-js-testing": "flow-js-testing",
-  "vscode-extension": "vscode-extension",
-  "flow-port": "flow-port",
-  "flow-go-sdk": "flow-go-sdk",
-  "http-api": "http-api",
-  "kitty-items": "kitty-items",
-  concepts: "concepts",
-  learn: "learn",
-  nodes: "nodes",
-  "node-operation": "node-operation",
-  staking: "staking",
-  tools: "tools",
-  language: "language",
-  tutorial: "tutorial",
-}
-
-// TODO: I think we need to fix this. I don;t think we should be manually
-// updating links like this. THere must be a better way (Remix routes).
-const switchLinks: Record<ToolName, string> = { ...switchContentMap }
-for (let [key, value] of Object.entries(switchLinks)) {
-  if (firstRoutes.includes(key)) {
-    switchLinks[key as ToolName] = `/${value}`
-  } else if (secondRoutes.includes(key)) {
-    const first = firstRouteMap[key]
-    switchLinks[key as ToolName] = `/${first}/${value}`
-  }
 }
 
 export function CatchBoundary() {
