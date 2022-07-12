@@ -33,21 +33,27 @@ export const loader: LoaderFunction = async ({ params }) => {
 
   const [, contentType] = matchingExtension
 
-  const file = await octokit.repos.getContent({
-    owner: contentSpec.owner,
-    repo: contentSpec.repoName,
-    path: `${contentSpec.basePath}/${path}`,
-  })
+  try {
+    const file = await octokit.repos.getContent({
+      owner: contentSpec.owner,
+      repo: contentSpec.repoName,
+      path: `${contentSpec.basePath}/${path}`,
+    })
 
-  invariant(!Array.isArray(file.data), `did not expect array`)
-  invariant("encoding" in file.data)
-  invariant(file.data.encoding === "base64", `expected base64`)
+    invariant(!Array.isArray(file.data), `did not expect array`)
+    invariant("encoding" in file.data)
+    invariant(file.data.encoding === "base64", `expected base64`)
 
-  throw new Response(Buffer.from(file.data.content, file.data.encoding), {
-    status: 200,
-    headers: {
-      "Content-Type": contentType,
-      "Cache-Control": "max-age=300",
-    },
-  })
+    return new Response(Buffer.from(file.data.content, file.data.encoding), {
+      status: 200,
+      headers: {
+        "Content-Type": contentType,
+        "Cache-Control": "max-age=300",
+      },
+    })
+  } catch (er: any) {
+    if (er.status === 404) {
+      throw new Response(`Not on github: ${er.response.url}`, { status: 404 })
+    }
+  }
 }
