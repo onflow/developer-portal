@@ -125,7 +125,7 @@ export const loader: LoaderFunction = async ({
     path.toLowerCase().endsWith(".mdx")
 
   if (!isDocument) {
-    throw redirect(`/${params.repo}/_raw/${path}`)
+    throw redirect(`/raw/${params.repo}/${params["*"]}`)
   }
   let page: MdxPage | null
 
