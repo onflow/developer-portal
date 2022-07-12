@@ -81,7 +81,7 @@ const customRedirectLanding = (nestedRoute: NestedRoute): NestedRoute => {
   return nestedRoute
 }
 
-const deconstructPath = (params: Params<string>): NestedRoute => {
+export const deconstructPath = (params: Params<string>): NestedRoute => {
   const firstRoute = params.repo
   invariant(firstRoute, `expected first route`)
 
@@ -127,6 +127,7 @@ export const loader: LoaderFunction = async ({
   if (!isDocument) {
     throw redirect(`/raw/${params.repo}/${params["*"]}`)
   }
+
   let page: MdxPage | null
 
   try {
