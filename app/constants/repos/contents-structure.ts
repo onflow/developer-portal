@@ -74,7 +74,8 @@ export const routingStructure: Partial<Record<string, any>> = {
 
 export const flowSections = ["flow", "nodes"]
 export const firstRoutes = Object.keys(routingStructure) // First
-export const secondRoutes = Object.values(routingStructure).flat() // Second
+export const secondRoutes: Array<string> =
+  Object.values(routingStructure).flat() // Second
 export const firstRouteMap = mapToKey(routingStructure, firstRoutes)
 
 export type FirstRoute = typeof firstRoutes[number]
