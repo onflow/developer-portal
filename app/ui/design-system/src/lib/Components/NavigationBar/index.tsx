@@ -1,5 +1,6 @@
 import { Transition } from "@headlessui/react"
-import { Fragment, useState } from "react"
+import { useLocation } from "@remix-run/react"
+import { Fragment, useEffect, useState } from "react"
 import { ReactComponent as FlowDocsLogo } from "../../../../images/logos/flow-docs-logo"
 import { ReactComponent as ModeDark } from "../../../../images/toggles/mode-dark"
 import { ReactComponent as ModeLight } from "../../../../images/toggles/mode-light"
@@ -24,6 +25,11 @@ export function NavigationBar({
   algolia,
 }: NavigationBarProps) {
   const [isMobileNavOpen, setMobileNavOpen] = useState(false)
+  const location = useLocation()
+
+  useEffect(() => {
+    setMobileNavOpen(false)
+  }, [location.key])
 
   return (
     <nav
