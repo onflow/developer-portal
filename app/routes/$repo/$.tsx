@@ -17,7 +17,10 @@ import { InternalPage } from "../../ui/design-system/src/lib/Pages/InternalPage"
 
 import { ROUTING_STRUCTURE } from "~/constants/repos/contents-structure"
 import AppLink from "~/ui/design-system/src/lib/Components/AppLink"
-import { SwitchContentName } from "~/ui/design-system/src/lib/Components/Internal/tools"
+import {
+  SwitchContentName,
+  switchContents,
+} from "~/ui/design-system/src/lib/Components/Internal/tools"
 
 export { InternalErrorBoundary as ErrorBoundary } from "~/errors/error-boundaries"
 
@@ -52,7 +55,7 @@ const customRedirectLanding = (nestedRoute: NestedRoute) => {
   // Redirecting missing "index" pages
   if (nestedRoute.path === "index") {
     if (nestedRoute.firstRoute === "flow" && !nestedRoute.secondRoute) {
-      nestedRoute.path = "concepts/index"
+      nestedRoute.path = "dapp-development/index"
     } else if (
       nestedRoute.firstRoute === "flow" &&
       nestedRoute.secondRoute === "faq"
@@ -153,10 +156,7 @@ export default function RepoDocument() {
   //
   // Logically a tool is NOT included in the list of flow routes (routes with the parent /flow)
   // const tool = ![...ROUTING_STRUCTURE.flow].includes(content.contentName)
-  const isTool = () => {
-    const flowSecondRoutes: string[] = [...ROUTING_STRUCTURE.flow!]
-    return ![...flowSecondRoutes].includes(content.contentName)
-  }
+  const isTool = Object.keys(switchContents).includes(content.contentName)
 
   return (
     <InternalPage
@@ -166,7 +166,7 @@ export default function RepoDocument() {
       header={path === "index" ? content.landingHeader : undefined}
       sidebarConfig={content.schema?.sidebar}
       internalSidebarMenu={
-        isTool()
+        isTool
           ? {
               selectedTool: content.contentName as SwitchContentName,
             }
