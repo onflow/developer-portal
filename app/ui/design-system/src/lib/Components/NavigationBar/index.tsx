@@ -1,7 +1,10 @@
 import { Transition } from "@headlessui/react"
 import { useLocation } from "@remix-run/react"
 import { Fragment, useEffect, useState } from "react"
-import { ReactComponent as FlowDocsLogo } from "../../../../images/logos/flow-docs-logo"
+import flowDocsLogoDark from "../../../../images/logos/flow-docs-logo-dark.png"
+import flowDocsLogoDark2X from "../../../../images/logos/flow-docs-logo-dark@2x.png"
+import flowDocsLogoLight from "../../../../images/logos/flow-docs-logo-light.png"
+import flowDocsLogoLight2X from "../../../../images/logos/flow-docs-logo-light@2x.png"
 import { ReactComponent as ModeDark } from "../../../../images/toggles/mode-dark"
 import { ReactComponent as ModeLight } from "../../../../images/toggles/mode-light"
 import AppLink from "../AppLink"
@@ -37,8 +40,19 @@ export function NavigationBar({
       className="z-40 flex items-center bg-white p-4 text-primary-gray-400 dark:bg-black dark:text-white lg:px-8"
     >
       <div className="flex items-center">
-        <AppLink to="/" className="py-2 hover:opacity-75">
-          <FlowDocsLogo className="shrink-0" />
+        <AppLink to="/" className="mr-4 w-full py-2 hover:opacity-75">
+          <img
+            src={flowDocsLogoLight}
+            srcSet={`${flowDocsLogoLight}, ${flowDocsLogoLight2X} 2x`}
+            alt="Flow Developers"
+            className="hidden w-full dark:block"
+          />
+          <img
+            src={flowDocsLogoDark}
+            srcSet={`${flowDocsLogoDark}, ${flowDocsLogoDark2X} 2x`}
+            alt="Flow Developers"
+            className="block w-full dark:hidden"
+          />
         </AppLink>
       </div>
       <div className="mt-1 flex flex-1 justify-end">
@@ -49,7 +63,7 @@ export function NavigationBar({
         )}
         <DesktopMenu menuItems={menuItems} />
         <ul className="flex items-center">
-          <li className="flex items-center whitespace-nowrap border-primary-gray-100 pl-4 dark:border-primary-gray-400 md:border-l">
+          <li className="flex items-center whitespace-nowrap border-l border-primary-gray-100 pl-4 dark:border-primary-gray-400">
             <button
               type="button"
               onClick={() => onDarkModeToggle()}
@@ -59,7 +73,7 @@ export function NavigationBar({
               <ModeLight className="hidden dark:block dark:text-[#FFE68D] dark:hover:text-white" />
             </button>
           </li>
-          <li className="pl-4 md:hidden">
+          <li className="main-nav-mobile-menu-toggle pl-4">
             <MobileMenuToggleButton
               isOpen={isMobileNavOpen}
               onOpenChanged={(open) => setMobileNavOpen(open)}
