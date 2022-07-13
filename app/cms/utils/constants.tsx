@@ -50,3 +50,8 @@ export const HIGHLIGHT_LANGUAGES = [
   "wasm",
   "yaml",
 ]
+
+export const DISCORD_URL = "https://discord.gg/flow"
+// TODO, move this to config secrets
+export const DISCORD_BOT_TOKEN =
+  "OTk2ODM1OTg4MjIxNDY0NjU2.GF_Zln.vQH2hgx-PKC4bKQeVWqsJ0-V6C0h0piSi7bh0c"
