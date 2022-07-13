@@ -1,26 +1,4 @@
-import { getRepoVersions, parseVersions } from "./versions.server"
-
-test("version", async () => {
-  const result = await getRepoVersions("onflow", "mock-developer-doc")
-  expect(result).toMatchInlineSnapshot(`
-    Object {
-      "versions": Array [
-        "2.0.0",
-        "1.1.0",
-      ],
-    }
-  `)
-})
-
-test("errors", async () => {
-  const result = await getRepoVersions("onflow", "cadence")
-  expect(result).toMatchInlineSnapshot(`
-    Object {
-      "error": [HttpError: Not Found],
-      "versions": null,
-    }
-  `)
-})
+import { parseVersions } from "./versions.server"
 
 test(`parseVersions with valid input`, () => {
   expect(parseVersions(["1.2.3", "4.5.6"])).toMatchInlineSnapshot(`
