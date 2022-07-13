@@ -135,6 +135,12 @@ export type ContentSpec = {
   displayName: string
   schema?: RepoSchema
   landingHeader?: InternalLandingHeaderProps
+
+  /**
+   * When true, the content will be considered "trusted" and will bypass
+   * the sanitization process.
+   */
+  isTrusted: boolean
 }
 
 function getBasePath(name: ContentName) {
@@ -160,6 +166,9 @@ const getRepoName = (name: ContentName) => {
 }
 
 const allRoutes: ContentName[] = [...FIRST_ROUTES, ...SECOND_ROUTES]
+
+const trustedRepositories = [...allRoutes]
+
 export const contentSpecMap = allRoutes.reduce(
   (accum, name) => ({
     ...accum,
@@ -172,6 +181,7 @@ export const contentSpecMap = allRoutes.reduce(
       displayName: displayNames[name] || capitalCase(name),
       schema: schemas[name],
       landingHeader: landingHeaders[name],
+      isTrusted: trustedRepositories.includes(name),
     },
   }),
   {} as Record<ContentName, ContentSpec>
