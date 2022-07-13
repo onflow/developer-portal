@@ -1,8 +1,9 @@
 import { ReactComponent as PlayCircle } from "../../../../images/action/play-circle"
+import { ReactComponent as TimeIcon } from "../../../../images/content/date"
+import { ReactComponent as ExternalLinkIcon } from "../../../../images/content/external-link"
+import AppLink from "../AppLink"
 import Tag from "../Tag"
 import { LargeVideoCardProps } from "./LargeVideoCard"
-import { ReactComponent as ExternalLinkIcon } from "../../../../images/content/external-link"
-import { ReactComponent as TimeIcon } from "../../../../images/content/date"
 
 export interface SmallVideoCardProps extends LargeVideoCardProps {
   tags: string[]
@@ -24,8 +25,8 @@ export function SmallVideoCard({
   }
 
   return (
-    <a
-      href={link}
+    <AppLink
+      to={link}
       className="flex gap-4 rounded-xl bg-white p-6 transition ease-in hover:shadow-2xl dark:bg-primary-gray-dark dark:hover:shadow-2xl-dark"
     >
       <div className="aspect-square h-min rounded bg-gradient-to-br from-fuchsia-200 to-cyan-200 p-7">
@@ -54,6 +55,6 @@ export function SmallVideoCard({
           </div>
         </div>
       </div>
-    </a>
+    </AppLink>
   )
 }

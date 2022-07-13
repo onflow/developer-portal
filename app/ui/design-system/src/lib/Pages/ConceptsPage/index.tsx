@@ -19,6 +19,7 @@ import PageSection from "../shared/PageSection"
 import PageSections from "../shared/PageSections"
 
 export interface ConceptsPageProps {
+  editPageUrl?: string
   landingHeaderItems: LandingHeaderProps
   featureLinkBlockItems: [FeatureLinkBlockProps, FeatureLinkBlockProps]
   toolCardItems: [
@@ -34,6 +35,7 @@ export interface ConceptsPageProps {
 }
 
 export function ConceptsPage({
+  editPageUrl,
   landingHeaderItems,
   featureLinkBlockItems,
   toolCardItems,
@@ -45,6 +47,7 @@ export function ConceptsPage({
       <PageSections>
         <PageSection className="pt-0">
           <LandingHeader
+            editPageUrl={editPageUrl}
             title={landingHeaderItems.title}
             buttonText={landingHeaderItems.buttonText}
             buttonUrl={landingHeaderItems.buttonUrl}
@@ -79,6 +82,7 @@ export function ConceptsPage({
               className="w-full cursor-pointer"
               variant="primary"
               rightIcon="right"
+              href="/tools"
             >
               View all Tools
             </ButtonLink>

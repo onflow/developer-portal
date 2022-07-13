@@ -1,6 +1,7 @@
 import { Transition } from "@headlessui/react"
 import clsx from "clsx"
-import { useCallback, useRef, useState } from "react"
+import { useCallback, useRef, useState, useEffect } from "react"
+import { useLocation } from "react-router"
 import {
   InternalLandingHeader,
   InternalLandingHeaderProps,
@@ -91,8 +92,17 @@ export function InternalPage({
   }, [subnavRef, setSubnavRect])
   useResizeObserver(subnavRef, resizeObserverCallback)
 
+  const contentRef = useRef<HTMLDivElement>(null)
+  const { pathname } = useLocation()
+
+  useEffect(() => {
+    if (contentRef.current) {
+      contentRef.current.scrollIntoView(true)
+    }
+  }, [pathname])
+
   return (
-    <div className="flex flex-col">
+    <div className="flex flex-col pb-16">
       <div className="sticky top-0 z-20" ref={subnavRef}>
         <InternalSubnav
           isSidebarOpen={isMobileSidebarOpen}
@@ -104,9 +114,8 @@ export function InternalPage({
       {header && <InternalLandingHeader {...header} />}
       {sidebarConfig && (
         <Transition
-          unmount={false}
           as="div"
-          className="fixed left-0 right-0 bottom-0 z-40 bg-white dark:bg-black md:hidden"
+          className="fixed bottom-0 left-0 right-0 z-40 bg-white dark:bg-black md:hidden"
           style={{
             top: subnavRect ? subnavRect.top : 0,
           }}
@@ -155,9 +164,10 @@ export function InternalPage({
           </>
         )}
         <main
-          className={clsx("flex max-w-full shrink grow-0 flex-row-reverse", {
+          className={clsx("flex max-w-full shrink-0 grow flex-row-reverse", {
             "md:max-w-[calc(100%_-_300px)]": sidebarConfig,
           })}
+          ref={contentRef}
         >
           {toc && (
             <div className="hidden flex-none md:flex md:w-1/4">
@@ -173,7 +183,7 @@ export function InternalPage({
             </div>
           )}
           <div
-            className={clsx("w-full flex-none p-8 pl-16", {
+            className={clsx("w-full flex-none p-8 pl-16 pb-80", {
               "md:w-3/4": !!toc,
             })}
           >

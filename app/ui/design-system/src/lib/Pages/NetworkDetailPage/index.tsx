@@ -10,6 +10,7 @@ import {
   SporksCard,
   TabMenu,
 } from "../../Components"
+import AppLink from "../../Components/AppLink"
 import { FeaturedArticle } from "../../Components/FeaturedArticleSlider"
 import { HeaderWithLink } from "../../Components/HeaderWithLink"
 import { Article, StatuspageApiResponse } from "../../interfaces"
@@ -50,12 +51,12 @@ const NetworkDetailPage = ({
       <PageSections divided={false}>
         <PageSection>
           <div className="container relative">
-            <a
-              href="/network"
+            <AppLink
+              to="/network"
               className="absolute top-[110px] right-0 flex max-w-fit text-primary-blue hover:opacity-75 dark:text-blue-dark md:right-auto md:top-0 md:left-0 md:py-6"
             >
               <ChevronLeftIcon /> Network
-            </a>
+            </AppLink>
           </div>
           <TabMenu tabs={tabs} onTabChange={setSelectedNetworkIndex} centered />
           <div className="text-h3 md:text-h1 mt-16 mb-14 pl-4 md:text-center md:text-5xl">

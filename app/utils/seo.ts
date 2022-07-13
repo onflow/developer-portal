@@ -1,12 +1,12 @@
+import { DEFAULT_SITE_DESCRIPTION, DEFAULT_SITE_TITLE } from "~/constants"
+
 export function getSocialMetas({
   url,
-  title = "Welcome to the Flow Developer Portal (Preview)",
-  description = "Your resource for everything you'll need to build in Flow",
-  origin,
-  image,
+  title = DEFAULT_SITE_TITLE,
+  description = DEFAULT_SITE_DESCRIPTION,
+  image = "",
   keywords = "",
 }: {
-  origin: string
   image?: string
   url: string
   title?: string
@@ -14,7 +14,7 @@ export function getSocialMetas({
   keywords?: string
 }) {
   return {
-    title,
+    title: getMetaTitle(title),
     description,
     keywords,
     image,
@@ -31,3 +31,6 @@ export function getSocialMetas({
     "twitter:alt": title,
   }
 }
+
+export const getMetaTitle = (title?: string) =>
+  [title, "Flow Developer Portal"].filter(Boolean).join(" | ")

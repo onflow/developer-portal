@@ -1,6 +1,4 @@
 .mdx-content {
-  overflow: hidden;
-
   p + h1 {
     margin-top: 4rem !important;
   }

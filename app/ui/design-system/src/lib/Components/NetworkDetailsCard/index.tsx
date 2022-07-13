@@ -1,6 +1,6 @@
 import { ReactComponent as ChevronRightIcon } from "../../../../images/arrows/chevron-right"
 import { ReactComponent as RssIcon } from "../../../../images/content/rss"
-import { Link } from "../Link"
+import { InternalContentLink } from "../InternalContentLink"
 
 export type NetworkDetailsCardProps = {
   status: "Under Maintenance" | "Healthy"
@@ -39,8 +39,9 @@ const NetworkDetailsCard = ({
             Status
           </p>
           <span>
-            {/* @ts-ignore */}
-            <Link href={statusLink}>{status}</Link>
+            <InternalContentLink href={statusLink}>
+              {status}
+            </InternalContentLink>
           </span>
         </div>
         <div className="flex flex-col px-8 py-4">
@@ -60,11 +61,14 @@ const NetworkDetailsCard = ({
             RSS Feed
           </p>
           {/* @ts-ignore */}
-          <Link href={rssFeed} className="flex items-center text-sm">
+          <InternalContentLink
+            href={rssFeed}
+            className="flex items-center text-sm hover:opacity-75"
+          >
             <RssIcon />
             <span className="mx-2 mt-1">RSS Feed</span>
             <ChevronRightIcon />
-          </Link>
+          </InternalContentLink>
         </div>
       </div>
     </div>

@@ -97,4 +97,4 @@ If deploys fail to go out, and the github actions hang indefinitely, a workaroun
    ```
 
 1. Re-run the build by going to the latest commit on the appropriate branch, clicking "Re-run jobs", and then "Re-run failed jobs"
-2. Build should succeed
+1. Build should succeed

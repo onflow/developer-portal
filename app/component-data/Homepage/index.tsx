@@ -5,12 +5,13 @@ import {
   LinkCard2ColumnProps,
   LinkCard3ColumnItems,
 } from "~/ui/design-system/src"
-import FlowIcon from "../../ui/design-system/images/logos/flow-icon.svg"
+import PlaygroundIcon from "../../ui/design-system/images/misc/playground-default.png"
+
 const homepageStartProjectData: LinkCard2ColumnProps = {
   buttonText: "Get started",
   buttonUrl: "/getting-started",
-  description: `Building on Flow is easy. 
-      Start building now on web3 with the power of resource-oriented programming, multi-node architecture, 
+  description: `Building on Flow is easy.
+      Start building now on web3 with the power of resource-oriented programming, multi-node architecture,
       and a host of other features and tooling to make your dapp development easy and efficient.`,
   title: "Start Your Project",
   tags: ["onflow"],
@@ -19,25 +20,25 @@ const homepageStartProjectData: LinkCard2ColumnProps = {
       title: "Kitty Items",
       description:
         "A full stack example NFT storefront and marketplace built with the latest standards and tooling on Flow. Get it up and running in a few minutes.",
-      href: "https://docs.onflow.org/kitty-items/",
+      href: "/learn/kitty-items/",
       icon: "https://kitty-items-flow-testnet-prod.herokuapp.com/images/kitty-items-logo.svg",
     },
     {
       title: "Mint NFTs on the Playground with Cadence",
       description:
         "A series of tutorials that explain how to build your first NFT (Non-Fungible Token).",
-      icon: FlowIcon,
+      icon: PlaygroundIcon,
       links: [
         {
-          href: "https://docs.onflow.org/cadence/tutorial/02-hello-world/",
+          href: "/learn/cadence/tutorial/02-hello-world/",
           title: "Hello, World!",
         },
         {
-          href: "https://docs.onflow.org/cadence/tutorial/05-non-fungible-tokens-1/",
+          href: "/learn/cadence/tutorial/05-non-fungible-tokens-1/",
           title: "NFTs",
         },
         {
-          href: "https://docs.onflow.org/cadence/tutorial/07-marketplace-setup/",
+          href: "/learn/cadence/tutorial/07-marketplace-setup/",
           title: "Marketplaces",
         },
       ],
@@ -59,12 +60,12 @@ const homepageThreeColumnData: LinkCard3ColumnItems = [
       },
       {
         title: "Get started on testnet",
-        href: "https://docs.onflow.org/fcl/tutorials/flow-app-quickstart/",
+        href: "/tools/fcl-js/tutorials/flow-app-quickstart/",
         tags: ["javascript"],
       },
       {
         title: "Get started on the playground",
-        href: "https://docs.onflow.org/cadence/tutorial/02-hello-world/",
+        href: "/cadence/tutorial/02-hello-world/",
         tags: ["playground"],
       },
       {
@@ -80,22 +81,22 @@ const homepageThreeColumnData: LinkCard3ColumnItems = [
     links: [
       {
         title: "Anatomy of a Flow dapp",
-        href: "https://docs.onflow.org/dapp-development/flow-dapp-anatomy/",
+        href: "/flow/dapp-development/flow-dapp-anatomy/",
         tags: ["overview"],
       },
       {
         title: "Flow key concepts",
-        href: "https://docs.onflow.org/concepts/accounts-and-keys/",
+        href: "/flow/concepts/accounts-and-keys/",
         tags: ["accounts", "signing"],
       },
       {
         title: "Deploy your project",
-        href: "https://docs.onflow.org/flow-cli/deploy-project-contracts/",
+        href: "tools/flow-cli/deploy-project-contracts/",
         tags: ["cli", "tutorial"],
       },
       {
         title: "View more learning resources",
-        href: "/coming-soon", // TODO: We need to expose this footer once the /learn page is production ready
+        href: "/learn", // TODO: We need to expose this footer once the /learn page is production ready
       },
     ],
   },
@@ -112,7 +113,7 @@ const homepageThreeColumnData: LinkCard3ColumnItems = [
       },
       {
         title: "Introduction to Cadence",
-        href: "https://docs.onflow.org/cadence/",
+        href: "/cadence/",
         tags: ["overview"],
       },
       {
@@ -122,7 +123,7 @@ const homepageThreeColumnData: LinkCard3ColumnItems = [
       },
       {
         title: "View all Cadence content",
-        href: "https://docs.onflow.org/cadence/",
+        href: "/cadence/",
       },
     ],
   },

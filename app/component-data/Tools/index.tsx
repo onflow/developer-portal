@@ -5,7 +5,7 @@ import ToolFclIconSrc from "../../ui/design-system/images/tools/tool-fcl.svg"
 import ToolTestingIconSrc from "../../ui/design-system/images/tools/tool-testing.svg"
 import ToolVsCodeIconSrc from "../../ui/design-system/images/tools/tool-vscode.svg"
 import ToolPortIconSrc from "../../ui/design-system/images/tools/tool-port.svg"
-import CodeIcon from "../../ui/design-system/images/content/code.svg"
+import CodeIcon from "../../ui/design-system/images/tools/tool-default.svg"
 
 // Flow Dev Tools
 const cliTool: SDKCardProps = {
@@ -13,7 +13,7 @@ const cliTool: SDKCardProps = {
   authorIcon: "https://avatars.githubusercontent.com/u/62387156?s=64&v=4",
   authorName: "onflow",
   tags: ["documentation", "active", "required"],
-  link: "https://docs.onflow.org/flow-cli/",
+  link: "/tools/flow-cli/",
   stars: 171,
   iconSrc: ToolCliIconSrc,
   description:
@@ -25,7 +25,7 @@ const emulatorTool: SDKCardProps = {
   authorIcon: "https://avatars.githubusercontent.com/u/62387156?s=64&v=4",
   authorName: "onflow",
   tags: ["documentation", "active", "local-dev"],
-  link: "https://docs.onflow.org/emulator/",
+  link: "/tools/emulator/",
   stars: 62,
   iconSrc: ToolEmulatorIconSrc,
   description:
@@ -37,7 +37,7 @@ const vsCodeTool: SDKCardProps = {
   authorIcon: "https://avatars.githubusercontent.com/u/62387156?s=64&v=4",
   authorName: "onflow",
   tags: ["documentation", "active", "local-dev"],
-  link: "https://github.com/onflow/vscode-cadence",
+  link: "/tools/vscode-cadence",
   stars: 33,
   iconSrc: ToolVsCodeIconSrc,
   description:
@@ -83,7 +83,7 @@ const jsTestingLibTool: SDKCardProps = {
   authorIcon: "https://avatars.githubusercontent.com/u/62387156?s=64&v=4",
   authorName: "onflow",
   tags: ["documentation", "active", "local-dev"],
-  link: "https://docs.onflow.org/flow-js-testing/",
+  link: "/tools/flow-js-testing/",
   stars: 38,
   iconSrc: ToolTestingIconSrc,
   description:
@@ -107,18 +107,19 @@ const faucetTool: SDKCardProps = {
   authorIcon: "https://avatars.githubusercontent.com/u/62387156?s=64&v=4",
   authorName: "onflow",
   tags: ["service", "testnet"],
-  link: "https://github.com/onflow/flow-cadut",
+  link: "https://testnet-faucet.onflow.org",
   stars: 13,
   iconSrc: "https://testnet-faucet.onflow.org/testnet-faucet-icon.svg",
   description: "Create and fund your testnet account with testnet FLOW.",
 }
+
 // SDKs
 const fclSDK: SDKCardProps = {
   title: "Javascript SDK (FCL)",
   authorIcon: "https://avatars.githubusercontent.com/u/62387156?s=64&v=4",
   authorName: "onflow",
   tags: ["documentation", "active"],
-  link: "https://github.com/onflow/fcl-js",
+  link: "/tools/fcl-js",
   stars: 268,
   iconSrc: ToolFclIconSrc,
 }
@@ -128,7 +129,7 @@ const goSDK: SDKCardProps = {
   authorIcon: "https://avatars.githubusercontent.com/u/62387156?s=64&v=4",
   authorName: "onflow",
   tags: ["documentation", "active"],
-  link: "https://github.com/onflow/flow-go-sdk",
+  link: "/tools/flow-go-sdk",
   stars: 186,
   iconSrc:
     "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/go/go-original.svg",
@@ -150,7 +151,7 @@ const httpSDK: SDKCardProps = {
   authorIcon: "https://avatars.githubusercontent.com/u/62387156?s=64&v=4",
   authorName: "onflow",
   tags: ["active", "documentation"],
-  link: "https://docs.onflow.org/http-api/",
+  link: "/http-api/",
   stars: 417,
   iconSrc:
     "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/fastapi/fastapi-original.svg",

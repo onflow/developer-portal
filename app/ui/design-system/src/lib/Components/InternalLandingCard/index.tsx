@@ -3,6 +3,7 @@ import { ReactComponent as ExternalLinkIcon } from "../../../../images/content/e
 import RadarImg from "../../../../images/misc/radar.png"
 import RadarImg2x from "../../../../images/misc/radar@2x.png"
 import RingsImg from "../../../../images/misc/rings.png"
+import AppLink from "../AppLink"
 
 export type InternalLandingCardProps = {
   title: string
@@ -18,14 +19,14 @@ export function InternalLandingCard({
   href,
 }: InternalLandingCardProps) {
   return (
-    <a
+    <AppLink
       className={clsx(
         "group flex max-w-[30rem] cursor-pointer items-center gap-4 rounded-2xl px-6 py-8 md:px-8",
         isPrimary
           ? "internal-landing-card-green-bg text-black dark:text-white"
           : "bg-primary-gray-400 text-white"
       )}
-      href={href}
+      to={href}
     >
       <div className="shrink-0">
         <div className="w-[54px] md:w-auto">
@@ -67,6 +68,6 @@ export function InternalLandingCard({
       <div className="ml-auto flex h-full self-start group-hover:opacity-75">
         <ExternalLinkIcon />
       </div>
-    </a>
+    </AppLink>
   )
 }

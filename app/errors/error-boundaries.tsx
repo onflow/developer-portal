@@ -1,4 +1,4 @@
-import { Link } from "@remix-run/react"
+import AppLink from "~/ui/design-system/src/lib/Components/AppLink"
 import { ErrorPage } from "~/ui/design-system/src/lib/Components/ErrorPage"
 
 export function InternalErrorBoundary({ error }: { error: Error }) {
@@ -18,9 +18,9 @@ export function InternalErrorBoundary({ error }: { error: Error }) {
         )
       }
       actions={
-        <Link className="underline" to="/">
+        <AppLink className="underline" to="/">
           Go home
-        </Link>
+        </AppLink>
       }
     />
   )

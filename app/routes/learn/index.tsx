@@ -14,6 +14,7 @@ export const loader: LoaderFunction = () => {
 export default function Page() {
   return (
     <LearnPage
+      editPageUrl="https://github.com/onflow/next-docs-v1/blob/main/app/routes/learn/data.ts"
       videos={data.videos}
       nftTutorials={data.nftTutorials}
       cadenceHref={data.cadenceHref}

@@ -1,6 +1,6 @@
 import clsx from "clsx"
-import ExternalLinkIcon from "../Link/ExternalLinkIcon"
-import { isLinkExternal } from "../Link/isLinkExternal"
+import AppLink, { isLinkExternal } from "../AppLink"
+import ExternalLinkIcon from "../InternalContentLink/ExternalLinkIcon"
 
 export type MenuItemBase = { title: string; className?: string }
 export type NavigationBarMenuItemLinkProps = MenuItemBase & { href: string }
@@ -13,14 +13,12 @@ export function MenuItemLink({
   const isExternal = isLinkExternal(href)
 
   return (
-    <a
+    <AppLink
       className={clsx(
         className,
         "inline-flex items-center whitespace-nowrap stroke-black text-primary-blue hover:opacity-75 dark:border-blue-dark dark:stroke-white dark:text-blue-dark"
       )}
-      href={href}
-      rel={isExternal ? "noreferrer" : undefined}
-      target={isExternal ? "blank" : undefined}
+      to={href}
     >
       <span>{title}</span>
       {isExternal && (
@@ -28,6 +26,6 @@ export function MenuItemLink({
           <ExternalLinkIcon />
         </span>
       )}
-    </a>
+    </AppLink>
   )
 }

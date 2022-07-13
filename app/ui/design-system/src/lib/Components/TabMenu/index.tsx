@@ -1,6 +1,7 @@
 import { useLocation } from "@remix-run/react"
 import clsx from "clsx"
 import { useState } from "react"
+import AppLink from "../AppLink"
 
 type Tab = {
   name: string
@@ -47,7 +48,7 @@ const TabMenu = ({
 
         if (link) {
           return (
-            <a key={name} href={link} className={tabClasses}>
+            <AppLink key={name} to={link} className={tabClasses}>
               <span
                 className={clsx(
                   "whitespace-nowrap px-4 text-sm md:px-6 md:text-base",
@@ -57,7 +58,7 @@ const TabMenu = ({
                 {name}
               </span>
               <div className={indicatorClasses} />
-            </a>
+            </AppLink>
           )
         }
 

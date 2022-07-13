@@ -1,7 +1,11 @@
 import { capitalCase } from "change-case"
 import { useMemo } from "react"
-import { displayNames, isFlowContent } from "~/constants/repos"
-import { flowContentSectionMap } from "~/constants/repos/contents-structure"
+import { displayNames } from "~/constants/repos"
+import {
+  FIRST_ROUTE_MAP,
+  isSecondRoute,
+  SecondRoute,
+} from "~/constants/repos/contents-structure"
 import { InternalSidebarSectionItem } from "../../Components/InternalSidebar"
 
 export type UseInternalBreadcrumbsOptions = {
@@ -41,17 +45,18 @@ export const useInternalBreadcrumbs = ({
 
     var basePath = `${rootUrl}${contentPath}`
 
-    if (isFlowContent(contentPath)) {
-      const sectionName = flowContentSectionMap[contentPath] ?? "flow"
+    if (isSecondRoute(contentPath)) {
+      const firstRouteName = FIRST_ROUTE_MAP[contentPath as SecondRoute]!
+
       breadcrumbs.push({
-        name: displayNames[sectionName] || capitalCase(sectionName),
-        href: `${rootUrl}${sectionName}`,
+        name: displayNames[firstRouteName] || capitalCase(firstRouteName),
+        href: `${rootUrl}${firstRouteName}`,
       })
       breadcrumbs.push({
         name: contentDisplayName,
-        href: `${rootUrl}${sectionName}/${contentPath}`,
+        href: `${rootUrl}${firstRouteName}/${contentPath}`,
       })
-      basePath = `${rootUrl}${sectionName}/${contentPath}`
+      basePath = `${rootUrl}${firstRouteName}/${contentPath}`
     } else {
       breadcrumbs.push({ name: contentDisplayName, href: basePath })
     }

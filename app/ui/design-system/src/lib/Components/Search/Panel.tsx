@@ -33,16 +33,19 @@ export function Panel({
   return (
     // @ts-expect-error
     <div
-      className={clsx("flex h-full flex-1 overflow-y-auto p-0 md:p-6", {
-        "opacity-50": autocompleteState.status === "stalled",
-      })}
+      className={clsx(
+        "relative -top-1 flex h-full flex-1 overflow-y-auto rounded-b-md bg-white p-0 dark:bg-black md:p-6",
+        {
+          "opacity-50": autocompleteState.status === "stalled",
+        }
+      )}
       {...autocomplete.getPanelProps({})}
     >
       {query && query?.length > 0 ? (
         <>
           {items.length > 0 && (
             <ul
-              className="divide-y divide-primary-gray-100 dark:divide-primary-gray-400"
+              className="grow divide-y divide-primary-gray-100 dark:divide-primary-gray-400"
               {...autocomplete.getListProps()}
             >
               {items.map((item: HitType, index: number) => {

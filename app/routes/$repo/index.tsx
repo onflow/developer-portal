@@ -1,12 +1,7 @@
 import { ActionFunction, redirect } from "@remix-run/node"
 import invariant from "tiny-invariant"
 
-export {
-  CatchBoundary,
-  InternalPageRoute as default,
-} from "~/cms/internal-page"
-
-export { loader } from "./$"
+export { default, CatchBoundary, loader } from "./$"
 
 export const action: ActionFunction = async ({ params, request }) => {
   const repo = params.repo

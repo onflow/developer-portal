@@ -1,6 +1,9 @@
 import { ReactComponent as StarIcon } from "../../../../images/action/star"
-import CodeIconSrc from "../../../../images/content/code.svg"
-import CodeIconLightSrc from "../../../../images/content/code-light.svg"
+import {
+  default as CodeIconLightSrc,
+  default as CodeIconSrc,
+} from "../../../../images/tools/tool-default.svg"
+import AppLink from "../AppLink"
 import Tag from "../Tag"
 
 export type ToolCardProps = {
@@ -27,9 +30,9 @@ export function ToolCard({
   title,
 }: ToolCardProps) {
   return (
-    <a
+    <AppLink
       className="flex gap-4 rounded-lg bg-white px-8 py-6 hover:shadow-2xl dark:bg-primary-gray-dark dark:text-white dark:hover:shadow-2xl-dark"
-      href={link}
+      to={link}
     >
       <div className="shrink-0 grow-0 sm:basis-10 md:basis-16">
         <img
@@ -82,6 +85,6 @@ export function ToolCard({
           {description}
         </div>
       </div>
-    </a>
+    </AppLink>
   )
 }

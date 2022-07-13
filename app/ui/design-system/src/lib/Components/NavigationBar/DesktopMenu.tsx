@@ -7,7 +7,7 @@ export type DesktopMenuProps = {
 
 export function DesktopMenu({ menuItems }: DesktopMenuProps) {
   return (
-    <ul className="hidden items-center md:flex">
+    <ul className="main-nav-desktop-menu hidden items-center">
       {menuItems.map(({ divider, ...menuItem }, index) => (
         <DesktopMenuItem key={index} divider={divider === true} {...menuItem} />
       ))}

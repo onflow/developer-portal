@@ -1,0 +1,184 @@
+{
+  "$schema": "../repo-schema.json",
+  "sidebar": {
+    "sections": [
+      {
+        "title": "Flow CLI",
+        "items": [
+          {
+            "label": "Introduction",
+            "href": "flow-cli/index"
+          },
+          {
+            "label": "Installation",
+            "href": "flow-cli/install"
+          }
+        ]
+      },
+      {
+        "title": "Keys",
+        "items": [
+          {
+            "label": "Generate Keys",
+            "href": "flow-cli/generate-keys"
+          },
+          {
+            "label": "Decode Keys",
+            "href": "flow-cli/decode-keys"
+          }
+        ]
+      },
+      {
+        "title": "Accounts",
+        "items": [
+          {
+            "label": "Get an Account",
+            "href": "flow-cli/get-accounts"
+          },
+          {
+            "label": "Create an Account",
+            "href": "flow-cli/create-accounts"
+          },
+          {
+            "label": "Deploy a Contract",
+            "href": "flow-cli/account-add-contract"
+          },
+          {
+            "label": "Update a Contract",
+            "href": "flow-cli/account-update-contract"
+          },
+          {
+            "label": "Remove a Contract",
+            "href": "flow-cli/account-remove-contract"
+          },
+          {
+            "label": "Staking Info",
+            "href": "flow-cli/account-staking-info"
+          }
+        ]
+      },
+      {
+        "title": "Deployment",
+        "items": [
+          {
+            "label": "Start Emulator",
+            "href": "flow-cli/start-emulator"
+          },
+          {
+            "label": "Add Project Contracts",
+            "href": "flow-cli/project-contracts"
+          },
+          {
+            "label": "Deploy a Project",
+            "href": "flow-cli/deploy-project-contracts"
+          }
+        ]
+      },
+      {
+        "title": "Scripts",
+        "items": [
+          {
+            "label": "Execute a Script",
+            "href": "flow-cli/execute-scripts"
+          }
+        ]
+      },
+      {
+        "title": "Transactions",
+        "items": [
+          {
+            "label": "Send a Transaction",
+            "href": "flow-cli/send-transactions"
+          },
+          {
+            "label": "Get a Transaction",
+            "href": "flow-cli/get-transactions"
+          },
+          {
+            "label": "Build a Transaction",
+            "href": "flow-cli/build-transactions"
+          },
+          {
+            "label": "Build a Complex Transaction",
+            "href": "flow-cli/complex-transactions"
+          },
+          {
+            "label": "Sign a Transaction",
+            "href": "flow-cli/send-transactions"
+          },
+          {
+            "label": "Send a Signed Transaction",
+            "href": "flow-cli/sign-transaction"
+          },
+          {
+            "label": "Decode a Transaction",
+            "href": "flow-cli/decode-transactions"
+          }
+        ]
+      },
+      {
+        "title": "flow.json",
+        "items": [
+          {
+            "label": "Initialize Configuration",
+            "href": "flow-cli/initialize-configuration"
+          },
+          {
+            "label": "Configuration",
+            "href": "flow-cli/configuration"
+          },
+          {
+            "label": "Manage Configuration",
+            "href": "flow-cli/manage-configuration"
+          },
+          {
+            "label": "Security",
+            "href": "flow-cli/security"
+          }
+        ]
+      },
+      {
+        "title": "Get Flow Data",
+        "items": [
+          {
+            "label": "Get Blocks",
+            "href": "flow-cli/get-blocks"
+          },
+          {
+            "label": "Get Events",
+            "href": "flow-cli/get-events"
+          },
+          {
+            "label": "Get Collections",
+            "href": "flow-cli/get-collections"
+          },
+          {
+            "label": "Get Network Status",
+            "href": "flow-cli/get-status"
+          }
+        ]
+      },
+      {
+        "title": "Utils",
+        "items": [
+          {
+            "label": "Create App",
+            "href": "flow-cli/project-app"
+          },
+          {
+            "label": "Generate Signature",
+            "href": "flow-cli/signature-generate"
+          },
+          {
+            "label": "Verify Signature",
+            "href": "flow-cli/signature-verify"
+          },
+          {
+            "label": "Snapshot Save",
+            "href": "flow-cli/snapshot-save"
+          }
+        ]
+      }
+    ]
+  }
+}

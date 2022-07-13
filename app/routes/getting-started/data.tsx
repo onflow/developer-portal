@@ -49,17 +49,17 @@ const linkCard3ColumnItems: LinkCard3ColumnProps = {
       links: [
         {
           title: "Hello, World on Flow!",
-          href: "https://docs.onflow.org/cadence/tutorial/02-hello-world/",
+          href: "/cadence/tutorial/02-hello-world/",
           tags: ["cadence", "playground"],
         },
         {
           title: "Javascript Quickstart",
-          href: "https://docs.onflow.org/fcl/tutorials/flow-app-quickstart/",
+          href: "/tools/fcl-js/tutorials/flow-app-quickstart/",
           tags: ["tutorial", "beginner"],
         },
         {
           title: "NFT Storefront & Marketplace",
-          href: "https://docs.onflow.org/kitty-items/",
+          href: "/learn/kitty-items/",
           tags: ["example", "intermediate"],
         },
         {
@@ -91,7 +91,7 @@ const linkCard3ColumnItems: LinkCard3ColumnProps = {
         },
         {
           title: "Dapp architecture",
-          href: "https://docs.onflow.org/dapp-development/DappArchitectures/",
+          href: "/flow/dapp-development/DappArchitectures/",
           tags: ["guide", "overview"],
         },
         {
@@ -101,7 +101,7 @@ const linkCard3ColumnItems: LinkCard3ColumnProps = {
         },
         {
           title: "View more learning resources",
-          href: "/coming-soon",
+          href: "/learn",
         },
       ],
     },
@@ -112,17 +112,17 @@ const linkCard3ColumnItems: LinkCard3ColumnProps = {
       links: [
         {
           title: "Get the Flow CLI",
-          href: "https://docs.onflow.org/flow-cli/install/",
+          href: "/tools/flow-cli/install/",
           tags: ["install"],
         },
         {
           title: "Create a testnet account",
-          href: "https://flow-faucet.vercel.app/",
+          href: "https://testnet-faucet.onflow.org/",
           tags: ["faucet", "create", "fund"],
         },
         {
           title: "Core contracts & standards",
-          href: "https://docs.onflow.org/core-contracts",
+          href: "/flow/core-contracts",
           tags: ["nft", "ft", "metadata"],
         },
         {
@@ -141,7 +141,7 @@ const linkCard3ColumnItems: LinkCard3ColumnProps = {
 
 const linkCard2ColumnItems: LinkCard2ColumnProps = {
   buttonText: "View Concepts",
-  buttonUrl: "https://docs.onflow.org/concepts/",
+  buttonUrl: "/flow/concepts/",
   description: `Learn the fundamental concepts that power the overall dapp experience on Flow.`,
   title: "Core Concepts",
   items: [
@@ -149,14 +149,14 @@ const linkCard2ColumnItems: LinkCard2ColumnProps = {
       title: "Cadence",
       description:
         "Cadence is a resource-oriented programming language that introduces new features to smart contract programming.",
-      href: "https://docs.onflow.org/cadence/",
+      href: "/cadence",
       icon: svgToDataUri(<CadenceIcon />),
     },
     {
       title: "Flow Client Library",
       description:
         "The Flow Client Library (FCL) JS is a package used to interact with user wallets, dapps, and the blockchain.",
-      href: "https://docs.onflow.org/fcl/",
+      href: "/tools/fcl-js",
       icon: svgToDataUri(<FCLIcon />),
     },
   ],

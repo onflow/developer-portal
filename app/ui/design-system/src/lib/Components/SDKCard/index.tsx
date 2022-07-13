@@ -1,8 +1,11 @@
 import { ReactComponent as CalendarIcon } from "../../../../images/action/date-calendar"
 import { ReactComponent as StarIcon } from "../../../../images/action/star"
 import { ReactComponent as CommitIcon } from "../../../../images/content/commit"
-import CodeIconSrc from "../../../../images/content/code.svg"
-import CodeIconLightSrc from "../../../../images/content/code-light.svg"
+import {
+  default as CodeIconLightSrc,
+  default as CodeIconSrc,
+} from "../../../../images/tools/tool-default.svg"
+import AppLink from "../AppLink"
 import Tag from "../Tag"
 
 export type SDKCardProps = {
@@ -33,9 +36,9 @@ export function SDKCard({
   description,
 }: SDKCardProps) {
   return (
-    <a
+    <AppLink
       className="flex gap-4 rounded-lg bg-white px-8 py-6 hover:shadow-2xl dark:bg-primary-gray-dark dark:text-white dark:hover:shadow-2xl-dark"
-      href={link}
+      to={link}
     >
       <div className="shrink-0 grow-0 sm:basis-10 md:basis-16">
         <img
@@ -113,6 +116,6 @@ export function SDKCard({
           </div>
         )}
       </div>
-    </a>
+    </AppLink>
   )
 }

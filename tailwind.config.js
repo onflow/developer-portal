@@ -43,7 +43,7 @@ module.exports = {
     },
     extend: {
       fontFamily: {
-        sans: ["Acumin Variable Concept", ...defaultTheme.fontFamily.sans],
+        sans: ["Acumin Pro", ...defaultTheme.fontFamily.sans],
         display: "Termina",
         mono: "IBM Plex Mono",
       },
@@ -94,6 +94,7 @@ module.exports = {
       typography: (theme) => ({
         DEFAULT: {
           css: {
+            maxWidth: "unset",
             code: {
               borderRadius: theme("borderRadius.DEFAULT"),
               borderWidth: theme("borderWidth.DEFAULT"),

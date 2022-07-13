@@ -1,0 +1,36 @@
+{
+  "$schema": "../repo-schema.json",
+  "sidebar": {
+    "sections": [
+      {
+        "title": "Tools",
+        "items": [
+          {
+            "label": "Emulator",
+            "href": "tools/flow-emulator"
+          },
+          {
+            "label": "FCL JS",
+            "href": "tools/fcl-js"
+          },
+          {
+            "label": "Flow JS Testing",
+            "href": "flow-js-testing"
+          },
+          {
+            "label": "Flow Go SDK",
+            "href": "flow-go-sdk"
+          },
+          {
+            "label": "Flow CLI",
+            "href": "tools/flow-cli"
+          },
+          {
+            "label": "VS Code Extension",
+            "href": "tools/vscode-extension"
+          }
+        ]
+      }
+    ]
+  }
+}

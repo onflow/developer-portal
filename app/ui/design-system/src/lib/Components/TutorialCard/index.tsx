@@ -3,6 +3,7 @@ import { forwardRef } from "react"
 import { ReactComponent as CalendarIcon } from "../../../../images/action/date-calendar"
 import { ReactComponent as UserIcon } from "../../../../images/arrows/user"
 import { ReactComponent as TutorialIcon } from "../../../../images/content/drafting-tools"
+import DefaultImage from "../../../../images/misc/article-default"
 import { User } from "../../interfaces"
 import Tag from "../Tag"
 
@@ -13,7 +14,7 @@ export type TutorialCardProps = {
   description: string
   lastUpdated?: string
   level?: string
-  imageUri?: string
+  imageUri?: any
   link: string
   author?: User
 }
@@ -27,17 +28,14 @@ const TutorialCard = forwardRef<HTMLAnchorElement, TutorialCardProps>(
       description,
       lastUpdated,
       level,
-      imageUri,
+      imageUri = DefaultImage,
       link,
       author,
     },
     ref
   ) => {
-    const contentClasses = clsx('flex flex-col justify-between h-full"', {
-      "pt-8 px-4 pb-4 ": !imageUri,
-      "p-4": imageUri,
-    })
     return (
+      // TODO: switch to AppLink
       <a
         ref={ref}
         href={link}
@@ -50,10 +48,10 @@ const TutorialCard = forwardRef<HTMLAnchorElement, TutorialCardProps>(
           <img
             src={imageUri}
             alt={heading}
-            className="object-cov er h-[110px]"
+            className="h-[110px] object-cover"
           />
         )}
-        <div className={contentClasses}>
+        <div className="flex h-full flex-col justify-between px-4 pt-8 pb-4">
           <div>
             <div className="text-lg font-bold md:text-xl">{heading}</div>
             <div className="my-1 inline-flex flex-wrap">

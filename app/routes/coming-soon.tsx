@@ -1,6 +1,8 @@
 import { MetaFunction } from "@remix-run/node"
-import { Link as RLink, LinkProps } from "@remix-run/react"
 import { PageBackground } from "~/ui/design-system"
+import AppLink, {
+  AppLinkProps,
+} from "~/ui/design-system/src/lib/Components/AppLink"
 import PageSection from "~/ui/design-system/src/lib/Pages/shared/PageSection"
 import PageSections from "~/ui/design-system/src/lib/Pages/shared/PageSections"
 
@@ -29,8 +31,8 @@ export default function ComingSoon() {
   )
 }
 
-const Link = (props: LinkProps) => (
-  <RLink
+const Link = (props: AppLinkProps) => (
+  <AppLink
     className="text-primary-blue hover:opacity-75 dark:border-blue-dark dark:stroke-blue-dark dark:text-blue-dark"
     {...props}
   />

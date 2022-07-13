@@ -15,22 +15,22 @@ export const sdkSection: Section = {
   links: [
     {
       title: "View all SDKs",
-      href: "https://docs.onflow.org/sdks/",
+      href: `/tools#sdks`,
     },
   ],
   title: "SDKs",
   subSections: [
     {
       title: "HTTP",
-      href: "https://docs.onflow.org/http-api/",
+      href: `/http-api`,
     },
     {
       title: "Javascript",
-      href: "https://github.com/onflow/fcl-js",
+      href: "/tools/fcl-js",
     },
     {
       title: "Go",
-      href: "https://github.com/onflow/flow-go-sdk",
+      href: "/tools/flow-go-sdk",
     },
     {
       title: "JVM",
@@ -55,19 +55,19 @@ export const toolsSection: Section = {
   subSections: [
     {
       title: "CLI",
-      href: "https://docs.onflow.org/flow-cli/",
+      href: "/tools/flow-cli/",
     },
     {
       title: "Emulator",
-      href: "https://docs.onflow.org/emulator/",
+      href: "/tools/emulator/",
+    },
+    {
+      title: "JS-Testing",
+      href: "/tools/flow-js-testing",
     },
     {
       title: "Local Dev Wallet",
       href: "https://github.com/onflow/fcl-dev-wallet",
-    },
-    {
-      title: "JS-Testing",
-      href: "https://docs.onflow.org/flow-js-testing/",
     },
     {
       title: "Event Indexer",
@@ -90,15 +90,15 @@ export const localSection: Section = {
   subSections: [
     {
       title: "Use the Flow Emulator",
-      href: "https://docs.onflow.org/flow-cli/start-emulator/",
+      href: "/tools/flow-cli/start-emulator/",
     },
     {
       title: "Configuring your local network",
-      href: "https://docs.onflow.org/flow-cli/configuration/",
+      href: "/tools/flow-cli/configuration/",
     },
     {
       title: "Cadence VS Code Extension",
-      href: "https://docs.onflow.org/vscode-extension/",
+      href: "/tools/vscode-extension/",
     },
     {
       title: "Flowser: GUI for your local network",
@@ -112,7 +112,7 @@ const liveNetworksSection: Section = {
   links: [
     {
       title: "Javascript testnet quickstart",
-      href: "https://docs.onflow.org/fcl/tutorials/flow-app-quickstart/",
+      href: "/tools/fcl-js/tutorials/flow-app-quickstart",
     },
   ],
   title: "Testnet & Mainnet",
@@ -123,7 +123,7 @@ const liveNetworksSection: Section = {
     },
     {
       title: "Mainnet Account Creation",
-      href: "https://docs.onflow.org/dapp-development/mainnet-account-setup",
+      href: "/flow/dapp-development/mainnet-account-setup",
     },
     {
       title: "Testnet Explorer",
@@ -135,7 +135,7 @@ const liveNetworksSection: Section = {
     },
     {
       title: "Wallets on Flow",
-      href: "https://docs.onflow.org/flow-token/available-wallets/",
+      href: "/flow/flow-token/available-wallets/",
     },
   ],
   icon: <TestnetIcon height="1.5em" width="1.5em" />,
@@ -146,26 +146,26 @@ const dappDevelomentSection: Section = {
   links: [
     {
       title: "View our dapp development guide",
-      href: "https://docs.onflow.org/dapp-development/",
+      href: "/flow/dapp-development/",
     },
   ],
   title: "Developing Dapps",
   subSections: [
     {
       title: "Testnet quickstart",
-      href: "https://docs.onflow.org/fcl/tutorials/flow-app-quickstart/",
+      href: "/tools/fcl-js/tutorials/flow-app-quickstart",
     },
     {
       title: "NFT Storefront & Marketplace Example",
-      href: "https://docs.onflow.org/kitty-items/",
+      href: "/learn/kitty-items",
     },
     {
       title: "Cadence Playground Tutorials",
-      href: "https://docs.onflow.org/cadence/tutorial/02-hello-world/",
+      href: "/cadence/tutorial/02-hello-world",
     },
     {
       title: "Web3 Learning Roadmap",
-      href: "https://web3-learning-roadmap.vercel.app/",
+      href: "https://web3-learning-roadmap.vercel.app",
     },
     {
       title: "Community resource list",
@@ -173,7 +173,7 @@ const dappDevelomentSection: Section = {
     },
     {
       title: "Developer quickstart",
-      href: "https://flow-partner-dev-hub.vercel.app/",
+      href: "https://flow-partner-dev-hub.vercel.app",
     },
   ],
   icon: <UsecasesIcon height="1.5em" width="1.5em" />,
@@ -183,26 +183,26 @@ const flowConceptsSection: Section = {
   links: [
     {
       title: "View technical papers",
-      href: "https://docs.onflow.org/fcl/tutorials/flow-app-quickstart/",
+      href: "https://www.onflow.org/technical-paper",
     },
   ],
   title: "Flow Fundamentals & Standards",
   subSections: [
     {
       title: "Flow Key Concepts",
-      href: "https://docs.onflow.org/concepts/",
+      href: "/flow/concepts",
     },
     {
       title: "Fungible Token Standard",
-      href: "https://docs.onflow.org/core-contracts/fungible-token/",
+      href: "flow/core-contracts/fungible-token",
     },
     {
       title: "Non Fungible Token Standard",
-      href: "https://docs.onflow.org/core-contracts/non-fungible-token/",
+      href: "/flow/core-contracts/non-fungible-token",
     },
     {
       title: "Non Fungible Token Metadata Standard",
-      href: "https://docs.onflow.org/core-contracts/nft-metadata/",
+      href: "/flow/core-contracts/nft-metadata",
     },
     {
       title: "NFT Storefront Standard",
@@ -210,7 +210,7 @@ const flowConceptsSection: Section = {
     },
     {
       title: "Flow Dapp Architecture Overview",
-      href: "https://docs.onflow.org/dapp-development/DappArchitectures/",
+      href: "/flow/dapp-development",
     },
   ],
   icon: <FundamentalsIcon height="1.5em" width="1.5em" />,
@@ -222,30 +222,30 @@ const cadenceConceptsSection: Section = {
   links: [
     {
       title: "Go to Cadence tutorials",
-      href: "https://docs.onflow.org/cadence/tutorial/02-hello-world/",
+      href: "/cadence/tutorial/02-hello-world",
     },
   ],
   title: "Cadence Fundamentals",
   subSections: [
     {
       title: "Introduction & Overview",
-      href: "https://docs.onflow.org/cadence/",
+      href: "/cadence/",
     },
     {
       title: "Language Reference",
-      href: "https://docs.onflow.org/cadence/language/",
+      href: "/cadence/language",
     },
     {
       title: "Design Patterns",
-      href: "https://docs.onflow.org/cadence/design-patterns/",
+      href: "/cadence/design-patterns",
     },
     {
       title: "Cadence Account, Keys, & Signatures",
-      href: "https://docs.onflow.org/concepts/accounts-and-keys/",
+      href: "/concepts/accounts-and-keys",
     },
     {
       title: "Solidity to Cadence",
-      href: "https://docs.onflow.org/cadence/msg-sender/",
+      href: "/cadence/msg-sender",
     },
   ],
   icon: <ConceptsIcon height="1.5em" width="1.5em" />,
@@ -266,11 +266,11 @@ const cadenceResourceSection: Section = {
     },
     {
       title: "Core contracts",
-      href: "https://docs.onflow.org/core-contracts/",
+      href: "/flow/core-contracts/",
     },
     {
       title: "Cadence tutorials",
-      href: "https://docs.onflow.org/cadence/tutorial/02-hello-world/",
+      href: "/cadence/tutorial/02-hello-world",
     },
     {
       title: "Zero to hero Cadence course",
