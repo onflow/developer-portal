@@ -46,7 +46,8 @@
     "remix-utils": "^3.3.0",
     "styled-components": "^5.3.5",
     "tiny-invariant": "^1.2.0",
-    "unist-util-visit": "^4.1.0"
+    "unist-util-visit": "^4.1.0",
+    "zod": "^3.17.3"
   },
   "devDependencies": {
     "@babel/core": "^7.18.2",
