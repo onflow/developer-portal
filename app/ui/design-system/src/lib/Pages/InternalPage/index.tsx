@@ -96,15 +96,11 @@ export function InternalPage({
   const { pathname } = useLocation()
 
   useEffect(() => {
-    if (
-      contentRef.current &&
-      !["cadence", "fcl-js"].includes(contentPath) &&
-      activePath === "index"
-    ) {
+    if (contentRef.current && !header) {
       // Only scroll on pages without a header.
       contentRef.current.scrollIntoView(true)
     }
-  }, [pathname, activePath, contentPath])
+  }, [pathname])
 
   return (
     <div className="flex flex-col pb-16">
