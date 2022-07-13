@@ -104,7 +104,7 @@ export function InternalPage({
       // Only scroll on pages without a header.
       contentRef.current.scrollIntoView(true)
     }
-  }, [pathname])
+  }, [pathname, activePath, contentPath])
 
   return (
     <div className="flex flex-col pb-16">
