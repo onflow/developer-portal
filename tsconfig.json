@@ -1,7 +1,20 @@
 {
-  "include": ["remix.env.d.ts", "**/*.ts", "**/*.tsx"],
+  "include": [
+    "remix.env.d.ts",
+    "**/*.ts",
+    "**/*.tsx"
+  ],
+  "exclude": [
+    "app/ui/design-system/**/*.stories.tsx",
+    "./cypress",
+    "./cypress.config.ts"
+  ],
   "compilerOptions": {
-    "lib": ["DOM", "DOM.Iterable", "ES2021"],
+    "lib": [
+      "DOM",
+      "DOM.Iterable",
+      "ES2021"
+    ],
     "isolatedModules": true,
     "esModuleInterop": true,
     "jsx": "react-jsx",
@@ -13,13 +26,14 @@
     "forceConsistentCasingInFileNames": true,
     "baseUrl": ".",
     "paths": {
-      "~/*": ["./app/*"]
+      "~/*": [
+        "./app/*"
+      ]
     },
     "noEmit": true,
     "skipLibCheck": true,
     "skipDefaultLibCheck": true,
     "module": "esnext",
     "noUncheckedIndexedAccess": true
-  },
-  "exclude": ["app/ui/design-system/**/*.stories.tsx", "cypress/e2e/**/*.ts"]
+  }
 }
