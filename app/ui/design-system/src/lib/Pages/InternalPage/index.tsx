@@ -96,7 +96,12 @@ export function InternalPage({
   const { pathname } = useLocation()
 
   useEffect(() => {
-    if (contentRef.current) {
+    if (
+      contentRef.current &&
+      !["cadence", "fcl-js"].includes(contentPath) &&
+      activePath === "index"
+    ) {
+      // Only scroll on pages without a header.
       contentRef.current.scrollIntoView(true)
     }
   }, [pathname])
