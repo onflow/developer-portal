@@ -21,5 +21,5 @@
     "module": "esnext",
     "noUncheckedIndexedAccess": true
   },
-  "exclude": ["app/ui/design-system/**/*.stories.tsx"]
+  "exclude": ["app/ui/design-system/**/*.stories.tsx", "cypress/e2e/**/*.ts"]
 }
