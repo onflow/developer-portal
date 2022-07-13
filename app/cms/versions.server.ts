@@ -50,6 +50,9 @@ export async function getRepoVersions(
 
     return { versions: parsed }
   } catch (er) {
-    return { versions: null, error: er as Error }
+    return {
+      versions: null,
+      error: er instanceof Error ? er : new Error(`unexpected error: ${er}`),
+    }
   }
 }
