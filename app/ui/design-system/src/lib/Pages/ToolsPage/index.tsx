@@ -10,7 +10,7 @@ import {
 } from "../../Components/ContentNavigationList"
 import ToolsImage from "../../../../images/page/tools.png"
 import { LandingPageSecondaryNav } from "../../Components/LandingPageSecondaryNav"
-import { toolsSections } from "~/constants/landingPages/toolsSectionts"
+import { toolsSections } from "~/constants/landingPages/toolsSections"
 
 export type ToolsPageProps = {
   editPageUrl?: string

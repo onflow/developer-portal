@@ -2,7 +2,6 @@ import { toc } from "mdast-util-toc"
 import { ListItem } from "mdast-util-toc/lib/contents"
 import invariant from "tiny-invariant"
 import { InternalTocProps } from "~/ui/design-system/src/lib/Components/InternalToc"
-import { isNotNull } from "~/utils/filters"
 
 import { fromMarkdown } from "mdast-util-from-markdown"
 import { frontmatterFromMarkdown } from "mdast-util-frontmatter"
@@ -10,6 +9,10 @@ import { frontmatter } from "micromark-extension-frontmatter"
 
 type HeadingList = InternalTocProps["headings"]
 type InternalTocItem = HeadingList[number]
+
+export function isNotNull<T>(value: T): value is NonNullable<T> {
+  return value != null
+}
 
 // NOTE: gets the relavent information we need to build the
 // table of contents from the mdast!
