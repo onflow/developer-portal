@@ -20,8 +20,6 @@ const headingClasses = {
   h6: "text-sm",
 }
 
-const slugger = new GithubSlugger()
-
 export function Heading({
   type = "h1",
   children,
@@ -29,7 +27,7 @@ export function Heading({
   ...props
 }: HeadingProps) {
   const text = typeof children === "string" ? children : ""
-  const anchor = slugger.slug(text)
+  const anchor = GithubSlugger.slug(text)
 
   return createElement(
     type,
