@@ -16,7 +16,7 @@ export const loader: LoaderFunction = async ({ params, request }) => {
   const path = params["*"] ?? "index"
 
   const versionId = params.versionId
-  invariant(versionId, `expected version param`)
+  invariant(versionId, `expected versionId param`)
 
   const contentSpec = getContentSpec(repo, path)
   if (!contentSpec) {
@@ -30,15 +30,17 @@ export const loader: LoaderFunction = async ({ params, request }) => {
 
   const fullPath = [`versioned_docs`, `version-${versionId}`, path].join("/")
 
-  return internalPageLoader({
+  return await internalPageLoader({
     fullPath,
     shortPath: path,
     contentSpec,
     request,
+    version: versionId,
   })
 }
 
 export const meta: MetaFunction = ({ data }) => {
+  if (!data) return {}
   const typedData = data as InternalPageLoaderData
   const title = typedData.page.frontmatter.title ?? `Untitled`
 

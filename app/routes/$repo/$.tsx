@@ -1,5 +1,5 @@
 import { json, LoaderFunction, MetaFunction, redirect } from "@remix-run/node"
-import { useCatch, useLoaderData, useLocation } from "@remix-run/react"
+import { Form, useCatch, useLoaderData, useLocation } from "@remix-run/react"
 import { Params } from "react-router"
 import invariant from "tiny-invariant"
 import {
@@ -127,7 +127,7 @@ export const loader: LoaderFunction = async ({
 }
 
 export default function RepoDocument() {
-  const { content, path, page, versions } =
+  const { content, path, page, ...data } =
     useLoaderData<InternalPageLoaderData>()
   const MDXContent = useMdxComponent(page)
 
@@ -142,6 +142,26 @@ export default function RepoDocument() {
 
   return (
     <>
+      {data.versions ? (
+        <Form method="post" action={`/${content.repoName}?index`}>
+          <div className="flex">
+            <select
+              defaultValue={data.selectedVersion}
+              name="version"
+              className="bg-black"
+            >
+              {data.versions.map((version) => (
+                <option key={version} value={version}>
+                  {version}
+                </option>
+              ))}
+            </select>
+            <button type="submit" className="border border-gray-500 px-3">
+              Go
+            </button>
+          </div>
+        </Form>
+      ) : null}
       <InternalPage
         activePath={path}
         contentDisplayName={content.displayName}
@@ -160,7 +180,6 @@ export default function RepoDocument() {
       >
         <MDXContent />
       </InternalPage>
-      versions={JSON.stringify(versions)}
     </>
   )
 }

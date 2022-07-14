@@ -23,11 +23,13 @@ export const internalPageLoader = async ({
   shortPath,
   fullPath,
   request,
+  version,
 }: {
   contentSpec: ContentSpec
   shortPath: string
   fullPath: string
   request: Request
+  version?: string
 }): Promise<InternalPageLoaderData> => {
   let page: MdxPage | null
 
@@ -65,12 +67,14 @@ export const internalPageLoader = async ({
     const defaultSelected = versions[0]
     invariant(defaultSelected, `expected a version`)
 
+    let selectedVersion = versions.find((v) => v === version) ?? defaultSelected
+
     return {
       content: contentSpec,
       path: shortPath,
       page,
       versions: versions,
-      selectedVersion: defaultSelected,
+      selectedVersion: selectedVersion,
     }
   } else {
     return {
