@@ -55,6 +55,7 @@ export const FIRST_ROUTES = [
   "tools",
   "cadence",
   "nodes",
+  "fcl-js",
 ] as const
 export const SECOND_ROUTES = [
   "dapp-development",
@@ -122,6 +123,7 @@ export const ROUTING_STRUCTURE: Partial<
   learn: ["kitty-items", "concepts"],
   community: ["bounties"],
   cadence: ["language", "tutorial"],
+  "fcl-js": ["tutorial"],
 }
 export const FLOW_FIRST_ROUTES = ["flow", "nodes"]
 export const FIRST_ROUTE_MAP: Partial<Record<SecondRoute, FirstRoute>> =
