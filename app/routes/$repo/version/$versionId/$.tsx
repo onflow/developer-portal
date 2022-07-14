@@ -24,8 +24,8 @@ export const loader: LoaderFunction = async ({ params, request }) => {
   }
 
   if (!isPathDocument(path)) {
-    // TODO!!
-    throw redirect(`/${params.repo}/version/${versionId}/_raw/${path}`)
+    // TODO: update raw image serving to work with this
+    throw redirect(`/raw/${params.repo}/version/${versionId}/${path}`)
   }
 
   const fullPath = [`versioned_docs`, `version-${versionId}`, path].join("/")

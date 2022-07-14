@@ -3,11 +3,9 @@ import { octokit } from "./github.server"
 import { z } from "zod"
 
 /**
- * a list of version strings that's specified in a repo's versions.json file
- *
- * usually should look like a semver version but these might be _anything_
+ * a list of at least one semver version strings that's specified in a repo's versions.json file
  */
-type VersionList = Array<string>
+export type VersionList = Array<string>
 
 export function parseVersions(data: unknown): VersionList {
   /** https://semver.org/#is-there-a-suggested-regular-expression-regex-to-check-a-semver-string */

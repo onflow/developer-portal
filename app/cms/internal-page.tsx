@@ -1,7 +1,9 @@
 import { json } from "@remix-run/node"
+import invariant from "tiny-invariant"
 import { getMdxPage } from "~/cms/utils/mdx"
 import { ContentSpec } from "~/constants/repos"
 import { MdxPage } from "./compile.mdx.server"
+import { getRepoVersions, VersionList } from "./versions.server"
 export { InternalErrorBoundary as ErrorBoundary } from "~/errors/error-boundaries"
 
 export type InternalPageLoaderData = {
@@ -10,7 +12,7 @@ export type InternalPageLoaderData = {
   page: MdxPage
 } & (
   | {
-      versions: Array<string>
+      versions: VersionList
       selectedVersion: string
     }
   | { versions?: undefined; selectedVersion?: undefined }
@@ -47,12 +49,29 @@ export const internalPageLoader = async ({
     throw json({ status: "noPage" }, { status: 404 })
   }
 
-  return {
-    content: contentSpec,
-    path: shortPath,
-    page,
-    versions: ["latest", "2.0.0", "1.1.0"],
-    selectedVersion: "latest",
+  // todo: cache this?
+  const { versions } = await getRepoVersions(
+    contentSpec.owner,
+    contentSpec.repoName
+  )
+
+  if (versions != null) {
+    const defaultSelected = versions[0]
+    invariant(defaultSelected, `expected a version`)
+
+    return {
+      content: contentSpec,
+      path: shortPath,
+      page,
+      versions: versions,
+      selectedVersion: defaultSelected,
+    }
+  } else {
+    return {
+      content: contentSpec,
+      path: shortPath,
+      page,
+    }
   }
 }
 

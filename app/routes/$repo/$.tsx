@@ -127,7 +127,8 @@ export const loader: LoaderFunction = async ({
 }
 
 export default function RepoDocument() {
-  const { content, path, page, versions } = useLoaderData<LoaderData>()
+  const { content, path, page, versions } =
+    useLoaderData<InternalPageLoaderData>()
   const MDXContent = useMdxComponent(page)
 
   // Tools live at top-level URLs like /fcl-js so they will never be nested
