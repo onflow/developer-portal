@@ -18,21 +18,21 @@ export const landingHeaders: Partial<
         tags: ["tutorial", "playground"],
         description:
           "Write and deploy your first smart contract within minutes on our Playground.",
-        href: "/cadence/tutorial/02-hello-world/",
+        href: "/cadence/tutorial/02-hello-world",
       },
       {
         title: "Cadence Language",
         tags: ["reference", "syntax"],
         description:
           "Learn the functionality, terminology and syntax of the Cadence language.",
-        href: "/cadence/language/",
+        href: "/cadence/language",
       },
       {
         title: "Solidity to Cadence Intro",
         tags: ["guide", "patterns"],
         description:
           "Learn the key differences in the account models between Solidity and Cadence.",
-        href: "/cadence/msg-sender/",
+        href: "/cadence/msg-sender",
       },
     ],
   },
