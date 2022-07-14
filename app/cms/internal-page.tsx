@@ -50,10 +50,16 @@ export const internalPageLoader = async ({
   }
 
   // todo: cache this?
-  const { versions } = await getRepoVersions(
+  const { versions, error } = await getRepoVersions(
     contentSpec.owner,
     contentSpec.repoName
   )
+
+  if (error) {
+    console.error(
+      `Issue loading versions.json for ${contentSpec.owner}/${contentSpec.repoName}: ${error}`
+    )
+  }
 
   if (versions != null) {
     const defaultSelected = versions[0]
