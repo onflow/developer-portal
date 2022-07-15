@@ -1,12 +1,13 @@
-import { startOfDay } from "date-fns"
 import {
   AnnouncementCard,
   NetworkCard,
   NetworkDiscordCard,
   SocialLinksSignup,
 } from "../../Components"
+import { AnnouncementCardProps } from "../../Components/AnnouncementCard"
 import { FeaturedArticle } from "../../Components/FeaturedArticleSlider"
 import { HeaderWithLink } from "../../Components/HeaderWithLink"
+import { NetworkDiscordCardProps } from "../../Components/NetworkDiscordCard"
 import { Article, StatuspageApiResponse } from "../../interfaces"
 import PageBackground from "../shared/PageBackground"
 import PageSection from "../shared/PageSection"
@@ -14,12 +15,16 @@ import PageSections from "../shared/PageSections"
 
 export type NetworkPageProps = {
   networkStatuses: StatuspageApiResponse[]
+  announcementCards: AnnouncementCardProps[]
+  discordNetworkCards: NetworkDiscordCardProps[]
   featuredArticle: Article
 }
 
 const NetworkPage = ({
   networkStatuses,
   featuredArticle,
+  discordNetworkCards,
+  announcementCards,
 }: NetworkPageProps) => (
   <PageBackground gradient="network">
     <PageSections divided={false}>
@@ -52,14 +57,10 @@ const NetworkPage = ({
             Live updates
           </HeaderWithLink>
           <div className="mt-6 flex flex-col gap-4 md:flex-row md:gap-8">
-            {[1, 2, 3].map((index) => (
-              <NetworkDiscordCard
-                message="Mainnet has been down for the past two hours"
-                timestamp={startOfDay(new Date())}
-                messageLink="https://google.com"
-                username="@john_flow"
-                key={index}
-              />
+            {discordNetworkCards.map((discordNetworkCards) => (
+              <div key={discordNetworkCards.messageLink}>
+                <NetworkDiscordCard {...discordNetworkCards} />
+              </div>
             ))}
           </div>
         </div>
@@ -70,15 +71,9 @@ const NetworkPage = ({
             Announcements
           </HeaderWithLink>
           <div className="flex flex-col gap-4 md:gap-8">
-            {[1, 2, 3].map((index) => (
-              <div key={index}>
-                <AnnouncementCard
-                  sourceIcon="https://github.githubassets.com/images/modules/logos_page/GitHub-Mark.png"
-                  sourceAltText="Github"
-                  heading="Holy schnikes Github is down"
-                  timestamp={startOfDay(new Date())}
-                  link="https://google.com"
-                />
+            {announcementCards.map((announcementCardProps) => (
+              <div key={announcementCardProps.link}>
+                <AnnouncementCard {...announcementCardProps} />
               </div>
             ))}
           </div>
