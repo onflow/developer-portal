@@ -1,4 +1,4 @@
-import { Client, TextChannel } from "discord.js"
+import { Client, Message, TextChannel } from "discord.js"
 import invariant from "tiny-invariant"
 import { MessageInfo } from "./utils/fetch-discord"
 
@@ -21,6 +21,24 @@ export const getChannel = async (channelId: string): Promise<TextChannel> => {
   return channel
 }
 
+export const searchAndReplaceEmojis = (cleanContent: string) => {
+  const EMOJI_REGEX = /<:.*?(?=:):[0-9]*>/gm // For removing custom emojis
+  return cleanContent.replaceAll(EMOJI_REGEX, "")
+}
+
+export const getCleanContent = (m: Message) => {
+  let cleanContent = m.cleanContent
+  if (!cleanContent || cleanContent === "") {
+    // Check embeds for bot content
+    if (m.embeds) {
+      cleanContent = m.embeds[0]!.title!
+    }
+  }
+
+  // Resolve emojis
+  return searchAndReplaceEmojis(cleanContent)
+}
+
 export const getLatestMessages = (channel: TextChannel, limitSize: number) => {
   return channel.messages
     .fetch({ limit: limitSize })
@@ -28,7 +46,7 @@ export const getLatestMessages = (channel: TextChannel, limitSize: number) => {
       messages.map(
         (m) =>
           ({
-            content: m.cleanContent ?? m.embeds[0]?.description,
+            content: getCleanContent(m),
             createdAt: m.createdAt,
             url: m.url,
             username: m.author.username,
