@@ -61,7 +61,7 @@ export const action: ActionFunction = async ({ request }) => {
 
   if ("contentPaths" in body && Array.isArray(body.contentPaths)) {
     console.log("Refreshing content...")
-    recordRefreshEventInMixpanel(body)
+
     const refreshingContentPaths: [string?] = []
     const paths: string[] = body.contentPaths[0].split(" ")
     for (const contentPath of paths) {
@@ -103,7 +103,7 @@ export const action: ActionFunction = async ({ request }) => {
     }
 
     setShaInRedis()
-
+    recordRefreshEventInMixpanel(body)
     return json({
       message: "Refreshing cache for content paths",
       repo: body.repo,
