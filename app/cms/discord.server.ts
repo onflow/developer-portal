@@ -28,7 +28,7 @@ export const getLatestMessages = (channel: TextChannel, limitSize: number) => {
       messages.map(
         (m) =>
           ({
-            content: m.content,
+            content: m.cleanContent ?? m.embeds[0]?.description,
             createdAt: m.createdAt,
             url: m.url,
             username: m.author.username,
