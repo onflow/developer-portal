@@ -1,6 +1,7 @@
+import { expect, it } from "vitest"
 import { markdownToToc } from "./generate-toc"
 
-test(`simple case`, () => {
+it(`simple case`, () => {
   let subject = `
 # Acme
 
@@ -17,16 +18,16 @@ end
   `
 
   expect(markdownToToc(subject)).toMatchInlineSnapshot(`
-    Array [
-      Object {
+    [
+      {
         "hash": "#acme",
         "title": "Acme",
       },
-      Object {
+      {
         "hash": "#charlie",
         "title": "Charlie",
       },
-      Object {
+      {
         "hash": "#echo",
         "title": "Echo",
       },
@@ -34,7 +35,7 @@ end
   `)
 })
 
-test(`simple case with frontmatter`, () => {
+it(`simple case with frontmatter`, () => {
   let subject = `---
 title: Example
 ---
@@ -53,16 +54,16 @@ end
   `
 
   expect(markdownToToc(subject)).toMatchInlineSnapshot(`
-    Array [
-      Object {
+    [
+      {
         "hash": "#acme",
         "title": "Acme",
       },
-      Object {
+      {
         "hash": "#charlie",
         "title": "Charlie",
       },
-      Object {
+      {
         "hash": "#echo",
         "title": "Echo",
       },
@@ -70,7 +71,7 @@ end
   `)
 })
 
-test(`backticks`, () => {
+it(`backticks`, () => {
   let subject = `
 ## Avoid using \`AuthAccount\` as a function parameter
 bar

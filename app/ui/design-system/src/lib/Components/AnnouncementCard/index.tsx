@@ -1,4 +1,4 @@
-import { formatDistance } from "date-fns"
+import formatDistance from "date-fns/formatDistance"
 import { ReactComponent as ChevronRightIcon } from "../../../../images/arrows/chevron-right"
 import { ReactComponent as TimeIcon } from "../../../../images/content/date"
 import AppLink from "../AppLink"
@@ -37,7 +37,7 @@ const AnnouncementCard = ({
         <div className="mt-4 flex items-center text-primary-gray-300">
           <TimeIcon />
           <span className="ml-2">
-            {formatDistance(timestamp, new Date())} ago
+            {formatDistance(new Date(timestamp), new Date())} ago
           </span>
         </div>
       </div>
