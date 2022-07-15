@@ -4,12 +4,19 @@ import { getMdxPage } from "~/cms/utils/mdx"
 // import { getRequiredServerEnvVar } from "~/utils/cms/helpers";
 import { redisCache } from "~/cms/redis.server"
 import { getContentSpec } from "~/constants/repos"
+import { recordRefreshEventInMixpanel } from "~/utils/mixpanel.server"
 
-type Body = {
+export interface Contribution {
+  contributor: string
+  commitCount: number
+}
+
+export type Body = {
   keys: Array<string>
   commitSha?: string
   repo: string
   contentPaths: string
+  contributions: Contribution[]
 }
 
 export const commitShaKey = `meta:last-refresh-commit-sha`
@@ -54,6 +61,7 @@ export const action: ActionFunction = async ({ request }) => {
 
   if ("contentPaths" in body && Array.isArray(body.contentPaths)) {
     console.log("Refreshing content...")
+    recordRefreshEventInMixpanel(body)
     const refreshingContentPaths: [string?] = []
     const paths: string[] = body.contentPaths[0].split(" ")
     for (const contentPath of paths) {
