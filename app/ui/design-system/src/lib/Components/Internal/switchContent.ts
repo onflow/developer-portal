@@ -13,7 +13,6 @@ import { ReactComponent as DefaultIcon } from "../../../../images/tools/tool-def
 import { ReactComponent as EmulatorIcon } from "../../../../images/tools/tool-emulator"
 import { ReactComponent as EmulatorGradientIcon } from "../../../../images/tools/tool-emulator-gradient"
 import { ReactComponent as FclIcon } from "../../../../images/tools/tool-fcl"
-import { ReactComponent as FclGradientIcon } from "../../../../images/tools/tool-fcl-gradient"
 import { ReactComponent as PortIcon } from "../../../../images/tools/tool-port"
 import { ReactComponent as PortIcionGradient } from "../../../../images/tools/tool-port-gradient"
 import { ReactComponent as TestingIcon } from "../../../../images/tools/tool-testing"
@@ -72,8 +71,8 @@ export const switchContents: Partial<
   "fcl-js": {
     name: "Flow Client Library",
     icon: FclIcon,
-    iconLanding: CadenceLandingIcon,
-    gradientIcon: FclGradientIcon,
+    iconLanding: FclIcon,
+    gradientIcon: FclIcon,
     link: getSwitchLink("fcl-js"),
   },
   cadence: {
