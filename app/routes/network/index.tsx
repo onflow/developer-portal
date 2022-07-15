@@ -6,6 +6,7 @@ import { getMetaTitle } from "~/root"
 import NetworkPage, {
   NetworkPageProps,
 } from "~/ui/design-system/src/lib/Pages/NetworkPage"
+import { temporarilyRedirectToComingSoon } from "~/utils/features"
 import { featuredArticle } from "./data"
 
 type DynamicNetworkPageProps = Pick<
@@ -18,6 +19,8 @@ export const meta: MetaFunction = () => ({
 })
 
 export const loader: LoaderFunction = async () => {
+  temporarilyRedirectToComingSoon()
+
   const networkStatuses = await fetchNetworkStatus()
   const { announcementCards, discordNetworkCards } =
     await fetchDiscordAnnouncements()
