@@ -9,7 +9,7 @@ import { Body, Contribution } from "~/routes/action/refresh"
 export const recordRefreshEventInMixpanel = (eventData: Body) => {
   const mixpanelData = eventData.contributions.map(
     (contribution: Contribution) => ({
-      event: "Cache Refresh v2",
+      event: "Docs Refresh",
       properties: {
         token: process.env.MIXPANEL_DOCSITE_PROJECT_TOKEN,
         distinct_id: contribution.contributor,
