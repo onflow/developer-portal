@@ -1,7 +1,6 @@
 // This route is only for testing API functionalities. This page should not be discoverable by the navigation.
 import type { LoaderFunction } from "@remix-run/node"
 import { useLoaderData } from "@remix-run/react"
-import { formatDistance } from "date-fns"
 import { fetchDiscordAnnouncements } from "~/cms/utils/fetch-discord"
 import { AnnouncementCardProps } from "~/ui/design-system/src/lib/Components/AnnouncementCard"
 import { NetworkDiscordCardProps } from "~/ui/design-system/src/lib/Components/NetworkDiscordCard"
