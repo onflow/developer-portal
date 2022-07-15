@@ -52,6 +52,5 @@ export const HIGHLIGHT_LANGUAGES = [
 ]
 
 export const DISCORD_URL = "https://discord.gg/flow"
-// TODO, move this to config secrets
-export const DISCORD_BOT_TOKEN =
-  "OTk2ODM1OTg4MjIxNDY0NjU2.GF_Zln.vQH2hgx-PKC4bKQeVWqsJ0-V6C0h0piSi7bh0c"
+export const DISCORD_ANNOUNCEMENTS_CHANNEL_ID = "621529603718119424"
+export const DISCORD_DEV_UPDATES_CHANNEL_ID = "811693600403357706"

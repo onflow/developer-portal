@@ -1,29 +1,46 @@
 import { AnnouncementCardProps } from "~/ui/design-system/src/lib/Components/AnnouncementCard"
 import { NetworkDiscordCardProps } from "~/ui/design-system/src/lib/Components/NetworkDiscordCard"
-import DiscordIcon from "../../../../images/social/discord-light.svg"
-import { Client, TextChannel } from "discord.js"
-import { DISCORD_BOT_TOKEN, DISCORD_URL } from "./constants"
+import DiscordIcon from "../../ui/design-system/images/social/discord-light.svg"
+import {
+  DISCORD_ANNOUNCEMENTS_CHANNEL_ID,
+  DISCORD_DEV_UPDATES_CHANNEL_ID,
+  DISCORD_URL,
+} from "./constants"
+import {
+  getChannel,
+  getLatestMessages,
+  setupClient,
+  TextChannel,
+} from "../../cms/index"
 
-type MessageInfo = {
+export type MessageInfo = {
   content: string
   createdAt: Date
   url: string
   username?: string
 }
 
+const DEFAULT_MESSAGE_INFO: MessageInfo = {
+  content:
+    "Failed to connect to discord! Click on the discord link to see more",
+  createdAt: new Date(),
+  url: DISCORD_URL,
+  username: "@flow_admin",
+}
+
 export const fetchDiscordAnnouncements = async () => {
-  const client = new Client({ intents: [] })
-  await client.login(DISCORD_BOT_TOKEN)
+  await setupClient()
+  const announcementChannel: TextChannel = await getChannel(
+    DISCORD_ANNOUNCEMENTS_CHANNEL_ID
+  )
+  const latestMessagesAnnouncements: MessageInfo[] | void =
+    await getLatestMessages(announcementChannel, 3)
 
-  const getChannel = (channel: string): TextChannel => {
-    return client.channels.cache.find(
-      (c) =>
-        c.isText() &&
-        (c as TextChannel).name.toLowerCase() === channel.toLowerCase()
-    ) as TextChannel
-  }
-
-  let channel = getChannel("announcements")
+  const devUpdatesChannel: TextChannel = await getChannel(
+    DISCORD_DEV_UPDATES_CHANNEL_ID
+  )
+  const latestMessagesDevUpdates: MessageInfo[] | void =
+    await getLatestMessages(devUpdatesChannel, 3)
 
   const convertToAnnouncementCardProps = ({
     content,
@@ -35,7 +52,7 @@ export const fetchDiscordAnnouncements = async () => {
       sourceIcon: DiscordIcon,
       sourceAltText: "",
       heading: content,
-      timestamp: createdAt,
+      timestamp: createdAt as Date,
       link: url,
     } as AnnouncementCardProps)
 
@@ -48,35 +65,26 @@ export const fetchDiscordAnnouncements = async () => {
     ({
       message: content,
       username: username,
-      timestamp: createdAt,
+      timestamp: createdAt as Date,
       messageLink: url,
     } as NetworkDiscordCardProps)
 
-  const getLatestMessagesAsProps = (
-    channel: TextChannel,
-    limitSize: number,
-    convertToProps: Function
-  ) => {
-    return channel.messages
-      .fetch({ limit: limitSize })
-      .then((messages) =>
-        messages.map((m) => {
-          const messageInfo = {
-            content: m.content,
-            createdAt: m.createdAt,
-            url: m.url,
-            username: m.author.username,
-          } as MessageInfo
-
-          return convertToProps(messageInfo)
-        })
-      )
-      .catch(console.error)
+  const getAnnouncementCardProps = () => {
+    return latestMessagesAnnouncements
+      ? latestMessagesAnnouncements.map((m) =>
+          convertToAnnouncementCardProps(m)
+        )
+      : [convertToAnnouncementCardProps(DEFAULT_MESSAGE_INFO)]
   }
 
-  const getAnnouncementCardProps: AnnouncementCardProps[] | void =
-    await getLatestMessagesAsProps(channel, 3, convertToAnnouncementCardProps)
+  const getDiscordCardProps = () => {
+    return latestMessagesDevUpdates
+      ? latestMessagesDevUpdates.map((m) => convertToDiscordCardProps(m))
+      : [convertToDiscordCardProps(DEFAULT_MESSAGE_INFO)]
+  }
 
-  const getDiscordCardProps: NetworkDiscordCardProps[] | void =
-    await getLatestMessagesAsProps(channel, 3, convertToDiscordCardProps)
+  return {
+    announcementCards: getAnnouncementCardProps(),
+    discordNetworkCards: getDiscordCardProps(),
+  }
 }

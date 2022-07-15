@@ -38,7 +38,7 @@ const NetworkDiscordCard = ({
       <div className="text-light flex items-center px-6 py-3 text-primary-gray-300">
         <TimeIcon />
         <span className="ml-2">
-          {formatDistance(timestamp, new Date())} ago
+          {formatDistance(new Date(timestamp), new Date())} ago
         </span>
       </div>
     </AppLink>

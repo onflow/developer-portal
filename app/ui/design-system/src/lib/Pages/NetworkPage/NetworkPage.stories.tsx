@@ -10,6 +10,7 @@ export default {
 const Template: Story<NetworkPageProps> = (args) => <NetworkPage {...args} />
 const args = {
   networkStatuses,
+
   featuredArticle: {
     heading: "Node operator callout",
     description:
