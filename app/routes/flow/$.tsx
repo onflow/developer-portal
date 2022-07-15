@@ -1,16 +1,28 @@
-import { json, LoaderFunction, MetaFunction } from "@remix-run/node"
+import { json, LoaderFunction, MetaFunction, redirect } from "@remix-run/node"
 import { useCatch, useLoaderData, useLocation } from "@remix-run/react"
+import { Params } from "react-router"
 import invariant from "tiny-invariant"
 import { getMdxPage, useMdxComponent } from "~/cms/utils/mdx"
-import { ContentSpec, getContentSpec } from "~/constants/repos"
+import { ContentSpec, contentSpecMap, getContentSpec } from "~/constants/repos"
+import {
+  FirstRoute,
+  isFirstRoute,
+  isSecondRoute,
+  SecondRoute,
+} from "~/constants/repos/contents-structure"
 import { ErrorPage } from "~/ui/design-system/src/lib/Components/ErrorPage"
 import { getSocialMetas } from "~/utils/seo"
 import { MdxPage } from "../../cms"
 import { InternalPage } from "../../ui/design-system/src/lib/Pages/InternalPage"
 import AppLink from "~/ui/design-system/src/lib/Components/AppLink"
+import {
+  SwitchContentName,
+  switchContents,
+} from "~/ui/design-system/src/lib/Components/Internal/switchContent"
 
 export { InternalErrorBoundary as ErrorBoundary } from "~/errors/error-boundaries"
 
+// @ts-ignore
 export const meta: MetaFunction = ({ data, location }) => {
   const typedData = data as LoaderData
   if (typedData && typedData.page) {
@@ -30,14 +42,31 @@ type LoaderData = {
   page: MdxPage
 }
 
-export const loader: LoaderFunction = async ({ params, request }) => {
-  invariant(params.repo)
+export const loader: LoaderFunction = async ({
+  params,
+  request,
+}): Promise<LoaderData> => {
+  if (params["*"]?.endsWith("index") && request.url.endsWith("/index")) {
+    throw redirect(request.url.replace(/\/index$/, "/"))
+  }
 
   const path = params["*"]
-  const spec = getContentSpec(params.repo, path)
 
-  if (!spec) {
-    return new Response()
+  invariant(path)
+
+  const contentSpec = contentSpecMap[params.content as SecondRoute]
+
+  if (!contentSpec) {
+    throw json({ status: "noRepo" }, { status: 404 })
+  }
+
+  const isDocument =
+    !path.includes(".") ||
+    path.toLowerCase().endsWith(".md") ||
+    path.toLowerCase().endsWith(".mdx")
+
+  if (!isDocument) {
+    throw redirect(`/raw/${params.repo}/${params["*"]}`)
   }
 
   let page: MdxPage | null
@@ -45,11 +74,11 @@ export const loader: LoaderFunction = async ({ params, request }) => {
   try {
     page = await getMdxPage(
       {
-        owner: spec.owner,
-        repo: spec.repoName,
-        branch: spec.branch,
-        fileOrDirPath: [spec.basePath, path].join("/"),
-        isTrusted: spec.isTrusted,
+        owner: contentSpec.owner,
+        repo: contentSpec.repoName,
+        branch: contentSpec.branch,
+        fileOrDirPath: [contentSpec.basePath, path].join("/"),
+        isTrusted: contentSpec.isTrusted,
       },
       { request, forceFresh: process.env.FORCE_REFRESH === "true" }
     )
@@ -61,17 +90,36 @@ export const loader: LoaderFunction = async ({ params, request }) => {
     throw json({ status: "noPage" }, { status: 404 })
   }
 
-  return { content: spec, path, page }
+  return { content: contentSpec, path, page }
 }
 
 export default function RepoDocument() {
   const { content, path, page } = useLoaderData<LoaderData>()
   const MDXContent = useMdxComponent(page)
 
+  // Tools live at top-level URLs like /fcl-js so they will never be nested
+  // under /flow/fcl-js so ... since this is a catch-all route (TODO: refactor to use remix routes)
+  //
+  // Logically a tool is NOT included in the list of flow routes (routes with the parent /flow)
+  // const tool = ![...ROUTING_STRUCTURE.flow].includes(content.contentName)
+  const isSwitchContent = Object.keys(switchContents).includes(
+    content.contentName
+  )
+
   return (
     <InternalPage
       activePath={path}
-      content={content}
+      contentDisplayName={content.displayName}
+      contentPath={content.contentName}
+      header={path === "index" ? content.landingHeader : undefined}
+      sidebarConfig={content.schema?.sidebar}
+      internalSidebarMenu={
+        isSwitchContent
+          ? {
+              selected: content.contentName as SwitchContentName,
+            }
+          : undefined
+      }
       githubUrl={page.editLink}
       toc={page.toc}
     >
@@ -82,9 +130,8 @@ export default function RepoDocument() {
 
 export function CatchBoundary() {
   const caught = useCatch()
-  const location = useLocation()
-
   console.error("CatchBoundary $.tsx", caught)
+  const location = useLocation()
 
   switch (caught.data.status) {
     case "noPage":

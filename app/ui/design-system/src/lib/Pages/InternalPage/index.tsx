@@ -2,18 +2,13 @@ import { Transition } from "@headlessui/react"
 import clsx from "clsx"
 import { useCallback, useRef, useState, useEffect } from "react"
 import { useLocation } from "react-router"
-import {
-  InternalLandingHeader,
-  InternalLandingHeaderProps,
-} from "../../Components/InternalLandingHeader"
+import { InternalLandingHeader } from "../../Components/InternalLandingHeader"
 import {
   InternalSidebar,
-  InternalSidebarConfig,
   InternalSidebarSectionItem,
 } from "../../Components/InternalSidebar"
 import { findSidebarSectionItem } from "../../Components/InternalSidebar/findSidebarSectionItem"
 import { flattenSidebarSectionItems } from "../../Components/InternalSidebar/flattenSidebarSectionItems"
-import { InternalSidebarMenuProps } from "../../Components/InternalSidebarMenu"
 import { InternalSubnav } from "../../Components/InternalSubnav"
 import {
   InternalToc,
@@ -26,65 +21,35 @@ import {
   useResizeObserver,
   UseResizeObserverCallback,
 } from "../../utils/useResizeObserver"
+import { useInternalBreadcrumbs } from "./useInternalBreadcrumbs"
 import {
-  useInternalBreadcrumbs,
-  UseInternalBreadcrumbsOptions,
-} from "./useInternalBreadcrumbs"
+  SwitchContentName,
+  switchContents,
+} from "~/ui/design-system/src/lib/Components/Internal/switchContent"
+
+import { ContentSpec } from "~/constants/repos"
 
 export type InternalPageProps = React.PropsWithChildren<{
-  /**
-   * The path of the currently active item. This should be a path
-   * relative to the repo (excluding the repo name), matching the item's href
-   * as it is defined in the sidebar configuration object.
-   */
   activePath: string
-
   githubUrl?: string
-
-  header?: InternalLandingHeaderProps
-
-  internalSidebarMenu?: InternalSidebarMenuProps
-
-  /**
-   * The configuration object that describes the page hierarchy.
-   */
-  sidebarConfig?: InternalSidebarConfig
-
+  content: ContentSpec
   toc?: InternalTocItem[]
-}> &
-  Omit<UseInternalBreadcrumbsOptions, "activeItem">
+  rootUrl?: string
+}>
 
 export function InternalPage({
+  rootUrl = "/",
+  content,
   activePath,
   children,
-  contentDisplayName,
-  contentPath,
   githubUrl,
-  header,
-  internalSidebarMenu,
-  rootUrl = "/",
-  sidebarConfig,
   toc,
 }: InternalPageProps) {
+  const header = activePath === "index" ? content.landingHeader : undefined
+
+  // --------------------------------------------------------------
+
   const [isMobileSidebarOpen, setMobileSidebarOpen] = useState(false)
-
-  const activeItem = findSidebarSectionItem(sidebarConfig, activePath)
-  const breadcrumbs = useInternalBreadcrumbs({
-    activeItem,
-    contentDisplayName,
-    contentPath,
-    rootUrl,
-  })
-  let prevItem: InternalSidebarSectionItem | undefined
-  let nextItem: InternalSidebarSectionItem | undefined
-
-  if (sidebarConfig && activeItem) {
-    const allItems = flattenSidebarSectionItems(sidebarConfig)
-    const activeItemIndex = allItems.indexOf(activeItem)
-    prevItem = allItems[activeItemIndex - 1]
-    nextItem = activeItemIndex >= 0 ? allItems[activeItemIndex + 1] : undefined
-  }
-
   const subnavRef = useRef<HTMLDivElement>(null)
   const [subnavRect, setSubnavRect] = useState<DOMRect>()
   const resizeObserverCallback = useCallback<UseResizeObserverCallback>(() => {
@@ -101,6 +66,38 @@ export function InternalPage({
       contentRef.current.scrollIntoView(true)
     }
   }, [pathname, header])
+
+  // ---------------------------------------------------------------
+
+  const isSwitchContent = Object.keys(switchContents).includes(
+    content.contentName
+  )
+  const internalSidebarMenu = isSwitchContent
+    ? {
+        selected: content.contentName as SwitchContentName,
+      }
+    : undefined
+
+  const sidebarConfig = content.schema?.sidebar
+
+  const activeItem = findSidebarSectionItem(sidebarConfig, activePath)
+
+  const breadcrumbs = useInternalBreadcrumbs({
+    activeItem,
+    contentDisplayName: content.displayName,
+    contentPath: content.basePath,
+    rootUrl,
+  })
+
+  let prevItem: InternalSidebarSectionItem | undefined
+  let nextItem: InternalSidebarSectionItem | undefined
+
+  if (sidebarConfig && activeItem) {
+    const allItems = flattenSidebarSectionItems(sidebarConfig)
+    const activeItemIndex = allItems.indexOf(activeItem)
+    prevItem = allItems[activeItemIndex - 1]
+    nextItem = activeItemIndex >= 0 ? allItems[activeItemIndex + 1] : undefined
+  }
 
   return (
     <div className="flex flex-col pb-16">
@@ -197,13 +194,13 @@ export function InternalPage({
             <LowerPageNav
               prev={
                 prevItem && {
-                  href: `${rootUrl}${contentPath}/${prevItem.href}`,
+                  href: `${rootUrl}${content.basePath}/${prevItem.href}`,
                   name: prevItem.label,
                 }
               }
               next={
                 nextItem && {
-                  href: `${rootUrl}${contentPath}/${nextItem.href}`,
+                  href: `${rootUrl}${content.basePath}/${nextItem.href}`,
                   name: nextItem.label,
                 }
               }

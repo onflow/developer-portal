@@ -49,7 +49,7 @@ export const FLOW_INNER_CONTENT_NAMES = REPOSITORY_STRUCTURE.flow!
 
 /* Routing Structure */
 export const FIRST_ROUTES = [
-  "flow",
+  // "flow",
   "learn",
   "community",
   "tools",

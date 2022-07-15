@@ -4,7 +4,7 @@ function getEnv() {
     SENTRY_DSN: process.env.SENTRY_DSN,
     SENTRY_ENV: process.env.SENTRY_ENV,
     BOT_GITHUB_TOKEN: process.env.BOT_GITHUB_TOKEN,
-    BOT_DISCORD_TOKEN: process.env.BOT_DISCORD_TOKEN,
+    DISCORD_BOT_TOKEN: process.env.DISCORD_BOT_TOKEN,
     SESSION_SECRET: process.env.SESSION_SECRET,
     DATABASE_URL: process.env.DATABASE_URL,
     REDIS_URL: process.env.REDIS_URL,

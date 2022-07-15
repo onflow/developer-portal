@@ -73,7 +73,7 @@ export const schemas: Partial<Record<ContentName, RepoSchema>> = {
   tutorial: populateRepoSchema(cadenceTutorial as RepoSchema),
 
   // First Level: Flow Repo Sections (flow/{section}/...)
-  flow: flow as RepoSchema,
+  // flow: flow as RepoSchema,
   learn: learn as RepoSchema,
   nodes: nodes as RepoSchema,
   tools: tools as RepoSchema,
@@ -191,10 +191,8 @@ export const getContentSpec = (
   firstRoute: string,
   secondRoute?: string | undefined
 ) => {
-  if (firstRoute) {
-    if (secondRoute && isSecondRoute(secondRoute)) {
-      return contentSpecMap[secondRoute as SecondRoute]
-    }
-    return contentSpecMap[firstRoute as FirstRoute]
+  if (secondRoute && isSecondRoute(secondRoute)) {
+    return contentSpecMap[secondRoute as SecondRoute]
   }
+  return contentSpecMap[firstRoute as FirstRoute]
 }
