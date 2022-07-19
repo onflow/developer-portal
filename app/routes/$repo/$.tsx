@@ -1,15 +1,7 @@
 import { json, LoaderFunction, MetaFunction, redirect } from "@remix-run/node"
 import { useCatch, useLoaderData, useLocation } from "@remix-run/react"
-import { Params } from "react-router"
-import invariant from "tiny-invariant"
 import { getMdxPage, useMdxComponent } from "~/cms/utils/mdx"
-import { ContentSpec, getContentSpec } from "~/constants/repos"
-import {
-  FirstRoute,
-  isFirstRoute,
-  isSecondRoute,
-  SecondRoute,
-} from "~/constants/repos/contents-structure"
+import { ContentSpec } from "~/constants/repos"
 import { ErrorPage } from "~/ui/design-system/src/lib/Components/ErrorPage"
 import { getSocialMetas } from "~/utils/seo"
 import { MdxPage } from "../../cms"
@@ -22,7 +14,6 @@ import {
 
 export { InternalErrorBoundary as ErrorBoundary } from "~/errors/error-boundaries"
 
-// @ts-ignore
 export const meta: MetaFunction = ({ data, location }) => {
   const typedData = data as LoaderData
   if (typedData && typedData.page) {
@@ -42,62 +33,16 @@ type LoaderData = {
   page: MdxPage
 }
 
-type NestedRoute = {
-  firstRoute: FirstRoute
-  secondRoute: SecondRoute
-  path: string
-}
-
-/* TODO: We shouldn't have to manually redirect landing for subfolders without 'index' files */
-const customRedirectLanding = (nestedRoute: NestedRoute) => {
-  // Redirecting missing "index" pages
-  if (nestedRoute.path === "index") {
-    if (nestedRoute.firstRoute === "flow" && !nestedRoute.secondRoute) {
-      nestedRoute.path = "dapp-development/index"
-    } else if (
-      nestedRoute.firstRoute === "flow" &&
-      nestedRoute.secondRoute === "faq"
-    ) {
-      nestedRoute.path = "backers"
-    } else if (nestedRoute.firstRoute === "nodes" && !nestedRoute.secondRoute) {
-      nestedRoute.path = "node-operation/index"
-    } else if (
-      nestedRoute.firstRoute === "cadence" &&
-      nestedRoute.secondRoute === "language"
-    ) {
-      nestedRoute.path = "syntax"
-    } else if (
-      nestedRoute.firstRoute === "cadence" &&
-      nestedRoute.secondRoute === "tutorial"
-    ) {
-      nestedRoute.path = "01-first-steps"
-    }
+function getContentSpec(repo: string, path: string): ContentSpec {
+  return {
+    owner: "",
+    repoName: "",
+    branch: "",
+    basePath: "",
+    contentName: "",
+    displayName: "",
+    isTrusted: true,
   }
-  return nestedRoute
-}
-
-export const deconstructPath = (params: Params<string>): NestedRoute => {
-  const firstRoute = params.repo
-  invariant(firstRoute, `expected first route`)
-
-  if (!isFirstRoute(firstRoute)) {
-    throw json({ status: "noPage" }, { status: 404 })
-  }
-
-  const remainingRoute = params["*"]
-  var secondRoute = undefined
-  var path: string = remainingRoute ?? "index"
-
-  // Check if there is a valid secondRoute
-  var second = remainingRoute?.split("/")[0]
-  if (second && isSecondRoute(second)) {
-    secondRoute = second
-    path =
-      remainingRoute?.split("/")?.slice(1)?.join("/").replace(/\/+$/, "") ||
-      "index"
-  }
-
-  return customRedirectLanding({ firstRoute, secondRoute, path } as NestedRoute)
 }
 
 export const loader: LoaderFunction = async ({
@@ -107,8 +52,9 @@ export const loader: LoaderFunction = async ({
   if (params["*"]?.endsWith("index") && request.url.endsWith("/index")) {
     throw redirect(request.url.replace(/\/index$/, "/"))
   }
-  const { firstRoute, secondRoute, path }: NestedRoute = deconstructPath(params)
-  const contentSpec = getContentSpec(firstRoute, secondRoute)
+
+  const path = params["*"]!
+  const contentSpec = getContentSpec(params.repo!, path)
 
   if (!contentSpec) {
     throw json({ status: "noRepo" }, { status: 404 })
