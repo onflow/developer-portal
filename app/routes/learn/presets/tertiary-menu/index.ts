@@ -1,4 +1,4 @@
-export const learnSections = [
+export default [
   {
     title: "Cadence",
     elementId: "cadence",

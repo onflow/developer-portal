@@ -8,9 +8,7 @@ import {
   InternalSidebarSectionItem,
 } from "~/ui/design-system/src/lib/Components/InternalSidebar"
 
-export type RepoSchema = {
-  sidebar: InternalSidebarConfig
-}
+import { RepoSchema, ContentSpec } from "~/cms/schema"
 
 export const formatTitle = (href: string) =>
   href
@@ -35,3 +33,7 @@ export const populateRepoSchema = (repoSchema: RepoSchema) => {
   const sideBar: InternalSidebarConfig = { sections }
   return { sidebar: sideBar } as RepoSchema
 }
+
+export const getContentSpecForRepo = (
+  repoName: string
+): ContentSpec | void => {}

@@ -1,12 +1,5 @@
 import invariant from "tiny-invariant"
 import { getRequiredServerEnvVar } from "~/cms/helpers"
-import { schemas } from "~/constants/repos"
-import {
-  FIRST_ROUTE_MAP,
-  isFirstRoute,
-  isSecondRoute,
-  SecondRoute,
-} from "~/constants/repos/contents-structure"
 import { isNotNull } from "~/utils/filters"
 
 function entryNode(entry: Entry, origin: string): string {
@@ -23,45 +16,7 @@ function entryNode(entry: Entry, origin: string): string {
 type Entry = { pathname: string }
 
 export const loader = () => {
-  // pages defined in app/routes
-  const staticRoutes = [
-    "/",
-    "/action",
-    "/community",
-    "/concepts",
-    "/getting-started",
-    "/http-api",
-    "/learn",
-    "/network",
-    "/sdks",
-    "/tools",
-  ]
-
-  const internalIndexPaths = Object.entries(schemas)
-    .flatMap(([key, schema]) => {
-      return (
-        schema?.sidebar.sections.flatMap((section) =>
-          section.items.flatMap((item) => {
-            if (isFirstRoute(key)) {
-              return `${key}/${item.href}`
-            }
-
-            if (isSecondRoute(key)) {
-              let firstRoute = FIRST_ROUTE_MAP[key as SecondRoute]
-              invariant(firstRoute, `expected section for ${key}`)
-              return `${firstRoute}/${item.href}`
-            }
-
-            // TODO: handle other sidebar items
-
-            return null
-          })
-        ) ?? []
-      )
-    })
-    .filter(isNotNull)
-
-  let paths = [...staticRoutes, ...internalIndexPaths]
+  let paths = [""]
   // remove duplicates
   paths = [...new Set(paths)]
 

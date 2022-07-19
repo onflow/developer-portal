@@ -1,8 +1,7 @@
 import { LoaderFunction } from "@remix-run/node"
 import invariant from "tiny-invariant"
 import { octokit } from "~/cms"
-import { getContentSpec } from "~/constants/repos"
-import { deconstructPath } from "~/routes/$repo/$"
+import { getContentSpecForRepo } from "~/cms/schema-utils"
 
 const knownExtensions: Record<string, string> = {
   ".png": "image/png",
@@ -11,9 +10,8 @@ const knownExtensions: Record<string, string> = {
 }
 
 export const loader: LoaderFunction = async ({ params }) => {
-  const { firstRoute, secondRoute, path } = deconstructPath(params)
-
-  const contentSpec = getContentSpec(firstRoute, secondRoute)
+  const path = ""
+  const contentSpec = getContentSpecForRepo(params.repo!)
   if (!contentSpec) {
     throw new Response("Not Found", {
       status: 404,
