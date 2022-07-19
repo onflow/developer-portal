@@ -3,7 +3,7 @@ import CadenceIconSrc from "~/ui/design-system/images/tools/tool-cadence.svg"
 import FlowPortIconSrc from "~/ui/design-system/images/tools/tool-port.svg"
 import EmulatorIconSrc from "~/ui/design-system/images/tools/tool-emulator.svg"
 import FLOWCLIIconSrc from "~/ui/design-system/images/tools/tool-cli.svg"
-import { ConceptsPageProps } from "../../../ui/design-system/src/lib/Pages/ConceptsPage"
+import { ConceptsPageProps } from "../~/ui/design-system/src/lib/Pages/ConceptsPage"
 
 export const data: ConceptsPageProps = {
   landingHeaderItems: {

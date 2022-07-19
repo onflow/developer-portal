@@ -1,4 +1,4 @@
-import { ToolsPageProps } from "../../../ui/design-system/src/lib/Pages/ToolsPage"
+import { ToolsPageProps } from "../~/ui/design-system/src/lib/Pages/ToolsPage"
 
 import {
   flowserTool,
@@ -34,7 +34,7 @@ import {
   graffleTool,
   commandLineLinter,
   cdcWebpackPlugin,
-} from "../../../component-data/Tools"
+} from "../../../ui/component-data/Tools"
 
 export const data: ToolsPageProps = {
   tools: [

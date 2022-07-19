@@ -1,4 +1,4 @@
-import { SITE_DESCRIPTION, SITE_TITLE } from "~/cms/constants"
+import { SITE_DESCRIPTION, SITE_TITLE } from "~/constants"
 
 export function getSocialMetas({
   url,

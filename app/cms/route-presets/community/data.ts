@@ -5,7 +5,7 @@ import {
   flowPortTool,
   jsTestingLibTool,
   vsCodeTool,
-} from "~/component-data/Tools"
+} from "~/ui/component-data/Tools"
 import { ContentNavigationListProps } from "~/ui/design-system/src/lib/Components/ContentNavigationList"
 import { Default as DefaultFeaturedArticleSlider } from "~/ui/design-system/src/lib/Components/FeaturedArticleSlider/FeaturedArticleSlider.stories"
 import { ProjectCardProps } from "~/ui/design-system/src/lib/Components/ProjectCard"

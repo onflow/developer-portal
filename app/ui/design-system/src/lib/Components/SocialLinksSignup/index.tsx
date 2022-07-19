@@ -3,7 +3,7 @@ import {
   DISCOURSE_URL,
   GITHUB_URL,
   TWITTER_URL,
-} from "../../../../../../cms/constants"
+} from "../../../../../../constants"
 import { ReactComponent as ContentExternalLinkIcon } from "../../../../images/content/external-link"
 import socialLinksGradientPath from "../../../../images/gradients/social-links.svg"
 import { ReactComponent as DiscordLogo } from "../../../../images/social/discord"

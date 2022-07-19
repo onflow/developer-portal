@@ -1,4 +1,4 @@
-import { DISCORD_URL, GITHUB_URL } from "../../../../../../cms/constants"
+import { DISCORD_URL, GITHUB_URL } from "../../../../../../constants"
 import { ReactComponent as DiscordIcon } from "../../../../images/social/discord"
 import AppLink from "../AppLink"
 import { GithubLink, GithubLinks } from "./GithubLinks"

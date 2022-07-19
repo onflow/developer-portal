@@ -1,6 +1,6 @@
 import { StatuspageApiResponse } from "~/ui/design-system/src/lib/interfaces"
-import { getRequiredServerEnvVar } from "~/cms/utils/helpers"
-import { STATUSPAGE_API_URL } from "~/cms/constants"
+import { getRequiredServerEnvVar } from "~/cms/utils/env-utils"
+import { STATUSPAGE_API_URL } from "~/constants"
 
 export async function fetchNetworkStatus() {
   const key = getRequiredServerEnvVar("STATUSPAGE_API_KEY")

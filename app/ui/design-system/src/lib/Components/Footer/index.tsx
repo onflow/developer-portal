@@ -1,4 +1,4 @@
-import { DISCORD_URL } from "../../../../../../cms/constants"
+import { DISCORD_URL } from "../../../../../../constants"
 import { ReactComponent as FlowDocsLogo } from "../../../../images/logos/flow-docs-logo"
 import OnFlowIcon from "../../../../images/logos/flow-icon-bw-light.svg"
 import DiscordIcon from "../../../../images/social/discord-light.svg"

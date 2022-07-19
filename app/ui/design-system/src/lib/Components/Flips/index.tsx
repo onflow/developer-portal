@@ -1,5 +1,5 @@
 import { useState } from "react"
-import { GITHUB_URL } from "../../../../../../cms/constants"
+import { GITHUB_URL } from "../../../../../../constants"
 import { ButtonLink } from "../Button"
 import { HeaderWithLink } from "../HeaderWithLink"
 import TabMenu from "../TabMenu"

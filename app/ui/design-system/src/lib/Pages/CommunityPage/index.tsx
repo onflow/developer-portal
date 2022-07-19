@@ -1,7 +1,7 @@
 import { ToolsAndConcepts, UpcomingEvents } from "../../Components"
 import { ButtonLink } from "../../Components/Button"
 import communitySections from "~/cms/route-presets/community/tertiary-menu"
-import { DISCOURSE_URL } from "~/cms/constants"
+import { DISCOURSE_URL } from "~/constants"
 import CommunityImage from "../../../../images/page/community.png"
 import { CommunityMembersProps } from "../../Components/CommunityMembers"
 import {

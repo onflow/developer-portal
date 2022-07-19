@@ -1,13 +1,13 @@
 import { LoaderFunction } from "@remix-run/node"
 import { useLoaderData } from "@remix-run/react"
 import { fetchFlips } from "~/cms/utils/fetch-flips"
-import { allEvents } from "~/component-data/Events"
+import { allEvents } from "~/ui/component-data/Events"
 import { HomePage, HomePageProps } from "~/ui/design-system/src/"
 import { ToolCardProps } from "~/ui/design-system/src/lib/Components/ToolCard"
 import {
   homepageStartProjectData,
   homepageThreeColumnData,
-} from "../component-data/Homepage"
+} from "../ui/component-data/Homepage"
 import {
   eventIndexingTool,
   fclSDK,
@@ -15,7 +15,7 @@ import {
   goSDK,
   httpSDK,
   overflowTool,
-} from "../component-data/Tools"
+} from "../ui/component-data/Tools"
 
 type DynamicHomePageProps = Pick<
   HomePageProps,

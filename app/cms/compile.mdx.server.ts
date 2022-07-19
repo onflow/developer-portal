@@ -9,7 +9,7 @@ import rehypeSanitize, { defaultSchema } from "rehype-sanitize"
 import type * as U from "unified"
 import { visit } from "unist-util-visit"
 import type { GitHubFile } from "./github.server"
-import { HIGHLIGHT_LANGUAGES } from "~/cms/constants"
+import { HIGHLIGHT_LANGUAGES } from "~/constants"
 import { formatLinks } from "~/cms/utils/format-links"
 import { markdownToToc } from "./utils/generate-toc"
 

@@ -5,7 +5,7 @@ import {
   LinkCard2ColumnProps,
   LinkCard3ColumnItems,
 } from "~/ui/design-system/src"
-import PlaygroundIcon from "../../ui/design-system/images/misc/playground-default.png"
+import PlaygroundIcon from "~/ui/design-system/images/misc/playground-default.png"
 
 const homepageStartProjectData: LinkCard2ColumnProps = {
   buttonText: "Get started",

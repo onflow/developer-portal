@@ -5,7 +5,7 @@ import { useCatch, useLocation } from "@remix-run/react"
 import { ErrorPage } from "~/ui/design-system/src/lib/Components/ErrorPage"
 import { getSocialMetas } from "~/utils/seo"
 // import { MdxPage } from "../../cms"
-// import { InternalPage } from "../../ui/design-system/src/lib/Pages/InternalPage"
+// import { InternalPage } from "~/ui/design-system/src/lib/Pages/InternalPage"
 import AppLink from "~/ui/design-system/src/lib/Components/AppLink"
 // import {
 //   SwitchContentName,

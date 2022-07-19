@@ -22,7 +22,7 @@ import {
   cadenceAtAGlance,
   firstStepsWithCadence,
   accessControlCadence,
-} from "../../component-data/Articles"
+} from "../../ui/component-data/Articles"
 
 const cadenceTutorials: TutorialCardProps[] = [
   cadenceAtAGlance,

@@ -21,7 +21,7 @@ import { ClientOnly } from "remix-utils"
 
 import clsx from "clsx"
 import { useCallback, useEffect, useRef } from "react"
-import { getRequiredServerEnvVar } from "~/cms/utils/helpers"
+import { getRequiredServerEnvVar } from "~/cms/utils/env-utils"
 import {
   Theme,
   ThemeBody,
@@ -29,7 +29,7 @@ import {
   ThemeProvider,
   useTheme,
 } from "~/cms/utils/theme.provider"
-import { navBarData } from "~/component-data/NavigationBar"
+import { navBarData } from "~/ui/component-data/NavigationBar"
 import { Footer } from "~/ui/design-system/src"
 import { ErrorPage } from "~/ui/design-system/src/lib/Components/ErrorPage"
 import { NavigationBar } from "~/ui/design-system/src/lib/Components/NavigationBar"
