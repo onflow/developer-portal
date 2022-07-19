@@ -1,4 +1,4 @@
-import { getRequiredServerEnvVar } from "~/cms/utils/env-utils"
+import { getRequiredServerEnvVar } from "~/utils/env-utils"
 
 function entryNode(entry: Entry, origin: string): string {
   const url = new URL(entry.pathname, origin)

@@ -1,6 +1,6 @@
 import { MetaFunction } from "@remix-run/node"
 import { RedocStandalone } from "redoc"
-import { Theme, useTheme } from "~/cms/utils/theme.provider"
+import { Theme, useTheme } from "~/ui/theme.provider"
 
 export const meta: MetaFunction = () => {
   return {

@@ -4,8 +4,8 @@ import { useCatch, useLocation } from "@remix-run/react"
 // import { ContentSpec } from "~/cms/schema"
 import { ErrorPage } from "~/ui/design-system/src/lib/Components/ErrorPage"
 import { getSocialMetas } from "~/utils/seo"
-// import { MdxPage } from "../../cms"
-// import { InternalPage } from "~/ui/design-system/src/lib/Pages/InternalPage"
+// import { MdxPage } from "~/cms"
+import { InternalPage } from "~/ui/design-system/src/lib/Pages/InternalPage"
 import AppLink from "~/ui/design-system/src/lib/Components/AppLink"
 // import {
 //   SwitchContentName,
@@ -95,7 +95,27 @@ export default function RepoDocument() {
   //   content.contentName
   // )
 
-  return <>Test</>
+  return (
+    <>TEST</>
+    // <InternalPage
+    //   activePath={path}
+    //   contentDisplayName={content.displayName}
+    //   contentPath={content.contentName}
+    //   header={path === "index" ? content.landingHeader : undefined}
+    //   sidebarConfig={content.schema?.sidebar}
+    //   internalSidebarMenu={
+    //     isSwitchContent
+    //       ? {
+    //           selected: content.contentName as SwitchContentName,
+    //         }
+    //       : undefined
+    //   }
+    //   githubUrl={page.editLink}
+    //   toc={page.toc}
+    // >
+    //   <MDXContent />
+    // </InternalPage>
+  )
 }
 
 export function CatchBoundary() {

@@ -1,4 +1,4 @@
-import type { getEnv } from "~/utils/env.server"
+import type { getEnv } from "~/env.server"
 
 function getRequiredEnvVarFromObj(
   obj: Record<string, string | undefined>,

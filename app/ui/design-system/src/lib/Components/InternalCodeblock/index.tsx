@@ -1,6 +1,6 @@
 import clsx from "clsx"
 import { useState } from "react"
-import { Theme } from "~/cms/utils/theme.provider"
+import { Theme } from "~/ui/theme.provider"
 import { ReactComponent as CollapseIcon } from "../../../../images/content/collapse"
 import { ReactComponent as FileCopyIcon } from "../../../../images/content/file-copy"
 import { ReactComponent as HashIcon } from "../../../../images/content/hash"

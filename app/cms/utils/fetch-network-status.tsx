@@ -1,5 +1,5 @@
 import { StatuspageApiResponse } from "~/ui/design-system/src/lib/interfaces"
-import { getRequiredServerEnvVar } from "~/cms/utils/env-utils"
+import { getRequiredServerEnvVar } from "~/utils/env-utils"
 import { STATUSPAGE_API_URL } from "~/constants"
 
 export async function fetchNetworkStatus() {

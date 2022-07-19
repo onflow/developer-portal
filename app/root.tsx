@@ -21,21 +21,21 @@ import { ClientOnly } from "remix-utils"
 
 import clsx from "clsx"
 import { useCallback, useEffect, useRef } from "react"
-import { getRequiredServerEnvVar } from "~/cms/utils/env-utils"
+import { getRequiredServerEnvVar } from "~/utils/env-utils"
 import {
   Theme,
   ThemeBody,
   ThemeHead,
   ThemeProvider,
   useTheme,
-} from "~/cms/utils/theme.provider"
+} from "~/ui/theme.provider"
 import { navBarData } from "~/ui/component-data/NavigationBar"
 import { Footer } from "~/ui/design-system/src"
 import { ErrorPage } from "~/ui/design-system/src/lib/Components/ErrorPage"
 import { NavigationBar } from "~/ui/design-system/src/lib/Components/NavigationBar"
-import { getPublicEnv, PUBLIC_ENV } from "~/utils/env.server"
+import { getPublicEnv, PUBLIC_ENV } from "~/env.server"
 import * as gtag from "~/utils/gtags.client"
-import { getThemeSession } from "~/utils/theme.server"
+import { getThemeSession } from "~/ui/theme.server"
 import styles from "./main.css"
 import AppLink from "./ui/design-system/src/lib/Components/AppLink"
 import { SearchProps } from "./ui/design-system/src/lib/Components/Search"

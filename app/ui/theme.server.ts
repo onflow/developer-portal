@@ -1,6 +1,6 @@
 import { createCookieSessionStorage } from "@remix-run/node"
-import type { Theme } from "~/cms/utils/theme.provider"
-import { isTheme } from "~/cms/utils/theme.provider"
+import type { Theme } from "~/ui/theme.provider"
+import { isTheme } from "~/ui/theme.provider"
 
 // Make use to set the environment variable SESSION_SECRET before running the code
 const sessionSecret = process.env.SESSION_SECRET ?? "DEFAULT_SECRET"
