@@ -6,7 +6,7 @@ import NetworkDetailPage, {
   getNetworkNameFromParam,
   NetworkDetailPageProps,
 } from "~/ui/design-system/src/lib/Pages/NetworkDetailPage"
-import { featuredArticle } from "./data"
+import { featuredArticle } from "~/cms/route-presets/network/data"
 
 type DynamicNetworkDetailPageProps = Pick<
   NetworkDetailPageProps,

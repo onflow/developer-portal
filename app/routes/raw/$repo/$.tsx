@@ -1,7 +1,7 @@
 import { LoaderFunction } from "@remix-run/node"
 import invariant from "tiny-invariant"
 import { octokit } from "~/cms"
-import { getContentSpecForRepo } from "~/cms/schema-utils"
+import { getContentSpecForRepo } from "~/cms/utils/schema-utils"
 
 const knownExtensions: Record<string, string> = {
   ".png": "image/png",

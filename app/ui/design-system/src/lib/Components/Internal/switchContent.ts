@@ -30,13 +30,6 @@ export type SwitchContentProps = {
   link: string
 }
 
-// TODO: We shouldn't have to manually relink when switchingtools
-export const getSwitchLink = (name: SwitchContentName) => {
-  if (isSecondRoute(name)) {
-    return `/${FIRST_ROUTE_MAP[name as SecondRoute]}/${name}`
-  }
-  return `/${name}`
-}
 export const switchContents: Partial<
   Record<SwitchContentName, SwitchContentProps | undefined>
 > = {
@@ -45,125 +38,125 @@ export const switchContents: Partial<
     icon: EmulatorIcon,
     iconLanding: CadenceLandingIcon,
     gradientIcon: EmulatorGradientIcon,
-    link: getSwitchLink("emulator"),
+    link: "emulator",
   },
   "vscode-extension": {
     name: "VS Code Extension",
     icon: VsCodeIcon,
     iconLanding: CadenceLandingIcon,
     gradientIcon: VsCodeGradientIcon,
-    link: getSwitchLink("vscode-extension"),
+    link: "vscode-extension",
   },
   "flow-cli": {
     name: "CLI",
     icon: CliIcon,
     iconLanding: CadenceLandingIcon,
     gradientIcon: CliGradientIcon,
-    link: getSwitchLink("flow-cli"),
+    link: "flow-cli",
   },
   "flow-js-testing": {
     name: "Testing Library",
     icon: TestingIcon,
     iconLanding: CadenceLandingIcon,
     gradientIcon: TestingGradientIcon,
-    link: getSwitchLink("flow-js-testing"),
+    link: "flow-js-testing",
   },
   "fcl-js": {
     name: "Flow Client Library",
     icon: FclIcon,
     iconLanding: FclIcon,
     gradientIcon: FclIcon,
-    link: getSwitchLink("fcl-js"),
+    link: "fcl-js",
   },
   cadence: {
     name: "Cadence",
     icon: CadenceIcon,
     iconLanding: CadenceLandingIcon,
     gradientIcon: CadenceGradientIcon,
-    link: getSwitchLink("cadence"),
+    link: "cadence",
   },
   language: {
     name: "Cadence",
     icon: CadenceIcon,
     iconLanding: CadenceLandingIcon,
     gradientIcon: CadenceGradientIcon,
-    link: getSwitchLink("language"),
+    link: "cadence/language",
   },
   tutorial: {
     name: "Cadence",
     icon: CadenceIcon,
     iconLanding: CadenceLandingIcon,
     gradientIcon: CadenceGradientIcon,
-    link: getSwitchLink("tutorial"),
+    link: "cadence/tutorial",
   },
   "flow-go-sdk": {
     name: "Go SDK",
     icon: DefaultIcon,
     iconLanding: CadenceLandingIcon,
     gradientIcon: DefaultIcon,
-    link: getSwitchLink("flow-go-sdk"),
+    link: "flow-go-sdk",
   },
   "http-api": {
     name: "HTTP API",
     icon: DefaultIcon,
     iconLanding: CadenceLandingIcon,
     gradientIcon: DefaultIcon,
-    link: getSwitchLink("http-api"),
+    link: "http-api",
   },
   tools: {
     name: "All tools",
     icon: DefaultIcon,
     iconLanding: CadenceLandingIcon,
     gradientIcon: DefaultIcon,
-    link: getSwitchLink("tools"),
+    link: "tools",
   },
   "kitty-items": {
     name: "Kitty Items",
     icon: DefaultIcon,
     iconLanding: CadenceLandingIcon,
     gradientIcon: DefaultIcon,
-    link: getSwitchLink("kitty-items"),
+    link: "learn/kitty-items",
   },
   concepts: {
     name: "Concepts & Guides",
     icon: DefaultIcon,
     iconLanding: CadenceLandingIcon,
     gradientIcon: DefaultIcon,
-    link: getSwitchLink("concepts"),
+    link: "flow/concepts",
   },
   learn: {
     name: "All content",
     icon: DefaultIcon,
     iconLanding: CadenceLandingIcon,
     gradientIcon: DefaultIcon,
-    link: getSwitchLink("learn"),
+    link: "learn",
   },
   "node-operation": {
     name: "Operation",
     icon: DefaultIcon,
     iconLanding: CadenceLandingIcon,
     gradientIcon: DefaultIcon,
-    link: getSwitchLink("node-operation"),
+    link: "nodes/node-operation",
   },
   staking: {
     name: "Staking",
     icon: DefaultIcon,
     iconLanding: CadenceLandingIcon,
     gradientIcon: DefaultIcon,
-    link: getSwitchLink("staking"),
+    link: "nodes/staking",
   },
   "flow-port": {
     name: "Flow Port",
     icon: PortIcon,
     iconLanding: CadenceLandingIcon,
     gradientIcon: PortIcionGradient,
-    link: getSwitchLink("flow-port"),
+    link: "nodes/flow-port",
   },
   nodes: {
     name: "All nodes",
     icon: DefaultIcon,
     iconLanding: CadenceLandingIcon,
     gradientIcon: DefaultIcon,
-    link: getSwitchLink("nodes"),
+    link: "nodes",
   },
 }

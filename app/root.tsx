@@ -21,7 +21,7 @@ import { ClientOnly } from "remix-utils"
 
 import clsx from "clsx"
 import { useCallback, useEffect, useRef } from "react"
-import { getRequiredServerEnvVar } from "~/cms/helpers"
+import { getRequiredServerEnvVar } from "~/cms/utils/helpers"
 import {
   Theme,
   ThemeBody,

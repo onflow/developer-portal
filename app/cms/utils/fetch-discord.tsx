@@ -5,13 +5,8 @@ import {
   DISCORD_ANNOUNCEMENTS_CHANNEL_ID,
   DISCORD_DEV_UPDATES_CHANNEL_ID,
   DISCORD_URL,
-} from "./constants"
-import {
-  getChannel,
-  getLatestMessages,
-  setupClient,
-  TextChannel,
-} from "../../cms/index"
+} from "~/cms/constants"
+import { getChannel, getLatestMessages, setupClient, TextChannel } from "~/cms"
 
 export type MessageInfo = {
   content: string

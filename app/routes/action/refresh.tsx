@@ -1,9 +1,8 @@
 import type { ActionFunction } from "@remix-run/node"
 import { json, redirect } from "@remix-run/node"
 import { getMdxPage } from "~/cms/utils/mdx"
-// import { getRequiredServerEnvVar } from "~/utils/cms/helpers";
 import { redisCache } from "~/cms/redis.server"
-import { getContentSpecForRepo } from "~/cms/schema-utils"
+import { getContentSpecForRepo } from "~/cms/utils/schema-utils"
 import { recordRefreshEventInMixpanel } from "~/utils/mixpanel.server"
 
 export interface Contribution {

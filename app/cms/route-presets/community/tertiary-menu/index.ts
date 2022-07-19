@@ -1,4 +1,4 @@
-export const communitySections = [
+export default [
   { title: "Upcoming Events", elementId: "upcoming-events" },
   { title: "FLIPs", elementId: "flips" },
   { title: "Featured Initiatives", elementId: "featured-initiatives" },

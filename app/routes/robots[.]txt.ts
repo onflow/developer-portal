@@ -1,5 +1,5 @@
 import { LoaderFunction } from "@remix-run/node"
-import { getRequiredServerEnvVar } from "~/cms/helpers"
+import { getRequiredServerEnvVar } from "~/cms/utils/helpers"
 
 export const loader: LoaderFunction = () => {
   let origin: string = getRequiredServerEnvVar(

@@ -1,5 +1,5 @@
 /* Overriden display names (defaults to dashes converted to spaces then capitalized) */
-export const displayNames: Partial<Record<string, string>> = {
+const displayNames: Partial<Record<string, string>> = {
   "flow-cli": "Flow CLI",
   "flow-js-testing": "Flow JS Testing",
   "flow-go-sdk": "Flow Go SDK",
@@ -10,3 +10,5 @@ export const displayNames: Partial<Record<string, string>> = {
   fusd: "FUSD",
   faq: "FAQ",
 }
+
+export default displayNames

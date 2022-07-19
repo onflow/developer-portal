@@ -20,12 +20,12 @@ import {
   overflowTool,
   flowserTool,
   eventIndexingTool,
-} from "../../component-data/Tools"
+} from "../../../component-data/Tools"
 import {
   introToFlow,
   getTheFlowDown,
   redSquirrelGetStartedArticle,
-} from "../../component-data/Articles"
+} from "../../../component-data/Articles"
 import { FeaturedArticleCardProps } from "~/ui/design-system/src/lib/Components/FeaturedArticleCard"
 import { ToolCardProps } from "~/ui/design-system/src/lib/Components/ToolCard"
 import { ContentNavigationListProps } from "~/ui/design-system/src/lib/Components/ContentNavigationList"

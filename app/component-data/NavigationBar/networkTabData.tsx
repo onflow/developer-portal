@@ -4,12 +4,10 @@ import TokenIcon from "~/ui/design-system/images/nav/token"
 import NetworkStatusIcon from "~/ui/design-system/images/nav/sdk"
 import { Section } from "~/ui/design-system/src/lib/Components/NavigationBar/types"
 import { networkStatusCard, sporkProcessCard } from "./navCardsData"
-import NetworkStatus from "../../routes/poll-network"
 
 export const networkStatus: Section = {
   title: "Network Status",
   icon: <NetworkStatusIcon height="1.5em" width="1.5em" />,
-  subSectionComponent: NetworkStatus,
 }
 
 export const nodeOperation: Section = {

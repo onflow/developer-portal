@@ -7,7 +7,7 @@ import NetworkPage, {
   NetworkPageProps,
 } from "~/ui/design-system/src/lib/Pages/NetworkPage"
 import { temporarilyRedirectToComingSoon } from "~/utils/features"
-import { featuredArticle } from "./data"
+import { featuredArticle } from "~/cms/route-presets/network/data"
 
 type DynamicNetworkPageProps = Pick<
   NetworkPageProps,

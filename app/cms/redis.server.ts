@@ -1,6 +1,6 @@
 import Redis from "ioredis"
 
-import { getRequiredServerEnvVar } from "./helpers"
+import { getRequiredServerEnvVar } from "~/cms/utils/helpers"
 
 declare global {
   // This prevents us from making multiple connections to the db when the

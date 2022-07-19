@@ -1,13 +1,7 @@
 import { ToolsAndConcepts, UpcomingEvents } from "../../Components"
 import { ButtonLink } from "../../Components/Button"
-// import CommunityMembers, {
-//   CommunityMembersProps,
-// } from "../../Components/CommunityMembers"
-// import FeaturedArticleSlider, {
-//   FeaturedArticleSliderProps,
-// } from "../../Components/FeaturedArticleSlider"
-import { communitySections } from "~/constants/landingPages/communitySections"
-import { DISCOURSE_URL } from "../../../../../../cms/constants"
+import communitySections from "~/cms/route-presets/community/tertiary-menu"
+import { DISCOURSE_URL } from "~/cms/constants"
 import CommunityImage from "../../../../images/page/community.png"
 import { CommunityMembersProps } from "../../Components/CommunityMembers"
 import {

@@ -9,7 +9,7 @@ import {
   recentArticleItems,
   recentToolItems,
   sdkCardItems,
-} from "./data"
+} from "~/cms/route-presets/getting-started/data"
 
 export const meta: MetaFunction = () => ({
   title: getMetaTitle("Getting Started"),

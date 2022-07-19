@@ -1,7 +1,7 @@
 import type { EntryContext } from "@remix-run/node"
 import { RemixServer } from "@remix-run/react"
 import { renderToString } from "react-dom/server"
-import { getRequiredGlobalEnvVar } from "./cms/helpers"
+import { getRequiredGlobalEnvVar } from "./cms/utils/helpers"
 import * as Sentry from "@sentry/node"
 import "@sentry/tracing"
 
