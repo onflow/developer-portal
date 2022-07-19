@@ -1,6 +1,6 @@
 import { capitalCase } from "change-case"
 import { useMemo } from "react"
-import { displayNames } from "~/constants/repos"
+import { displayNames } from "~/cms/schema"
 import {
   FIRST_ROUTE_MAP,
   isSecondRoute,

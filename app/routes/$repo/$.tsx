@@ -1,7 +1,7 @@
 import { json, LoaderFunction, MetaFunction, redirect } from "@remix-run/node"
 import { useCatch, useLoaderData, useLocation } from "@remix-run/react"
 import { getMdxPage, useMdxComponent } from "~/cms/utils/mdx"
-import { ContentSpec } from "~/constants/repos"
+import { ContentSpec } from "~/cms/schema"
 import { ErrorPage } from "~/ui/design-system/src/lib/Components/ErrorPage"
 import { getSocialMetas } from "~/utils/seo"
 import { MdxPage } from "../../cms"

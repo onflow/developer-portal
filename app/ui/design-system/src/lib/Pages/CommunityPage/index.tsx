@@ -7,7 +7,7 @@ import { ButtonLink } from "../../Components/Button"
 //   FeaturedArticleSliderProps,
 // } from "../../Components/FeaturedArticleSlider"
 import { communitySections } from "~/constants/landingPages/communitySections"
-import { DISCOURSE_URL } from "../../../../../../constants"
+import { DISCOURSE_URL } from "../../../../../../cms/constants"
 import CommunityImage from "../../../../images/page/community.png"
 import { CommunityMembersProps } from "../../Components/CommunityMembers"
 import {
