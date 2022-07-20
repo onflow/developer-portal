@@ -10,12 +10,7 @@ import { Default as DefaultCommunityMembers } from "~/ui/design-system/src/lib/C
 import CommunityPage, {
   CommunityPageProps,
 } from "~/ui/design-system/src/lib/Pages/CommunityPage"
-import {
-  articles,
-  contentNavigationListItems,
-  projects,
-  tools,
-} from "~/cms/route-presets/community/data"
+import { articles, contentNavigationListItems, projects, tools } from "./data"
 
 type DynamicCommunityPageProps = Pick<
   CommunityPageProps,

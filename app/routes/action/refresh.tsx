@@ -3,7 +3,7 @@ import { json, redirect } from "@remix-run/node"
 import { getMdxPage } from "~/cms/utils/mdx"
 import { redisCache } from "~/cms/redis.server"
 import { getContentSpecForRepo } from "~/cms/utils/schema-utils"
-import { recordRefreshEventInMixpanel } from "~/mixpanel.server"
+import { recordRefreshEventInMixpanel } from "~/mixpanel"
 
 export interface Contribution {
   contributor: string

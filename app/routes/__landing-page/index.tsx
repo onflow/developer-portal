@@ -7,7 +7,7 @@ import { ToolCardProps } from "~/ui/design-system/src/lib/Components/ToolCard"
 import {
   homepageStartProjectData,
   homepageThreeColumnData,
-} from "../ui/component-data/Homepage"
+} from "~/ui/component-data/Homepage"
 import {
   eventIndexingTool,
   fclSDK,
@@ -15,7 +15,7 @@ import {
   goSDK,
   httpSDK,
   overflowTool,
-} from "../ui/component-data/Tools"
+} from "~/ui/component-data/Tools"
 
 type DynamicHomePageProps = Pick<
   HomePageProps,

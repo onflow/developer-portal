@@ -1,9 +1,3 @@
-import {
-  FirstRoute,
-  FIRST_ROUTE_MAP,
-  isSecondRoute,
-  SecondRoute,
-} from "~/constants/repos/contents-structure"
 import { ReactComponent as CadenceIcon } from "../../../../images/tools/tool-cadence"
 import { ReactComponent as CadenceGradientIcon } from "../../../../images/tools/tool-cadence-gradient"
 import { ReactComponent as CadenceLandingIcon } from "../../../../images/tools/tool-cadence-landing"
@@ -20,7 +14,7 @@ import { ReactComponent as TestingGradientIcon } from "../../../../images/tools/
 import { ReactComponent as VsCodeIcon } from "../../../../images/tools/tool-vscode"
 import { ReactComponent as VsCodeGradientIcon } from "../../../../images/tools/tool-vscode-gradient"
 
-export type SwitchContentName = FirstRoute | SecondRoute | "http-api"
+export type SwitchContentName = string
 
 export type SwitchContentProps = {
   name: string
