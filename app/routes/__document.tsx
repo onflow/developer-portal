@@ -41,20 +41,21 @@ export const loader: LoaderFunction = async ({
     throw redirect(request.url.replace(/\/index$/, "/"))
   }
 
-  // const path = params["*"]!
+  const path = params["*"]!
+
+  const isDocument =
+    !path.includes(".") ||
+    path.toLowerCase().endsWith(".md") ||
+    path.toLowerCase().endsWith(".mdx")
+
+  if (!isDocument) {
+    throw redirect(`/raw/${params.repo}/${params["*"]}`)
+  }
+
   // const contentSpec = getContentSpec(params.repo!, path)
 
   // if (!contentSpec) {
   //   throw json({ status: "noRepo" }, { status: 404 })
-  // }
-
-  // const isDocument =
-  //   !path.includes(".") ||
-  //   path.toLowerCase().endsWith(".md") ||
-  //   path.toLowerCase().endsWith(".mdx")
-
-  // if (!isDocument) {
-  //   throw redirect(`/raw/${params.repo}/${params["*"]}`)
   // }
 
   // let page: MdxPage | null
@@ -86,11 +87,6 @@ export default function RepoDocument() {
   // const { content, path, page } = useLoaderData<LoaderData>()
   // const MDXContent = useMdxComponent(page)
 
-  // // Tools live at top-level URLs like /fcl-js so they will never be nested
-  // // under /flow/fcl-js so ... since this is a catch-all route (TODO: refactor to use remix routes)
-  // //
-  // // Logically a tool is NOT included in the list of flow routes (routes with the parent /flow)
-  // // const tool = ![...ROUTING_STRUCTURE.flow].includes(content.contentName)
   // const isSwitchContent = Object.keys(switchContents).includes(
   //   content.contentName
   // )
