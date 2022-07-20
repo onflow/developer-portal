@@ -11,4 +11,5 @@ export default {
   "kitty-items": {},
   "vscode-extension": {},
   "flow-port": {},
+  "core-contracts": {},
 }

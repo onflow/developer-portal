@@ -1,11 +1,11 @@
-import { LoaderFunction, MetaFunction } from "@remix-run/node"
+import { LoaderFunction, MetaFunction, redirect } from "@remix-run/node"
 import { useCatch, useLocation } from "@remix-run/react"
 // import { getMdxPage, useMdxComponent } from "~/cms/utils/mdx"
 // import { ContentSpec } from "~/cms/schema"
 import { ErrorPage } from "~/ui/design-system/src/lib/Components/ErrorPage"
 import { getSocialMetas } from "~/utils/seo"
 // import { MdxPage } from "~/cms"
-import { InternalPage } from "~/ui/design-system/src/lib/Pages/InternalPage"
+// import { InternalPage } from "~/ui/design-system/src/lib/Pages/InternalPage"
 import AppLink from "~/ui/design-system/src/lib/Components/AppLink"
 // import {
 //   SwitchContentName,
@@ -37,9 +37,9 @@ export const loader: LoaderFunction = async ({
   params,
   request,
 }): Promise<LoaderData> => {
-  // if (params["*"]?.endsWith("index") && request.url.endsWith("/index")) {
-  //   throw redirect(request.url.replace(/\/index$/, "/"))
-  // }
+  if (params["*"]?.endsWith("index") && request.url.endsWith("/index")) {
+    throw redirect(request.url.replace(/\/index$/, "/"))
+  }
 
   // const path = params["*"]!
   // const contentSpec = getContentSpec(params.repo!, path)
