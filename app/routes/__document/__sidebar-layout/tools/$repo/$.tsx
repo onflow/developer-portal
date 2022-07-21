@@ -8,7 +8,7 @@ export const loader: LoaderFunction = async ({ params }): Promise<{}> => {
 export default function () {
   return (
     <div>
-      <>FAQ TEST PAGE</>
+      <>TOOLS TEST PAGE</>
     </div>
   )
 }

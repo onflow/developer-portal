@@ -1,7 +1,7 @@
 import { LoaderFunction, MetaFunction } from "@remix-run/node"
 import { getMetaTitle } from "~/root"
 import { LearnPage } from "~/ui/design-system/src/lib/Pages/LearnPage"
-import { data } from "./data"
+import { data } from "~/cms/route-presets/learn/data"
 
 export const meta: MetaFunction = () => ({
   title: getMetaTitle("Learn"),

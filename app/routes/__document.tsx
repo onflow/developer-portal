@@ -1,5 +1,5 @@
 import { LoaderFunction, MetaFunction, redirect } from "@remix-run/node"
-import { useCatch, useLocation } from "@remix-run/react"
+import { Outlet, useCatch, useLocation } from "@remix-run/react"
 // import { getMdxPage, useMdxComponent } from "~/cms/utils/mdx"
 // import { ContentSpec } from "~/cms/schema"
 import { ErrorPage } from "~/ui/design-system/src/lib/Components/ErrorPage"
@@ -92,7 +92,10 @@ export default function RepoDocument() {
   // )
 
   return (
-    <>TEST</>
+    <>
+      DOCUMENT LAYOUT
+      <Outlet />
+    </>
     // <InternalPage
     //   activePath={path}
     //   contentDisplayName={content.displayName}
