@@ -51,34 +51,34 @@ const NetworkPage = ({
           </div>
         </div>
       </PageSection>
-      <PageSection sectionId="live-updates">
+      {/* <PageSection sectionId="live-updates">
         <div className="container">
-          <HeaderWithLink headerLink="live-updates" className="text-h3 mb-10">
+          <HeaderWithLink headerLink="live-updates" className="mb-10 text-h3">
             Live updates
           </HeaderWithLink>
-          <div className="mt-6 flex flex-col gap-4 md:flex-row md:gap-8">
-            {/* {discordNetworkCards.map((discordNetworkCards) => (
+          <div className="flex flex-col gap-4 mt-6 md:flex-row md:gap-8">
+            {discordNetworkCards.map((discordNetworkCards) => (
               <div key={discordNetworkCards.messageLink}>
                 <NetworkDiscordCard {...discordNetworkCards} />
               </div>
-            ))} */}
+            ))}
           </div>
         </div>
       </PageSection>
       <PageSection sectionId="announcements">
         <div className="container">
-          <HeaderWithLink headerLink="announcements" className="text-h3 mb-6">
+          <HeaderWithLink headerLink="announcements" className="mb-6 text-h3">
             Announcements
           </HeaderWithLink>
           <div className="flex flex-col gap-4 md:gap-8">
-            {/* {announcementCards.map((announcementCardProps) => (
+            {announcementCards.map((announcementCardProps) => (
               <div key={announcementCardProps.link}>
                 <AnnouncementCard {...announcementCardProps} />
               </div>
-            ))} */}
+            ))}
           </div>
         </div>
-      </PageSection>
+      </PageSection> */}
       <PageSection>
         <div className="container">
           <FeaturedArticle {...featuredArticle} />
