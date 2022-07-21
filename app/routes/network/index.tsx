@@ -1,6 +1,6 @@
 import { LoaderFunction, MetaFunction } from "@remix-run/node"
 import { useLoaderData } from "@remix-run/react"
-import { fetchDiscordAnnouncements } from "~/cms/utils/fetch-discord"
+// import { fetchDiscordAnnouncements } from "~/cms/utils/fetch-discord"
 import { fetchNetworkStatus } from "~/cms/utils/fetch-network-status"
 import { getMetaTitle } from "~/root"
 import NetworkPage, {
@@ -19,24 +19,24 @@ export const meta: MetaFunction = () => ({
 })
 
 export const loader: LoaderFunction = async () => {
-  temporarilyRedirectToComingSoon()
+  // temporarilyRedirectToComingSoon()
 
   const networkStatuses = await fetchNetworkStatus()
-  const { announcementCards, discordNetworkCards } =
-    await fetchDiscordAnnouncements()
-  const data = { networkStatuses, announcementCards, discordNetworkCards }
+  // const { announcementCards, discordNetworkCards } =
+  //   await fetchDiscordAnnouncements()
+  const data = { networkStatuses }
   return data
 }
 
 export default function Page() {
-  const { networkStatuses, announcementCards, discordNetworkCards } =
+  const { networkStatuses, announcementCards } =
     useLoaderData<DynamicNetworkPageProps>()
 
   return (
     <NetworkPage
       networkStatuses={networkStatuses}
       announcementCards={announcementCards}
-      discordNetworkCards={discordNetworkCards}
+      discordNetworkCards={[]}
       featuredArticle={featuredArticle}
     />
   )

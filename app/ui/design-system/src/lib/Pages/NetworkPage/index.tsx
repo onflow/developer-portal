@@ -57,11 +57,11 @@ const NetworkPage = ({
             Live updates
           </HeaderWithLink>
           <div className="mt-6 flex flex-col gap-4 md:flex-row md:gap-8">
-            {discordNetworkCards.map((discordNetworkCards) => (
+            {/* {discordNetworkCards.map((discordNetworkCards) => (
               <div key={discordNetworkCards.messageLink}>
                 <NetworkDiscordCard {...discordNetworkCards} />
               </div>
-            ))}
+            ))} */}
           </div>
         </div>
       </PageSection>
@@ -71,11 +71,11 @@ const NetworkPage = ({
             Announcements
           </HeaderWithLink>
           <div className="flex flex-col gap-4 md:gap-8">
-            {announcementCards.map((announcementCardProps) => (
+            {/* {announcementCards.map((announcementCardProps) => (
               <div key={announcementCardProps.link}>
                 <AnnouncementCard {...announcementCardProps} />
               </div>
-            ))}
+            ))} */}
           </div>
         </div>
       </PageSection>
