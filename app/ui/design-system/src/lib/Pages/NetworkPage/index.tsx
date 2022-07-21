@@ -1,13 +1,13 @@
 import {
-  AnnouncementCard,
+  // AnnouncementCard,
   NetworkCard,
-  NetworkDiscordCard,
+  // NetworkDiscordCard,
   SocialLinksSignup,
 } from "../../Components"
-import { AnnouncementCardProps } from "../../Components/AnnouncementCard"
+// import { AnnouncementCardProps } from "../../Components/AnnouncementCard"
 import { FeaturedArticle } from "../../Components/FeaturedArticleSlider"
-import { HeaderWithLink } from "../../Components/HeaderWithLink"
-import { NetworkDiscordCardProps } from "../../Components/NetworkDiscordCard"
+// import { HeaderWithLink } from "../../Components/HeaderWithLink"
+// import { NetworkDiscordCardProps } from "../../Components/NetworkDiscordCard"
 import { Article, StatuspageApiResponse } from "../../interfaces"
 import PageBackground from "../shared/PageBackground"
 import PageSection from "../shared/PageSection"
@@ -15,17 +15,17 @@ import PageSections from "../shared/PageSections"
 
 export type NetworkPageProps = {
   networkStatuses: StatuspageApiResponse[]
-  announcementCards: AnnouncementCardProps[]
-  discordNetworkCards: NetworkDiscordCardProps[]
+  // announcementCards: AnnouncementCardProps[]
+  // discordNetworkCards: NetworkDiscordCardProps[]
   featuredArticle: Article
 }
 
 const NetworkPage = ({
   networkStatuses,
   featuredArticle,
-  discordNetworkCards,
-  announcementCards,
-}: NetworkPageProps) => (
+}: // discordNetworkCards,
+// announcementCards,
+NetworkPageProps) => (
   <PageBackground gradient="network">
     <PageSections divided={false}>
       <PageSection>
