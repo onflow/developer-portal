@@ -9,27 +9,25 @@ async function findPreset(
   presetName: string,
   path: string
 ) {
-  /* 
-       Find the preset in the search path. Look for the exact match first. 
-       This means, if there is a language.json and a /language/index.json 
-       the language.json preset takes precedent. 
-     */
+  try {
+    const exact = await octokit.repos.getContent({
+      owner: owner,
+      repo: repoName,
+      path: `docs/route-presets/${presetName}/${path}.json`,
+    })
 
-  const exact = await octokit.repos.getContent({
-    owner: owner,
-    repo: repoName,
-    path: `docs/route-presets/${presetName}/${path}.json`,
-  })
+    return exact
+  } catch (e) {
+    try {
+      const dirIndex = await octokit.repos.getContent({
+        owner: owner,
+        repo: repoName,
+        path: `docs/route-presets/${presetName}/${path}/index.json`,
+      })
 
-  if (exact) return exact
-
-  const dirIndex = await octokit.repos.getContent({
-    owner: owner,
-    repo: repoName,
-    path: `docs/route-presets/${presetName}/${path}/index.json`,
-  })
-
-  if (dirIndex) return dirIndex
+      return dirIndex
+    } catch (e) {}
+  }
 }
 
 // returns the route preset for the closest matching parent route,
@@ -50,6 +48,7 @@ export default async function getRemotePreset(
         const preset = await findPreset(repo.owner, repoName, presetName, path)
         return preset
       } catch (e) {
+        console.log(e)
         const rest = segments.slice(2)
 
         const restSearch = [...rest]
@@ -69,6 +68,7 @@ export default async function getRemotePreset(
         }
       }
     } catch (e) {
+      console.log(e)
       console.log("No remote preset... \n")
     }
   }
