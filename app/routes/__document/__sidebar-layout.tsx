@@ -11,6 +11,14 @@ import { walkDir, fs, path as fsPath } from "~/cms/utils/fs-utils.server"
 
 type LoaderData = {}
 
+async function findPreset(searchPath: string, base: string) {
+  const exact = await fs.pathExists(`${base}/sidebar/${searchPath}.json`)
+  if (exact) return fs.readJson(`${base}/sidebar/${searchPath}.json`)
+
+  const dir = await fs.pathExists(`${base}/sidebar/${searchPath}`)
+  if (dir) return fs.readJson(`${base}/sidebar/${searchPath}/index.json`)
+}
+
 async function getSidebarConfig(url: string) {
   try {
     const path = new URL(url).pathname
@@ -46,40 +54,17 @@ async function getSidebarConfig(url: string) {
       throw "No menu ..."
     }
 
-    const menuFor = rest.join("/")
-
-    const exact = await fs.pathExists(
-      `${basePresetSearchPath}/sidebar/${menuFor}.json`
-    )
-    if (exact)
-      return fs.readJson(`${basePresetSearchPath}/sidebar/${menuFor}.json`)
-
-    const dir = await fs.pathExists(
-      `${basePresetSearchPath}/sidebar/${menuFor}`
-    )
-    if (dir)
-      return fs.readJson(
-        `${basePresetSearchPath}/sidebar/${menuFor}/index.json`
-      )
+    const searchPath = rest.join("/")
+    const preset = await findPreset(searchPath, basePresetSearchPath)
+    if (preset) return preset
 
     const restSearch = [...rest]
     restSearch.pop()
 
     while (restSearch.length) {
       const searchPath = restSearch.join("/")
-      const exact = await fs.pathExists(
-        `${basePresetSearchPath}/sidebar/${searchPath}.json`
-      )
-      if (exact)
-        return fs.readJson(`${basePresetSearchPath}/sidebar/${searchPath}.json`)
-
-      const dir = await fs.pathExists(
-        `${basePresetSearchPath}/sidebar/${searchPath}`
-      )
-      if (dir)
-        return fs.readJson(
-          `${basePresetSearchPath}/sidebar/${searchPath}/index.json`
-        )
+      const preset = await findPreset(searchPath, basePresetSearchPath)
+      if (preset) return preset
       restSearch.pop()
     }
   } catch (e) {
