@@ -1,6 +1,13 @@
-// TODO: Add types
+export const DEFAULT_REPO_OWNER = "onflow"
+export const DEFAULT_CONTENT_PATH = "docs"
 
-export default {
+type RepoContentSpec = {
+  owner: string
+  contentPath?: string
+  branch?: string
+}
+
+const repos: Partial<Record<string, RepoContentSpec>> = {
   flow: {
     owner: "onflow",
   },
@@ -35,3 +42,5 @@ export default {
     owner: "onflow",
   },
 }
+
+export default repos

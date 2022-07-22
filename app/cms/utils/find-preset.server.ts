@@ -13,11 +13,15 @@ async function findPreset(searchPath: string, base: string) {
   if (exact) return fs.readJson(`${base}/sidebar/${searchPath}.json`)
 
   const dir = await fs.pathExists(`${base}/sidebar/${searchPath}`)
-  if (dir) return fs.readJson(`${base}/sidebar/${searchPath}/index.json`)
+  const hasIndex = await fs.pathExists(
+    `${base}/sidebar/${searchPath}/index.json`
+  )
+  if (dir && hasIndex)
+    return fs.readJson(`${base}/sidebar/${searchPath}/index.json`)
 }
 
 // returns the route preset for the closest matching parent route,
-// defined by the route-presets folder structure.
+// defined by the route-data folder structure.
 export default async function getPreset(url: string, presetName: string) {
   try {
     const path = new URL(url).pathname
@@ -38,7 +42,7 @@ export default async function getPreset(url: string, presetName: string) {
      */
     const rest = segments.slice(2)
 
-    const basePresetSearchPath = `${process.cwd()}/app/cms/route-presets/${base}`
+    const basePresetSearchPath = `${process.cwd()}/app/cms/route-data/${base}`
     const presets = await fs.pathExists(basePresetSearchPath)
 
     /* 

@@ -15,7 +15,7 @@ import {
   contentNavigationListItems,
   projects,
   tools,
-} from "~/cms/route-presets/community/data"
+} from "~/cms/route-data/community/data"
 
 type DynamicCommunityPageProps = Pick<
   CommunityPageProps,

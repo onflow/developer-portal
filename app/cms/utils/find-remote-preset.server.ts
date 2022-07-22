@@ -13,7 +13,7 @@ async function findPreset(
     const exact = await octokit.repos.getContent({
       owner: owner,
       repo: repoName,
-      path: `docs/route-presets/${presetName}/${path}.json`,
+      path: `docs/route-data/${presetName}/${path}.json`,
     })
 
     return exact
@@ -22,7 +22,7 @@ async function findPreset(
       const dirIndex = await octokit.repos.getContent({
         owner: owner,
         repo: repoName,
-        path: `docs/route-presets/${presetName}/${path}/index.json`,
+        path: `docs/route-data/${presetName}/${path}/index.json`,
       })
 
       return dirIndex
@@ -31,7 +31,7 @@ async function findPreset(
 }
 
 // returns the route preset for the closest matching parent route,
-// defined by the route-presets folder structure.
+// defined by the route-data folder structure.
 export default async function getRemotePreset(
   url: string,
   presetName: string,

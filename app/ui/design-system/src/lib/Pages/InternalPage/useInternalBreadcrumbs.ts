@@ -1,5 +1,8 @@
+import { capitalCase } from "change-case"
 import { useMemo } from "react"
-import { InternalSidebarSectionItem } from "../../Components/InternalSidebar"
+import displayNames from "~/cms/route-data/display-names"
+
+import { InternalSidebarSectionItem } from "~/ui/design-system/src/lib/Components/InternalSidebar"
 
 export type UseInternalBreadcrumbsOptions = {
   /**
@@ -34,5 +37,32 @@ export const useInternalBreadcrumbs = ({
   rootUrl = "/",
 }: UseInternalBreadcrumbsOptions) =>
   useMemo(() => {
-    return []
-  }, [])
+    const breadcrumbs = [{ href: rootUrl, name: "Home" }]
+
+    var basePath = `${rootUrl}${contentPath}`
+
+    if (isSecondRoute(contentPath)) {
+      const firstRouteName = FIRST_ROUTE_MAP[contentPath as SecondRoute]!
+
+      breadcrumbs.push({
+        name: displayNames[firstRouteName] || capitalCase(firstRouteName),
+        href: `${rootUrl}${firstRouteName}`,
+      })
+      breadcrumbs.push({
+        name: contentDisplayName,
+        href: `${rootUrl}${firstRouteName}/${contentPath}`,
+      })
+      basePath = `${rootUrl}${firstRouteName}/${contentPath}`
+    } else {
+      breadcrumbs.push({ name: contentDisplayName, href: basePath })
+    }
+
+    if (activeItem) {
+      breadcrumbs.push({
+        name: activeItem.label,
+        href: `${basePath}/${activeItem.href}`,
+      })
+    }
+
+    return breadcrumbs
+  }, [activeItem, contentDisplayName, contentPath, rootUrl])

@@ -1,16 +1,26 @@
 import { LoaderFunction, MetaFunction, redirect } from "@remix-run/node"
-import { Outlet, useCatch, useLocation } from "@remix-run/react"
-// import { getMdxPage, useMdxComponent } from "~/cms/utils/mdx"
+import { Outlet, useCatch, useLocation, useLoaderData } from "@remix-run/react"
+import { getMdxPage } from "~/cms/utils/mdx"
 // import { ContentSpec } from "~/cms/schema"
 import { ErrorPage } from "~/ui/design-system/src/lib/Components/ErrorPage"
 import { getSocialMetas } from "~/utils/seo"
-// import { MdxPage } from "~/cms"
+import { capitalCase } from "change-case"
+import { MdxPage } from "~/cms"
 // import { InternalPage } from "~/ui/design-system/src/lib/Pages/InternalPage"
 import AppLink from "~/ui/design-system/src/lib/Components/AppLink"
 // import {
 //   SwitchContentName,
 //   switchContents,
 // } from "~/ui/design-system/src/lib/Components/Internal/switchContent"
+
+import contentRepos, {
+  DEFAULT_REPO_OWNER,
+  DEFAULT_CONTENT_PATH,
+} from "~/cms/content-repos"
+import { ContentSpec } from "~/cms/schema"
+import { json } from "@remix-run/node"
+import displayNames from "~/cms/route-data/display-names"
+import { useMdxComponent } from "~/cms/utils/mdx"
 
 export { InternalErrorBoundary as ErrorBoundary } from "~/errors/error-boundaries"
 
@@ -28,15 +38,18 @@ export const meta: MetaFunction = ({ data, location }) => {
 }
 
 type LoaderData = {
-  // content: ContentSpec
-  // path: string
-  // page: MdxPage
+  path: string
+  page: MdxPage | null
 }
 
 export const loader: LoaderFunction = async ({
   params,
   request,
 }): Promise<LoaderData> => {
+  if (!params.repo || !contentRepos[params.repo]) {
+    throw json({ status: "noRepo" }, { status: 404 })
+  }
+
   if (params["*"]?.endsWith("index") && request.url.endsWith("/index")) {
     throw redirect(request.url.replace(/\/index$/, "/"))
   }
@@ -52,40 +65,56 @@ export const loader: LoaderFunction = async ({
     throw redirect(`/raw/${params.repo}/${params["*"]}`)
   }
 
-  // const contentSpec = getContentSpec(params.repo!, path)
+  let page: MdxPage | null
 
-  // if (!contentSpec) {
-  //   throw json({ status: "noRepo" }, { status: 404 })
-  // }
+  try {
+    page = await getMdxPage(
+      {
+        owner: contentRepos[params.repo]?.owner || DEFAULT_REPO_OWNER,
+        repo: params.repo,
+        branch: contentRepos[params.repo]?.branch || "master",
+        fileOrDirPath:
+          contentRepos[params.repo]?.contentPath || DEFAULT_CONTENT_PATH,
+        isTrusted: true,
+      },
+      { request, forceFresh: process.env.FORCE_REFRESH === "true" }
+    )
+  } catch (e) {
+    throw json({ status: "mdxError", error: e }, { status: 500 })
+  }
 
-  // let page: MdxPage | null
-
-  // try {
-  //   page = await getMdxPage(
-  //     {
-  //       owner: contentSpec.owner,
-  //       repo: contentSpec.repoName,
-  //       branch: contentSpec.branch,
-  //       fileOrDirPath: [contentSpec.basePath, path].join("/"),
-  //       isTrusted: contentSpec.isTrusted,
-  //     },
-  //     { request, forceFresh: process.env.FORCE_REFRESH === "true" }
-  //   )
-  // } catch (e) {
-  //   throw json({ status: "mdxError", error: e }, { status: 500 })
-  // }
-
-  // if (!page) {
-  //   throw json({ status: "noPage" }, { status: 404 })
-  // }
-
-  // return { content: contentSpec, path, page }
-  return {}
+  return { path, page }
 }
 
+//const contentSpec = getContentSpec(params.repo!, path)
+
+// if (!contentSpec) {
+//   throw json({ status: "noRepo" }, { status: 404 })
+// }
+
+// let page: MdxPage | null
+
+// try {
+//   page = await getMdxPage(
+//     {
+//       owner: contentSpec.owner,
+//       repo: contentSpec.repoName,
+//       branch: contentSpec.branch,
+//       fileOrDirPath: [contentSpec.basePath, path].join("/"),
+//       isTrusted: contentSpec.isTrusted,
+//     },
+//     { request, forceFresh: process.env.FORCE_REFRESH === "true" }
+//   )
+// } catch (e) {
+//   throw json({ status: "mdxError", error: e }, { status: 500 })
+// }
+
+// if (!page) {
+//   throw json({ status: "noPage" }, { status: 404 })
+// }
+
 export default function RepoDocument() {
-  // const { content, path, page } = useLoaderData<LoaderData>()
-  // const MDXContent = useMdxComponent(page)
+  const { page } = useLoaderData<LoaderData>()
 
   // const isSwitchContent = Object.keys(switchContents).includes(
   //   content.contentName
@@ -93,8 +122,7 @@ export default function RepoDocument() {
 
   return (
     <>
-      DOCUMENT LAYOUT
-      <Outlet />
+      <Outlet context={{ mdx: page }} />
     </>
     // <InternalPage
     //   activePath={path}

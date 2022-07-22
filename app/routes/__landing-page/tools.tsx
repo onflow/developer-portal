@@ -1,7 +1,7 @@
 import { MetaFunction } from "@remix-run/node"
 import { getMetaTitle } from "~/root"
 import ToolsPage from "~/ui/design-system/src/lib/Pages/ToolsPage"
-import { data } from "../../cms/route-presets/tools/data"
+import { data } from "../../cms/route-data/tools/data"
 
 export const meta: MetaFunction = () => ({
   title: getMetaTitle("Tools"),

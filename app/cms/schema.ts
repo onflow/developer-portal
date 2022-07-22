@@ -30,7 +30,7 @@ export type ContentSpec = {
   contentName: string
 
   displayName: string
-  schema?: RepoSchema
+
   landingHeader?: InternalLandingHeaderProps
 
   /**

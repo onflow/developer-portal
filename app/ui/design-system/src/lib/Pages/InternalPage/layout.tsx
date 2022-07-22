@@ -1,9 +1,4 @@
-import { LoaderFunction } from "@remix-run/node"
-import { Outlet, useLoaderData, useOutletContext } from "@remix-run/react"
-import { ContentSpec, RepoSchema } from "~/cms/schema"
-import findPreset from "~/cms/utils/find-preset.server"
-import findRemotePreset from "~/cms/utils/find-remote-preset.server"
-import { populateRepoSchema as populateMissingSidebarLabels } from "~/cms/utils/schema-utils"
+import { Outlet } from "@remix-run/react"
 import { Transition } from "@headlessui/react"
 import clsx from "clsx"
 import { useCallback, useRef, useState, useEffect } from "react"
@@ -34,7 +29,7 @@ import {
 import {
   useInternalBreadcrumbs,
   UseInternalBreadcrumbsOptions,
-} from "~/cms/utils/hooks/useInternalBreadcrumbs"
+} from "./useInternalBreadcrumbs"
 
 export type InternalPageProps = React.PropsWithChildren<{
   /**
@@ -59,63 +54,27 @@ export type InternalPageProps = React.PropsWithChildren<{
 }> &
   Omit<UseInternalBreadcrumbsOptions, "activeItem">
 
-type LoaderData = RepoSchema
-
-export const loader: LoaderFunction = async ({
-  params,
-  request,
-}): Promise<LoaderData> => {
-  let sidebarConfig
-
-  if (params.repo || params.path) {
-    sidebarConfig = await findRemotePreset(
-      request.url,
-      "sidebar",
-      params.path ? params.path : params.repo!
-    )
-  }
-
-  if (!sidebarConfig) {
-    sidebarConfig = await findPreset(request.url, "sidebar")
-  }
-
-  try {
-    const formatted = populateMissingSidebarLabels(sidebarConfig)
-    return formatted
-  } catch (e) {
-    return sidebarConfig
-  }
-}
-
-type ContextData = {
-  content: ContentSpec
-  path: string
-}
-
-export default function InternalPage({
+export function InternalPage({
   activePath,
   children,
   contentDisplayName,
   contentPath,
   githubUrl,
   header,
+  internalSidebarMenu,
   rootUrl = "/",
+  sidebarConfig,
   toc,
 }: InternalPageProps) {
-  const context = useOutletContext<ContextData>()
-
   const [isMobileSidebarOpen, setMobileSidebarOpen] = useState(false)
 
-  const { sidebar: sidebarConfig } = useLoaderData<LoaderData>()
   const activeItem = findSidebarSectionItem(sidebarConfig, activePath)
-
   const breadcrumbs = useInternalBreadcrumbs({
     activeItem,
     contentDisplayName,
     contentPath,
     rootUrl,
   })
-
   let prevItem: InternalSidebarSectionItem | undefined
   let nextItem: InternalSidebarSectionItem | undefined
 
@@ -178,7 +137,10 @@ export default function InternalPage({
             />
           </div>
           <div className="p-6">
-            <InternalSidebar config={sidebarConfig} menu={{ selected: "" }} />
+            <InternalSidebar
+              config={sidebarConfig}
+              menu={internalSidebarMenu}
+            />
           </div>
         </Transition>
       )}
@@ -196,7 +158,7 @@ export default function InternalPage({
               >
                 <InternalSidebar
                   config={sidebarConfig}
-                  menu={{ selected: "" }}
+                  menu={internalSidebarMenu}
                 />
               </div>
             </aside>
@@ -208,8 +170,7 @@ export default function InternalPage({
           })}
           ref={contentRef}
         >
-          <Outlet context={context} />
-
+          <Outlet />
           <div
             className={clsx("w-full flex-none p-8 pl-16 pb-80", {
               "md:w-3/4": !!toc,

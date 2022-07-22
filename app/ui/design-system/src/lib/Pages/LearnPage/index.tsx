@@ -20,7 +20,7 @@ import PageBackground from "../shared/PageBackground"
 import PageSection from "../shared/PageSection"
 import PageSections from "../shared/PageSections"
 import LearnImage from "../../../../images/page/learn.png"
-import learnSections from "~/cms/route-presets/learn/tertiary-menu"
+import learnSections from "~/cms/route-data/learn/tertiary-menu"
 
 export type LearnPageProps = {
   editPageUrl?: string
