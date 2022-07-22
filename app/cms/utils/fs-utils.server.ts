@@ -1,3 +1,4 @@
 import walkDir from "walkdir"
 import fs from "fs-extra"
-export { walkDir, fs }
+import path from "node:path"
+export { walkDir, fs, path }

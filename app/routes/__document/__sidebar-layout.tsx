@@ -1,6 +1,7 @@
 import { LoaderFunction } from "@remix-run/node"
 import { Outlet } from "@remix-run/react"
-import { walkDir, fs } from "~/cms/utils/fs-utils.server"
+import { split } from "lodash"
+import { walkDir, fs, path as fsPath } from "~/cms/utils/fs-utils.server"
 
 // type Params = {
 //   path?: string
@@ -45,19 +46,42 @@ async function getSidebarConfig(url: string) {
       throw "No menu ..."
     }
 
-    for (const segment of rest) {
-      for (const preset of sidebarPresets) {
-      }
+    const menuFor = rest.join("/")
+
+    const exact = await fs.pathExists(
+      `${basePresetSearchPath}/sidebar/${menuFor}.json`
+    )
+    if (exact)
+      return fs.readJson(`${basePresetSearchPath}/sidebar/${menuFor}.json`)
+
+    const dir = await fs.pathExists(
+      `${basePresetSearchPath}/sidebar/${menuFor}`
+    )
+    if (dir)
+      return fs.readJson(
+        `${basePresetSearchPath}/sidebar/${menuFor}/index.json`
+      )
+
+    const restSearch = [...rest]
+    restSearch.pop()
+
+    while (restSearch.length) {
+      const searchPath = restSearch.join("/")
+      const exact = await fs.pathExists(
+        `${basePresetSearchPath}/sidebar/${searchPath}.json`
+      )
+      if (exact)
+        return fs.readJson(`${basePresetSearchPath}/sidebar/${searchPath}.json`)
+
+      const dir = await fs.pathExists(
+        `${basePresetSearchPath}/sidebar/${searchPath}`
+      )
+      if (dir)
+        return fs.readJson(
+          `${basePresetSearchPath}/sidebar/${searchPath}/index.json`
+        )
+      restSearch.pop()
     }
-
-    // const sidebarPreset = `${basePresetSearchPath}/sidebar/${segments.slice(2).join('/')}.json`
-
-    // if(await fs.pathExists(sidebarPreset)) {
-    //     const menu = await fs.readJson(sidebarPreset)
-    //     console.log("Menu:",  !!menu)
-    // } else {
-    //     throw "No menu..."
-    // }
   } catch (e) {
     console.log(e)
     return {}
