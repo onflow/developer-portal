@@ -48,6 +48,38 @@ export default async function getPreset(url: string, presetName: string) {
       throw "No menu ..."
     }
 
+    // if (!rest.length) {
+    //   /*
+    //   We have a 'base' URL, now search for a file named index.json within.
+    //   the preset folder of the same name. If none then we have no menus for this route.
+    //   If this fails we return. (see throw below)
+    //  */
+    //   const baseIndexPresetPath = `${basePresetSearchPath}/${presetName}/index.json`
+    //   const baseIndexPreset = await fs.pathExists(baseIndexPresetPath)
+
+    //   if (baseIndexPreset) {
+    //     const preset = await fs.readJson(baseIndexPresetPath)
+    //     return preset
+    //   } else {
+    //     throw "No menu ..."
+    //   }
+    // }
+
+    // /*
+    //   We did not find an exact match, and we're not dealing with a 'base' route, because there rest.length
+    //   We know at least there are folders here we get a list of all files and folders
+    //   in the base directory so we can search for the matching preset.
+    //  */
+
+    // const sidebarPresets = await walkDir.async(
+    //   `${basePresetSearchPath}/${presetName}`
+    // )
+
+    // // Not sure if this is necessary.
+    // if (!sidebarPresets.length) {
+    //   throw "No menu ..."
+    // }
+
     /* 
       Start searching from the deepest child eg. 
       if the URL is /base(ignored here)/language/accounts/crypto
