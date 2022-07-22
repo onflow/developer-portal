@@ -1,7 +1,7 @@
 import { LoaderFunction } from "@remix-run/node"
 import { Outlet, useLoaderData } from "@remix-run/react"
 import findPreset from "~/cms/utils/find-preset.server"
-// import findRemotePreset from "~/cms/utils/find-remote-preset.server"
+import findRemotePreset from "~/cms/utils/find-remote-preset.server"
 
 type LoaderData = {}
 
@@ -10,11 +10,18 @@ export const loader: LoaderFunction = async ({
   request,
 }): Promise<LoaderData> => {
   let sidebarConfig
-  sidebarConfig = await findPreset(request.url, "sidebar")
 
-  //   if (!sidebarConfig) {
-  //     sidebarConfig = await findRemotePreset(request.url, "sidebar")
-  //   }
+  if (params.repo || params.path) {
+    sidebarConfig = await findRemotePreset(
+      request.url,
+      "sidebar",
+      params.path ? params.path : params.repo!
+    )
+  }
+
+  if (!sidebarConfig) {
+    sidebarConfig = await findPreset(request.url, "sidebar")
+  }
 
   return { sidebar: sidebarConfig }
 }

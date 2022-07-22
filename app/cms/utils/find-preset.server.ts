@@ -1,4 +1,6 @@
-import { walkDir, fs } from "~/cms/utils/fs-utils.server"
+import { fs } from "~/cms/utils/fs-utils.server"
+
+const DEFAULT_PRESET_EXT = ".json"
 
 async function findPreset(searchPath: string, base: string) {
   /* 
