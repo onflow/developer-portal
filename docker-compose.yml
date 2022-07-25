@@ -1,19 +1,79 @@
-version: "3.7"
+version: "3.8"
+
+networks:
+  next-docs-net:
+
+volumes:
+  node_modules:
+  postgres_data:
+  redis_data:
+
+# Default for all services
+x-service-defaults: &service-defaults
+  restart: unless-stopped
+  networks:
+    - next-docs-net
+
+# Defaults for all app-based node services
+x-app-defaults: &app-defaults
+  <<: *service-defaults
+  build:
+    context: .
+    dockerfile: Dockerfile.dev
+  command: ["yarn"]
+  working_dir: /opt/next-docs
+  depends_on:
+    - database
+    - cache
+  restart: on-failure
+  environment:
+    DATABASE_URL: postgresql://flow_docs_user:flow_docs_pass@database:5432/flow_docs_db?schema=public
+    REDIS_URL: redis://:flow_docs@cache:6379
+    REFRESH_CACHE_SECRET: for-testing-only
+    INCOMPLETE_PAGE_BEHAVIORL: preview
+    SENTRY_ENV: sentry-development
+    SHELL: /bin/bash
+    PORT: 3000
+    REMIX_DEV_SERVER_WS_PORT: 8002
+  volumes:
+    - type: bind
+      source: .
+      target: /opt/next-docs
+    - node_modules:/opt/next-docs/node_modules
+
 services:
   database:
+    <<: *service-defaults
     image: "postgres:13"
     environment:
-      - POSTGRES_USER=flow_docs_user
-      - POSTGRES_PASSWORD=flow_docs_pass
-      - POSTGRES_DB=flow_docs_db
+      POSTGRES_USER: flow_docs_user
+      POSTGRES_PASSWORD: flow_docs_pass
+      POSTGRES_DB: flow_docs_db
     volumes:
-      - .postgres-data:/var/lib/postgresql/data
-    ports:
-      - "5432:5432"
+      - postgres_data:/var/lib/postgresql
   cache:
+    <<: *service-defaults
     image: "redis:alpine"
     command: redis-server --requirepass flow_docs
     volumes:
-      - .redis-data:/data
+      - redis_data:/data
+  app-css:
+    <<: *app-defaults
+    command: ["yarn", "run", "dev:css"]
+  app-svg:
+    <<: *app-defaults
+    command: ["yarn", "run", "dev:svg"]
+  app:
+    <<: *app-defaults
+    command: ["yarn", "run", "dev:remix"]
     ports:
-      - "6379:6379"
+      - "3000:3000" # Web app port
+      - "8002:8002" # Websocket for live-reload
+    depends_on:
+      - app-css
+      - app-svg
+  storybook:
+    <<: *app-defaults
+    command: ["yarn", "run", "start-storybook", "-p", "6006", "--quiet", "--no-open", "--disable-telemetry"]
+    ports:
+      - "6006:6006"

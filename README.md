@@ -17,18 +17,20 @@ git clone https://github.com/onflow/next-docs-v1.git
 
 You'll need to acquire the project's `.env` file before continuing.
 
-- Add the `.env` file to `/apps/flow-docs/.env`
+1. Add the `.env` file to the project root.
+2. `docker compose up`
 
-1. `yarn`
-2. `docker compose up -d` To start Redis and Postgres for the project. (use this when not running Postgres & Redis from your system)
+Main application: http://localhost:3000/
+Storybook: http://localhost:6006/
 
-### Running Storybook
+#### Running services locally outside of Docker
 
-1. `yarn storybook`
-
-### Running the Docs Site
-
-1. `yarn dev`
+1. Add the `.env` file to the project root.
+2. `yarn`
+3. `docker compose up -d` To start Redis and Postgres for the project. (use this when not running Postgres & Redis from your system)
+4. Run the desired application:
+   - `yarn run dev` to run the Docs Site (https://localhost:3000)
+   - `yarn storybook` to run Storybook (https://localhost:6006)
 
 # Development
 
