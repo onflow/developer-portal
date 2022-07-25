@@ -1,6 +1,7 @@
 import { Meta, Story } from "@storybook/react"
-import { OFFICE_HOURS_EVENT_TYPE } from "~/component-data/Events"
 import { UpcomingEvents, UpcomingEventsProps } from "."
+
+export const OFFICE_HOURS_EVENT_TYPE = "Flow office hours"
 
 export default {
   component: UpcomingEvents,
