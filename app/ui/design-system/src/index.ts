@@ -11,10 +11,6 @@ export { InternalContentLink } from "./lib/Components/InternalContentLink"
 export { InternalLandingCard } from "./lib/Components/InternalLandingCard"
 export { InternalSidebar } from "./lib/Components/InternalSidebar"
 export type { InternalSidebarConfig } from "./lib/Components/InternalSidebar"
-// export {
-//   InternalSidebar,
-//   TEMP_SIDEBAR_CONFIG,
-// } from './lib/Components/InternalSidebar';
 export { LandingHeader } from "./lib/Components/LandingHeader"
 export { LandingHeaderHome } from "./lib/Components/LandingHeaderHome"
 export { LinkCard2Column } from "./lib/Components/LinkCard2Column"

@@ -1,10 +1,9 @@
 import type { ActionFunction } from "@remix-run/node"
 import { json, redirect } from "@remix-run/node"
 import { getMdxPage } from "~/cms/utils/mdx"
-// import { getRequiredServerEnvVar } from "~/utils/cms/helpers";
 import { redisCache } from "~/cms/redis.server"
-import { getContentSpec } from "~/constants/repos"
-import { recordRefreshEventInMixpanel } from "~/utils/mixpanel.server"
+import { getContentSpecForRepo } from "~/cms/utils/schema-utils"
+import { recordRefreshEventInMixpanel } from "~/mixpanel"
 
 export interface Contribution {
   contributor: string
@@ -78,7 +77,7 @@ export const action: ActionFunction = async ({ request }) => {
       refreshingContentPaths.push(contentPath)
       console.log(`Refreshing ${contentPath}...`)
 
-      const contentSpec = getContentSpec(body.repo)
+      const contentSpec = getContentSpecForRepo(body.repo)
 
       if (!contentSpec) {
         return json(

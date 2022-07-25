@@ -1,12 +1,8 @@
 import { capitalCase } from "change-case"
 import { useMemo } from "react"
-import { displayNames } from "~/constants/repos"
-import {
-  FIRST_ROUTE_MAP,
-  isSecondRoute,
-  SecondRoute,
-} from "~/constants/repos/contents-structure"
-import { InternalSidebarSectionItem } from "../../Components/InternalSidebar"
+import displayNames from "~/cms/route-data/display-names"
+
+import { InternalSidebarSectionItem } from "~/ui/design-system/src/lib/Components/InternalSidebar"
 
 export type UseInternalBreadcrumbsOptions = {
   /**

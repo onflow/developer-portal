@@ -3,7 +3,7 @@ import Highlight, { defaultProps, Language, Prism } from "prism-react-renderer"
 import darkTheme from "prism-react-renderer/themes/vsDark"
 import lightTheme from "prism-react-renderer/themes/vsLight"
 import { useEffect, useState } from "react"
-import { Theme } from "~/cms/utils/theme.provider"
+import { Theme } from "~/ui/theme.provider"
 import { prismSwiftLang } from "./prism"
 
 // Add swift to Prism. Is there a better way to do this?

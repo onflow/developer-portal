@@ -1,17 +1,12 @@
 import { AnnouncementCardProps } from "~/ui/design-system/src/lib/Components/AnnouncementCard"
 import { NetworkDiscordCardProps } from "~/ui/design-system/src/lib/Components/NetworkDiscordCard"
-import DiscordIcon from "../../ui/design-system/images/social/discord-light.svg"
+import DiscordIcon from "~/ui/design-system/images/social/discord-light.svg"
 import {
   DISCORD_ANNOUNCEMENTS_CHANNEL_ID,
   DISCORD_DEV_UPDATES_CHANNEL_ID,
   DISCORD_URL,
-} from "./constants"
-import {
-  getChannel,
-  getLatestMessages,
-  setupClient,
-  TextChannel,
-} from "../../cms/index"
+} from "~/constants"
+import { getChannel, getLatestMessages, setupClient, TextChannel } from "~/cms"
 
 export type MessageInfo = {
   content: string

@@ -14,8 +14,6 @@ function updateRelativeDepth(linkText: string, index = false) {
   }
 }
 
-module.exports = updateRelativeDepth
-
 const formatLinks = (repoName: string) => {
   return async function rewriteRelativeLinks(tree: H.Root) {
     visit(
@@ -47,4 +45,4 @@ const formatLinks = (repoName: string) => {
   }
 }
 
-export default formatLinks
+export { formatLinks, updateRelativeDepth }

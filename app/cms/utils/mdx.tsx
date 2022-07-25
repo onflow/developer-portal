@@ -20,7 +20,7 @@ import {
   StaticCheckbox,
 } from "~/ui/design-system"
 import type { LoaderData as RootLoaderData } from "../../root"
-import { Theme, useTheme } from "./theme.provider"
+import { Theme, useTheme } from "../../ui/theme.provider"
 
 function typedBoolean<T>(
   value: T

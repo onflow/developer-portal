@@ -10,7 +10,6 @@ export const loader: LoaderFunction = async () => {
 
 export default function Version() {
   const data = useLoaderData()
-
   return (
     <div className="prose mx-auto dark:prose-invert">
       <table className="font-mono">

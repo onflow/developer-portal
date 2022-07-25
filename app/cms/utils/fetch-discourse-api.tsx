@@ -7,7 +7,7 @@ import {
   DISCOURSE_BREAKING_CHANGES_URL,
   DISCOURSE_LATEST_TOPICS_URL,
   DISCOURSE_MAINNET_SPORK_URL,
-} from "./constants"
+} from "~/constants"
 
 export interface TopicsUser {
   id: number
