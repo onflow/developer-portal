@@ -1,13 +1,17 @@
+import { Transition } from "@headlessui/react"
 import { LoaderFunction } from "@remix-run/node"
 import { Outlet, useLoaderData, useOutletContext } from "@remix-run/react"
-import { ContentSpec, RepoSchema } from "~/cms/schema"
+import clsx from "clsx"
+import { useCallback, useEffect, useRef, useState } from "react"
+import { useLocation } from "react-router"
+import { RepoSchema } from "~/cms/schema"
 import findPreset from "~/cms/utils/find-preset.server"
 import findRemotePreset from "~/cms/utils/find-remote-preset.server"
+import {
+  useInternalBreadcrumbs,
+  UseInternalBreadcrumbsOptions,
+} from "~/cms/utils/hooks/useInternalBreadcrumbs"
 import { populateRepoSchema as populateMissingSidebarLabels } from "~/cms/utils/schema-utils"
-import { Transition } from "@headlessui/react"
-import clsx from "clsx"
-import { useCallback, useRef, useState, useEffect } from "react"
-import { useLocation } from "react-router"
 import {
   InternalLandingHeader,
   InternalLandingHeaderProps,
@@ -22,8 +26,8 @@ import { flattenSidebarSectionItems } from "~/ui/design-system/src/lib/Component
 import { InternalSidebarMenuProps } from "~/ui/design-system/src/lib/Components/InternalSidebarMenu"
 import { InternalSubnav } from "~/ui/design-system/src/lib/Components/InternalSubnav"
 import {
+  InternalToc,
   InternalTocDisclosure,
-  InternalTocItem,
 } from "~/ui/design-system/src/lib/Components/InternalToc"
 import { LowerPageNav } from "~/ui/design-system/src/lib/Components/LowerPageNav"
 import { MobileMenuToggleButton } from "~/ui/design-system/src/lib/Components/NavigationBar/MobileMenuToggleButton"
@@ -31,12 +35,9 @@ import {
   useResizeObserver,
   UseResizeObserverCallback,
 } from "~/ui/design-system/src/lib/utils/useResizeObserver"
-import {
-  useInternalBreadcrumbs,
-  UseInternalBreadcrumbsOptions,
-} from "~/cms/utils/hooks/useInternalBreadcrumbs"
+import { MdxPage } from "../../cms"
 
-export type InternalPageProps = React.PropsWithChildren<{
+export type InternalPageProps = {
   /**
    * The path of the currently active item. This should be a path
    * relative to the repo (excluding the repo name), matching the item's href
@@ -54,10 +55,7 @@ export type InternalPageProps = React.PropsWithChildren<{
    * The configuration object that describes the page hierarchy.
    */
   sidebarConfig?: InternalSidebarConfig
-
-  toc?: InternalTocItem[]
-}> &
-  Omit<UseInternalBreadcrumbsOptions, "activeItem">
+} & Omit<UseInternalBreadcrumbsOptions, "activeItem">
 
 type LoaderData = RepoSchema
 
@@ -88,21 +86,19 @@ export const loader: LoaderFunction = async ({
 }
 
 type ContextData = {
-  content: ContentSpec
-  path: string
+  mdx: MdxPage
 }
 
 export default function InternalPage({
   activePath,
-  children,
   contentDisplayName,
   contentPath,
   githubUrl,
   header,
   rootUrl = "/",
-  toc,
 }: InternalPageProps) {
   const context = useOutletContext<ContextData>()
+  const { toc } = context.mdx
 
   const [isMobileSidebarOpen, setMobileSidebarOpen] = useState(false)
 
@@ -208,8 +204,19 @@ export default function InternalPage({
           })}
           ref={contentRef}
         >
-          <Outlet context={context} />
-
+          {toc && (
+            <div className="hidden flex-none md:flex md:w-1/4">
+              <div
+                className="sticky h-full max-h-screen overflow-auto p-8"
+                style={{
+                  top: subnavRect?.height ?? 0,
+                  maxHeight: `calc(100vh - ${subnavRect?.bottom ?? 0}px)`,
+                }}
+              >
+                <InternalToc headings={toc} />
+              </div>
+            </div>
+          )}
           <div
             className={clsx("w-full flex-none p-8 pl-16 pb-80", {
               "md:w-3/4": !!toc,
@@ -220,7 +227,9 @@ export default function InternalPage({
                 <InternalTocDisclosure headings={toc} />
               </div>
             )}
-            <div>{children}</div>
+            <div>
+              <Outlet context={context} />
+            </div>
             <LowerPageNav
               prev={
                 prevItem && {
