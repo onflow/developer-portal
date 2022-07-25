@@ -4,7 +4,7 @@ import { getMdxPage } from "~/cms/utils/mdx"
 // import { ContentSpec } from "~/cms/schema"
 import { ErrorPage } from "~/ui/design-system/src/lib/Components/ErrorPage"
 import { getSocialMetas } from "~/utils/seo"
-import { capitalCase } from "change-case"
+
 import { MdxPage } from "~/cms"
 // import { InternalPage } from "~/ui/design-system/src/lib/Pages/InternalPage"
 import AppLink from "~/ui/design-system/src/lib/Components/AppLink"

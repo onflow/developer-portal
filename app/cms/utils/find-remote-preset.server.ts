@@ -37,7 +37,6 @@ export default async function getRemotePreset(
   presetName: string,
   repoName: string
 ) {
-  // @ts-expect-error: Nah bruh
   const repo = repoNames[repoName]
 
   if (repo) {
