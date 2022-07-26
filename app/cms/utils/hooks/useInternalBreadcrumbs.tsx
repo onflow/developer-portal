@@ -1,5 +1,5 @@
 // import { capitalCase } from "change-case"
-import { useMemo } from "react"
+// import { useMemo } from "react"
 // import displayNames from "~/cms/route-data/display-names"
 
 import { InternalSidebarSectionItem } from "~/ui/design-system/src/lib/Components/InternalSidebar"
@@ -35,34 +35,34 @@ export const useInternalBreadcrumbs = ({
   contentDisplayName,
   contentPath,
   rootUrl = "/",
-}: UseInternalBreadcrumbsOptions) =>
-  useMemo(() => {
-    const breadcrumbs = [{ href: rootUrl, name: "Home" }]
+}: UseInternalBreadcrumbsOptions) => [{ href: rootUrl, name: "Home" }]
+// useMemo(() => {
+//   const breadcrumbs = [{ href: rootUrl, name: "Home" }]
 
-    // var basePath = `${rootUrl}${contentPath}`
+//   // var basePath = `${rootUrl}${contentPath}`
 
-    // if (isSecondRoute(contentPath)) {
-    //   const firstRouteName = FIRST_ROUTE_MAP[contentPath as SecondRoute]!
+//   // if (isSecondRoute(contentPath)) {
+//   //   const firstRouteName = FIRST_ROUTE_MAP[contentPath as SecondRoute]!
 
-    //   breadcrumbs.push({
-    //     name: displayNames[firstRouteName] || capitalCase(firstRouteName),
-    //     href: `${rootUrl}${firstRouteName}`,
-    //   })
-    //   breadcrumbs.push({
-    //     name: contentDisplayName,
-    //     href: `${rootUrl}${firstRouteName}/${contentPath}`,
-    //   })
-    //   basePath = `${rootUrl}${firstRouteName}/${contentPath}`
-    // } else {
-    //   breadcrumbs.push({ name: contentDisplayName, href: basePath })
-    // }
+//   //   breadcrumbs.push({
+//   //     name: displayNames[firstRouteName] || capitalCase(firstRouteName),
+//   //     href: `${rootUrl}${firstRouteName}`,
+//   //   })
+//   //   breadcrumbs.push({
+//   //     name: contentDisplayName,
+//   //     href: `${rootUrl}${firstRouteName}/${contentPath}`,
+//   //   })
+//   //   basePath = `${rootUrl}${firstRouteName}/${contentPath}`
+//   // } else {
+//   //   breadcrumbs.push({ name: contentDisplayName, href: basePath })
+//   // }
 
-    // if (activeItem) {
-    //   breadcrumbs.push({
-    //     name: activeItem.label,
-    //     href: `${basePath}/${activeItem.href}`,
-    //   })
-    // }
+//   // if (activeItem) {
+//   //   breadcrumbs.push({
+//   //     name: activeItem.label,
+//   //     href: `${basePath}/${activeItem.href}`,
+//   //   })
+//   // }
 
-    return breadcrumbs
-  }, [activeItem, contentDisplayName, contentPath, rootUrl])
+//   return breadcrumbs
+// }, [activeItem, contentDisplayName, contentPath, rootUrl])

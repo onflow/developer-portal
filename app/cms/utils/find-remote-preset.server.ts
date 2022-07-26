@@ -1,7 +1,7 @@
 import repoNames from "~/cms/content-repos"
 import { octokit } from "~/cms//github.server"
 
-const DEFAULT_PRESET_EXT = ".json"
+// const DEFAULT_PRESET_EXT = ".json"
 
 async function findPreset(
   owner: string,
