@@ -135,6 +135,7 @@ export default function InternalPage({
 
   const contentRef = useRef<HTMLDivElement>(null)
   const { pathname } = useLocation()
+  const activeTool = pathname.substring(pathname.lastIndexOf("/") + 1)
 
   useEffect(() => {
     if (contentRef.current && !header) {
@@ -178,7 +179,10 @@ export default function InternalPage({
             />
           </div>
           <div className="p-6">
-            <InternalSidebar config={sidebarConfig} menu={{ selected: "" }} />
+            <InternalSidebar
+              config={sidebarConfig}
+              menu={{ selected: activeTool }}
+            />
           </div>
         </Transition>
       )}
@@ -196,7 +200,7 @@ export default function InternalPage({
               >
                 <InternalSidebar
                   config={sidebarConfig}
-                  menu={{ selected: "" }}
+                  menu={{ selected: activeTool }}
                 />
               </div>
             </aside>

@@ -62,7 +62,7 @@ export const TEMP_SIDEBAR_CONFIG: InternalSidebarConfig = {
 export function InternalSidebar({ config, menu }: InternalSidebarProps) {
   return (
     <>
-      {/* {menu && <InternalSidebarMenu {...menu} />} */}
+      {menu && <InternalSidebarMenu {...menu} />}
       {config.sections.map((section) => (
         <div
           className="border-b-1 mb-2 border-b border-b-gray-300 py-4 last:border-b-0 dark:border-b-gray-700"
