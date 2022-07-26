@@ -27,7 +27,7 @@ Storybook: http://localhost:6006/
 
 1. Add the `.env` file to the project root.
 2. `yarn`
-3. `docker compose up -d` To start Redis and Postgres for the project. (use this when not running Postgres & Redis from your system)
+3. (Optional, if redis is not running locally) Start a redis instance: `docker run -v redis_data:/data -p 6379:6379 --name flowdocs-cache -d redis:alpine redis-server --requirepass flow_docs`
 4. Run the desired application:
    - `yarn run dev` to run the Docs Site (https://localhost:3000)
    - `yarn storybook` to run Storybook (https://localhost:6006)
