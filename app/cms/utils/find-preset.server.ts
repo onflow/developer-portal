@@ -1,12 +1,12 @@
 import { fs } from "~/cms/utils/fs-utils.server"
 
-const DEFAULT_PRESET_EXT = ".json"
+// const DEFAULT_PRESET_EXT = ".json"
 
 async function findPreset(searchPath: string, base: string) {
-  /* 
-       Find the preset in the search path. Look for the exact match first. 
-       This means, if there is a language.json and a /language/index.json 
-       the language.json preset takes precedent. 
+  /*
+       Find the preset in the search path. Look for the exact match first.
+       This means, if there is a language.json and a /language/index.json
+       the language.json preset takes precedent.
      */
 
   const exact = await fs.pathExists(`${base}/sidebar/${searchPath}.json`)
@@ -27,15 +27,15 @@ export default async function getPreset(url: string, presetName: string) {
     const path = new URL(url).pathname
     const segments = path.split("/")
 
-    /* 
+    /*
       Take the first segment of the URL (eg. /cadence ) as the base folder for finding presets.
       This creates the constraint that route presets must be defined in a folder with the
-      same name as the route we want to show a menu for. 
+      same name as the route we want to show a menu for.
      */
 
     const base = segments[1]
 
-    /* 
+    /*
       The rest of the segments of the requested URL. Later we'll iterate over these
       to check if there are preset for 'parent' routes of the requested URL.
       See below.
@@ -45,8 +45,8 @@ export default async function getPreset(url: string, presetName: string) {
     const basePresetSearchPath = `${process.cwd()}/app/cms/route-data/${base}`
     const presets = await fs.pathExists(basePresetSearchPath)
 
-    /* 
-      If there is no folder with the same name as the base, 
+    /*
+      If there is no folder with the same name as the base,
       there are no preset so we can return.
      */
 
@@ -54,8 +54,8 @@ export default async function getPreset(url: string, presetName: string) {
       throw "No menu ..."
     }
 
-    /* 
-      Start searching from the deepest child eg. 
+    /*
+      Start searching from the deepest child eg.
       if the URL is /base(ignored here)/language/accounts/crypto
       look for crypto.json or /base/language/accounts/crypto.json
       or /base/language/accounts/crypto/index.json
@@ -66,7 +66,7 @@ export default async function getPreset(url: string, presetName: string) {
 
     const restSearch = [...rest]
 
-    /* 
+    /*
        If we didnt find anything, see if the parent route has a preset using the same method.
        Take the path /base(ignored here)/language/accounts/crypto and remove /crypto
        The new search path is now /base(ignored here)/language/accounts
@@ -75,7 +75,7 @@ export default async function getPreset(url: string, presetName: string) {
     restSearch.pop()
 
     while (restSearch.length) {
-      /* 
+      /*
        repeat for all parent routes until we reach the base
      */
 

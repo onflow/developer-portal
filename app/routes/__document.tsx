@@ -1,26 +1,16 @@
 import { LoaderFunction, MetaFunction, redirect } from "@remix-run/node"
-import { Outlet, useCatch, useLocation, useLoaderData } from "@remix-run/react"
+import { Outlet, useCatch, useLoaderData, useLocation } from "@remix-run/react"
 import { getMdxPage } from "~/cms/utils/mdx"
-// import { ContentSpec } from "~/cms/schema"
+import { MdxPage } from "~/cms"
 import { ErrorPage } from "~/ui/design-system/src/lib/Components/ErrorPage"
 import { getSocialMetas } from "~/utils/seo"
-import { capitalCase } from "change-case"
-import { MdxPage } from "~/cms"
-// import { InternalPage } from "~/ui/design-system/src/lib/Pages/InternalPage"
 import AppLink from "~/ui/design-system/src/lib/Components/AppLink"
-// import {
-//   SwitchContentName,
-//   switchContents,
-// } from "~/ui/design-system/src/lib/Components/Internal/switchContent"
 
-import contentRepos, {
-  DEFAULT_REPO_OWNER,
-  DEFAULT_CONTENT_PATH,
-} from "~/cms/content-repos"
-import { ContentSpec } from "~/cms/schema"
 import { json } from "@remix-run/node"
-import displayNames from "~/cms/route-data/display-names"
-import { useMdxComponent } from "~/cms/utils/mdx"
+import contentRepos, {
+  DEFAULT_CONTENT_PATH,
+  DEFAULT_REPO_OWNER,
+} from "~/cms/content-repos"
 
 export { InternalErrorBoundary as ErrorBoundary } from "~/errors/error-boundaries"
 
@@ -121,9 +111,7 @@ export default function RepoDocument() {
   // )
 
   return (
-    <>
-      <Outlet context={{ mdx: page }} />
-    </>
+    <Outlet context={{ mdx: page }} />
     // <InternalPage
     //   activePath={path}
     //   contentDisplayName={content.displayName}
