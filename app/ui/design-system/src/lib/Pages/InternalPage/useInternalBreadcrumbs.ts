@@ -41,21 +41,21 @@ export const useInternalBreadcrumbs = ({
 
     var basePath = `${rootUrl}${contentPath}`
 
-    if (isSecondRoute(contentPath)) {
-      const firstRouteName = FIRST_ROUTE_MAP[contentPath as SecondRoute]!
+    // if (isSecondRoute(contentPath)) {
+    //   const firstRouteName = FIRST_ROUTE_MAP[contentPath as SecondRoute]!
 
-      breadcrumbs.push({
-        name: displayNames[firstRouteName] || capitalCase(firstRouteName),
-        href: `${rootUrl}${firstRouteName}`,
-      })
-      breadcrumbs.push({
-        name: contentDisplayName,
-        href: `${rootUrl}${firstRouteName}/${contentPath}`,
-      })
-      basePath = `${rootUrl}${firstRouteName}/${contentPath}`
-    } else {
-      breadcrumbs.push({ name: contentDisplayName, href: basePath })
-    }
+    //   breadcrumbs.push({
+    //     name: displayNames[firstRouteName] || capitalCase(firstRouteName),
+    //     href: `${rootUrl}${firstRouteName}`,
+    //   })
+    //   breadcrumbs.push({
+    //     name: contentDisplayName,
+    //     href: `${rootUrl}${firstRouteName}/${contentPath}`,
+    //   })
+    //   basePath = `${rootUrl}${firstRouteName}/${contentPath}`
+    // } else {
+    breadcrumbs.push({ name: contentDisplayName, href: basePath })
+    // }
 
     if (activeItem) {
       breadcrumbs.push({

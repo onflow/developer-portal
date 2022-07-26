@@ -11,7 +11,9 @@ const knownExtensions: Record<string, string> = {
 
 export const loader: LoaderFunction = async ({ params }) => {
   const path = ""
-  const contentSpec = getContentSpecForRepo(params.repo)
+  const contentSpec = params.repo
+    ? getContentSpecForRepo(params.repo)
+    : undefined
   if (!contentSpec) {
     throw new Response("Not Found", {
       status: 404,

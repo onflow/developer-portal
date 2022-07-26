@@ -1,4 +1,4 @@
-import { ToolsPageProps } from "../~/ui/design-system/src/lib/Pages/ToolsPage"
+import { ToolsPageProps } from "~/ui/design-system/src/lib/Pages/ToolsPage"
 
 import {
   flowserTool,

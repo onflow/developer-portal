@@ -37,7 +37,6 @@ export default async function getRemotePreset(
   presetName: string,
   repoName: string
 ) {
-  // @ts-expect-error: Nah bruh
   const repo = repoNames[repoName]
 
   if (repo) {
@@ -57,7 +56,7 @@ export default async function getRemotePreset(
         while (restSearch.length) {
           const searchPath = restSearch.join("/")
           const preset = await findPreset(
-            repo,
+            repo.owner,
             repoName,
             presetName,
             searchPath
