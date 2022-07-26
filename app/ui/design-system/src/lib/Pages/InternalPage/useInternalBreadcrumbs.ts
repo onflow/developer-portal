@@ -1,6 +1,6 @@
-import { capitalCase } from "change-case"
+// import { capitalCase } from "change-case"
 import { useMemo } from "react"
-import displayNames from "~/cms/route-data/display-names"
+// import displayNames from "~/cms/route-data/display-names"
 
 import { InternalSidebarSectionItem } from "~/ui/design-system/src/lib/Components/InternalSidebar"
 
