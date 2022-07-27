@@ -6,7 +6,6 @@ function getEnv() {
     BOT_GITHUB_TOKEN: process.env.BOT_GITHUB_TOKEN,
     BOT_DISCORD_TOKEN: process.env.BOT_DISCORD_TOKEN,
     SESSION_SECRET: process.env.SESSION_SECRET,
-    DATABASE_URL: process.env.DATABASE_URL,
     REDIS_URL: process.env.REDIS_URL,
     REDIS_CA: process.env.REDIS_CA,
     REFRESH_CACHE_SECRET: process.env.REFRESH_CACHE_SECRET,

@@ -1,13 +1,13 @@
 import {
-  AnnouncementCard,
+  // AnnouncementCard,
   NetworkCard,
-  NetworkDiscordCard,
+  // NetworkDiscordCard,
   SocialLinksSignup,
 } from "../../Components"
-import { AnnouncementCardProps } from "../../Components/AnnouncementCard"
+// import { AnnouncementCardProps } from "../../Components/AnnouncementCard"
 import { FeaturedArticle } from "../../Components/FeaturedArticleSlider"
-import { HeaderWithLink } from "../../Components/HeaderWithLink"
-import { NetworkDiscordCardProps } from "../../Components/NetworkDiscordCard"
+// import { HeaderWithLink } from "../../Components/HeaderWithLink"
+// import { NetworkDiscordCardProps } from "../../Components/NetworkDiscordCard"
 import { Article, StatuspageApiResponse } from "../../interfaces"
 import PageBackground from "../shared/PageBackground"
 import PageSection from "../shared/PageSection"
@@ -15,17 +15,17 @@ import PageSections from "../shared/PageSections"
 
 export type NetworkPageProps = {
   networkStatuses: StatuspageApiResponse[]
-  announcementCards: AnnouncementCardProps[]
-  discordNetworkCards: NetworkDiscordCardProps[]
+  // announcementCards: AnnouncementCardProps[]
+  // discordNetworkCards: NetworkDiscordCardProps[]
   featuredArticle: Article
 }
 
 const NetworkPage = ({
   networkStatuses,
   featuredArticle,
-  discordNetworkCards,
-  announcementCards,
-}: NetworkPageProps) => (
+}: // discordNetworkCards,
+// announcementCards,
+NetworkPageProps) => (
   <PageBackground gradient="network">
     <PageSections divided={false}>
       <PageSection>
@@ -51,12 +51,12 @@ const NetworkPage = ({
           </div>
         </div>
       </PageSection>
-      <PageSection sectionId="live-updates">
+      {/* <PageSection sectionId="live-updates">
         <div className="container">
-          <HeaderWithLink headerLink="live-updates" className="text-h3 mb-10">
+          <HeaderWithLink headerLink="live-updates" className="mb-10 text-h3">
             Live updates
           </HeaderWithLink>
-          <div className="mt-6 flex flex-col gap-4 md:flex-row md:gap-8">
+          <div className="flex flex-col gap-4 mt-6 md:flex-row md:gap-8">
             {discordNetworkCards.map((discordNetworkCards) => (
               <div key={discordNetworkCards.messageLink}>
                 <NetworkDiscordCard {...discordNetworkCards} />
@@ -67,7 +67,7 @@ const NetworkPage = ({
       </PageSection>
       <PageSection sectionId="announcements">
         <div className="container">
-          <HeaderWithLink headerLink="announcements" className="text-h3 mb-6">
+          <HeaderWithLink headerLink="announcements" className="mb-6 text-h3">
             Announcements
           </HeaderWithLink>
           <div className="flex flex-col gap-4 md:gap-8">
@@ -78,7 +78,7 @@ const NetworkPage = ({
             ))}
           </div>
         </div>
-      </PageSection>
+      </PageSection> */}
       <PageSection>
         <div className="container">
           <FeaturedArticle {...featuredArticle} />
