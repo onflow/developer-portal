@@ -5,7 +5,6 @@ networks:
 
 volumes:
   node_modules:
-  postgres_data:
   redis_data:
 
 # Default for all services
@@ -27,7 +26,6 @@ x-app-defaults: &app-defaults
     - cache
   restart: on-failure
   environment:
-    DATABASE_URL: postgresql://flow_docs_user:flow_docs_pass@database:5432/flow_docs_db?schema=public
     REDIS_URL: redis://:flow_docs@cache:6379
     REFRESH_CACHE_SECRET: for-testing-only
     INCOMPLETE_PAGE_BEHAVIORL: preview
@@ -42,15 +40,6 @@ x-app-defaults: &app-defaults
     - node_modules:/opt/next-docs/node_modules
 
 services:
-  database:
-    <<: *service-defaults
-    image: "postgres:13"
-    environment:
-      POSTGRES_USER: flow_docs_user
-      POSTGRES_PASSWORD: flow_docs_pass
-      POSTGRES_DB: flow_docs_db
-    volumes:
-      - postgres_data:/var/lib/postgresql
   cache:
     <<: *service-defaults
     image: "redis:alpine"
