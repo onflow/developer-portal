@@ -29,10 +29,16 @@ export function Item({ item, selected }: { item: HitType; selected: boolean }) {
           <Highlight hit={item} attribute="title" />
         </div>
         <Snippet
-          attribute="content"
+          attribute="headers"
           // @ts-expect-error: TODO: Short description of the error
           hit={item}
           className="break-all text-primary-gray-300 dark:text-primary-gray-200"
+        />
+        <Snippet
+          attribute="content"
+          // @ts-expect-error: TODO: Short description of the error
+          hit={item}
+          className="break-all text-primary-gray-200 dark:text-primary-gray-200"
         />
       </div>
       <div className="ml-auto">
