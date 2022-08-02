@@ -1,4 +1,4 @@
-import { NavLink } from "@remix-run/react"
+import { NavLink, useLocation } from "@remix-run/react"
 import clsx from "clsx"
 import {
   InternalSidebarMenu,
@@ -60,10 +60,14 @@ export const TEMP_SIDEBAR_CONFIG: InternalSidebarConfig = {
 }
 
 export function InternalSidebar({ config, menu }: InternalSidebarProps) {
+  const location = useLocation()
+  const itemOverride =
+    location.pathname === "/flow/" || location.pathname === "/nodes/"
+
   return (
     <>
       {menu && <InternalSidebarMenu {...menu} />}
-      {config.sections.map((section) => (
+      {config.sections.map((section, sectionIndex) => (
         <div
           className="border-b-1 mb-2 border-b border-b-gray-300 py-4 last:border-b-0 dark:border-b-gray-700"
           key={section.title}
@@ -72,7 +76,7 @@ export function InternalSidebar({ config, menu }: InternalSidebarProps) {
             {section.title}
           </div>
           <div className="px-4">
-            {section.items.map((item) => (
+            {section.items.map((item, index) => (
               <NavLink
                 to={item.href === "index" ? "" : item.href} // allow `/index` pages to be highlighted without having `/index/` in path
                 end
@@ -83,7 +87,8 @@ export function InternalSidebar({ config, menu }: InternalSidebarProps) {
                     "mb-1 block rounded-md px-2 py-1.5 text-sm text-primary-gray-400 hover:opacity-75 dark:text-gray-200",
                     {
                       "bg-gray-200 bg-opacity-50 text-primary-blue dark:bg-gray-700 dark:text-gray-300":
-                        isActive,
+                        isActive ||
+                        (sectionIndex === 0 && index === 0 && itemOverride),
                     }
                   )
                 }
