@@ -50,7 +50,10 @@ export function InternalSubnav({
           />
         )}
         {githubUrl && (
-          <AppLink to={githubUrl} className="whitespace-nowrap text-sm">
+          <AppLink
+            to={githubUrl}
+            className="whitespace-nowrap text-sm text-primary-blue hover:text-blue-hover dark:text-blue-dark dark:hover:text-blue-hover-dark"
+          >
             <GithubLogo className="inline scale-90" /> Edit on Github
           </AppLink>
         )}
