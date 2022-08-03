@@ -52,7 +52,7 @@ export function InternalSubnav({
         {githubUrl && (
           <AppLink
             to={githubUrl}
-            className="hidden whitespace-nowrap text-sm text-primary-blue hover:text-blue-hover dark:text-blue-dark dark:hover:text-blue-hover-dark md:block"
+            className="hidden whitespace-nowrap py-3 text-sm text-primary-blue hover:text-blue-hover dark:text-blue-dark dark:hover:text-blue-hover-dark md:block"
           >
             <GithubLogo className="inline scale-90" /> Edit on Github
           </AppLink>

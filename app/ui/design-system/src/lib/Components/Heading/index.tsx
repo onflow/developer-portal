@@ -1,8 +1,8 @@
 import clsx from "clsx"
+import GithubSlugger from "github-slugger"
 import { createElement } from "react"
 import { NAV_HEIGHT } from "../NavigationBar"
 import LinkIcon from "./LinkIcon"
-import GithubSlugger from "github-slugger"
 
 type HeadingType = "h1" | "h2" | "h3" | "h4" | "h5" | "h6"
 
@@ -13,7 +13,7 @@ export type HeadingProps = React.DetailedHTMLProps<
 
 const headingClasses = {
   h1: "text-4xl mb-4 font-bold",
-  h2: "text-2xl mb-4",
+  h2: "text-2xl mb-4 mt-20",
   h3: "text-xl mb-4",
   h4: "text-lg mb-2",
   h5: "text-base",
