@@ -26,11 +26,11 @@ export function InternalSubnav({
   return (
     <div
       className={clsx(
-        "flex flex-wrap items-center justify-between border-b border-b-primary-gray-100 bg-white px-6 dark:border-b-primary-gray-300 dark:bg-black",
+        "flex flex-wrap items-center justify-between border-b border-b-primary-gray-100 bg-white bg-gradient-to-b from-primary-gray-50 via-transparent to-transparent px-6 dark:border-b-primary-gray-300 dark:bg-black dark:from-transparent",
         className
       )}
     >
-      <div className="flex items-start py-2 pr-2 ">
+      <div className="flex items-start py-5 pr-2 ">
         {isSidebarOpen !== undefined && onSidebarToggle !== undefined && (
           <MobileMenuToggleButton
             className="mr-3 md:hidden"
