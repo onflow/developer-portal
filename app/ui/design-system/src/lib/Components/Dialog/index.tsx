@@ -20,12 +20,12 @@ export function Dialog({
         }
       >
         <button
-          className="fixed inset-0 bg-black/30"
+          className="fixed inset-0 h-full w-full bg-black/30 dark:bg-white/10"
           aria-hidden="true"
           onClick={closeDialog}
         />
         <div
-          className="z-30 flex h-full w-full flex-col dark:shadow-2xl-dark"
+          className="z-30 flex h-full w-full flex-col"
           style={{
             margin: "10vh 10vw",
             height: "80vh",

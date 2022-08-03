@@ -1,9 +1,10 @@
 import algoliasearch from "algoliasearch/lite"
-import React, { useCallback, useEffect, useMemo, useState } from "react"
+import { useCallback, useEffect, useMemo, useState } from "react"
 import { InstantSearch } from "react-instantsearch-hooks-web"
 import { ReactComponent as SearchIcon } from "../../../../images/action/search"
 import { Dialog } from "../Dialog"
 import { Autocomplete } from "./Autocomplete"
+import KbdShortcut from "./KbdShortcut"
 
 export type SearchProps = {
   appId: string
@@ -11,45 +12,19 @@ export type SearchProps = {
   indexName: string
 }
 
-function KbdContent({ children }: { children: React.ReactNode }) {
-  return (
-    <div
-      className="flex h-full w-full items-center justify-center rounded border-t border-l border-r border-white leading-none dark:border-gray-400"
-      style={{
-        boxShadow:
-          "0 4px 11px 0 rgb(37 44 97 / 15%), 0 1px 3px 0 rgb(93 100 148 / 60%)",
-      }}
-    >
-      {children}
-    </div>
-  )
-}
-
-function Kbd({ children }: { children: React.ReactNode }) {
-  return (
-    <kbd className="to-gray-300-opacity-60 mr-1 flex h-6 w-6 items-center justify-center rounded border-b-2 border-gray-200 bg-gradient-to-tl from-gray-200 text-gray-500/75 group-hover:opacity-75 dark:border-gray-800 dark:from-gray-800 dark:to-gray-900 dark:text-gray-400">
-      {children}
-    </kbd>
-  )
-}
-
 function KbdShortcuts() {
   return (
     <div className="-mt-1 flex flex-grow-0 items-center">
-      <Kbd>
-        <KbdContent>
-          <span className="flex h-full items-center justify-center text-lg">
-            ⌘
-          </span>
-        </KbdContent>
-      </Kbd>
-      <Kbd>
-        <KbdContent>
-          <span className="-mt-[1px] flex h-full items-center justify-center text-sm">
-            K
-          </span>
-        </KbdContent>
-      </Kbd>
+      <KbdShortcut>
+        <span className="flex h-full items-center justify-center text-lg">
+          ⌘
+        </span>
+      </KbdShortcut>
+      <KbdShortcut>
+        <span className="-mt-[1px] flex h-full items-center justify-center text-sm">
+          K
+        </span>
+      </KbdShortcut>
     </div>
   )
 }
