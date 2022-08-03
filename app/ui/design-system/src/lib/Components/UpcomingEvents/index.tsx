@@ -55,7 +55,7 @@ export function UpcomingEvents({
           {primaryEvent && <EventCard {...primaryEvent} className="mb-4" />}
           <ul className="hidden list-none flex-row gap-6 overflow-x-auto md:flex">
             {filteredEvents.map((event: EventCardProps, index: number) => (
-              <li key={index}>
+              <li key={index} className="min-w-[394px]">
                 <EventCardSmall
                   {...event}
                   selected={primaryEvent?.title === event.title}

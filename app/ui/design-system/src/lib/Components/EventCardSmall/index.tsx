@@ -36,9 +36,9 @@ export function EventCardSmall({
         className="h-[84px] w-[84px] flex-initial basis-[84px] rounded-md object-cover"
       />
       <span className="mx-5 flex flex-1 flex-col">
-        <h3 className="text-h5">{title}</h3>
+        <h3 className="text-h5 max-w-[220px] truncate">{title}</h3>
         {tags && tags.length > 0 && (
-          <span>
+          <span className="max-w-[220px] truncate">
             {tags.map((tag) => (
               <Tag key={tag} name={tag} />
             ))}
