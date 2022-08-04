@@ -71,13 +71,10 @@ export function EventCard({
           {ctaText || "More Details"}
         </ButtonLink>
       </div>
-      <div className="flex-none basis-1/2 self-stretch">
-        <img
-          src={image}
-          alt={imageAlt}
-          className="min-h-[125px] w-full object-cover md:h-full"
-        />
-      </div>
+      <div
+        className="min-h-[125px] flex-none basis-1/2 self-stretch bg-cover bg-center"
+        style={{ backgroundImage: `url(${image})` }}
+      ></div>
     </div>
   )
 }
