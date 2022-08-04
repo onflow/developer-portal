@@ -44,11 +44,7 @@ const HomePage = ({
         tag="preview"
         editPageUrl={editPageUrl}
       />
-      <LinkCard2Column
-        {...startProjectItems}
-        bottomRounded={false}
-        homePage={true}
-      />
+      <LinkCard2Column {...startProjectItems} homePage={true} />
       <LinkCard3Column items={threeColumnItems} topRounded={false} />
       <PageSections>
         <PageSection className="pt-0" />

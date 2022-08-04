@@ -36,7 +36,7 @@ export function LinkCard2Column({
   )
 
   return (
-    <div className="container">
+    <div className="container pb-12">
       <div className={classes}>
         <div className="flex flex-1 flex-col items-start md:mr-20">
           {tags && (
