@@ -33,9 +33,10 @@ export const loader: LoaderFunction = async ({ params, request }) => {
 }
 
 export default () => {
+  /* eslint-disable @typescript-eslint/no-unused-vars */
   const { sidebar: _, sidebarRootPath } = useLoaderData<LoaderData>()
 
-  // TODO: Render the outer page layour and sidebar here. This way we can
+  // TODO: Render the outer page layout and sidebar here. This way we can
   // still render a shell and sidebar even if we fail to fetch the page content.
   return (
     <InternalSidebarUrlContext.Provider value={sidebarRootPath}>
