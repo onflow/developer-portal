@@ -1,6 +1,6 @@
+import { Octokit } from "@octokit/rest"
 import { FlipCellProps } from "~/ui/design-system/src/lib/Components/FlipCell"
 import { FlipsProps } from "~/ui/design-system/src/lib/Components/Flips"
-import { octokit } from "../github.server"
 import { cachified } from "../cache.server"
 import { redisCache } from "../redis.server"
 
@@ -104,7 +104,6 @@ export interface IssueResponse {
 }
 
 export const fetchFlips = async () => {
-
   return await cachified({
     cache: redisCache,
     maxAge: 1000 * 60 * 60 * 4,
@@ -118,7 +117,6 @@ export const fetchFreshFlips = async () => {
   const octokit = new Octokit({
     auth: process.env.BOT_GITHUB_TOKEN,
   })
-
 
   const getOpenFlipPullRequests = async () => {
     const pullRequestResponse: PullRequestResponse[] = await octokit
