@@ -87,7 +87,7 @@ export function InternalPage({
 
   return (
     <div className="flex flex-col pb-16">
-      <div className="sticky top-0 z-20" ref={subnavRef}>
+      <div className="sticky top-0 z-20 bg-white dark:bg-black" ref={subnavRef}>
         <InternalSubnav
           isSidebarOpen={isMobileSidebarOpen}
           onSidebarToggle={() => setMobileSidebarOpen(!isMobileSidebarOpen)}
