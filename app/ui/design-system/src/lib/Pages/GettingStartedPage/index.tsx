@@ -128,14 +128,14 @@ export function GettingStartedPage({
               >
                 {recentArticleItems.map((recentArticleItem, index) => (
                   <FeaturedArticleCard
-                    bg="page-bg-gradient-getting-started bg-bottom border-primary-gray-100 border dark:border-primary-gray-400 h-full"
+                    bg="bg-bottom dark:bg-primary-gray-dark h-full"
                     key={index}
                     {...recentArticleItem}
                   />
                 ))}
               </Carousel>
             </div>
-            <div className="flex grow flex-col justify-between gap-4">
+            <div className="mb-7 flex grow flex-col justify-between gap-4">
               {recentToolItems.map((toolProps, i) => (
                 <ToolCard key={i} {...toolProps} />
               ))}
