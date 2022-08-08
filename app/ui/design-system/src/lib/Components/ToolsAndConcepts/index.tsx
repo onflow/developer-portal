@@ -60,13 +60,13 @@ const ToolsAndConcepts = ({
       )}
       {!!bottomButtons && (
         <div className="mt-9 flex flex-col justify-between md:flex-row">
-          {/* <ButtonLink
+          <ButtonLink
             href="https://google.com"
             className="mb-4 w-full md:mr-9 md:w-1/2"
             rightIcon="external"
           >
             Submit a tool
-          </ButtonLink> */}
+          </ButtonLink>
           <ButtonLink
             className="mb-4 w-full md:w-1/2"
             href="/tools"

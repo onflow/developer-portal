@@ -55,7 +55,7 @@ export function UpcomingEvents({
           {primaryEvent && <EventCard {...primaryEvent} className="mb-4" />}
           <ul className="hidden list-none flex-row gap-6 overflow-x-auto md:flex">
             {filteredEvents.map((event: EventCardProps, index: number) => (
-              <li key={index}>
+              <li key={index} className="min-w-[394px]">
                 <EventCardSmall
                   {...event}
                   selected={primaryEvent?.title === event.title}
@@ -70,6 +70,9 @@ export function UpcomingEvents({
           breakpoint="none"
           className="visible mb-4 md:hidden"
           carouselItemWidth="w-10/12 md:w-full"
+          indicatorSize="xs"
+          indicatorSelectedColor="bg-black dark:bg-white"
+          indicatorColor="bg-primary-gray-100 dark:bg-primary-gray-400"
         />
         <div className="mt-10 flex flex-col justify-items-stretch gap-6 md:flex-row">
           <ButtonLink
