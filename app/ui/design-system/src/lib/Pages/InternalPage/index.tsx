@@ -1,19 +1,14 @@
 import { Transition } from "@headlessui/react"
 import clsx from "clsx"
-import { useCallback, useRef, useState, useEffect } from "react"
+import { useCallback, useEffect, useRef, useState } from "react"
 import { useLocation } from "react-router"
 import {
   InternalLandingHeader,
   InternalLandingHeaderProps,
 } from "../../Components/InternalLandingHeader"
-import {
-  InternalSidebar,
-  InternalSidebarConfig,
-  InternalSidebarSectionItem,
-} from "../../Components/InternalSidebar"
-import { findSidebarSectionItem } from "../../Components/InternalSidebar/findSidebarSectionItem"
-import { flattenSidebarSectionItems } from "../../Components/InternalSidebar/flattenSidebarSectionItems"
-import { InternalSidebarMenuProps } from "../../Components/InternalSidebarMenu"
+import { InternalSidebar, SidebarItem } from "../../Components/InternalSidebar"
+import { useActiveSidebarItems } from "../../Components/InternalSidebar/useActiveSidebarItems"
+import { InternaSidebarDropdownMenuGroup } from "../../Components/InternalSidebarDropdownMenu"
 import { InternalSubnav } from "../../Components/InternalSubnav"
 import {
   InternalToc,
@@ -26,64 +21,52 @@ import {
   useResizeObserver,
   UseResizeObserverCallback,
 } from "../../utils/useResizeObserver"
-import {
-  useInternalBreadcrumbs,
-  UseInternalBreadcrumbsOptions,
-} from "./useInternalBreadcrumbs"
+import { useInternalBreadcrumbs } from "./useInternalBreadcrumbs"
 
 export type InternalPageProps = React.PropsWithChildren<{
   /**
-   * The path of the currently active item. This should be a path
-   * relative to the repo (excluding the repo name), matching the item's href
-   * as it is defined in the sidebar configuration object.
+   * THe name to display in the breadcrumbs for the current collection
    */
-  activePath: string
+  collectionDisplayName: string
 
-  githubUrl?: string
+  /**
+   * The root path for the current collection
+   */
+  collectionRootPath: string
+
+  editPageUrl?: string
 
   header?: InternalLandingHeaderProps
 
-  internalSidebarMenu?: InternalSidebarMenuProps
+  /**
+   * The itmes to show in the dropdown menu of the sidebar.
+   */
+  sidebarDropdownMenu?: InternaSidebarDropdownMenuGroup[]
 
   /**
    * The configuration object that describes the page hierarchy.
    */
-  sidebarConfig?: InternalSidebarConfig
+  sidebarItems?: SidebarItem[]
 
   toc?: InternalTocItem[]
-}> &
-  Omit<UseInternalBreadcrumbsOptions, "activeItem">
-
+}>
 export function InternalPage({
-  activePath,
   children,
-  contentDisplayName,
-  contentPath,
-  githubUrl,
+  collectionDisplayName,
+  collectionRootPath,
+  editPageUrl,
   header,
-  internalSidebarMenu,
-  rootUrl = "/",
-  sidebarConfig,
+  sidebarDropdownMenu,
+  sidebarItems,
   toc,
 }: InternalPageProps) {
   const [isMobileSidebarOpen, setMobileSidebarOpen] = useState(false)
-
-  const activeItem = findSidebarSectionItem(sidebarConfig, activePath)
+  const { previous, active, next } = useActiveSidebarItems(sidebarItems || [])
   const breadcrumbs = useInternalBreadcrumbs({
-    activeItem,
-    contentDisplayName,
-    contentPath,
-    rootUrl,
+    activeItem: active,
+    collectionDisplayName,
+    collectionRootPath,
   })
-  let prevItem: InternalSidebarSectionItem | undefined
-  let nextItem: InternalSidebarSectionItem | undefined
-
-  if (sidebarConfig && activeItem) {
-    const allItems = flattenSidebarSectionItems(sidebarConfig)
-    const activeItemIndex = allItems.indexOf(activeItem)
-    prevItem = allItems[activeItemIndex - 1]
-    nextItem = activeItemIndex >= 0 ? allItems[activeItemIndex + 1] : undefined
-  }
 
   const subnavRef = useRef<HTMLDivElement>(null)
   const [subnavRect, setSubnavRect] = useState<DOMRect>()
@@ -109,11 +92,11 @@ export function InternalPage({
           isSidebarOpen={isMobileSidebarOpen}
           onSidebarToggle={() => setMobileSidebarOpen(!isMobileSidebarOpen)}
           items={breadcrumbs}
-          githubUrl={githubUrl}
+          editPageUrl={editPageUrl}
         />
       </div>
       {header && <InternalLandingHeader {...header} />}
-      {sidebarConfig && (
+      {sidebarItems && (
         <Transition
           as="div"
           className="fixed bottom-0 left-0 right-0 z-40 bg-white dark:bg-black md:hidden"
@@ -137,16 +120,13 @@ export function InternalPage({
             />
           </div>
           <div className="p-6">
-            <InternalSidebar
-              config={sidebarConfig}
-              menu={internalSidebarMenu}
-            />
+            <InternalSidebar items={sidebarItems} menu={sidebarDropdownMenu} />
           </div>
         </Transition>
       )}
 
       <div className="relative flex flex-1">
-        {sidebarConfig && (
+        {sidebarItems && (
           <>
             <aside className="hidden w-[300px] flex-none md:block">
               <div
@@ -157,8 +137,8 @@ export function InternalPage({
                 }}
               >
                 <InternalSidebar
-                  config={sidebarConfig}
-                  menu={internalSidebarMenu}
+                  items={sidebarItems}
+                  menu={sidebarDropdownMenu}
                 />
               </div>
             </aside>
@@ -166,7 +146,7 @@ export function InternalPage({
         )}
         <main
           className={clsx("flex max-w-full shrink-0 grow flex-row-reverse", {
-            "md:max-w-[calc(100%_-_300px)]": sidebarConfig,
+            "md:max-w-[calc(100%_-_300px)]": sidebarItems,
           })}
           ref={contentRef}
         >
@@ -194,20 +174,7 @@ export function InternalPage({
               </div>
             )}
             <div>{children}</div>
-            <LowerPageNav
-              prev={
-                prevItem && {
-                  href: `${rootUrl}${contentPath}/${prevItem.href}`,
-                  name: prevItem.label,
-                }
-              }
-              next={
-                nextItem && {
-                  href: `${rootUrl}${contentPath}/${nextItem.href}`,
-                  name: nextItem.label,
-                }
-              }
-            />
+            <LowerPageNav prev={previous} next={next} />
           </div>
         </main>
       </div>

@@ -1,6 +1,6 @@
-import { Octokit } from "@octokit/core"
 import { FlipCellProps } from "~/ui/design-system/src/lib/Components/FlipCell"
 import { FlipsProps } from "~/ui/design-system/src/lib/Components/Flips"
+import { octokit } from "../github.server"
 
 export interface PullRequestResponse {
   url: string
@@ -102,10 +102,6 @@ export interface IssueResponse {
 }
 
 export const fetchFlips = async () => {
-  const octokit = new Octokit({
-    auth: process.env.BOT_GITHUB_TOKEN,
-  })
-
   const getOpenFlipPullRequests = async () => {
     const pullRequestResponse: PullRequestResponse[] = await octokit
       .request("GET /repos/{owner}/{repo}/pulls", {

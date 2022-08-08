@@ -1,72 +1,43 @@
-import { capitalCase } from "change-case"
 import { useMemo } from "react"
-import { displayNames } from "~/constants/repos"
-import {
-  FIRST_ROUTE_MAP,
-  isSecondRoute,
-  SecondRoute,
-} from "~/constants/repos/contents-structure"
-import { InternalSidebarSectionItem } from "../../Components/InternalSidebar"
 
 export type UseInternalBreadcrumbsOptions = {
   /**
    * The currently active item taken from the sidebar configuration object.
    */
-  activeItem?: InternalSidebarSectionItem
+  activeItem?: {
+    title: string
+    href: string
+  }
 
   /**
-   * THe name to display in the breadcrumbs for this content section
+   * THe name to display in the breadcrumbs for the current collection
    */
-  contentDisplayName: string
+  collectionDisplayName: string
 
   /**
-   * The name of the path in the URL used to access this content section
+   * The root path for the current collection
    */
-  contentPath: string
-
-  /**
-   * The site's root URL.
-   */
-  rootUrl?: string
+  collectionRootPath: string
 }
 
 /**
  * Returns a list of breadcrumbs to display based on the current `activeItem`
- * of the sidebar configuration (if any)
+ * and doc collection.
  */
 export const useInternalBreadcrumbs = ({
   activeItem,
-  contentDisplayName,
-  contentPath,
-  rootUrl = "/",
+  collectionDisplayName,
+  collectionRootPath,
 }: UseInternalBreadcrumbsOptions) =>
   useMemo(() => {
-    const breadcrumbs = [{ href: rootUrl, name: "Home" }]
-
-    var basePath = `${rootUrl}${contentPath}`
-
-    if (isSecondRoute(contentPath)) {
-      const firstRouteName = FIRST_ROUTE_MAP[contentPath as SecondRoute]!
-
-      breadcrumbs.push({
-        name: displayNames[firstRouteName] || capitalCase(firstRouteName),
-        href: `${rootUrl}${firstRouteName}`,
-      })
-      breadcrumbs.push({
-        name: contentDisplayName,
-        href: `${rootUrl}${firstRouteName}/${contentPath}`,
-      })
-      basePath = `${rootUrl}${firstRouteName}/${contentPath}`
-    } else {
-      breadcrumbs.push({ name: contentDisplayName, href: basePath })
-    }
+    const breadcrumbs = [
+      { href: "/", title: "Home" },
+      { href: collectionRootPath, title: collectionDisplayName },
+    ]
 
     if (activeItem) {
-      breadcrumbs.push({
-        name: activeItem.label,
-        href: `${basePath}/${activeItem.href}`,
-      })
+      breadcrumbs.push(activeItem)
     }
 
     return breadcrumbs
-  }, [activeItem, contentDisplayName, contentPath, rootUrl])
+  }, [activeItem, collectionDisplayName, collectionRootPath])

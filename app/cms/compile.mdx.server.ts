@@ -2,15 +2,14 @@ import remarkEmbedder from "@remark-embedder/core"
 import oembedTransformer from "@remark-embedder/transformer-oembed"
 import type * as H from "hast"
 import { bundleMDX } from "mdx-bundler"
+import path from "node:path"
 import type TPQueue from "p-queue"
-import path from "path"
 import calculateReadingTime from "reading-time"
 import rehypeSanitize, { defaultSchema } from "rehype-sanitize"
 import type * as U from "unified"
 import { visit } from "unist-util-visit"
-import type { GitHubFile } from "./github.server"
+import type { GitHubTextFile } from "./github.server"
 import { HIGHLIGHT_LANGUAGES } from "./utils/constants"
-import formatLinks from "./utils/format-links"
 import { markdownToToc } from "./utils/generate-toc"
 
 if (process.platform === "win32") {
@@ -55,14 +54,8 @@ const remarkPlugins: U.PluggableList = [
   ],
 ]
 
-const rehypePlugins = (
-  repoName: string,
-  isTrusted: boolean = false
-): U.PluggableList => {
-  const plugins: U.PluggableList = [
-    removePreContainerDivs,
-    () => formatLinks(repoName),
-  ]
+const rehypePlugins = (isTrusted: boolean = false): U.PluggableList => {
+  const plugins: U.PluggableList = [removePreContainerDivs]
 
   if (!isTrusted) {
     plugins.push([
@@ -87,34 +80,27 @@ const rehypePlugins = (
 }
 
 async function compileMdx<FrontmatterType extends Record<string, unknown>>(
-  slug: string,
-  githubFiles: Array<GitHubFile>,
-  repoName: string,
+  source: GitHubTextFile,
+  files: Array<GitHubTextFile>,
   isTrusted: boolean = false
 ) {
   const { default: remarkSlug } = await import("remark-slug")
   const { default: gfm } = await import("remark-gfm")
-  const indexRegex = new RegExp(`${slug}\\/index.mdx?$`)
-  const indexFile = githubFiles.find(({ path }) => indexRegex.test(path))
 
-  if (!indexFile) return null
-
-  const rootDir = indexFile.path.replace(/index.mdx?$/, "")
-  const relativeFiles: Array<GitHubFile> = githubFiles.map(
-    ({ path, content }) => ({
-      path: path.replace(rootDir, "./"),
-      content,
-    })
-  )
-  const files = arrayToObj(relativeFiles, {
-    keyName: "path",
-    valueName: "content",
-  })
+  const rootDir = path.posix.dirname(source.path)
 
   try {
     const { frontmatter, code } = await bundleMDX({
-      source: indexFile.content,
-      files,
+      source: source.textContent,
+      files: files.reduce(
+        (prev, current) => ({
+          ...prev,
+          [current.path.replace(rootDir, "./")]: current.textContent,
+        }),
+        {
+          [source.path]: source.textContent,
+        }
+      ),
       mdxOptions(options) {
         options.remarkPlugins = [
           ...(options.remarkPlugins ?? []),
@@ -124,14 +110,14 @@ async function compileMdx<FrontmatterType extends Record<string, unknown>>(
         ]
         options.rehypePlugins = [
           ...(options.rehypePlugins ?? []),
-          ...rehypePlugins(repoName, isTrusted),
+          ...rehypePlugins(isTrusted),
         ]
 
         return options
       },
     })
-    const readTime = calculateReadingTime(indexFile.content)
-    const toc = markdownToToc(indexFile.content)
+    const readTime = calculateReadingTime(source.textContent)
+    const toc = markdownToToc(source.textContent)
 
     return {
       code,
@@ -140,25 +126,9 @@ async function compileMdx<FrontmatterType extends Record<string, unknown>>(
       toc,
     }
   } catch (error: unknown) {
-    console.error(`Compilation error for slug: `, slug)
+    console.error(`Compilation error for slug: `, source.path)
     throw error
   }
-}
-
-function arrayToObj<ItemType extends Record<string, unknown>>(
-  array: Array<ItemType>,
-  { keyName, valueName }: { keyName: keyof ItemType; valueName: keyof ItemType }
-) {
-  const obj: Record<string, ItemType[keyof ItemType]> = {}
-  for (const item of array) {
-    const key = item[keyName]
-    if (typeof key !== "string") {
-      throw new Error(`${String(keyName)} of item must be a string`)
-    }
-    const value = item[valueName]
-    obj[key] = value
-  }
-  return obj
 }
 
 let _queue: TPQueue | null = null
@@ -211,10 +181,13 @@ export type MdxFrontmatter = {
 
 type MdxPage = {
   code: string
-  // slug: string;
-  editLink: string
 
   readTime?: ReturnType<typeof calculateReadingTime>
+
+  /**
+   * The underlying github file that was used to generate the page.
+   */
+  origin: GitHubTextFile
 
   /**
    * It's annoying that all these are set to optional I know, but there's
@@ -224,6 +197,7 @@ type MdxPage = {
    * these values are missing to avoid runtime errors.
    */
   frontmatter: MdxFrontmatter
+
   toc?: any
 }
 

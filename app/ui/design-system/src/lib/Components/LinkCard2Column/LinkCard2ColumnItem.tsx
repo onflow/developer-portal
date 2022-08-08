@@ -1,6 +1,7 @@
 import { ReactComponent as ChevronRight } from "../../../../images/arrows/chevron-right"
 import { ReactComponent as ExternalLinkIcon } from "../../../../images/content/external-link"
-import AppLink, { isLinkExternal } from "../AppLink"
+import AppLink from "../AppLink"
+import { isLinkExternal } from "../../utils/isLinkExternal"
 import { LinkCard2ColumnItemContainer } from "./LinkCard2ColumnItemContainer"
 
 export type LinkCard2ColumnItemBaseProps = {

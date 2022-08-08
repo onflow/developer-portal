@@ -25,31 +25,31 @@ export const Primary = Template.bind({})
 Primary.args = {
   activePath: "internal/item2",
   repo: "foo",
-  sidebarConfig: {
-    sections: [
-      {
-        title: "A section title",
-        items: [
-          {
-            href: "internal/item1",
-            label: "An item within a section",
-          },
-          {
-            href: "internal/item2",
-            label: "The active item",
-          },
-          {
-            href: "internal/item3",
-            label: "Another item",
-          },
-          {
-            href: "internal/item4",
-            label: "Blah blah blah",
-          },
-        ],
-      },
-    ],
-  },
+  sidebatItems: [
+    {
+      title: "A section title",
+      items: [
+        {
+          href: "internal/item1",
+          title: "An item within a section",
+        },
+        {
+          href: "internal/item2",
+          title: "The active item",
+        },
+        {
+          href: "internal/item3",
+          title: "Another item",
+        },
+        {
+          href: "internal/item4",
+          title: "Blah blah blah",
+        },
+      ],
+    },
+  ],
+  collectionDisplayName: "[Collection Title]",
+  collectionRootPath: "/",
   children: "[Page content placeholder]",
 } as InternalPageProps
 

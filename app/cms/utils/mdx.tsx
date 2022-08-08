@@ -2,14 +2,8 @@
 import { getMDXComponent } from "mdx-bundler/client"
 import React from "react"
 import type { LinkProps } from "react-router-dom"
-import type { GitHubFile, MdxListItem, MdxPage, Timings } from "~/cms"
-import {
-  cachified,
-  compileMdx,
-  downloadDirList,
-  downloadMdxFileOrDirectory,
-  redisCache,
-} from "~/cms"
+import type { GitHubTextFile, MdxPage, Timings } from "~/cms"
+import { cachified, compileMdx, downloadMarkdown, redisCache } from "~/cms"
 import {
   Heading,
   HeadingProps,
@@ -19,14 +13,9 @@ import {
   LargeVideoCard,
   StaticCheckbox,
 } from "~/ui/design-system"
-import type { LoaderData as RootLoaderData } from "../../root"
+import { DocCollectionSource } from "../../constants/doc-collections"
+import { InternalImg } from "../../ui/design-system/src/lib/Components/InternalImg/InternalImg"
 import { Theme, useTheme } from "./theme.provider"
-
-function typedBoolean<T>(
-  value: T
-): value is Exclude<T, "" | 0 | false | null | undefined> {
-  return Boolean(value)
-}
 
 type CachifiedOptions = {
   forceFresh?: boolean | string
@@ -38,34 +27,26 @@ type CachifiedOptions = {
 
 const defaultMaxAge = 1000 * 60 * 60 * 24 * 30
 
-const getCompiledKey = (
-  owner: string,
-  repo: string,
-  branch: string,
-  path: string
-) => `${owner}:${repo}:${branch}:${path}:compiled`
+const getCompiledKey = (source: DocCollectionSource, path: string) =>
+  `${source.owner}:${source.name}:${source.branch}:${path}:compiled`
 
 const checkCompiledValue = (value: unknown) =>
   typeof value === "object" &&
   (value === null || ("code" in value && "frontmatter" in value))
 
-async function getMdxPage(
+export async function getMdxPage(
   {
-    owner,
-    repo,
-    branch,
-    fileOrDirPath,
+    source,
+    path,
     isTrusted,
   }: {
-    owner: string
-    repo: string
-    branch: string
-    fileOrDirPath: string
+    source: DocCollectionSource
+    path: string
     isTrusted: boolean
   },
   options: CachifiedOptions
 ): Promise<MdxPage | null> {
-  const key = getCompiledKey(owner, repo, branch, fileOrDirPath)
+  const key = getCompiledKey(source, path)
   const page = await cachified({
     cache: redisCache,
     maxAge: defaultMaxAge,
@@ -75,132 +56,49 @@ async function getMdxPage(
     key,
     checkValue: checkCompiledValue,
     getFreshValue: async () => {
-      const pageFiles = await downloadMdxFilesCached(
-        owner,
-        repo,
-        branch,
-        fileOrDirPath,
-        options
-      )
+      const result = await downloadMarkdownCached(source, path, options)
 
       const compiledPage = await compileMdxCached({
-        owner,
-        repo,
-        branch,
-        fileOrDirPath,
-        ...pageFiles,
+        source,
+        fileOrDirPath: path,
+        file: result.file,
+        files: result.files,
         isTrusted,
         options,
       }).catch((err) => {
         console.error(`Failed to get a fresh value for mdx:`, {
-          repo,
-          fileOrDirPath,
+          source,
+          path,
         })
         return Promise.reject(err)
       })
 
       return compiledPage
+        ? {
+            ...compiledPage,
+            origin: result.file,
+          }
+        : null
     },
   })
+
   if (!page) {
     // if there's no page, let's remove it from the cache
     void redisCache.del(key)
   }
+
   return page
 }
 
-async function getMdxPagesInDirectory(
-  owner: string,
-  repo: string,
-  branch: string,
-  fileOrDirPath: string,
-  isTrusted: boolean,
-  options: CachifiedOptions
-) {
-  const dirList = await getMdxDirList(
-    owner,
-    repo,
-    branch,
-    fileOrDirPath,
-    options
-  )
+const getDownloadKey = (source: DocCollectionSource, fileOrDirPath: string) =>
+  `${source.owner}:${source.name}:${source.branch}:${fileOrDirPath}:downloaded`
 
-  // our octokit throttle plugin will make sure we don't hit the rate limit
-  const pageDatas = await Promise.all(
-    dirList.map(async ({ slug }) => {
-      return {
-        ...(await downloadMdxFilesCached(
-          owner,
-          repo,
-          branch,
-          fileOrDirPath,
-          options
-        )),
-        slug,
-      }
-    })
-  )
-
-  const pages = await Promise.all(
-    pageDatas.map((pageData) =>
-      compileMdxCached({
-        owner,
-        repo,
-        branch,
-        fileOrDirPath,
-        ...pageData,
-        isTrusted,
-        options,
-      })
-    )
-  )
-  return pages.filter(typedBoolean)
-}
-
-const getDirListKey = (contentDir: string) => `${contentDir}:dir-list`
-
-async function getMdxDirList(
-  owner: string,
-  repo: string,
-  branch: string,
-  fileOrDirPath: string,
-  options?: CachifiedOptions
-) {
-  return cachified({
-    cache: redisCache,
-    maxAge: defaultMaxAge,
-    ...options,
-    key: getDirListKey(fileOrDirPath),
-    checkValue: (value: unknown) => Array.isArray(value),
-    getFreshValue: async () => {
-      const dirList = (
-        await downloadDirList(owner, repo, branch, fileOrDirPath)
-      )
-        .map(({ name, path }) => ({
-          name,
-          slug: path.replace(`${fileOrDirPath}/`, "").replace(/\.mdx$/, ""),
-        }))
-        .filter(({ name }) => name !== "README.md")
-      return dirList
-    },
-  })
-}
-
-const getDownloadKey = (
-  owner: string,
-  repo: string,
-  branch: string,
-  fileOrDirPath: string
-) => `${owner}:${repo}:${branch}:${fileOrDirPath}:downloaded`
-
-async function downloadMdxFilesCached(
-  owner: string,
-  repo: string,
-  branch: string,
+async function downloadMarkdownCached(
+  source: DocCollectionSource,
   fileOrDirPath: string,
   options: CachifiedOptions
 ) {
-  const key = getDownloadKey(owner, repo, branch, fileOrDirPath)
+  const key = getDownloadKey(source, fileOrDirPath)
   const downloaded = await cachified({
     cache: redisCache,
     maxAge: defaultMaxAge,
@@ -210,50 +108,48 @@ async function downloadMdxFilesCached(
       if (typeof value !== "object") {
         return `value is not an object`
       }
+
       if (value === null) {
         return `value is null`
       }
 
-      const download = value as Record<string, unknown>
-      if (!Array.isArray(download.files)) {
-        return `value.files is not an array`
-      }
-      if (typeof download.entry !== "string") {
-        return `value.entry is not a string`
-      }
+      // TODO: better validation!
+
+      // const download = value as Record<string, unknown>
+      // // if (!Array.isArray(download.files)) {
+      // //   return `value.files is not an array`
+      // // }
+      // if (typeof download.entry !== "string") {
+      //   return `value.entry is not a string`
+      // }
 
       return true
     },
-    getFreshValue: async () =>
-      downloadMdxFileOrDirectory(owner, repo, branch, fileOrDirPath),
+    getFreshValue: async () => downloadMarkdown(source, fileOrDirPath),
   })
-  // if there aren't any files, remove it from the cache
-  if (!downloaded.files.length) {
+  // if there isn't any content, remove it from the cache
+  if (!downloaded.file) {
     void redisCache.del(key)
   }
   return downloaded
 }
 
 async function compileMdxCached({
-  owner,
-  repo,
-  branch,
+  source,
   fileOrDirPath,
-  entry,
+  file,
   files,
   isTrusted,
   options,
 }: {
-  owner: string
-  repo: string
-  branch: string
+  source: DocCollectionSource
   fileOrDirPath: string
-  entry: string
-  files: Array<GitHubFile>
+  file: GitHubTextFile
+  files: Array<GitHubTextFile>
   isTrusted: boolean
   options: CachifiedOptions
 }) {
-  const key = getCompiledKey(owner, repo, branch, fileOrDirPath)
+  const key = getCompiledKey(source, fileOrDirPath)
   const page = await cachified({
     cache: redisCache,
     maxAge: defaultMaxAge,
@@ -262,27 +158,11 @@ async function compileMdxCached({
     checkValue: checkCompiledValue,
     getFreshValue: async () => {
       const compiledPage = await compileMdx<MdxPage["frontmatter"]>(
-        fileOrDirPath,
+        file,
         files,
-        repo,
         isTrusted
       )
-      if (compiledPage) {
-        return {
-          ...compiledPage,
-          fileOrDirPath,
-          editLink: [
-            "https://github.com",
-            owner,
-            repo,
-            "blob",
-            branch,
-            entry,
-          ].join("/"),
-        }
-      } else {
-        return null
-      }
+      return compiledPage
     },
   })
   // if there's no page, remove it from the cache
@@ -290,61 +170,6 @@ async function compileMdxCached({
     void redisCache.del(key)
   }
   return page
-}
-
-function mdxPageMeta({
-  data,
-  parentsData,
-}: {
-  data: { page: MdxPage | null } | null
-  parentsData: { root: RootLoaderData }
-}) {
-  // const { requestInfo } = parentsData.root;
-  if (data?.page) {
-    // eslint-disable-next-line @typescript-eslint/no-unused-vars
-    const { keywords = [], ...extraMeta } = {}
-    let title = data.page.frontmatter.title
-    const isDraft = data.page.frontmatter.draft
-
-    // eslint-disable-next-line @typescript-eslint/no-unused-vars
-    if (isDraft) title = `(DRAFT) ${title ?? ""}`
-    return {
-      ...(isDraft ? { robots: "noindex" } : null),
-      // ...getSocialMetas({
-      //   origin: requestInfo.origin,
-      //   title,
-      //   description: data.page.frontmatter.description,
-      //   keywords: keywords.join(", "),
-      //   url: getUrl(requestInfo),
-      //   image: getSocialImageWithPreTitle({
-      //     origin: requestInfo.origin,
-      //     url: getDisplayUrl(requestInfo),
-      //     featuredImage: ""
-      //     title:
-      //       data.page.frontmatter.socialImageTitle ??
-      //       data.page.frontmatter.title ??
-      //       "Untitled",
-      //     preTitle:
-      //       data.page.frontmatter.socialImagePreTitle ??
-      //       `Check out this article`,
-      //   }),
-      // }),
-      ...extraMeta,
-    }
-  } else {
-    return {
-      title: "Not found",
-      description: "You landed on a page we could not find. Sorry!",
-    }
-  }
-}
-
-/**
- * This is useful for when you don't want to send all the code for a page to the client.
- */
-function mapFromMdxPageToMdxListItem(page: MdxPage): MdxListItem {
-  const { code, ...mdxListItem } = page
-  return mdxListItem
 }
 
 function GetMdxComponents(theme: Theme) {
@@ -381,9 +206,8 @@ function GetMdxComponents(theme: Theme) {
     Callout: (props: React.PropsWithChildren<{}>) => (
       <div>{props.children}</div>
     ),
-    Img: (props: React.PropsWithRef<{}>) => (
-      <img {...props} className="not-prose" />
-    ),
+    Img: InternalImg,
+    img: InternalImg,
     iframe: (props: React.PropsWithRef<{ src: string; title: string }>) => {
       const { src, title, ...rest } = props
       return (
@@ -408,7 +232,6 @@ function getMdxComponent(page: MdxPage, theme: Theme | null) {
   const { code, frontmatter } = page
   const Component = getMDXComponent(code, frontmatter)
 
-  // const headings = getHeadingsFromMdxComponent(Component);
   function MdxComponent({
     components,
     ...rest
@@ -430,17 +253,7 @@ function getMdxComponent(page: MdxPage, theme: Theme | null) {
   return MdxComponent
 }
 
-function useMdxComponent(page: MdxPage) {
+export function useMdxComponent(page: MdxPage) {
   const [theme] = useTheme()
   return React.useMemo(() => getMdxComponent(page, theme), [page, theme])
-}
-
-export {
-  getMdxPage,
-  getMdxDirList,
-  getMdxPagesInDirectory,
-  mapFromMdxPageToMdxListItem,
-  mdxPageMeta,
-  useMdxComponent,
-  getDirListKey,
 }

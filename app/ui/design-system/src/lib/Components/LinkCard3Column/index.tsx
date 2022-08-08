@@ -1,7 +1,8 @@
 import clsx from "clsx"
 import { ReactComponent as ChevronRight } from "../../../../images/arrows/chevron-right"
 import { ReactComponent as ExternalLinkIcon } from "../../../../images/content/external-link"
-import AppLink, { isLinkExternal } from "../AppLink"
+import { isLinkExternal } from "../../utils/isLinkExternal"
+import AppLink from "../AppLink"
 import Tag from "../Tag"
 
 export type LinkCard3ColumnItemProps = {

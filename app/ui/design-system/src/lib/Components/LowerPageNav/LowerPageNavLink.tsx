@@ -36,7 +36,7 @@ export function LowerPageNavLink({ link, next }: LowerPageNavLinkProps) {
             "text-primary-gray-300 dark:text-primary-gray-50": !next,
           })}
         >
-          {link.name}
+          {link.title}
         </div>
       </div>
       {next && (

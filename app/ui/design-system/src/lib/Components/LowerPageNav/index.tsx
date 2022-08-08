@@ -1,7 +1,7 @@
 import { LowerPageNavLink } from "./LowerPageNavLink"
 
 export type LowerPageNavLinkType = {
-  name: string
+  title: string
   href: string
 }
 

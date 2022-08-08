@@ -1,13 +1,9 @@
-import invariant from "tiny-invariant"
+import { posix } from "path"
 import { getRequiredServerEnvVar } from "~/cms/helpers"
-import { schemas } from "~/constants/repos"
-import {
-  FIRST_ROUTE_MAP,
-  isFirstRoute,
-  isSecondRoute,
-  SecondRoute,
-} from "~/constants/repos/contents-structure"
-import { isNotNull } from "~/utils/filters"
+import { docCollections } from "~/constants/doc-collections"
+import { SidebarItem } from "../ui/design-system/src/lib/Components/InternalSidebar"
+
+type Entry = { pathname: string }
 
 function entryNode(entry: Entry, origin: string): string {
   const url = new URL(entry.pathname, origin)
@@ -20,54 +16,49 @@ function entryNode(entry: Entry, origin: string): string {
 `
 }
 
-type Entry = { pathname: string }
+/**
+ * Returns an array of URLs from an array of `SidebarItem` located
+ * at the given path.
+ */
+const getSidebarUrls = (path: string, sidebar: SidebarItem[]): string[] => {
+  return sidebar.flatMap((item) => {
+    const urls = "href" in item ? [posix.join(path, item.href)] : []
+
+    return item.items ? urls.concat(getSidebarUrls(path, item.items)) : urls
+  })
+}
+
+// pages defined in app/routes
+const STATIC_ROUTES = [
+  "/",
+  "/action",
+  "/community",
+  "/concepts",
+  "/getting-started",
+  "/http-api",
+  "/learn",
+  "/network",
+  "/sdks",
+  "/tools",
+]
 
 export const loader = () => {
-  // pages defined in app/routes
-  const staticRoutes = [
-    "/",
-    "/action",
-    "/community",
-    "/concepts",
-    "/getting-started",
-    "/http-api",
-    "/learn",
-    "/network",
-    "/sdks",
-    "/tools",
-  ]
-
-  const internalIndexPaths = Object.entries(schemas)
-    .flatMap(([key, schema]) => {
-      return (
-        schema?.sidebar.sections.flatMap((section) =>
-          section.items.flatMap((item) => {
-            if (isFirstRoute(key)) {
-              return `${key}/${item.href}`
-            }
-
-            if (isSecondRoute(key)) {
-              let firstRoute = FIRST_ROUTE_MAP[key as SecondRoute]
-              invariant(firstRoute, `expected section for ${key}`)
-              return `${firstRoute}/${item.href}`
-            }
-
-            // TODO: handle other sidebar items
-
-            return null
-          })
-        ) ?? []
+  // For internal pages, obtain a list of known URLs from the sidebar
+  // definitions.
+  const internalUrls = Object.entries(docCollections).flatMap(
+    ([rootPath, { manifest }]) => {
+      if (!manifest.sidebars) {
+        return []
+      }
+      return Object.entries(manifest.sidebars).flatMap(([sidebarPath, items]) =>
+        getSidebarUrls(posix.join(rootPath, sidebarPath), items)
       )
-    })
-    .filter(isNotNull)
+    }
+  )
 
-  let paths = [...staticRoutes, ...internalIndexPaths]
-  // remove duplicates
-  paths = [...new Set(paths)]
-
-  let entries: Array<Entry> = paths.map((p) => ({ pathname: p }))
-
-  let origin: string = getRequiredServerEnvVar(
+  const paths = new Set([...STATIC_ROUTES, ...internalUrls])
+  const entries = [...paths].map((pathname) => ({ pathname }))
+  const origin: string = getRequiredServerEnvVar(
     "ORIGIN",
     `http://localhost:3000`
   )
