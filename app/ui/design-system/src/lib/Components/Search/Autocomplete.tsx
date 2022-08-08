@@ -5,6 +5,7 @@ import {
 } from "@algolia/autocomplete-core"
 import { getAlgoliaResults } from "@algolia/autocomplete-js"
 import { SearchClient } from "algoliasearch/lite"
+import clsx from "clsx"
 import { KeyboardEvent, useMemo, useRef, useState } from "react"
 import { ReactComponent as SearchIcon } from "../../../../images/action/search"
 import { Panel } from "./Panel"
@@ -79,6 +80,7 @@ export function Autocomplete({
   const inputProps = autocomplete.getInputProps({
     inputElement: inputRef.current,
   })
+  const showResults = !!autocompleteState && autocompleteState.query.length > 0
 
   return (
     <div
@@ -92,13 +94,18 @@ export function Autocomplete({
         {...autocomplete.getFormProps({ inputElement: inputRef.current })}
       >
         <button onClick={closeDialog} className="absolute h-full w-full" />
-        <div className="relative flex items-center">
+        <div className="relative flex min-h-0 items-center">
           <div className="absolute left-5 z-20 scale-75 dark:text-blue-hover-dark">
             <SearchIcon />
           </div>
           {/* @ts-expect-error */}
           <input
-            className="z-10 h-16 w-full rounded-md border-transparent bg-white px-14 pt-4 pb-3 text-base text-black !ring-0 focus:border-transparent dark:border-blue-hover-dark dark:bg-black dark:text-white"
+            className={clsx(
+              "z-10 h-16 w-full rounded-md border-transparent bg-white px-14 pt-4 pb-3 text-base text-black !ring-0 focus:border-transparent dark:border-blue-hover-dark dark:bg-black dark:text-white",
+              {
+                "rounded-b-none": showResults,
+              }
+            )}
             ref={inputRef}
             {...inputProps}
             onKeyDown={(e: KeyboardEvent) => {
@@ -119,7 +126,7 @@ export function Autocomplete({
             ESC
           </button>
         </div>
-        {!!autocompleteState && autocompleteState.query.length > 0 && (
+        {showResults && (
           <Panel
             autocomplete={autocomplete}
             autocompleteState={autocompleteState}

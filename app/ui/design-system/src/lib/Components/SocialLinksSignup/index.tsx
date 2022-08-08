@@ -91,6 +91,7 @@ const SocialLinksSignup = () => {
             url={TWITTER_URL}
           />
         </div>
+        {/** Temporarily disabling email capture */}
         {/* <div className="mt-8 flex flex-col items-center justify-between rounded-lg bg-white px-4 py-10 dark:bg-primary-gray-dark sm:p-10 md:flex-row md:py-20 md:px-[75px]">
           <h2 className="mb-4 text-center text-h2 md:mr-8 md:text-left">
             Subscribe to our newsletter
@@ -109,7 +110,8 @@ const SocialLinksSignup = () => {
               Subscribe
             </a>
           </div>
-        </div> */}
+        </div>
+       */}
       </div>
     </div>
   )

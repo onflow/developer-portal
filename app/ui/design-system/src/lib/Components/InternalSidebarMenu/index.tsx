@@ -107,7 +107,8 @@ export function InternalSidebarMenu({
     whileElementsMounted: autoUpdate,
   })
 
-  const SelectedIcon = switchContents[selectedTool]!.icon
+  const SelectedIcon = switchContents[selectedTool]?.icon
+  const toolName = switchContents[selectedTool]?.name
 
   return (
     <div>
@@ -119,10 +120,10 @@ export function InternalSidebarMenu({
               className="mb-4 flex min-w-[210px] items-center rounded-lg p-2 pr-3 text-sm shadow-2xl hover:text-primary-gray-300 dark:bg-black dark:text-primary-gray-200 dark:shadow-2xl-dark-strong dark:hover:text-primary-gray-100"
             >
               <div className="mr-2 h-8 w-8">
-                <SelectedIcon />
+                {SelectedIcon && <SelectedIcon />}
               </div>
               <div className="text-small font-bold">
-                {switchContents[selectedTool]?.name}
+                {toolName ? toolName : "Find a guide"}
               </div>
               <div className="ml-auto pl-2">
                 <ChevronDown />

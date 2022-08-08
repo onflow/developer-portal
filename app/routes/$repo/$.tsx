@@ -156,9 +156,9 @@ export default function RepoDocument() {
   //
   // Logically a tool is NOT included in the list of flow routes (routes with the parent /flow)
   // const tool = ![...ROUTING_STRUCTURE.flow].includes(content.contentName)
-  const isSwitchContent = Object.keys(switchContents).includes(
-    content.contentName
-  )
+  const isSwitchContent =
+    Object.keys(switchContents).includes(content.contentName) ||
+    content.contentName === "flow"
 
   return (
     <InternalPage

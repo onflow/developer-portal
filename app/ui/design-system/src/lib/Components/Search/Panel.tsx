@@ -3,6 +3,7 @@ import clsx from "clsx"
 import React from "react"
 import { HitType } from "./Autocomplete"
 import { Item } from "./Item"
+import PanelShortcuts from "./PanelShortcuts"
 
 function CenteredMessage({ children }: { children: React.ReactNode }) {
   return (
@@ -31,49 +32,52 @@ export function Panel({
   const items = collection?.items || []
 
   return (
-    // @ts-expect-error
-    <div
-      className={clsx(
-        "relative -top-1 flex h-full flex-1 overflow-y-auto rounded-b-md bg-white p-0 dark:bg-black md:p-6",
-        {
-          "opacity-50": autocompleteState.status === "stalled",
-        }
-      )}
-      {...autocomplete.getPanelProps({})}
-    >
-      {query && query?.length > 0 ? (
-        <>
-          {items.length > 0 && (
-            <ul
-              className="grow divide-y divide-primary-gray-100 dark:divide-primary-gray-400"
-              {...autocomplete.getListProps()}
-            >
-              {items.map((item: HitType, index: number) => {
-                const itemProps = autocomplete.getItemProps({
-                  item,
-                  source: collection!.source, // defined because `items` is defined
-                })
-                const selected = itemProps["aria-selected"]
-                return (
-                  // @ts-expect-error: TODO: Short description of the error
-                  <li
-                    key={index}
-                    className={clsx("divided-item-selectable", {
-                      "divided-item-selected": selected,
-                    })}
-                    {...itemProps}
-                  >
-                    <Item item={item} selected={selected} />
-                  </li>
-                )
-              })}
-            </ul>
-          )}
-          {items.length === 0 && <CenteredMessage>0 results</CenteredMessage>}
-        </>
-      ) : (
-        <CenteredMessage>Search the docs</CenteredMessage>
-      )}
+    <div className="relative flex h-full min-h-0 flex-1 flex-col rounded-b-md bg-white dark:bg-black">
+      {/* @ts-expect-error */}
+      <div
+        className={clsx(
+          "relative flex h-full flex-1 overflow-y-auto p-0 md:p-6",
+          {
+            "opacity-50": autocompleteState.status === "stalled",
+          }
+        )}
+        {...autocomplete.getPanelProps({})}
+      >
+        {query && query?.length > 0 ? (
+          <>
+            {items.length > 0 && (
+              <ul
+                className="grow divide-y divide-primary-gray-100 dark:divide-primary-gray-400"
+                {...autocomplete.getListProps()}
+              >
+                {items.map((item: HitType, index: number) => {
+                  const itemProps = autocomplete.getItemProps({
+                    item,
+                    source: collection!.source, // defined because `items` is defined
+                  })
+                  const selected = itemProps["aria-selected"]
+                  return (
+                    // @ts-expect-error: TODO: Short description of the error
+                    <li
+                      key={index}
+                      className={clsx("divided-item-selectable", {
+                        "divided-item-selected": selected,
+                      })}
+                      {...itemProps}
+                    >
+                      <Item item={item} selected={selected} />
+                    </li>
+                  )
+                })}
+              </ul>
+            )}
+            {items.length === 0 && <CenteredMessage>0 results</CenteredMessage>}
+          </>
+        ) : (
+          <CenteredMessage>Search the docs</CenteredMessage>
+        )}
+      </div>
+      <PanelShortcuts />
     </div>
   )
 }
