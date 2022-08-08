@@ -91,8 +91,8 @@ const SocialLinksSignup = () => {
             url={TWITTER_URL}
           />
         </div>
-        <div className="mt-8 flex flex-col items-center justify-between rounded-lg bg-white px-4 py-10 dark:bg-primary-gray-dark sm:p-10 md:flex-row md:py-20 md:px-[75px]">
-          <h2 className="text-h2 mb-4 text-center md:mr-8 md:text-left">
+        {/* <div className="mt-8 flex flex-col items-center justify-between rounded-lg bg-white px-4 py-10 dark:bg-primary-gray-dark sm:p-10 md:flex-row md:py-20 md:px-[75px]">
+          <h2 className="mb-4 text-center text-h2 md:mr-8 md:text-left">
             Subscribe to our newsletter
           </h2>
           <div className="flex flex-col md:flex-row">
@@ -103,13 +103,13 @@ const SocialLinksSignup = () => {
               style={{ boxShadow: "0px 4px 40px rgba(0, 0, 0, 0.08)" }}
             />
             <a
-              className="h-14 rounded-lg rounded-tr-lg rounded-br-lg border-black bg-black px-12 py-4 text-center text-white hover:bg-primary-gray-400 dark:hover:bg-primary-gray-400/50 md:rounded-tl-none md:rounded-bl-none"
+              className="px-12 py-4 text-center text-white bg-black border-black rounded-lg rounded-tr-lg rounded-br-lg h-14 hover:bg-primary-gray-400 dark:hover:bg-primary-gray-400/50 md:rounded-tl-none md:rounded-bl-none"
               href="/foo"
             >
               Subscribe
             </a>
           </div>
-        </div>
+        </div> */}
       </div>
     </div>
   )
