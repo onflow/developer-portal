@@ -108,10 +108,6 @@ export function InternalSidebarDropdownMenu({
     )
     .sort((a, b) => b.href.length - a.href.length)[0]
 
-  if (!match) {
-    return null
-  }
-
   const { primary: SelectedIcon } =
     SIDEBAR_DROPDOWN_ICONS[match?.icon || "default"]
 
@@ -128,7 +124,7 @@ export function InternalSidebarDropdownMenu({
                 {SelectedIcon && <SelectedIcon />}
               </div>
               <div className="text-small font-bold">
-                {match.title || "Find a guide"}
+                {match?.title || "Find a guide"}
               </div>
               <div className="ml-auto pl-2">
                 <ChevronDown />

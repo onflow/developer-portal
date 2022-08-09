@@ -146,7 +146,7 @@ export default () => {
                 href: "/nodes/flow-port",
                 icon: "flow-port",
               },
-              // { title: "All nodes", href: "/nodes", icon: "default" },
+              { title: "Flow Nodes", href: "/nodes", icon: "default" },
             ],
           },
         ]}

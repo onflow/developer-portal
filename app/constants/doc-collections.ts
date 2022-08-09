@@ -1416,4 +1416,183 @@ export const docCollections: Record<string, DocCollection> = {
       },
     },
   },
+  flow: {
+    source: {
+      owner: "onflow",
+      name: "flow",
+      branch: "master",
+      rootPath: "docs/content/flow/",
+    },
+    manifest: {
+      displayName: "Flow",
+      sidebars: {
+        "": [
+          {
+            title: "Flow",
+            items: [
+              {
+                title: "DApp Development",
+                href: "dapp-development",
+              },
+              {
+                title: "Core Contracts",
+                href: "core-contracts",
+              },
+              {
+                title: "Flow Token",
+                href: "flow-token",
+              },
+              {
+                title: "FUSD",
+                href: "fusd",
+              },
+              {
+                title: "NFT Marketplace",
+                href: "nft-marketplace",
+              },
+            ],
+          },
+          {
+            title: "Building Your Dapp",
+            items: [
+              {
+                title: "Flow FAQ",
+                href: "faq",
+              },
+              {
+                title: "User Accounts & Wallets",
+                href: "dapp-development/user-accounts-and-wallets",
+              },
+              {
+                title: "In-dapp Payments",
+                href: "dapp-development/in-dapp-payments",
+              },
+              {
+                title: "Smart Contracts",
+                href: "dapp-development/smart-contracts",
+              },
+              {
+                title: "Off-chain Infrastructure",
+                href: "dapp-development/dapp-infrastructure",
+              },
+              {
+                title: "Dapp Architecture on the Flow Blockchain",
+                href: "dapp-development/DappArchitectures",
+              },
+              {
+                title: "NFT Drop Strategies",
+                href: "dapp-development/NFT-drop-styles",
+              },
+            ],
+          },
+          {
+            title: "Deploying Your Dapp",
+            items: [
+              {
+                title: "The Road to Mainnet",
+                href: "dapp-development/deployment",
+              },
+              {
+                title: "1. Smart Contract Testing",
+                href: "dapp-development/contract-testing",
+              },
+              {
+                title: "2. Testnet Deployment",
+                href: "dapp-development/testnet-deployment",
+              },
+              {
+                title: "3. Testnet Testing",
+                href: "dapp-development/testnet-testing",
+              },
+              {
+                title: "4. Mainnet Account Setup",
+                href: "dapp-development/mainnet-account-setup",
+              },
+              {
+                title: "5. Mainnet Deployment",
+                href: "dapp-development/mainnet-deployment",
+              },
+            ],
+          },
+        ],
+      },
+    },
+  },
+  nodes: {
+    source: {
+      owner: "onflow",
+      name: "flow",
+      branch: "master",
+      rootPath: "docs/content/nodes/",
+    },
+    manifest: {
+      displayName: "Flow Nodes",
+      sidebars: {
+        "": [
+          {
+            title: "Overview",
+            items: [
+              {
+                title: "Introduction",
+                href: "",
+              },
+              {
+                title: "Node Setup",
+                href: "node-operation/node-setup",
+              },
+              {
+                title: "Node Roles",
+                href: "node-operation/node-roles",
+              },
+              {
+                title: "Operator FAQs",
+                href: "node-operation/faq",
+              },
+            ],
+          },
+          {
+            title: "Operator Guides",
+            items: [
+              {
+                title: "Node Bootstrapping",
+                href: "node-operation/node-bootstrap",
+              },
+              {
+                title: "Node Migration",
+                href: "node-operation/node-migration",
+              },
+              {
+                title: "Machine Accounts for Existing Node Operators",
+                href: "node-operation/machine-existing-operator",
+              },
+              {
+                title: "Database Encryption for Existing Node Operators",
+                href: "node-operation/db-encryption-existing-operator",
+              },
+              {
+                title: "Node Monitoring",
+                href: "node-operation/monitoring-nodes",
+              },
+              {
+                title: "Observer Node",
+                href: "node-operation/full-observer-node",
+              },
+              {
+                title: "Spork Process",
+                href: "node-operation/spork",
+              },
+              {
+                title: "Past Spork Info",
+                href: "node-operation/past-sporks",
+              },
+              {
+                title: "Upcoming Sporks",
+                href: "node-operation/upcoming-sporks",
+              },
+            ],
+          },
+        ],
+      },
+    },
+  },
 }
