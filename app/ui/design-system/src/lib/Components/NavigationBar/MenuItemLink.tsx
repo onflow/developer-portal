@@ -1,5 +1,6 @@
 import clsx from "clsx"
-import AppLink, { isLinkExternal } from "../AppLink"
+import { isLinkExternal } from "../../utils/isLinkExternal"
+import AppLink from "../AppLink"
 import ExternalLinkIcon from "../InternalContentLink/ExternalLinkIcon"
 
 export type MenuItemBase = { title: string; className?: string }

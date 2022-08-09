@@ -7,7 +7,7 @@ import { MobileMenuToggleButton } from "../NavigationBar/MobileMenuToggleButton"
 
 export type InternalSubnavProps = BreadcrumbsProps & {
   className?: string
-  githubUrl?: string
+  editPageUrl?: string
   isSidebarOpen?: boolean
   onSidebarToggle?: () => void
   selectedVersionName?: string
@@ -16,7 +16,7 @@ export type InternalSubnavProps = BreadcrumbsProps & {
 
 export function InternalSubnav({
   className,
-  githubUrl,
+  editPageUrl,
   items,
   isSidebarOpen,
   onSidebarToggle,
@@ -49,9 +49,9 @@ export function InternalSubnav({
             selectedVersionName={selectedVersionName}
           />
         )}
-        {githubUrl && (
+        {editPageUrl && (
           <AppLink
-            to={githubUrl}
+            to={editPageUrl}
             className="hidden whitespace-nowrap py-3 text-sm text-primary-blue hover:text-blue-hover dark:text-blue-dark dark:hover:text-blue-hover-dark md:block"
           >
             <GithubLogo className="inline scale-90" /> Edit on Github

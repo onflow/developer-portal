@@ -141,7 +141,7 @@ const linkCard3ColumnItems: LinkCard3ColumnProps = {
 
 const linkCard2ColumnItems: LinkCard2ColumnProps = {
   buttonText: "View Concepts",
-  buttonUrl: "/flow/concepts/",
+  buttonUrl: "/learn/concepts",
   description: `Learn the fundamental concepts that power the overall dapp experience on Flow.`,
   title: "Core Concepts",
   items: [

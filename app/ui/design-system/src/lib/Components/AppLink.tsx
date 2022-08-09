@@ -1,9 +1,6 @@
 import { Link } from "@remix-run/react"
 import React, { forwardRef } from "react"
-
-export function isLinkExternal(url: string) {
-  return /^(https?:\/\/|www\.)/.test(url)
-}
+import { isLinkExternal } from "../utils/isLinkExternal"
 
 export interface AppLinkProps
   extends Omit<React.ComponentPropsWithRef<"a">, "href"> {

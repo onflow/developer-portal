@@ -86,7 +86,7 @@ const homepageThreeColumnData: LinkCard3ColumnItems = [
       },
       {
         title: "Flow key concepts",
-        href: "/flow/concepts/accounts-and-keys/",
+        href: "/learn/concepts/accounts-and-keys/",
         tags: ["accounts", "signing"],
       },
       {

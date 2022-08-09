@@ -1,8 +1,8 @@
 import React from "react"
-import KbdDown from "~/ui/design-system/images/misc/kbd-down"
-import KbdEnter from "~/ui/design-system/images/misc/kbd-enter"
-import KbdEsc from "~/ui/design-system/images/misc/kbd-esc"
-import KbdUp from "~/ui/design-system/images/misc/kbd-up"
+import KbdDown from "~/ui/design-system/images/misc/kbd-down.svg"
+import KbdEnter from "~/ui/design-system/images/misc/kbd-enter.svg"
+import KbdEsc from "~/ui/design-system/images/misc/kbd-esc.svg"
+import KbdUp from "~/ui/design-system/images/misc/kbd-up.svg"
 import KbdShortcut from "./KbdShortcut"
 
 function ShortcutSection({

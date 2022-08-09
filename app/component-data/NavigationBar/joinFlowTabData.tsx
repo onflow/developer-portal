@@ -133,7 +133,7 @@ export const governanceSection: Section = {
     },
     {
       title: "Variable Transaction Fees",
-      href: "/flow/concepts/variable-transaction-fees/",
+      href: "/learn/concepts/variable-transaction-fees",
     },
     {
       title: "Road to Permissionless Deployment",

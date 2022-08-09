@@ -22,7 +22,6 @@ x-app-defaults: &app-defaults
   command: ["yarn"]
   working_dir: /opt/next-docs
   depends_on:
-    - database
     - cache
   restart: on-failure
   environment:
@@ -46,12 +45,23 @@ services:
     command: redis-server --requirepass flow_docs
     volumes:
       - redis_data:/data
+  # Run yarn on startup to make sure our packages are up-to-date.
+  app-yarn:
+    <<: *app-defaults
+    restart: on-failure
+  # Watches for CSS changes and rebuilds
   app-css:
     <<: *app-defaults
     command: ["yarn", "run", "dev:css"]
+    depends_on:
+      - app-yarn
+  # Watches for SVG changes and recreates their components as needed.
   app-svg:
     <<: *app-defaults
     command: ["yarn", "run", "dev:svg"]
+    depends_on:
+      - app-yarn  # should probably use some sort of "wait-for" here instead.
+  # The main application
   app:
     <<: *app-defaults
     command: ["yarn", "run", "dev:remix"]
@@ -61,8 +71,8 @@ services:
     depends_on:
       - app-css
       - app-svg
-  storybook:
-    <<: *app-defaults
-    command: ["yarn", "run", "start-storybook", "-p", "6006", "--quiet", "--no-open", "--disable-telemetry"]
-    ports:
-      - "6006:6006"
+  # storybook:
+  #   <<: *app-defaults
+  #   command: ["yarn", "run", "start-storybook", "-p", "6006", "--quiet", "--no-open", "--disable-telemetry"]
+  #   ports:
+  #     - "6006:6006"

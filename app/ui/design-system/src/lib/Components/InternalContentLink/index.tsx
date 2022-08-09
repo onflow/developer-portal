@@ -1,5 +1,7 @@
 import clsx from "clsx"
-import AppLink, { isLinkExternal } from "../AppLink"
+import AppLink from "../AppLink"
+import { useInternalUrl } from "../InternalUrlContext"
+import { isLinkExternal } from "../../utils/isLinkExternal"
 import ExternalLinkIcon from "./ExternalLinkIcon"
 
 const defaultClasses =
@@ -20,10 +22,10 @@ export function InternalContentLink({
   href,
   ...props
 }: LinkProps) {
+  const resolvedHref = useInternalUrl(href)
   const isFootnote = !!props["data-footnote-ref"]
-  const isExternalLink = isLinkExternal(href)
 
-  if (isExternalLink) {
+  if (isLinkExternal(href)) {
     return (
       <AppLink
         to={href}
@@ -32,20 +34,14 @@ export function InternalContentLink({
           "ml-0.5": isFootnote,
         })}
       >
-        <span
-          className={clsx({
-            "pr-px": isExternalLink,
-          })}
-        >
-          {children}
-        </span>
-        {isExternalLink && <ExternalLinkIcon className="inline" />}
+        <span className="pr-px">{children}</span>
+        <ExternalLinkIcon className="inline" />
       </AppLink>
     )
   }
 
   return (
-    <AppLink to={href} className={clsx("mr-1", className)}>
+    <AppLink to={resolvedHref} className={clsx("mr-1", className)}>
       {isFootnote ? <>[{children}]</> : children}
     </AppLink>
   )

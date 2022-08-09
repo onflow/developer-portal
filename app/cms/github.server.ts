@@ -2,9 +2,18 @@
 
 import { throttling } from "@octokit/plugin-throttling"
 import { Octokit as createOctokit } from "@octokit/rest"
-import nodePath from "path"
+import { posix } from "node:path"
+import { DocCollectionSource } from "../constants/doc-collections"
+import logger from "../utils/logging.server"
+import { InvalidPathError } from "./errors/invalid-path-error"
+import { NotFoundError } from "./errors/not-found-error"
+import { UnknownEncoding } from "./errors/unknown-encoding"
+import { Repo } from "./types"
 
-type GitHubFile = { path: string; content: string }
+/**
+ * Acceptable markdown file extensions in the order of preference.
+ */
+const MARKDOWN_EXTENSIONS = ["md", "mdx"]
 
 const Octokit = createOctokit.plugin(throttling)
 
@@ -14,15 +23,12 @@ type ThrottleOptions = {
   request: { retryCount: number }
 }
 
-function debugEnv(): string {
-  return JSON.stringify(process.env, null, 2)
-}
-
 export const octokit = new Octokit({
   auth: process.env["BOT_GITHUB_TOKEN"],
+  log: logger,
   throttle: {
     onRateLimit: (retryAfter: number, options: ThrottleOptions) => {
-      console.warn(
+      octokit.log.warn(
         `Request quota exhausted for request ${options.method} ${options.url}. Retrying after ${retryAfter} seconds.`
       )
 
@@ -37,180 +43,257 @@ export const octokit = new Octokit({
   },
 })
 
-async function downloadFirstMdxFile(
-  owner: string,
-  repo: string,
-  list: Array<{ name: string; type: string; path: string; sha: string }>
-) {
-  const filesOnly = list.filter(({ type }) => type === "file")
-  for (const extension of [".mdx", ".md"]) {
-    const file = filesOnly.find(({ name }) => name.endsWith(extension))
-    if (file) return downloadFileBySha(owner, repo, file.sha)
+/**
+ * An item returned from the directory listing of a Github repo
+ */
+export type GitHubItem = Awaited<ReturnType<typeof getDirectoryContent>>[number]
+
+/**
+ * A GitHub file with text content that has been populated.
+ */
+export type GitHubTextFile = GitHubItem & {
+  type: "file"
+
+  /**
+   * The *encoded* content of the file. Do not assume this is readable
+   * plain text - it may require decoding based on the`encoding` property.
+   */
+  content?: string
+
+  /**
+   * The *decoded* text content of the file.
+   */
+  textContent: string
+
+  /**
+   * The path of the file relative to the `source.rootPath`.
+   */
+  relativePath: string
+}
+
+/**
+ * Finds an entry from an array of `GitHubItem`s based on the
+ * entry type and name (case-insensitive).
+ */
+const findGitHubItem = (
+  entries: GitHubItem[],
+  type: "file" | "dir",
+  name: string
+) =>
+  entries.find(
+    (e) => e.type === type && e.name.toLowerCase() === name.toLowerCase()
+  )
+
+/**
+ * Finds a markdown file matching the given name from a list of `GitHubItem`s
+ */
+const findMarkdownFile = (
+  entries: Awaited<ReturnType<typeof getDirectoryContent>>,
+  name: string
+) => {
+  for (const ext of MARKDOWN_EXTENSIONS) {
+    const match = findGitHubItem(entries, "file", `${name}.${ext}`)
+
+    if (match) {
+      return match
+    }
   }
-  return null
 }
 
 /**
+ * Gets a GitHubItem from a repo passed on the given (relative) path.
  *
- * @param relativeMdxFileOrDirectory the path to the content. For example:
- * "docs/content/workshops/react-fundamentals" (would resolve ot the file
- * "docs/content/workshops/react-fundamentals.mdx");
- * "docs/content/workshops/react-hooks" (would resolve to
- * "docs/content/workshops/react-hooks/index.mdx")
- * @returns A promise that resolves to an Array of GitHubFiles for the necessary files
+ * @param source The source that includes where to fetch the file from and
+ *   how to interpret the path.
+ * @param path A path relative to `source.rootPath`.
+ *
+ * @throws {@link NotFoundError}
+ * Thrown if no file matching the given `path` was found at the `source`
+ *
+ * @remarks
+ *
+ * Using the given path, we look for a markdown file matching one of the
+ * following patterns (in this order, ignoring case) and returning the
+ * first result found:
+ *   1. `<source.rootPath>/<path>.md`
+ *   2. `<source.rootPath>/<path>.mdx`
+ *   3. `<source.rootPath>/<path>/index.md`
+ *   4. `<source.rootPath>/<path>/index.mdx`
+ *
+ * For example if `source.rootPath` is "docs/" and `path` is
+ * "workshops/React-Fundamentals", we would look for the following files:
+ *    1. `docs/workshops/react-fundamentals.md`
+ *    2. `docs/workshops/react-fundamentals.mdx`
+ *    3. `docs/workshops/react-fundamentals/index.md`
+ *    4. `docs/workshops/react-fundamentals/index.mdx`
+ *
+ * @returns A promise that resolves to a GitHubItem that matches the given path.
  */
-async function downloadMdxFileOrDirectory(
-  owner: string,
-  repo: string,
-  branch: string,
-  mdxFileOrDirectory: string
-): Promise<{ entry: string; files: Array<GitHubFile> }> {
-  console.log(`Downloading ${owner}/${repo}/${mdxFileOrDirectory}`)
+const getMarkdownFile = async (source: DocCollectionSource, path: string) => {
+  // Make sure the root path is interpreted as absolute.
+  const contentRootPath = posix.resolve("/", source.rootPath)
 
-  const parentDir = nodePath.dirname(mdxFileOrDirectory)
-  const dirList = await downloadDirList(owner, repo, branch, parentDir)
+  const { dir, base } = posix.parse(path.toLowerCase())
 
-  const basename = nodePath.basename(mdxFileOrDirectory)
-  const mdxFileWithoutExt = nodePath.parse(mdxFileOrDirectory).name
-  const potentials = dirList.filter(({ name }) => name.startsWith(basename))
-  const exactMatch = potentials.find(
-    ({ name }) => nodePath.parse(name).name === mdxFileWithoutExt
-  )
-  const dirPotential = potentials.find(({ type }) => type === "dir")
+  const absoluteDir = posix.resolve(contentRootPath, dir)
 
-  const content = await downloadFirstMdxFile(
-    owner,
-    repo,
-    exactMatch ? [exactMatch] : potentials
-  )
-
-  let files: Array<GitHubFile> = []
-  let entry = mdxFileOrDirectory
-  if (content) {
-    // technically you can get the blog post by adding .mdx at the end... Weird
-    // but may as well handle it since that's easy...
-    entry = mdxFileOrDirectory.endsWith(".mdx")
-      ? mdxFileOrDirectory
-      : `${mdxFileOrDirectory}.mdx`
-    // /content/about.mdx => entry is about.mdx, but compileMdx needs
-    // the entry to be called "/content/index.mdx" so we'll set it to that
-    // because this is the entry for this path
-    files = [{ path: nodePath.join(mdxFileOrDirectory, "index.mdx"), content }]
-  } else if (dirPotential) {
-    entry = dirPotential.path
-    files = await downloadDirectory(owner, repo, branch, mdxFileOrDirectory)
+  if (!absoluteDir.startsWith(contentRootPath)) {
+    // Ensure that any content requested is within the `contentRootPath`.
+    // This prevents a request from "breakling out" of the rootPath by using
+    // relative paths like: "../../../"
+    throw new InvalidPathError(
+      path,
+      `Path was not within source: ${contentRootPath}`
+    )
   }
-  return { entry, files }
+
+  const directoryEntries = await getDirectoryContent(source, absoluteDir)
+
+  const fileMatch = findMarkdownFile(directoryEntries, base || "index")
+
+  if (fileMatch) {
+    return fileMatch
+  }
+
+  if (!base) {
+    // If there was no filename provided then the request was for the root
+    // TODO: finish this comment.
+    throw new NotFoundError(path)
+  }
+
+  // Next we see if there is a directory that matches the name
+  const directoryMatch = findGitHubItem(directoryEntries, "dir", base)
+
+  if (directoryMatch?.type === "dir") {
+    // A directory was found, see if it contains an index file
+    const subDirectoryEntries = await getDirectoryContent(
+      source,
+      directoryMatch.path
+    )
+    return findMarkdownFile(subDirectoryEntries, "index")
+  }
 }
 
 /**
+ * Downloads the markdown content and supporting files from a source at the
+ * the given (relative) path.
  *
- * @param dir the directory to download.
- * This will recursively download all content at the given path.
- * @returns An array of file paths with their content
+ * @see {@link getMarkdownFile} for details on how `path` is interpreted.
  */
-async function downloadDirectory(
-  owner: string,
-  repo: string,
-  branch: string,
-  dir: string
-): Promise<Array<GitHubFile>> {
-  const dirList = await downloadDirList(owner, repo, branch, dir)
-
-  const result = await Promise.all(
-    dirList.map(async ({ path: fileDir, type, sha }) => {
-      switch (type) {
-        case "file": {
-          const content = await downloadFileBySha(owner, repo, sha)
-          return { path: fileDir, content }
-        }
-        case "dir": {
-          return downloadDirectory(owner, repo, branch, fileDir)
-        }
-        default: {
-          throw new Error(`Unexpected repo file type: ${type}`)
-        }
-      }
-    })
+export const downloadMarkdown = async (
+  source: DocCollectionSource,
+  path: string
+) => {
+  console.log(
+    `Downloading ${source.owner}/${source.name}/${source.branch}/${source.rootPath}/${path}`
   )
 
-  return result.flat()
+  const match = await getMarkdownFile(source, path)
+
+  if (!match) {
+    throw new NotFoundError(path)
+  }
+
+  const content = await downloadFileBySha(source, match.sha)
+  const relativePath = posix.relative(
+    posix.resolve("/", source.rootPath),
+    posix.resolve("/", match.path)
+  )
+
+  return {
+    /**
+     * The primary Markdown file to render.
+     */
+    file: {
+      ...match,
+      textContent: content.toString(),
+      relativePath,
+    } as GitHubTextFile,
+
+    // We don't currently download any supporting files, but if we need to
+    // in the futre they should be included here. This would allow using
+    // .mdx files that import related files.
+
+    /**
+     * Any supporting files needed to bundle the `file` (i.e. external files
+     * that may be imported by the main `file`.
+     */
+    files: [] as GitHubTextFile[],
+  }
 }
 
 /**
- *
- * @param sha the hash for the file (retrieved via `downloadDirList`)
- * @returns a promise that resolves to a string of the contents of the file
+ * Downlloads a file from a Github repo by it's SHA hash.
+ * @param repo the repo to download from
+ * @param sha the hash of the file
+ * @returns a promise that resolves to a Buffer containing the contents of the file
  */
-async function downloadFileBySha(owner: string, repo: string, sha: string) {
+async function downloadFileBySha(repo: Repo, sha: string) {
   const { data } = await octokit.request(
     "GET /repos/{owner}/{repo}/git/blobs/{file_sha}",
     {
-      owner,
-      repo,
+      owner: repo.owner,
+      repo: repo.name,
       file_sha: sha,
     }
   )
-  //                                lol
-  const encoding = data.encoding as Parameters<typeof Buffer.from>["1"]
-  return Buffer.from(data.content, encoding).toString()
-}
 
-async function downloadFile(
-  owner: string,
-  repo: string,
-  branch: string,
-  path: string
-) {
-  const { data } = (await octokit.request(
-    "GET /repos/{owner}/{repo}/contents/{path}",
-    {
-      owner,
-      repo,
-      path,
-      headers: { branch },
-    }
-  )) as { data: { content?: string; encoding?: string } }
-
-  if (!data.content || !data.encoding) {
-    throw new Error(
-      `Tried to get ${path} but got back something that was unexpected. It doesn't have a content or encoding property`
-    )
+  if (!Buffer.isEncoding(data.encoding)) {
+    throw new UnknownEncoding(data.url, data.encoding)
   }
 
-  //lol
-  const encoding = data.encoding as Parameters<typeof Buffer.from>["1"]
-  return Buffer.from(data.content, encoding).toString()
+  return Buffer.from(data.content, data.encoding)
 }
 
 /**
- *
- * @param path the full path to list
- * @returns a promise that resolves to a file ListItem of the files/directories in the given directory (not recursive)
+ * Downloads a file from a Github source by a path that is relative to the
+ * `source.rootPath`
  */
-async function downloadDirList(
-  owner: string,
-  repo: string,
-  branch: string,
+export async function downloadFileByPath(
+  source: DocCollectionSource,
   path: string
 ) {
-  const resp = await octokit.repos.getContent({
-    owner,
-    repo,
-    path,
-    headers: { branch },
+  const resolvedPath = posix.join(source.rootPath, path)
+
+  const { data } = await octokit.repos.getContent({
+    owner: source.owner,
+    repo: source.name,
+    headers: { branch: source.branch },
+    path: resolvedPath,
   })
 
-  const data = resp.data
-
-  if (!Array.isArray(data)) {
-    throw new Error(
-      `Tried to download content from ${path}. GitHub did not return an array of files. This should never happen...`
+  if (Array.isArray(data)) {
+    throw new NotFoundError(
+      resolvedPath,
+      `Path was a directory, but expected a file: ${resolvedPath}`
     )
   }
 
-  return data
+  if (!("encoding" in data)) {
+    throw new NotFoundError(
+      resolvedPath,
+      `Content (of type ${data.type}, at URL ${data.url}), does not specify an encoding: ${resolvedPath}`
+    )
+  }
+
+  if (!Buffer.isEncoding(data.encoding)) {
+    throw new UnknownEncoding(data.url, data.encoding)
+  }
+
+  return Buffer.from(data.content, data.encoding)
 }
 
-export { downloadMdxFileOrDirectory, downloadDirList, downloadFile, debugEnv }
-export type { GitHubFile }
+/**
+ * Fetches the content of a directory within a Github repo.
+ */
+const getDirectoryContent = async (repo: Repo, path: string) => {
+  const { data } = await octokit.repos.getContent({
+    owner: repo.owner,
+    repo: repo.name,
+    path,
+    headers: { branch: repo.branch },
+  })
+
+  // If the result wasn't an array, then the path was not a directory.
+  return Array.isArray(data) ? data : []
+}

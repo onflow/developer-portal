@@ -1,4 +1,4 @@
-import { Octokit } from "@octokit/core"
+import { Octokit } from "@octokit/rest"
 import { FlipCellProps } from "~/ui/design-system/src/lib/Components/FlipCell"
 import { FlipsProps } from "~/ui/design-system/src/lib/Components/Flips"
 import { cachified } from "../cache.server"
