@@ -33,7 +33,11 @@ export function Heading({
     type,
     {
       ...props,
-      className: clsx("mt-6 font-semibold", headingClasses[type], className),
+      className: clsx(
+        "mt-6 font-semibold scroll-offset",
+        headingClasses[type],
+        className
+      ),
     },
     <div className="group -ml-11 flex items-center">
       <div className="relative" style={{ top: -NAV_HEIGHT }} id={anchor} />

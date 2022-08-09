@@ -81,7 +81,8 @@ export function InternalPage({
   useEffect(() => {
     if (contentRef.current && !header) {
       // Only scroll on pages without a header.
-      contentRef.current.scrollIntoView()
+      console.log("scrollin'")
+      contentRef.current.scrollIntoView({ block: "start" })
     }
   }, [pathname, header])
 
@@ -145,9 +146,12 @@ export function InternalPage({
           </>
         )}
         <main
-          className={clsx("flex max-w-full shrink-0 grow flex-row-reverse", {
-            "md:max-w-[calc(100%_-_300px)]": sidebarItems,
-          })}
+          className={clsx(
+            "scroll-offset flex max-w-full shrink-0 grow flex-row-reverse",
+            {
+              "md:max-w-[calc(100%_-_300px)]": sidebarItems,
+            }
+          )}
           ref={contentRef}
         >
           {toc && (

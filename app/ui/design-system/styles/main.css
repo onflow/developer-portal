@@ -44,3 +44,7 @@
     @apply hidden;
   }
 }
+
+.scroll-offset {
+  scroll-margin-top: 100px;
+}
