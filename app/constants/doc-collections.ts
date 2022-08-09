@@ -1428,11 +1428,27 @@ export const docCollections: Record<string, DocCollection> = {
       sidebars: {
         "": [
           {
-            title: "Dapp Development Guide",
+            title: "Flow",
             items: [
               {
-                title: "Introduction",
-                href: "",
+                title: "DApp Development",
+                href: "dapp-development",
+              },
+              {
+                title: "Core Contracts",
+                href: "core-contracts",
+              },
+              {
+                title: "Flow Token",
+                href: "flow-token",
+              },
+              {
+                title: "FUSD",
+                href: "fusd",
+              },
+              {
+                title: "NFT Marketplace",
+                href: "nft-marketplace",
               },
             ],
           },
@@ -1440,32 +1456,32 @@ export const docCollections: Record<string, DocCollection> = {
             title: "Building Your Dapp",
             items: [
               {
-                title: "Anatomy of a Flow Dapp",
-                href: "flow-dapp-anatomy",
+                title: "Flow FAQ",
+                href: "faq",
               },
               {
                 title: "User Accounts & Wallets",
-                href: "user-accounts-and-wallets",
+                href: "dapp-development/user-accounts-and-wallets",
               },
               {
                 title: "In-dapp Payments",
-                href: "in-dapp-payments",
+                href: "dapp-development/in-dapp-payments",
               },
               {
                 title: "Smart Contracts",
-                href: "smart-contracts",
+                href: "dapp-development/smart-contracts",
               },
               {
                 title: "Off-chain Infrastructure",
-                href: "dapp-infrastructure",
+                href: "dapp-development/dapp-infrastructure",
               },
               {
                 title: "Dapp Architecture on the Flow Blockchain",
-                href: "DappArchitectures",
+                href: "dapp-development/DappArchitectures",
               },
               {
                 title: "NFT Drop Strategies",
-                href: "NFT-drop-styles",
+                href: "dapp-development/NFT-drop-styles",
               },
             ],
           },
@@ -1474,27 +1490,27 @@ export const docCollections: Record<string, DocCollection> = {
             items: [
               {
                 title: "The Road to Mainnet",
-                href: "deployment",
+                href: "dapp-development/deployment",
               },
               {
                 title: "1. Smart Contract Testing",
-                href: "contract-testing",
+                href: "dapp-development/contract-testing",
               },
               {
                 title: "2. Testnet Deployment",
-                href: "testnet-deployment",
+                href: "dapp-development/testnet-deployment",
               },
               {
                 title: "3. Testnet Testing",
-                href: "testnet-testing",
+                href: "dapp-development/testnet-testing",
               },
               {
                 title: "4. Mainnet Account Setup",
-                href: "mainnet-account-setup",
+                href: "dapp-development/mainnet-account-setup",
               },
               {
                 title: "5. Mainnet Deployment",
-                href: "mainnet-deployment",
+                href: "dapp-development/mainnet-deployment",
               },
             ],
           },
