@@ -21,9 +21,14 @@ import {
   useResizeObserver,
   UseResizeObserverCallback,
 } from "../../utils/useResizeObserver"
-import { useInternalBreadcrumbs } from "./useInternalBreadcrumbs"
+import {
+  useInternalBreadcrumbs,
+  UseInternalBreadcrumbsOptions,
+} from "./useInternalBreadcrumbs"
 
 export type InternalPageProps = React.PropsWithChildren<{
+  additionalBreadrumbs?: UseInternalBreadcrumbsOptions["additionalitems"]
+
   /**
    * THe name to display in the breadcrumbs for the current collection
    */
@@ -50,7 +55,9 @@ export type InternalPageProps = React.PropsWithChildren<{
 
   toc?: InternalTocItem[]
 }>
+
 export function InternalPage({
+  additionalBreadrumbs,
   children,
   collectionDisplayName,
   collectionRootPath,
@@ -64,6 +71,7 @@ export function InternalPage({
   const { previous, active, next } = useActiveSidebarItems(sidebarItems || [])
   const breadcrumbs = useInternalBreadcrumbs({
     activeItem: active,
+    additionalitems: additionalBreadrumbs,
     collectionDisplayName,
     collectionRootPath,
   })

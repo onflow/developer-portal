@@ -95,6 +95,12 @@ export default () => {
   return (
     <InternalUrlContext.Provider value={pageBasePath}>
       <InternalPage
+        additionalBreadrumbs={[
+          { href: "/flow", title: "Flow" },
+          { href: "/learn", title: "Learn" },
+          { href: "/nodes", title: "Nodes" },
+          { href: "/tools", title: "Tools" },
+        ]}
         collectionDisplayName={data.displayName}
         collectionRootPath={data.collectionRootPath}
         header={data.header}
