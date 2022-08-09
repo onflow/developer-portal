@@ -149,7 +149,7 @@ export const docCollections: Record<string, DocCollection> = {
               },
               {
                 title: "Tutorial",
-                href: "tutorial",
+                href: "tutorial/02-hello-world",
               },
             ],
           },
