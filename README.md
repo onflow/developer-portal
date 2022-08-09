@@ -18,7 +18,8 @@ git clone https://github.com/onflow/next-docs-v1.git
 You'll need to acquire the project's `.env` file before continuing.
 
 1. Add the `.env` file to the project root.
-2. `docker compose up`
+2. `yarn build`
+3. `docker compose up`
 
 Main application: http://localhost:3000/
 Storybook: http://localhost:6006/

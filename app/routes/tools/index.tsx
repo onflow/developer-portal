@@ -16,6 +16,7 @@ export default function Page() {
       contentNavigationListItems={data.contentNavigationListItems}
       sdks={data.sdks}
       tools={data.tools}
+      wallets={data.wallets}
     />
   )
 }

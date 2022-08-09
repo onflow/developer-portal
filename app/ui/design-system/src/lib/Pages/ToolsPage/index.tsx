@@ -15,6 +15,7 @@ import { toolsSections } from "~/constants/landingPages/toolsSections"
 export type ToolsPageProps = {
   editPageUrl?: string
   tools: SDKCardProps[]
+  wallets: SDKCardProps[]
   sdks: SDKCardProps[]
   explorers: SDKCardProps[]
   apisAndServices: SDKCardProps[]
@@ -24,6 +25,7 @@ export type ToolsPageProps = {
 const ToolsPage = ({
   editPageUrl,
   tools,
+  wallets,
   sdks,
   explorers,
   apisAndServices,
@@ -50,6 +52,14 @@ const ToolsPage = ({
             headerLink="development-tools"
             cards={tools}
             description="These essential tools will help you build, test, and debug your dapp on Flow."
+          />
+        </PageSection>
+        <PageSection sectionId="wallets">
+          <SDKCards
+            header="Wallets"
+            headerLink="wallets"
+            cards={wallets}
+            description="Integrate with these wallets to help your users onboard to Flow and manage their Flow accounts."
           />
         </PageSection>
         <PageSection sectionId="sdks">
