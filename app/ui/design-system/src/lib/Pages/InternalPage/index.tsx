@@ -81,7 +81,7 @@ export function InternalPage({
   useEffect(() => {
     if (contentRef.current && !header) {
       // Only scroll on pages without a header.
-      contentRef.current.scrollIntoView(true)
+      contentRef.current.scrollIntoView()
     }
   }, [pathname, header])
 
