@@ -8,7 +8,7 @@ import TabMenu from "../TabMenu"
 
 export type UpcomingEventsProps = {
   goToCommunityHref: string
-  events: [EventCardProps, ...EventCardProps[]]
+  events: [EventCardProps, ...EventCardProps[]] | []
   headerLink?: string
 }
 
