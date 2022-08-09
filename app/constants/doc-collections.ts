@@ -141,7 +141,7 @@ export const docCollections: Record<string, DocCollection> = {
             ],
           },
           {
-            title: "Cadeece",
+            title: "Cadence",
             items: [
               {
                 title: "Language Reference",
