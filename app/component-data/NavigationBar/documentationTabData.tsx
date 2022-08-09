@@ -70,6 +70,10 @@ export const toolsSection: Section = {
       href: "https://github.com/onflow/fcl-dev-wallet",
     },
     {
+      title: "Flow Wallets",
+      href: "/flow/flow-token/available-wallets",
+    },
+    {
       title: "Event Indexer",
       href: "https://github.com/rayvin-flow/flow-scanner",
     },

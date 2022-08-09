@@ -34,6 +34,11 @@ import {
   graffleTool,
   commandLineLinter,
   cdcWebpackPlugin,
+  bloctoWallet,
+  dapperWallet,
+  ledgerWallet,
+  lilicoWallet,
+  fionaWallet,
 } from "../../component-data/Tools"
 
 export const data: ToolsPageProps = {
@@ -50,6 +55,13 @@ export const data: ToolsPageProps = {
     commandLineLinter,
     cdcWebpackPlugin,
     graffleTool,
+  ],
+  wallets: [
+    bloctoWallet,
+    dapperWallet,
+    ledgerWallet,
+    lilicoWallet,
+    fionaWallet,
   ],
   sdks: [
     httpSDK,

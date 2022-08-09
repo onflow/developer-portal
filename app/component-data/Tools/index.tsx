@@ -381,6 +381,51 @@ const flowPortTool = {
   description: "Your portal to the decentralized world of Flow.",
 }
 
+const dapperWallet = {
+  title: "Dapper Wallet",
+  tags: ["web", "wallet", "custodial"],
+  link: "https://www.meetdapper.com/",
+  iconSrc:
+    "https://assets.website-files.com/60796227183fcb19c208916e/611ac35ed3af7095b0e0deee_Dapper.png",
+  description:
+    "Easy and securely buy and store digital assets from groundbreaking Flow apps and games",
+}
+
+const bloctoWallet = {
+  title: "Blocto",
+  tags: ["web", "android", "ios", "wallet", "custodial"],
+  link: "https://blocto.portto.io/en/",
+  iconSrc: "https://token.blocto.app/img/logo.png",
+  description:
+    "Manage your crypto, dApps, and NFT all-in-once through Blocto, the cross-chain crypto wallet",
+}
+
+const ledgerWallet = {
+  title: "Ledger",
+  tags: ["hardware", "wallet", "non-custodial"],
+  link: "https://www.ledger.com/",
+  iconSrc:
+    "https://www.ledger.com/wp-content/uploads/2021/11/Ledger_favicon.png",
+  description:
+    "The hardware wallet to secure, buy, exchange, and grow your crypto assets",
+}
+
+const lilicoWallet = {
+  title: "Lilico",
+  tags: ["web", "extension", "wallet", "non-custodial"],
+  link: "https://lilico.app/",
+  iconSrc: "https://lilico.app/logo-cat.svg",
+  description: "The First Extension Wallet on Flow",
+}
+
+const fionaWallet = {
+  title: "Finoa",
+  tags: ["institutional", "wallet", "custodial"],
+  link: "https://www.finoa.io/flow/",
+  iconSrc: "https://www.finoa.io/icons/icon-512x512.png?v=1659609128276",
+  description: "Safely store and stake your Flow tokens with Finoa",
+}
+
 export {
   flowserTool,
   overflowTool,
@@ -416,4 +461,9 @@ export {
   cdcWebpackPlugin,
   graffleTool,
   flowPortTool,
+  bloctoWallet,
+  dapperWallet,
+  ledgerWallet,
+  lilicoWallet,
+  fionaWallet,
 }
