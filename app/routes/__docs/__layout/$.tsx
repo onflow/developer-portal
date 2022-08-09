@@ -161,7 +161,7 @@ export default () => {
 
 export function CatchBoundary() {
   const caught = useCatch()
-  logger.error("CatchBoundary $.tsx", caught)
+  console.error("CatchBoundary $.tsx", caught)
   const location = useLocation()
 
   switch (caught.data.status) {
