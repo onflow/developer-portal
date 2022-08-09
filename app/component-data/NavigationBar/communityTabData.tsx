@@ -3,7 +3,12 @@ import AmbassadorsIcon from "~/ui/design-system/images/nav/ambassadors"
 import SocialsIcon from "~/ui/design-system/images/nav/socials"
 import { Section } from "~/ui/design-system/src/lib/Components/NavigationBar/types"
 import { DISCORD_URL } from "~/constants"
-import { emeraldDaoCard, flowVerseCard, grantsCard } from "./navCardsData"
+import {
+  emeraldDaoCard,
+  flowVerseCard,
+  grantsCard,
+  communityCard,
+} from "./navCardsData"
 // Connect Tab
 export const eventsSection: Section = {
   links: [
@@ -15,7 +20,7 @@ export const eventsSection: Section = {
   title: "Flow Ecosystem",
   subSections: [
     {
-      title: "Flow Dapps",
+      title: "Flow Dapps (Flowverse)",
       href: "https://www.flowverse.co/rankings",
     },
     {
@@ -45,7 +50,7 @@ export const eventsSection: Section = {
 export const socialsSection: Section = {
   links: [
     {
-      title: "Chat with Flow developers now on Discord",
+      title: "Chat on Discord",
       href: DISCORD_URL,
     },
   ],
@@ -133,7 +138,7 @@ export const governanceSection: Section = {
     },
     {
       title: "Variable Transaction Fees",
-      href: "/learn/concepts/variable-transaction-fees",
+      href: "/flow/concepts/variable-transaction-fees",
     },
     {
       title: "Road to Permissionless Deployment",
@@ -146,7 +151,7 @@ export const governanceSection: Section = {
 const ConnectTabData = {
   title: "Connect",
   description: "Discover and join the Flow ecosystem.",
-  cards: [flowVerseCard, emeraldDaoCard],
+  cards: [communityCard, flowVerseCard, emeraldDaoCard],
   sections: [socialsSection, eventsSection],
 }
 
