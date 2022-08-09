@@ -41,6 +41,10 @@ export function UpcomingEvents({
     [events, filteredEvents, selectedEventTitle]
   )
 
+  if (filteredEvents.length === 0) {
+    return <></>
+  }
+
   return (
     <div className="container">
       <HeaderWithLink className="text-h2 mb-2" headerLink={headerLink}>
