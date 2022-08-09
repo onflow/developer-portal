@@ -1,4 +1,5 @@
 import { HeaderWithLink } from "../HeaderWithLink"
+import { ButtonLink } from "../Button"
 import { SDKCard, SDKCardProps } from "../SDKCard"
 
 export type SDKCardsProps = {
@@ -29,15 +30,14 @@ export function SDKCards({
             </p>
           )}
         </div>
-        {/* hidden for now */}
-        {/* <ButtonLink
+        <ButtonLink
           rightIcon="right"
           variant="secondary"
           className="hidden md:inline-flex"
-          href="#"
+          href="/tools#sdks"
         >
           View All SDKs
-        </ButtonLink> */}
+        </ButtonLink>
       </div>
       <div className="mb-4 grid grid-cols-1 gap-4 md:grid-cols-2 md:grid-rows-3 md:gap-8">
         {cards.map((sdkCard, i) => (
