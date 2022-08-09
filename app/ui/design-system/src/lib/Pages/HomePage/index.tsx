@@ -41,7 +41,7 @@ const HomePage = ({
       <LandingHeaderHome
         title="Developer Portal"
         description="Discover the developer ecosystem and master the Flow blockchain"
-        tag="preview"
+        tag="onflow"
         editPageUrl={editPageUrl}
       />
       <LinkCard2Column {...startProjectItems} homePage={true} />
