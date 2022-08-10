@@ -92,7 +92,7 @@ export function GettingStartedPage({
           />
         </PageSection>
         <PageSection sectionId="sdks">
-          <SDKCards cards={sdkCardItems} headerLink="sdks" />
+          <SDKCards cards={sdkCardItems} headerLink="sdks" showViewAll={true} />
         </PageSection>
         <PageSection sectionId="recent-tools-and-articles">
           <div className="container mx-auto grid grid-cols-1 gap-x-8 gap-y-4 align-middle md:grid-cols-2">
