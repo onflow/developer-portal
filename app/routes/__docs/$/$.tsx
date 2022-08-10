@@ -8,9 +8,8 @@ import { findCollection } from "../../../constants/collections.server"
 import { SIDEBAR_DROPDOWN_MENU } from "../../../constants/sidebar-dropdown-menu"
 import AppLink from "../../../ui/design-system/src/lib/Components/AppLink"
 import { ErrorPage } from "../../../ui/design-system/src/lib/Components/ErrorPage"
-import { InternaSidebarDropdownMenuGroup } from "../../../ui/design-system/src/lib/Components/InternalSidebarDropdownMenu"
 import { InternalUrlContext } from "../../../ui/design-system/src/lib/Components/InternalUrlContext"
-import { InternalPage } from "../../../ui/design-system/src/lib/Pages/InternalPage"
+import { InternalPageContent } from "../../../ui/design-system/src/lib/Pages/InternalPage/InternalPageContent"
 import logger from "../../../utils/logging.server"
 import { getSocialMetas } from "../../../utils/seo"
 
@@ -18,7 +17,6 @@ type LoaderData = {
   page: MdxPage
   data: NonNullable<ReturnType<typeof findCollection>>
   pageBasePath: string
-  sidebarDropdownMenu: InternaSidebarDropdownMenuGroup[]
 }
 
 export const loader: LoaderFunction = async ({ params, request }) => {
@@ -85,32 +83,18 @@ export const meta: MetaFunction = ({ data, location }) => {
 }
 
 export default () => {
-  const { data, page, pageBasePath, sidebarDropdownMenu } =
-    useLoaderData<LoaderData>()
+  const { data, page, pageBasePath } = useLoaderData<LoaderData>()
   const MDXContent = useMdxComponent(page)
-
-  // TODO: extract sidebarDropdownMenu and put in "constants" or somehwere
-  // alongside the doc collection definitions?
 
   return (
     <InternalUrlContext.Provider value={pageBasePath}>
-      <InternalPage
-        additionalBreadrumbs={[
-          { href: "/flow", title: "Flow" },
-          { href: "/learn", title: "Learn" },
-          { href: "/nodes", title: "Nodes" },
-          { href: "/tools", title: "Tools" },
-        ]}
-        collectionDisplayName={data.displayName}
-        collectionRootPath={data.collectionRootPath}
-        header={data.header}
+      <InternalPageContent
         sidebarItems={data.sidebar}
-        sidebarDropdownMenu={sidebarDropdownMenu}
         editPageUrl={page.origin.html_url || undefined}
         toc={page.toc}
       >
         <MDXContent />
-      </InternalPage>
+      </InternalPageContent>
     </InternalUrlContext.Provider>
   )
 }
@@ -160,4 +144,20 @@ export function CatchBoundary() {
   }
 
   throw new Error(`Unhandled error: ${caught.status}`)
+}
+
+export function ErrorBoundary({ error }: { error: Error }) {
+  console.error(error)
+  return (
+    <ErrorPage
+      className="p-10"
+      title="🙉 Something went wrong."
+      subtitle="The site is being repaired. Please check back later."
+      actions={
+        <AppLink className="underline" to="/">
+          Go home
+        </AppLink>
+      }
+    />
+  )
 }
