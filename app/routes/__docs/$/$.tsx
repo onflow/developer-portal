@@ -5,8 +5,10 @@ import { MdxPage } from "../../../cms"
 import { NotFoundError } from "../../../cms/errors/not-found-error"
 import { getMdxPage, useMdxComponent } from "../../../cms/utils/mdx"
 import { findCollection } from "../../../constants/collections.server"
+import { SIDEBAR_DROPDOWN_MENU } from "../../../constants/sidebar-dropdown-menu"
 import AppLink from "../../../ui/design-system/src/lib/Components/AppLink"
 import { ErrorPage } from "../../../ui/design-system/src/lib/Components/ErrorPage"
+import { InternaSidebarDropdownMenuGroup } from "../../../ui/design-system/src/lib/Components/InternalSidebarDropdownMenu"
 import { InternalUrlContext } from "../../../ui/design-system/src/lib/Components/InternalUrlContext"
 import { InternalPage } from "../../../ui/design-system/src/lib/Pages/InternalPage"
 import logger from "../../../utils/logging.server"
@@ -16,6 +18,7 @@ type LoaderData = {
   page: MdxPage
   data: NonNullable<ReturnType<typeof findCollection>>
   pageBasePath: string
+  sidebarDropdownMenu: InternaSidebarDropdownMenuGroup[]
 }
 
 export const loader: LoaderFunction = async ({ params, request }) => {
@@ -51,7 +54,12 @@ export const loader: LoaderFunction = async ({ params, request }) => {
     )
     const pageBasePath = nodePath.posix.dirname(path) + "/"
 
-    return json({ data, page, pageBasePath })
+    return json({
+      data,
+      page,
+      pageBasePath,
+      sidebarDropdownMenu: SIDEBAR_DROPDOWN_MENU,
+    })
   } catch (e) {
     if (e instanceof NotFoundError) {
       throw json({ status: "noPage" }, { status: 404 })
@@ -77,7 +85,8 @@ export const meta: MetaFunction = ({ data, location }) => {
 }
 
 export default () => {
-  const { data, page, pageBasePath } = useLoaderData<LoaderData>()
+  const { data, page, pageBasePath, sidebarDropdownMenu } =
+    useLoaderData<LoaderData>()
   const MDXContent = useMdxComponent(page)
 
   // TODO: extract sidebarDropdownMenu and put in "constants" or somehwere
@@ -86,70 +95,17 @@ export default () => {
   return (
     <InternalUrlContext.Provider value={pageBasePath}>
       <InternalPage
+        additionalBreadrumbs={[
+          { href: "/flow", title: "Flow" },
+          { href: "/learn", title: "Learn" },
+          { href: "/nodes", title: "Nodes" },
+          { href: "/tools", title: "Tools" },
+        ]}
         collectionDisplayName={data.displayName}
         collectionRootPath={data.collectionRootPath}
         header={data.header}
         sidebarItems={data.sidebar}
-        sidebarDropdownMenu={[
-          {
-            title: "Tools",
-            items: [
-              { title: "CLI", href: "/tools/flow-cli", icon: "flow-cli" },
-              {
-                title: "Flow Client Library",
-                href: "/tools/fcl-js",
-                icon: "fcl-js",
-              },
-              {
-                title: "Go SDK",
-                href: "/tools/flow-go-sdk",
-                icon: "default",
-              },
-              { title: "HTTP API", href: "/http-api", icon: "default" },
-              { title: "Emulator", href: "/tools/emulator", icon: "emulator" },
-              {
-                title: "VS Code Extension",
-                href: "/tools/vscode-extension",
-                icon: "vscode-extension",
-              },
-              { title: "All tools", href: "/tools", icon: "default" },
-            ],
-          },
-          {
-            title: "Learn",
-            items: [
-              { title: "Cadence", href: "/cadence", icon: "cadence" },
-              {
-                title: "Kitty Items",
-                href: "/learn/kitty-items",
-                icon: "default",
-              },
-              {
-                title: "Concepts & Guides",
-                href: "/learn/concepts",
-                icon: "default",
-              },
-              { title: "All content", href: "/learn", icon: "default" },
-            ],
-          },
-          {
-            title: "Nodes",
-            items: [
-              {
-                title: "Operation",
-                href: "/nodes/node-operation",
-                icon: "default",
-              },
-              { title: "Staking", href: "/nodes/staking", icon: "default" },
-              {
-                title: "Flow Port",
-                href: "/nodes/flow-port",
-                icon: "flow-port",
-              },
-              { title: "Flow Nodes", href: "/nodes", icon: "default" },
-            ],
-          },
-        ]}
+        sidebarDropdownMenu={sidebarDropdownMenu}
         editPageUrl={page.origin.html_url || undefined}
         toc={page.toc}
       >

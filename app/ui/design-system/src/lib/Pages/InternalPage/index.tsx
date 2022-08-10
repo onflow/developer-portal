@@ -21,9 +21,14 @@ import {
   useResizeObserver,
   UseResizeObserverCallback,
 } from "../../utils/useResizeObserver"
-import { useInternalBreadcrumbs } from "./useInternalBreadcrumbs"
+import {
+  useInternalBreadcrumbs,
+  UseInternalBreadcrumbsOptions,
+} from "./useInternalBreadcrumbs"
 
 export type InternalPageProps = React.PropsWithChildren<{
+  additionalBreadrumbs?: UseInternalBreadcrumbsOptions["additionalitems"]
+
   /**
    * THe name to display in the breadcrumbs for the current collection
    */
@@ -50,7 +55,9 @@ export type InternalPageProps = React.PropsWithChildren<{
 
   toc?: InternalTocItem[]
 }>
+
 export function InternalPage({
+  additionalBreadrumbs,
   children,
   collectionDisplayName,
   collectionRootPath,
@@ -64,6 +71,7 @@ export function InternalPage({
   const { previous, active, next } = useActiveSidebarItems(sidebarItems || [])
   const breadcrumbs = useInternalBreadcrumbs({
     activeItem: active,
+    additionalitems: additionalBreadrumbs,
     collectionDisplayName,
     collectionRootPath,
   })
@@ -81,13 +89,12 @@ export function InternalPage({
   useEffect(() => {
     if (contentRef.current && !header) {
       // Only scroll on pages without a header.
-      console.log("scrollin'")
-      contentRef.current.scrollIntoView({ block: "start" })
+      contentRef.current.scrollIntoView(true)
     }
   }, [pathname, header])
 
   return (
-    <div className="flex flex-col pb-16">
+    <div className="flex flex-col pb-16" ref={contentRef}>
       <div className="sticky top-0 z-20 bg-white dark:bg-black" ref={subnavRef}>
         <InternalSubnav
           isSidebarOpen={isMobileSidebarOpen}
@@ -146,13 +153,9 @@ export function InternalPage({
           </>
         )}
         <main
-          className={clsx(
-            "scroll-offset flex max-w-full shrink-0 grow flex-row-reverse",
-            {
-              "md:max-w-[calc(100%_-_300px)]": sidebarItems,
-            }
-          )}
-          ref={contentRef}
+          className={clsx("flex max-w-full shrink-0 grow flex-row-reverse", {
+            "md:max-w-[calc(100%_-_300px)]": sidebarItems,
+          })}
         >
           {toc && (
             <div className="hidden flex-none md:flex md:w-1/4">
