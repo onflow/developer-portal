@@ -1,10 +1,15 @@
 import { json, LoaderFunction, MetaFunction } from "@remix-run/node"
 import { useCatch, useLoaderData, useLocation } from "@remix-run/react"
 import nodePath from "path"
+import { SidebarItemList } from "~/ui/design-system/src/lib/Components/InternalSidebar"
 import { MdxPage } from "../../../cms"
 import { NotFoundError } from "../../../cms/errors/not-found-error"
 import { getMdxPage, useMdxComponent } from "../../../cms/utils/mdx"
-import { findCollection } from "../../../constants/collections.server"
+import {
+  DocCollectionInfo,
+  findDocCollection,
+  findDocCollectionManifest,
+} from "../../../constants/collections.server"
 import { SIDEBAR_DROPDOWN_MENU } from "../../../constants/sidebar-dropdown-menu"
 import AppLink from "../../../ui/design-system/src/lib/Components/AppLink"
 import { ErrorPage } from "../../../ui/design-system/src/lib/Components/ErrorPage"
@@ -15,7 +20,7 @@ import { getSocialMetas } from "../../../utils/seo"
 
 type LoaderData = {
   page: MdxPage
-  data: NonNullable<ReturnType<typeof findCollection>>
+  sidebar: SidebarItemList | undefined
   pageBasePath: string
 }
 
@@ -26,9 +31,10 @@ export const loader: LoaderFunction = async ({ params, request }) => {
     throw json({ status: "noRepo" }, { status: 404 })
   }
 
-  const data = findCollection(path)
+  const data = findDocCollection(path)
+  const manifest = await findDocCollectionManifest(path)
 
-  if (!data) {
+  if (!data || !manifest) {
     throw json({ status: "noRepo" }, { status: 404 })
   }
 
@@ -52,12 +58,12 @@ export const loader: LoaderFunction = async ({ params, request }) => {
     )
     const pageBasePath = nodePath.posix.dirname(path) + "/"
 
-    return json({
-      data,
+    let payload: LoaderData = {
+      sidebar: manifest.sidebar,
       page,
       pageBasePath,
-      sidebarDropdownMenu: SIDEBAR_DROPDOWN_MENU,
-    })
+    }
+    return json(payload)
   } catch (e) {
     if (e instanceof NotFoundError) {
       throw json({ status: "noPage" }, { status: 404 })
@@ -83,13 +89,13 @@ export const meta: MetaFunction = ({ data, location }) => {
 }
 
 export default () => {
-  const { data, page, pageBasePath } = useLoaderData<LoaderData>()
+  const { sidebar, page, pageBasePath } = useLoaderData<LoaderData>()
   const MDXContent = useMdxComponent(page)
 
   return (
     <InternalUrlContext.Provider value={pageBasePath}>
       <InternalPageContent
-        sidebarItems={data.sidebar}
+        sidebarItems={sidebar}
         editPageUrl={page.origin.html_url || undefined}
         toc={page.toc}
         readTime={page.readTime}

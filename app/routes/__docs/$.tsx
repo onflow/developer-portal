@@ -2,7 +2,12 @@ import { json, LoaderFunction, redirect } from "@remix-run/node"
 import { Outlet, useLoaderData } from "@remix-run/react"
 import { join } from "path"
 import { stripTrailingSlahes } from "../../cms/utils/strip-slashes"
-import { findCollection } from "../../constants/collections.server"
+import {
+  DocCollectionInfo,
+  DocCollectionManifest,
+  findDocCollection,
+  findDocCollectionManifest,
+} from "../../constants/collections.server"
 import { SIDEBAR_DROPDOWN_MENU } from "../../constants/sidebar-dropdown-menu"
 import AppLink from "../../ui/design-system/src/lib/Components/AppLink"
 import { ErrorPage } from "../../ui/design-system/src/lib/Components/ErrorPage"
@@ -10,7 +15,7 @@ import { InternalSidebarUrlContext } from "../../ui/design-system/src/lib/Compon
 import { InternalPageContainer } from "../../ui/design-system/src/lib/Pages/InternalPage/InternalPageContainer"
 
 type LoaderData = Pick<
-  NonNullable<ReturnType<typeof findCollection>>,
+  NonNullable<DocCollectionManifest & DocCollectionInfo>,
   | "sidebar"
   | "sidebarRootPath"
   | "displayName"
@@ -32,22 +37,23 @@ export const loader: LoaderFunction = async ({ params, request }) => {
     throw json({ status: "noPage" }, { status: 404 })
   }
 
-  const data = findCollection(path)
+  const collection = findDocCollection(path)
+  const manifest = await findDocCollectionManifest(path)
 
-  if (!data) {
+  if (!manifest || !collection) {
     throw json({ status: "noPage" }, { status: 404 })
   }
 
-  if (data.redirect) {
-    return redirect(data.redirect)
+  if (manifest.redirect) {
+    return redirect(manifest.redirect)
   }
 
   return json({
-    sidebar: data.sidebar,
-    sidebarRootPath: data.sidebarRootPath,
-    displayName: data.displayName,
-    collectionRootPath: data.collectionRootPath,
-    header: data.header,
+    sidebar: manifest.sidebar,
+    sidebarRootPath: manifest.sidebarRootPath,
+    displayName: manifest.displayName,
+    collectionRootPath: collection.collectionRootPath,
+    header: manifest.header,
     sidebarDropdownMenu: SIDEBAR_DROPDOWN_MENU,
   })
 }

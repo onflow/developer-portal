@@ -1,6 +1,6 @@
 import { Repo } from "../cms/types"
 import { InternalLandingHeaderProps } from "../ui/design-system/src/lib/Components/InternalLandingHeader"
-import { SidebarItem } from "../ui/design-system/src/lib/Components/InternalSidebar"
+import { SidebarItemList } from "../ui/design-system/src/lib/Components/InternalSidebar"
 
 /**
  * Represents the source location for a collection of documents.
@@ -15,9 +15,9 @@ export interface DocCollectionSource extends Repo {
 // intentionally avoiding ts Record type here, because the ts to json-schema
 // generator doesn't work well with Record<string, ...> types
 // https://github.com/YousefED/typescript-json-schema/issues/337
-type Headers = { [key: string]: InternalLandingHeaderProps }
-type Redirects = { [key: string]: string }
-type Sidebars = { [key: string]: SidebarItem[] }
+export type Headers = { [key: string]: InternalLandingHeaderProps }
+export type Redirects = { [key: string]: string }
+export type Sidebars = { [key: string]: SidebarItemList }
 
 /**
  * A manifest descripting the doc collection and it's properties.
