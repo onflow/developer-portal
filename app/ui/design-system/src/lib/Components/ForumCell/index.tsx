@@ -1,8 +1,5 @@
 import { ReactComponent as CommentIcon } from "../../../../images/arrows/message-circle"
-import { dateYYMMDD } from "../../utils/dates"
 import AppLink from "../AppLink"
-import CalendarIcon from "../Attribution/CalendarIcon"
-import RoundImage from "../RoundImage"
 
 export type User = {
   profileImage: string
@@ -36,7 +33,8 @@ const ForumCell = ({
         <span className="text-primary-gray-300">{subheading}</span>
       </div>
       <div className="mt-8 flex justify-between md:mt-0 md:items-center">
-        <div className="relative left-0 h-12 w-[9rem]">
+        {/* TODO: API is returning incorrect images, hiding for now */}
+        {/* <div className="relative left-0 h-12 w-[9rem]">
           {participants.map((participant, index) => (
             <div
               className="absolute inset-y-0"
@@ -49,11 +47,7 @@ const ForumCell = ({
               />
             </div>
           ))}
-        </div>
-        <div className="flex items-center justify-center">
-          <CalendarIcon />{" "}
-          <span className="ml-1 sm:ml-2">{dateYYMMDD(lastUpdatedDate)}</span>
-        </div>
+        </div> */}
         <div className="mt-2 ml-9 flex items-center text-primary-gray-300 dark:text-primary-gray-100 md:mt-0">
           <CommentIcon />
           <span className="ml-3">{numComments}</span>
