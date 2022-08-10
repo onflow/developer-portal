@@ -179,6 +179,13 @@ export type MdxFrontmatter = {
   // }>;
 }
 
+export type ReadTime = {
+  text: string
+  minutes: number
+  time: number
+  words: number
+}
+
 type MdxPage = {
   code: string
 

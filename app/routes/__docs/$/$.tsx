@@ -92,6 +92,8 @@ export default () => {
         sidebarItems={data.sidebar}
         editPageUrl={page.origin.html_url || undefined}
         toc={page.toc}
+        readTime={page.readTime}
+        attributionData={page.origin.attributionData}
       >
         <MDXContent />
       </InternalPageContent>
