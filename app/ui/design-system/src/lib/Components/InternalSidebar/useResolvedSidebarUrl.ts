@@ -4,5 +4,5 @@ import { InternalSidebarUrlContext } from "./InternalSidebarUrlContext"
 
 export const useResolvedSidebarUrl = (href: string) => {
   const basePath = useContext(InternalSidebarUrlContext)
-  return useResolvedUrl(href, basePath)
+  return useResolvedUrl(href, basePath, { stripTrailingSlash: true })
 }

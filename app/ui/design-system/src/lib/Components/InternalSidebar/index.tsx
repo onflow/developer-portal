@@ -21,6 +21,10 @@ export interface SidebarLinkItem extends SidebarItemBase {
 
 export type SidebarItem = SidebarHeadingItem | SidebarLinkItem
 
+export function isSidebarLinkItem(item: SidebarItem): item is SidebarLinkItem {
+  return "href" in item
+}
+
 export type InternalSidebarProps = {
   items: SidebarItem[]
   menu?: InternaSidebarDropdownMenuGroup[]
@@ -51,7 +55,7 @@ const InternalSidebarLinkItem = ({ item }: { item: SidebarLinkItem }) => {
 
 const InternalSidebarItem = ({ item }: { item: SidebarItem }) => (
   <>
-    {"href" in item ? (
+    {isSidebarLinkItem(item) ? (
       <InternalSidebarLinkItem item={item} />
     ) : (
       <div className="mb-4 text-xs uppercase text-gray-500 dark:text-gray-200">
