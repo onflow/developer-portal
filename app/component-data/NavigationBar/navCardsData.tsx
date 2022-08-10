@@ -23,7 +23,7 @@ const communityCard: IntroCardProps = {
 
 const flowConceptsCard: IntroCardProps = {
   href: "/flow", // Replace with /learn
-  ctaText: "Go to Flow Concepts",
+  ctaText: "View key concepts",
   description:
     "Learn about Flow concepts and how they work together to build dapps.",
   imageHref: AbstractImage6,

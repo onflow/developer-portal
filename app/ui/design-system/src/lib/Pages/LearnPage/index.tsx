@@ -21,6 +21,10 @@ import PageSection from "../shared/PageSection"
 import PageSections from "../shared/PageSections"
 import LearnImage from "../../../../images/page/learn.png"
 import { learnSections } from "~/constants/landingPages/learnSections"
+import {
+  ContentNavigationList,
+  ContentNavigationListProps,
+} from "../../Components/ContentNavigationList"
 
 export type LearnPageProps = {
   editPageUrl?: string
@@ -34,6 +38,7 @@ export type LearnPageProps = {
   }
   youtubeHref: string
   architectureTutorials: TutorialCardProps[]
+  contentNavigationListItems: ContentNavigationListProps
 }
 
 export function LearnPage({
@@ -45,6 +50,7 @@ export function LearnPage({
   videos,
   youtubeHref,
   architectureTutorials,
+  contentNavigationListItems,
 }: LearnPageProps) {
   const [filters, setFilters] = useState<string[]>([])
 
@@ -205,6 +211,15 @@ export function LearnPage({
               scrollOnPaginate={false}
             />
           </div>
+        </PageSection>
+        <PageSection sectionId="explore-more-content">
+          <ContentNavigationList
+            header={contentNavigationListItems.header}
+            contentNavigationItems={
+              contentNavigationListItems.contentNavigationItems
+            }
+            headerLink="explore-more-content"
+          />
         </PageSection>
       </PageSections>
       <SocialLinksSignup />

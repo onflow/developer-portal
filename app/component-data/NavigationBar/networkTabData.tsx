@@ -9,7 +9,7 @@ import NetworkStatus from "../../routes/poll-network"
 export const networkStatus: Section = {
   links: [
     {
-      title: "View full status",
+      title: "View all status information",
       href: "https://status.onflow.org/",
     },
   ],
@@ -102,7 +102,7 @@ export const governanceSection: Section = {
       href: "https://flowscan.org/",
     },
     {
-      title: "View our sustainability report",
+      title: "Flow Sustainability Report",
       href: "https://flow.com/sustainability",
     },
   ],

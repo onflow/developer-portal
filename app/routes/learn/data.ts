@@ -1,3 +1,4 @@
+import { ContentNavigationListProps } from "~/ui/design-system/src/lib/Components/ContentNavigationList"
 import { TutorialCardProps } from "~/ui/design-system/src/lib/Components/TutorialCard"
 import { LargeVideoCardProps } from "~/ui/design-system/src/lib/Components/VideoCard/LargeVideoCard"
 import { SmallVideoCardProps } from "~/ui/design-system/src/lib/Components/VideoCard/SmallVideoCard"
@@ -82,6 +83,24 @@ const allTutorials: TutorialCardProps[] = [
   ...architectureTutorials,
 ]
 
+const contentNavigationListItems: ContentNavigationListProps = {
+  header: "Explore More Content",
+  contentNavigationItems: [
+    {
+      title: "Tools",
+      text: "Curated list of developer tools, services, SDKs.",
+      link: "/tools",
+      icon: "tools",
+    },
+    {
+      title: "Community",
+      text: "Learn more about Flow's ecosystem and get involved.",
+      link: "/community",
+      icon: "community",
+    },
+  ],
+}
+
 export const data = {
   videos,
   nftTutorials,
@@ -90,4 +109,5 @@ export const data = {
   youtubeHref: "https://www.youtube.com/c/FlowBlockchain",
   cadenceHref: "/cadence/",
   architectureTutorials,
+  contentNavigationListItems,
 }

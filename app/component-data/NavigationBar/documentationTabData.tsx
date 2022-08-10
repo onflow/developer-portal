@@ -97,19 +97,19 @@ export const toolsSection: Section = {
 export const localSection: Section = {
   links: [
     {
-      title: "Local development quickstart",
-      href: "https://github.com/emerald-dao/0-hello-world",
+      title: "Install the Flow CLI",
+      href: "/tools/flow-cli/installation",
     },
   ],
   title: "Local Development",
   subSections: [
     {
-      title: "Use the Flow Emulator",
-      href: "/tools/flow-cli/start-emulator/",
+      title: "Local Development Quickstart",
+      href: "https://github.com/emerald-dao/0-hello-world",
     },
     {
-      title: "Configuring your local network",
-      href: "/tools/flow-cli/configuration/",
+      title: "Running Flow on a Local Network",
+      href: "/tools/flow-cli/start-emulator/",
     },
     {
       title: "Cadence VS Code Extension",
@@ -149,7 +149,7 @@ const liveNetworksSection: Section = {
       href: "https://flowscan.org/",
     },
     {
-      title: "Wallets on Flow",
+      title: "Wallets On Flow",
       href: "/flow/flow-token/available-wallets/",
     },
   ],
@@ -160,14 +160,14 @@ const liveNetworksSection: Section = {
 const dappDevelomentSection: Section = {
   links: [
     {
-      title: "View our dapp development guide",
-      href: "/flow/dapp-development/",
+      title: "Learn more about Flow",
+      href: "/flow",
     },
   ],
   title: "Developing Dapps",
   subSections: [
     {
-      title: "Testnet quickstart",
+      title: "Testnet Quickstart",
       href: "/tools/fcl-js/tutorials/flow-app-quickstart",
     },
     {
@@ -175,19 +175,19 @@ const dappDevelomentSection: Section = {
       href: "/learn/kitty-items",
     },
     {
-      title: "Cadence Playground Tutorials",
-      href: "/cadence/tutorial/02-hello-world",
+      title: "Dapp Development Guide",
+      href: "/flow/dapp-development",
     },
     {
       title: "Web3 Learning Roadmap",
       href: "https://web3-learning-roadmap.vercel.app",
     },
     {
-      title: "Community resource list",
+      title: "Community Resource List",
       href: "https://github.com/ph0ph0/Get-The-Flow-Down",
     },
     {
-      title: "Developer quickstart",
+      title: "Developer Onboarding Guide",
       href: "https://flow-partner-dev-hub.vercel.app",
     },
   ],
@@ -259,7 +259,7 @@ const cadenceConceptsSection: Section = {
       href: "/cadence/msg-sender",
     },
     {
-      title: "Core contracts",
+      title: "Core Contracts",
       href: "/flow/core-contracts/",
     },
   ],
@@ -276,7 +276,7 @@ const cadenceResourceSection: Section = {
   title: "Cadence Resources",
   subSections: [
     {
-      title: "Cadence cookbook",
+      title: "Cadence Cookbook",
       href: "https://open-cadence.onflow.org/",
     },
     {
@@ -284,11 +284,11 @@ const cadenceResourceSection: Section = {
       href: "https://buildspace.so/p/nfts-on-flow",
     },
     {
-      title: "Zero to hero Cadence course",
+      title: "Zero To Hero Cadence Course",
       href: "https://github.com/emerald-dao/beginner-cadence-course",
     },
     {
-      title: "Contract Browser",
+      title: "MainnetContract Browser",
       href: "https://flow-contract-browser.vercel.app/",
     },
   ],
@@ -312,7 +312,7 @@ const setupTabData = {
 const learnTabData = {
   title: "Learn",
   description: "Understand how Flow works.",
-  cards: [flowConceptsCard, emeraldDaoCard, learnCard],
+  cards: [learnCard, flowConceptsCard, emeraldDaoCard],
   sections: [dappDevelomentSection, flowConceptsSection],
 }
 

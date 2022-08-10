@@ -22,6 +22,7 @@ export default function Page() {
       cadenceTutorials={data.cadenceTutorials}
       youtubeHref={data.youtubeHref}
       architectureTutorials={data.architectureTutorials}
+      contentNavigationListItems={data.contentNavigationListItems}
     />
   )
 }

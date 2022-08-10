@@ -6,9 +6,9 @@ export const communitySections = [
     title: "Tools",
     elementId: "tools",
   },
+  { title: "From the Forum", elementId: "from-the-forum" },
   {
     title: "Explore More Content",
     elementId: "explore-more-content",
   },
-  { title: "From the Forum", elementId: "from-the-forum" },
 ]

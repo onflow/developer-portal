@@ -1,3 +1,4 @@
+import { contentNavigationListItems } from "~/routes/community/data"
 import { LearnPageProps } from "."
 import { TutorialCardProps } from "../../Components/TutorialCard"
 
@@ -48,4 +49,5 @@ export const data: LearnPageProps = {
   },
   youtubeHref: "https://www.youtube.com/c/FlowBlockchain",
   architectureTutorials: Array(5).fill(TUTORIAL_TEMPLATE),
+  contentNavigationListItems: contentNavigationListItems,
 }

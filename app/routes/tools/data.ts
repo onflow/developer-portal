@@ -96,12 +96,6 @@ export const data: ToolsPageProps = {
         icon: "learn",
       },
       {
-        title: "Tools",
-        text: "Curated list of developer tools, services, SDKs.",
-        link: "/tools",
-        icon: "tools",
-      },
-      {
         title: "Community",
         text: "Learn more about Flow's ecosystem and get involved.",
         link: "/community",
