@@ -18,7 +18,10 @@ export function MobileMenu({ menuItems }: MobileMenuProps) {
     return (
       <ul className="w-full divide-y divide-primary-gray-100 dark:divide-primary-gray-400">
         <li>
-          <MobileMenuBackButton onClick={() => setSelectedIndex([-1, -1])}>
+          <MobileMenuBackButton
+            onClick={() => setSelectedIndex([-1, -1])}
+            className="text-lg text-gray-400 dark:text-gray-100"
+          >
             {selectedMenuItem.tabs[selectedIndex[1]]?.title}
           </MobileMenuBackButton>
         </li>
