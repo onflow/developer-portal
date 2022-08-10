@@ -238,10 +238,14 @@ function getMdxComponent(page: MdxPage, theme: Theme | null) {
   }: Parameters<typeof Component>["0"]) {
     return (
       <div className="mdx-content prose dark:prose-invert">
-        <header>
-          <Heading type="h1" children={frontmatter.title} />
-          <p>{frontmatter.description}</p>
-        </header>
+        {frontmatter.title && !!frontmatter.description && (
+          <header>
+            {!!frontmatter.title && (
+              <Heading type="h1" children={frontmatter.title} />
+            )}
+            {!!frontmatter.description && <p>{frontmatter.description}</p>}
+          </header>
+        )}
         <Component
           /* @ts-expect-error: Does not like the link tage type definition above */
           components={GetMdxComponents(theme)}

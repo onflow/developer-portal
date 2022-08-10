@@ -1,5 +1,8 @@
 import clsx from "clsx"
 import { useCallback, useRef, useState } from "react"
+import calculateReadingTime from "reading-time"
+import { AttributionData } from "~/cms"
+import { Attribution } from "../../Components/Attribution/Attribution"
 import { SidebarItem } from "../../Components/InternalSidebar"
 import { useActiveSidebarItems } from "../../Components/InternalSidebar/useActiveSidebarItems"
 import {
@@ -23,13 +26,49 @@ export type InternalPageContentProps = React.PropsWithChildren<{
   sidebarItems?: SidebarItem[]
 
   toc?: InternalTocItem[]
+
+  readTime?: ReturnType<typeof calculateReadingTime>
+
+  attributionData?: AttributionData
 }>
+
+function InternalAttribution({
+  attributionData,
+  readTime,
+}: {
+  attributionData: AttributionData
+  readTime?: ReturnType<typeof calculateReadingTime>
+}) {
+  const updatedDate = attributionData?.lastCommit.committerDate
+  const lastUpdatedAuthorName = attributionData?.lastCommit.author.login
+  const lastCommitUrl = attributionData?.lastCommit.htmlUrl
+  if (
+    !attributionData ||
+    !updatedDate ||
+    !lastUpdatedAuthorName ||
+    !lastCommitUrl
+  )
+    return null
+
+  return (
+    <Attribution
+      updatedDate={updatedDate}
+      authorName={lastUpdatedAuthorName}
+      authorIcon={attributionData.lastCommit.author.gravatar_url}
+      otherAuthorsCount={attributionData.otherContributorsCount}
+      commitUrl={lastCommitUrl}
+      readMinutes={readTime?.minutes}
+    />
+  )
+}
 
 export function InternalPageContent({
   children,
   editPageUrl,
   sidebarItems,
   toc,
+  attributionData,
+  readTime,
 }: InternalPageContentProps) {
   useProvideInternalPageEditUrl(editPageUrl)
   const { previous, next } = useActiveSidebarItems(sidebarItems || [])
@@ -65,9 +104,15 @@ export function InternalPageContent({
         })}
       >
         {toc && (
-          <div className="md:hidden">
+          <div className="mb-8 md:mb-0 md:hidden">
             <InternalTocDisclosure headings={toc} />
           </div>
+        )}
+        {!!attributionData && (
+          <InternalAttribution
+            attributionData={attributionData}
+            readTime={readTime}
+          />
         )}
         <div>{children}</div>
         <LowerPageNav prev={previous} next={next} />

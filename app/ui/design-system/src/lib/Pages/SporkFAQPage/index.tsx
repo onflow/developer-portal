@@ -46,8 +46,9 @@ export function SporkFAQPage() {
             <span className="block md:hidden">FAQ</span>
           </h1>
           <Attribution
-            updatedDate="23/3/2022"
+            updatedDate="2022-07-06T17:21:44Z"
             authorIcon="https://avatars.githubusercontent.com/u/62387156?s=64&v=4"
+            commitUrl="https://github.com/onflow/fcl-js/commit/7dce2943268f9671c72e012631198792e395601b"
             authorName="@maxxP"
             otherAuthorsCount={12}
             readMinutes={4}
