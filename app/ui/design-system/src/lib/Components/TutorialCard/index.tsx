@@ -52,7 +52,7 @@ const TutorialCard = forwardRef<HTMLAnchorElement, TutorialCardProps>(
           />
         )}
         <div className="flex h-full flex-col justify-between px-4 pt-8 pb-4">
-          <div>
+          <div className="mb-6">
             <div className="text-lg font-bold md:text-xl">{heading}</div>
             <div className="my-1 inline-flex flex-wrap">
               {tags.map((tag) => (
@@ -65,29 +65,31 @@ const TutorialCard = forwardRef<HTMLAnchorElement, TutorialCardProps>(
               {description}
             </div>
           </div>
-          <div className="mt-6 flex justify-between text-xs text-primary-gray-300 dark:text-primary-gray-200">
-            {lastUpdated && (
-              <div className="flex items-center">
-                <CalendarIcon
-                  className="mr-1 scale-75"
-                  width="36"
-                  height="36"
-                />
-                {lastUpdated}
-              </div>
-            )}
-            {level && (
-              <div className="flex items-center">
-                <TutorialIcon className="mr-1" />
-                {level}
-              </div>
-            )}
-          </div>
-          <div className="text-xs text-primary-gray-300 dark:text-primary-gray-200">
+          <div>
+            <div className="flex justify-between text-xs text-primary-gray-300 dark:text-primary-gray-200">
+              {lastUpdated && (
+                <div className="-ml-1.5 flex items-center">
+                  <CalendarIcon
+                    className="mr-1 scale-75"
+                    width="36"
+                    height="36"
+                  />
+                  {lastUpdated}
+                </div>
+              )}
+              {level && (
+                <div className="flex items-center">
+                  <TutorialIcon className="mr-1" />
+                  {level}
+                </div>
+              )}
+            </div>
             {author && (
-              <div className="flex items-center">
-                <UserIcon className="mr-1 scale-75" />
-                {author.name}
+              <div className="text-xs text-primary-gray-300 dark:text-primary-gray-200">
+                <div className="flex items-center">
+                  <UserIcon className="mr-1 scale-75" />
+                  {author.name}
+                </div>
               </div>
             )}
           </div>
