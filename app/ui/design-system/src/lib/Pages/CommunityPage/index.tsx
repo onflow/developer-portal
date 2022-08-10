@@ -105,15 +105,6 @@ export default function CommunityPage({
         <PageSection sectionId="tools">
           <ToolsAndConcepts tools={tools} headerLink="tools" />
         </PageSection>
-        <PageSection sectionId="explore-more-content">
-          <ContentNavigationList
-            header={contentNavigationListItems.header}
-            contentNavigationItems={
-              contentNavigationListItems.contentNavigationItems
-            }
-            headerLink="explore-more-content"
-          />
-        </PageSection>
         {/* <PageSection sectionId="featured-articles">
           <FeaturedArticleSlider
             articles={articles}
@@ -141,6 +132,15 @@ export default function CommunityPage({
               ))}
             </div>
           </div>
+        </PageSection>
+        <PageSection sectionId="explore-more-content">
+          <ContentNavigationList
+            header={contentNavigationListItems.header}
+            contentNavigationItems={
+              contentNavigationListItems.contentNavigationItems
+            }
+            headerLink="explore-more-content"
+          />
         </PageSection>
       </PageSections>
     </PageBackground>
