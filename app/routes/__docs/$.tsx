@@ -1,14 +1,23 @@
-import { join } from "path"
 import { json, LoaderFunction, redirect } from "@remix-run/node"
 import { Outlet, useLoaderData } from "@remix-run/react"
+import { join } from "path"
 import { stripTrailingSlahes } from "../../cms/utils/strip-slashes"
 import { findCollection } from "../../constants/collections.server"
-import { SidebarItem } from "../../ui/design-system/src/lib/Components/InternalSidebar"
+import { SIDEBAR_DROPDOWN_MENU } from "../../constants/sidebar-dropdown-menu"
+import AppLink from "../../ui/design-system/src/lib/Components/AppLink"
+import { ErrorPage } from "../../ui/design-system/src/lib/Components/ErrorPage"
 import { InternalSidebarUrlContext } from "../../ui/design-system/src/lib/Components/InternalSidebar/InternalSidebarUrlContext"
+import { InternalPageContainer } from "../../ui/design-system/src/lib/Pages/InternalPage/InternalPageContainer"
 
-type LoaderData = {
-  sidebar: SidebarItem[]
-  sidebarRootPath: string
+type LoaderData = Pick<
+  NonNullable<ReturnType<typeof findCollection>>,
+  | "sidebar"
+  | "sidebarRootPath"
+  | "displayName"
+  | "collectionRootPath"
+  | "header"
+> & {
+  sidebarDropdownMenu: typeof SIDEBAR_DROPDOWN_MENU
 }
 
 export const loader: LoaderFunction = async ({ params, request }) => {
@@ -35,18 +44,51 @@ export const loader: LoaderFunction = async ({ params, request }) => {
 
   return json({
     sidebar: data.sidebar,
-    sidebarRootPath: data.sidebarRootPath ?? data.collectionRootPath,
+    sidebarRootPath: data.sidebarRootPath,
+    displayName: data.displayName,
+    collectionRootPath: data.collectionRootPath,
+    header: data.header,
+    sidebarDropdownMenu: SIDEBAR_DROPDOWN_MENU,
   })
 }
 
 export default () => {
-  const { sidebarRootPath } = useLoaderData<LoaderData>()
+  const data = useLoaderData<LoaderData>()
 
-  // TODO: Render the outer page layout and sidebar here. This way we can
-  // still render a shell and sidebar even if we fail to fetch the page content.
   return (
-    <InternalSidebarUrlContext.Provider value={sidebarRootPath}>
-      <Outlet />
+    <InternalSidebarUrlContext.Provider
+      value={data.sidebarRootPath || data.collectionRootPath}
+    >
+      <InternalPageContainer
+        additionalBreadrumbs={[
+          { href: "/flow", title: "Flow" },
+          { href: "/learn", title: "Learn" },
+          { href: "/nodes", title: "Nodes" },
+          { href: "/tools", title: "Tools" },
+        ]}
+        collectionDisplayName={data.displayName}
+        collectionRootPath={data.collectionRootPath}
+        header={data.header}
+        sidebarItems={data.sidebar}
+        sidebarDropdownMenu={data.sidebarDropdownMenu}
+      >
+        <Outlet />
+      </InternalPageContainer>
     </InternalSidebarUrlContext.Provider>
+  )
+}
+
+export function ErrorBoundary({ error }: { error: Error }) {
+  console.error(error)
+  return (
+    <ErrorPage
+      title={"🙉 Something went wrong."}
+      subtitle={`The site is being repaired. Please check back later.`}
+      actions={
+        <AppLink className="underline" to="/">
+          Go home
+        </AppLink>
+      }
+    />
   )
 }
