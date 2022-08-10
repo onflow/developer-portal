@@ -12,10 +12,17 @@ export interface DocCollectionSource extends Repo {
   rootPath: string
 }
 
+// intentionally avoiding ts Record type here, because the ts to json-schema
+// generator doesn't work well with Record<string, ...> types
+// https://github.com/YousefED/typescript-json-schema/issues/337
+type Headers = { [key: string]: InternalLandingHeaderProps }
+type Redirects = { [key: string]: string }
+type Sidebars = { [key: string]: SidebarItem[] }
+
 /**
  * A manifest descripting the doc collection and it's properties.
  */
-export interface DocCollectionManifest {
+export type DocCollectionManifest = {
   /**
    * The name of this collection to display to the end-user (i.e. for
    * breadcrumbs, headings, etc)
@@ -27,19 +34,19 @@ export interface DocCollectionManifest {
    * within the given path. Paths should be relative to the doc collection root.
    * TODO: clarify how the sidebar is determined from a requested content path.
    */
-  sidebars?: Record<string, SidebarItem[]>
+  sidebars?: Sidebars
 
   /**
    * A mapping of paths and the headers they should render. Paths should
    * be relative to the doc collection root.
    */
-  headers?: Record<string, InternalLandingHeaderProps>
+  headers?: Headers
 
   /**
    * A mapping of paths that should be redirected. These should be relative
    * to the doc collection root.
    */
-  redirects?: Record<string, string>
+  redirects?: Redirects
 }
 
 export interface DocCollection {
