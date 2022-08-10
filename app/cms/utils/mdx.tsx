@@ -238,11 +238,9 @@ function getMdxComponent(page: MdxPage, theme: Theme | null) {
   }: Parameters<typeof Component>["0"]) {
     return (
       <div className="mdx-content prose dark:prose-invert">
-        {frontmatter.title && !!frontmatter.description && (
+        {!!frontmatter.title && (
           <header>
-            {!!frontmatter.title && (
-              <Heading type="h1" children={frontmatter.title} />
-            )}
+            <Heading type="h1" children={frontmatter.title} />
             {!!frontmatter.description && <p>{frontmatter.description}</p>}
           </header>
         )}
