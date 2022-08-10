@@ -3,7 +3,7 @@ import type {
   LoaderFunction,
   MetaFunction,
 } from "@remix-run/node"
-import { json } from "@remix-run/node"
+import { json, redirect } from "@remix-run/node"
 import {
   Links,
   LiveReload,
@@ -40,7 +40,16 @@ import styles from "./main.css"
 import AppLink from "./ui/design-system/src/lib/Components/AppLink"
 import { SearchProps } from "./ui/design-system/src/lib/Components/Search"
 import { getMetaTitle } from "./utils/seo"
+
+import redirects from "./redirects"
+
 export { getMetaTitle } from "./utils/seo"
+
+function returnRedirectForRoute(url: URL): string | undefined {
+  console.log("Searching for redirect for", url.pathname)
+  // @ts-expect-error
+  return redirects[url.pathname]
+}
 
 export const links: LinksFunction = () => {
   return [
@@ -68,6 +77,17 @@ export type LoaderData = {
 
 export const loader: LoaderFunction = async ({ request }) => {
   const themeSession = await getThemeSession(request)
+
+  const redirectPath = returnRedirectForRoute(new URL(request.url))
+
+  if (redirectPath) {
+    return redirect(redirectPath, {
+      status: 301,
+      headers: {
+        ...request.headers,
+      },
+    })
+  }
 
   let algolia: SearchProps | undefined = undefined
 
