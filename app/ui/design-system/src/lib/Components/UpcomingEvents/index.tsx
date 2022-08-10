@@ -8,7 +8,7 @@ import TabMenu from "../TabMenu"
 
 export type UpcomingEventsProps = {
   goToCommunityHref: string
-  events: [EventCardProps, ...EventCardProps[]]
+  events: [EventCardProps, ...EventCardProps[]] | []
   headerLink?: string
 }
 
@@ -40,6 +40,10 @@ export function UpcomingEvents({
       events.find((e) => e.title === selectedEventTitle) || filteredEvents[0],
     [events, filteredEvents, selectedEventTitle]
   )
+
+  if (filteredEvents.length === 0) {
+    return <></>
+  }
 
   return (
     <div className="container">

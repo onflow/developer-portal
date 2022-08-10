@@ -8,7 +8,14 @@ import ToolsIcon from "~/ui/design-system/images/nav/tools"
 import UsecasesIcon from "~/ui/design-system/images/nav/use-cases"
 
 import { Section } from "~/ui/design-system/src/lib/Components/NavigationBar/types"
-import { emeraldDaoCard, kittyItemsCard, playgroundCard } from "./navCardsData"
+import {
+  emeraldDaoCard,
+  kittyItemsCard,
+  playgroundCard,
+  gettingStartedCard,
+  learnCard,
+  flowConceptsCard,
+} from "./navCardsData"
 
 // Build Tab
 export const sdkSection: Section = {
@@ -21,11 +28,7 @@ export const sdkSection: Section = {
   title: "SDKs",
   subSections: [
     {
-      title: "HTTP",
-      href: `/http-api`,
-    },
-    {
-      title: "Javascript",
+      title: "Javascript (FCL)",
       href: "/tools/fcl-js",
     },
     {
@@ -33,12 +36,20 @@ export const sdkSection: Section = {
       href: "/tools/flow-go-sdk",
     },
     {
-      title: "JVM",
+      title: "HTTP",
+      href: `/http-api`,
+    },
+    {
+      title: "JVM/Kotlin",
       href: "https://github.com/onflow/flow-jvm-sdk",
     },
     {
       title: "Swift",
       href: "https://github.com/Outblock/flow-swift",
+    },
+    {
+      title: "Python",
+      href: "https://github.com/janezpodhostnik/flow-py-sdk",
     },
   ],
   icon: <SDKIcon height="1.5em" width="1.5em" />,
@@ -47,11 +58,11 @@ export const sdkSection: Section = {
 export const toolsSection: Section = {
   links: [
     {
-      title: "View all tools",
+      title: "View all tools & services",
       href: "/tools",
     },
   ],
-  title: "Tools",
+  title: "Open Source Tools",
   subSections: [
     {
       title: "CLI",
@@ -66,8 +77,12 @@ export const toolsSection: Section = {
       href: "/tools/flow-js-testing",
     },
     {
-      title: "Local Dev Wallet",
+      title: "Development Wallet",
       href: "https://github.com/onflow/fcl-dev-wallet",
+    },
+    {
+      title: "Flow Wallets",
+      href: "/tools#wallets",
     },
     {
       title: "Event Indexer",
@@ -82,19 +97,19 @@ export const toolsSection: Section = {
 export const localSection: Section = {
   links: [
     {
-      title: "Local development quickstart",
-      href: "https://github.com/emerald-dao/0-hello-world",
+      title: "Install the Flow CLI",
+      href: "/tools/flow-cli/installation",
     },
   ],
   title: "Local Development",
   subSections: [
     {
-      title: "Use the Flow Emulator",
-      href: "/tools/flow-cli/start-emulator/",
+      title: "Local Development Quickstart",
+      href: "https://github.com/emerald-dao/0-hello-world",
     },
     {
-      title: "Configuring your local network",
-      href: "/tools/flow-cli/configuration/",
+      title: "Running Flow on a Local Network",
+      href: "/tools/flow-cli/start-emulator/",
     },
     {
       title: "Cadence VS Code Extension",
@@ -134,7 +149,7 @@ const liveNetworksSection: Section = {
       href: "https://flowscan.org/",
     },
     {
-      title: "Wallets on Flow",
+      title: "Wallets On Flow",
       href: "/flow/flow-token/available-wallets/",
     },
   ],
@@ -145,14 +160,14 @@ const liveNetworksSection: Section = {
 const dappDevelomentSection: Section = {
   links: [
     {
-      title: "View our dapp development guide",
-      href: "/flow/dapp-development/",
+      title: "Learn more about Flow",
+      href: "/flow",
     },
   ],
   title: "Developing Dapps",
   subSections: [
     {
-      title: "Testnet quickstart",
+      title: "Testnet Quickstart",
       href: "/tools/fcl-js/tutorials/flow-app-quickstart",
     },
     {
@@ -160,19 +175,19 @@ const dappDevelomentSection: Section = {
       href: "/learn/kitty-items",
     },
     {
-      title: "Cadence Playground Tutorials",
-      href: "/cadence/tutorial/02-hello-world",
+      title: "Dapp Development Guide",
+      href: "/flow/dapp-development",
     },
     {
       title: "Web3 Learning Roadmap",
       href: "https://web3-learning-roadmap.vercel.app",
     },
     {
-      title: "Community resource list",
+      title: "Community Resource List",
       href: "https://github.com/ph0ph0/Get-The-Flow-Down",
     },
     {
-      title: "Developer quickstart",
+      title: "Developer Onboarding Guide",
       href: "https://flow-partner-dev-hub.vercel.app",
     },
   ],
@@ -182,8 +197,8 @@ const dappDevelomentSection: Section = {
 const flowConceptsSection: Section = {
   links: [
     {
-      title: "View technical papers",
-      href: "https://www.onflow.org/technical-paper",
+      title: "View all learning resources",
+      href: "/learn",
     },
   ],
   title: "Flow Fundamentals & Standards",
@@ -194,7 +209,7 @@ const flowConceptsSection: Section = {
     },
     {
       title: "Fungible Token Standard",
-      href: "flow/core-contracts/fungible-token",
+      href: "/flow/core-contracts/fungible-token",
     },
     {
       title: "Non Fungible Token Standard",
@@ -221,16 +236,12 @@ const flowConceptsSection: Section = {
 const cadenceConceptsSection: Section = {
   links: [
     {
-      title: "Go to Cadence tutorials",
-      href: "/cadence/tutorial/02-hello-world",
+      title: "Introduction to Cadence",
+      href: "/cadence",
     },
   ],
   title: "Cadence Fundamentals",
   subSections: [
-    {
-      title: "Introduction & Overview",
-      href: "/cadence/",
-    },
     {
       title: "Language Reference",
       href: "/cadence/language",
@@ -247,6 +258,10 @@ const cadenceConceptsSection: Section = {
       title: "Solidity to Cadence",
       href: "/cadence/msg-sender",
     },
+    {
+      title: "Core Contracts",
+      href: "/flow/core-contracts/",
+    },
   ],
   icon: <ConceptsIcon height="1.5em" width="1.5em" />,
 }
@@ -254,40 +269,36 @@ const cadenceConceptsSection: Section = {
 const cadenceResourceSection: Section = {
   links: [
     {
-      title: "View technical papers",
-      href: "https://www.onflow.org/technical-paper",
+      title: "Go to Cadence tutorials",
+      href: "/cadence/tutorial/02-hello-world",
     },
   ],
   title: "Cadence Resources",
   subSections: [
     {
-      title: "Cadence cookbook",
+      title: "Cadence Cookbook",
       href: "https://open-cadence.onflow.org/",
     },
     {
-      title: "Core contracts",
-      href: "/flow/core-contracts/",
+      title: "Buildspace NFT Course",
+      href: "https://buildspace.so/p/nfts-on-flow",
     },
     {
-      title: "Cadence tutorials",
-      href: "/cadence/tutorial/02-hello-world",
-    },
-    {
-      title: "Zero to hero Cadence course",
+      title: "Zero To Hero Cadence Course",
       href: "https://github.com/emerald-dao/beginner-cadence-course",
     },
     {
-      title: "Gold Star Contracts",
-      href: "https://github.com/muttoni/gold-star-contracts",
+      title: "MainnetContract Browser",
+      href: "https://flow-contract-browser.vercel.app/",
     },
   ],
   icon: <LearnIcon height="1.5em" width="1.5em" />,
 }
 
 const buildTabData = {
-  title: "Build",
+  title: "Tools",
   description: "Start developing dapps on Flow.",
-  cards: [kittyItemsCard, playgroundCard],
+  cards: [gettingStartedCard, kittyItemsCard, playgroundCard],
   sections: [sdkSection, toolsSection],
 }
 
@@ -301,15 +312,15 @@ const setupTabData = {
 const learnTabData = {
   title: "Learn",
   description: "Understand how Flow works.",
-  cards: [emeraldDaoCard, kittyItemsCard],
+  cards: [learnCard, flowConceptsCard, emeraldDaoCard],
   sections: [dappDevelomentSection, flowConceptsSection],
 }
 
 const cadenceTabData = {
   title: "Cadence",
   description: "Flow's smart contract programming language.",
-  cards: [playgroundCard, emeraldDaoCard],
-  sections: [cadenceConceptsSection, cadenceResourceSection],
+  cards: [emeraldDaoCard, playgroundCard],
+  sections: [cadenceResourceSection, cadenceConceptsSection],
 }
 
 export { buildTabData, setupTabData, learnTabData, cadenceTabData }

@@ -5,6 +5,7 @@ import {
   LinkCard2ColumnProps,
   LinkCard3ColumnItems,
 } from "~/ui/design-system/src"
+import { ContentNavigationListProps } from "~/ui/design-system/src/lib/Components/ContentNavigationList"
 import PlaygroundIcon from "../../ui/design-system/images/misc/playground-default.png"
 
 const homepageStartProjectData: LinkCard2ColumnProps = {
@@ -30,15 +31,15 @@ const homepageStartProjectData: LinkCard2ColumnProps = {
       icon: PlaygroundIcon,
       links: [
         {
-          href: "/learn/cadence/tutorial/02-hello-world/",
+          href: "/cadence/tutorial/02-hello-world/",
           title: "Hello, World!",
         },
         {
-          href: "/learn/cadence/tutorial/05-non-fungible-tokens-1/",
+          href: "/cadence/tutorial/05-non-fungible-tokens-1/",
           title: "NFTs",
         },
         {
-          href: "/learn/cadence/tutorial/07-marketplace-setup/",
+          href: "/cadence/tutorial/07-marketplace-setup/",
           title: "Marketplaces",
         },
       ],
@@ -86,7 +87,7 @@ const homepageThreeColumnData: LinkCard3ColumnItems = [
       },
       {
         title: "Flow key concepts",
-        href: "/flow/concepts/accounts-and-keys/",
+        href: "/learn/concepts/accounts-and-keys/",
         tags: ["accounts", "signing"],
       },
       {
@@ -96,7 +97,7 @@ const homepageThreeColumnData: LinkCard3ColumnItems = [
       },
       {
         title: "View more learning resources",
-        href: "/learn", // TODO: We need to expose this footer once the /learn page is production ready
+        href: "/learn",
       },
     ],
   },
@@ -112,8 +113,8 @@ const homepageThreeColumnData: LinkCard3ColumnItems = [
         tags: ["blog"],
       },
       {
-        title: "Introduction to Cadence",
-        href: "/cadence/",
+        title: "Resource oriented programming",
+        href: "/cadence#intuiting-ownership-with-resources",
         tags: ["overview"],
       },
       {
@@ -129,4 +130,32 @@ const homepageThreeColumnData: LinkCard3ColumnItems = [
   },
 ]
 
-export { homepageThreeColumnData, homepageStartProjectData }
+const contentNavigationListItems: ContentNavigationListProps = {
+  header: "Explore More Content",
+  contentNavigationItems: [
+    {
+      title: "Learn",
+      text: "All the resources you need to learn and build.",
+      link: "/learn",
+      icon: "learn",
+    },
+    {
+      title: "Tools",
+      text: "Curated list of developer tools, services, SDKs.",
+      link: "/tools",
+      icon: "tools",
+    },
+    {
+      title: "Community",
+      text: "Learn more about Flow's ecosystem and get involved.",
+      link: "/community",
+      icon: "community",
+    },
+  ],
+}
+
+export {
+  homepageThreeColumnData,
+  homepageStartProjectData,
+  contentNavigationListItems,
+}

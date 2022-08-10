@@ -1,6 +1,7 @@
 import clsx from "clsx"
 import { ReactComponent as ExternalLinkIcon } from "../../../../images/content/external-link"
-import AppLink, { isLinkExternal } from "../AppLink"
+import AppLink from "../AppLink"
+import { isLinkExternal } from "../../utils/isLinkExternal"
 
 export type LinkCard2ColumnItemContainerProps = React.PropsWithChildren<{
   href?: string

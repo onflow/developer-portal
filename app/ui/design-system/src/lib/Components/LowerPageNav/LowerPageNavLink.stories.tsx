@@ -15,11 +15,11 @@ export const Default = Template.bind({})
 Default.args = {
   next: {
     href: "#example",
-    name: "Next Article Name",
+    title: "Next Article Name",
   },
   prev: {
     href: "#example",
-    name: "Prev Article Name",
+    title: "Prev Article Name",
   },
 }
 
@@ -31,15 +31,15 @@ dark.parameters = {
   },
 }
 
-export const longName = Template.bind({})
-longName.args = {
+export const longTitle = Template.bind({})
+longTitle.args = {
   next: {
     href: "#example",
-    name: "Query Staking Info with Scripts or Events",
+    title: "Query Staking Info with Scripts or Events",
   },
   prev: {
     href: "#example",
-    name: "Quorum Certificate and Distributed Key Generation",
+    title: "Quorum Certificate and Distributed Key Generation",
   },
 }
 

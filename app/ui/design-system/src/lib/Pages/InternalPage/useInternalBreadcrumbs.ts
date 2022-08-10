@@ -1,72 +1,63 @@
-import { capitalCase } from "change-case"
 import { useMemo } from "react"
-import { displayNames } from "~/constants/repos"
-import {
-  FIRST_ROUTE_MAP,
-  isSecondRoute,
-  SecondRoute,
-} from "~/constants/repos/contents-structure"
-import { InternalSidebarSectionItem } from "../../Components/InternalSidebar"
 
 export type UseInternalBreadcrumbsOptions = {
   /**
    * The currently active item taken from the sidebar configuration object.
    */
-  activeItem?: InternalSidebarSectionItem
+  activeItem?: {
+    href: string
+    title: string
+  }
 
   /**
-   * THe name to display in the breadcrumbs for this content section
+   * An array of additional possible breadcrumnbs. If any match the
+   * `activeItem` they will be included.
    */
-  contentDisplayName: string
+  additionalitems?: Array<{
+    href: string
+    title: string
+  }>
 
   /**
-   * The name of the path in the URL used to access this content section
+   * THe name to display in the breadcrumbs for the current collection
    */
-  contentPath: string
+  collectionDisplayName: string
 
   /**
-   * The site's root URL.
+   * The root path for the current collection
    */
-  rootUrl?: string
+  collectionRootPath: string
 }
 
 /**
  * Returns a list of breadcrumbs to display based on the current `activeItem`
- * of the sidebar configuration (if any)
+ * and doc collection.
  */
 export const useInternalBreadcrumbs = ({
   activeItem,
-  contentDisplayName,
-  contentPath,
-  rootUrl = "/",
+  additionalitems,
+  collectionDisplayName,
+  collectionRootPath,
 }: UseInternalBreadcrumbsOptions) =>
   useMemo(() => {
-    const breadcrumbs = [{ href: rootUrl, name: "Home" }]
+    const breadcrumbs = [
+      { href: "/", title: "Home" },
+      { href: collectionRootPath, title: collectionDisplayName },
+    ]
 
-    var basePath = `${rootUrl}${contentPath}`
+    // Add any additional items that match the active item.
+    additionalitems?.forEach((item) => {
+      if (activeItem?.href?.startsWith(item.href)) {
+        breadcrumbs.push(item)
+      }
+    })
 
-    if (isSecondRoute(contentPath)) {
-      const firstRouteName = FIRST_ROUTE_MAP[contentPath as SecondRoute]!
-
-      breadcrumbs.push({
-        name: displayNames[firstRouteName] || capitalCase(firstRouteName),
-        href: `${rootUrl}${firstRouteName}`,
-      })
-      breadcrumbs.push({
-        name: contentDisplayName,
-        href: `${rootUrl}${firstRouteName}/${contentPath}`,
-      })
-      basePath = `${rootUrl}${firstRouteName}/${contentPath}`
-    } else {
-      breadcrumbs.push({ name: contentDisplayName, href: basePath })
-    }
+    // Make sure items are sorted from least-specific to most-specific
+    breadcrumbs.sort((a, b) => a.href.length - b.href.length)
 
     if (activeItem) {
-      breadcrumbs.push({
-        name: activeItem.label,
-        href: `${basePath}/${activeItem.href}`,
-      })
+      breadcrumbs.push(activeItem)
     }
 
     return breadcrumbs
-  }, [activeItem, contentDisplayName, contentPath, rootUrl])
+  }, [activeItem, additionalitems, collectionDisplayName, collectionRootPath])

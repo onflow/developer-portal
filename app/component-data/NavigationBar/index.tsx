@@ -8,7 +8,7 @@ import {
   learnTabData,
   cadenceTabData,
 } from "./documentationTabData"
-import { ConnectTabData, ContributeTabData } from "./joinFlowTabData"
+import { ConnectTabData, ContributeTabData } from "./communityTabData"
 import { NetworkCards, NetworkSections } from "./networkTabData"
 
 const documentationMenuData: Tab[] = [
@@ -18,7 +18,7 @@ const documentationMenuData: Tab[] = [
   cadenceTabData,
 ]
 
-export const joinFlowMenuData: Tab[] = [ConnectTabData, ContributeTabData]
+export const communityTab: Tab[] = [ConnectTabData, ContributeTabData]
 
 export const navBarData: Omit<NavigationBarProps, "onDarkModeToggle"> = {
   menuItems: [
@@ -27,8 +27,8 @@ export const navBarData: Omit<NavigationBarProps, "onDarkModeToggle"> = {
       tabs: documentationMenuData,
     },
     {
-      title: "Join Flow",
-      tabs: joinFlowMenuData,
+      title: "Community",
+      tabs: communityTab,
     },
     {
       title: "Network",

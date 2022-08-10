@@ -49,5 +49,9 @@ module.exports = {
     "parse-entities",
     "periscopic",
     "zwitch",
+    "file-type",
+    /strtok3/,
+    "token-types",
+    "peek-readable",
   ],
 }

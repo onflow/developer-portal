@@ -7,6 +7,12 @@ import { networkStatusCard, sporkProcessCard } from "./navCardsData"
 import NetworkStatus from "../../routes/poll-network"
 
 export const networkStatus: Section = {
+  links: [
+    {
+      title: "View all status information",
+      href: "https://status.onflow.org/",
+    },
+  ],
   title: "Network Status",
   icon: <NetworkStatusIcon height="1.5em" width="1.5em" />,
   subSectionComponent: NetworkStatus,
@@ -15,8 +21,8 @@ export const networkStatus: Section = {
 export const nodeOperation: Section = {
   links: [
     {
-      title: "Read the node operation guide",
-      href: "/nodes/node-operation/",
+      title: "View all node information",
+      href: "/nodes",
     },
   ],
   title: "Node Operation & Staking",
@@ -26,12 +32,16 @@ export const nodeOperation: Section = {
       href: "/nodes/node-operation/",
     },
     {
-      title: "Staking Walkthrough",
-      href: "/nodes/flow-port/staking-guide/",
+      title: "Staking Flow Nodes",
+      href: "/nodes/staking/",
     },
     {
-      title: "Flow Port",
-      href: "https://port.onflow.org/",
+      title: "Epochs & Reward Schedules",
+      href: "/nodes/flow-port/",
+    },
+    {
+      title: "Flow Port: Staking Guide",
+      href: "/nodes/flow-port/",
     },
   ],
   icon: <NodeIcon height="1.5em" width="1.5em" />,
@@ -55,7 +65,11 @@ export const flowToken: Section = {
       href: "/flow/flow-token-economics",
     },
     {
-      title: "Get FLOW",
+      title: "Supported Exchanges",
+      href: "https://flow.com/#buyflow",
+    },
+    {
+      title: "Guide to buying Flow",
       href: "https://flovatar.com/get-started#flow",
     },
   ],
@@ -65,16 +79,12 @@ export const flowToken: Section = {
 export const governanceSection: Section = {
   links: [
     {
-      title: "View our sustainability report",
-      href: "https://flow.com/sustainability",
+      title: "View all network info",
+      href: "/network",
     },
   ],
   title: "Network Information",
   subSections: [
-    {
-      title: "Network Status",
-      href: "https://status.onflow.org/",
-    },
     {
       title: "Upcoming Sporks",
       href: "/nodes/node-operation/upcoming-sporks",
@@ -90,6 +100,10 @@ export const governanceSection: Section = {
     {
       title: "Mainnet Explorer",
       href: "https://flowscan.org/",
+    },
+    {
+      title: "Flow Sustainability Report",
+      href: "https://flow.com/sustainability",
     },
   ],
   icon: <NetworkIcon height="1.5em" width="1.5em" />,

@@ -1,99 +1,87 @@
 import { NavLink } from "@remix-run/react"
 import clsx from "clsx"
 import {
-  InternalSidebarMenu,
-  InternalSidebarMenuProps,
-} from "../InternalSidebarMenu"
+  InternalSidebarDropdownMenu,
+  InternaSidebarDropdownMenuGroup,
+} from "../InternalSidebarDropdownMenu"
+import { useResolvedSidebarUrl } from "./useResolvedSidebarUrl"
+import { titleFromHref } from "../../utils/titleFromHref"
 
-export type InternalSidebarSectionItem = {
-  label: string
+export interface SidebarItemBase {
+  items?: SidebarItem[]
+}
+export interface SidebarHeadingItem extends SidebarItemBase {
+  title: string
+}
+
+export interface SidebarLinkItem extends SidebarItemBase {
+  title?: string
   href: string
 }
 
-export type InternalSidebarSection = {
-  title: string
-  items: InternalSidebarSectionItem[]
-}
+export type SidebarItem = SidebarHeadingItem | SidebarLinkItem
 
-export type InternalSidebarConfig = {
-  sections: InternalSidebarSection[]
+export function isSidebarLinkItem(item: SidebarItem): item is SidebarLinkItem {
+  return "href" in item
 }
 
 export type InternalSidebarProps = {
-  config: InternalSidebarConfig
-  menu?: InternalSidebarMenuProps
+  items: SidebarItem[]
+  menu?: InternaSidebarDropdownMenuGroup[]
 }
 
-export const TEMP_SIDEBAR_CONFIG: InternalSidebarConfig = {
-  sections: [
-    {
-      title: "Api Documentation",
-      items: [
-        {
-          label: "Quick Reference",
-          href: "/cadence/language",
-        },
-        {
-          label: "Configuration",
-          href: "/configuration",
-        },
-        {
-          label: "Authentication",
-          href: "/authentication",
-        },
-        {
-          label: "Proving Account Ownership",
-          href: "/proving-account-ownership",
-        },
-      ],
-    },
-    {
-      title: "Guides and Tutorials",
-      items: [
-        {
-          label: "Introducing @onflow/fcl",
-          href: "/introducing-onflow-fcl",
-        },
-      ],
-    },
-  ],
-}
+const InternalSidebarLinkItem = ({ item }: { item: SidebarLinkItem }) => {
+  const resolvedHref = useResolvedSidebarUrl(item.href)
 
-export function InternalSidebar({ config, menu }: InternalSidebarProps) {
   return (
-    <>
-      {menu && <InternalSidebarMenu {...menu} />}
-      {config.sections.map((section) => (
+    <NavLink
+      to={resolvedHref}
+      end
+      prefetch="intent"
+      className={({ isActive }) =>
+        clsx(
+          "mb-1 block rounded-md px-2 py-1.5 text-sm text-primary-gray-400 hover:opacity-75 dark:text-gray-200",
+          {
+            "bg-gray-200 bg-opacity-50 text-primary-blue dark:bg-gray-700 dark:text-gray-300":
+              isActive,
+          }
+        )
+      }
+    >
+      {item.title || titleFromHref(item.href)}
+    </NavLink>
+  )
+}
+
+const InternalSidebarItem = ({ item }: { item: SidebarItem }) => (
+  <>
+    {isSidebarLinkItem(item) ? (
+      <InternalSidebarLinkItem item={item} />
+    ) : (
+      <div className="mb-4 text-xs uppercase text-gray-500 dark:text-gray-200">
+        {item.title}
+      </div>
+    )}
+    {item.items?.map((subItem, index) => (
+      <div className="px-4" key={index}>
+        <InternalSidebarItem item={subItem} />
+      </div>
+    ))}
+  </>
+)
+
+export function InternalSidebar({ items, menu }: InternalSidebarProps) {
+  return (
+    <div>
+      {menu && <InternalSidebarDropdownMenu groups={menu} />}
+      {items.map((item, index) => (
         <div
+          key={index}
           className="border-b-1 mb-2 border-b border-b-gray-300 py-4 last:border-b-0 dark:border-b-gray-700"
-          key={section.title}
         >
-          <div className="mb-4 text-xs uppercase text-gray-500 dark:text-gray-200">
-            {section.title}
-          </div>
-          <div className="px-4">
-            {section.items.map((item) => (
-              <NavLink
-                to={item.href === "index" ? "" : item.href} // allow `/index` pages to be highlighted without having `/index/` in path
-                end
-                key={item.label}
-                prefetch="intent"
-                className={({ isActive }) =>
-                  clsx(
-                    "mb-1 block rounded-md px-2 py-1.5 text-sm text-primary-gray-400 hover:opacity-75 dark:text-gray-200",
-                    {
-                      "bg-gray-200 bg-opacity-50 text-primary-blue dark:bg-gray-700 dark:text-gray-300":
-                        isActive,
-                    }
-                  )
-                }
-              >
-                {item.label}
-              </NavLink>
-            ))}
-          </div>
+          <InternalSidebarItem item={item} />
         </div>
       ))}
-    </>
+    </div>
   )
 }

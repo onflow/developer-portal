@@ -1,5 +1,4 @@
 import { IntroCardProps } from "~/ui/design-system/src/lib/Components/NavigationBar/IntroCard"
-import RadarIcon from "~/ui/design-system/images/misc/radar.png"
 import AbstractImage6 from "~/ui/design-system/images/misc/Asset_6@3x.png"
 import AbstractImage8 from "~/ui/design-system/images/misc/Asset_8@3x.png"
 import PlaygroundImage from "~/ui/design-system/images/misc/playground-nav.png"
@@ -9,12 +8,30 @@ const learnCard: IntroCardProps = {
   ctaText: "View all",
   description:
     "We have aggregated and categorized the best content on building dapps on Flow across the ecosystem.",
-  imageHref: RadarIcon,
+  imageHref: AbstractImage6,
   title: "Flow Resource Library",
 }
 
+const communityCard: IntroCardProps = {
+  href: "/community", // Replace with /learn
+  ctaText: "See more of the flow community",
+  description:
+    "Check out initiatives, events, and more from the Flow community.",
+  imageHref: AbstractImage6,
+  title: "Flow Community",
+}
+
+const flowConceptsCard: IntroCardProps = {
+  href: "/flow", // Replace with /learn
+  ctaText: "View key concepts",
+  description:
+    "Learn about Flow concepts and how they work together to build dapps.",
+  imageHref: AbstractImage6,
+  title: "Flow Concepts",
+}
+
 const emeraldDaoCard: IntroCardProps = {
-  href: "/cadence/tutorial/01-first-steps",
+  href: "https://github.com/emerald-dao",
   ctaText: "View details",
   description:
     "Emerald DAO partners with Flow to produce educational material for Flow. Go from zero to a hero on Flow development with their live bootcamps.",
@@ -49,12 +66,12 @@ const sporkProcessCard: IntroCardProps = {
 }
 
 const networkStatusCard: IntroCardProps = {
-  href: "https://status.onflow.org/",
-  ctaText: "View status",
+  href: "/nodes",
+  ctaText: "Learn more",
   description:
-    "Check the status of testnet and mainnet and the latest announcements related to Flow networks.",
+    "Nodes are the backbone of the Flow network. Learn more about how they work and operate.",
   imageHref: AbstractImage8,
-  title: "Network Status",
+  title: "Flow Nodes",
 }
 
 const flowVerseCard: IntroCardProps = {
@@ -86,6 +103,8 @@ const grantsCard: IntroCardProps = {
 
 export {
   learnCard,
+  communityCard,
+  flowConceptsCard,
   emeraldDaoCard,
   playgroundCard,
   gettingStartedCard,

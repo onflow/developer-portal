@@ -1,42 +1,42 @@
 import clsx from "clsx"
-import { SwitchContentName, switchContents } from "../Internal/switchContent"
+import { InternaLandingHeaderIconType, LANDING_HEADER_ICONS } from "./icons"
 import {
   InternalLandingHeaderCard,
   InternalLandingHeaderCardProps,
 } from "./InternalLandingHeaderCard"
 
-const TOOL_GRADIENT_CLASSES = {
+const TOOL_GRADIENT_CLASSES: Record<InternaLandingHeaderIconType, string> = {
   cadence: "tool-gradient-cadence",
   "fcl-js": "tool-gradient-fcl",
 }
 
 export type InternalLandingHeaderProps = {
-  toolName: SwitchContentName
+  icon: InternaLandingHeaderIconType
+  title: string
   description: string
   headerCards: InternalLandingHeaderCardProps[]
 }
 
 export function InternalLandingHeader({
-  toolName,
+  icon,
+  title,
   description,
   headerCards,
 }: InternalLandingHeaderProps) {
-  const tool = switchContents[toolName]!
-  const Icon = tool.iconLanding
+  const Icon = LANDING_HEADER_ICONS[icon]
 
   return (
     <div
       className={clsx(
         "flex min-h-[715px] flex-col items-center py-10 text-white",
-        // @ts-expect-error please fix
-        TOOL_GRADIENT_CLASSES[toolName]
+        TOOL_GRADIENT_CLASSES[icon]
       )}
     >
       <div className="mb-14 flex max-w-[42rem] flex-col px-10 md:mb-4 md:items-center md:justify-center md:text-center">
         <div className="h-28 w-28 md:h-40 md:w-40">
           <Icon />
         </div>
-        <h1 className="text-h2 mt-2 mb-4 text-white md:mt-10">{tool.name}</h1>
+        <h1 className="text-h2 mt-2 mb-4 text-white md:mt-10">{title}</h1>
         {description}
       </div>
 

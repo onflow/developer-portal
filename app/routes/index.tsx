@@ -7,6 +7,7 @@ import { ToolCardProps } from "~/ui/design-system/src/lib/Components/ToolCard"
 import {
   homepageStartProjectData,
   homepageThreeColumnData,
+  contentNavigationListItems,
 } from "../component-data/Homepage"
 import {
   eventIndexingTool,
@@ -48,6 +49,7 @@ export default function Index() {
       tools={tools}
       threeColumnItems={homepageThreeColumnData}
       upcomingEvents={upcomingEvents}
+      contentNavigationListItems={contentNavigationListItems}
     />
   )
 }

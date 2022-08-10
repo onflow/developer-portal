@@ -18,10 +18,25 @@ git clone https://github.com/onflow/next-docs-v1.git
 You'll need to acquire the project's `.env` file before continuing.
 
 1. Add the `.env` file to the project root.
-2. `docker compose up`
+2. `yarn build`
+3. `docker compose up`
 
 Main application: http://localhost:3000/
 Storybook: http://localhost:6006/
+
+#### Useful docker commands and tips
+
+- Connect to Redis via `redis-cli`:
+
+  `docker compose run cache redis-cli -h cache -a flow_docs`
+
+- Remove all cache data from Redis:
+
+  `docker compose run cache redis-cli -h cache -a flow_docs FLUSHALL`
+
+- Ensure node_modules is up-to-date.
+
+  `docker compose run app-yarn`
 
 #### Running services locally outside of Docker
 

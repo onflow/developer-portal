@@ -7,6 +7,10 @@ import {
   ToolsAndConcepts,
   UpcomingEvents,
 } from "../../Components"
+import {
+  ContentNavigationList,
+  ContentNavigationListProps,
+} from "../../Components/ContentNavigationList"
 import { FlipsProps } from "../../Components/Flips"
 import { LinkCard2ColumnProps } from "../../Components/LinkCard2Column"
 import { LinkCard3ColumnItems } from "../../Components/LinkCard3Column"
@@ -25,6 +29,7 @@ export type HomePageProps = {
   concepts?: TutorialCardProps[]
   threeColumnItems: LinkCard3ColumnItems
   upcomingEvents: UpcomingEventsProps
+  contentNavigationListItems: ContentNavigationListProps
 }
 
 const HomePage = ({
@@ -35,13 +40,14 @@ const HomePage = ({
   concepts,
   threeColumnItems,
   upcomingEvents,
+  contentNavigationListItems,
 }: HomePageProps) => {
   return (
     <PageBackground gradient="home">
       <LandingHeaderHome
         title="Developer Portal"
         description="Discover the developer ecosystem and master the Flow blockchain"
-        tag="preview"
+        tag="onflow"
         editPageUrl={editPageUrl}
       />
       <LinkCard2Column {...startProjectItems} homePage={true} />
@@ -62,6 +68,15 @@ const HomePage = ({
           <UpcomingEvents {...upcomingEvents} headerLink="upcoming-events" />
         </PageSection>
       </PageSections>
+      <PageSection sectionId="explore-more-content">
+        <ContentNavigationList
+          header={contentNavigationListItems.header}
+          contentNavigationItems={
+            contentNavigationListItems.contentNavigationItems
+          }
+          headerLink="explore-more-content"
+        />
+      </PageSection>
       <SocialLinksSignup />
     </PageBackground>
   )

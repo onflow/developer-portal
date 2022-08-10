@@ -3,7 +3,7 @@ import { Fragment } from "react"
 import AppLink from "../AppLink"
 
 export type BreadcrumbLinkProps = {
-  name: string
+  title: string
   href?: string
   isCurrent?: boolean
 }
@@ -21,7 +21,7 @@ function Separator() {
 }
 
 function BreadcrumbLink({
-  name,
+  title,
   href,
   isCurrent = false,
 }: BreadcrumbLinkProps) {
@@ -31,7 +31,7 @@ function BreadcrumbLink({
   )
 
   if (!href) {
-    return <span className={className}>{name}</span>
+    return <span className={className}>{title}</span>
   }
 
   return (
@@ -42,7 +42,7 @@ function BreadcrumbLink({
         "hover:text-primary-gray-400 dark:hover:text-primary-gray-100"
       )}
     >
-      {name}
+      {title}
     </AppLink>
   )
 }
