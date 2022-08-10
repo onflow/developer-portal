@@ -1,0 +1,120 @@
+{
+    "$schema": "http://json-schema.org/draft-07/schema#",
+    "definitions": {
+        "InternaLandingHeaderIconType": {
+            "enum": [
+                "cadence",
+                "fcl-js"
+            ],
+            "type": "string"
+        },
+        "SidebarHeadingItem": {
+            "properties": {
+                "items": {
+                    "items": {
+                        "$ref": "#/definitions/SidebarItem"
+                    },
+                    "type": "array"
+                },
+                "title": {
+                    "type": "string"
+                }
+            },
+            "type": "object"
+        },
+        "SidebarItem": {
+            "anyOf": [
+                {
+                    "$ref": "#/definitions/SidebarHeadingItem"
+                },
+                {
+                    "$ref": "#/definitions/SidebarLinkItem"
+                }
+            ]
+        },
+        "SidebarLinkItem": {
+            "properties": {
+                "href": {
+                    "type": "string"
+                },
+                "items": {
+                    "items": {
+                        "$ref": "#/definitions/SidebarItem"
+                    },
+                    "type": "array"
+                },
+                "title": {
+                    "type": "string"
+                }
+            },
+            "type": "object"
+        }
+    },
+    "description": "A manifest descripting the doc collection and it's properties.",
+    "properties": {
+        "displayName": {
+            "description": "The name of this collection to display to the end-user (i.e. for\nbreadcrumbs, headings, etc)",
+            "type": "string"
+        },
+        "headers": {
+            "additionalProperties": {
+                "properties": {
+                    "description": {
+                        "type": "string"
+                    },
+                    "headerCards": {
+                        "items": {
+                            "properties": {
+                                "description": {
+                                    "type": "string"
+                                },
+                                "href": {
+                                    "type": "string"
+                                },
+                                "tags": {
+                                    "items": {
+                                        "type": "string"
+                                    },
+                                    "type": "array"
+                                },
+                                "title": {
+                                    "type": "string"
+                                }
+                            },
+                            "type": "object"
+                        },
+                        "type": "array"
+                    },
+                    "icon": {
+                        "$ref": "#/definitions/InternaLandingHeaderIconType"
+                    },
+                    "title": {
+                        "type": "string"
+                    }
+                },
+                "type": "object"
+            },
+            "description": "A mapping of paths and the headers they should render. Paths should\nbe relative to the doc collection root.",
+            "type": "object"
+        },
+        "redirects": {
+            "additionalProperties": {
+                "type": "string"
+            },
+            "description": "A mapping of paths that should be redirected. These should be relative\nto the doc collection root.",
+            "type": "object"
+        },
+        "sidebars": {
+            "additionalProperties": {
+                "items": {
+                    "$ref": "#/definitions/SidebarItem"
+                },
+                "type": "array"
+            },
+            "description": "A mapping of paths to sidebars that should be rendered when a page is\nwithin the given path. Paths should be relative to the doc collection root.\nTODO: clarify how the sidebar is determined from a requested content path.",
+            "type": "object"
+        }
+    },
+    "type": "object"
+}
+
