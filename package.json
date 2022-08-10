@@ -28,7 +28,7 @@
     "test:e2e:run": "cross-env PORT=8811 start-server-and-test start:mocks http://localhost:8811 \"npx cypress run\"",
     "lint": "eslint --ext .js,.jsx,.ts,.tsx --max-warnings 0 app",
     "prepare": "husky install",
-    "jsonschema": "typescript-json-schema tsconfig.json RepoSchema -o app/constants/repos/repo-schema.json"
+    "jsonschema": "typescript-json-schema tsconfig.json DocCollectionManifest --include app/constants/doc-collections.ts -o app/constants/doc-collection-manifest-schema.json"
   },
   "lint-staged": {
     "*.{js,jsx,ts,tsx}": "eslint --fix",
