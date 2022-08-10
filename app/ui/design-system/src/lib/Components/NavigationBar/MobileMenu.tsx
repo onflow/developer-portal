@@ -2,7 +2,7 @@ import { useState } from "react"
 import { MenuContent } from "./MenuContent"
 import { MobileMenuBackButton } from "./MobileMenuBackButton"
 import { MobileMenuTopLevel } from "./MobileMenuTopLevel"
-import { DropdownMenuItem, isDropdownMenuItem, MenuItem } from "./types"
+import { DropdownMenuItem, MenuItem } from "./types"
 
 export type MobileMenuProps = {
   menuItems: MenuItem[]
@@ -26,7 +26,7 @@ export function MobileMenu({ menuItems }: MobileMenuProps) {
           <MenuContent
             className="px-4"
             cards={selectedMenuItem.tabs[selectedIndex[1]]?.cards}
-            sections={selectedMenuItem.tabs[selectedIndex[1]]?.sections}
+            sections={selectedMenuItem.tabs[selectedIndex[1]]!.sections}
           />
         </li>
       </ul>
