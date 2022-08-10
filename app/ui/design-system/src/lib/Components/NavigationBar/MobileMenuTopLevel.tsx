@@ -5,7 +5,7 @@ import { ReactComponent as ChevronRightIcon } from "../../../../images/arrows/ch
 
 export type MobileMenuTopLevelProps = {
   menuItems: MenuItem[]
-  onItemSelected: (index: number) => void
+  onItemSelected: (index: [number, number]) => void
 }
 
 export function MobileMenuTopLevel({
@@ -24,10 +24,10 @@ export function MobileMenuTopLevel({
                 {menuItem.title}
               </span>
               {menuItem.tabs &&
-                menuItem.tabs.map(({ title }: { title: string }) => (
+                menuItem.tabs.map(({ title }: { title: string }, tabIndex) => (
                   <MobileMenuButton
                     className="flex w-full justify-between whitespace-nowrap text-left text-lg"
-                    onClick={() => onItemSelected(index)}
+                    onClick={() => onItemSelected([index, tabIndex])}
                     key={title}
                   >
                     {title} <ChevronRightIcon />

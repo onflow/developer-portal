@@ -1,7 +1,6 @@
 import { useState } from "react"
 import { MenuContent } from "./MenuContent"
 import { MobileMenuBackButton } from "./MobileMenuBackButton"
-import { MobileMenuTabbed } from "./MobileMenuTabbed"
 import { MobileMenuTopLevel } from "./MobileMenuTopLevel"
 import { DropdownMenuItem, isDropdownMenuItem, MenuItem } from "./types"
 
@@ -10,34 +9,24 @@ export type MobileMenuProps = {
 }
 
 export function MobileMenu({ menuItems }: MobileMenuProps) {
-  const [selectedIndex, setSelectedIndex] = useState(-1)
-  const selectedMenuItem = menuItems[selectedIndex] as
+  const [selectedIndex, setSelectedIndex] = useState<[number, number]>([-1, -1])
+  const selectedMenuItem = menuItems[selectedIndex[0]] as
     | DropdownMenuItem
     | undefined
 
-  if (isDropdownMenuItem(selectedMenuItem) && "tabs" in selectedMenuItem) {
-    return (
-      <MobileMenuTabbed
-        tabs={selectedMenuItem.tabs}
-        onBackButtonClick={() => setSelectedIndex(-1)}
-      />
-    )
-  }
-
-  if (isDropdownMenuItem(selectedMenuItem)) {
+  if (selectedMenuItem) {
     return (
       <ul className="w-full divide-y divide-primary-gray-100 dark:divide-primary-gray-400">
         <li>
-          <MobileMenuBackButton onClick={() => setSelectedIndex(-1)} />
+          <MobileMenuBackButton onClick={() => setSelectedIndex([-1, -1])}>
+            {selectedMenuItem.tabs[selectedIndex[1]]?.title}
+          </MobileMenuBackButton>
         </li>
         <li>
-          <h2 className="px-4 py-3 text-xl font-semibold">
-            {selectedMenuItem.title}
-          </h2>
           <MenuContent
             className="px-4"
-            cards={selectedMenuItem.cards}
-            sections={selectedMenuItem.sections}
+            cards={selectedMenuItem.tabs[selectedIndex[1]]?.cards}
+            sections={selectedMenuItem.tabs[selectedIndex[1]]?.sections}
           />
         </li>
       </ul>
