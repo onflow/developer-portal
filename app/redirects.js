@@ -255,7 +255,6 @@ export default {
   "/devtools/emulator/": "/tools/emulator",
   "/flow-js-sdk/packages/fcl/CHANGELOG/": "/tools/fcl-js",
   "/concepts/transaction-lifecycle/": "/learn/concepts/transaction-lifecycle",
-  "/cadence": "/cadence",
   "/flow-js-testing/init/": "/tools/flow-js-testing/init",
   "/cadence/tutorial/01-first-steps": "/cadence/tutorial",
   "/flow-js-testing/jest-helpers/": "/tools/flow-js-testing/jest-helpers",
