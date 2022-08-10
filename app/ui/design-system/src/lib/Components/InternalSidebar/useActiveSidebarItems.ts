@@ -1,6 +1,7 @@
 import { useLocation } from "@remix-run/react"
 import { useContext } from "react"
-import { SidebarItem, SidebarLinkItem } from "."
+import { isSidebarLinkItem, SidebarItem, SidebarLinkItem } from "."
+import { stripTrailingSlahes } from "../../utils/stripTrailingSlahes"
 import { titleFromHref } from "../../utils/titleFromHref"
 import { InternalSidebarUrlContext } from "./InternalSidebarUrlContext"
 
@@ -15,21 +16,19 @@ export const flattenItems = (items?: SidebarItem[]): SidebarItem[] =>
  * relative to the active item.
  */
 export const useActiveSidebarItems = (items: SidebarItem[]) => {
-  const { pathname } = useLocation()
+  const location = useLocation()
+  const path = stripTrailingSlahes(location.pathname)
   const sidebarBasePath = useContext(InternalSidebarUrlContext)
 
-  const linkItems = flattenItems(items).filter(
-    (item) => "href" in item
-  ) as SidebarLinkItem[]
+  const linkItems =
+    flattenItems(items).filter<SidebarLinkItem>(isSidebarLinkItem)
 
   const resolvedLinkItems = linkItems.map((item) => ({
-    href: `${sidebarBasePath}${item.href}`,
+    href: stripTrailingSlahes(`${sidebarBasePath}${item.href}`),
     title: item.title || titleFromHref(item.href),
   }))
 
-  const activeIndex = resolvedLinkItems.findIndex(
-    ({ href }) => href === pathname
-  )
+  const activeIndex = resolvedLinkItems.findIndex(({ href }) => href === path)
 
   return {
     previous: activeIndex > 0 ? resolvedLinkItems[activeIndex - 1] : undefined,
