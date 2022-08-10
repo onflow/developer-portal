@@ -1,5 +1,7 @@
+import { join } from "path"
 import { json, LoaderFunction, redirect } from "@remix-run/node"
 import { Outlet, useLoaderData } from "@remix-run/react"
+import { stripTrailingSlahes } from "../../cms/utils/strip-slashes"
 import { findCollection } from "../../constants/collections.server"
 import { SidebarItem } from "../../ui/design-system/src/lib/Components/InternalSidebar"
 import { InternalSidebarUrlContext } from "../../ui/design-system/src/lib/Components/InternalSidebar/InternalSidebarUrlContext"
@@ -11,6 +13,11 @@ type LoaderData = {
 
 export const loader: LoaderFunction = async ({ params, request }) => {
   const path = params["*"]
+
+  if (path?.endsWith("/")) {
+    // For consistency, strip trailing slashes from all URLs.
+    return redirect(join("/", stripTrailingSlahes(path)), 302)
+  }
 
   if (!path) {
     throw json({ status: "noPage" }, { status: 404 })
