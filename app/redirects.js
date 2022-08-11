@@ -836,7 +836,6 @@ export default {
   "/mainnet-deployment/": "",
   "/nft-marketplace/flip-fest-winners/": "",
   "/nft-marketplace/flow-token/concepts/": "",
-  "/nft-marketplace/selling-nfts": "",
   "/node-bootstrap/": "",
   "/node-operation/db-encryption-existing-operator": "",
   "/node-operation/db-encryption-existing-operators/": "",
