@@ -22,7 +22,6 @@ export type NetworkDetailPageProps = {
   networkStatuses: StatuspageApiResponse[]
   networkName: string
   featuredArticle: Article
-  pastSporks: any
 }
 
 export const getNetworkNameFromParam = (param: string) =>
@@ -35,7 +34,6 @@ const NetworkDetailPage = ({
   networkName,
   networkStatuses,
   featuredArticle,
-  pastSporks,
 }: NetworkDetailPageProps) => {
   const convertedName = getNetworkNameFromParam(networkName)
   const defaultIndex = networkStatuses.findIndex((object) => {
@@ -73,7 +71,7 @@ const NetworkDetailPage = ({
             statusLink="https://google.com"
             version="33"
             lastSporkDate="April, 2022"
-            nextSporkDate="TBD"
+            nextSporkDate="April, 2022"
             rssFeed="/link"
           />
         </PageSection>
@@ -113,29 +111,26 @@ const NetworkDetailPage = ({
               Past Sporks
             </HeaderWithLink>
             <div className="mb-4 divide-y dark:divide-primary-gray-400">
-              {Object.keys(pastSporks).map((network, index) => {
-                return (
-                  <div className="divided-item-hover" key={index}>
-                    <SporksCard
-                      heading={currentNetwork?.name || ""}
-                      timestamp={endOfWeek(new Date())}
-                      sporkMetadata={{
-                        accessNode:
-                          "access-001.mainnet15.nodes.onflow.org:9000",
-                        date: new Date(),
-                        rootHeight: "19050753",
-                        rootParentId:
-                          "ac4dbf344ce96e39e15081f1dc3fbbf6dc80532e402de9a57af847d3b35df596",
-                        rootStateCommit:
-                          "641eb088e3ce1a01ff56df2d3a14372c65a7fef44c08799eb92cd7759d1d1d2a",
-                        gitCommit: "f019c1dbd778ce9f92dea61349ca36003678a9ad",
-                        branchOrTag: "v0.22.9-patch-1-epoch-view-check-hotfix",
-                        dockerTag: "v0.22.9-patch-1-epoch-view-check-hotfix",
-                      }}
-                    />
-                  </div>
-                )
-              })}
+              {[1, 2, 3, 4].map((index) => (
+                <div className="divided-item-hover" key={index}>
+                  <SporksCard
+                    heading={currentNetwork?.name || ""}
+                    timestamp={endOfWeek(new Date())}
+                    sporkMetadata={{
+                      accessNode: "access-001.mainnet15.nodes.onflow.org:9000",
+                      date: new Date(),
+                      rootHeight: "19050753",
+                      rootParentId:
+                        "ac4dbf344ce96e39e15081f1dc3fbbf6dc80532e402de9a57af847d3b35df596",
+                      rootStateCommit:
+                        "641eb088e3ce1a01ff56df2d3a14372c65a7fef44c08799eb92cd7759d1d1d2a",
+                      gitCommit: "f019c1dbd778ce9f92dea61349ca36003678a9ad",
+                      branchOrTag: "v0.22.9-patch-1-epoch-view-check-hotfix",
+                      dockerTag: "v0.22.9-patch-1-epoch-view-check-hotfix",
+                    }}
+                  />
+                </div>
+              ))}
             </div>
             <Pagination
               itemCount={40}

@@ -42,9 +42,7 @@ NetworkPageProps) => (
                     }
                     version="33"
                     lastSporkDate="April, 2022"
-                    nextSporkDate={
-                      name === "Flow Mainnet" ? "August 24, 2022" : "TBD"
-                    }
+                    nextSporkDate="April, 2022"
                     link={`/network/${name.toLowerCase().replace(" ", "-")}`}
                   />
                 </div>

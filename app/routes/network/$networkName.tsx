@@ -10,7 +10,7 @@ import { featuredArticle } from "./data"
 
 type DynamicNetworkDetailPageProps = Pick<
   NetworkDetailPageProps,
-  "networkStatuses" | "pastSporks"
+  "networkStatuses"
 >
 
 export const meta: MetaFunction = ({ params }) => ({
@@ -23,14 +23,12 @@ export const meta: MetaFunction = ({ params }) => ({
 
 export const loader: LoaderFunction = async () => {
   const networkStatuses = await fetchNetworkStatus()
-  const pastSporks = { crab: "rangoon" }
-  const data = { networkStatuses, pastSporks }
+  const data = { networkStatuses }
   return data
 }
 
 export default function Page() {
-  const { networkStatuses, pastSporks } =
-    useLoaderData<DynamicNetworkDetailPageProps>()
+  const { networkStatuses } = useLoaderData<DynamicNetworkDetailPageProps>()
   const params = useParams()
 
   if (!params.networkName) throw new Error("Missing network name")
@@ -42,7 +40,6 @@ export default function Page() {
       networkStatuses={networkStatuses}
       featuredArticle={featuredArticle}
       networkName={networkName}
-      pastSporks={pastSporks}
     />
   )
 }
