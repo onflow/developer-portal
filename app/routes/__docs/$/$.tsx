@@ -83,7 +83,10 @@ export const meta: MetaFunction = ({ data, location }) => {
     })
   }
 
-  return {}
+  return getSocialMetas({
+    title: "Flow Developer Portal",
+    url: location.toString(),
+  })
 }
 
 export default () => {

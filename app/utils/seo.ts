@@ -26,8 +26,8 @@ export function getSocialMetas({
     "twitter:creator": "@flow_blockchain",
     "twitter:site": "@flow_blockchain",
     "twitter:title": title,
-    "twitter:description": description,
     "twitter:image": image,
+    "twitter:description": description,
     "twitter:alt": title,
   }
 }
