@@ -21,7 +21,7 @@ export function LandingHeaderHome({
   title,
 }: LandingHeaderHomeProps) {
   return (
-    <div className="container flex flex-col items-center pt-4 pb-10 md:flex-row md:pb-20">
+    <div className="container flex flex-col-reverse items-center pt-4 pb-10 md:flex-row">
       <div className="mt-8 flex max-w-full flex-1 basis-1/2 flex-col items-start pb-4 pr-4">
         <p className="mb-4 font-display text-2xl font-bold text-primary-gray-300 dark:text-primary-gray-200">
           #{tag}
@@ -33,12 +33,12 @@ export function LandingHeaderHome({
           {description}
         </div>
       </div>
-      <div className="order-first flex-1 basis-1/2 md:order-last">
+      <div className="pr-0 md:ml-auto md:mr-14 md:pl-4">
         <img
           src={LandingImage}
           srcSet={`${LandingImage}, ${LandingImage2x} 2x`}
           alt=""
-          className="max-h-[195px] object-cover md:max-h-[540px]"
+          className="max-h-[195px] object-cover md:max-h-[380px]"
         />
       </div>
       <div className="fixed right-14 top-1/4 hidden lg:block">
