@@ -16,14 +16,9 @@ export async function loader(): Promise<LoaderData> {
   }
 }
 
-const LS_KEY = "flow_network_data"
-
 export default function () {
   const networkData = useLoaderData<LoaderData>()
-  const cachedStatus = localStorage.getItem(LS_KEY)
-  const [status, setStatus] = useState(
-    cachedStatus ? JSON.parse(cachedStatus) : networkData
-  )
+  const [status, setStatus] = useState(networkData)
 
   // Whenever the loader gives us new data(for example, after a form submission), update our `data` state.
   useEffect(() => setStatus(networkData), [networkData])
@@ -45,7 +40,6 @@ export default function () {
   useEffect(() => {
     if (fetcher.data) {
       setStatus(fetcher.data)
-      localStorage.setItem(LS_KEY, JSON.stringify(status))
     }
   }, [fetcher.data])
 

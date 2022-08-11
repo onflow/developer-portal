@@ -9,8 +9,13 @@ export type MobileMenuProps = {
 }
 
 export function MobileMenu({ menuItems }: MobileMenuProps) {
-  const [selectedIndex, setSelectedIndex] = useState<[number, number]>([-1, -1])
-  const selectedMenuItem = menuItems[selectedIndex[0]] as
+  // Track which page and section we're on.
+  // e.g. Documentation -> Setup would be { pageIndex: 0, sectionIndex: 1 } since it's the first page and second section in that page.
+  const [selectedIndices, setSelectedIndices] = useState({
+    pageIndex: -1,
+    sectionIndex: -1,
+  })
+  const selectedMenuItem = menuItems[selectedIndices.pageIndex] as
     | MenuItem
     | DropdownMenu
     | undefined
@@ -20,17 +25,21 @@ export function MobileMenu({ menuItems }: MobileMenuProps) {
       <ul className="w-full divide-y divide-primary-gray-100 dark:divide-primary-gray-400">
         <li>
           <MobileMenuBackButton
-            onClick={() => setSelectedIndex([-1, -1])}
+            onClick={() =>
+              setSelectedIndices({ pageIndex: -1, sectionIndex: -1 })
+            }
             className="text-lg dark:text-gray-100"
           >
-            {selectedMenuItem.tabs[selectedIndex[1]]?.title}
+            {selectedMenuItem.tabs[selectedIndices.sectionIndex]?.title}
           </MobileMenuBackButton>
         </li>
         <li>
           <MenuContent
             className="px-4"
-            cards={selectedMenuItem.tabs[selectedIndex[1]]?.cards}
-            sections={selectedMenuItem.tabs[selectedIndex[1]]!.sections}
+            cards={selectedMenuItem.tabs[selectedIndices.sectionIndex]?.cards}
+            sections={
+              selectedMenuItem.tabs[selectedIndices.sectionIndex]!.sections
+            }
           />
         </li>
       </ul>
@@ -42,7 +51,12 @@ export function MobileMenu({ menuItems }: MobileMenuProps) {
       <ul className="w-full divide-y divide-primary-gray-100 border dark:divide-primary-gray-400">
         <li>
           <MobileMenuBackButton
-            onClick={() => setSelectedIndex([-1, -1])}
+            onClick={() =>
+              setSelectedIndices({
+                pageIndex: -1,
+                sectionIndex: -1,
+              })
+            }
             className="text-lg dark:text-gray-100"
           >
             {selectedMenuItem.title}
@@ -62,7 +76,7 @@ export function MobileMenu({ menuItems }: MobileMenuProps) {
   return (
     <MobileMenuTopLevel
       menuItems={menuItems}
-      onItemSelected={setSelectedIndex}
+      onItemSelected={setSelectedIndices}
     />
   )
 }

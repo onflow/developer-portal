@@ -1,12 +1,12 @@
 import { MenuItemLink } from "./MenuItemLink"
 import { MobileMenuButton } from "./MobileMenuButton"
-import { isLinkMenuItem, MenuItem } from "./types"
+import { MenuItem } from "./types"
 import { ReactComponent as ChevronRightIcon } from "../../../../images/arrows/chevron-right"
 import NetworkStatus from "../../../../../../routes/poll-network"
 
 export type MobileMenuTopLevelProps = {
   menuItems: MenuItem[]
-  onItemSelected: (indices: [number, number]) => void
+  onItemSelected: (indices: any) => void
 }
 
 export function MobileMenuTopLevel({
@@ -16,8 +16,8 @@ export function MobileMenuTopLevel({
   return (
     <div>
       <ul>
-        {menuItems.map((menuItem, index) => (
-          <li key={index} className="py-2">
+        {menuItems.map((menuItem, pageIndex) => (
+          <li key={pageIndex} className="py-2">
             <div>
               <span className="px-4 text-primary-gray-400 dark:text-primary-gray-200">
                 {menuItem.title}
@@ -27,7 +27,7 @@ export function MobileMenuTopLevel({
                   ({ title }: { title: string }, tabIndex: number) => (
                     <MobileMenuButton
                       className="flex w-full justify-between whitespace-nowrap text-left text-lg"
-                      onClick={() => onItemSelected([index, tabIndex])}
+                      onClick={() => onItemSelected([pageIndex, tabIndex])}
                       key={title}
                     >
                       {title} <ChevronRightIcon />
