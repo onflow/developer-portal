@@ -144,7 +144,6 @@ export default {
   "/flow-cli/build-transactions/": "/tools/flow-cli/build-transactions",
   "/flow-js-sdk/": "/tools/fcl-js",
   "/flow-cli/get-status/": "/tools/flow-cli/get-status",
-  "/cadence/contract-upgrades/": "/cadence/contract-upgrades",
   "/staking/epoch-preparation/": "/flow/staking/epoch-preparation",
   "/flow-js-sdk/packages/fcl/": "/tools/fcl-js",
   "/flow-cli/security/": "/tools/flow-cli/security",
