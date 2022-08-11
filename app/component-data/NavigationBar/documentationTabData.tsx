@@ -236,7 +236,7 @@ const flowConceptsSection: Section = {
 const cadenceConceptsSection: Section = {
   links: [
     {
-      title: "Introduction to Cadence",
+      title: "View all Cadence resources",
       href: "/cadence",
     },
   ],
@@ -288,7 +288,7 @@ const cadenceResourceSection: Section = {
       href: "https://github.com/emerald-dao/beginner-cadence-course",
     },
     {
-      title: "MainnetContract Browser",
+      title: "Mainnet Contract Browser",
       href: "https://flow-contract-browser.vercel.app/",
     },
   ],
