@@ -43,25 +43,43 @@ export default function () {
     }
   }, [fetcher.data])
 
+  const renderStatus = (status: string) => {
+    const statusText =
+      status === "operational" ? "Healthy" : "Under Maintenance"
+    return (
+      <span
+        className={
+          status === "operational" ? "text-green-success" : "text-primary-red"
+        }
+      >
+        {statusText}
+      </span>
+    )
+  }
+
   return (
-    <>
-      <div className="w-full">
-        {!status.statusResponses && <span>Loading...</span>}
-        {status.statusResponses &&
-          status.statusResponses.map((s) => (
-            <li id="user-content-fn-1" key={s.id} className="flex items-center">
+    <div className="w-full">
+      {!status.statusResponses && <span>Loading...</span>}
+      {status.statusResponses &&
+        status.statusResponses.map((s: StatuspageApiResponse) => (
+          <li
+            id="user-content-fn-1"
+            key={s.id}
+            className="my-3 flex items-center justify-between rounded-md border border-primary-gray-100 px-4 py-2 dark:border-primary-gray-400"
+          >
+            <div className="flex items-center">
               <div
-                className="mb-1 mr-2 inline-block h-4 w-4 rounded-full"
+                className="mr-2 inline-block h-4 w-4 rounded-full"
                 style={{
                   backgroundColor:
                     s.status === "operational" ? "#05CE7A" : "#F67D65",
                 }}
               ></div>
-              {s.name} (
-              {s.status === "operational" ? "Healthy" : "Under Maintenance"})
-            </li>
-          ))}
-      </div>
-    </>
+              {s.name}
+            </div>
+            {renderStatus(s.status)}
+          </li>
+        ))}
+    </div>
   )
 }

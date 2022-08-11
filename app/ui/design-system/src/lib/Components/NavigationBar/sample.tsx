@@ -86,17 +86,26 @@ export const data: Omit<NavigationBarProps, "onDarkModeToggle"> = {
     },
     {
       title: "Join Flow",
-      cards: Array(3).fill(card),
-      sections: Array(5).fill(section),
+      tabs: [
+        {
+          title: "crab",
+          description: "rangoon",
+          cards: Array(3).fill(card),
+          sections: Array(5).fill(section),
+        },
+      ],
     },
     {
       title: "Network",
-      sections: [largeSection],
+      tabs: [
+        { title: "crab", description: "rangoon", sections: [largeSection] },
+      ],
     },
     {
       divider: true,
       title: "Flow.com",
       href: "https://flow.com",
+      tabs: [],
     },
   ],
 }

@@ -35,10 +35,5 @@ export const navBarData: Omit<NavigationBarProps, "onDarkModeToggle"> = {
       cards: NetworkCards,
       sections: NetworkSections,
     },
-    {
-      divider: true,
-      title: "Flow.com",
-      href: "https://flow.com",
-    },
   ] as MenuItem[],
 }

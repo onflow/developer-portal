@@ -700,7 +700,6 @@ export default {
   "/cadence/json-cadence-spe/": "/cadence/json-cadence-spec",
   "/cadence/language/type-safety": "/cadence/language/type-safety",
   "/cadence/measuring-time": "/cadence/measuring-time",
-  "/cadence/msg-sender": "/cadence/msg-sender",
   "/cadence/ñanguage/": "",
   "/cadence/restricted-types/": "",
   "/cadence/tut/": "",

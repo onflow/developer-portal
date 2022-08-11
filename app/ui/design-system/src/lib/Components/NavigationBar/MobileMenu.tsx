@@ -1,39 +1,68 @@
 import { useState } from "react"
 import { MenuContent } from "./MenuContent"
 import { MobileMenuBackButton } from "./MobileMenuBackButton"
-import { MobileMenuTabbed } from "./MobileMenuTabbed"
 import { MobileMenuTopLevel } from "./MobileMenuTopLevel"
-import { DropdownMenuItem, isDropdownMenuItem, MenuItem } from "./types"
+import { DropdownMenu, MenuItem } from "./types"
 
 export type MobileMenuProps = {
   menuItems: MenuItem[]
 }
 
 export function MobileMenu({ menuItems }: MobileMenuProps) {
-  const [selectedIndex, setSelectedIndex] = useState(-1)
-  const selectedMenuItem = menuItems[selectedIndex] as
-    | DropdownMenuItem
+  // Track which page and section we're on.
+  // e.g. Documentation -> Setup would be { pageIndex: 0, sectionIndex: 1 } since it's the first page and second section in that page.
+  const [selectedIndices, setSelectedIndices] = useState({
+    pageIndex: -1,
+    sectionIndex: -1,
+  })
+  const selectedMenuItem = menuItems[selectedIndices.pageIndex] as
+    | MenuItem
+    | DropdownMenu
     | undefined
 
-  if (isDropdownMenuItem(selectedMenuItem) && "tabs" in selectedMenuItem) {
-    return (
-      <MobileMenuTabbed
-        tabs={selectedMenuItem.tabs}
-        onBackButtonClick={() => setSelectedIndex(-1)}
-      />
-    )
-  }
-
-  if (isDropdownMenuItem(selectedMenuItem)) {
+  if (selectedMenuItem && "tabs" in selectedMenuItem) {
     return (
       <ul className="w-full divide-y divide-primary-gray-100 dark:divide-primary-gray-400">
         <li>
-          <MobileMenuBackButton onClick={() => setSelectedIndex(-1)} />
+          <MobileMenuBackButton
+            onClick={() =>
+              setSelectedIndices({ pageIndex: -1, sectionIndex: -1 })
+            }
+            className="text-lg dark:text-gray-100"
+          >
+            {selectedMenuItem.tabs[selectedIndices.sectionIndex]?.title}
+          </MobileMenuBackButton>
         </li>
         <li>
-          <h2 className="px-4 py-3 text-xl font-semibold">
+          <MenuContent
+            className="px-4"
+            cards={selectedMenuItem.tabs[selectedIndices.sectionIndex]?.cards}
+            sections={
+              selectedMenuItem.tabs[selectedIndices.sectionIndex]!.sections
+            }
+          />
+        </li>
+      </ul>
+    )
+  }
+
+  if (selectedMenuItem && "cards" in selectedMenuItem) {
+    return (
+      <ul className="w-full divide-y divide-primary-gray-100 border dark:divide-primary-gray-400">
+        <li>
+          <MobileMenuBackButton
+            onClick={() =>
+              setSelectedIndices({
+                pageIndex: -1,
+                sectionIndex: -1,
+              })
+            }
+            className="text-lg dark:text-gray-100"
+          >
             {selectedMenuItem.title}
-          </h2>
+          </MobileMenuBackButton>
+        </li>
+        <li>
           <MenuContent
             className="px-4"
             cards={selectedMenuItem.cards}
@@ -47,7 +76,7 @@ export function MobileMenu({ menuItems }: MobileMenuProps) {
   return (
     <MobileMenuTopLevel
       menuItems={menuItems}
-      onItemSelected={setSelectedIndex}
+      onItemSelected={setSelectedIndices}
     />
   )
 }
