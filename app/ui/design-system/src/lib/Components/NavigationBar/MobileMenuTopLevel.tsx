@@ -1,10 +1,12 @@
 import { MenuItemLink } from "./MenuItemLink"
 import { MobileMenuButton } from "./MobileMenuButton"
-import { isLinkMenuItem, MenuItem } from "./types"
+import { MenuItem } from "./types"
+import { ReactComponent as ChevronRightIcon } from "../../../../images/arrows/chevron-right"
+import NetworkStatus from "../../../../../../routes/poll-network"
 
 export type MobileMenuTopLevelProps = {
   menuItems: MenuItem[]
-  onItemSelected: (index: number) => void
+  onItemSelected: (indices: any) => void
 }
 
 export function MobileMenuTopLevel({
@@ -12,21 +14,47 @@ export function MobileMenuTopLevel({
   onItemSelected,
 }: MobileMenuTopLevelProps) {
   return (
-    <ul className="w-full divide-y dark:divide-gray-500">
-      {menuItems.map(({ divider, ...menuItem }, index) => (
-        <li key={index}>
-          {isLinkMenuItem(menuItem) ? (
-            <MenuItemLink {...menuItem} className="px-4 py-3" />
-          ) : (
-            <MobileMenuButton
-              className="w-full whitespace-nowrap text-left"
-              onClick={() => onItemSelected(index)}
-            >
-              {menuItem.title}
-            </MobileMenuButton>
-          )}
+    <div>
+      <ul>
+        {menuItems.map((menuItem, pageIndex) => (
+          <li key={pageIndex} className="py-2">
+            <div>
+              <span className="px-4 text-primary-gray-400 dark:text-primary-gray-200">
+                {menuItem.title}
+              </span>
+              {menuItem.tabs &&
+                menuItem.tabs.map(
+                  ({ title }: { title: string }, tabIndex: number) => (
+                    <MobileMenuButton
+                      className="flex w-full justify-between whitespace-nowrap text-left text-lg"
+                      onClick={() => onItemSelected([pageIndex, tabIndex])}
+                      key={title}
+                    >
+                      {title} <ChevronRightIcon />
+                    </MobileMenuButton>
+                  )
+                )}
+            </div>
+          </li>
+        ))}
+        <li
+          className="hover:cursor px-4 py-2"
+          role="button"
+          onClick={() =>
+            onItemSelected([
+              menuItems.findIndex((item) => item.title === "Network"),
+              0,
+            ])
+          }
+        >
+          <NetworkStatus />
         </li>
-      ))}
-    </ul>
+      </ul>
+      <MenuItemLink
+        href="https://flow.com"
+        title="flow.com"
+        className="fixed bottom-0 right-0 px-4 py-3"
+      />
+    </div>
   )
 }

@@ -1,3 +1,4 @@
+import clsx from "clsx"
 import { ReactComponent as ArrowLeftIcon } from "../../../../images/arrows/nav-left"
 import { MobileMenuButton, MobileMenuButtonProps } from "./MobileMenuButton"
 
@@ -8,8 +9,9 @@ export function MobileMenuBackButton({
   className,
   ...props
 }: MobileMenuBackButtonProps) {
+  const classes = clsx("hover:opacity-75", className)
   return (
-    <MobileMenuButton className="hover:opacity-75" {...props}>
+    <MobileMenuButton className={classes} {...props}>
       <span className="-ml-2 scale-50">
         <ArrowLeftIcon />
       </span>{" "}
