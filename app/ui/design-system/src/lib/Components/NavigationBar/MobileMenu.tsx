@@ -2,7 +2,7 @@ import { useState } from "react"
 import { MenuContent } from "./MenuContent"
 import { MobileMenuBackButton } from "./MobileMenuBackButton"
 import { MobileMenuTopLevel } from "./MobileMenuTopLevel"
-import { DropdownMenu, DropdownMenuItem, LinkMenuItem, MenuItem } from "./types"
+import { DropdownMenu, MenuItem } from "./types"
 
 export type MobileMenuProps = {
   menuItems: MenuItem[]
