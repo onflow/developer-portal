@@ -24,7 +24,7 @@ export function MenuContent({
   const isSingleSection = sections.length === 1
   const hasCards = cards.length > 0
   const contentClasses = clsx(
-    "flex h-full flex-col gap-6 bg-white p-4 dark:bg-primary-gray-dark md:flex-row",
+    "flex h-full flex-col gap-6 bg-white p-4 dark:bg-primary-gray-dark md:flex-row min-h-[460px]",
     className
   )
   return (
