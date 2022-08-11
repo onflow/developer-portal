@@ -4,9 +4,9 @@ import { join } from "path"
 import { stripTrailingSlahes } from "../../cms/utils/strip-slashes"
 import {
   DocCollectionInfo,
-  DocCollectionManifest,
+  DocManifest,
   findDocCollection,
-  findDocCollectionManifest,
+  findDocManifest,
 } from "../../constants/collections.server"
 import { SIDEBAR_DROPDOWN_MENU } from "../../constants/sidebar-dropdown-menu"
 import AppLink from "../../ui/design-system/src/lib/Components/AppLink"
@@ -15,7 +15,7 @@ import { InternalSidebarUrlContext } from "../../ui/design-system/src/lib/Compon
 import { InternalPageContainer } from "../../ui/design-system/src/lib/Pages/InternalPage/InternalPageContainer"
 
 type LoaderData = Pick<
-  NonNullable<DocCollectionManifest & DocCollectionInfo>,
+  NonNullable<DocManifest & DocCollectionInfo>,
   | "sidebar"
   | "sidebarRootPath"
   | "displayName"
@@ -38,7 +38,7 @@ export const loader: LoaderFunction = async ({ params, request }) => {
   }
 
   const collection = findDocCollection(path)
-  const manifest = await findDocCollectionManifest(path)
+  const manifest = await findDocManifest(path)
 
   if (!manifest || !collection) {
     throw json({ status: "noPage" }, { status: 404 })

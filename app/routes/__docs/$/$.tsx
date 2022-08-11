@@ -8,7 +8,7 @@ import { getMdxPage, useMdxComponent } from "../../../cms/utils/mdx"
 import {
   DocCollectionInfo,
   findDocCollection,
-  findDocCollectionManifest,
+  findDocManifest,
 } from "../../../constants/collections.server"
 import { SIDEBAR_DROPDOWN_MENU } from "../../../constants/sidebar-dropdown-menu"
 import AppLink from "../../../ui/design-system/src/lib/Components/AppLink"
@@ -32,7 +32,7 @@ export const loader: LoaderFunction = async ({ params, request }) => {
   }
 
   const data = findDocCollection(path)
-  const manifest = await findDocCollectionManifest(path)
+  const manifest = await findDocManifest(path)
 
   if (!data || !manifest) {
     throw json({ status: "noRepo" }, { status: 404 })

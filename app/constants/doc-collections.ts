@@ -1603,11 +1603,11 @@ export const docCollections: Record<string, DocCollection> = {
     },
   },
 
-  "mock-developer-doc": {
+  "mock-developer-doc-json-valid": {
     source: {
       owner: "onflow",
       name: "mock-developer-doc",
-      branch: "master",
+      branch: "json-manifest-valid",
       rootPath: "docs/",
     },
     manifest: {

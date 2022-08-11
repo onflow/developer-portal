@@ -322,9 +322,11 @@ export async function downloadFileByPath(
 ) {
   const resolvedPath = posix.join(source.rootPath, path)
 
+  console.log(`DOWNLOADING!! ${source.branch}`)
   const { data } = await octokit.repos.getContent({
     owner: source.owner,
     repo: source.name,
+    ref: source.branch,
     headers: { branch: source.branch },
     path: resolvedPath,
   })
