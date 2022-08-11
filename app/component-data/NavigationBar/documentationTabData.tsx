@@ -205,7 +205,7 @@ const flowConceptsSection: Section = {
   subSections: [
     {
       title: "Flow Key Concepts",
-      href: "/flow/concepts",
+      href: "/learn/concepts",
     },
     {
       title: "Fungible Token Standard",
