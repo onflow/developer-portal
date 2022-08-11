@@ -10,6 +10,9 @@ import { NotFoundError } from "./errors/not-found-error"
 import { UnknownEncoding } from "./errors/unknown-encoding"
 import { Repo } from "./types"
 
+// Ignore github.com commiter https://github.com/web-flow
+const WEB_FLOW_GITHUB_ACCOUNT_ID = 19864447
+
 /**
  * Acceptable markdown file extensions in the order of preference.
  */
@@ -48,6 +51,20 @@ export const octokit = new Octokit({
  */
 export type GitHubItem = Awaited<ReturnType<typeof getDirectoryContent>>[number]
 
+export type AttributionData = {
+  lastCommit: {
+    sha?: string
+    committerDate?: string
+    htmlUrl?: string
+    author: {
+      login?: string
+      gravatar_url?: string
+      html_url?: string
+    }
+  }
+  otherContributorsCount: number
+}
+
 /**
  * A GitHub file with text content that has been populated.
  */
@@ -69,6 +86,8 @@ export type GitHubTextFile = GitHubItem & {
    * The path of the file relative to the `source.rootPath`.
    */
   relativePath: string
+
+  attributionData?: AttributionData
 }
 
 /**
@@ -195,6 +214,7 @@ export const downloadMarkdown = async (
   }
 
   const content = await downloadFileBySha(source, match.sha)
+  const attributionData = await getAttributionData(source, match.path)
   const relativePath = posix.relative(
     posix.resolve("/", source.rootPath),
     posix.resolve("/", match.path)
@@ -208,6 +228,7 @@ export const downloadMarkdown = async (
       ...match,
       textContent: content.toString(),
       relativePath,
+      attributionData,
     } as GitHubTextFile,
 
     // We don't currently download any supporting files, but if we need to
@@ -223,7 +244,7 @@ export const downloadMarkdown = async (
 }
 
 /**
- * Downlloads a file from a Github repo by it's SHA hash.
+ * Downloads a file from a Github repo by it's SHA hash.
  * @param repo the repo to download from
  * @param sha the hash of the file
  * @returns a promise that resolves to a Buffer containing the contents of the file
@@ -237,12 +258,58 @@ async function downloadFileBySha(repo: Repo, sha: string) {
       file_sha: sha,
     }
   )
-
   if (!Buffer.isEncoding(data.encoding)) {
     throw new UnknownEncoding(data.url, data.encoding)
   }
 
   return Buffer.from(data.content, data.encoding)
+}
+
+function getCommits(repo: Repo, path: string, perPage?: number) {
+  return octokit.rest.repos.listCommits({
+    owner: repo.owner,
+    repo: repo.name,
+    path,
+    per_page: perPage,
+  })
+}
+
+async function getAttributionData(repo: Repo, path: string) {
+  const { data: commits } = await getCommits(repo, path, 1)
+  if (typeof commits === "undefined") return undefined
+  const lastCommit = commits[0]
+  const lastCommitAuthor = commits[0]?.author
+  let otherContributorsCount = 0
+
+  // Show additional contributor count when commiter is not the same as the author
+  if (
+    ![WEB_FLOW_GITHUB_ACCOUNT_ID, lastCommit?.author?.id].includes(
+      lastCommit?.committer?.id
+    )
+  )
+    otherContributorsCount += 1
+
+  // Count any additional authors based on git message (https://docs.github.com/en/pull-requests/committing-changes-to-your-project/creating-and-editing-commits/creating-a-commit-with-multiple-authors)
+  const coAuthorCount = (
+    lastCommit?.commit.message.match(/Co-authored-by/gi) || []
+  ).length
+  otherContributorsCount += coAuthorCount
+
+  const attributionData: AttributionData = {
+    lastCommit: {
+      sha: lastCommit?.sha,
+      committerDate: lastCommit?.commit?.committer?.date,
+      htmlUrl: lastCommit?.html_url,
+      author: {
+        login: lastCommitAuthor?.login,
+        gravatar_url: lastCommitAuthor?.avatar_url,
+        html_url: lastCommitAuthor?.html_url,
+      },
+    },
+    otherContributorsCount: otherContributorsCount,
+  }
+
+  return attributionData
 }
 
 /**

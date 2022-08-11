@@ -2,9 +2,17 @@
 import { getMDXComponent } from "mdx-bundler/client"
 import React from "react"
 import type { LinkProps } from "react-router-dom"
+import calculateReadingTime from "reading-time"
 import type { GitHubTextFile, MdxPage, Timings } from "~/cms"
-import { cachified, compileMdx, downloadMarkdown, redisCache } from "~/cms"
 import {
+  AttributionData,
+  cachified,
+  compileMdx,
+  downloadMarkdown,
+  redisCache,
+} from "~/cms"
+import {
+  Attribution,
   Heading,
   HeadingProps,
   InputProps,
@@ -223,6 +231,36 @@ function GetMdxComponents(theme: Theme) {
   }
 }
 
+function InternalAttribution({
+  attributionData,
+  readTime,
+}: {
+  attributionData: AttributionData
+  readTime?: ReturnType<typeof calculateReadingTime>
+}) {
+  const updatedDate = attributionData?.lastCommit.committerDate
+  const lastUpdatedAuthorName = attributionData?.lastCommit.author.login
+  const lastCommitUrl = attributionData?.lastCommit.htmlUrl
+  if (
+    !attributionData ||
+    !updatedDate ||
+    !lastUpdatedAuthorName ||
+    !lastCommitUrl
+  )
+    return null
+
+  return (
+    <Attribution
+      updatedDate={updatedDate}
+      authorName={lastUpdatedAuthorName}
+      authorIcon={attributionData.lastCommit.author.gravatar_url}
+      otherAuthorsCount={attributionData.otherContributorsCount}
+      commitUrl={lastCommitUrl}
+      readMinutes={readTime?.minutes}
+    />
+  )
+}
+
 /**
  * This should be rendered within a useMemo
  * @param code the code to get the component from
@@ -236,12 +274,26 @@ function getMdxComponent(page: MdxPage, theme: Theme | null) {
     components,
     ...rest
   }: Parameters<typeof Component>["0"]) {
+    const { attributionData } = page.origin
     return (
       <div className="mdx-content prose dark:prose-invert">
-        <header>
-          <Heading type="h1" children={frontmatter.title} />
-          <p>{frontmatter.description}</p>
-        </header>
+        {!!frontmatter.title && (
+          <header>
+            <Heading type="h1" children={frontmatter.title} />
+          </header>
+        )}
+
+        {!!attributionData && (
+          <div className="not-prose">
+            <InternalAttribution
+              attributionData={attributionData}
+              readTime={page.readTime}
+            />
+          </div>
+        )}
+
+        <p>{frontmatter.description}</p>
+
         <Component
           /* @ts-expect-error: Does not like the link tage type definition above */
           components={GetMdxComponents(theme)}

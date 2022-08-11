@@ -84,7 +84,7 @@ export function InternalCodeblock({
         />
         <Code
           language={children.props.className}
-          code={codeString}
+          code={codeString.trim()}
           innerClasses="w-full"
           innerStyle={{
             minHeight: 60,

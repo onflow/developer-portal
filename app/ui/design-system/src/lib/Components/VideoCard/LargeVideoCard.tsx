@@ -54,7 +54,9 @@ export function LargeVideoCard({
             <img src={PlayCircle} alt={title} width={56} height={56} />
           </div>
           <div className="pointer-events-none absolute bottom-0 left-0 w-full p-6 text-white md:w-3/4">
-            <div className="text-h4 leading-8 line-clamp-2">{title}</div>
+            <div className="text-h4 leading-8 text-white line-clamp-2">
+              {title}
+            </div>
             <div className="items-align flex gap-2">
               <Time
                 className="stroke-white"

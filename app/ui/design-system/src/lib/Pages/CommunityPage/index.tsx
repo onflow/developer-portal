@@ -6,7 +6,7 @@ import { ButtonLink } from "../../Components/Button"
 // import FeaturedArticleSlider, {
 //   FeaturedArticleSliderProps,
 // } from "../../Components/FeaturedArticleSlider"
-import { communitySections } from "~/constants/landingPages/communitySections"
+import { getCommunitySections } from "~/constants/landingPages/communitySections"
 import { DISCOURSE_URL } from "../../../../../../constants"
 import CommunityImage from "../../../../images/page/community.png"
 import { CommunityMembersProps } from "../../Components/CommunityMembers"
@@ -52,7 +52,9 @@ export default function CommunityPage({
 }: CommunityPageProps) {
   return (
     <PageBackground gradient="community">
-      <LandingPageSecondaryNav sections={communitySections} />
+      <LandingPageSecondaryNav
+        sections={getCommunitySections(upcomingEvents.events.length > 0)}
+      />
       <PageSections>
         <PageSection className="pt-0 pb-0">
           <LandingHeader
@@ -65,9 +67,11 @@ export default function CommunityPage({
             imageSrc={CommunityImage}
           />
         </PageSection>
-        <PageSection sectionId="upcoming-events">
-          <UpcomingEvents {...upcomingEvents} headerLink="upcoming-events" />
-        </PageSection>
+        {upcomingEvents.events.length > 0 && (
+          <PageSection sectionId="upcoming-events">
+            <UpcomingEvents {...upcomingEvents} headerLink="upcoming-events" />
+          </PageSection>
+        )}
         {/* <PageSection sectionId="community-members">
           <div className="container mb-8">
             <div className="flex items-center justify-between">

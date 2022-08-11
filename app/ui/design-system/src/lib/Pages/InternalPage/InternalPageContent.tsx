@@ -65,7 +65,7 @@ export function InternalPageContent({
         })}
       >
         {toc && (
-          <div className="md:hidden">
+          <div className="mb-8 md:mb-0 md:hidden">
             <InternalTocDisclosure headings={toc} />
           </div>
         )}

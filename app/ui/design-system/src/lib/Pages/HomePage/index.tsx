@@ -64,19 +64,21 @@ const HomePage = ({
         <PageSection sectionId="flips">
           <Flips {...flips} headerLink="flips" />
         </PageSection>
-        <PageSection sectionId="upcoming-events">
-          <UpcomingEvents {...upcomingEvents} headerLink="upcoming-events" />
+        {upcomingEvents.events.length > 0 && (
+          <PageSection sectionId="upcoming-events">
+            <UpcomingEvents {...upcomingEvents} headerLink="upcoming-events" />
+          </PageSection>
+        )}
+        <PageSection sectionId="explore-more-content">
+          <ContentNavigationList
+            header={contentNavigationListItems.header}
+            contentNavigationItems={
+              contentNavigationListItems.contentNavigationItems
+            }
+            headerLink="explore-more-content"
+          />
         </PageSection>
       </PageSections>
-      <PageSection sectionId="explore-more-content">
-        <ContentNavigationList
-          header={contentNavigationListItems.header}
-          contentNavigationItems={
-            contentNavigationListItems.contentNavigationItems
-          }
-          headerLink="explore-more-content"
-        />
-      </PageSection>
       <SocialLinksSignup />
     </PageBackground>
   )
