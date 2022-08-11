@@ -36,7 +36,7 @@ type CachifiedOptions = {
 const defaultMaxAge = 1000 * 60 * 60 * 24 * 30
 
 const getCompiledKey = (source: DocCollectionSource, path: string) =>
-  `${source.owner}:${source.name}:${source.branch}:${path}:compiled`
+  `${source.owner}:${source.name}:${source.branch}:${source.rootPath}:${path}:compiled`
 
 const checkCompiledValue = (value: unknown) =>
   typeof value === "object" &&
@@ -99,7 +99,7 @@ export async function getMdxPage(
 }
 
 const getDownloadKey = (source: DocCollectionSource, fileOrDirPath: string) =>
-  `${source.owner}:${source.name}:${source.branch}:${fileOrDirPath}:downloaded`
+  `${source.owner}:${source.name}:${source.branch}:${source.rootPath}:${fileOrDirPath}:downloaded`
 
 async function downloadMarkdownCached(
   source: DocCollectionSource,
