@@ -16,13 +16,13 @@ export interface StatuspageApiResponse {
 }
 export interface SporkMetadata {
   accessNode: string
-  date: Date
+  date: string
   rootHeight: string
   rootParentId: string
   rootStateCommit: string
   gitCommit: string
-  branchOrTag: string
-  dockerTag: string
+  branchOrTag?: string
+  dockerTag?: string
 }
 
 export interface Article {
