@@ -39,7 +39,7 @@ import { getThemeSession } from "~/utils/theme.server"
 import styles from "./main.css"
 import AppLink from "./ui/design-system/src/lib/Components/AppLink"
 import { SearchProps } from "./ui/design-system/src/lib/Components/Search"
-import { getMetaTitle } from "./utils/seo"
+import { getMetaTitle, getSocialMetas } from "./utils/seo"
 
 import redirects from "./redirects"
 
@@ -62,9 +62,12 @@ export const links: LinksFunction = () => {
   ]
 }
 
-export const meta: MetaFunction = () => ({
+export const meta: MetaFunction = ({ data, location }) => ({
+  ...getSocialMetas({
+    title: getMetaTitle(),
+    url: location.toString(),
+  }),
   charset: "utf-8",
-  title: getMetaTitle(),
   viewport: "width=device-width,initial-scale=1",
 })
 
