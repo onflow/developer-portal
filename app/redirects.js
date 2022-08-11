@@ -5,12 +5,10 @@ export default {
     "/cadence/tutorial/05-non-fungible-tokens-1",
   "/fusd/": "/flow/fusd",
   "/status/": "https://status.onflow.org/",
-  "/cadence/language/": "/cadence/language",
   "/fcl/tutorials/flow-app-quickstart/":
     "/tools/fcl-js/tutorials/flow-app-quickstart",
   "/flow-token/backers/": "/flow/flow-token/backers",
   "/node-operation/upcoming-sporks/": "/nodes/node-operation/upcoming-sporks",
-  "/cadence/tutorial/02-hello-world/": "/cadence/tutorial/02-hello-world",
   "/flow-cli/install/": "/tools/flow-cli/install",
   "/flow-port/": "/nodes/flow-port",
   "/access-api/": "/flow/access-api/",
@@ -20,7 +18,6 @@ export default {
   "/flow-cli/": "/tools/flow-cli",
   "/cadence/tutorial/06-marketplace-compose/":
     "/cadence/tutorial/08-marketplace-compose",
-  "/cadence/language/values-and-types/": "/cadence/language/values-and-types",
   "/fusd/providers/": "/flow/fusd/providers",
   "/flow-token/": "/flow/flow-token",
   "/flow-cli/generate-keys/": "/tools/flow-cli/generate-keys",
@@ -39,13 +36,10 @@ export default {
   "/node-operation/node-setup/": "/nodes/node-operation/node-setup",
   "/flow-token/concepts/": "/flow/concepts/",
   "/fcl/reference/api/": "/tools/fcl-js/reference/api",
-  "/cadence/language/capability-based-access-control/":
-    "/cadence/language/capability-based-access-control",
   "/dapp-development/mainnet-deployment/":
     "/flow/dapp-development/mainnet-deployment",
   "/flow-port/staking-guide/": "/flow-port/staking-guide/",
   "/flow-go-sdk/": "/tools/flow-go-sdk",
-  "/cadence/design-patterns/": "/cadence/design-patterns",
   "/faq/developers/": "/flow/faq/developers",
   "/sdks/": "/tools",
   "/flow-js-sdk/flow-app-quickstart/":
@@ -62,20 +56,14 @@ export default {
   "/flow-cli/configuration/": "/tools/flow-cli/configuration",
   "/cadence/tutorial/07-resources-compose/":
     "/cadence/tutorial/10-resources-compose",
-  "/cadence/language/access-control/": "/cadence/language/access-control",
   "/concepts/storage/": "/flow/concepts/storage",
   "/concepts/transaction-signing/": "/flow/concepts/transaction-signing",
-  "/cadence/language/contracts/": "/cadence/language/contracts",
   "/core-contracts/non-fungible-token/":
     "/flow/core-contracts/non-fungible-token",
   "/flow-cli/send-transactions/": "/tools/flow-cli/send-transactions",
-  "/cadence/language/resources/": "/cadence/language/resources",
-  "/cadence/language/control-flow/": "/cadence/language/control-flow",
   "/node-operation/node-bootstrap/": "/nodes/node-operation/node-bootstrap",
   "/node-operation/": "/node-operation",
-  "/cadence/language/transactions/": "/cadence/language/transactions",
   "/http-api/": "/http-api",
-  "/cadence/language/crypto/": "/cadence/language/crypto",
   "/staking/rewards/": "/flow/staking/schedule",
   "/dapp-development/smart-contracts/":
     "/flow/dapp-development/smart-contracts",
@@ -86,33 +74,23 @@ export default {
   "/fcl/reference/transactions/": "/tools/fcl-js/reference/transactions",
   "/kitty-items/": "/learn/kitty-items",
   "/flow-cli/account-add-contract/": "/tools/flow-cli/account-add-contract",
-  "/cadence/language/operators/": "/cadence/language/operators",
-  "/cadence/language/composite-types/": "/cadence/language/composite-types",
-  "/cadence/language/events/": "/cadence/language/events",
   "/dapp-development/deployment/": "/flow/dapp-development/deployment",
   "/dapp-development/in-dapp-payments/":
     "/flow/dapp-development/in-dapp-payments",
-  "/cadence/language/syntax/": "/cadence/language/syntax",
-  "/cadence/json-cadence-spec/": "/cadence/json-cadence-spec",
   "/flow-cli/execute-scripts/": "/tools/flow-cli/execute-scripts",
   "/fcl/reference/proving-authentication/":
     "/tools/fcl-js/reference/proving-authentication",
-  "/cadence/language/functions/": "/cadence/language/functions",
   "/bounties/": "/community/bounties",
   "/core-contracts/fungible-token/": "/flow/core-contracts/fungible-token",
-  "/cadence/msg-sender/": "/cadence/msg-sender",
-  "/cadence/anti-patterns/": "/cadence/anti-patterns",
   "/staking/epoch-terminology/": "/flow/staking/epoch-terminology",
   "/dapp-development/flow-dapp-anatomy/":
     "/flow/dapp-development/flow-dapp-anatomy",
   "/concepts/variable-transaction-fees/":
     "/flow/concepts/variable-transaction-fees",
-  "/cadence/language/interfaces/": "/cadence/language/interfaces",
   "/flow-cli/initialize-configuration/":
     "/tools/flow-cli/initialize-configuration",
   "/flow-cli/get-accounts/": "/tools/flow-cli/get-accounts",
   "/fcl/packages/fcl/CHANGELOG/": "NA",
-  "/cadence/measuring-time/": "/cadence/measuring-time",
   "/intro/FAQ/": "/flow/faq",
   "/cadence/tutorial/08-voting/": "/cadence/tutorial/09-voting",
   "/flow-js-testing/": "/tools/flow-js-testing",
@@ -124,13 +102,8 @@ export default {
     "/flow/dapp-development/contract-testing",
   "/dapp-development/": "/flow/dapp-development",
   "/flow-cli/start-emulator/": "/tools/flow-cli/start-emulator",
-  "/cadence/language/contract-updatability/":
-    "/cadence/language/contract-updatability",
   "/fcl/reference/user-signatures/": "/tools/fcl-js/reference/user-signatures",
-  "/cadence/language/constants-and-variables/":
-    "/cadence/language/constants-and-variables",
   "/staking/unlocked-staking-guide/": "/nodes/staking",
-  "/cadence/language/run-time-types/": "/cadence/language/run-time-types",
   "/fcl/tutorials/flow-app-quickstart":
     "/tools/fcl-js/tutorials/flow-app-quickstart",
   "/flow-cli/get-transactions/": "/tools/flow-cli/get-transactions",
@@ -141,11 +114,8 @@ export default {
   "/fcl/reference/scripts/": "/tools/fcl-js/reference/scripts",
   "/dapp-development/user-accounts-and-wallets/":
     "/flow/dapp-development/user-accounts-and-wallets",
-  "/cadence/language/type-annotations/": "/cadence/language/type-annotations",
   "/flow-cli/account-update-contract/":
     "/tools/flow-cli/account-update-contract",
-  "/cadence/language/built-in-functions/":
-    "/cadence/language/built-in-functions",
   "/kitty-items/install/": "/learn/kitty-items/install",
   "/dapp-development/testnet-testing/":
     "/flow/dapp-development/testnet-testing",
@@ -159,8 +129,6 @@ export default {
   "/node-operation/full-observer-node/":
     "/nodes/node-operation/full-observer-node",
   "/flow-cli/project-contracts/": "/tools/flow-cli/project-contracts",
-  "/cadence/language/type-inference/": "/cadence/language/type-inference",
-  "/cadence/language/enumerations/": "/cadence/language/enumerations",
   "/core-contracts/locked-tokens/": "/flow/core-contracts/locked-tokens",
   "/node-operation/monitoring-nodes/": "/nodes/node-operation/monitoring-nodes",
   "/sdk-guidelines/": "/tools/fcl-js/reference/sdk-guidelines",
@@ -171,7 +139,6 @@ export default {
   "/fcl/api/": "/tools/fcl-js/reference/api",
   "/faq/backers/": "/flow/faq",
   "/node-operation/faq/": "/nodes/node-operation/faq",
-  "/cadence/language/restricted-types/": "/cadence/language/restricted-types",
   "/staking/stake-slashing/": "/flow/staking/stake-slashing",
   "/staking/locked-staking-guide/": "/nodes/staking",
   "/core-contracts/nft-metadata/": "/flow/core-contracts/nft-metadata",
@@ -180,15 +147,10 @@ export default {
   "/flow-cli/build-transactions/": "/tools/flow-cli/build-transactions",
   "/flow-js-sdk/": "/tools/fcl-js",
   "/flow-cli/get-status/": "/tools/flow-cli/get-status",
-  "/cadence/language/environment-information/":
-    "/cadence/language/environment-information",
   "/cadence/contract-upgrades/": "/cadence/contract-upgrades",
   "/staking/epoch-preparation/": "/flow/staking/epoch-preparation",
   "/flow-js-sdk/packages/fcl/": "/tools/fcl-js",
-  "/cadence/language/type-safety/": "/cadence/language/type-safety",
-  "/cadence/language/scope/": "/cadence/language/scope",
   "/flow-cli/security/": "/tools/flow-cli/security",
-  "/cadence/tutorial/03-resources/": "/cadence/tutorial/03-resources",
   "/node-operation/machine-existing-operator/":
     "/nodes/node-operation/machine-existing-operator",
   "/docs/getting-started-1/": "/getting-started",
@@ -198,17 +160,11 @@ export default {
   "/core-contracts/flow-fees/": "/flow/core-contracts/flow-fees",
   "/access-api": "/http-api",
   "/kitty-items/start/": "/learn/kitty-items/start",
-  "/cadence/migration-guide/": "/cadence/migration-guide",
   "/intro/playground-manual/": "/flow/intro/playground-manual",
   "/flow-cli/get-collections/": "/tools/flow-cli/get-collections",
   "/nft-marketplace/minting-nfts/": "/flow/nft-marketplace/minting-nfts",
-  "/cadence/tutorial/06-fungible-tokens/":
-    "/cadence/tutorial/06-fungible-tokens",
-  "/cadence/language/imports/": "/cadence/language/imports",
-  "/cadence/tutorial/04-capabilities/": "/cadence/tutorial/04-capabilities",
   "/access-api-rate-limits/": "/nodes/access-api-rate-limits",
   "/flow-js-testing/execute-scripts/": "/tools/flow-js-testing/execute-scripts",
-  "/cadence/language/core-events/": "/cadence/language/core-events",
   "/flow-js-testing/emulator/": "/tools/flow-js-testing/emulator",
   "/dapp-deployment/contract-testing/":
     "/flow/dapp-development/contract-testing",
@@ -219,10 +175,6 @@ export default {
   "/flow-go-sdk/generating-keys/": "/tools/flow-go-sdk",
   "/node-operation/db-encryption-existing-operator/":
     "/nodes/node-operation/db-encryption-existing-operator",
-  "/cadence/tutorial/05-non-fungible-tokens-1/":
-    "/cadence/tutorial/05-non-fungible-tokens-1",
-  "/cadence/tutorial/05-non-fungible-tokens-2/":
-    "/cadence/tutorial/05-non-fungible-tokens-2",
   "/flow-js-testing/contracts/": "/tools/flow-js-testing/contracts",
   "/flow-js-testing/accounts/": "/tools/flow-js-testing/accounts",
   "/flow-go-sdk/querying-events/": "/tools/flow-go-sdk",
@@ -230,7 +182,6 @@ export default {
   "/staking/staking-options/": "/flow/staking/staking-options",
   "/flow-go-sdk/signing-transactions/": "/flow/concepts/transaction-signing",
   "/flow-cli/decode-keys/": "/tools/flow-cli/decode-keys",
-  "/cadence/language/type-hierarchy/": "/cadence/language/type-hierarchy",
   "/flow-go-sdk/transfer-flow/": "/tools/flow-go-sdk",
   "/intro/glossary/": "/flow/intro/glossary",
   "/flow-cli/complex-transactions/": "/tools/flow-cli/complex-transactions",
@@ -244,13 +195,8 @@ export default {
   "/docs/": "/",
   "/core-contracts/staking-collection/":
     "/flow/core-contracts/staking-collection",
-  "/cadence/syntax-highlighting/": "/cadence/language/syntax",
-  "/cadence/tutorial/08-marketplace-compose/":
-    "/cadence/tutorial/08-marketplace-compose",
   "/flow-cli/account-staking-info/": "/tools/flow-cli/account-staking-info",
   "/kitty-items/update/": "/learn/kitty-items/update",
-  "/cadence/tutorial/07-marketplace-setup/":
-    "/cadence/tutorial/07-marketplace-setup",
   "/docs/cadence/": "/cadence",
   "/devtools/emulator/": "/tools/emulator",
   "/flow-js-sdk/packages/fcl/CHANGELOG/": "/tools/fcl-js",
@@ -268,7 +214,6 @@ export default {
   "/flow-cli/manage-configuration/": "/tools/flow-cli/manage-configuration",
   "/flow-go-sdk/querying-blocks/": "/tools/flow-go-sdk",
   "/flow-js-testing/flow-token/": "/tools/flow-js-testing/flow-token",
-  "/cadence/language/glossary/": "/cadence/language/glossary",
   "/flow-js-testing/init": "/tools/flow-js-testing/init",
   "/fcl/tutorials": "/tools/fcl-js/tutorials/flow-app-quickstart",
   "/flow-token": "/flow/flow-token",
@@ -278,7 +223,6 @@ export default {
   "/fcl/packages/types/CHANGELOG": "/tools/fcl-js",
   "/fcl": "/tools/fcl-js",
   "/token/staking/": "/flow/staking",
-  "/cadence/tutorial": "/cadence/tutorial",
   "/staking/qc-dkg/": "/flow/staking/qc-dkg",
   "/fcl/packages/sdk/readme/": "/tools/fcl-js",
   "/flow-js-testing/api/": "/tools/flow-js-testing/api",
@@ -300,15 +244,11 @@ export default {
     "/flow/dapp-development/mainnet-account-setup",
   "/flip-fest-winners/": "",
   "/node-operation/node-migration/": "",
-  "/cadence/tutorial/10-resources-compose/":
-    "/cadence/tutorial/10-resources-compose",
   "/node-operation/upcoming-sporks": "",
-  "/cadence/tutorial/": "/cadence/tutorial",
   "/docs/visual-studio-code-extension/": "",
   "/core-contracts": "/flow/core-contracts",
   "/flow-cli/signature-verify/": "/tools/flow-cli/signature-verify",
   "/docs/visual-studio-code-extension": "",
-  "/cadence/tutorial/09-voting/": "/cadence/tutorial/09-voting",
   "/docs/json-cadence-spec.md": "",
   "/docs/quick-set-up-for-marketplace/": "",
   "/flow-cli": "/tools/flow-cli",
@@ -328,7 +268,6 @@ export default {
   "/docs/cli/": "",
   "/docs/setting-up-a-node/": "",
   "/flow-go-sdk/querying-accounts/": "",
-  "/cadence/language": "/cadence/language",
   "/docs/fungible-tokens/": "",
   "/docs/emulator": "",
   "/kitty-items/next-steps/": "/learn/kitty-items/next-steps",
@@ -342,7 +281,6 @@ export default {
   "/install/": "",
   "/staking/unlocked-delegation-guide/": "",
   "/flow-go-sdk": "/tools/flow-go-sdk",
-  "/cadence/contract-updatability/": "",
   "/intro/flow-token/": "",
   "/concepts/service-account/": "",
   "/docs/cadence": "/cadence",
