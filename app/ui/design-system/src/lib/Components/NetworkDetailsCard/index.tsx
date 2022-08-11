@@ -17,7 +17,6 @@ const NetworkDetailsCard = ({
   version,
   lastSporkDate,
   nextSporkDate,
-  rssFeed,
 }: NetworkDetailsCardProps) => {
   return (
     <div className="container">
@@ -62,12 +61,10 @@ const NetworkDetailsCard = ({
           </p>
           {/* @ts-ignore */}
           <InternalContentLink
-            href={rssFeed}
+            href="https://status.onflow.org"
             className="flex items-center text-sm hover:opacity-75"
           >
             <RssIcon />
-            <span className="mx-2 mt-1">RSS Feed</span>
-            <ChevronRightIcon />
           </InternalContentLink>
         </div>
       </div>
