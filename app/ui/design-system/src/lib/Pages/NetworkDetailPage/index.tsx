@@ -114,9 +114,6 @@ const NetworkDetailPage = ({
             </HeaderWithLink>
             <div className="mb-4 divide-y dark:divide-primary-gray-400">
               {Object.keys(pastSporks).map((network, index) => {
-                console.log(network)
-                const sporks = pastSporks[network]
-
                 return (
                   <div className="divided-item-hover" key={index}>
                     <SporksCard
