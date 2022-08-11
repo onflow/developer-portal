@@ -1,4 +1,4 @@
-import { Octokit } from "@octokit/rest"
+import { octokit } from "~/cms/github.server"
 import { cachified } from "../cache.server"
 import { redisCache } from "../redis.server"
 import { SporksCardProps } from "~/ui/design-system/src/lib/Components/SporksCard"
@@ -14,10 +14,6 @@ export const fetchSporks = async () => {
 }
 
 export const fetchFreshSporks = async () => {
-  const octokit = new Octokit({
-    auth: process.env.BOT_GITHUB_TOKEN,
-  })
-
   const getSporks = async () => {
     const sporks: any = await octokit
       .request("GET /repos/{owner}/{repo}/contents/{path}", {
