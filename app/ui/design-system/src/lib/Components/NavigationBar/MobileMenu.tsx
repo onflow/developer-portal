@@ -21,7 +21,7 @@ export function MobileMenu({ menuItems }: MobileMenuProps) {
         <li>
           <MobileMenuBackButton
             onClick={() => setSelectedIndex([-1, -1])}
-            className="text-lg text-gray-400 dark:text-gray-100"
+            className="text-lg dark:text-gray-100"
           >
             {selectedMenuItem.tabs[selectedIndex[1]]?.title}
           </MobileMenuBackButton>
@@ -43,7 +43,7 @@ export function MobileMenu({ menuItems }: MobileMenuProps) {
         <li>
           <MobileMenuBackButton
             onClick={() => setSelectedIndex([-1, -1])}
-            className="text-lg text-gray-400 dark:text-gray-100"
+            className="text-lg dark:text-gray-100"
           >
             {selectedMenuItem.title}
           </MobileMenuBackButton>
