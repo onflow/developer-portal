@@ -37,7 +37,6 @@ export default {
   "/fcl/reference/api/": "/tools/fcl-js/reference/api",
   "/dapp-development/mainnet-deployment/":
     "/flow/dapp-development/mainnet-deployment",
-  "/flow-port/staking-guide/": "/flow-port/staking-guide/",
   "/flow-go-sdk/": "/tools/flow-go-sdk",
   "/faq/developers/": "/flow/faq/developers",
   "/sdks/": "/tools",
@@ -378,7 +377,6 @@ export default {
     "/tools/flow-cli/project-contracts",
   "/node-operation/node-roles/node-bootstrap/": "",
   "/build-transactions/": "",
-  "/cadence/tutorial/02-hello-world": "/cadence/tutorial/02-hello-world",
   "/cadence/interfaces/": "",
   "/cadence/resources/": "",
   "/flow-cli/start-emulator/initialize-configuration/": "",
@@ -489,7 +487,6 @@ export default {
   "/flow-js-sdk/flow-app-quickstart": "",
   "/cadence/capability-based-access-control/": "",
   "/fcl/packages/types": "",
-  "/404": "/404",
   "/kitty-items/upgrade/": "",
   "/nft-marketplace/fcl/reference/authentication/": "",
   "/concepts/accounts-and-keys": "/learn/concepts/accounts-and-keys",
@@ -515,7 +512,6 @@ export default {
   "/node-operation/node-roles": "",
   "/node-operation/node-setup": "",
   "/staking/staking-options": "/flow/staking/staking-options",
-  "/cadence/json-cadence-spec": "/cadence/json-cadence-spec",
   "/concepts/accessing-testnet": "",
   "/concepts/transaction-signing": "/learn/concepts/transaction-signing",
   "/core-contracts/fusd/": "",
@@ -545,10 +541,6 @@ export default {
   "/http/an/": "",
   "/kitty-items/get-started/": "",
   "/kitty-items/run-locally/": "",
-  "/cadence/contract-upgrades": "/cadence/contract-upgrades",
-  "/cadence/language/environment-information":
-    "/cadence/language/environment-information",
-  "/cadence/language/events": "/cadence/language/events",
   "/cadence/tutorial/06-marketplace-compose":
     "/cadence/tutorial/08-marketplace-compose",
   "/cadence/type-annotations/": "",
@@ -567,8 +559,6 @@ export default {
   "/sending-transactions/": "",
   "/token/earn/": "",
   "/cadence/cadence/language/contracts/": "",
-  "/cadence/language/built-in-functions":
-    "/cadence/language/built-in-functions",
   "/cadence/language/index/": "",
   "/cadence/language/type-hierarchy": "",
   "/core-contracts/staking-collection":
@@ -626,10 +616,6 @@ export default {
     "",
   "/cadence/crypto/": "",
   "/cadence/functions/": "",
-  "/cadence/language/core-events": "/cadence/language/core-events",
-  "/cadence/language/enumerations": "/cadence/language/enumerations",
-  "/cadence/language/interfaces": "/cadence/language/interfaces",
-  "/cadence/language/restricted-types": "/cadence/language/restricted-types",
   "/cadence/tutorial/non-fungible-tokens/":
     "/cadence/tutorial/05-non-fungible-tokens-1",
   "/community-updates/sep-16-2020": "/community",
@@ -693,8 +679,6 @@ export default {
   "/cadence/built-in-functions/": "",
   "/cadence/dragons/": "",
   "/cadence/json-cadence-spe/": "/cadence/json-cadence-spec",
-  "/cadence/language/type-safety": "/cadence/language/type-safety",
-  "/cadence/measuring-time": "/cadence/measuring-time",
   "/cadence/ñanguage/": "",
   "/cadence/restricted-types/": "",
   "/cadence/tut/": "",
