@@ -35,6 +35,7 @@ export type Card = Link & {
 export type Menu = {
   cards?: Card[]
   sections: Section[]
+  title?: string
 }
 
 export type Tab = Menu & {

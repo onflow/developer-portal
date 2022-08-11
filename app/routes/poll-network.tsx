@@ -16,9 +16,14 @@ export async function loader(): Promise<LoaderData> {
   }
 }
 
+const LS_KEY = "flow_network_data"
+
 export default function () {
   const networkData = useLoaderData<LoaderData>()
-  const [status, setStatus] = useState(networkData)
+  const cachedStatus = localStorage.getItem(LS_KEY)
+  const [status, setStatus] = useState(
+    cachedStatus ? JSON.parse(cachedStatus) : networkData
+  )
 
   // Whenever the loader gives us new data(for example, after a form submission), update our `data` state.
   useEffect(() => setStatus(networkData), [networkData])
@@ -40,28 +45,47 @@ export default function () {
   useEffect(() => {
     if (fetcher.data) {
       setStatus(fetcher.data)
+      localStorage.setItem(LS_KEY, JSON.stringify(status))
     }
   }, [fetcher.data])
 
+  const renderStatus = (status: string) => {
+    const statusText =
+      status === "operational" ? "Healthy" : "Under Maintenance"
+    return (
+      <span
+        className={
+          status === "operational" ? "text-green-success" : "text-primary-red"
+        }
+      >
+        {statusText}
+      </span>
+    )
+  }
+
   return (
-    <>
-      <div className="w-full">
-        {!status.statusResponses && <span>Loading...</span>}
-        {status.statusResponses &&
-          status.statusResponses.map((s) => (
-            <li id="user-content-fn-1" key={s.id} className="flex items-center">
+    <div className="w-full">
+      {!status.statusResponses && <span>Loading...</span>}
+      {status.statusResponses &&
+        status.statusResponses.map((s: StatuspageApiResponse) => (
+          <li
+            id="user-content-fn-1"
+            key={s.id}
+            className="my-3 flex items-center justify-between rounded-md border border-primary-gray-100 px-4 py-2 dark:border-primary-gray-400"
+          >
+            <div className="flex items-center">
               <div
-                className="mb-1 mr-2 inline-block h-4 w-4 rounded-full"
+                className="mr-2 inline-block h-4 w-4 rounded-full"
                 style={{
                   backgroundColor:
                     s.status === "operational" ? "#05CE7A" : "#F67D65",
                 }}
               ></div>
-              {s.name} (
-              {s.status === "operational" ? "Healthy" : "Under Maintenance"})
-            </li>
-          ))}
-      </div>
-    </>
+              {s.name}
+            </div>
+            {renderStatus(s.status)}
+          </li>
+        ))}
+    </div>
   )
 }

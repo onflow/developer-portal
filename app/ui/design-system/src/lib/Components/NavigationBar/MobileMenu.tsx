@@ -39,7 +39,7 @@ export function MobileMenu({ menuItems }: MobileMenuProps) {
 
   if (selectedMenuItem && "cards" in selectedMenuItem) {
     return (
-      <ul className="w-full divide-y divide-primary-gray-100 dark:divide-primary-gray-400">
+      <ul className="w-full divide-y divide-primary-gray-100 border dark:divide-primary-gray-400">
         <li>
           <MobileMenuBackButton
             onClick={() => setSelectedIndex([-1, -1])}
