@@ -87,11 +87,11 @@ export const governanceSection: Section = {
   subSections: [
     {
       title: "Upcoming Sporks",
-      href: "/nodes/node-operation/upcoming-sporks",
+      href: "/network/flow-mainnet",
     },
     {
       title: "Past Sporks",
-      href: "/nodes/node-operation/past-sporks",
+      href: "/network/flow-mainnet",
     },
     {
       title: "Testnet Explorer",
