@@ -7,6 +7,7 @@ import {
 } from "~/ui/design-system/src"
 import { ContentNavigationListProps } from "~/ui/design-system/src/lib/Components/ContentNavigationList"
 import PlaygroundIcon from "../../ui/design-system/images/misc/playground-default.png"
+import FCLIcon from "../../ui/design-system/images/tools/tool-fcl.svg"
 
 const homepageStartProjectData: LinkCard2ColumnProps = {
   buttonText: "Get started",
@@ -18,16 +19,16 @@ const homepageStartProjectData: LinkCard2ColumnProps = {
   tags: ["onflow"],
   items: [
     {
-      title: "Kitty Items",
+      title: "Flow Quickstart",
       description:
-        "A full stack example NFT storefront and marketplace built with the latest standards and tooling on Flow. Get it up and running in a few minutes.",
-      href: "/learn/kitty-items/",
-      icon: "https://kitty-items-flow-testnet-prod.herokuapp.com/images/kitty-items-logo.svg",
+        "Build a front-end and run your first transactions on the Flow blockchain within minutes.",
+      href: "/tools/fcl-js/tutorials/flow-app-quickstart/",
+      icon: FCLIcon,
     },
     {
-      title: "Mint NFTs on the Playground with Cadence",
+      title: "Learn Smart Contracts",
       description:
-        "A series of tutorials that explain how to build your first NFT (Non-Fungible Token).",
+        "A series of tutorials that explain how to build your first smart contracts with our programming language, Cadence.",
       icon: PlaygroundIcon,
       links: [
         {
