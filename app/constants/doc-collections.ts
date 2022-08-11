@@ -1583,11 +1583,11 @@ export const docCollections: Record<string, DocCollection> = {
               },
               {
                 title: "Past Spork Info",
-                href: "node-operation/past-sporks",
+                href: "/network/flow-mainnet",
               },
               {
                 title: "Upcoming Sporks",
-                href: "node-operation/upcoming-sporks",
+                href: "/network/flow-mainnet",
               },
             ],
           },
