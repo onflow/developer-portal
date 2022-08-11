@@ -42,6 +42,7 @@ import { SearchProps } from "./ui/design-system/src/lib/Components/Search"
 import { getMetaTitle, getSocialMetas } from "./utils/seo"
 
 import redirects from "./redirects"
+import { useElementScrollRestoration } from "./utils/useElementScrollRestoration"
 
 export { getMetaTitle } from "./utils/seo"
 
@@ -137,6 +138,9 @@ function TopLoader() {
 }
 
 function App() {
+  const scrollContainerRef = useRef<HTMLDivElement>(null)
+  useElementScrollRestoration(scrollContainerRef)
+
   const data = useLoaderData<LoaderData>()
 
   const [theme, setTheme] = useTheme()
@@ -198,7 +202,7 @@ function App() {
           onDarkModeToggle={toggleTheme}
           algolia={data.algolia}
         />
-        <div className="flex-auto overflow-auto">
+        <div className="flex-auto overflow-auto" ref={scrollContainerRef}>
           <TopLoader />
           <Outlet />
           <Footer />
