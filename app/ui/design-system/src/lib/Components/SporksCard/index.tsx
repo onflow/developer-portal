@@ -1,5 +1,5 @@
 import clsx from "clsx"
-import { format, formatDistanceToNow, parseISO } from "date-fns"
+import { format, parseISO } from "date-fns"
 import { useState } from "react"
 import { ReactComponent as CopyIcon } from "../../../../images/action/copy"
 import { ReactComponent as ChevronDownIcon } from "../../../../images/arrows/chevron-down"
