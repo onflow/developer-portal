@@ -71,9 +71,10 @@ export const loader: LoaderFunction = async ({ params, request }) => {
 
 export const meta: MetaFunction = ({ data, location }) => {
   const typedData = data as LoaderData
-  const title = typedData.page.frontmatter?.title
-  const description = typedData.page.frontmatter?.description || ""
   if (typedData && typedData.page) {
+    const title = typedData.page.frontmatter?.title
+    const description = typedData.page.frontmatter?.description || ""
+
     return getSocialMetas({
       title,
       description: description || "Flow Developer Documentation",
