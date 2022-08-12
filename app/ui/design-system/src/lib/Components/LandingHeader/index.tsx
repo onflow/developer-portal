@@ -27,8 +27,8 @@ export function LandingHeader({
   title,
 }: LandingHeaderProps) {
   return (
-    <div className="container mx-auto flex flex-col justify-items-stretch py-16 md:py-32">
-      <h1 className="text-h1 mb-14 max-w-full overflow-hidden text-ellipsis !text-4xl md:mt-12 md:!text-7xl md:!leading-tight">
+    <div className="container mx-auto flex flex-col justify-items-stretch py-16">
+      <h1 className="text-h1 mt-4 mb-10 max-w-full overflow-hidden text-ellipsis !text-4xl md:!text-6xl md:!leading-tight">
         {title}
       </h1>
       <div className="flex flex-row items-stretch justify-between overflow-hidden rounded-lg bg-primary-gray-100/30">
