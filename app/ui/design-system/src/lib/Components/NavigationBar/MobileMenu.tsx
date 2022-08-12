@@ -22,7 +22,7 @@ export function MobileMenu({ menuItems }: MobileMenuProps) {
 
   if (selectedMenuItem && "tabs" in selectedMenuItem) {
     return (
-      <ul className="w-full divide-y divide-primary-gray-100 dark:divide-primary-gray-400">
+      <ul className="w-full pt-2">
         <li>
           <MobileMenuBackButton
             onClick={() =>
@@ -48,7 +48,7 @@ export function MobileMenu({ menuItems }: MobileMenuProps) {
 
   if (selectedMenuItem && "cards" in selectedMenuItem) {
     return (
-      <ul className="w-full divide-y divide-primary-gray-100 border dark:divide-primary-gray-400">
+      <ul className="w-full border pt-2">
         <li>
           <MobileMenuBackButton
             onClick={() =>

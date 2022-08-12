@@ -1,8 +1,8 @@
+import NetworkStatus from "../../../../../../routes/poll-network"
+import { ReactComponent as ChevronRightIcon } from "../../../../images/arrows/chevron-right"
 import { MenuItemLink } from "./MenuItemLink"
 import { MobileMenuButton } from "./MobileMenuButton"
 import { MenuItem } from "./types"
-import { ReactComponent as ChevronRightIcon } from "../../../../images/arrows/chevron-right"
-import NetworkStatus from "../../../../../../routes/poll-network"
 
 export type MobileMenuTopLevelProps = {
   menuItems: MenuItem[]
@@ -14,20 +14,22 @@ export function MobileMenuTopLevel({
   onItemSelected,
 }: MobileMenuTopLevelProps) {
   return (
-    <div>
+    <div className="flex h-full flex-col">
       <ul>
         {menuItems.map((menuItem, pageIndex) => (
-          <li key={pageIndex} className="py-2">
+          <li key={pageIndex} className="mb-5 text-lg">
             <div>
-              <span className="px-4 text-primary-gray-400 dark:text-primary-gray-200">
+              <div className="my-3 px-4 text-primary-gray-300/80 dark:text-primary-gray-200">
                 {menuItem.title}
-              </span>
+              </div>
               {menuItem.tabs &&
                 menuItem.tabs.map(
                   ({ title }: { title: string }, tabIndex: number) => (
                     <MobileMenuButton
-                      className="flex w-full justify-between whitespace-nowrap text-left text-lg"
-                      onClick={() => onItemSelected([pageIndex, tabIndex])}
+                      className="flex w-full justify-between whitespace-nowrap text-left"
+                      onClick={() =>
+                        onItemSelected({ pageIndex, sectionIndex: tabIndex })
+                      }
                       key={title}
                     >
                       {title} <ChevronRightIcon />
@@ -38,7 +40,7 @@ export function MobileMenuTopLevel({
           </li>
         ))}
         <li
-          className="hover:cursor px-4 py-2"
+          className="hover:cursor px-4"
           role="button"
           onClick={() =>
             onItemSelected([
@@ -50,11 +52,13 @@ export function MobileMenuTopLevel({
           <NetworkStatus />
         </li>
       </ul>
-      <MenuItemLink
-        href="https://flow.com"
-        title="flow.com"
-        className="fixed bottom-0 right-0 px-4 py-3"
-      />
+      <div className="mt-auto flex pt-2">
+        <MenuItemLink
+          href="https://flow.com"
+          title="flow.com"
+          className="ml-auto px-4 py-3"
+        />
+      </div>
     </div>
   )
 }
