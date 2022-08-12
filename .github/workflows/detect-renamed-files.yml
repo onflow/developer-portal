@@ -13,8 +13,9 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v3
-      - run: echo "$(git -P show ${{ github.sha }} --diff-filter=DR)"
-      - run: echo "$(git status)"
+      - run: echo "$(git -P show ${{ github.sha }})"
+      - run: echo "$(git -P log)"
+      - run: echo "$(git -P status)"
       - name: Run and process diff
         # grep exit code is 0 if a match found, for github actions 0 is success
         run: |
