@@ -1,0 +1,24 @@
+name: 🚀 Deploy
+
+on:
+  push:
+    branches:
+      - main
+      - production
+      - gpavlov/detect-renamed-files
+    paths:
+      - '**.md'
+
+jobs:
+  detect:
+    name: Detect renamed files (might break docs site)
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v3
+      - name: Run and process diff
+        # grep exit code is 0 if a match found
+        run: |
+          ! git -P show ${{ github.sha }} --diff-filter=DR | grep 'deleted\|rename'
+     
+
+  

@@ -55,7 +55,7 @@ function PopoverContent({
           className="fixed bottom-0 left-0 right-0 z-40 origin-top-right"
           style={{ top: NAV_HEIGHT }}
         >
-          <div className="relative z-20 max-h-full overflow-auto shadow-xl">
+          <div className="relative z-20 max-h-full overflow-hidden shadow-xl">
             {"tabs" in contentProps && <DesktopMenuTabbed {...contentProps} />}
             {"sections" in contentProps && <MenuContent {...contentProps} />}
           </div>
