@@ -13,12 +13,13 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v3
-      - run: git -P show ${{ github.sha }} --diff-filter=DR
+      - run: echo "$(git -P show ${{ github.sha }} --diff-filter=DR)"
       - name: Run and process diff
-        # grep exit code is 0 if a match found
+        # grep exit code is 0 if a match found, for github actions 0 is success
         run: |
           echo Test
           ! git -P show ${{ github.sha }} --diff-filter=DR | grep 'deleted\|rename'
+
       
      
 
