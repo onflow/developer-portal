@@ -9,10 +9,13 @@ export function MobileMenuBackButton({
   className,
   ...props
 }: MobileMenuBackButtonProps) {
-  const classes = clsx("hover:opacity-75", className)
+  const classes = clsx(
+    "hover:opacity-75 text-xl text-primary-gray-300 dark:text-primary-gray-200",
+    className
+  )
   return (
     <MobileMenuButton className={classes} {...props}>
-      <span className="-ml-2 scale-50">
+      <span className="-ml-2 mr-2 scale-75">
         <ArrowLeftIcon />
       </span>{" "}
       {children}
