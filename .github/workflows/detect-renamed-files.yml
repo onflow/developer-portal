@@ -17,7 +17,7 @@ jobs:
       - name: Run and process diff
         # grep exit code is 0 if a match found
         run: |
-          echo '::echo::on'
+          echo Test
           ! git -P show ${{ github.sha }} --diff-filter=DR | grep 'deleted\|rename'
       
      
