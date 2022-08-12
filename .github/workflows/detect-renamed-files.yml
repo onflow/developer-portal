@@ -4,8 +4,8 @@ on:
   push:
     branches:
       - gpavlov/detect-renamed-files
-    paths:
-      - '**.md'
+    # paths:
+    #   - '**.md'
 
 jobs:
   detect:
