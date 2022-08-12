@@ -97,7 +97,7 @@ export default {
   "/dapp-development/flow-dapp-anatomy/":
     "/flow/dapp-development/flow-dapp-anatomy",
   "/concepts/variable-transaction-fees/":
-    "/tools/flow-cli/initialize-configuration",
+    "/learn/concepts/variable-transaction-fees",
   "/flow-cli/get-accounts/": "/tools/flow-cli/get-accounts",
   "/fcl/packages/fcl/CHANGELOG/": "NA",
   "/intro/FAQ/": "/flow/faq",
