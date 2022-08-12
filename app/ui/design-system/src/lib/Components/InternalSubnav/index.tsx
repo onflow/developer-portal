@@ -26,7 +26,7 @@ export function InternalSubnav({
   return (
     <div
       className={clsx(
-        "flex flex-wrap items-center justify-between border-b border-b-primary-gray-100 bg-white bg-gradient-to-b from-primary-gray-50 via-transparent to-transparent px-6 dark:border-b-primary-gray-300 dark:bg-black dark:from-transparent",
+        "via-[rgba(255, 0, 0, 0)] to-[rgba(255, 0, 0, 0)] flex flex-wrap items-center justify-between border-b border-b-primary-gray-100 bg-white bg-gradient-to-b from-primary-gray-50 px-6 dark:border-b-primary-gray-300 dark:bg-black dark:from-transparent",
         className
       )}
     >
