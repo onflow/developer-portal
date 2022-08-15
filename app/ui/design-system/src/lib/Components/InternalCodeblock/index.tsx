@@ -65,7 +65,7 @@ export function InternalCodeblock({
   const [open, setOpen] = useState(false)
   const openDialog = () => setOpen(true)
   const closeDialog = () => setOpen(false)
-  const codeString = children?.props?.children
+  const codeString = children?.props?.children?.trim()
   const onCopy = () => navigator.clipboard.writeText(codeString)
 
   return (
@@ -84,10 +84,10 @@ export function InternalCodeblock({
         />
         <Code
           language={children.props.className}
-          code={codeString.trim()}
+          code={codeString}
           innerClasses="w-full"
           innerStyle={{
-            minHeight: 60,
+            minHeight: 40,
             maxHeight: autoHeight
               ? `calc(100vh - ${NAV_HEIGHT + 220}px)`
               : DEFAULT_MAX_HEIGHT,

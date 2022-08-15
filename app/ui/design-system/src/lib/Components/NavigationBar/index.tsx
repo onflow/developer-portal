@@ -36,7 +36,7 @@ export function NavigationBar({
 
   return (
     <nav
-      style={{ height: NAV_HEIGHT }}
+      style={{ height: NAV_HEIGHT, minHeight: NAV_HEIGHT }}
       className="z-40 flex items-center bg-white p-4 text-primary-gray-400 dark:bg-black dark:text-white lg:px-8"
     >
       <div className="flex items-center">
@@ -92,7 +92,7 @@ export function NavigationBar({
         leaveTo="opacity-0 scale-95"
       >
         <div
-          className="fixed left-0 right-0 bottom-0 z-40 origin-top-right overflow-auto bg-white dark:bg-black md:hidden"
+          className="mobile-nav-container fixed left-0 right-0 bottom-0 z-40 origin-top-right overflow-auto border border-t-primary-gray-100 bg-white pt-4 dark:border-t-primary-gray-300 dark:bg-black"
           style={{ top: NAV_HEIGHT }}
         >
           <MobileMenu menuItems={menuItems} />

@@ -4,7 +4,7 @@ export function getSocialMetas({
   url,
   title = DEFAULT_SITE_TITLE,
   description = DEFAULT_SITE_DESCRIPTION,
-  image = "",
+  image = "https://flow-og-image.vercel.app/**Explore the Flow Developer Portal**.png?theme=light&md=1&fontSize=100px&images=https%3A%2F%2Fstorage.googleapis.com%2Fflow-resources%2Fdocumentation-assets%2Fflow-docs.png&widths=auto&heights=350",
   keywords = "",
 }: {
   image?: string
@@ -26,8 +26,8 @@ export function getSocialMetas({
     "twitter:creator": "@flow_blockchain",
     "twitter:site": "@flow_blockchain",
     "twitter:title": title,
-    "twitter:description": description,
     "twitter:image": image,
+    "twitter:description": description,
     "twitter:alt": title,
   }
 }

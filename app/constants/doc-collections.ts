@@ -1017,7 +1017,7 @@ export const docCollections: Record<string, DocCollection> = {
               tags: ["tutorial", "dapp"],
               description:
                 "A tutorial that will allow you to start building with web3 on the Flow blockchain and FCL",
-              href: "/cadence/language/",
+              href: "/tools/fcl-js/tutorials/flow-app-quickstart",
             },
             {
               title: "Wallet Discovery",
@@ -1590,11 +1590,11 @@ export const docCollections: Record<string, DocCollection> = {
               },
               {
                 title: "Past Spork Info",
-                href: "node-operation/past-sporks",
+                href: "/network/flow-mainnet",
               },
               {
                 title: "Upcoming Sporks",
-                href: "node-operation/upcoming-sporks",
+                href: "/network/flow-mainnet",
               },
             ],
           },

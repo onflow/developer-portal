@@ -78,14 +78,21 @@ export const loader: LoaderFunction = async ({ params, request }) => {
 export const meta: MetaFunction = ({ data, location }) => {
   const typedData = data as LoaderData
   if (typedData && typedData.page) {
+    const title = typedData.page.frontmatter?.title
+    const description = typedData.page.frontmatter?.description || ""
+
     return getSocialMetas({
-      title: typedData.page.frontmatter?.title,
-      description: typedData.page.frontmatter?.description,
+      title,
+      description: description || "Flow Developer Documentation",
       url: location.toString(),
+      image: `https://flow-og-image.vercel.app/**${title}**%20${description}.png?theme=light&md=1&fontSize=100px&images=https%3A%2F%2Fstorage.googleapis.com%2Fflow-resources%2Fdocumentation-assets%2Fflow-docs.png&widths=auto&heights=350"`,
     })
   }
 
-  return {}
+  return getSocialMetas({
+    title: "Flow Developer Portal",
+    url: location.toString(),
+  })
 }
 
 export default () => {
@@ -98,8 +105,6 @@ export default () => {
         sidebarItems={sidebar}
         editPageUrl={page.origin.html_url || undefined}
         toc={page.toc}
-        readTime={page.readTime}
-        attributionData={page.origin.attributionData}
       >
         <MDXContent />
       </InternalPageContent>

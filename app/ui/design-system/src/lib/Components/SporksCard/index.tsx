@@ -1,5 +1,5 @@
 import clsx from "clsx"
-import { format, formatDistanceToNow } from "date-fns"
+import { format, parseISO } from "date-fns"
 import { useState } from "react"
 import { ReactComponent as CopyIcon } from "../../../../images/action/copy"
 import { ReactComponent as ChevronDownIcon } from "../../../../images/arrows/chevron-down"
@@ -8,7 +8,7 @@ import { SporkMetadata } from "../../interfaces"
 
 export type SporksCardProps = {
   heading: string
-  timestamp: Date
+  timestamp: string
   sporkMetadata: SporkMetadata
   upcoming?: boolean
 }
@@ -39,8 +39,6 @@ const Spork = ({ heading, timestamp, sporkMetadata }: SporksCardProps) => {
     rootParentId,
     rootStateCommit,
     gitCommit,
-    branchOrTag,
-    dockerTag,
   } = sporkMetadata
   const [isExpanded, setIsExpanded] = useState(false)
   const cardStyles = clsx(
@@ -63,7 +61,7 @@ const Spork = ({ heading, timestamp, sporkMetadata }: SporksCardProps) => {
         <div className="flex items-center">
           <span className="pr-4 text-2xl font-bold">{heading}</span>
           <span className="border-l border-primary-gray-100 pl-4 text-primary-gray-300 dark:border-primary-gray-400">
-            {format(timestamp, "MMMM d")}
+            {format(parseISO(timestamp), "MMMM d")}
           </span>
         </div>
         <div className="dark:text-primary-gray-200">
@@ -73,13 +71,11 @@ const Spork = ({ heading, timestamp, sporkMetadata }: SporksCardProps) => {
       {isExpanded && (
         <div className="flex-col pb-4">
           <CardItem label="Access Node" data={accessNode} />
-          <CardItem label="Date" data={format(date, "LLL d, yyyy")} />
+          <CardItem label="Date" data={format(parseISO(date), "LLL d, yyyy")} />
           <CardItem label="Root Height" data={rootHeight} />
           <CardItem label="Root Parent ID" data={rootParentId} />
           <CardItem label="Root State Commit" data={rootStateCommit} />
           <CardItem label="Git Commit" data={gitCommit} />
-          <CardItem label="Branch / Tag" data={branchOrTag} />
-          <CardItem label="Docker Tag" data={dockerTag} />
         </div>
       )}
     </div>
@@ -96,8 +92,7 @@ const UpcomingSpork = ({
         <span className="text-2xl font-bold md:pr-4">{heading}</span>
         <hr className="my-4 inline-block w-6 md:hidden" />
         <span className="border-primary-gray-100 dark:border-primary-gray-400 md:border-l md:pl-4">
-          Coming in {formatDistanceToNow(timestamp)} (
-          {format(timestamp, "MMMM d")} 8-9AM PST)
+          TBD
         </span>
       </div>
     </div>
