@@ -69,7 +69,8 @@ export type DocManifest = {
 }
 
 export async function findDocManifest(
-  path: string
+  path: string,
+  request: Request
 ): Promise<DocManifest | undefined> {
   const docCollection = findDocCollection(path)
   if (!docCollection) return
@@ -118,7 +119,7 @@ export async function findDocManifest(
 
   const [remoteManifest, error] = await cachified({
     cache: redisCache,
-    key: `manifest:${docCollection.source.owner}:${docCollection.source.name}`,
+    key: `manifest:${docCollection.source.owner}:${docCollection.source.name}:${docCollection.source.branch}`,
     getFreshValue: async (): Promise<
       [DocCollectionManifest] | [null, Error]
     > => {
@@ -131,6 +132,7 @@ export async function findDocManifest(
       }
     },
     maxAge: 1000 * 60 * 60 * 24 * 30,
+    request,
   })
 
   if (error) {

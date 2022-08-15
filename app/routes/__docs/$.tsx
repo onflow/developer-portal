@@ -38,7 +38,7 @@ export const loader: LoaderFunction = async ({ params, request }) => {
   }
 
   const collection = findDocCollection(path)
-  const manifest = await findDocManifest(path)
+  const manifest = await findDocManifest(path, request)
 
   if (!manifest || !collection) {
     throw json({ status: "noPage" }, { status: 404 })

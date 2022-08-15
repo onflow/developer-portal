@@ -1619,7 +1619,7 @@ export const docCollections: Record<string, DocCollection> = {
       sidebars: {
         "": [
           {
-            title: "Testing",
+            title: "Local!",
             items: [
               {
                 title: "Introduction to Cadence",
@@ -1726,6 +1726,30 @@ export const docCollections: Record<string, DocCollection> = {
               { href: "09-voting" },
               { href: "10-resources-compose" },
             ],
+          },
+        ],
+      },
+    },
+  },
+
+  "mock-developer-doc-syntax-error": {
+    source: {
+      owner: "onflow",
+      name: "mock-developer-doc",
+      branch: "json-manifest-syntax-error",
+      rootPath: "docs/",
+    },
+    manifest: {
+      displayName: "Mock Developer Docks Invalid JSON",
+      redirects: {
+        language: "language/syntax",
+        tutorial: "tutorial/01-first-steps",
+      },
+      sidebars: {
+        "": [
+          {
+            title: "Fallback content in doc-collections",
+            items: [],
           },
         ],
       },
