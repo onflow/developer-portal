@@ -1118,6 +1118,10 @@ export const docCollections: Record<string, DocCollection> = {
                 title: "Installation",
                 href: "install",
               },
+              {
+                title: "Data Collection",
+                href: "data-collection",
+              },
             ],
           },
           {
@@ -1281,6 +1285,10 @@ export const docCollections: Record<string, DocCollection> = {
               {
                 title: "Snapshot Save",
                 href: "snapshot-save",
+              },
+              {
+                title: "Tools",
+                href: "tools",
               },
             ],
           },
