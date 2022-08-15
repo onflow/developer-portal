@@ -6,11 +6,9 @@ import { MdxPage } from "../../../cms"
 import { NotFoundError } from "../../../cms/errors/not-found-error"
 import { getMdxPage, useMdxComponent } from "../../../cms/utils/mdx"
 import {
-  DocCollectionInfo,
   findDocCollection,
   findDocManifest,
 } from "../../../constants/collections.server"
-import { SIDEBAR_DROPDOWN_MENU } from "../../../constants/sidebar-dropdown-menu"
 import AppLink from "../../../ui/design-system/src/lib/Components/AppLink"
 import { ErrorPage } from "../../../ui/design-system/src/lib/Components/ErrorPage"
 import { InternalUrlContext } from "../../../ui/design-system/src/lib/Components/InternalUrlContext"
