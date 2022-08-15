@@ -1,13 +1,10 @@
-import { fileTypeFromBuffer } from "file-type"
+import Ajv from "ajv"
 import { posix } from "node:path"
 import invariant from "tiny-invariant"
-import { Manifest } from "vite"
 import { cachified, downloadFileByPath, redisCache } from "~/cms"
+import manifestSchema from "~/constants/doc-collection-manifest-schema.json"
 import { InternalLandingHeaderProps } from "~/ui/design-system/src/lib/Components/InternalLandingHeader"
-import {
-  SidebarItem,
-  SidebarItemList,
-} from "~/ui/design-system/src/lib/Components/InternalSidebar"
+import { SidebarItemList } from "~/ui/design-system/src/lib/Components/InternalSidebar"
 import { findMostSpecificPath } from "../cms/utils/find-most-specific-path"
 import { stripSlahes } from "../cms/utils/strip-slashes"
 import {
@@ -15,8 +12,6 @@ import {
   docCollections,
   DocCollectionSource,
 } from "./doc-collections"
-import Ajv from "ajv"
-import manifestSchema from "~/constants/doc-collection-manifest-schema.json"
 
 const JSON_MANIFEST_FILENAME = "flow.json"
 
