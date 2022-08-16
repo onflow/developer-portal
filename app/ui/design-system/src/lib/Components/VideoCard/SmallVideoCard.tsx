@@ -4,6 +4,8 @@ import { ReactComponent as ExternalLinkIcon } from "../../../../images/content/e
 import AppLink from "../AppLink"
 import Tag from "../Tag"
 import { LargeVideoCardProps } from "./LargeVideoCard"
+import { useExtractYoutubeVideoId } from "./useExtractYoutubeVideoId"
+import { VideoCardError } from "./VideoCardError"
 
 export interface SmallVideoCardProps extends LargeVideoCardProps {
   tags: string[]
@@ -14,14 +16,19 @@ export function SmallVideoCard({
   length,
   tags,
   link,
+  errorBehavior = "render-comment",
 }: SmallVideoCardProps) {
+  const extractResult = useExtractYoutubeVideoId(link)
   const minutes = String(Math.floor(length / 60)).padStart(2, "0")
   const seconds = length % 60
 
-  const url = new URL(link)
-
-  if (url.hostname !== "www.youtube.com") {
-    throw new Error("VideoCard only accepts youtube embeds")
+  if ("error" in extractResult) {
+    return (
+      <VideoCardError
+        behavior={errorBehavior}
+        error={`${extractResult.error}. SmallVideoCard expects a YouTube embed URL containing a video ID`}
+      />
+    )
   }
 
   return (
