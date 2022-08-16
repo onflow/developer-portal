@@ -4,10 +4,10 @@ import {
   // NetworkDiscordCard,
   SocialLinksSignup,
 } from "../../Components"
-// import { AnnouncementCardProps } from "../../Components/AnnouncementCard"
+import { AnnouncementCardProps } from "../../Components/AnnouncementCard"
 import { FeaturedArticle } from "../../Components/FeaturedArticleSlider"
 // import { HeaderWithLink } from "../../Components/HeaderWithLink"
-// import { NetworkDiscordCardProps } from "../../Components/NetworkDiscordCard"
+import { NetworkDiscordCardProps } from "../../Components/NetworkDiscordCard"
 import { Article, StatuspageApiResponse } from "../../interfaces"
 import PageBackground from "../shared/PageBackground"
 import PageSection from "../shared/PageSection"
@@ -15,17 +15,15 @@ import PageSections from "../shared/PageSections"
 
 export type NetworkPageProps = {
   networkStatuses: StatuspageApiResponse[]
-  // announcementCards: AnnouncementCardProps[]
-  // discordNetworkCards: NetworkDiscordCardProps[]
+  announcementCards?: AnnouncementCardProps[]
+  discordNetworkCards?: NetworkDiscordCardProps[]
   featuredArticle: Article
 }
 
 const NetworkPage = ({
   networkStatuses,
   featuredArticle,
-}: // discordNetworkCards,
-// announcementCards,
-NetworkPageProps) => (
+}: NetworkPageProps) => (
   <PageBackground gradient="network">
     <PageSections divided={false}>
       <PageSection>
@@ -41,8 +39,8 @@ NetworkPageProps) => (
                       status === "operational" ? "Healthy" : "Under Maintenance"
                     }
                     version="33"
-                    lastSporkDate="April, 2022"
-                    nextSporkDate="April, 2022"
+                    lastSporkDate="June, 2022"
+                    nextSporkDate="TBD"
                     link={`/network/${name.toLowerCase().replace(" ", "-")}`}
                   />
                 </div>

@@ -71,11 +71,10 @@ const NetworkDetailPage = ({
                 ? "Healthy"
                 : "Under Maintenance"
             }
-            statusLink="https://google.com"
+            statusLink="https://status.onflow.org"
             version="33"
-            lastSporkDate="April, 2022"
-            nextSporkDate="April, 2022"
-            rssFeed="/link"
+            lastSporkDate="June, 2022"
+            nextSporkDate="TBD"
           />
         </PageSection>
         <PageSection sectionId="upcoming-spork">

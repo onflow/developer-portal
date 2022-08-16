@@ -16,8 +16,6 @@ export const meta: MetaFunction = () => ({
 })
 
 export const loader: LoaderFunction = async () => {
-  // temporarilyRedirectToComingSoon()
-
   const networkStatuses = await fetchNetworkStatus()
   // const { announcementCards, discordNetworkCards } =
   //   await fetchDiscordAnnouncements()
