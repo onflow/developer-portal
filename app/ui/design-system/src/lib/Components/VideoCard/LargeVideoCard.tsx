@@ -3,12 +3,15 @@ import { useState } from "react"
 
 import PlayCircle from "../../../../images/action/play-circle.svg"
 import { ReactComponent as Time } from "../../../../images/content/date"
+import { useExtractYoutubeVideoId } from "./useExtractYoutubeVideoId"
+import { VideoCardError, VideoCardErrorProps } from "./VideoCardError"
 
 export interface LargeVideoCardProps {
   link: string // NOTE: link should be in the format that youtubes site uses ie: https://www.youtube.com/watch?v=...
   title: string
   length: number // seconds
   className?: string
+  errorBehavior?: VideoCardErrorProps["behavior"]
 }
 
 export function LargeVideoCard({
@@ -16,18 +19,24 @@ export function LargeVideoCard({
   title,
   length,
   className,
+  errorBehavior = "render-comment",
 }: LargeVideoCardProps) {
+  const extractResult = useExtractYoutubeVideoId(link)
   const [showOverlay, setShowOverlay] = useState(true)
 
   const minutes = String(Math.floor(length / 60)).padStart(2, "0")
   const seconds = length % 60
 
-  const url = new URL(link)
-  const videoId = url.searchParams.get("v")
-
-  if (url.hostname !== "www.youtube.com") {
-    throw new Error("VideoCard only accepts youtube embeds")
+  if ("error" in extractResult) {
+    return (
+      <VideoCardError
+        behavior={errorBehavior}
+        error={`${extractResult.error}. LargeVideoCard expects a YouTube embed URL containing a video ID`}
+      />
+    )
   }
+
+  const { videoId } = extractResult
 
   return (
     <div
