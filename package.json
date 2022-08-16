@@ -29,7 +29,7 @@
     "lint": "eslint --ext .js,.jsx,.ts,.tsx --max-warnings 0 app",
     "prepare": "husky install",
     "jsonschema": "typescript-json-schema tsconfig.json RepoSchema -o app/constants/repos/repo-schema.json",
-    "dev:node": "cross-env NODE_ENV=development nodemon ./server.js --watch ./server.js"
+    "dev:node": "dotenv -e .env cross-env NODE_ENV=development nodemon ./server.js --watch ./server.js"
   },
   "lint-staged": {
     "*.{js,jsx,ts,tsx}": "eslint --fix",
