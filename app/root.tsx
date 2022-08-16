@@ -66,7 +66,7 @@ export const links: LinksFunction = () => {
 export const meta: MetaFunction = ({ data, location }) => ({
   ...getSocialMetas({
     title: getMetaTitle(),
-    url: location.toString(),
+    url: data.url,
   }),
   charset: "utf-8",
   viewport: "width=device-width,initial-scale=1",
@@ -77,6 +77,7 @@ export type LoaderData = {
   gaTrackingId: string | undefined
   ENV: PUBLIC_ENV
   algolia?: SearchProps
+  url: string
 }
 
 export const loader: LoaderFunction = async ({ request }) => {
@@ -111,6 +112,7 @@ export const loader: LoaderFunction = async ({ request }) => {
     ),
     ENV: getPublicEnv(),
     algolia,
+    url: request.url,
   })
 }
 
