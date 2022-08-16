@@ -13,7 +13,7 @@ import {
   DocCollectionSource,
 } from "./doc-collections"
 
-const JSON_MANIFEST_FILENAME = "flow.json"
+const JSON_MANIFEST_FILENAME = "flow-docs.json"
 
 export const collectionPaths = Object.keys(docCollections)
 
@@ -23,8 +23,6 @@ export type DocCollectionInfo = {
   contentPath: string
   staticManifest: DocCollectionManifest
 }
-
-// TODO clean this up a bit! i.e. reduce duplicated code
 
 export const findDocCollection = (
   path: string
@@ -66,11 +64,19 @@ export type DocManifest = {
   sidebar: SidebarItemList | undefined
   sidebarRootPath: string | undefined
   redirect: string | undefined
+
+  /**
+   * any errors with the remote repos flow-doc.json, including not found, json
+   * syntax errors, schema validation errors, etc
+   */
+  remoteRepoError: Error | undefined
 }
 
 export async function findDocManifest(
   path: string,
-  request: Request
+  options?: {
+    request?: Request
+  }
 ): Promise<DocManifest | undefined> {
   const docCollection = findDocCollection(path)
   if (!docCollection) return
@@ -95,7 +101,7 @@ export async function findDocManifest(
     try {
       data = JSON.parse(text)
     } catch (er) {
-      throw new Error(`invalid `)
+      throw new Error(`invalid json`)
     }
 
     const ajv = new Ajv()
@@ -132,7 +138,7 @@ export async function findDocManifest(
       }
     },
     maxAge: 1000 * 60 * 60 * 24 * 30,
-    request,
+    request: options?.request,
   })
 
   if (error) {
@@ -174,5 +180,6 @@ export async function findDocManifest(
 
     sidebarRootPath,
     redirect: resolvePath(redirectPath),
+    remoteRepoError: error,
   }
 }

@@ -30,7 +30,7 @@ export const loader: LoaderFunction = async ({ params, request }) => {
   }
 
   const data = findDocCollection(path)
-  const manifest = await findDocManifest(path, request)
+  const manifest = await findDocManifest(path, { request })
 
   if (!data || !manifest) {
     throw json({ status: "noRepo" }, { status: 404 })

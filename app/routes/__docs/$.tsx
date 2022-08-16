@@ -1,6 +1,7 @@
 import { json, LoaderFunction, redirect } from "@remix-run/node"
 import { Outlet, useLoaderData } from "@remix-run/react"
 import { join } from "path"
+import invariant from "tiny-invariant"
 import { stripTrailingSlahes } from "../../cms/utils/strip-slashes"
 import {
   DocCollectionInfo,
@@ -38,22 +39,23 @@ export const loader: LoaderFunction = async ({ params, request }) => {
   }
 
   const collection = findDocCollection(path)
-  const manifest = await findDocManifest(path, request)
-
-  if (!manifest || !collection) {
+  if (!collection) {
     throw json({ status: "noPage" }, { status: 404 })
   }
 
-  if (manifest.redirect) {
-    return redirect(manifest.redirect)
+  const docManifest = await findDocManifest(path, { request })
+  invariant(docManifest, `expected manifest`)
+
+  if (docManifest.redirect) {
+    return redirect(docManifest.redirect)
   }
 
   return json({
-    sidebar: manifest.sidebar,
-    sidebarRootPath: manifest.sidebarRootPath,
-    displayName: manifest.displayName,
+    sidebar: docManifest.sidebar,
+    sidebarRootPath: docManifest.sidebarRootPath,
+    displayName: docManifest.displayName,
     collectionRootPath: collection.collectionRootPath,
-    header: manifest.header,
+    header: docManifest.header,
     sidebarDropdownMenu: SIDEBAR_DROPDOWN_MENU,
   })
 }
