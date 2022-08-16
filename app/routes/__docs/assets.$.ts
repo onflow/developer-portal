@@ -51,7 +51,7 @@ export const loader: LoaderFunction = async ({ params }) => {
       status: 200,
       headers: {
         "Content-Type": mimeType,
-        "Cache-Control": "max-age=3153600",
+        "Cache-Control": "max-age=600",
       },
     })
   } catch (error: any) {
