@@ -71,7 +71,7 @@ export function InternalToc({ headings }: InternalTocProps) {
 
   return (
     <div>
-      <div className="mb-6 px-5 text-2xs uppercase text-gray-500">
+      <div className="mb-6 px-5 text-xs uppercase text-gray-500">
         On this page
       </div>
       <div className="border-l-1 border-l border-l-gray-100 bg-opacity-80 dark:border-l-gray-800">
@@ -100,20 +100,20 @@ export function InternalTocDisclosure({
   headings,
 }: Omit<InternalTocProps, "currentHash" | "updateHash">) {
   return (
-    <div className="rounded-md bg-primary-gray-50 p-2 dark:bg-primary-gray-400">
+    <div className="b-1 border-primary-gray-200">
       <Disclosure>
         {({ open }) => (
           <>
-            <Disclosure.Button className="flex w-full justify-between">
+            <Disclosure.Button className="flex w-full items-center justify-between border-y border-primary-gray-100 pt-4 pb-3 text-sm uppercase text-primary-gray-300 dark:border-primary-gray-300 dark:text-primary-gray-200">
               On this page
               <span>{open ? <ChevronUpIcon /> : <ChevronDownIcon />}</span>
             </Disclosure.Button>
-            <Disclosure.Panel className="mt-2 flex flex-col border-t border-t-gray-400 pt-1">
+            <Disclosure.Panel className="mt-2 flex flex-col p-2">
               {headings.map(({ title, hash }, index) => (
                 <AppLink
                   key={index}
                   to={hash}
-                  className="my-1 text-primary-gray-400 hover:opacity-75 dark:text-gray-200"
+                  className="my-2 text-primary-gray-400 hover:opacity-75 dark:text-gray-200"
                 >
                   {title}
                 </AppLink>

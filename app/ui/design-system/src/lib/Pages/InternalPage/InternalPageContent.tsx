@@ -60,7 +60,7 @@ export function InternalPageContent({
         </div>
       )}
       <div
-        className={clsx("w-full flex-none p-8 pl-16 pb-80", {
+        className={clsx("w-full flex-none p-8 pb-80", {
           "md:w-3/4": !!toc,
         })}
       >
