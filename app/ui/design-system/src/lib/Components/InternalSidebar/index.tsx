@@ -40,9 +40,9 @@ const InternalSidebarLinkItem = ({ item }: { item: SidebarLinkItem }) => {
       prefetch="intent"
       className={({ isActive }) =>
         clsx(
-          "mb-1 block rounded-md px-2 py-1.5 text-sm text-primary-gray-400 hover:opacity-75 dark:text-gray-200",
+          "mb-1 block rounded-md py-1.5 text-primary-gray-400 hover:opacity-75 dark:text-gray-200",
           {
-            "bg-gray-200 bg-opacity-50 text-primary-blue dark:bg-gray-700 dark:text-gray-300":
+            "font-semibold text-primary-blue dark:text-blue-hover-dark":
               isActive,
           }
         )
@@ -63,7 +63,7 @@ const InternalSidebarItem = ({ item }: { item: SidebarItem }) => (
       </div>
     )}
     {item.items?.map((subItem, index) => (
-      <div className="px-4" key={index}>
+      <div key={index}>
         <InternalSidebarItem item={subItem} />
       </div>
     ))}
