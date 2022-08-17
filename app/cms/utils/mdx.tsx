@@ -292,7 +292,7 @@ function getMdxComponent(page: MdxPage, theme: Theme | null) {
           </div>
         )}
 
-        <p>{frontmatter.description}</p>
+        {!!frontmatter.description && <p>{frontmatter.description}</p>}
 
         <Component
           /* @ts-expect-error: Does not like the link tage type definition above */
