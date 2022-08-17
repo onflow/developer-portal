@@ -1,4 +1,4 @@
-version: "3.8"
+version: "3.9"
 
 networks:
   next-docs-net:
@@ -71,8 +71,9 @@ services:
     depends_on:
       - app-css
       - app-svg
-  # storybook:
-  #   <<: *app-defaults
-  #   command: ["yarn", "run", "start-storybook", "-p", "6006", "--quiet", "--no-open", "--disable-telemetry"]
-  #   ports:
-  #     - "6006:6006"
+  storybook:
+    <<: *app-defaults
+    profiles: ["storybook"]
+    command: ["yarn", "run", "start-storybook", "-p", "6006", "--quiet", "--no-open", "--disable-telemetry"]
+    ports:
+      - "6006:6006"
