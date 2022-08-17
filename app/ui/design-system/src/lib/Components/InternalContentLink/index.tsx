@@ -29,7 +29,7 @@ export function InternalContentLink({
     return (
       <AppLink
         to={href}
-        className={clsx(defaultClasses, {
+        className={clsx(defaultClasses, className, {
           "inline stroke-primary-blue": !isFootnote,
           "ml-0.5": isFootnote,
         })}

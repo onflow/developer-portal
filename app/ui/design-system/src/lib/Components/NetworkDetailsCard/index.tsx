@@ -1,4 +1,3 @@
-import { ReactComponent as ChevronRightIcon } from "../../../../images/arrows/chevron-right"
 import { ReactComponent as RssIcon } from "../../../../images/content/rss"
 import { InternalContentLink } from "../InternalContentLink"
 
@@ -8,7 +7,7 @@ export type NetworkDetailsCardProps = {
   version: string
   lastSporkDate: string
   nextSporkDate: string
-  rssFeed: string
+  rssFeed?: string
 }
 
 const NetworkDetailsCard = ({
@@ -17,7 +16,6 @@ const NetworkDetailsCard = ({
   version,
   lastSporkDate,
   nextSporkDate,
-  rssFeed,
 }: NetworkDetailsCardProps) => {
   return (
     <div className="container">
@@ -62,12 +60,10 @@ const NetworkDetailsCard = ({
           </p>
           {/* @ts-ignore */}
           <InternalContentLink
-            href={rssFeed}
-            className="flex items-center text-sm hover:opacity-75"
+            href="https://status.onflow.org"
+            className="flex items-center hover:opacity-75"
           >
             <RssIcon />
-            <span className="mx-2 mt-1">RSS Feed</span>
-            <ChevronRightIcon />
           </InternalContentLink>
         </div>
       </div>
