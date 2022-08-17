@@ -137,7 +137,7 @@ export const fetchFreshFlips = async () => {
 
     const issuesFromRepos = repositories.map(async (repositoryName) => {
       const issueResponse: IssueResponse[] = await octokit
-        .request("GET /repos/{owner}/{repo}/issues?state=all&labels={label}", {
+        .request("GET /repos/{owner}/{repo}/issues?labels={label}", {
           owner: "onflow",
           repo: repositoryName,
           label: "good first issue",
