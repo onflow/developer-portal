@@ -62,11 +62,9 @@ const NetworkDetailsCard = ({
           {/* @ts-ignore */}
           <InternalContentLink
             href="https://status.onflow.org"
-            className="flex items-center text-sm hover:opacity-75"
+            className="flex items-center hover:opacity-75"
           >
             <RssIcon />
-            <span className="mx-2 mt-1">RSS Feed</span>
-            <ChevronRightIcon />
           </InternalContentLink>
         </div>
       </div>
