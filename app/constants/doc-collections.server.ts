@@ -739,20 +739,20 @@ export const docCollections: Record<string, DocCollection> = {
                 href: "install",
               },
               {
-                title: "Modify",
-                href: "modify",
-              },
-              {
-                title: "Next Steps",
-                href: "next-steps",
-              },
-              {
                 title: "Start",
                 href: "start",
               },
               {
+                title: "Modify",
+                href: "modify",
+              },
+              {
                 title: "Update",
                 href: "update",
+              },
+              {
+                title: "Next Steps",
+                href: "next-steps",
               },
             ],
           },
@@ -1129,6 +1129,10 @@ export const docCollections: Record<string, DocCollection> = {
                 title: "Installation",
                 href: "install",
               },
+              {
+                title: "Data Collection",
+                href: "data-collection",
+              },
             ],
           },
           {
@@ -1292,6 +1296,10 @@ export const docCollections: Record<string, DocCollection> = {
               {
                 title: "Snapshot Save",
                 href: "snapshot-save",
+              },
+              {
+                title: "Tools",
+                href: "tools",
               },
             ],
           },

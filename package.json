@@ -46,7 +46,7 @@
     ]
   },
   "resolutions": {
-    "redoc/**/colorette": "2.0.19"
+    "redoc/**/colorette": "^2.0.19"
   },
   "dependencies": {
     "@algolia/autocomplete-core": "^1.6.3",
@@ -69,7 +69,7 @@
     "bcryptjs": "^2.4.3",
     "change-case": "^4.1.2",
     "clsx": "^1.1.1",
-    "colorette": "2.0.19",
+    "colorette": "^2.0.19",
     "date-fns": "^2.28.0",
     "discord.js": "^12",
     "file-type": "^17.1.6",

@@ -42,9 +42,12 @@ export function InternalPageContent({
 
   return (
     <main
-      className={clsx("flex max-w-full shrink-0 grow flex-row-reverse", {
-        "md:max-w-[calc(100%_-_300px)]": sidebarItems,
-      })}
+      className={clsx(
+        "flex max-w-full shrink-0 grow flex-row-reverse justify-center",
+        {
+          "md:max-w-[calc(100%_-_300px)]": sidebarItems,
+        }
+      )}
     >
       {toc && (
         <div className="hidden flex-none md:flex md:w-1/4">
@@ -60,8 +63,8 @@ export function InternalPageContent({
         </div>
       )}
       <div
-        className={clsx("w-full flex-none p-8 pl-16 pb-80", {
-          "md:w-3/4": !!toc,
+        className={clsx("w-full flex-none p-8 pb-80", {
+          "md:w-3/4 md:max-w-[730px]": !!toc,
         })}
       >
         {toc && (

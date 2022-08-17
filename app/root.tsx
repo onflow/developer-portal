@@ -66,7 +66,7 @@ export const links: LinksFunction = () => {
 export const meta: MetaFunction = ({ data, location }) => ({
   ...getSocialMetas({
     title: getMetaTitle(),
-    url: location.toString(),
+    url: data.url,
   }),
   charset: "utf-8",
   viewport: "width=device-width,initial-scale=1",
@@ -77,6 +77,7 @@ export type LoaderData = {
   gaTrackingId: string | undefined
   ENV: PUBLIC_ENV
   algolia?: SearchProps
+  url: string
 }
 
 export const loader: LoaderFunction = async ({ request }) => {
@@ -111,6 +112,7 @@ export const loader: LoaderFunction = async ({ request }) => {
     ),
     ENV: getPublicEnv(),
     algolia,
+    url: request.url,
   })
 }
 
@@ -177,16 +179,7 @@ function App() {
             <script
               async
               id="gtag-init"
-              dangerouslySetInnerHTML={{
-                __html: `
-                window.dataLayer = window.dataLayer || [];
-                function gtag(){dataLayer.push(arguments);}
-                gtag('js', new Date());
-                gtag('config', '${data.gaTrackingId}', {
-                  page_path: window.location.pathname,
-                });
-              `,
-              }}
+              src={`gtag-init?gaTrackingId=${data.gaTrackingId}`}
             />
             <script
               dangerouslySetInnerHTML={{
@@ -209,7 +202,7 @@ function App() {
         </div>
         <ScrollRestoration />
         <Scripts />
-        <LiveReload />
+        {process.env.NODE_ENV === "development" && <LiveReload />}
       </body>
     </html>
   )

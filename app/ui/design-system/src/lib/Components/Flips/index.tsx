@@ -17,6 +17,10 @@ export default function Flips({
   headerLink = "",
 }: FlipsProps) {
   const [selectedTab, setSelectedTab] = useState(0)
+  const flips: [FlipCellProps[], FlipCellProps[]] = [
+    openFlips,
+    goodPlacesToStartFlips,
+  ]
 
   return (
     <div className="container">
@@ -39,17 +43,23 @@ export default function Flips({
           onTabChange={setSelectedTab}
         />
         <div className="py-6">
-          <FlipCellHeader />
-          <div className="flex flex-col gap-4">
-            {(selectedTab === 0 ? openFlips : goodPlacesToStartFlips)
-              .sort((a, b) => (a.numComments > b.numComments ? -1 : 1))
-              .slice(0, 5)
-              .map((flip, index) => (
-                <div key={index}>
-                  <FlipCell {...flip} />
-                </div>
-              ))}
-          </div>
+          {flips[selectedTab]!.length > 0 ? (
+            <>
+              <FlipCellHeader />
+              <div className="flex flex-col gap-4">
+                {(selectedTab === 0 ? openFlips : goodPlacesToStartFlips)
+                  .sort((a, b) => (a.numComments > b.numComments ? -1 : 1))
+                  .slice(0, 5)
+                  .map((flip, index) => (
+                    <div key={index}>
+                      <FlipCell {...flip} />
+                    </div>
+                  ))}
+              </div>
+            </>
+          ) : (
+            <p>There are currently no open FLIPs. Check back later!</p>
+          )}
         </div>
       </div>
     </div>

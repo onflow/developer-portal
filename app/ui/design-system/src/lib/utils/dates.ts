@@ -1,6 +1,6 @@
 import { format, parseISO } from "date-fns"
 
-export function dateYYMMDD(str: string) {
+export function dateYYYYMMDD(str: string) {
   const parsedDate = parseISO(str)
-  return format(parsedDate, "yy/M/d")
+  return format(parsedDate, "yyyy/M/d")
 }

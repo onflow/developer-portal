@@ -80,7 +80,7 @@ export const governanceSection: Section = {
   links: [
     {
       title: "View all network info",
-      href: "https://status.onflow.org/",
+      href: "/network",
     },
   ],
   title: "Network Information",

@@ -21,8 +21,12 @@ You'll need to acquire the project's `.env` file before continuing.
 2. `yarn build`
 3. `docker compose up`
 
+   -or, to also bring up Storybook-
+
+   `docker compose --profile storybook up`
+
 Main application: http://localhost:3000/
-Storybook: http://localhost:6006/
+Storybook: http://localhost:6006/ (if started using `--profile storybook`)
 
 #### Useful docker commands and tips
 

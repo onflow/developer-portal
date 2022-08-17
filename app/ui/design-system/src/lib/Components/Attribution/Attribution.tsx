@@ -1,5 +1,5 @@
 import clsx from "clsx"
-import { dateYYMMDD } from "../../utils/dates"
+import { dateYYYYMMDD } from "../../utils/dates"
 import AppLink from "../AppLink"
 import CalendarIcon from "./CalendarIcon"
 import ClockIcon from "./ClockIcon"
@@ -38,13 +38,13 @@ export function Attribution({
 }: AttributionProps) {
   const authorUrl = `https://www.github.com/${authorName}`
   return (
-    <div className="border-b-1 flex flex-col flex-wrap gap-2 border-b border-b-primary-gray-200 py-3 text-xs text-primary-gray-300 dark:border-b-primary-gray-300 dark:text-primary-gray-100 sm:flex-row sm:items-center sm:gap-4">
+    <div className="flex flex-col flex-wrap gap-2 border-b border-b-primary-gray-100 pt-3 pb-5 text-sm text-primary-gray-300 dark:border-b-primary-gray-300 dark:text-primary-gray-100 sm:flex-row sm:items-center sm:gap-4">
       <Section>
         <span className="mr-1">
           <CalendarIcon />
         </span>
-        <span className="mr-1">
-          <AppLink to={commitUrl}>Updated: {dateYYMMDD(updatedDate)}</AppLink>{" "}
+        <span className="mt-1 mr-1">
+          <AppLink to={commitUrl}>Updated: {dateYYYYMMDD(updatedDate)}</AppLink>{" "}
           by
         </span>
         {!!authorIcon && (
@@ -52,12 +52,12 @@ export function Attribution({
             <img
               src={authorIcon}
               alt={authorName}
-              width={20}
+              width={18}
               className="rounded-full"
             />
           </AppLink>
         )}
-        <AppLink to={authorUrl}>
+        <AppLink to={authorUrl} className="pt-1 text-black dark:text-white">
           <b>{authorName}</b>
         </AppLink>{" "}
         {otherAuthorsCount
@@ -66,7 +66,7 @@ export function Attribution({
       </Section>
       <Section className="gap-4 sm:gap-4">
         {!!readMinutes && (
-          <Section>
+          <Section className="mt-1">
             <ClockIcon /> {Math.round(readMinutes)} min read
           </Section>
         )}

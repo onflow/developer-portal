@@ -136,7 +136,7 @@ export function InternalPage({
       <div className="relative flex flex-1">
         {sidebarItems && (
           <>
-            <aside className="hidden w-[300px] flex-none md:block">
+            <aside className="dark:primary-gray-dark hidden w-[300px] flex-none bg-primary-gray-50 md:block">
               <div
                 className="sticky h-full max-h-screen overflow-auto p-8"
                 style={{
@@ -172,7 +172,7 @@ export function InternalPage({
           )}
           <div
             className={clsx("w-full flex-none p-8 pl-16 pb-80", {
-              "md:w-3/4": !!toc,
+              "md:max-w-[730px]": !!toc,
             })}
           >
             {toc && (
