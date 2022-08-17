@@ -10,6 +10,8 @@ export async function fetchNetworkStatus() {
     },
   }).then((r) => r.json())
 
-  const status = await response
+  const status = response.filter(
+    (network: any) => network.name !== "Flow Canarynet" // Filter out canarynet for now until we have sporks data.
+  )
   return status as StatuspageApiResponse[]
 }
