@@ -44,7 +44,7 @@ export function Attribution({
           <CalendarIcon />
         </span>
         <span className="mt-1 mr-1">
-          <AppLink to={commitUrl}>Updated: {dateYYMMDD(updatedDate)}</AppLink>{" "}
+          <AppLink to={commitUrl}>Updated: {dateYYYYMMDD(updatedDate)}</AppLink>{" "}
           by
         </span>
         {!!authorIcon && (
