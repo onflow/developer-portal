@@ -179,16 +179,7 @@ function App() {
             <script
               async
               id="gtag-init"
-              dangerouslySetInnerHTML={{
-                __html: `
-                window.dataLayer = window.dataLayer || [];
-                function gtag(){dataLayer.push(arguments);}
-                gtag('js', new Date());
-                gtag('config', '${data.gaTrackingId}', {
-                  page_path: window.location.pathname,
-                });
-              `,
-              }}
+              src={`gtag-init?gaTrackingId=${data.gaTrackingId}`}
             />
             <script
               dangerouslySetInnerHTML={{
