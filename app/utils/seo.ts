@@ -19,7 +19,7 @@ export function getSocialMetas({
     keywords,
     image,
     "og:url": url,
-    "og:title": title,
+    "og:title": title || "Flow Developer Documentation",
     "og:description": description,
     "og:image": image,
     "twitter:card": image ? "summary_large_image" : "summary",

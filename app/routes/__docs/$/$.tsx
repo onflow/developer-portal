@@ -17,6 +17,7 @@ type LoaderData = {
   page: MdxPage
   data: NonNullable<ReturnType<typeof findCollection>>
   pageBasePath: string
+  url: string
 }
 
 export const loader: LoaderFunction = async ({ params, request }) => {
@@ -57,6 +58,7 @@ export const loader: LoaderFunction = async ({ params, request }) => {
       page,
       pageBasePath,
       sidebarDropdownMenu: SIDEBAR_DROPDOWN_MENU,
+      url: request.url,
     })
   } catch (e) {
     if (e instanceof NotFoundError) {
@@ -72,20 +74,21 @@ export const loader: LoaderFunction = async ({ params, request }) => {
 export const meta: MetaFunction = ({ data, location }) => {
   const typedData = data as LoaderData
   if (typedData && typedData.page) {
-    const title = typedData.page.frontmatter?.title
+    const title =
+      typedData.page.frontmatter?.title || "Flow Developer Documentation"
     const description = typedData.page.frontmatter?.description || ""
 
     return getSocialMetas({
       title,
       description: description || "Flow Developer Documentation",
-      url: location.toString(),
+      url: data.url,
       image: `https://flow-og-image.vercel.app/**${title}**%20${description}.png?theme=light&md=1&fontSize=100px&images=https%3A%2F%2Fstorage.googleapis.com%2Fflow-resources%2Fdocumentation-assets%2Fflow-docs.png&widths=auto&heights=350"`,
     })
   }
 
   return getSocialMetas({
     title: "Flow Developer Portal",
-    url: location.toString(),
+    url: data.url,
   })
 }
 
