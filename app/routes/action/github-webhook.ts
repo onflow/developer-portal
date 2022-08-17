@@ -48,6 +48,8 @@ export const action: ActionFunction = async ({ request }) => {
     for (let key of cacheKeysToInvalidate) {
       del(key)
     }
+  } else {
+    console.log(`Github webhook: no keys to clear`)
   }
 
   return json({ success: true }, 200)
