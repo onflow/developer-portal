@@ -1,15 +1,9 @@
+import { PushEvent, WebhookEvent } from "@octokit/webhooks-types"
 import type { ActionFunction } from "@remix-run/node" // or cloudflare/deno
 import { json } from "@remix-run/node" // or cloudflare/deno
 import crypto from "crypto"
-import invariant from "tiny-invariant"
-import {
-  WebhookEvent,
-  PushEvent,
-  IssuesOpenedEvent,
-} from "@octokit/webhooks-types"
-import { findDocCollection } from "~/constants/collections.server"
-import { pushEventCacheKeysToInvalidate } from "~/cms/github-webhook.server"
 import { del } from "~/cms"
+import { pushEventCacheKeysToInvalidate } from "~/cms/github-webhook.server"
 
 /**
  * @see https://remix.run/docs/en/v1/guides/resource-routes#webhooks
