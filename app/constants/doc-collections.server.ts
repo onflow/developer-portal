@@ -56,6 +56,10 @@ export interface DocCollection {
 
 // TODO: Move this to a JSON file or files.
 
+const includeTestingDocCollections =
+  process.env.TESTING_DOC_COLLECTIONS === "include" ||
+  process.env.NODE_ENV === "test"
+
 /**
  * NOTES:
  * - In general, paths should be relative to the root of the DocCollection. The
@@ -1603,156 +1607,158 @@ export const docCollections: Record<string, DocCollection> = {
     },
   },
 
-  "mock-developer-doc-json-valid": {
-    source: {
-      owner: "onflow",
-      name: "mock-developer-doc",
-      branch: "json-manifest-valid",
-      rootPath: "docs/",
-    },
-    manifest: {
-      displayName: "Mock Developer Docks",
-      redirects: {
-        language: "language/syntax",
-        tutorial: "tutorial/01-first-steps",
+  ...(includeTestingDocCollections && {
+    "mock-developer-doc-json-valid": {
+      source: {
+        owner: "onflow",
+        name: "mock-developer-doc",
+        branch: "json-manifest-valid",
+        rootPath: "docs/",
       },
-      sidebars: {
-        "": [
-          {
-            title: "Local!",
-            items: [
-              {
-                title: "Introduction to Cadence",
-                href: "",
-              },
-              {
-                title: "Cadence Design Patterns",
-                href: "design-patterns",
-              },
-              {
-                title: "Contract Upgrades with Incompatible Changes",
-                href: "contract-upgrades",
-              },
-              {
-                title: "Cadence Anti-Patterns",
-                href: "anti-patterns",
-              },
-              {
-                title: "msg․sender Considered Harmful",
-                href: "msg-sender",
-              },
-              {
-                title: "Measuring Time in Cadence",
-                href: "measuring-time",
-              },
-              {
-                title: "Migration Guide",
-                href: "migration-guide",
-              },
-              {
-                title: "JSON-Cadence Data Interchange Format",
-                href: "json-cadence-spec",
-              },
-            ],
-          },
-          {
-            title: "Cadence",
-            items: [
-              {
-                title: "Language Reference",
-                href: "language",
-              },
-              {
-                title: "Tutorial",
-                href: "tutorial/02-hello-world",
-              },
-            ],
-          },
-        ],
-        language: [
-          {
-            title: "Cadence Language",
-            items: [
-              { href: "syntax", title: "Syntax" },
-              {
-                href: "constants-and-variables",
-              },
-              { href: "type-annotations" },
-              { href: "values-and-types" },
-              { href: "operators" },
-              { href: "functions" },
-              { href: "control-flow" },
-              { href: "scope" },
-              { href: "type-safety" },
-              { href: "type-inference" },
-              { href: "composite-types" },
-              { href: "resources" },
-              { href: "access-control" },
-              { href: "interfaces" },
-              { href: "enumerations" },
-              { href: "restricted-types" },
-              { href: "references" },
-              { href: "imports" },
-              { href: "accounts" },
-              {
-                href: "capability-based-access-control",
-              },
-              { href: "contracts" },
-              { href: "contract-updatability" },
-              { href: "events" },
-              { href: "core-events" },
-              { href: "transactions" },
-              { href: "run-time-types", title: "Run-time Types" },
-              { href: "built-in-functions", title: "Built-in Functions" },
-              { href: "environment-information" },
-              { href: "crypto" },
-              { href: "glossary" },
-            ],
-          },
-        ],
-        tutorial: [
-          {
-            title: "Cadence Language",
-            items: [
-              { href: "01-first-steps" },
-              { href: "02-hello-world" },
-              { href: "03-resources" },
-              { href: "04-capabilities" },
-              { href: "05-non-fungible-tokens-1" },
-              { href: "05-non-fungible-tokens-2" },
-              { href: "06-fungible-tokens" },
-              { href: "07-marketplace-setup" },
-              { href: "08-marketplace-compose" },
-              { href: "09-voting" },
-              { href: "10-resources-compose" },
-            ],
-          },
-        ],
+      manifest: {
+        displayName: "Mock Developer Docks",
+        redirects: {
+          language: "language/syntax",
+          tutorial: "tutorial/01-first-steps",
+        },
+        sidebars: {
+          "": [
+            {
+              title: "Local!",
+              items: [
+                {
+                  title: "Introduction to Cadence",
+                  href: "",
+                },
+                {
+                  title: "Cadence Design Patterns",
+                  href: "design-patterns",
+                },
+                {
+                  title: "Contract Upgrades with Incompatible Changes",
+                  href: "contract-upgrades",
+                },
+                {
+                  title: "Cadence Anti-Patterns",
+                  href: "anti-patterns",
+                },
+                {
+                  title: "msg․sender Considered Harmful",
+                  href: "msg-sender",
+                },
+                {
+                  title: "Measuring Time in Cadence",
+                  href: "measuring-time",
+                },
+                {
+                  title: "Migration Guide",
+                  href: "migration-guide",
+                },
+                {
+                  title: "JSON-Cadence Data Interchange Format",
+                  href: "json-cadence-spec",
+                },
+              ],
+            },
+            {
+              title: "Cadence",
+              items: [
+                {
+                  title: "Language Reference",
+                  href: "language",
+                },
+                {
+                  title: "Tutorial",
+                  href: "tutorial/02-hello-world",
+                },
+              ],
+            },
+          ],
+          language: [
+            {
+              title: "Cadence Language",
+              items: [
+                { href: "syntax", title: "Syntax" },
+                {
+                  href: "constants-and-variables",
+                },
+                { href: "type-annotations" },
+                { href: "values-and-types" },
+                { href: "operators" },
+                { href: "functions" },
+                { href: "control-flow" },
+                { href: "scope" },
+                { href: "type-safety" },
+                { href: "type-inference" },
+                { href: "composite-types" },
+                { href: "resources" },
+                { href: "access-control" },
+                { href: "interfaces" },
+                { href: "enumerations" },
+                { href: "restricted-types" },
+                { href: "references" },
+                { href: "imports" },
+                { href: "accounts" },
+                {
+                  href: "capability-based-access-control",
+                },
+                { href: "contracts" },
+                { href: "contract-updatability" },
+                { href: "events" },
+                { href: "core-events" },
+                { href: "transactions" },
+                { href: "run-time-types", title: "Run-time Types" },
+                { href: "built-in-functions", title: "Built-in Functions" },
+                { href: "environment-information" },
+                { href: "crypto" },
+                { href: "glossary" },
+              ],
+            },
+          ],
+          tutorial: [
+            {
+              title: "Cadence Language",
+              items: [
+                { href: "01-first-steps" },
+                { href: "02-hello-world" },
+                { href: "03-resources" },
+                { href: "04-capabilities" },
+                { href: "05-non-fungible-tokens-1" },
+                { href: "05-non-fungible-tokens-2" },
+                { href: "06-fungible-tokens" },
+                { href: "07-marketplace-setup" },
+                { href: "08-marketplace-compose" },
+                { href: "09-voting" },
+                { href: "10-resources-compose" },
+              ],
+            },
+          ],
+        },
       },
     },
-  },
 
-  "mock-developer-doc-syntax-error": {
-    source: {
-      owner: "onflow",
-      name: "mock-developer-doc",
-      branch: "json-manifest-syntax-error",
-      rootPath: "docs/",
-    },
-    manifest: {
-      displayName: "Mock Developer Docks Invalid JSON",
-      redirects: {
-        language: "language/syntax",
-        tutorial: "tutorial/01-first-steps",
+    "mock-developer-doc-syntax-error": {
+      source: {
+        owner: "onflow",
+        name: "mock-developer-doc",
+        branch: "json-manifest-syntax-error",
+        rootPath: "docs/",
       },
-      sidebars: {
-        "": [
-          {
-            title: "Fallback content in doc-collections",
-            items: [],
-          },
-        ],
+      manifest: {
+        displayName: "Mock Developer Docks Invalid JSON",
+        redirects: {
+          language: "language/syntax",
+          tutorial: "tutorial/01-first-steps",
+        },
+        sidebars: {
+          "": [
+            {
+              title: "Fallback content in doc-collections",
+              items: [],
+            },
+          ],
+        },
       },
     },
-  },
+  }),
 }

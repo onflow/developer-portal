@@ -1,6 +1,6 @@
 import { PushEvent } from "@octokit/webhooks-types"
 import invariant from "tiny-invariant"
-import { docCollections } from "~/constants/doc-collections"
+import { docCollections } from "~/constants/doc-collections.server"
 import { posix } from "node:path"
 import {
   JSON_MANIFEST_FILENAME,

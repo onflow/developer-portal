@@ -11,7 +11,7 @@ import {
   DocCollectionManifest,
   docCollections,
   DocCollectionSource,
-} from "./doc-collections"
+} from "./doc-collections.server"
 import {
   JSON_MANIFEST_FILENAME,
   manifestCacheKey,

@@ -1,4 +1,4 @@
-import { DocCollectionSource } from "./doc-collections"
+import { DocCollectionSource } from "./doc-collections.server"
 
 export const JSON_MANIFEST_FILENAME = "flow-docs.json"
 
