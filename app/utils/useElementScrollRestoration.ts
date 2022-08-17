@@ -16,7 +16,12 @@ export function useElementScrollRestoration(
 ) {
   const positions = useRef<Map<string, number>>(new Map()).current
   const location = useLocation()
+  const previousLocation = useRef<ReturnType<typeof useLocation>>()
   const transition = useTransition()
+
+  useEffect(() => {
+    previousLocation.current = location
+  }, [location])
 
   useEffect(() => {
     if (!ref.current) return
@@ -29,6 +34,15 @@ export function useElementScrollRestoration(
     if (!enabled) return
     if (transition.state !== "idle") return
     if (!ref.current) return
+
+    // Don't reset/restore scroll if the pathname and search match (likely
+    // meaning just the hash was changed).
+    if (
+      previousLocation.current?.pathname === location.pathname &&
+      previousLocation.current.search === location.search
+    )
+      return
+
     const y = positions.get(location.key)
     ref.current.scrollTo(0, y ?? 0)
   }, [transition.state, location.key, positions, ref])
