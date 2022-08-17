@@ -12,8 +12,10 @@ import {
   docCollections,
   DocCollectionSource,
 } from "./doc-collections"
-
-const JSON_MANIFEST_FILENAME = "flow-docs.json"
+import {
+  JSON_MANIFEST_FILENAME,
+  manifestCacheKey,
+} from "./doc-collection-manifest"
 
 export const collectionPaths = Object.keys(docCollections)
 
@@ -125,7 +127,7 @@ export async function findDocManifest(
 
   const [remoteManifest, error] = await cachified({
     cache: redisCache,
-    key: `manifest:${docCollection.source.owner}:${docCollection.source.name}:${docCollection.source.branch}`,
+    key: manifestCacheKey(docCollection.source),
     getFreshValue: async (): Promise<
       [DocCollectionManifest] | [null, Error]
     > => {
