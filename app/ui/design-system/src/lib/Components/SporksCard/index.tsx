@@ -4,7 +4,7 @@ import { ReactComponent as CopyIcon } from "../../../../images/action/copy"
 import { ReactComponent as ChevronDownIcon } from "../../../../images/arrows/chevron-down"
 import { ReactComponent as ChevronUpIcon } from "../../../../images/arrows/chevron-up"
 import { SporkMetadata } from "../../interfaces"
-import { dateYYMMDD } from "../../utils/dates"
+import { dateYYYYMMDD } from "../../utils/dates"
 
 export type SporksCardProps = {
   heading: string
@@ -57,7 +57,7 @@ const Spork = ({ heading, timestamp, sporkMetadata }: SporksCardProps) => {
                 <div className="flex items-center">
                   <span className="pr-4 text-2xl font-bold">{heading}</span>
                   <span className="border-l border-primary-gray-100 pl-4 text-primary-gray-300 dark:border-primary-gray-400">
-                    {dateYYMMDD(timestamp)}
+                    {dateYYYYMMDD(timestamp)}
                   </span>
                 </div>
                 <div className="dark:text-primary-gray-200">
@@ -70,7 +70,7 @@ const Spork = ({ heading, timestamp, sporkMetadata }: SporksCardProps) => {
                 {accessNode && (
                   <CardItem label="Access Node" data={accessNode} />
                 )}
-                <CardItem label="Date" data={dateYYMMDD(date)} />
+                <CardItem label="Date" data={dateYYYYMMDD(date)} />
                 <CardItem label="Root Height" data={rootHeight} />
                 <CardItem label="Root Parent ID" data={rootParentId} />
                 <CardItem label="Root State Commit" data={rootStateCommit} />

@@ -1,4 +1,3 @@
-import { ReactComponent as ChevronRightIcon } from "../../../../images/arrows/chevron-right"
 import { ReactComponent as RssIcon } from "../../../../images/content/rss"
 import { InternalContentLink } from "../InternalContentLink"
 

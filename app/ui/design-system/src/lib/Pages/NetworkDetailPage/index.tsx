@@ -18,7 +18,7 @@ import { Article, StatuspageApiResponse } from "../../interfaces"
 import PageBackground from "../shared/PageBackground"
 import PageSection from "../shared/PageSection"
 import PageSections from "../shared/PageSections"
-import { dateYYMMDD } from "../../utils/dates"
+import { dateYYYYMMDD } from "../../utils/dates"
 
 export type NetworkDetailPageProps = {
   networkStatuses: StatuspageApiResponse[]
@@ -75,7 +75,7 @@ const NetworkDetailPage = ({
             statusLink="https://status.onflow.org"
             version="33"
             lastSporkDate={
-              pastSporks[0] ? dateYYMMDD(pastSporks[0]!.timestamp) : "N/A"
+              pastSporks[0] ? dateYYYYMMDD(pastSporks[0]!.timestamp) : "N/A"
             }
             nextSporkDate="TBD"
           />

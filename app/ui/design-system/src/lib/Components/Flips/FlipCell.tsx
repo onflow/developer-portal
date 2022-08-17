@@ -1,7 +1,7 @@
 import clsx from "clsx"
 import { ReactComponent as CalendarIcon } from "../../../../images/action/date-calendar"
 import { ReactComponent as CommentIcon } from "../../../../images/arrows/message-circle"
-import { dateYYMMDD } from "../../utils/dates"
+import { dateYYYYMMDD } from "../../utils/dates"
 import AppLink from "../AppLink"
 import Tag from "../Tag"
 import RoundImage from "./RoundImage"
@@ -103,7 +103,7 @@ const FlipCell = ({
         </div>
         <div className="flex items-center justify-center">
           <CalendarIcon width="24" height="24" />{" "}
-          <span className="ml-1 sm:ml-2">{dateYYMMDD(date)}</span>
+          <span className="ml-1 sm:ml-2">{dateYYYYMMDD(date)}</span>
         </div>
         <div className="flex items-center justify-center">
           <CommentIcon /> <span className="ml-1 sm:ml-2">{numComments}</span>
