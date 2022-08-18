@@ -23,6 +23,7 @@ import {
 } from "~/ui/design-system"
 import { DocCollectionSource } from "../../constants/doc-collections"
 import { InternalImg } from "../../ui/design-system/src/lib/Components/InternalImg/InternalImg"
+import { returnRedirectForRoute } from "./return-redirect-for-route"
 import { Theme, useTheme } from "./theme.provider"
 
 type CachifiedOptions = {
@@ -183,7 +184,15 @@ async function compileMdxCached({
 function GetMdxComponents(theme: Theme) {
   return {
     a: (props: LinkProps & { href: string }) => {
-      return <InternalContentLink {...props} className="not-prose" />
+      const { href, ...rest } = props
+      let desiredHref = returnRedirectForRoute(href)!
+      return (
+        <InternalContentLink
+          {...rest}
+          href={desiredHref}
+          className="not-prose"
+        />
+      )
     },
     input: (props: InputProps) =>
       props.type === "checkbox" ? (
