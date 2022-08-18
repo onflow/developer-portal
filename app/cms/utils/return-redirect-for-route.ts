@@ -1,6 +1,6 @@
 import redirects from "../../redirects.js"
 
-export function returnRedirectForRoute(path: string): string | undefined {
+export function returnRedirectForRoute(path: string): string {
   console.log("Searching for redirect for", path)
   // @ts-expect-error
   return redirects[path] ?? path
