@@ -38,7 +38,11 @@ export const action: ActionFunction = async ({ request }) => {
   const { cacheKeysToInvalidate } = pushEventCacheKeysToInvalidate(event)
   const keyCount = cacheKeysToInvalidate.size
   if (keyCount > 0) {
-    console.log(`Github webhook: clearing cache keys ${keyCount}`)
+    console.log(
+      `Github webhook: clearing cache keys ${[...cacheKeysToInvalidate].join(
+        ", "
+      )}`
+    )
     for (let key of cacheKeysToInvalidate) {
       del(key)
     }
