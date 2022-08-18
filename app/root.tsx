@@ -29,6 +29,7 @@ import {
   ThemeProvider,
   useTheme,
 } from "~/cms/utils/theme.provider"
+import { returnRedirectForRouteOrNull } from "~/cms/utils/return-redirect-for-route"
 import { navBarData } from "~/component-data/NavigationBar"
 import { Footer } from "~/ui/design-system/src"
 import { ErrorPage } from "~/ui/design-system/src/lib/Components/ErrorPage"
@@ -41,16 +42,9 @@ import AppLink from "./ui/design-system/src/lib/Components/AppLink"
 import { SearchProps } from "./ui/design-system/src/lib/Components/Search"
 import { getMetaTitle, getSocialMetas } from "./utils/seo"
 
-import redirects from "./redirects"
 import { useElementScrollRestoration } from "./utils/useElementScrollRestoration"
 
 export { getMetaTitle } from "./utils/seo"
-
-function returnRedirectForRoute(url: URL): string | undefined {
-  console.log("Searching for redirect for", url.pathname)
-  // @ts-expect-error
-  return redirects[url.pathname]
-}
 
 export const links: LinksFunction = () => {
   return [
@@ -83,7 +77,9 @@ export type LoaderData = {
 export const loader: LoaderFunction = async ({ request }) => {
   const themeSession = await getThemeSession(request)
 
-  const redirectPath = returnRedirectForRoute(new URL(request.url))
+  const redirectPath = returnRedirectForRouteOrNull(
+    new URL(request.url).pathname
+  )
 
   if (redirectPath) {
     return redirect(redirectPath, {
