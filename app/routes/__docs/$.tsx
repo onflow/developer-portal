@@ -24,6 +24,7 @@ type LoaderData = Pick<
   | "header"
 > & {
   sidebarDropdownMenu: typeof SIDEBAR_DROPDOWN_MENU
+  remoteRepoError?: string
 }
 
 export const loader: LoaderFunction = async ({ params, request }) => {
@@ -50,14 +51,25 @@ export const loader: LoaderFunction = async ({ params, request }) => {
     return redirect(docManifest.redirect)
   }
 
-  return json({
+  if (docManifest.remoteRepoError) {
+    console.log(
+      `Remote repository has invalid manifest`,
+      `${collection.source.owner}/${collection.source.name}`,
+      docManifest.remoteRepoError
+    )
+  }
+
+  let payload: LoaderData = {
     sidebar: docManifest.sidebar,
     sidebarRootPath: docManifest.sidebarRootPath,
     displayName: docManifest.displayName,
     collectionRootPath: collection.collectionRootPath,
     header: docManifest.header,
     sidebarDropdownMenu: SIDEBAR_DROPDOWN_MENU,
-  })
+    remoteRepoError: docManifest.remoteRepoError,
+  }
+
+  return json(payload)
 }
 
 export default () => {
@@ -79,6 +91,7 @@ export default () => {
         header={data.header}
         sidebarItems={data.sidebar}
         sidebarDropdownMenu={data.sidebarDropdownMenu}
+        remoteRepoError={data.remoteRepoError}
       >
         <Outlet />
       </InternalPageContainer>

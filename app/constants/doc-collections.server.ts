@@ -58,7 +58,8 @@ export interface DocCollection {
 
 const includeTestingDocCollections =
   process.env.TESTING_DOC_COLLECTIONS === "include" ||
-  process.env.NODE_ENV === "test"
+  process.env.NODE_ENV === "test" ||
+  process.env.NODE_ENV === "development"
 
 /**
  * NOTES:
@@ -1750,6 +1751,30 @@ export const docCollections: Record<string, DocCollection> = {
         owner: "onflow",
         name: "mock-developer-doc",
         branch: "json-manifest-syntax-error",
+        rootPath: "docs/",
+      },
+      manifest: {
+        displayName: "Mock Developer Docks Invalid JSON",
+        redirects: {
+          language: "language/syntax",
+          tutorial: "tutorial/01-first-steps",
+        },
+        sidebars: {
+          "": [
+            {
+              title: "Fallback content in doc-collections",
+              items: [],
+            },
+          ],
+        },
+      },
+    },
+
+    "mock-developer-doc-json-manifest-schema-error": {
+      source: {
+        owner: "onflow",
+        name: "mock-developer-doc",
+        branch: "json-manifest-schema-error",
         rootPath: "docs/",
       },
       manifest: {

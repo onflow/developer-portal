@@ -71,7 +71,7 @@ export type DocManifest = {
    * any errors with the remote repos flow-doc.json, including not found, json
    * syntax errors, schema validation errors, etc
    */
-  remoteRepoError: Error | undefined
+  remoteRepoError: string | undefined
 }
 
 export async function findDocManifest(
@@ -103,7 +103,7 @@ export async function findDocManifest(
     try {
       data = JSON.parse(text)
     } catch (er) {
-      throw new Error(`invalid json`)
+      throw new Error(`Invalid json`)
     }
 
     const ajv = new Ajv()
@@ -129,30 +129,27 @@ export async function findDocManifest(
     cache: redisCache,
     key: manifestCacheKey(docCollection.source),
     getFreshValue: async (): Promise<
-      [DocCollectionManifest] | [null, Error]
+      [DocCollectionManifest | null] | [null, string]
     > => {
       try {
         const result = await fetchRemoteManifest()
         return [result]
-      } catch (er) {
-        invariant(er instanceof Error, `expected Error instance`)
-        return [null, er]
+      } catch (er: any) {
+        const isGithub404 = er.status === 404
+        if (isGithub404) {
+          return [null]
+        }
+        let message =
+          er.message ||
+          (er.status != null && `failed with status ${er.status}`) ||
+          "unknown"
+
+        return [null, message]
       }
     },
     maxAge: 1000 * 60 * 60 * 24 * 30,
     request: options?.request,
   })
-
-  if (error) {
-    const isGithub404 = (error as any).status === 404
-    if (!isGithub404) {
-      console.info(
-        `Remote repository has invalid manifest`,
-        `${docCollection.source.owner}/${docCollection.source.name}`,
-        error.message ?? `status: ${(error as any).status}`
-      )
-    }
-  }
 
   const manifest = remoteManifest ?? docCollection.staticManifest
 
@@ -182,6 +179,6 @@ export async function findDocManifest(
 
     sidebarRootPath,
     redirect: resolvePath(redirectPath),
-    remoteRepoError: error,
+    remoteRepoError: error && !isGithub404 ? error : undefined,
   }
 }
