@@ -22,7 +22,7 @@ type LoaderData = Pick<
 }
 
 export const loader: LoaderFunction = async ({ params, request }) => {
-  let path = params["*"]
+  const path = params["*"]
 
   if (path?.endsWith("/")) {
     // For consistency, strip trailing slashes from all URLs.
