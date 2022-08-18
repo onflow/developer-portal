@@ -179,6 +179,6 @@ export async function findDocManifest(
 
     sidebarRootPath,
     redirect: resolvePath(redirectPath),
-    remoteRepoError: error && !isGithub404 ? error : undefined,
+    remoteRepoError: error ?? undefined,
   }
 }

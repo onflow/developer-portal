@@ -66,7 +66,10 @@ export const loader: LoaderFunction = async ({ params, request }) => {
     collectionRootPath: collection.collectionRootPath,
     header: docManifest.header,
     sidebarDropdownMenu: SIDEBAR_DROPDOWN_MENU,
-    remoteRepoError: docManifest.remoteRepoError,
+    remoteRepoError:
+      process.env.NODE_ENV === "development"
+        ? docManifest.remoteRepoError
+        : undefined,
   }
 
   return json(payload)
