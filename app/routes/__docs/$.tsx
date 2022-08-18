@@ -2,6 +2,7 @@ import { json, LoaderFunction, redirect } from "@remix-run/node"
 import { Outlet, useLoaderData } from "@remix-run/react"
 import { join } from "path"
 import { stripTrailingSlahes } from "../../cms/utils/strip-slashes"
+import removeMDorMDXFileExtension from "../../cms/utils/strip-extension"
 import { findCollection } from "../../constants/collections.server"
 import { SIDEBAR_DROPDOWN_MENU } from "../../constants/sidebar-dropdown-menu"
 import AppLink from "../../ui/design-system/src/lib/Components/AppLink"
@@ -21,16 +22,22 @@ type LoaderData = Pick<
 }
 
 export const loader: LoaderFunction = async ({ params, request }) => {
-  const path = params["*"]
+  let path = params["*"]
 
   if (path?.endsWith("/")) {
     // For consistency, strip trailing slashes from all URLs.
     return redirect(join("/", stripTrailingSlahes(path)), 302)
   }
 
+  if (path?.endsWith("md") || path?.endsWith("mdx")) {
+    return redirect(join("/", removeMDorMDXFileExtension(path)), 302)
+  }
+
   if (!path) {
     throw json({ status: "noPage" }, { status: 404 })
   }
+
+  console.log(path)
 
   const data = findCollection(path)
 
