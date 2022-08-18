@@ -1213,11 +1213,11 @@ export const docCollections: Record<string, DocCollection> = {
               },
               {
                 title: "Sign a Transaction",
-                href: "send-transactions",
+                href: "sign-transaction",
               },
               {
                 title: "Send a Signed Transaction",
-                href: "sign-transaction",
+                href: "send-signed-transaction",
               },
               {
                 title: "Decode a Transaction",
