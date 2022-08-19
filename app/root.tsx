@@ -46,6 +46,19 @@ import { useElementScrollRestoration } from "./utils/useElementScrollRestoration
 
 export { getMetaTitle } from "./utils/seo"
 
+const fontPreloads = [
+  "/fonts/acumin-pro/AcuminPro-Regular.otf",
+  "/fonts/acumin-pro/AcuminPro-MediumItalic.otf",
+  "/fonts/acumin-pro/AcuminPro-Italic.otf",
+  "/fonts/acumin-pro/AcuminPro-MediumItalic.otf",
+  "/fonts/acumin-pro/AcuminPro-SemiBold.otf",
+  "/fonts/acumin-pro/AcuminPro-SemiBoldItalic.otf",
+  "/fonts/acumin-pro/AcuminPro-Bold.otf",
+  "/fonts/termina/Termina-Regular.otf",
+  "/fonts/termina/Termina-Heavy.otf",
+  "/fonts/ibm-plex/IBMPlexMono-Regular.ttf",
+]
+
 export const links: LinksFunction = () => {
   return [
     { rel: "stylesheet", href: styles },
@@ -54,6 +67,11 @@ export const links: LinksFunction = () => {
       href: "https://assets.website-files.com/5f6294c0c7a8cdd643b1c820/5f6294c0c7a8cd5e06b1c938_Asset%201%405x.png",
       type: "image/png",
     },
+    ...fontPreloads.map((fontFile) => ({
+      rel: "preload",
+      href: fontFile,
+      as: "font",
+    })),
   ]
 }
 
