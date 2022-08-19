@@ -37,7 +37,6 @@ export const loader: LoaderFunction = async ({ params, request }) => {
     throw json({ status: "noPage" }, { status: 404 })
   }
 
-
   const data = findCollection(path)
 
   if (!data) {
