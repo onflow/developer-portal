@@ -64,7 +64,8 @@ export function InternalPageContent({
       )}
       <div
         className={clsx("w-full flex-none p-8 pb-80", {
-          "md:w-3/4 md:max-w-[730px]": !!toc,
+          "md:w-3/4 md:max-w-[730px] md:pl-12 xl:max-w-[50%] xl:max-w-[830px] xl:pl-0":
+            !!toc,
         })}
       >
         {toc && (

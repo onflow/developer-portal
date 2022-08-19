@@ -172,7 +172,7 @@ export function InternalPage({
           )}
           <div
             className={clsx("w-full flex-none p-8 pl-16 pb-80", {
-              "md:max-w-[730px]": !!toc,
+              "md:max-w-[730px] md:pl-5 xl:max-w-[45%]": !!toc,
             })}
           >
             {toc && (
