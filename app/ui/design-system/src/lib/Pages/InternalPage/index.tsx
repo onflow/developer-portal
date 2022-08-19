@@ -136,7 +136,7 @@ export function InternalPage({
       <div className="relative flex flex-1">
         {sidebarItems && (
           <>
-            <aside className="dark:primary-gray-dark hidden w-[300px] flex-none bg-primary-gray-50 md:block">
+            <aside className="dark:primary-gray-dark hidden w-[240px] flex-none bg-primary-gray-50 md:block lg:w-[300px]">
               <div
                 className="sticky h-full max-h-screen overflow-auto p-8"
                 style={{
@@ -154,7 +154,8 @@ export function InternalPage({
         )}
         <main
           className={clsx("flex max-w-full shrink-0 grow flex-row-reverse", {
-            "md:max-w-[calc(100%_-_300px)]": sidebarItems,
+            "md:max-w-[calc(100%_-_240px)] lg:max-w-[calc(100%_-_300px)]":
+              sidebarItems,
           })}
         >
           {toc && (
@@ -172,7 +173,8 @@ export function InternalPage({
           )}
           <div
             className={clsx("w-full flex-none p-8 pl-16 pb-80", {
-              "md:max-w-[730px] md:pl-5 xl:max-w-[45%]": !!toc,
+              "md:w-3/4 md:max-w-[730px] md:pl-12 xl:max-w-[50%] xl:max-w-[830px] xl:pl-0":
+                !!toc,
             })}
           >
             {toc && (

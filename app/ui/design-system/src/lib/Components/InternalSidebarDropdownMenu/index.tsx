@@ -118,7 +118,7 @@ export function InternalSidebarDropdownMenu({
           <div className="relative">
             <Popover.Button
               ref={reference}
-              className="mb-4 flex min-w-[210px] items-center rounded-lg p-2 pr-3 text-sm shadow-2xl hover:text-primary-gray-300 dark:bg-black dark:text-primary-gray-200 dark:shadow-2xl-dark-strong dark:hover:text-primary-gray-100"
+              className="mb-4 flex min-w-[180px] items-center rounded-lg p-2 pr-3 text-sm shadow-2xl hover:text-primary-gray-300 dark:bg-black dark:text-primary-gray-200 dark:shadow-2xl-dark-strong dark:hover:text-primary-gray-100 lg:min-w-[210px]"
             >
               <div className="mr-2 h-8 w-8">
                 {SelectedIcon && <SelectedIcon />}
@@ -138,7 +138,7 @@ export function InternalSidebarDropdownMenu({
               >
                 <DropdownTransition>
                   <Popover.Panel
-                    className="relative mr-2 inline-grid min-w-[210px] max-w-[34rem] grid-cols-1 overflow-auto overflow-y-auto rounded-lg bg-white px-4 py-2 shadow-2xl dark:bg-primary-gray-dark dark:shadow-2xl-dark dark:hover:shadow-2xl-dark dark:hover:shadow-2xl-dark md:grid-cols-4 md:px-6 md:py-4"
+                    className="relative mr-2 inline-grid min-w-[180px] max-w-[34rem] grid-cols-1 overflow-auto overflow-y-auto rounded-lg bg-white px-4 py-2 shadow-2xl dark:bg-primary-gray-dark dark:shadow-2xl-dark dark:hover:shadow-2xl-dark dark:hover:shadow-2xl-dark md:grid-cols-4 md:px-6 md:py-4 lg:min-w-[210px]"
                     style={{
                       maxHeight: `calc(95vh - ${y || 0}px)`,
                     }}

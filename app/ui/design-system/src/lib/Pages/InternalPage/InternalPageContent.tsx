@@ -45,14 +45,15 @@ export function InternalPageContent({
       className={clsx(
         "flex max-w-full shrink-0 grow flex-row-reverse justify-center",
         {
-          "md:max-w-[calc(100%_-_300px)]": sidebarItems,
+          "md:max-w-[calc(100%_-_240px)] lg:max-w-[calc(100%_-_300px)]":
+            sidebarItems,
         }
       )}
     >
       {toc && (
         <div className="hidden flex-none md:flex md:w-1/4">
           <div
-            className="sticky h-full max-h-screen overflow-auto p-8"
+            className="sticky h-full max-h-screen overflow-auto py-8 pr-8 lg:p-8"
             style={{
               top: subnavRect?.height ?? 0,
               maxHeight: `calc(100vh - ${subnavRect?.bottom ?? 0}px)`,
