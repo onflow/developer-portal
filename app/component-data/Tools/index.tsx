@@ -1,14 +1,25 @@
 import { SDKCardProps } from "~/ui/design-system/src/lib/Components/SDKCard"
-import ToolCliIconSrc from "../../ui/design-system/images/tools/tool-cli.svg"
-import ToolEmulatorIconSrc from "../../ui/design-system/images/tools/tool-emulator.svg"
-import ToolFclIconSrc from "../../ui/design-system/images/tools/tool-fcl.svg"
-import ToolTestingIconSrc from "../../ui/design-system/images/tools/tool-testing.svg"
-import ToolVsCodeIconSrc from "../../ui/design-system/images/tools/tool-vscode.svg"
-import ToolPortIconSrc from "../../ui/design-system/images/tools/tool-port.svg"
-import CodeIcon from "../../ui/design-system/images/tools/tool-default.svg"
+import ToolCliIconSrc from "~/ui/design-system/images/tools/tool-cli.svg"
+import ToolEmulatorIconSrc from "~/ui/design-system/images/tools/tool-emulator.svg"
+import ToolFclIconSrc from "~/ui/design-system/images/tools/tool-fcl.svg"
+import ToolTestingIconSrc from "~/ui/design-system/images/tools/tool-testing.svg"
+import ToolVsCodeIconSrc from "~/ui/design-system/images/tools/tool-vscode.svg"
+import ToolPortIconSrc from "~/ui/design-system/images/tools/tool-port.svg"
+import CodeIcon from "~/ui/design-system/images/tools/tool-default.svg"
+
+export type Tool = SDKCardProps & {
+  repo?: {
+    owner: string
+    name: string
+  }
+}
 
 // Flow Dev Tools
-const cliTool: SDKCardProps = {
+const cliTool: Tool = {
+  repo: {
+    name: "flow-cli",
+    owner: "onflow",
+  },
   title: "CLI",
   authorIcon: "https://avatars.githubusercontent.com/u/62387156?s=64&v=4",
   authorName: "onflow",
@@ -20,7 +31,11 @@ const cliTool: SDKCardProps = {
     "Flow CLI brings Flow to your terminal. Easily interact with the network and build your dapps.",
 }
 
-const emulatorTool: SDKCardProps = {
+const emulatorTool: Tool = {
+  repo: {
+    name: "flow-emulator",
+    owner: "onflow",
+  },
   title: "Emulator",
   authorIcon: "https://avatars.githubusercontent.com/u/62387156?s=64&v=4",
   authorName: "onflow",
@@ -32,7 +47,11 @@ const emulatorTool: SDKCardProps = {
     "The Flow Emulator is a lightweight tool that emulates the behavior of the real Flow network. Packaged via CLI.",
 }
 
-const vsCodeTool: SDKCardProps = {
+const vsCodeTool: Tool = {
+  repo: {
+    name: "vscode-cadence",
+    owner: "onflow",
+  },
   title: "VS Code Extension",
   authorIcon: "https://avatars.githubusercontent.com/u/62387156?s=64&v=4",
   authorName: "onflow",
@@ -44,7 +63,11 @@ const vsCodeTool: SDKCardProps = {
     "The Visual Studio Code extension for Cadence. Extensive features such as code generation, deploying contracts, and a lot more.",
 }
 
-const intellijTool: SDKCardProps = {
+const intellijTool: Tool = {
+  repo: {
+    name: "cadence-for-intellij-platform",
+    owner: "cadence-tools",
+  },
   title: "Intellij Cadence Plugin",
   authorIcon: "https://avatars.githubusercontent.com/u/92172623?s=200&v=4",
   authorName: "cadence-tools",
@@ -56,7 +79,11 @@ const intellijTool: SDKCardProps = {
     "Support for Cadence, the resource-oriented smart contract language of Flow, in Intellij Platform IDEs.",
 }
 
-const commandLineLinter: SDKCardProps = {
+const commandLineLinter: Tool = {
+  repo: {
+    name: "cadence-lint",
+    owner: "samatechtw",
+  },
   title: "Command Line Cadence Linter",
   authorIcon: "https://avatars.githubusercontent.com/u/76526021?s=200&v=4",
   authorName: "samatechtw",
@@ -67,7 +94,11 @@ const commandLineLinter: SDKCardProps = {
   description: "CLI linter for Cadence projects and files.",
 }
 
-const cdcWebpackPlugin: SDKCardProps = {
+const cdcWebpackPlugin: Tool = {
+  repo: {
+    name: "cadence-webpack-plugin",
+    owner: "agencyenterprise",
+  },
   title: "Cadence Linter",
   authorIcon: "https://avatars.githubusercontent.com/u/831220?s=200&v=4",
   authorName: "agencyenterprise",
@@ -78,7 +109,11 @@ const cdcWebpackPlugin: SDKCardProps = {
   description: "Webpack plugin that helps importing Cadence files.",
 }
 
-const jsTestingLibTool: SDKCardProps = {
+const jsTestingLibTool: Tool = {
+  repo: {
+    name: "flow-js-testing",
+    owner: "onflow",
+  },
   title: "JS Testing Library",
   authorIcon: "https://avatars.githubusercontent.com/u/62387156?s=64&v=4",
   authorName: "onflow",
@@ -90,7 +125,11 @@ const jsTestingLibTool: SDKCardProps = {
     "A Jest based framework to enable Cadence testing via a set of JavaScript methods and tools",
 }
 
-const cadutTool: SDKCardProps = {
+const cadutTool: Tool = {
+  repo: {
+    name: "flow-cadut",
+    owner: "onflow",
+  },
   title: "Flow Cadut",
   authorIcon: "https://avatars.githubusercontent.com/u/62387156?s=64&v=4",
   authorName: "onflow",
@@ -102,7 +141,11 @@ const cadutTool: SDKCardProps = {
     "Node based template generator to simplify interaction with Cadence files.",
 }
 
-const faucetTool: SDKCardProps = {
+const faucetTool: Tool = {
+  repo: {
+    name: "faucet",
+    owner: "onflow",
+  },
   title: "Faucet",
   authorIcon: "https://avatars.githubusercontent.com/u/62387156?s=64&v=4",
   authorName: "onflow",
@@ -114,7 +157,11 @@ const faucetTool: SDKCardProps = {
 }
 
 // SDKs
-const fclSDK: SDKCardProps = {
+const fclSDK: Tool = {
+  repo: {
+    name: "fcl-js",
+    owner: "onflow",
+  },
   title: "Javascript SDK (FCL)",
   authorIcon: "https://avatars.githubusercontent.com/u/62387156?s=64&v=4",
   authorName: "onflow",
@@ -124,7 +171,11 @@ const fclSDK: SDKCardProps = {
   iconSrc: ToolFclIconSrc,
 }
 
-const goSDK: SDKCardProps = {
+const goSDK: Tool = {
+  repo: {
+    name: "flow-go-sdk",
+    owner: "onflow",
+  },
   title: "Go SDK",
   authorIcon: "https://avatars.githubusercontent.com/u/62387156?s=64&v=4",
   authorName: "onflow",
@@ -135,7 +186,11 @@ const goSDK: SDKCardProps = {
     "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/go/go-original.svg",
 }
 
-const jvmSDK: SDKCardProps = {
+const jvmSDK: Tool = {
+  repo: {
+    name: "flow-jvm-sdk",
+    owner: "onflow",
+  },
   title: "Kotlin SDK",
   authorIcon: "https://avatars.githubusercontent.com/u/80722240?s=200&v=4",
   authorName: "The NFT Company",
@@ -146,7 +201,11 @@ const jvmSDK: SDKCardProps = {
     "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/kotlin/kotlin-original.svg",
 }
 
-const httpSDK: SDKCardProps = {
+const httpSDK: Tool = {
+  repo: {
+    name: "flow-go",
+    owner: "onflow",
+  },
   title: "HTTP API",
   authorIcon: "https://avatars.githubusercontent.com/u/62387156?s=64&v=4",
   authorName: "onflow",
@@ -157,7 +216,11 @@ const httpSDK: SDKCardProps = {
     "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/fastapi/fastapi-original.svg",
 }
 
-const pythonSDK: SDKCardProps = {
+const pythonSDK: Tool = {
+  repo: {
+    name: "flow-py-sdk",
+    owner: "janezpodhostnik",
+  },
   title: "Python SDK",
   authorIcon: "https://avatars.githubusercontent.com/u/67895329?v=4",
   authorName: "janezpodhostnik",
@@ -168,7 +231,11 @@ const pythonSDK: SDKCardProps = {
     "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/python/python-original.svg",
 }
 
-const dartSDK: SDKCardProps = {
+const dartSDK: Tool = {
+  repo: {
+    name: "flow-dart-sdk",
+    owner: "MaxStalker",
+  },
   title: "Dart SDK",
   authorIcon: "https://avatars.githubusercontent.com/u/3136647?s=48&v=4",
   authorName: "MaxStalker",
@@ -179,7 +246,11 @@ const dartSDK: SDKCardProps = {
     "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/dart/dart-original.svg",
 }
 
-const rustSDK: SDKCardProps = {
+const rustSDK: Tool = {
+  repo: {
+    name: "flow.rs",
+    owner: "fee1-dead",
+  },
   title: "Rust SDK",
   authorIcon: "https://avatars.githubusercontent.com/u/43851243?s=48&v=4",
   authorName: "fee1-dead",
@@ -190,7 +261,11 @@ const rustSDK: SDKCardProps = {
     "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/rust/rust-plain.svg",
 }
 
-const rubySDK: SDKCardProps = {
+const rubySDK: Tool = {
+  repo: {
+    name: "flow_client",
+    owner: "glucode",
+  },
   title: "Ruby SDK",
   authorIcon: "https://avatars.githubusercontent.com/u/1345497?s=200&v=4",
   authorName: "glucode",
@@ -201,7 +276,11 @@ const rubySDK: SDKCardProps = {
     "https://raw.githubusercontent.com/glucode/flow_client/main/logo%402x.png",
 }
 
-const elixirSDK: SDKCardProps = {
+const elixirSDK: Tool = {
+  repo: {
+    name: "on_flow",
+    owner: "nkezhaya",
+  },
   title: "Elixer SDK",
   authorIcon: "https://avatars.githubusercontent.com/u/20113?s=48&v=4",
   authorName: "nkezhaya",
@@ -212,7 +291,11 @@ const elixirSDK: SDKCardProps = {
     "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/elixir/elixir-original.svg",
 }
 
-const swiftSDK: SDKCardProps = {
+const swiftSDK: Tool = {
+  repo: {
+    name: "flow-swift",
+    owner: "Outblock",
+  },
   title: "Swift SDK",
   authorIcon: "https://avatars.githubusercontent.com/u/94294508?s=200&v=4",
   authorName: "Outblock",
@@ -223,7 +306,11 @@ const swiftSDK: SDKCardProps = {
     "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/swift/swift-original.svg",
 }
 
-const dotNetSDK: SDKCardProps = {
+const dotNetSDK: Tool = {
+  repo: {
+    name: "flow.net",
+    owner: "tyronbrand",
+  },
   title: ".NET SDK",
   authorIcon: "https://avatars.githubusercontent.com/u/44845449?s=48&v=4",
   authorName: "tyronbrand",
@@ -234,19 +321,27 @@ const dotNetSDK: SDKCardProps = {
     "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/dot-net/dot-net-original.svg",
 }
 
-const phpSDK: SDKCardProps = {
+const phpSDK: Tool = {
+  repo: {
+    name: "flow-php-sdk",
+    owner: "mayvenstudios",
+  },
   title: "PHP SDK",
   authorIcon: "https://avatars.githubusercontent.com/u/17953578?s=200&v=4",
   authorName: "mayvenstudios",
   tags: ["in-development"],
-  link: "https://github.com/tyronbrand/flow.net",
+  link: "https://github.com/mayvenstudios/flow-php-sdk",
   stars: 7,
   iconSrc:
     "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/php/php-plain.svg",
 }
 
 // Community Tools
-const overflowTool: SDKCardProps = {
+const overflowTool: Tool = {
+  repo: {
+    name: "overflow",
+    owner: "bjartek",
+  },
   title: "Overflow",
   authorIcon: "https://avatars.githubusercontent.com/u/10621?v=4",
   authorName: "bjartek",
@@ -258,7 +353,11 @@ const overflowTool: SDKCardProps = {
     "Test your Cadence logic with a go-based testing framework made specifically for Flow.",
 }
 
-const flowserTool: SDKCardProps = {
+const flowserTool: Tool = {
+  repo: {
+    name: "flowser",
+    owner: "onflowser",
+  },
   title: "Flowser",
   authorIcon: "https://docs.flowser.dev/img/logo.svg",
   authorName: "onflowser",
@@ -270,7 +369,7 @@ const flowserTool: SDKCardProps = {
 }
 
 // Explorers
-const flowScanTool = {
+const flowScanTool: Tool = {
   title: "Flowscan",
   tags: ["metrics", "lookup", "mainnet"],
   link: "https://flowscan.org/",
@@ -278,7 +377,11 @@ const flowScanTool = {
   description: `Flowscan is a blockchain explorer that lets you browse all on-chain events, transactions, contracts, and accounts.`,
 }
 
-const flowViewSourceTool = {
+const flowViewSourceTool: Tool = {
+  repo: {
+    name: "flow-view-source",
+    owner: "orodio",
+  },
   title: "Flow View Source",
   tags: ["lookup", "open-source"],
   authorIcon: "https://avatars.githubusercontent.com/u/1102494?s=48&v=4",
@@ -289,7 +392,7 @@ const flowViewSourceTool = {
   description: `Flow view source is a blockchain explorer that's open sourced and connected to FCL for running transactions.`,
 }
 
-const bigDipperTool = {
+const bigDipperTool: Tool = {
   title: "Big Dipper",
   tags: ["metrics", "lookup", "mainnet"],
   link: "https://flow.bigdipper.live/",
@@ -298,7 +401,11 @@ const bigDipperTool = {
 }
 
 // oss services
-const walletApiTool = {
+const walletApiTool: Tool = {
+  repo: {
+    name: "flow-wallet-api",
+    owner: "flow-hydraulics",
+  },
   title: "Flow Wallet API",
   authorIcon: "https://avatars.githubusercontent.com/u/88199046?s=200&v=4",
   authorName: "flow-hydraulics",
@@ -310,7 +417,11 @@ const walletApiTool = {
     "Service for managing custodial and admin wallets on the Flow blockchain. Configurable with GCP and AWS KMS.",
 }
 
-const eventIndexingTool = {
+const eventIndexingTool: Tool = {
+  repo: {
+    name: "flow-scanner",
+    owner: "rayvin-flow",
+  },
   title: "Flow Scanner",
   authorIcon: "https://avatars.githubusercontent.com/u/93519414?s=200&v=4",
   authorName: "rayvin-flow",
@@ -322,7 +433,11 @@ const eventIndexingTool = {
     "Service that can monitor the Flow blockchain for one or more Cadence event types and broadcast them.",
 }
 
-const accountApiTool = {
+const accountApiTool: Tool = {
+  repo: {
+    name: "flow-account-api",
+    owner: "onflow",
+  },
   title: "Flow Account API",
   authorIcon: "https://avatars.githubusercontent.com/u/62387156?s=64&v=4",
   authorName: "onflow",
@@ -334,7 +449,11 @@ const accountApiTool = {
     "API for non-custodial Flow wallets to create accounts and maintain a registry of public key to account address.",
 }
 
-const flowMarketplaceMonitorTool = {
+const flowMarketplaceMonitorTool: Tool = {
+  repo: {
+    name: "FlowMarketplaceEventMonitor",
+    owner: "ph0ph0",
+  },
   title: "Flow Event Monitor - Marketplace",
   authorIcon: "https://avatars.githubusercontent.com/u/20524533?s=48&v=4",
   authorName: "ph0ph0",
@@ -346,7 +465,7 @@ const flowMarketplaceMonitorTool = {
     "An AWS Cloudformation stack that listens to Flow events and stores them for querying.",
 }
 
-const alchemyAccessTool = {
+const alchemyAccessTool: Tool = {
   title: "Alchemy HTTP API",
   tags: ["api", "hosted", "monitoring"],
   link: "https://docs.alchemy.com/flow/",
@@ -354,7 +473,7 @@ const alchemyAccessTool = {
   description: `An API for the Flow Access Node and provides dashboard tools for debugging and monitoring.`,
 }
 
-const alchemyNFTTool = {
+const alchemyNFTTool: Tool = {
   title: "Alchemy Flow NFT API",
   tags: ["api", "hosted", "nfts"],
   link: "https://docs.alchemy.com/flow/documentation/flow-nft-apis",
@@ -362,7 +481,7 @@ const alchemyNFTTool = {
   description: `A NFT API to retrieve on and off chain metadata for all NFTs of a given account and more.`,
 }
 
-const graffleTool = {
+const graffleTool: Tool = {
   title: "Graffle",
   tags: ["api", "hosted", "webhooks"],
   link: "https://graffle.io/",
@@ -370,18 +489,17 @@ const graffleTool = {
   description: `Hosted infrastructure and APIs to index, monitor and store on-chain events alongside other extensive features.`,
 }
 
-const flowPortTool = {
+const flowPortTool: Tool = {
   title: "Flow Port",
   authorIcon: "https://avatars.githubusercontent.com/u/62387156?s=64&v=4",
   authorName: "mini flow",
   tags: ["Tool"],
   link: "https://port.onflow.org/",
-  stars: 52,
   iconSrc: ToolPortIconSrc,
   description: "Your portal to the decentralized world of Flow.",
 }
 
-const dapperWallet = {
+const dapperWallet: Tool = {
   title: "Dapper Wallet",
   tags: ["web", "wallet", "custodial"],
   link: "https://www.meetdapper.com/",
@@ -391,7 +509,7 @@ const dapperWallet = {
     "Easy and securely buy and store digital assets from groundbreaking Flow apps and games",
 }
 
-const bloctoWallet = {
+const bloctoWallet: Tool = {
   title: "Blocto",
   tags: ["web", "android", "ios", "wallet", "custodial"],
   link: "https://blocto.portto.io/en/",
@@ -400,7 +518,7 @@ const bloctoWallet = {
     "Manage your crypto, dApps, and NFT all-in-once through Blocto, the cross-chain crypto wallet",
 }
 
-const ledgerWallet = {
+const ledgerWallet: Tool = {
   title: "Ledger",
   tags: ["hardware", "wallet", "non-custodial"],
   link: "https://www.ledger.com/",
@@ -410,7 +528,7 @@ const ledgerWallet = {
     "The hardware wallet to secure, buy, exchange, and grow your crypto assets",
 }
 
-const lilicoWallet = {
+const lilicoWallet: Tool = {
   title: "Lilico",
   tags: ["web", "extension", "wallet", "non-custodial"],
   link: "https://lilico.app/",
@@ -418,7 +536,7 @@ const lilicoWallet = {
   description: "The First Extension Wallet on Flow",
 }
 
-const fionaWallet = {
+const fionaWallet: Tool = {
   title: "Finoa",
   tags: ["institutional", "wallet", "custodial"],
   link: "https://www.finoa.io/flow/",

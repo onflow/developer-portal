@@ -10,6 +10,7 @@ import { Default as DefaultCommunityMembers } from "~/ui/design-system/src/lib/C
 import CommunityPage, {
   CommunityPageProps,
 } from "~/ui/design-system/src/lib/Pages/CommunityPage"
+import { refreshTools } from "../../cms/tools.server"
 import { articles, contentNavigationListItems, projects, tools } from "./data"
 
 type DynamicCommunityPageProps = Pick<
@@ -32,6 +33,8 @@ export const loader: LoaderFunction = async () => {
   const forumTopics = await fetchLatestTopics()
   const communityMembers =
     DefaultCommunityMembers?.args as CommunityMembersProps
+
+  await refreshTools(...tools)
   const data: DynamicCommunityPageProps = {
     openFlips,
     goodPlacesToStartFlips,

@@ -4,6 +4,7 @@ import { fetchFlips } from "~/cms/utils/fetch-flips"
 import { allEvents } from "~/component-data/Events"
 import { HomePage, HomePageProps } from "~/ui/design-system/src/"
 import { ToolCardProps } from "~/ui/design-system/src/lib/Components/ToolCard"
+import { refreshTools } from "../cms/tools.server"
 import {
   homepageStartProjectData,
   homepageThreeColumnData,
@@ -33,6 +34,7 @@ export const loader: LoaderFunction = async () => {
     flowserTool,
     overflowTool,
   ] as ToolCardProps[]
+  await refreshTools(...tools)
   const upcomingEvents = allEvents
   const data: DynamicHomePageProps = { flips, tools, upcomingEvents }
   return data

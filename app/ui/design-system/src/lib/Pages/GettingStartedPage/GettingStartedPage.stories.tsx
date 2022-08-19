@@ -226,7 +226,7 @@ const gettingStartedPageData = {
       link: "#",
       stars: 52,
       iconSrc: "https://avatars.githubusercontent.com/u/62387156?s=64&v=4",
-      lastCommit: "22/3",
+      lastCommit: "2022-03-22",
       lastRelease: "207",
     },
     {
@@ -237,7 +237,7 @@ const gettingStartedPageData = {
       link: "#",
       stars: 52,
       iconSrc: "https://avatars.githubusercontent.com/u/62387156?s=64&v=4",
-      lastCommit: "22/3",
+      lastCommit: "2022-03-22",
       lastRelease: "207",
     },
     {
@@ -248,7 +248,7 @@ const gettingStartedPageData = {
       link: "#",
       stars: 52,
       iconSrc: "https://avatars.githubusercontent.com/u/62387156?s=64&v=4",
-      lastCommit: "22/3",
+      lastCommit: "2022-03-22",
       lastRelease: "207",
     },
     {
@@ -259,7 +259,7 @@ const gettingStartedPageData = {
       link: "#",
       stars: 52,
       iconSrc: "https://avatars.githubusercontent.com/u/62387156?s=64&v=4",
-      lastCommit: "22/3",
+      lastCommit: "2022-03-22",
       lastRelease: "207",
     },
     {
@@ -270,7 +270,7 @@ const gettingStartedPageData = {
       link: "#",
       stars: 52,
       iconSrc: "https://avatars.githubusercontent.com/u/62387156?s=64&v=4",
-      lastCommit: "22/3",
+      lastCommit: "2022-03-22",
       lastRelease: "207",
     },
     {
@@ -281,7 +281,7 @@ const gettingStartedPageData = {
       link: "#",
       stars: 52,
       iconSrc: "https://avatars.githubusercontent.com/u/62387156?s=64&v=4",
-      lastCommit: "22/3",
+      lastCommit: "2022-03-22",
       lastRelease: "207",
     },
   ],
