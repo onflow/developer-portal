@@ -1,11 +1,12 @@
 import { PushEvent } from "@octokit/webhooks-types"
 import invariant from "tiny-invariant"
 import { docCollections } from "~/constants/doc-collections.server"
-import { posix } from "node:path"
+import { posix, parse } from "node:path"
 import {
   JSON_MANIFEST_FILENAME,
   manifestCacheKey,
 } from "~/constants/doc-collection-manifest"
+import { getCompiledKey, getDownloadKey } from "./cache-keys.server"
 
 type ProcessResult = {
   docCollectionStatus: "match" | "not-found"
@@ -50,6 +51,31 @@ export function pushEventCacheKeysToInvalidate(
 
   if (allChangedFiles.includes(manifestPath)) {
     keysToInvalidate.add(manifestCacheKey(docCollection.source))
+  }
+
+  for (let path of allChangedFiles) {
+    let isDocumentPath = path.startsWith(docCollection.source.rootPath)
+    let isDocument = path.endsWith(".md") || path.endsWith(".mdx")
+    if (isDocumentPath && isDocument) {
+      let isIndex = path.endsWith("index.md") || path.endsWith("index.mdx")
+      let urlPath = path.slice(docCollection.source.rootPath.length)
+      urlPath = urlPath.replace(/\.[^/.]+$/, "")
+
+      let compiledKey = getCompiledKey(docCollection.source, urlPath)
+      let downloadKey = getDownloadKey(docCollection.source, urlPath)
+
+      keysToInvalidate.add(compiledKey)
+      keysToInvalidate.add(downloadKey)
+
+      if (isIndex) {
+        let rootPath = urlPath.replace(/\/?index/, "")
+        let rootCompiledKey = getCompiledKey(docCollection.source, rootPath)
+        let rootDownloadKey = getDownloadKey(docCollection.source, rootPath)
+
+        keysToInvalidate.add(rootCompiledKey)
+        keysToInvalidate.add(rootDownloadKey)
+      }
+    }
   }
 
   return {

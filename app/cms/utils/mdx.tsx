@@ -23,6 +23,7 @@ import {
 } from "~/ui/design-system"
 import { DocCollectionSource } from "../../constants/doc-collections.server"
 import { InternalImg } from "../../ui/design-system/src/lib/Components/InternalImg/InternalImg"
+import { getCompiledKey, getDownloadKey } from "../cache-keys.server"
 import { returnRedirectForRoute } from "./return-redirect-for-route"
 import { Theme, useTheme } from "./theme.provider"
 
@@ -35,9 +36,6 @@ type CachifiedOptions = {
 }
 
 const defaultMaxAge = 1000 * 60 * 60 * 24 * 30
-
-const getCompiledKey = (source: DocCollectionSource, path: string) =>
-  `${source.owner}:${source.name}:${source.branch}:${source.rootPath}:${path}:compiled`
 
 const checkCompiledValue = (value: unknown) =>
   typeof value === "object" &&
@@ -98,9 +96,6 @@ export async function getMdxPage(
 
   return page
 }
-
-const getDownloadKey = (source: DocCollectionSource, fileOrDirPath: string) =>
-  `${source.owner}:${source.name}:${source.branch}:${source.rootPath}:${fileOrDirPath}:downloaded`
 
 async function downloadMarkdownCached(
   source: DocCollectionSource,
