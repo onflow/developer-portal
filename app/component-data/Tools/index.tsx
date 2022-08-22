@@ -14,6 +14,9 @@ export type Tool = SDKCardProps & {
   }
 }
 
+// NOTE: Tool properties may be mutated during the application lifecycle
+// See the `refreshTool` and `refreshTools` functions in `app/cms/tools.server.ts`.
+
 // Flow Dev Tools
 const cliTool: Tool = {
   repo: {
