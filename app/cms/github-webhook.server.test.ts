@@ -17,7 +17,7 @@ let exampleEvent: any = {
   ],
 }
 
-test("it clears the expected cache keys when files are modified", () => {
+test("it clears manifest cache keys when flow-docs.json is modified", () => {
   const event: any = {
     ...exampleEvent,
     commits: [
@@ -33,6 +33,71 @@ test("it clears the expected cache keys when files are modified", () => {
 
   expect(result.cacheKeysToInvalidate).toEqual(
     new Set([`manifest:onflow:mock-developer-doc:json-manifest-valid`])
+  )
+})
+
+test("it returns document cache keys when document are modified", () => {
+  const event: any = {
+    ...exampleEvent,
+    commits: [
+      {
+        added: [],
+        removed: [],
+        modified: ["docs/faq.md", "docs/foobar.mdx", "src/something.ts"],
+      },
+    ],
+  }
+
+  const result = pushEventCacheKeysToInvalidate(event)
+
+  const keyPrefix = [
+    `onflow`,
+    `mock-developer-doc`,
+    `json-manifest-valid`,
+    `docs/`,
+  ].join(":")
+
+  expect(result.cacheKeysToInvalidate).toEqual(
+    new Set([
+      `${keyPrefix}:faq:compiled`,
+      `${keyPrefix}:faq:downloaded`,
+      `${keyPrefix}:foobar:compiled`,
+      `${keyPrefix}:foobar:downloaded`,
+    ])
+  )
+})
+
+test("it returns special paths for index documents", () => {
+  const event: any = {
+    ...exampleEvent,
+    commits: [
+      {
+        added: [],
+        removed: [],
+        modified: ["docs/index.md", "docs/foo/index.mdx"],
+      },
+    ],
+  }
+
+  const result = pushEventCacheKeysToInvalidate(event)
+  const keyPrefix = [
+    `onflow`,
+    `mock-developer-doc`,
+    `json-manifest-valid`,
+    `docs/`,
+  ].join(":")
+
+  expect(result.cacheKeysToInvalidate).toEqual(
+    new Set([
+      `${keyPrefix}:index:compiled`,
+      `${keyPrefix}:index:downloaded`,
+      `${keyPrefix}::compiled`,
+      `${keyPrefix}::downloaded`,
+      `${keyPrefix}:foo/index:compiled`,
+      `${keyPrefix}:foo/index:downloaded`,
+      `${keyPrefix}:foo:compiled`,
+      `${keyPrefix}:foo:downloaded`,
+    ])
   )
 })
 

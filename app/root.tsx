@@ -120,10 +120,7 @@ export const loader: LoaderFunction = async ({ request }) => {
 
   return json<LoaderData>({
     theme: themeSession.getTheme(),
-    gaTrackingId: getRequiredServerEnvVar(
-      "GA_TRACKING_ID",
-      "GA_TRACKING_ID-dev-value"
-    ),
+    gaTrackingId: process.env.GA_TRACKING_ID,
     ENV: getPublicEnv(),
     algolia,
     url: request.url,
@@ -168,7 +165,7 @@ function App() {
 
   const location = useLocation()
   useEffect(() => {
-    if (data.gaTrackingId?.length) {
+    if (data.gaTrackingId != null) {
       gtag.pageview(location.pathname, data.gaTrackingId)
     }
   }, [location, data.gaTrackingId])
@@ -184,7 +181,7 @@ function App() {
         <ThemeHead ssrTheme={Boolean(data.theme)} />
       </head>
       <body className="root">
-        {!data.gaTrackingId ? null : (
+        {data.gaTrackingId != null ? (
           <>
             <script
               async
@@ -193,7 +190,7 @@ function App() {
             <script
               async
               id="gtag-init"
-              src={`gtag-init?gaTrackingId=${data.gaTrackingId}`}
+              src={`/gtag-init?gaTrackingId=${data.gaTrackingId}`}
             />
             <script
               dangerouslySetInnerHTML={{
@@ -201,7 +198,7 @@ function App() {
               }}
             />
           </>
-        )}
+        ) : null}
 
         <ThemeBody ssrTheme={Boolean(data.theme)} />
         <NavigationBar
