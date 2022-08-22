@@ -269,6 +269,7 @@ function getCommits(repo: Repo, path: string, perPage?: number) {
   return octokit.rest.repos.listCommits({
     owner: repo.owner,
     repo: repo.name,
+    ref: repo.branch,
     path,
     per_page: perPage,
   })
@@ -357,8 +358,8 @@ const getDirectoryContent = async (repo: Repo, path: string) => {
   const { data } = await octokit.repos.getContent({
     owner: repo.owner,
     repo: repo.name,
+    ref: repo.branch,
     path,
-    headers: { branch: repo.branch },
   })
 
   // If the result wasn't an array, then the path was not a directory.
