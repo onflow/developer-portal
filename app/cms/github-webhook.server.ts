@@ -1,11 +1,11 @@
 import { PushEvent } from "@octokit/webhooks-types"
+import { posix } from "node:path"
 import invariant from "tiny-invariant"
-import { docCollections } from "~/constants/doc-collections.server"
-import { posix, parse } from "node:path"
 import {
   JSON_MANIFEST_FILENAME,
   manifestCacheKey,
 } from "~/constants/doc-collection-manifest"
+import { docCollections } from "~/constants/doc-collections.server"
 import { getCompiledKey, getDownloadKey } from "./cache-keys.server"
 
 type ProcessResult = {
