@@ -29,6 +29,7 @@ import {
   ThemeProvider,
   useTheme,
 } from "~/cms/utils/theme.provider"
+import { returnRedirectForRouteOrNull } from "~/cms/utils/return-redirect-for-route"
 import { navBarData } from "~/component-data/NavigationBar"
 import { Footer } from "~/ui/design-system/src"
 import { ErrorPage } from "~/ui/design-system/src/lib/Components/ErrorPage"
@@ -41,16 +42,22 @@ import AppLink from "./ui/design-system/src/lib/Components/AppLink"
 import { SearchProps } from "./ui/design-system/src/lib/Components/Search"
 import { getMetaTitle, getSocialMetas } from "./utils/seo"
 
-import redirects from "./redirects"
 import { useElementScrollRestoration } from "./utils/useElementScrollRestoration"
 
 export { getMetaTitle } from "./utils/seo"
 
-function returnRedirectForRoute(url: URL): string | undefined {
-  console.log("Searching for redirect for", url.pathname)
-  // @ts-expect-error
-  return redirects[url.pathname]
-}
+const fontPreloads = [
+  "/fonts/acumin-pro/AcuminPro-Regular.otf",
+  "/fonts/acumin-pro/AcuminPro-MediumItalic.otf",
+  "/fonts/acumin-pro/AcuminPro-Italic.otf",
+  "/fonts/acumin-pro/AcuminPro-MediumItalic.otf",
+  "/fonts/acumin-pro/AcuminPro-SemiBold.otf",
+  "/fonts/acumin-pro/AcuminPro-SemiBoldItalic.otf",
+  "/fonts/acumin-pro/AcuminPro-Bold.otf",
+  "/fonts/termina/Termina-Regular.otf",
+  "/fonts/termina/Termina-Heavy.otf",
+  "/fonts/ibm-plex/IBMPlexMono-Regular.ttf",
+]
 
 export const links: LinksFunction = () => {
   return [
@@ -60,6 +67,11 @@ export const links: LinksFunction = () => {
       href: "https://assets.website-files.com/5f6294c0c7a8cdd643b1c820/5f6294c0c7a8cd5e06b1c938_Asset%201%405x.png",
       type: "image/png",
     },
+    ...fontPreloads.map((fontFile) => ({
+      rel: "preload",
+      href: fontFile,
+      as: "font",
+    })),
   ]
 }
 
@@ -83,7 +95,9 @@ export type LoaderData = {
 export const loader: LoaderFunction = async ({ request }) => {
   const themeSession = await getThemeSession(request)
 
-  const redirectPath = returnRedirectForRoute(new URL(request.url))
+  const redirectPath = returnRedirectForRouteOrNull(
+    new URL(request.url).pathname
+  )
 
   if (redirectPath) {
     return redirect(redirectPath, {

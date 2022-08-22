@@ -2,6 +2,7 @@ import { json, LoaderFunction, redirect } from "@remix-run/node"
 import { Outlet, useLoaderData } from "@remix-run/react"
 import { join } from "path"
 import invariant from "tiny-invariant"
+import removeMDorMDXFileExtension from "~/cms/utils/strip-extension"
 import { stripTrailingSlahes } from "../../cms/utils/strip-slashes"
 import {
   DocCollectionInfo,
@@ -33,6 +34,10 @@ export const loader: LoaderFunction = async ({ params, request }) => {
   if (path?.endsWith("/")) {
     // For consistency, strip trailing slashes from all URLs.
     return redirect(join("/", stripTrailingSlahes(path)), 302)
+  }
+
+  if (path?.endsWith("md") || path?.endsWith("mdx")) {
+    return redirect(join("/", removeMDorMDXFileExtension(path)), 302)
   }
 
   if (!path) {

@@ -219,7 +219,7 @@ export default {
   "/flow-js-testing/send-transactions":
     "/tools/flow-js-testing/send-transactions",
   "/docs/": "/",
-  "core-contracts/staking-contract-reference":
+  "/core-contracts/staking-contract-reference":
     "/flow/core-contracts/staking-contract-reference",
   "/core-contracts/staking-collection/":
     "/flow/core-contracts/staking-collection",

@@ -24,7 +24,7 @@ type LoaderData = {
 }
 
 export const loader: LoaderFunction = async ({ params, request }) => {
-  const path = params["*"]
+  let path = params["*"]
 
   if (!path) {
     throw json({ status: "noRepo" }, { status: 404 })
