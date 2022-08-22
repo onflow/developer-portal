@@ -141,7 +141,7 @@ export function InternalPageContainer({
         <div className="relative flex flex-1">
           {sidebarItems && (
             <>
-              <aside className="hidden w-[300px] flex-none bg-primary-gray-50 dark:bg-primary-gray-dark md:block">
+              <aside className="hidden w-[240px] flex-none bg-primary-gray-50 dark:bg-primary-gray-dark md:block lg:w-[300px]">
                 <div
                   className="sticky h-full max-h-screen overflow-auto p-8"
                   style={{
