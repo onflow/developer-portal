@@ -844,7 +844,7 @@ export const docCollections: Record<string, DocCollection> = {
               },
               {
                 title: "Observer Node",
-                href: "full-observer-node",
+                href: "observer-node",
               },
               {
                 title: "Spork Process",
@@ -1595,7 +1595,7 @@ export const docCollections: Record<string, DocCollection> = {
               },
               {
                 title: "Observer Node",
-                href: "node-operation/full-observer-node",
+                href: "node-operation/observer-node",
               },
               {
                 title: "Spork Process",

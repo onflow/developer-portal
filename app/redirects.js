@@ -138,8 +138,7 @@ export default {
   "/flow-cli/account-remove-contract/":
     "/tools/flow-cli/account-remove-contract",
   "/dapp-deployment/": "/flow/dapp-development",
-  "/node-operation/full-observer-node/":
-    "/nodes/node-operation/full-observer-node",
+  "/node-operation/full-observer-node/": "/nodes/node-operation/observer-node",
   "/flow-cli/project-contracts/": "/tools/flow-cli/project-contracts",
   "/flow-cli/project-contracts": "/tools/flow-cli/project-contracts",
   "/core-contracts/locked-tokens/": "/flow/core-contracts/locked-tokens",
