@@ -1,6 +1,6 @@
 import { posix } from "path"
 import { getRequiredServerEnvVar } from "~/cms/helpers"
-import { docCollections } from "~/constants/doc-collections"
+import { docCollections } from "~/constants/doc-collections.server"
 import { SidebarItem } from "../ui/design-system/src/lib/Components/InternalSidebar"
 
 type Entry = { pathname: string }

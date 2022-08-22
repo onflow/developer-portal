@@ -2441,6 +2441,11 @@
   dependencies:
     "@octokit/openapi-types" "^11.2.0"
 
+"@octokit/webhooks-types@^6.3.5":
+  version "6.3.5"
+  resolved "https://registry.yarnpkg.com/@octokit/webhooks-types/-/webhooks-types-6.3.5.tgz#e0812abc74d27fd7443f28c0cfc527214bb5ee66"
+  integrity sha512-2QZkDXC3I3TO0mpI/VaqP+aeEvYm//Slkcsve24ezPCNA22HuekBaoEU92HF3WvciFEzWWv0e/E2SMVZcCaBZw==
+
 "@open-draft/until@^1.0.3":
   version "1.0.3"
   resolved "https://registry.yarnpkg.com/@open-draft/until/-/until-1.0.3.tgz#db9cc719191a62e7d9200f6e7bab21c5b848adca"
@@ -5064,6 +5069,16 @@ ajv@^6.1.0, ajv@^6.10.0, ajv@^6.10.2, ajv@^6.12.2, ajv@^6.12.4, ajv@^6.12.5:
     fast-deep-equal "^3.1.1"
     fast-json-stable-stringify "^2.0.0"
     json-schema-traverse "^0.4.1"
+    uri-js "^4.2.2"
+
+ajv@^8.11.0:
+  version "8.11.0"
+  resolved "https://registry.yarnpkg.com/ajv/-/ajv-8.11.0.tgz#977e91dd96ca669f54a11e23e378e33b884a565f"
+  integrity sha512-wGgprdCvMalC0BztXvitD2hC04YffAvtsUn93JbGXYLAtCUO4xd17mCCZQxUOItiBwZvJScWo8NIvQMQ71rdpg==
+  dependencies:
+    fast-deep-equal "^3.1.1"
+    json-schema-traverse "^1.0.0"
+    require-from-string "^2.0.2"
     uri-js "^4.2.2"
 
 algoliasearch-helper@^3.8.2, algoliasearch-helper@^3.8.3:

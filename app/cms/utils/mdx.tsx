@@ -21,7 +21,7 @@ import {
   LargeVideoCard,
   StaticCheckbox,
 } from "~/ui/design-system"
-import { DocCollectionSource } from "../../constants/doc-collections"
+import { DocCollectionSource } from "../../constants/doc-collections.server"
 import { InternalImg } from "../../ui/design-system/src/lib/Components/InternalImg/InternalImg"
 import { returnRedirectForRoute } from "./return-redirect-for-route"
 import { Theme, useTheme } from "./theme.provider"

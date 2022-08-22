@@ -3,7 +3,7 @@
 import { throttling } from "@octokit/plugin-throttling"
 import { Octokit as createOctokit } from "@octokit/rest"
 import { posix } from "node:path"
-import { DocCollectionSource } from "../constants/doc-collections"
+import { DocCollectionSource } from "../constants/doc-collections.server"
 import logger from "../utils/logging.server"
 import { InvalidPathError } from "./errors/invalid-path-error"
 import { NotFoundError } from "./errors/not-found-error"
@@ -325,7 +325,7 @@ export async function downloadFileByPath(
   const { data } = await octokit.repos.getContent({
     owner: source.owner,
     repo: source.name,
-    headers: { branch: source.branch },
+    ref: source.branch,
     path: resolvedPath,
   })
 

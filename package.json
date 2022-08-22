@@ -28,7 +28,7 @@
     "test:e2e:run": "cross-env PORT=8811 start-server-and-test start:mocks http://localhost:8811 \"npx cypress run\"",
     "lint": "eslint --ext .js,.jsx,.ts,.tsx --max-warnings 0 app",
     "prepare": "husky install",
-    "jsonschema": "typescript-json-schema tsconfig.json RepoSchema -o app/constants/repos/repo-schema.json"
+    "jsonschema": "typescript-json-schema tsconfig.json DocCollectionManifest --include app/constants/doc-collections.ts -o app/constants/doc-collection-manifest-schema.json"
   },
   "lint-staged": {
     "*.{js,jsx,ts,tsx}": "eslint --fix",
@@ -63,6 +63,7 @@
     "@remix-run/serve": "^1.5.1",
     "@sentry/node": "^7.3.0",
     "@sentry/tracing": "^7.3.0",
+    "ajv": "^8.11.0",
     "algoliasearch": "^4.13.1",
     "axios": "^0.27.2",
     "bcryptjs": "^2.4.3",
@@ -106,6 +107,7 @@
   "devDependencies": {
     "@babel/core": "^7.18.2",
     "@babel/preset-typescript": "^7.17.12",
+    "@octokit/webhooks-types": "^6.3.5",
     "@remix-run/dev": "^1.6.1",
     "@remix-run/eslint-config": "^1.5.1",
     "@storybook/addon-actions": "^6.5.8",

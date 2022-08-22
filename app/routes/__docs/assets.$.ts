@@ -3,7 +3,7 @@ import mime from "mime-types"
 import { fileTypeFromBuffer } from "file-type"
 import { downloadFileByPath } from "~/cms"
 import { NotFoundError } from "../../cms/errors/not-found-error"
-import { findCollection } from "../../constants/collections.server"
+import { findDocCollection } from "../../constants/collections.server"
 
 export const loader: LoaderFunction = async ({ params }) => {
   const path = params["*"]
@@ -14,7 +14,7 @@ export const loader: LoaderFunction = async ({ params }) => {
     })
   }
 
-  const contentSpec = findCollection(path)
+  const contentSpec = findDocCollection(path)
   if (!contentSpec) {
     throw new Response("Collection not Found", {
       status: 404,

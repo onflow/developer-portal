@@ -1,9 +1,15 @@
 import { json, LoaderFunction, redirect } from "@remix-run/node"
 import { Outlet, useLoaderData } from "@remix-run/react"
 import { join } from "path"
+import invariant from "tiny-invariant"
+import removeMDorMDXFileExtension from "~/cms/utils/strip-extension"
 import { stripTrailingSlahes } from "../../cms/utils/strip-slashes"
-import removeMDorMDXFileExtension from "../../cms/utils/strip-extension"
-import { findCollection } from "../../constants/collections.server"
+import {
+  DocCollectionInfo,
+  DocManifest,
+  findDocCollection,
+  findDocManifest,
+} from "../../constants/collections.server"
 import { SIDEBAR_DROPDOWN_MENU } from "../../constants/sidebar-dropdown-menu"
 import AppLink from "../../ui/design-system/src/lib/Components/AppLink"
 import { ErrorPage } from "../../ui/design-system/src/lib/Components/ErrorPage"
@@ -11,7 +17,7 @@ import { InternalSidebarUrlContext } from "../../ui/design-system/src/lib/Compon
 import { InternalPageContainer } from "../../ui/design-system/src/lib/Pages/InternalPage/InternalPageContainer"
 
 type LoaderData = Pick<
-  NonNullable<ReturnType<typeof findCollection>>,
+  NonNullable<DocManifest & DocCollectionInfo>,
   | "sidebar"
   | "sidebarRootPath"
   | "displayName"
@@ -19,6 +25,7 @@ type LoaderData = Pick<
   | "header"
 > & {
   sidebarDropdownMenu: typeof SIDEBAR_DROPDOWN_MENU
+  remoteRepoError?: string
 }
 
 export const loader: LoaderFunction = async ({ params, request }) => {
@@ -37,24 +44,40 @@ export const loader: LoaderFunction = async ({ params, request }) => {
     throw json({ status: "noPage" }, { status: 404 })
   }
 
-  const data = findCollection(path)
-
-  if (!data) {
+  const collection = findDocCollection(path)
+  if (!collection) {
     throw json({ status: "noPage" }, { status: 404 })
   }
 
-  if (data.redirect) {
-    return redirect(data.redirect)
+  const docManifest = await findDocManifest(path, { request })
+  invariant(docManifest, `expected manifest`)
+
+  if (docManifest.redirect) {
+    return redirect(docManifest.redirect)
   }
 
-  return json({
-    sidebar: data.sidebar,
-    sidebarRootPath: data.sidebarRootPath,
-    displayName: data.displayName,
-    collectionRootPath: data.collectionRootPath,
-    header: data.header,
+  if (docManifest.remoteRepoError) {
+    console.log(
+      `Remote repository has invalid manifest`,
+      `${collection.source.owner}/${collection.source.name}`,
+      docManifest.remoteRepoError
+    )
+  }
+
+  let payload: LoaderData = {
+    sidebar: docManifest.sidebar,
+    sidebarRootPath: docManifest.sidebarRootPath,
+    displayName: docManifest.displayName,
+    collectionRootPath: collection.collectionRootPath,
+    header: docManifest.header,
     sidebarDropdownMenu: SIDEBAR_DROPDOWN_MENU,
-  })
+    remoteRepoError:
+      process.env.NODE_ENV === "development"
+        ? docManifest.remoteRepoError
+        : undefined,
+  }
+
+  return json(payload)
 }
 
 export default () => {
@@ -76,6 +99,7 @@ export default () => {
         header={data.header}
         sidebarItems={data.sidebar}
         sidebarDropdownMenu={data.sidebarDropdownMenu}
+        remoteRepoError={data.remoteRepoError}
       >
         <Outlet />
       </InternalPageContainer>

@@ -3,7 +3,7 @@ import { json, redirect } from "@remix-run/node"
 import { getMdxPage } from "~/cms/utils/mdx"
 // import { getRequiredServerEnvVar } from "~/utils/cms/helpers";
 import { redisCache } from "~/cms/redis.server"
-import { findCollection } from "~/constants/collections.server"
+import { findDocCollection } from "~/constants/collections.server"
 import { recordRefreshEventInMixpanel } from "~/utils/mixpanel.server"
 
 export interface Contribution {
@@ -78,7 +78,7 @@ export const action: ActionFunction = async ({ request }) => {
       refreshingContentPaths.push(contentPath)
       console.log(`Refreshing ${contentPath}...`)
 
-      const contentSpec = findCollection(body.repo)
+      const contentSpec = findDocCollection(body.repo)
 
       if (!contentSpec) {
         return json(

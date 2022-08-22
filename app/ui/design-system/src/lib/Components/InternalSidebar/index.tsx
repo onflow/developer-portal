@@ -8,7 +8,7 @@ import { useResolvedSidebarUrl } from "./useResolvedSidebarUrl"
 import { titleFromHref } from "../../utils/titleFromHref"
 
 export interface SidebarItemBase {
-  items?: SidebarItem[]
+  items?: SidebarItemList
 }
 export interface SidebarHeadingItem extends SidebarItemBase {
   title: string
@@ -20,13 +20,14 @@ export interface SidebarLinkItem extends SidebarItemBase {
 }
 
 export type SidebarItem = SidebarHeadingItem | SidebarLinkItem
+export type SidebarItemList = Array<SidebarItem>
 
 export function isSidebarLinkItem(item: SidebarItem): item is SidebarLinkItem {
   return "href" in item
 }
 
 export type InternalSidebarProps = {
-  items: SidebarItem[]
+  items: SidebarItemList
   menu?: InternaSidebarDropdownMenuGroup[]
 }
 

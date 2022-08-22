@@ -78,7 +78,7 @@ export const links: LinksFunction = () => {
 export const meta: MetaFunction = ({ data, location }) => ({
   ...getSocialMetas({
     title: getMetaTitle(),
-    url: data.url,
+    url: data?.url ?? "",
   }),
   charset: "utf-8",
   viewport: "width=device-width,initial-scale=1",

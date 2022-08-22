@@ -44,6 +44,11 @@ export type InternalPageContainerProps = React.PropsWithChildren<{
    * The configuration object that describes the page hierarchy.
    */
   sidebarItems?: SidebarItem[]
+
+  /**
+   * Any errors with the configuration in the remote repo to display
+   */
+  remoteRepoError?: string
 }>
 
 export function InternalPageContainer({
@@ -55,6 +60,7 @@ export function InternalPageContainer({
   header,
   sidebarDropdownMenu,
   sidebarItems,
+  remoteRepoError,
 }: InternalPageContainerProps) {
   const [editPageUrl, setEditPageUrl] = useState<string | undefined>(undefined)
   const [isMobileSidebarOpen, setMobileSidebarOpen] = useState(false)
@@ -154,6 +160,14 @@ export function InternalPageContainer({
           {children}
         </div>
       </div>
+      {remoteRepoError != null && (
+        <div className="px-3 text-sm">
+          <details>
+            <summary>Docs configuration error</summary>
+            <pre>Error: {remoteRepoError}</pre>
+          </details>
+        </div>
+      )}
     </InternalPageEditUrlContext.Provider>
   )
 }
