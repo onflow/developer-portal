@@ -7,6 +7,7 @@ import {
 } from "../../../../images/tools/tool-default.svg"
 import AppLink from "../AppLink"
 import Tag from "../Tag"
+import { Time } from "../Time"
 
 export type SDKCardProps = {
   title: string
@@ -110,7 +111,7 @@ export function SDKCard({
                   width={22}
                   height={22}
                 />
-                <div>{lastCommit}</div>
+                <Time value={lastCommit} />
               </div>
             )}
           </div>

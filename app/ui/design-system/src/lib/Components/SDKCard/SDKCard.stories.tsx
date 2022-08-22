@@ -22,7 +22,7 @@ Default.args = {
   link: "#",
   type: "sdk",
   stars: 52,
-  lastCommit: "22/3",
+  lastCommit: "2022-03-22",
   lastRelease: "207",
 }
 
