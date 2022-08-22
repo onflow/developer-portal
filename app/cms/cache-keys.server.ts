@@ -1,9 +1,12 @@
 import type { DocCollectionSource } from "~/constants/doc-collections.server"
 
-export const getCompiledKey = (source: DocCollectionSource, path: string) =>
+export const documentCompiledKey = (
+  source: DocCollectionSource,
+  path: string
+) =>
   `${source.owner}:${source.name}:${source.branch}:${source.rootPath}:${path}:compiled`
 
-export const getDownloadKey = (
+export const documentDownloadKey = (
   source: DocCollectionSource,
   fileOrDirPath: string
 ) =>

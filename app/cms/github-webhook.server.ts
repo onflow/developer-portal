@@ -6,7 +6,7 @@ import {
   manifestCacheKey,
 } from "~/constants/doc-collection-manifest"
 import { docCollections } from "~/constants/doc-collections.server"
-import { getCompiledKey, getDownloadKey } from "./cache-keys.server"
+import { documentCompiledKey, documentDownloadKey } from "./cache-keys.server"
 
 type ProcessResult = {
   docCollectionStatus: "match" | "not-found"
@@ -64,16 +64,16 @@ export function pushEventCacheKeysToInvalidate(
     let urlPath = path.slice(docCollection.source.rootPath.length)
     urlPath = urlPath.replace(/\.[^/.]+$/, "")
 
-    let compiledKey = getCompiledKey(docCollection.source, urlPath)
-    let downloadKey = getDownloadKey(docCollection.source, urlPath)
+    let compiledKey = documentCompiledKey(docCollection.source, urlPath)
+    let downloadKey = documentDownloadKey(docCollection.source, urlPath)
 
     keysToInvalidate.add(compiledKey)
     keysToInvalidate.add(downloadKey)
 
     if (isIndex) {
       let rootPath = urlPath.replace(/\/?index/, "")
-      let rootCompiledKey = getCompiledKey(docCollection.source, rootPath)
-      let rootDownloadKey = getDownloadKey(docCollection.source, rootPath)
+      let rootCompiledKey = documentCompiledKey(docCollection.source, rootPath)
+      let rootDownloadKey = documentDownloadKey(docCollection.source, rootPath)
 
       keysToInvalidate.add(rootCompiledKey)
       keysToInvalidate.add(rootDownloadKey)

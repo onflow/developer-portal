@@ -23,7 +23,7 @@ import {
 } from "~/ui/design-system"
 import { DocCollectionSource } from "../../constants/doc-collections.server"
 import { InternalImg } from "../../ui/design-system/src/lib/Components/InternalImg/InternalImg"
-import { getCompiledKey, getDownloadKey } from "../cache-keys.server"
+import { documentCompiledKey, documentDownloadKey } from "../cache-keys.server"
 import { returnRedirectForRoute } from "./return-redirect-for-route"
 import { Theme, useTheme } from "./theme.provider"
 
@@ -53,7 +53,7 @@ export async function getMdxPage(
   },
   options: CachifiedOptions
 ): Promise<MdxPage | null> {
-  const key = getCompiledKey(source, path)
+  const key = documentCompiledKey(source, path)
   const page = await cachified({
     cache: redisCache,
     maxAge: defaultMaxAge,
@@ -102,7 +102,7 @@ async function downloadMarkdownCached(
   fileOrDirPath: string,
   options: CachifiedOptions
 ) {
-  const key = getDownloadKey(source, fileOrDirPath)
+  const key = documentDownloadKey(source, fileOrDirPath)
   const downloaded = await cachified({
     cache: redisCache,
     maxAge: defaultMaxAge,
@@ -153,7 +153,7 @@ async function compileMdxCached({
   isTrusted: boolean
   options: CachifiedOptions
 }) {
-  const key = getCompiledKey(source, fileOrDirPath)
+  const key = documentCompiledKey(source, fileOrDirPath)
   const page = await cachified({
     cache: redisCache,
     maxAge: defaultMaxAge,
