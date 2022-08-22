@@ -8,10 +8,7 @@
     "SidebarHeadingItem": {
       "properties": {
         "items": {
-          "items": {
-            "$ref": "#/definitions/SidebarItem"
-          },
-          "type": "array"
+          "$ref": "#/definitions/SidebarItemList"
         },
         "title": {
           "type": "string"
@@ -29,16 +26,19 @@
         }
       ]
     },
+    "SidebarItemList": {
+      "items": {
+        "$ref": "#/definitions/SidebarItem"
+      },
+      "type": "array"
+    },
     "SidebarLinkItem": {
       "properties": {
         "href": {
           "type": "string"
         },
         "items": {
-          "items": {
-            "$ref": "#/definitions/SidebarItem"
-          },
-          "type": "array"
+          "$ref": "#/definitions/SidebarItemList"
         },
         "title": {
           "type": "string"
@@ -103,10 +103,7 @@
     },
     "sidebars": {
       "additionalProperties": {
-        "items": {
-          "$ref": "#/definitions/SidebarItem"
-        },
-        "type": "array"
+        "$ref": "#/definitions/SidebarItemList"
       },
       "description": "A mapping of paths to sidebars that should be rendered when a page is\nwithin the given path. Paths should be relative to the doc collection root.\nTODO: clarify how the sidebar is determined from a requested content path.",
       "type": "object"
