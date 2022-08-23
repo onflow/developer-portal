@@ -41,6 +41,7 @@ function processChildren(
   children: ListItem["children"]
 ): Array<InternalTocItem> {
   let items: Array<InternalTocItem> = []
+  console.log(children)
   for (let child of children) {
     if (child.type === "paragraph") {
       const link = child.children.find((c) => c.type === "link")

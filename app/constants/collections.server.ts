@@ -63,6 +63,7 @@ export const findDocCollection = (
 export type DocManifest = {
   displayName: string
   header: InternalLandingHeaderProps | undefined
+  hidden: boolean | undefined
   sidebar: SidebarItemList | undefined
   sidebarRootPath: string | undefined
   redirect: string | undefined
@@ -173,6 +174,8 @@ export async function findDocManifest(
     displayName: manifest.displayName,
 
     header: manifest.headers?.[contentPath],
+
+    hidden: manifest.hidden,
 
     sidebar:
       sidebarPath !== undefined ? manifest.sidebars![sidebarPath] : undefined,

@@ -101,3 +101,7 @@ body.dark .mdx-content {
     @apply !text-white;
   }
 }
+
+.docs-site-omit {
+  display: none;
+}

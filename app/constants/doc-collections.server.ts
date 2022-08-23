@@ -37,6 +37,12 @@ export type DocCollectionManifest = {
   sidebars?: Sidebars
 
   /**
+   * Whether the doc is hidden on the site. For example, if the doc is in progress and
+   * not ready to be viewed by the public.
+   */
+  hidden?: boolean
+
+  /**
    * A mapping of paths and the headers they should render. Paths should
    * be relative to the doc collection root.
    */
