@@ -21,62 +21,72 @@ export function pushEventCacheKeysToInvalidate(
   const branch = event.ref.replace(/^refs\/heads\//, "")
   invariant(branch.length > 0, `expected a branch`)
 
-  const docCollection = Object.values(docCollections).find((docCollection) => {
-    return (
-      docCollection.source.owner === repoOwner &&
-      docCollection.source.name === repoName &&
-      docCollection.source.branch === branch
-    )
-  })
+  const matchingDocCollections = Object.values(docCollections).filter(
+    (docCollection) => {
+      return (
+        docCollection.source.owner === repoOwner &&
+        docCollection.source.name === repoName &&
+        docCollection.source.branch === branch
+      )
+    }
+  )
 
-  if (!docCollection) {
+  if (matchingDocCollections.length === 0) {
     return {
       docCollectionStatus: "not-found",
       cacheKeysToInvalidate: new Set(),
     }
   }
 
-  const allChangedFiles = event.commits.flatMap((commit) => [
-    ...commit.added,
-    ...commit.removed,
-    ...commit.modified,
-  ])
-
   const keysToInvalidate: Set<string> = new Set()
 
-  const manifestPath = posix.join(
-    docCollection.source.rootPath,
-    JSON_MANIFEST_FILENAME
-  )
+  for (let docCollection of matchingDocCollections) {
+    const allChangedFiles = event.commits.flatMap((commit) => [
+      ...commit.added,
+      ...commit.removed,
+      ...commit.modified,
+    ])
 
-  if (allChangedFiles.includes(manifestPath)) {
-    keysToInvalidate.add(manifestCacheKey(docCollection.source))
-  }
+    const manifestPath = posix.join(
+      docCollection.source.rootPath,
+      JSON_MANIFEST_FILENAME
+    )
 
-  let documentPaths = allChangedFiles.filter((path) => {
-    let isDocumentPath = path.startsWith(docCollection.source.rootPath)
-    let isDocument = path.endsWith(".md") || path.endsWith(".mdx")
-    return isDocumentPath && isDocument
-  })
+    if (allChangedFiles.includes(manifestPath)) {
+      keysToInvalidate.add(manifestCacheKey(docCollection.source))
+    }
 
-  for (let path of documentPaths) {
-    let isIndex = path.endsWith("index.md") || path.endsWith("index.mdx")
-    let urlPath = path.slice(docCollection.source.rootPath.length)
-    urlPath = urlPath.replace(/\.[^/.]+$/, "")
+    let documentPaths = allChangedFiles.filter((path) => {
+      let isDocumentPath = path.startsWith(docCollection.source.rootPath)
+      let isDocument = path.endsWith(".md") || path.endsWith(".mdx")
+      return isDocumentPath && isDocument
+    })
 
-    let compiledKey = documentCompiledKey(docCollection.source, urlPath)
-    let downloadKey = documentDownloadKey(docCollection.source, urlPath)
+    for (let path of documentPaths) {
+      let isIndex = path.endsWith("index.md") || path.endsWith("index.mdx")
+      let urlPath = path.slice(docCollection.source.rootPath.length)
+      urlPath = urlPath.replace(/\.[^/.]+$/, "")
 
-    keysToInvalidate.add(compiledKey)
-    keysToInvalidate.add(downloadKey)
+      let compiledKey = documentCompiledKey(docCollection.source, urlPath)
+      let downloadKey = documentDownloadKey(docCollection.source, urlPath)
 
-    if (isIndex) {
-      let rootPath = urlPath.replace(/\/?index/, "")
-      let rootCompiledKey = documentCompiledKey(docCollection.source, rootPath)
-      let rootDownloadKey = documentDownloadKey(docCollection.source, rootPath)
+      keysToInvalidate.add(compiledKey)
+      keysToInvalidate.add(downloadKey)
 
-      keysToInvalidate.add(rootCompiledKey)
-      keysToInvalidate.add(rootDownloadKey)
+      if (isIndex) {
+        let rootPath = urlPath.replace(/\/?index/, "")
+        let rootCompiledKey = documentCompiledKey(
+          docCollection.source,
+          rootPath
+        )
+        let rootDownloadKey = documentDownloadKey(
+          docCollection.source,
+          rootPath
+        )
+
+        keysToInvalidate.add(rootCompiledKey)
+        keysToInvalidate.add(rootDownloadKey)
+      }
     }
   }
 
