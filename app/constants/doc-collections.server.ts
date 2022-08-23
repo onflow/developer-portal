@@ -339,7 +339,7 @@ export const docCollections: Record<string, DocCollection> = {
       owner: "onflow",
       name: "flow",
       branch: "master",
-      rootPath: "docs/content/dapp-development",
+      rootPath: "docs/content/dapp-development/",
     },
     manifest: {
       displayName: "DApp Development",

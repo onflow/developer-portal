@@ -101,6 +101,41 @@ test("it returns special paths for index documents", () => {
   )
 })
 
+test("it returns keys for the onflow repoo", () => {
+  const event: any = {
+    ref: "refs/heads/master",
+    repository: {
+      name: "flow",
+      owner: { login: "onflow" },
+    },
+    commits: [
+      {
+        added: [],
+        removed: [],
+        modified: [
+          "docs/content/dapp-development/index.md",
+          "docs/content/dapp-development/in-dapp-payments.mdx",
+        ],
+      },
+    ],
+  }
+
+  const result = pushEventCacheKeysToInvalidate(event)
+  const keyPrefix = `onflow:flow:master:docs/content/dapp-development/`
+
+  expect(result.docCollectionStatus).toBe("match")
+  expect(result.cacheKeysToInvalidate).toEqual(
+    new Set([
+      `${keyPrefix}::compiled`,
+      `${keyPrefix}::downloaded`,
+      `${keyPrefix}:index:compiled`,
+      `${keyPrefix}:index:downloaded`,
+      `${keyPrefix}:in-dapp-payments:compiled`,
+      `${keyPrefix}:in-dapp-payments:downloaded`,
+    ])
+  )
+})
+
 test("it clears the expected cache keys when files are removed", () => {
   const event: any = {
     ...exampleEvent,
