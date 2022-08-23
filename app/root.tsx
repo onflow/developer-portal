@@ -1,4 +1,5 @@
 import type {
+  LinkDescriptor,
   LinksFunction,
   LoaderFunction,
   MetaFunction,
@@ -67,12 +68,15 @@ export const links: LinksFunction = () => {
       href: "https://assets.website-files.com/5f6294c0c7a8cdd643b1c820/5f6294c0c7a8cd5e06b1c938_Asset%201%405x.png",
       type: "image/png",
     },
-    ...fontPreloads.map((fontFile) => ({
-      rel: "preload",
-      href: fontFile,
-      as: "font",
-      crossorigin: "anonymous",
-    })),
+    ...fontPreloads.map((fontFile) => {
+      const value: LinkDescriptor = {
+        rel: "preload",
+        href: fontFile,
+        as: "font",
+        crossOrigin: "anonymous",
+      }
+      return value
+    }),
   ]
 }
 
