@@ -1229,7 +1229,7 @@ export const docCollections: Record<string, DocCollection> = {
               },
               {
                 title: "Send a Signed Transaction",
-                href: "send-signed-transaction",
+                href: "send-signed-transactions",
               },
               {
                 title: "Decode a Transaction",

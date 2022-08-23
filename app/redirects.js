@@ -191,7 +191,7 @@ export default {
   "/staking/staking-collection/": "/nodes/staking/staking-collection",
   "/staking/staking-collection": "/nodes/staking/staking-collection",
   "/fcl/packages/fcl/CHANGELOG": "/tools/fcl-js",
-  "/flow-cli/send-signed-transactions/": "/tools/flow-cli/sign-transaction",
+  "/flow-cli/send-signed-transactions/": "/tools/flow-cli/sign-transactions",
   "/flow-go-sdk/building-transactions/": "/tools/flow-go-sdk",
   "/flow-go-sdk/building-transactions": "/tools/flow-go-sdk",
   "/flow-go-sdk/generating-keys/": "/tools/flow-go-sdk",
