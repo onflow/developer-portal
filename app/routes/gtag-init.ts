@@ -10,8 +10,6 @@ export async function loader({ request }: any) {
       page_path: window.location.pathname,
     });
     `
-  console.log("Init GA:", code)
-
   return new Response(code, {
     status: 200,
     headers: {

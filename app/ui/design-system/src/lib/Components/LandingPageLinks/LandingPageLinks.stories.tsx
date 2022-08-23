@@ -12,7 +12,7 @@ const Template: Story<LandingPageLinksProps> = (args) => {
 
 export const Default = Template.bind({})
 Default.args = {
-  editPageUrl: "https://github.com/onflow/next-docs-v1",
+  editPageUrl: "https://github.com/onflow/developer-portal",
 }
 
 export const WithoutEditPageUrl = Template.bind({})

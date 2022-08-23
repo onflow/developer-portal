@@ -12,7 +12,7 @@ Project requires:
 ⚠️ Must have [Docker](https://docs.docker.com/get-docker/) installed.
 
 ```
-git clone https://github.com/onflow/next-docs-v1.git
+git clone https://github.com/onflow/developer-portal.git
 ```
 
 You'll need to acquire the project's `.env` file before continuing.

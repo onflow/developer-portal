@@ -45,7 +45,7 @@ export default function Index() {
 
   return (
     <HomePage
-      editPageUrl="https://github.com/onflow/next-docs-v1/blob/main/app/component-data/Homepage/index.tsx"
+      editPageUrl="https://github.com/onflow/developer-portal/blob/main/app/component-data/Homepage/index.tsx"
       startProjectItems={homepageStartProjectData}
       flips={flips}
       tools={tools}

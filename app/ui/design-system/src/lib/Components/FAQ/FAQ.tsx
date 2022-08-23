@@ -43,7 +43,7 @@ export function FAQ({ faqList, variation }: FAQProps) {
         })
 
         return (
-          <div // TODO: see https://github.com/onflow/next-docs-v1/pull/51#discussion_r883674775
+          <div // TODO: see https://github.com/onflow/developer-portal/pull/51#discussion_r883674775
             onClick={() => toggleExpansion(i)}
             role="button"
             className={classes}

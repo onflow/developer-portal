@@ -30,7 +30,7 @@ export default function Page() {
   // potentially get updated by the `refreshTools` call.
   return (
     <GettingStartedPage
-      editPageUrl="https://github.com/onflow/next-docs-v1/blob/main/app/routes/getting-started/data.tsx"
+      editPageUrl="https://github.com/onflow/developer-portal/blob/main/app/routes/getting-started/data.tsx"
       landingHeaderItems={staticData.landingHeaderItems}
       sdkCardItems={sdkCardItems}
       recentToolItems={recentToolItems}
