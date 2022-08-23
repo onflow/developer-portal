@@ -71,7 +71,7 @@ export const links: LinksFunction = () => {
       rel: "preload",
       href: fontFile,
       as: "font",
-      corssorigin: "anonymous",
+      crossorigin: "anonymous",
     })),
   ]
 }
