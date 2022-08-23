@@ -1,4 +1,6 @@
-# FlowDocs
+# Flow Developer Portal
+
+This repository contains the source code that powers Flow's Developer Portal: [https://developers.flow.com](https://developers.flow.com)
 
 ## Get Started
 
