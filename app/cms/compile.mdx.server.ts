@@ -8,6 +8,7 @@ import calculateReadingTime from "reading-time"
 import rehypeSanitize, { defaultSchema } from "rehype-sanitize"
 import type * as U from "unified"
 import { visit } from "unist-util-visit"
+import { HIDDEN_CONTENT_CLASS_NAME } from "~/constants"
 import type { GitHubTextFile } from "./github.server"
 import { HIGHLIGHT_LANGUAGES } from "./utils/constants"
 import { markdownToToc } from "./utils/generate-toc"
@@ -38,6 +39,27 @@ function removePreContainerDivs() {
         if (parent.tagName !== "div") return
         if (parent.children.length !== 1 && index === 0) return
         Object.assign(parent, node)
+      }
+    )
+  }
+}
+
+function removeOmittedSections() {
+  return async function omittedSectionsTransformer(tree: H.Root) {
+    visit(
+      tree,
+      { type: "mdxJsxFlowElement" },
+      function visitor(node: H.Node, index, parent) {
+        // @ts-expect-error
+        const filteredAttributes = node?.attributes.filter(
+          (attr: any) =>
+            attr.name === "class" && attr.value === HIDDEN_CONTENT_CLASS_NAME
+        )
+
+        if (filteredAttributes.length > 0) {
+          // @ts-ignore
+          delete node.children
+        }
       }
     )
   }
@@ -85,6 +107,7 @@ const rehypePlugins = (isTrusted: boolean = false): U.PluggableList => {
   const plugins: U.PluggableList = [
     removePreContainerDivs,
     removeMdxMarkerPlugin,
+    removeOmittedSections,
   ]
 
   if (!isTrusted) {
@@ -120,7 +143,7 @@ async function compileMdx<FrontmatterType extends Record<string, unknown>>(
   const rootDir = path.posix.dirname(source.path)
 
   try {
-    const { frontmatter, code } = await bundleMDX({
+    const { frontmatter, code, matter } = await bundleMDX({
       source: source.textContent,
       files: files.reduce(
         (prev, current) => ({
