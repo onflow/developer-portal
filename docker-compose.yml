@@ -33,9 +33,9 @@ x-app-defaults: &app-defaults
     PORT: 3000
     REMIX_DEV_SERVER_WS_PORT: 8002
   volumes:
-    - type: bind
-      source: .
-      target: /opt/next-docs
+    - .:/opt/next-docs
+    - ./package.json:/opt/next-docs/package.json
+    - ./package-lock.json:/opt/next-docs/package-lock.json
     - node_modules:/opt/next-docs/node_modules
 
 services:
@@ -53,6 +53,9 @@ services:
   app-css:
     <<: *app-defaults
     command: ["yarn", "run", "dev:css"]
+    # postcss exits without an stdin
+    # See: https://github.com/postcss/postcss-cli/pull/424
+    tty: true
     depends_on:
       - app-yarn
   # Watches for SVG changes and recreates their components as needed.
