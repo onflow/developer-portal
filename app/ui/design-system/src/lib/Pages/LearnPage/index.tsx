@@ -4,7 +4,10 @@ import { SocialLinksSignup } from "../../Components"
 import { ButtonLink } from "../../Components/Button"
 import { HeaderWithLink } from "../../Components/HeaderWithLink"
 import { LandingHeader } from "../../Components/LandingHeader"
-import { LandingPageSecondaryNav } from "../../Components/LandingPageSecondaryNav"
+import {
+  LandingPageSecondaryNav,
+  LandingPageSecondaryNavProps,
+} from "../../Components/LandingPageSecondaryNav"
 import { ToggleButton } from "../../Components/ToggleButton"
 import { TutorialCardProps } from "../../Components/TutorialCard"
 import { PaginatedTutorialCardList } from "../../Components/TutorialCard/PaginatedTutorialCardList"
@@ -20,37 +23,43 @@ import PageBackground from "../shared/PageBackground"
 import PageSection from "../shared/PageSection"
 import PageSections from "../shared/PageSections"
 import LearnImage from "../../../../images/page/learn.png"
-import { learnSections } from "~/constants/landingPages/learnSections"
 import {
   ContentNavigationList,
   ContentNavigationListProps,
 } from "../../Components/ContentNavigationList"
+import { SocialLinksSignupProps } from "../../Components/SocialLinksSignup"
 
-export type LearnPageProps = {
-  editPageUrl?: string
+export type LearnPageProps = SocialLinksSignupProps & {
   allTutorials: TutorialCardProps[]
+  architectureTutorials: TutorialCardProps[]
   cadenceHref: string
   cadenceTutorials: TutorialCardProps[]
+  contentNavigationListItems: ContentNavigationListProps
+  editPageUrl?: string
   nftTutorials: TutorialCardProps[]
+  secondaryNavSections: LandingPageSecondaryNavProps["sections"]
   videos: {
     primary: LargeVideoCardProps
     secondary: SmallVideoCardProps[]
   }
   youtubeHref: string
-  architectureTutorials: TutorialCardProps[]
-  contentNavigationListItems: ContentNavigationListProps
 }
 
 export function LearnPage({
   allTutorials = [],
+  architectureTutorials,
   cadenceHref,
   cadenceTutorials,
+  contentNavigationListItems,
+  discordUrl,
+  discourseUrl,
   editPageUrl,
+  githubUrl,
   nftTutorials,
+  secondaryNavSections,
+  twitterUrl,
   videos,
   youtubeHref,
-  architectureTutorials,
-  contentNavigationListItems,
 }: LearnPageProps) {
   const [filters, setFilters] = useState<string[]>([])
 
@@ -75,7 +84,7 @@ export function LearnPage({
 
   return (
     <PageBackground gradient="tools">
-      <LandingPageSecondaryNav sections={learnSections} />
+      <LandingPageSecondaryNav sections={secondaryNavSections} />
       <PageSections>
         <PageSection className="pt-0 pb-0">
           <LandingHeader
@@ -87,7 +96,9 @@ export function LearnPage({
             Most importantly, we realized that the technology at the time was not ready for this kind of application.
             Being the visionaries we are, we set to build a better tech for what we plan to do.
             We set to build what is now Flow blockchain."
+            discordUrl={discordUrl}
             editPageUrl={editPageUrl}
+            githubUrl={githubUrl}
             imageSrc={LearnImage}
           />
         </PageSection>
@@ -222,7 +233,12 @@ export function LearnPage({
           />
         </PageSection>
       </PageSections>
-      <SocialLinksSignup />
+      <SocialLinksSignup
+        discordUrl={discordUrl}
+        discourseUrl={discourseUrl}
+        githubUrl={githubUrl}
+        twitterUrl={twitterUrl}
+      />
     </PageBackground>
   )
 }

@@ -1,0 +1,77 @@
+{
+  "source": {
+    "owner": "onflow",
+    "name": "flow",
+    "branch": "master",
+    "rootPath": "docs/content/node-operation/"
+  },
+  "manifest": {
+    "displayName": "Node Operation",
+    "sidebars": {
+      "": [
+        {
+          "title": "Overview",
+          "items": [
+            {
+              "title": "Introduction",
+              "href": ""
+            },
+            {
+              "title": "Node Setup",
+              "href": "node-setup"
+            },
+            {
+              "title": "Node Roles",
+              "href": "node-roles"
+            },
+            {
+              "title": "Operator FAQs",
+              "href": "faq"
+            }
+          ]
+        },
+        {
+          "title": "Operator Guides",
+          "items": [
+            {
+              "title": "Node Bootstrapping",
+              "href": "node-bootstrap"
+            },
+            {
+              "title": "Node Migration",
+              "href": "node-migration"
+            },
+            {
+              "title": "Machine Accounts for Existing Node Operators",
+              "href": "machine-existing-operator"
+            },
+            {
+              "title": "Database Encryption for Existing Node Operators",
+              "href": "db-encryption-existing-operator"
+            },
+            {
+              "title": "Node Monitoring",
+              "href": "monitoring-nodes"
+            },
+            {
+              "title": "Observer Node",
+              "href": "observer-node"
+            },
+            {
+              "title": "Spork Process",
+              "href": "spork"
+            },
+            {
+              "title": "Past Spork Info",
+              "href": "past-sporks"
+            },
+            {
+              "title": "Upcoming Sporks",
+              "href": "upcoming-sporks"
+            }
+          ]
+        }
+      ]
+    }
+  }
+}

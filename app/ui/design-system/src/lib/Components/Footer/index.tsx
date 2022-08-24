@@ -1,4 +1,3 @@
-import { DISCORD_URL } from "../../../../../../constants"
 import { ReactComponent as FlowDocsLogo } from "../../../../images/logos/flow-docs-logo"
 import OnFlowIcon from "../../../../images/logos/flow-icon-bw-light.svg"
 import DiscordIcon from "../../../../images/social/discord-light.svg"
@@ -171,7 +170,7 @@ export const Footer = ({ sections = footerSections }) => {
             <AppLink to="https://github.com/onflow">
               <img src={GithubIcon} height={32} width={32} />
             </AppLink>
-            <AppLink to={DISCORD_URL}>
+            <AppLink to="https://onflow.org/discord">
               <img src={DiscordIcon} height={28} width={28} />
             </AppLink>
             <AppLink to="https://forum.onflow.org/">

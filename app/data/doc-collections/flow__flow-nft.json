@@ -1,0 +1,24 @@
+{
+  "source": {
+    "owner": "onflow",
+    "name": "flow-nft",
+    "branch": "master",
+    "rootPath": "docs/"
+  },
+  "manifest": {
+    "displayName": "Flow NFT",
+    "sidebars": {
+      "": [
+        {
+          "title": "Flow Non-Fungible Token",
+          "items": [
+            {
+              "title": "Overview",
+              "href": "overview"
+            }
+          ]
+        }
+      ]
+    }
+  }
+}

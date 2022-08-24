@@ -1,16 +1,16 @@
 function getEnv() {
   return {
+    BOT_DISCORD_TOKEN: process.env.BOT_DISCORD_TOKEN,
+    BOT_GITHUB_TOKEN: process.env.BOT_GITHUB_TOKEN,
+    GA_TRACKING_ID: process.env.GA_TRACKING_ID,
     NODE_ENV: process.env.NODE_ENV,
+    REDIS_CA: process.env.REDIS_CA,
+    REDIS_URL: process.env.REDIS_URL,
+    REFRESH_CACHE_SECRET: process.env.REFRESH_CACHE_SECRET,
     SENTRY_DSN: process.env.SENTRY_DSN,
     SENTRY_ENV: process.env.SENTRY_ENV,
-    BOT_GITHUB_TOKEN: process.env.BOT_GITHUB_TOKEN,
-    BOT_DISCORD_TOKEN: process.env.BOT_DISCORD_TOKEN,
     SESSION_SECRET: process.env.SESSION_SECRET,
-    REDIS_URL: process.env.REDIS_URL,
-    REDIS_CA: process.env.REDIS_CA,
-    REFRESH_CACHE_SECRET: process.env.REFRESH_CACHE_SECRET,
     STATUSPAGE_API_KEY: process.env.STATUSPAGE_API_KEY,
-    GA_TRACKING_ID: process.env.GA_TRACKING_ID,
   }
 }
 

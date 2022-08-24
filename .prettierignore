@@ -1,5 +1,5 @@
 app/main.css
-app/constants/repos/repo-schema.json
+app/data/doc-collection-manifest-schema.json
 
 public/build/**/*
 .husky

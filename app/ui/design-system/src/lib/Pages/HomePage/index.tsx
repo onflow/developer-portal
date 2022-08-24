@@ -14,6 +14,7 @@ import {
 import { FlipsProps } from "../../Components/Flips"
 import { LinkCard2ColumnProps } from "../../Components/LinkCard2Column"
 import { LinkCard3ColumnItems } from "../../Components/LinkCard3Column"
+import { SocialLinksSignupProps } from "../../Components/SocialLinksSignup"
 import { ToolCardProps } from "../../Components/ToolCard"
 import { TutorialCardProps } from "../../Components/TutorialCard"
 import { UpcomingEventsProps } from "../../Components/UpcomingEvents"
@@ -21,34 +22,40 @@ import PageBackground from "../shared/PageBackground"
 import PageSection from "../shared/PageSection"
 import PageSections from "../shared/PageSections"
 
-export type HomePageProps = {
-  editPageUrl?: string
-  startProjectItems: LinkCard2ColumnProps
-  flips: FlipsProps
-  tools: ToolCardProps[]
+export type HomePageProps = SocialLinksSignupProps & {
   concepts?: TutorialCardProps[]
-  threeColumnItems: LinkCard3ColumnItems
-  upcomingEvents: UpcomingEventsProps
   contentNavigationListItems: ContentNavigationListProps
+  editPageUrl?: string
+  flips: FlipsProps
+  startProjectItems: LinkCard2ColumnProps
+  threeColumnItems: LinkCard3ColumnItems
+  tools: ToolCardProps[]
+  upcomingEvents: UpcomingEventsProps
 }
 
 const HomePage = ({
-  editPageUrl,
-  startProjectItems,
-  flips,
-  tools,
   concepts,
-  threeColumnItems,
-  upcomingEvents,
   contentNavigationListItems,
+  discordUrl,
+  discourseUrl,
+  editPageUrl,
+  flips,
+  githubUrl,
+  startProjectItems,
+  threeColumnItems,
+  tools,
+  twitterUrl,
+  upcomingEvents,
 }: HomePageProps) => {
   return (
     <PageBackground gradient="home">
       <LandingHeaderHome
-        title="Developer Portal"
         description="Discover the developer ecosystem and master the Flow blockchain"
-        tag="onflow"
+        discordUrl={discordUrl}
         editPageUrl={editPageUrl}
+        githubUrl={githubUrl}
+        tag="onflow"
+        title="Developer Portal"
       />
       <LinkCard2Column {...startProjectItems} homePage={true} />
       <LinkCard3Column items={threeColumnItems} topRounded={false} />
@@ -79,7 +86,12 @@ const HomePage = ({
           />
         </PageSection>
       </PageSections>
-      <SocialLinksSignup />
+      <SocialLinksSignup
+        discordUrl={discordUrl}
+        discourseUrl={discourseUrl}
+        githubUrl={githubUrl}
+        twitterUrl={twitterUrl}
+      />
     </PageBackground>
   )
 }

@@ -4,19 +4,22 @@ import { LandingPageLinks } from "../LandingPageLinks"
 
 export type LandingHeaderHomeProps = {
   description: string
+  discordUrl: string
 
   /**
    * The URL to the page on github that allows editing this page's content
    */
   editPageUrl?: string
-
+  githubUrl: string
   tag: string
   title: string
 }
 
 export function LandingHeaderHome({
   description,
+  discordUrl,
   editPageUrl,
+  githubUrl,
   tag,
   title,
 }: LandingHeaderHomeProps) {
@@ -42,7 +45,11 @@ export function LandingHeaderHome({
         />
       </div>
       <div className="fixed right-14 top-1/4 hidden lg:block">
-        <LandingPageLinks editPageUrl={editPageUrl} />
+        <LandingPageLinks
+          discordUrl={discordUrl}
+          editPageUrl={editPageUrl}
+          githubUrl={githubUrl}
+        />
       </div>
     </div>
   )

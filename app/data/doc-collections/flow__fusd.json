@@ -1,0 +1,32 @@
+{
+  "source": {
+    "owner": "onflow",
+    "name": "flow",
+    "branch": "master",
+    "rootPath": "docs/content/fusd/"
+  },
+  "manifest": {
+    "displayName": "FUSD",
+    "sidebars": {
+      "": [
+        {
+          "title": "FUSD",
+          "items": [
+            {
+              "title": "Introduction",
+              "href": ""
+            },
+            {
+              "title": "Transactions & Scripts",
+              "href": "transactions"
+            },
+            {
+              "title": "Providers",
+              "href": "providers"
+            }
+          ]
+        }
+      ]
+    }
+  }
+}

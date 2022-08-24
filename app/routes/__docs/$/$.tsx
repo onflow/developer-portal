@@ -8,7 +8,7 @@ import { getMdxPage, useMdxComponent } from "../../../cms/utils/mdx"
 import {
   findDocCollection,
   findDocManifest,
-} from "../../../constants/collections.server"
+} from "../../../cms/collections.server"
 import AppLink from "../../../ui/design-system/src/lib/Components/AppLink"
 import { ErrorPage } from "../../../ui/design-system/src/lib/Components/ErrorPage"
 import { InternalUrlContext } from "../../../ui/design-system/src/lib/Components/InternalUrlContext"

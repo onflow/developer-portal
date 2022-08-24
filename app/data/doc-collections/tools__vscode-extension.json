@@ -1,0 +1,24 @@
+{
+  "source": {
+    "owner": "onflow",
+    "name": "flow",
+    "branch": "master",
+    "rootPath": "docs/content/vscode-extension/"
+  },
+  "manifest": {
+    "displayName": "VS Code Extension",
+    "sidebars": {
+      "": [
+        {
+          "title": "Cadence VS Code Extension",
+          "items": [
+            {
+              "title": "Introduction",
+              "href": ""
+            }
+          ]
+        }
+      ]
+    }
+  }
+}

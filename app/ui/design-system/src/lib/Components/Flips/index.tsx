@@ -1,20 +1,21 @@
 import { useState } from "react"
-import { GITHUB_URL } from "../../../../../../constants"
 import { ButtonLink } from "../Button"
 import { HeaderWithLink } from "../HeaderWithLink"
 import TabMenu from "../TabMenu"
 import FlipCell, { FlipCellHeader, FlipCellProps } from "./FlipCell"
 
 export type FlipsProps = {
-  openFlips: FlipCellProps[]
+  githubUrl: string
   goodPlacesToStartFlips: FlipCellProps[]
   headerLink?: string
+  openFlips: FlipCellProps[]
 }
 
 export default function Flips({
-  openFlips,
+  githubUrl,
   goodPlacesToStartFlips,
   headerLink = "",
+  openFlips,
 }: FlipsProps) {
   const [selectedTab, setSelectedTab] = useState(0)
   const flips: [FlipCellProps[], FlipCellProps[]] = [
@@ -28,7 +29,7 @@ export default function Flips({
         <HeaderWithLink className="text-h2" headerLink={headerLink}>
           FLIPs
         </HeaderWithLink>
-        <ButtonLink rightIcon="right" href={GITHUB_URL} variant="secondary">
+        <ButtonLink rightIcon="right" href={githubUrl} variant="secondary">
           Go to GitHub
         </ButtonLink>
       </div>

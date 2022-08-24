@@ -1,0 +1,200 @@
+{
+  "source": {
+    "owner": "onflow",
+    "name": "flow-cli",
+    "branch": "master",
+    "rootPath": "docs/"
+  },
+  "manifest": {
+    "displayName": "Flow CLI",
+    "sidebars": {
+      "": [
+        {
+          "title": "Flow CLI",
+          "items": [
+            {
+              "title": "Introduction",
+              "href": ""
+            },
+            {
+              "title": "Installation",
+              "href": "install"
+            },
+            {
+              "title": "Data Collection",
+              "href": "data-collection"
+            }
+          ]
+        },
+        {
+          "title": "Keys",
+          "items": [
+            {
+              "title": "Generate Keys",
+              "href": "generate-keys"
+            },
+            {
+              "title": "Decode Keys",
+              "href": "decode-keys"
+            }
+          ]
+        },
+        {
+          "title": "Accounts",
+          "items": [
+            {
+              "title": "Get an Account",
+              "href": "get-accounts"
+            },
+            {
+              "title": "Create an Account",
+              "href": "create-accounts"
+            },
+            {
+              "title": "Deploy a Contract",
+              "href": "account-add-contract"
+            },
+            {
+              "title": "Update a Contract",
+              "href": "account-update-contract"
+            },
+            {
+              "title": "Remove a Contract",
+              "href": "account-remove-contract"
+            },
+            {
+              "title": "Staking Info",
+              "href": "account-staking-info"
+            }
+          ]
+        },
+        {
+          "title": "Deployment",
+          "items": [
+            {
+              "title": "Start Emulator",
+              "href": "start-emulator"
+            },
+            {
+              "title": "Add Project Contracts",
+              "href": "project-contracts"
+            },
+            {
+              "title": "Deploy a Project",
+              "href": "deploy-project-contracts"
+            }
+          ]
+        },
+        {
+          "title": "Scripts",
+          "items": [
+            {
+              "title": "Execute a Script",
+              "href": "execute-scripts"
+            }
+          ]
+        },
+        {
+          "title": "Transactions",
+          "items": [
+            {
+              "title": "Send a Transaction",
+              "href": "send-transactions"
+            },
+            {
+              "title": "Get a Transaction",
+              "href": "get-transactions"
+            },
+            {
+              "title": "Build a Transaction",
+              "href": "build-transactions"
+            },
+            {
+              "title": "Build a Complex Transaction",
+              "href": "complex-transactions"
+            },
+            {
+              "title": "Sign a Transaction",
+              "href": "sign-transaction"
+            },
+            {
+              "title": "Send a Signed Transaction",
+              "href": "send-signed-transactions"
+            },
+            {
+              "title": "Decode a Transaction",
+              "href": "decode-transactions"
+            }
+          ]
+        },
+        {
+          "title": "flow.json",
+          "items": [
+            {
+              "title": "Initialize Configuration",
+              "href": "initialize-configuration"
+            },
+            {
+              "title": "Configuration",
+              "href": "configuration"
+            },
+            {
+              "title": "Manage Configuration",
+              "href": "manage-configuration"
+            },
+            {
+              "title": "Security",
+              "href": "security"
+            }
+          ]
+        },
+        {
+          "title": "Get Flow Data",
+          "items": [
+            {
+              "title": "Get Blocks",
+              "href": "get-blocks"
+            },
+            {
+              "title": "Get Events",
+              "href": "get-events"
+            },
+            {
+              "title": "Get Collections",
+              "href": "get-collections"
+            },
+            {
+              "title": "Get Network Status",
+              "href": "get-status"
+            }
+          ]
+        },
+        {
+          "title": "Utils",
+          "items": [
+            {
+              "title": "Create App",
+              "href": "project-app"
+            },
+            {
+              "title": "Generate Signature",
+              "href": "signature-generate"
+            },
+            {
+              "title": "Verify Signature",
+              "href": "signature-verify"
+            },
+            {
+              "title": "Snapshot Save",
+              "href": "snapshot-save"
+            },
+            {
+              "title": "Tools",
+              "href": "tools"
+            }
+          ]
+        }
+      ]
+    }
+  }
+}

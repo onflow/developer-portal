@@ -3,7 +3,6 @@ import React from "react"
 export type MenuItemBase = {
   title: string
   divider?: boolean
-  tabs: Array<Tab>
 }
 
 export type Link = {

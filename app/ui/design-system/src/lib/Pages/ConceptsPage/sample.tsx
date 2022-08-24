@@ -6,6 +6,8 @@ import FLOWCLIIconSrc from "../../../../images/tools/tool-cli.svg"
 import { ConceptsPageProps } from "."
 
 export const data: ConceptsPageProps = {
+  discordUrl: "https://onflow.org/discord",
+  githubUrl: "https://github.com/onflow",
   landingHeaderItems: {
     buttonText: "Button Text",
     buttonUrl: "#changeme",
@@ -13,6 +15,8 @@ export const data: ConceptsPageProps = {
     description:
       "Lorem ipsum dolor sit amet proin gravida lorem ipsum dolor sit.",
     title: "Concepts",
+    discordUrl: "https://onflow.org/discord",
+    githubUrl: "https://github.com/onflow",
   },
   featureLinkBlockItems: [
     {

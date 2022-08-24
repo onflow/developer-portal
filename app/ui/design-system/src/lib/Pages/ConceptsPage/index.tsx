@@ -19,9 +19,13 @@ import PageSection from "../shared/PageSection"
 import PageSections from "../shared/PageSections"
 
 export interface ConceptsPageProps {
+  contentNavigationListItems: ContentNavigationListProps
+  discordUrl: string
   editPageUrl?: string
-  landingHeaderItems: LandingHeaderProps
+  eventCardItems: EventCardProps
   featureLinkBlockItems: [FeatureLinkBlockProps, FeatureLinkBlockProps]
+  githubUrl: string
+  landingHeaderItems: LandingHeaderProps
   toolCardItems: [
     ToolCardProps,
     ToolCardProps,
@@ -30,29 +34,31 @@ export interface ConceptsPageProps {
     ToolCardProps,
     ToolCardProps
   ]
-  contentNavigationListItems: ContentNavigationListProps
-  eventCardItems: EventCardProps
 }
 
 export function ConceptsPage({
-  editPageUrl,
-  landingHeaderItems,
-  featureLinkBlockItems,
-  toolCardItems,
   contentNavigationListItems,
+  discordUrl,
+  editPageUrl,
   eventCardItems,
+  featureLinkBlockItems,
+  githubUrl,
+  landingHeaderItems,
+  toolCardItems,
 }: ConceptsPageProps) {
   return (
     <PageBackground gradient="concepts">
       <PageSections>
         <PageSection className="pt-0">
           <LandingHeader
-            editPageUrl={editPageUrl}
-            title={landingHeaderItems.title}
             buttonText={landingHeaderItems.buttonText}
             buttonUrl={landingHeaderItems.buttonUrl}
             callout={landingHeaderItems.callout}
             description={landingHeaderItems.description}
+            discordUrl={discordUrl}
+            editPageUrl={editPageUrl}
+            githubUrl={githubUrl}
+            title={landingHeaderItems.title}
           />
         </PageSection>
         <PageSection>

@@ -1,0 +1,80 @@
+{
+  "source": {
+    "owner": "onflow",
+    "name": "flow-js-testing",
+    "branch": "master",
+    "rootPath": "docs/"
+  },
+  "manifest": {
+    "displayName": "Flow JS Testing",
+    "sidebars": {
+      "": [
+        {
+          "title": "Flow Javscript Testing",
+          "items": [
+            {
+              "title": "Introduction",
+              "href": ""
+            },
+            {
+              "title": "Accounts",
+              "href": "accounts"
+            },
+            {
+              "title": "API",
+              "href": "api"
+            },
+            {
+              "title": "Contracts",
+              "href": "contracts"
+            },
+            {
+              "title": "Emulator",
+              "href": "emulator"
+            },
+            {
+              "title": "Executing Scripts",
+              "href": "execute-scripts"
+            },
+            {
+              "title": "Flow Token",
+              "href": "flow-token"
+            },
+            {
+              "title": "Generator",
+              "href": "generator"
+            },
+            {
+              "title": "Init Framework",
+              "href": "init"
+            },
+            {
+              "title": "Installation",
+              "href": "install"
+            },
+            {
+              "title": "Jest Helpers",
+              "href": "jest-helpers"
+            },
+            {
+              "title": "Sending Transactions",
+              "href": "send-transactions"
+            },
+            {
+              "title": "Structure",
+              "href": "structure"
+            },
+            {
+              "title": "Templates",
+              "href": "templates"
+            },
+            {
+              "title": "Types",
+              "href": "types"
+            }
+          ]
+        }
+      ]
+    }
+  }
+}

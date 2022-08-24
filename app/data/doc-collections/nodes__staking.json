@@ -1,0 +1,95 @@
+{
+  "source": {
+    "owner": "onflow",
+    "name": "flow",
+    "branch": "master",
+    "rootPath": "docs/content/staking/"
+  },
+  "manifest": {
+    "displayName": "Staking",
+    "sidebars": {
+      "": [
+        {
+          "title": "Overview",
+          "items": [
+            {
+              "title": "Introduction",
+              "href": ""
+            },
+            {
+              "title": "Epoch and Reward Schedule",
+              "href": "schedule"
+            },
+            {
+              "title": "Stake Slashing",
+              "href": "stake-slashing"
+            },
+            {
+              "title": "FAQs",
+              "href": "faq"
+            }
+          ]
+        },
+        {
+          "title": "Technical Docs",
+          "items": [
+            {
+              "title": "Epoch and Staking Terminology",
+              "href": "epoch-terminology"
+            },
+            {
+              "title": "Epoch Preparation Protocol",
+              "href": "epoch-preparation"
+            },
+            {
+              "title": "Epoch Scripts and Events",
+              "href": "epoch-scripts-events"
+            },
+            {
+              "title": "Staking Auction",
+              "href": "technical-overview"
+            },
+            {
+              "title": "Staking Scripts and Events",
+              "href": "staking-scripts-events"
+            },
+            {
+              "title": "QC and DKG",
+              "href": "qc-dkg"
+            },
+            {
+              "title": "QC/DKG Scripts and Events",
+              "href": "qc-dkg-scripts-events"
+            },
+            {
+              "title": "Machine Account",
+              "href": "machine-account"
+            }
+          ]
+        },
+        {
+          "title": "Technical Guides",
+          "items": [
+            {
+              "title": "Technical Staking Options",
+              "href": "staking-options"
+            },
+            {
+              "title": "Staking Collection Guide",
+              "href": "staking-collection"
+            }
+          ]
+        },
+        {
+          "title": "Custody Providers",
+          "items": [
+            {
+              "title": "Staking Using a Custody Provider",
+              "href": "custody-providers"
+            }
+          ]
+        }
+      ]
+    }
+  }
+}
