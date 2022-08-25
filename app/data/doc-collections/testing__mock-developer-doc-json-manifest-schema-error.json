@@ -1,0 +1,23 @@
+{
+  "source": {
+    "owner": "onflow",
+    "name": "mock-developer-doc",
+    "branch": "json-manifest-schema-error",
+    "rootPath": "docs/"
+  },
+  "manifest": {
+    "displayName": "Mock Developer Docks Invalid JSON",
+    "redirects": {
+      "language": "language/syntax",
+      "tutorial": "tutorial/01-first-steps"
+    },
+    "sidebars": {
+      "": [
+        {
+          "title": "Fallback content in doc-collections",
+          "items": []
+        }
+      ]
+    }
+  }
+}

@@ -1,0 +1,24 @@
+{
+  "source": {
+    "owner": "onflow",
+    "name": "flow",
+    "branch": "master",
+    "rootPath": "docs/content/emulator/"
+  },
+  "manifest": {
+    "displayName": "Emulator",
+    "sidebars": {
+      "": [
+        {
+          "title": "Flow Emulator",
+          "items": [
+            {
+              "title": "Introduction",
+              "href": ""
+            }
+          ]
+        }
+      ]
+    }
+  }
+}

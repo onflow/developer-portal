@@ -1,4 +1,3 @@
-import { contentNavigationListItems } from "~/routes/community/data"
 import { LearnPageProps } from "."
 import { TutorialCardProps } from "../../Components/TutorialCard"
 
@@ -49,5 +48,47 @@ export const data: LearnPageProps = {
   },
   youtubeHref: "https://www.youtube.com/c/FlowBlockchain",
   architectureTutorials: Array(5).fill(TUTORIAL_TEMPLATE),
-  contentNavigationListItems: contentNavigationListItems,
+  contentNavigationListItems: {
+    header: "Explore More Content",
+    contentNavigationItems: [
+      {
+        title: "Tools",
+        text: "Curated list of developer tools, services, SDKs.",
+        link: "/tools",
+        icon: "tools",
+      },
+      {
+        title: "Community",
+        text: "Learn more about Flow's ecosystem and get involved.",
+        link: "/community",
+        icon: "community",
+      },
+    ],
+  },
+  secondaryNavSections: [
+    {
+      title: "Cadence",
+      elementId: "cadence",
+    },
+    {
+      title: "NFTs",
+      elementId: "nfts",
+    },
+    {
+      title: "Architecture",
+      elementId: "architecture",
+    },
+    {
+      title: "Featured Videos",
+      elementId: "featured-videos",
+    },
+    {
+      title: "All Content",
+      elementId: "all-content",
+    },
+  ],
+  discordUrl: "https://onflow.org/discord",
+  discourseUrl: "https://forum.onflow.org/",
+  githubUrl: "https://github.com/onflow",
+  twitterUrl: "https://twitter.com/flow_blockchain",
 }

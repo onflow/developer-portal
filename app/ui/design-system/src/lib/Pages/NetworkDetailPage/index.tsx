@@ -3,7 +3,6 @@ import { useState } from "react"
 import { ReactComponent as ChevronLeftIcon } from "../../../../images/arrows/chevron-left"
 import {
   Callout,
-  Footer,
   NetworkDetailsCard,
   Pagination,
   SocialLinksSignup,
@@ -19,11 +18,12 @@ import PageBackground from "../shared/PageBackground"
 import PageSection from "../shared/PageSection"
 import PageSections from "../shared/PageSections"
 import { dateYYYYMMDD } from "../../utils/dates"
+import { SocialLinksSignupProps } from "../../Components/SocialLinksSignup"
 
-export type NetworkDetailPageProps = {
-  networkStatuses: StatuspageApiResponse[]
-  networkName: string
+export type NetworkDetailPageProps = SocialLinksSignupProps & {
   featuredArticle: Article
+  networkName: string
+  networkStatuses: StatuspageApiResponse[]
   pastSporks: SporksCardProps[]
 }
 
@@ -34,10 +34,14 @@ export const getNetworkNameFromParam = (param: string) =>
     .join(" ")
 
 const NetworkDetailPage = ({
+  discordUrl,
+  discourseUrl,
+  featuredArticle,
+  githubUrl,
   networkName,
   networkStatuses,
-  featuredArticle,
   pastSporks,
+  twitterUrl,
 }: NetworkDetailPageProps) => {
   const convertedName = getNetworkNameFromParam(networkName)
   const defaultIndex = networkStatuses.findIndex((object) => {
@@ -146,8 +150,12 @@ const NetworkDetailPage = ({
           </div>
         </PageSection>
       </PageSections>
-      <SocialLinksSignup />
-      <Footer />
+      <SocialLinksSignup
+        discordUrl={discordUrl}
+        discourseUrl={discourseUrl}
+        githubUrl={githubUrl}
+        twitterUrl={twitterUrl}
+      />
     </PageBackground>
   )
 }

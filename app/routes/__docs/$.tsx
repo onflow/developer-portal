@@ -9,8 +9,8 @@ import {
   DocManifest,
   findDocCollection,
   findDocManifest,
-} from "../../constants/collections.server"
-import { SIDEBAR_DROPDOWN_MENU } from "../../constants/sidebar-dropdown-menu"
+} from "../../cms/collections.server"
+import { SIDEBAR_DROPDOWN_MENU } from "../../data/sidebar-dropdown-menu"
 import AppLink from "../../ui/design-system/src/lib/Components/AppLink"
 import { ErrorPage } from "../../ui/design-system/src/lib/Components/ErrorPage"
 import { InternalSidebarUrlContext } from "../../ui/design-system/src/lib/Components/InternalSidebar/InternalSidebarUrlContext"

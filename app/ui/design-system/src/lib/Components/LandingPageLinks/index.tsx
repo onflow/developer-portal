@@ -1,35 +1,39 @@
-import { DISCORD_URL, GITHUB_URL } from "../../../../../../constants"
 import { ReactComponent as DiscordIcon } from "../../../../images/social/discord"
 import AppLink from "../AppLink"
-import { GithubLink, GithubLinks } from "./GithubLinks"
+import { GithubLinks, GithubLinksProps } from "./GithubLinks"
 
 export type LandingPageLinksProps = {
+  discordUrl: string
   editPageUrl?: string
+  githubUrl: string
 }
 
-const MAIN_GITHUB_LINK: GithubLink = {
-  href: GITHUB_URL,
-  title: "All onflow repositories",
-}
+export const LandingPageLinks = ({
+  discordUrl,
+  editPageUrl,
+  githubUrl,
+}: LandingPageLinksProps) => {
+  const links: GithubLinksProps["links"] = [
+    { href: githubUrl, title: "All onflow repositories" },
+  ]
 
-export const LandingPageLinks = ({ editPageUrl }: LandingPageLinksProps) => {
-  const githubLink = editPageUrl && {
-    href: editPageUrl,
-    title: "Edit this page",
+  if (editPageUrl) {
+    links.push({
+      href: editPageUrl,
+      title: "Edit this page",
+    })
   }
 
   return (
     <div className="flex flex-col gap-4 text-center text-primary-gray-400 dark:text-white">
       <AppLink
-        to={DISCORD_URL}
+        to={discordUrl}
         className="origin-left scale-150 hover:opacity-75"
         title="Discord"
       >
         <DiscordIcon />
       </AppLink>
-      <GithubLinks
-        links={githubLink ? [MAIN_GITHUB_LINK, githubLink] : [MAIN_GITHUB_LINK]}
-      />
+      <GithubLinks links={links} />
     </div>
   )
 }

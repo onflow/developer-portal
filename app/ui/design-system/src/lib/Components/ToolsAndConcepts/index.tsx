@@ -61,7 +61,7 @@ const ToolsAndConcepts = ({
       {!!bottomButtons && (
         <div className="mt-9 flex flex-col justify-between md:flex-row">
           <ButtonLink
-            href="https://github.com/onflow/developer-portal/blob/main/app/component-data/Tools/index.tsx"
+            href="https://github.com/onflow/developer-portal/blob/main/app/data/tools/index.ts"
             className="mb-4 w-full md:mr-9 md:w-1/2"
             rightIcon="external"
           >

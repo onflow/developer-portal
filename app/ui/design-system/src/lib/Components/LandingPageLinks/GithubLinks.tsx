@@ -11,7 +11,6 @@ import {} from "@headlessui/react"
 import clsx from "clsx"
 import debounce from "lodash.debounce"
 import { useCallback, useEffect, useMemo, useRef, useState } from "react"
-import { GITHUB_URL } from "../../../../../../constants"
 import { ReactComponent as ExternalLinkIcon } from "../../../../images/content/external-link"
 import { ReactComponent as DropdownArrowIcon } from "../../../../images/misc/dropdown-arrow"
 import { ReactComponent as GithubIcon } from "../../../../images/social/github"
@@ -82,7 +81,7 @@ export const GithubLinks = ({ links }: GithubLinksProps) => {
     <>
       <AppLink
         ref={reference}
-        to={GITHUB_URL}
+        to={links[0].href}
         className="origin-left scale-150 hover:opacity-75"
         title={links[0].href}
         onMouseEnter={() => onMouseEnterHandler()}

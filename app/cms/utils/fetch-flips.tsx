@@ -214,5 +214,8 @@ export const fetchFreshFlips = async () => {
     goodPlacesToStartFlipCellProps
   )
 
-  return { openFlips, goodPlacesToStartFlips } as FlipsProps
+  return { openFlips, goodPlacesToStartFlips } as Pick<
+    FlipsProps,
+    "openFlips" | "goodPlacesToStartFlips"
+  >
 }

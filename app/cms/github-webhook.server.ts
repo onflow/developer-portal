@@ -4,8 +4,8 @@ import invariant from "tiny-invariant"
 import {
   JSON_MANIFEST_FILENAME,
   manifestCacheKey,
-} from "~/constants/doc-collection-manifest"
-import { docCollections } from "~/constants/doc-collections.server"
+} from "~/cms/doc-collections.server"
+import { docCollections } from "~/data/doc-collections"
 import { documentCompiledKey, documentDownloadKey } from "./cache-keys.server"
 
 type ProcessResult = {

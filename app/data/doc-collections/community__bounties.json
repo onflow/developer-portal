@@ -1,0 +1,28 @@
+{
+  "source": {
+    "owner": "onflow",
+    "name": "flow",
+    "branch": "master",
+    "rootPath": "docs/content/bounties/"
+  },
+  "manifest": {
+    "displayName": "Bounties",
+    "sidebars": {
+      "": [
+        {
+          "title": "Community",
+          "items": [
+            {
+              "title": "Bug Bounty",
+              "href": ""
+            },
+            {
+              "title": "Responsible Disclosure",
+              "href": "responsible-disclosure"
+            }
+          ]
+        }
+      ]
+    }
+  }
+}

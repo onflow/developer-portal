@@ -1,0 +1,35 @@
+{
+  "source": {
+    "owner": "onflow",
+    "name": "flow",
+    "branch": "master",
+    "rootPath": "docs/content/faq/"
+  },
+  "manifest": {
+    "displayName": "FAQ",
+    "redirects": {
+      "": "backers"
+    },
+    "sidebars": {
+      "": [
+        {
+          "title": "Frequently Asked Questions",
+          "items": [
+            {
+              "title": "Users & Backers",
+              "href": "backers"
+            },
+            {
+              "title": "Builders & Developers",
+              "href": "developers"
+            },
+            {
+              "title": "Operators",
+              "href": "operators"
+            }
+          ]
+        }
+      ]
+    }
+  }
+}

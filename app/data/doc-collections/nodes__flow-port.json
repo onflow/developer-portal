@@ -1,0 +1,24 @@
+{
+  "source": {
+    "owner": "onflow",
+    "name": "flow",
+    "branch": "master",
+    "rootPath": "docs/content/flow-port/"
+  },
+  "manifest": {
+    "displayName": "Flow Port",
+    "sidebars": {
+      "": [
+        {
+          "title": "Flow Port",
+          "items": [
+            {
+              "title": "How to Use Flow Port",
+              "href": ""
+            }
+          ]
+        }
+      ]
+    }
+  }
+}

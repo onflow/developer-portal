@@ -1,0 +1,49 @@
+{
+  "source": {
+    "owner": "onflow",
+    "name": "flow",
+    "branch": "master",
+    "rootPath": "docs/content/kitty-items/"
+  },
+  "manifest": {
+    "displayName": "Kitty Items",
+    "sidebars": {
+      "": [
+        {
+          "title": "Kitty Items",
+          "items": [
+            {
+              "title": "Introduction",
+              "href": ""
+            }
+          ]
+        },
+        {
+          "title": "Tutorials",
+          "items": [
+            {
+              "title": "Install",
+              "href": "install"
+            },
+            {
+              "title": "Start",
+              "href": "start"
+            },
+            {
+              "title": "Modify",
+              "href": "modify"
+            },
+            {
+              "title": "Update",
+              "href": "update"
+            },
+            {
+              "title": "Next Steps",
+              "href": "next-steps"
+            }
+          ]
+        }
+      ]
+    }
+  }
+}

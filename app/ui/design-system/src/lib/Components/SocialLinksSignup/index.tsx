@@ -1,9 +1,3 @@
-import {
-  DISCORD_URL,
-  DISCOURSE_URL,
-  GITHUB_URL,
-  TWITTER_URL,
-} from "../../../../../../constants"
 import { ReactComponent as ContentExternalLinkIcon } from "../../../../images/content/external-link"
 import socialLinksGradientPath from "../../../../images/gradients/social-links.svg"
 import { ReactComponent as DiscordLogo } from "../../../../images/social/discord"
@@ -48,9 +42,19 @@ const SocialLink = ({
   )
 }
 
-export type SocialLinksSignupProps = {}
+export type SocialLinksSignupProps = {
+  discordUrl: string
+  discourseUrl: string
+  githubUrl: string
+  twitterUrl: string
+}
 
-const SocialLinksSignup = () => {
+const SocialLinksSignup = ({
+  discordUrl,
+  discourseUrl,
+  githubUrl,
+  twitterUrl,
+}: SocialLinksSignupProps) => {
   return (
     <div
       className="bg-cover bg-[center_top] bg-no-repeat py-36 lg:bg-[length:70%] xl:bg-[center_top_-30px]"
@@ -68,27 +72,27 @@ const SocialLinksSignup = () => {
             description="All repos maintained by the core contributors of Flow."
             logo={GithubLogo}
             className="border-b border-r-0 md:border-r"
-            url={GITHUB_URL}
+            url={githubUrl}
           />
           <SocialLink
             header="Forum"
             description="A place to discuss proposals, check updates, and find answers."
             logo={DiscourseLogo}
             className="border-b"
-            url={DISCOURSE_URL}
+            url={discourseUrl}
           />
           <SocialLink
             header="Discord"
             description="Talk directly to the developer community."
             logo={DiscordLogo}
             className="border-b border-r-0 md:border-b-0 md:border-r"
-            url={DISCORD_URL}
+            url={discordUrl}
           />
           <SocialLink
             header="Twitter"
             description="Checkout the latest happenings on Flow."
             logo={TwitterLogo}
-            url={TWITTER_URL}
+            url={twitterUrl}
           />
         </div>
         {/** Temporarily disabling email capture */}

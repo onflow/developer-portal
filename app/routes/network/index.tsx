@@ -3,43 +3,49 @@ import { useLoaderData } from "@remix-run/react"
 // import { fetchDiscordAnnouncements } from "~/cms/utils/fetch-discord"
 import { fetchNetworkStatus } from "~/cms/utils/fetch-network-status"
 import { fetchSporks } from "~/cms/utils/fetch-sporks"
-import { getMetaTitle } from "~/root"
+import { getMetaTitle } from "~/utils/seo"
 import NetworkPage, {
   NetworkPageProps,
 } from "~/ui/design-system/src/lib/Pages/NetworkPage"
+import { externalLinks } from "../../data/external-links"
 
-import { featuredArticle } from "./data"
-
-type DynamicNetworkPageProps = Pick<
-  NetworkPageProps,
-  "networkStatuses" | "pastSporks"
->
+import { featuredArticle } from "~/data/pages/network"
 
 export const meta: MetaFunction = () => ({
   title: getMetaTitle("Network status"),
 })
 
-export const loader: LoaderFunction = async () => {
+export type LoaderData = NetworkPageProps
+
+export const loader: LoaderFunction = async (): Promise<LoaderData> => {
   const networkStatuses = await fetchNetworkStatus()
   const { pastSporks } = await fetchSporks()
 
-  // const { announcementCards, discordNetworkCards } =
-  //   await fetchDiscordAnnouncements()
-  const data = { networkStatuses, pastSporks }
-  return data
+  return {
+    discordUrl: externalLinks.discord,
+    discourseUrl: externalLinks.discourse,
+    featuredArticle,
+    githubUrl: externalLinks.github,
+    networkStatuses,
+    pastSporks,
+    twitterUrl: externalLinks.twitter,
+  }
 }
 
 export default function Page() {
-  const { networkStatuses, pastSporks } =
-    useLoaderData<DynamicNetworkPageProps>()
+  const data = useLoaderData<LoaderData>()
 
   return (
     <NetworkPage
-      networkStatuses={networkStatuses}
       // announcementCards={announcementCards}
       // discordNetworkCards={[]}
-      featuredArticle={featuredArticle}
-      pastSporks={pastSporks}
+      discordUrl={data.discordUrl}
+      discourseUrl={data.discourseUrl}
+      featuredArticle={data.featuredArticle}
+      githubUrl={data.githubUrl}
+      networkStatuses={data.networkStatuses}
+      pastSporks={data.pastSporks}
+      twitterUrl={data.twitterUrl}
     />
   )
 }

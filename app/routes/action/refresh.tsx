@@ -3,7 +3,7 @@ import { json, redirect } from "@remix-run/node"
 import { getMdxPage } from "~/cms/utils/mdx"
 // import { getRequiredServerEnvVar } from "~/utils/cms/helpers";
 import { redisCache } from "~/cms/redis.server"
-import { findDocCollection } from "~/constants/collections.server"
+import { findDocCollection } from "~/cms/collections.server"
 import { recordRefreshEventInMixpanel } from "~/utils/mixpanel.server"
 
 export interface Contribution {

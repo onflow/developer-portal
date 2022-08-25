@@ -1,11 +1,11 @@
-import { DEFAULT_SITE_DESCRIPTION, DEFAULT_SITE_TITLE } from "~/constants"
+import { metadata } from "~/data/metadata"
 
 export function getSocialMetas({
   url,
-  title = DEFAULT_SITE_TITLE,
-  description = DEFAULT_SITE_DESCRIPTION,
-  image = "https://flow-og-image.vercel.app/**Explore the Flow Developer Portal**.png?theme=light&md=1&fontSize=100px&images=https%3A%2F%2Fstorage.googleapis.com%2Fflow-resources%2Fdocumentation-assets%2Fflow-docs.png&widths=auto&heights=350",
-  keywords = "",
+  title = metadata.siteTitle,
+  description = metadata.siteDescription,
+  image = metadata.defaultPageImage,
+  keywords = metadata.defaultKeywords,
 }: {
   image?: string
   url: string
@@ -19,12 +19,12 @@ export function getSocialMetas({
     keywords,
     image,
     "og:url": url,
-    "og:title": title || "Flow Developer Documentation",
+    "og:title": title || metadata.openGraphDefaultTitle,
     "og:description": description,
     "og:image": image,
     "twitter:card": image ? "summary_large_image" : "summary",
-    "twitter:creator": "@flow_blockchain",
-    "twitter:site": "@flow_blockchain",
+    "twitter:creator": metadata.twitterTagContentCreatorUsername,
+    "twitter:site": metadata.twitterTagSiteUsername,
     "twitter:title": title,
     "twitter:image": image,
     "twitter:description": description,
@@ -33,4 +33,4 @@ export function getSocialMetas({
 }
 
 export const getMetaTitle = (title?: string) =>
-  [title, "Flow Developer Portal"].filter(Boolean).join(" | ")
+  [title, metadata.defaultPageTitle].filter(Boolean).join(" | ")

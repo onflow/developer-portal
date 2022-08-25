@@ -20,8 +20,7 @@ git clone https://github.com/onflow/developer-portal.git
 You'll need to acquire the project's `.env` file before continuing.
 
 1. Add the `.env` file to the project root.
-2. `yarn build`
-3. `docker compose up`
+1. `docker compose up`
 
    -or, to also bring up Storybook-
 

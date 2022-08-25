@@ -1,0 +1,24 @@
+{
+  "source": {
+    "owner": "onflow",
+    "name": "flow-go-sdk",
+    "branch": "master",
+    "rootPath": "docs/"
+  },
+  "manifest": {
+    "displayName": "Flow Go SDK",
+    "sidebars": {
+      "": [
+        {
+          "title": "Flow Go SDK",
+          "items": [
+            {
+              "title": "Getting Started",
+              "href": ""
+            }
+          ]
+        }
+      ]
+    }
+  }
+}

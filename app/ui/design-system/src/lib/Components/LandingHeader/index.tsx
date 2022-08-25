@@ -7,12 +7,13 @@ export type LandingHeaderProps = {
   buttonUrl: string
   callout: string
   description: string
+  discordUrl: string
 
   /**
    * The URL to the page on github that allows editing this page's content
    */
   editPageUrl?: string
-
+  githubUrl: string
   imageSrc?: string
   title: string
 }
@@ -22,7 +23,9 @@ export function LandingHeader({
   buttonUrl,
   callout,
   description,
+  discordUrl,
   editPageUrl,
+  githubUrl,
   imageSrc = LandingImage,
   title,
 }: LandingHeaderProps) {
@@ -50,7 +53,11 @@ export function LandingHeader({
         </div>
       </div>
       <div className="fixed right-14 top-1/4 hidden lg:block">
-        <LandingPageLinks editPageUrl={editPageUrl} />
+        <LandingPageLinks
+          discordUrl={discordUrl}
+          editPageUrl={editPageUrl}
+          githubUrl={githubUrl}
+        />
       </div>
     </div>
   )

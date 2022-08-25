@@ -1,0 +1,44 @@
+{
+  "source": {
+    "owner": "onflow",
+    "name": "flow",
+    "branch": "master",
+    "rootPath": "docs/content/nft-marketplace/"
+  },
+  "manifest": {
+    "displayName": "NFT Marketplace",
+    "sidebars": {
+      "": [
+        {
+          "title": "NFT Marketplace",
+          "items": [
+            {
+              "title": "Overview",
+              "href": ""
+            },
+            {
+              "title": "Building Blocks",
+              "href": "building-blocks"
+            },
+            {
+              "title": "Best Practices",
+              "href": "best-practices"
+            },
+            {
+              "title": "Handling Accounts",
+              "href": "handling-accounts"
+            },
+            {
+              "title": "Minting NFTs",
+              "href": "minting-nfts"
+            },
+            {
+              "title": "Selling NFTs",
+              "href": "selling-nfts"
+            }
+          ]
+        }
+      ]
+    }
+  }
+}

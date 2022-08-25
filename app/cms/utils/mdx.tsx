@@ -21,7 +21,7 @@ import {
   LargeVideoCard,
   StaticCheckbox,
 } from "~/ui/design-system"
-import { DocCollectionSource } from "../../constants/doc-collections.server"
+import { DocCollectionSource } from "../../cms/doc-collections.server"
 import { InternalImg } from "../../ui/design-system/src/lib/Components/InternalImg/InternalImg"
 import { documentCompiledKey, documentDownloadKey } from "../cache-keys.server"
 import { returnRedirectForRoute } from "./return-redirect-for-route"
@@ -180,11 +180,10 @@ function GetMdxComponents(theme: Theme) {
   return {
     a: (props: LinkProps & { href: string }) => {
       const { href, ...rest } = props
-      let desiredHref = returnRedirectForRoute(href)!
       return (
         <InternalContentLink
           {...rest}
-          href={desiredHref}
+          href={returnRedirectForRoute(href) ?? href}
           className="not-prose"
         />
       )
