@@ -25,6 +25,14 @@
               "href": "node-operation/node-roles"
             },
             {
+              "title": "Access API",
+              "href": "access-api"
+            },
+            {
+              "title": "Access API rate limits",
+              "href": "access-api-rate-limits"
+            },
+            {
               "title": "Operator FAQs",
               "href": "node-operation/faq"
             }
