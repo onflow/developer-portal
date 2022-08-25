@@ -153,7 +153,21 @@ const footerSections = [
   },
 ]
 
-export const Footer = ({ sections = footerSections }) => {
+export type FooterProps = {
+  discordUrl: string
+  discourseUrl: string
+  flowUrl: string
+  githubUrl: string
+  sections?: typeof footerSections
+}
+
+export const Footer = ({
+  discordUrl,
+  discourseUrl,
+  flowUrl,
+  githubUrl,
+  sections = footerSections,
+}: FooterProps) => {
   return (
     <footer className="bg-black px-6 text-white">
       <div className="container mx-auto">
@@ -167,16 +181,16 @@ export const Footer = ({ sections = footerSections }) => {
             />
           </AppLink>
           <div className="flex items-center gap-6 pt-8 md:pt-0">
-            <AppLink to="https://github.com/onflow">
+            <AppLink to={githubUrl}>
               <img src={GithubIcon} height={32} width={32} />
             </AppLink>
-            <AppLink to="https://onflow.org/discord">
+            <AppLink to={discordUrl}>
               <img src={DiscordIcon} height={28} width={28} />
             </AppLink>
-            <AppLink to="https://forum.onflow.org/">
+            <AppLink to={discourseUrl}>
               <img src={ForumIcon} height={24} width={24} />
             </AppLink>
-            <AppLink to="https://onflow.org/">
+            <AppLink to={flowUrl}>
               <img src={OnFlowIcon} height={28} width={28} />
             </AppLink>
           </div>

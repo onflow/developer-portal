@@ -44,6 +44,7 @@ import { getMetaTitle, getSocialMetas } from "./utils/seo"
 
 import { returnRedirectForRoute } from "./cms/utils/return-redirect-for-route"
 import { useElementScrollRestoration } from "./utils/useElementScrollRestoration"
+import { externalLinks } from "./data/external-links"
 
 const fontPreloads = [
   "/fonts/acumin-pro/AcuminPro-Regular.otf",
@@ -210,7 +211,12 @@ function App() {
         <div className="flex-auto overflow-auto" ref={scrollContainerRef}>
           <TopLoader />
           <Outlet />
-          <Footer />
+          <Footer
+            discordUrl={externalLinks.discord}
+            discourseUrl={externalLinks.discourse}
+            flowUrl={externalLinks.flow}
+            githubUrl={externalLinks.github}
+          />
         </div>
         <ScrollRestoration />
         <Scripts />
