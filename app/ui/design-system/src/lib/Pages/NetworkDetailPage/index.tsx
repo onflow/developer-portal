@@ -1,8 +1,6 @@
 import { endOfWeek } from "date-fns"
-import { useState } from "react"
 import { ReactComponent as ChevronLeftIcon } from "../../../../images/arrows/chevron-left"
 import {
-  Callout,
   NetworkDetailsCard,
   Pagination,
   SocialLinksSignup,
