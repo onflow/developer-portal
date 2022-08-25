@@ -3,7 +3,6 @@ import { useState } from "react"
 import { ReactComponent as ChevronLeftIcon } from "../../../../images/arrows/chevron-left"
 import {
   Callout,
-  Footer,
   NetworkDetailsCard,
   Pagination,
   SocialLinksSignup,
@@ -157,7 +156,6 @@ const NetworkDetailPage = ({
         githubUrl={githubUrl}
         twitterUrl={twitterUrl}
       />
-      <Footer />
     </PageBackground>
   )
 }
