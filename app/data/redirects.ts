@@ -175,7 +175,6 @@ export const redirects = {
   "/flow-go-sdk/querying-transactions/": "/tools/flow-go-sdk",
   "/bounties/responsible-disclosure/": "/flow/bounties/responsible-disclosure",
   "/core-contracts/flow-fees/": "/flow/core-contracts/flow-fees",
-  "/access-api": "/http-api",
   "/kitty-items/start/": "/learn/kitty-items/start",
   "/intro/playground-manual/": "/flow/intro/playground-manual",
   "/flow-cli/get-collections/": "/tools/flow-cli/get-collections",

@@ -176,6 +176,11 @@ async function compileMdxCached({
   return page
 }
 
+function stripExtension(href: string) {
+  const stripped = href.replace(/(.md|.mdx)/, "")
+  return stripped
+}
+
 function GetMdxComponents(theme: Theme) {
   return {
     a: (props: LinkProps & { href: string }) => {
@@ -183,7 +188,7 @@ function GetMdxComponents(theme: Theme) {
       return (
         <InternalContentLink
           {...rest}
-          href={returnRedirectForRoute(href) ?? href}
+          href={stripExtension(returnRedirectForRoute(href) ?? href)}
           className="not-prose"
         />
       )
