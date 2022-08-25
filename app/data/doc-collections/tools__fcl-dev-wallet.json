@@ -1,0 +1,11 @@
+{
+  "source": {
+    "owner": "onflow",
+    "name": "fcl-dev-wallet",
+    "branch": "master",
+    "rootPath": "docs/"
+  },
+  "manifest": {
+    "displayName": "FCL Dev Wallet"
+  }
+}

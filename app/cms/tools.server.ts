@@ -1,4 +1,4 @@
-import { Tool } from "../component-data/Tools"
+import { Tool } from "../data/tools"
 import { fetchRepo } from "./utils/fetch-repo"
 import { fetchBranch } from "./utils/fetch-branch"
 import logger from "../utils/logging.server"

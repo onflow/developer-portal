@@ -1,0 +1,24 @@
+{
+  "source": {
+    "owner": "onflow",
+    "name": "flow-ft",
+    "branch": "master",
+    "rootPath": "docs/"
+  },
+  "manifest": {
+    "displayName": "Flow FT",
+    "sidebars": {
+      "": [
+        {
+          "title": "Flow Fungible Token",
+          "items": [
+            {
+              "title": "Overview",
+              "href": "overview"
+            }
+          ]
+        }
+      ]
+    }
+  }
+}

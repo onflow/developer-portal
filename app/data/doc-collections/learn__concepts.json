@@ -1,0 +1,45 @@
+{
+  "source": {
+    "owner": "onflow",
+    "name": "flow",
+    "branch": "master",
+    "rootPath": "docs/content/concepts/"
+  },
+  "manifest": {
+    "displayName": "Concepts",
+    "sidebars": {
+      "": [
+        {
+          "title": "Flow",
+          "items": [
+            {
+              "title": "Introduction",
+              "href": ""
+            }
+          ]
+        },
+        {
+          "title": "Concepts",
+          "items": [
+            {
+              "title": "Accounts, Keys & Signing",
+              "href": "accounts-and-keys"
+            },
+            {
+              "title": "Signing a Transaction",
+              "href": "transaction-signing"
+            },
+            {
+              "title": "Segmented Transaction Fees",
+              "href": "variable-transaction-fees"
+            },
+            {
+              "title": "Storing Data",
+              "href": "storage"
+            }
+          ]
+        }
+      ]
+    }
+  }
+}

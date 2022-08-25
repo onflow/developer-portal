@@ -6,10 +6,10 @@
     "build": "run-s build:*",
     "build-storybook": "build-storybook",
     "build:0-svg": "yarn svgr --silent --template svgr/template.js --filename-case kebab --out-dir ./app/ui/design-system/images ./app/ui/design-system/images",
-    "build:css": "yarn generate:css -- --minify",
+    "build:css": "yarn generate:css --minify",
     "build:remix": "remix build",
     "dev": "run-p dev:*",
-    "dev:css": "yarn generate:css -- --watch",
+    "dev:css": "yarn generate:css --watch",
     "dev:remix": "remix dev",
     "dev:svg": "chokidar --silent --initial \"./app/ui/design-system/images/**/*.svg\" -c \"yarn svgr --silent --template svgr/template.js --filename-case kebab --out-dir ./app/ui/design-system/images ./app/ui/design-system/images\"",
     "format:app": "prettier --write app",
@@ -28,7 +28,7 @@
     "test:e2e:run": "cross-env PORT=8811 start-server-and-test start:mocks http://localhost:8811 \"npx cypress run\"",
     "lint": "eslint --ext .js,.jsx,.ts,.tsx --max-warnings 0 app",
     "prepare": "husky install",
-    "jsonschema": "typescript-json-schema tsconfig.json DocCollectionManifest --include app/constants/doc-collections.server.ts -o app/constants/doc-collection-manifest-schema.json"
+    "jsonschema": "typescript-json-schema tsconfig.json DocCollectionManifest --include app/cms/doc-collections.server.ts -o app/data/doc-collection-manifest-schema.json"
   },
   "lint-staged": {
     "*.{js,jsx,ts,tsx}": "eslint --fix",

@@ -13,19 +13,24 @@ import PageBackground from "../shared/PageBackground"
 import PageSection from "../shared/PageSection"
 import PageSections from "../shared/PageSections"
 import { dateYYYYMMDD } from "../../utils/dates"
+import { SocialLinksSignupProps } from "../../Components/SocialLinksSignup"
 
-export type NetworkPageProps = {
-  networkStatuses: StatuspageApiResponse[]
+export type NetworkPageProps = SocialLinksSignupProps & {
   announcementCards?: AnnouncementCardProps[]
   discordNetworkCards?: NetworkDiscordCardProps[]
   featuredArticle: Article
+  networkStatuses: StatuspageApiResponse[]
   pastSporks: any
 }
 
 const NetworkPage = ({
-  networkStatuses,
+  discordUrl,
+  discourseUrl,
   featuredArticle,
+  githubUrl,
+  networkStatuses,
   pastSporks,
+  twitterUrl,
 }: NetworkPageProps) => (
   <PageBackground gradient="network">
     <PageSections divided={false}>
@@ -89,7 +94,12 @@ const NetworkPage = ({
         </div>
       </PageSection>
     </PageSections>
-    <SocialLinksSignup />
+    <SocialLinksSignup
+      discordUrl={discordUrl}
+      discourseUrl={discourseUrl}
+      githubUrl={githubUrl}
+      twitterUrl={twitterUrl}
+    />
   </PageBackground>
 )
 

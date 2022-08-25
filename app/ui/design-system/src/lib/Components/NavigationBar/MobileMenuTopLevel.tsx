@@ -22,7 +22,7 @@ export function MobileMenuTopLevel({
               <div className="my-3 px-4 text-primary-gray-300/80 dark:text-primary-gray-200">
                 {menuItem.title}
               </div>
-              {menuItem.tabs &&
+              {"tabs" in menuItem &&
                 menuItem.tabs.map(
                   ({ title }: { title: string }, tabIndex: number) => (
                     <MobileMenuButton

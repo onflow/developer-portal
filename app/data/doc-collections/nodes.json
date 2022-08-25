@@ -1,0 +1,77 @@
+{
+  "source": {
+    "owner": "onflow",
+    "name": "flow",
+    "branch": "master",
+    "rootPath": "docs/content/nodes/"
+  },
+  "manifest": {
+    "displayName": "Flow Nodes",
+    "sidebars": {
+      "": [
+        {
+          "title": "Overview",
+          "items": [
+            {
+              "title": "Introduction",
+              "href": ""
+            },
+            {
+              "title": "Node Setup",
+              "href": "node-operation/node-setup"
+            },
+            {
+              "title": "Node Roles",
+              "href": "node-operation/node-roles"
+            },
+            {
+              "title": "Operator FAQs",
+              "href": "node-operation/faq"
+            }
+          ]
+        },
+        {
+          "title": "Operator Guides",
+          "items": [
+            {
+              "title": "Node Bootstrapping",
+              "href": "node-operation/node-bootstrap"
+            },
+            {
+              "title": "Node Migration",
+              "href": "node-operation/node-migration"
+            },
+            {
+              "title": "Machine Accounts for Existing Node Operators",
+              "href": "node-operation/machine-existing-operator"
+            },
+            {
+              "title": "Database Encryption for Existing Node Operators",
+              "href": "node-operation/db-encryption-existing-operator"
+            },
+            {
+              "title": "Node Monitoring",
+              "href": "node-operation/monitoring-nodes"
+            },
+            {
+              "title": "Observer Node",
+              "href": "node-operation/observer-node"
+            },
+            {
+              "title": "Spork Process",
+              "href": "node-operation/spork"
+            },
+            {
+              "title": "Past Spork Info",
+              "href": "/network/flow-mainnet"
+            },
+            {
+              "title": "Upcoming Sporks",
+              "href": "/network/flow-mainnet"
+            }
+          ]
+        }
+      ]
+    }
+  }
+}

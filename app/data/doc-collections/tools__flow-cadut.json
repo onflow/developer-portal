@@ -1,0 +1,11 @@
+{
+  "source": {
+    "owner": "onflow",
+    "name": "flow-cadut",
+    "branch": "master",
+    "rootPath": "docs/"
+  },
+  "manifest": {
+    "displayName": "Flow Cadut"
+  }
+}

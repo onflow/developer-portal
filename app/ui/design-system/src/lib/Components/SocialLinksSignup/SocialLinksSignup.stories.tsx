@@ -11,8 +11,15 @@ const Template: Story<SocialLinksSignupProps> = (args) => {
 }
 
 export const Default = Template.bind({})
+Default.args = {
+  discordUrl: "https://onflow.org/discord",
+  discourseUrl: "https://forum.onflow.org/",
+  githubUrl: "https://github.com/onflow",
+  twitterUrl: "https://twitter.com/flow_blockchain",
+}
 
 export const Mobile = Template.bind({})
+Mobile.args = { ...Default.args }
 Mobile.parameters = {
   viewport: {
     defaultViewport: "xs",

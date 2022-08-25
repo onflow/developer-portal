@@ -9,31 +9,39 @@ import {
   ContentNavigationListProps,
 } from "../../Components/ContentNavigationList"
 import ToolsImage from "../../../../images/page/tools.png"
-import { LandingPageSecondaryNav } from "../../Components/LandingPageSecondaryNav"
-import { toolsSections } from "~/constants/landingPages/toolsSections"
+import {
+  LandingPageSecondaryNav,
+  LandingPageSecondaryNavProps,
+} from "../../Components/LandingPageSecondaryNav"
 
 export type ToolsPageProps = {
-  editPageUrl?: string
-  tools: SDKCardProps[]
-  wallets: SDKCardProps[]
-  sdks: SDKCardProps[]
-  explorers: SDKCardProps[]
   apisAndServices: SDKCardProps[]
   contentNavigationListItems: ContentNavigationListProps
+  discordUrl: string
+  editPageUrl?: string
+  githubUrl: string
+  explorers: SDKCardProps[]
+  sdks: SDKCardProps[]
+  secondaryNavSections: LandingPageSecondaryNavProps["sections"]
+  tools: SDKCardProps[]
+  wallets: SDKCardProps[]
 }
 
 const ToolsPage = ({
-  editPageUrl,
-  tools,
-  wallets,
-  sdks,
-  explorers,
   apisAndServices,
   contentNavigationListItems,
+  discordUrl,
+  editPageUrl,
+  explorers,
+  githubUrl,
+  sdks,
+  secondaryNavSections,
+  tools,
+  wallets,
 }: ToolsPageProps) => {
   return (
     <PageBackground gradient="tools">
-      <LandingPageSecondaryNav sections={toolsSections} />
+      <LandingPageSecondaryNav sections={secondaryNavSections} />
       <PageSections>
         <PageSection className="pt-0 pb-0">
           <LandingHeader
@@ -41,7 +49,9 @@ const ToolsPage = ({
             buttonUrl="/flow/dapp-development/DappArchitectures/"
             callout="Flow Dapp Architecture Guide"
             description="Wondering what tools you need? See our dapp architectures guide to help you out."
+            discordUrl={discordUrl}
             editPageUrl={editPageUrl}
+            githubUrl={githubUrl}
             title="Tools"
             imageSrc={ToolsImage}
           />

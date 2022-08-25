@@ -23,16 +23,20 @@ import {
 } from "../../Components/LinkCard3Column"
 import { SDKCardProps } from "../../Components/SDKCard"
 import { SDKCards } from "../../Components/SDKCards"
+import { SocialLinksSignupProps } from "../../Components/SocialLinksSignup"
 import { ToolCard, ToolCardProps } from "../../Components/ToolCard"
 import PageBackground from "../shared/PageBackground"
 import PageSection from "../shared/PageSection"
 import PageSections from "../shared/PageSections"
 
-export interface GettingStartedPageProps {
+export interface GettingStartedPageProps extends SocialLinksSignupProps {
+  contentNavigationListItems: ContentNavigationListProps
   editPageUrl?: string
   landingHeaderItems: LandingHeaderProps
-  linkCard3ColumnItems: LinkCard3ColumnProps
   linkCard2ColumnItems: LinkCard2ColumnProps
+  linkCard3ColumnItems: LinkCard3ColumnProps
+  recentArticleItems: FeaturedArticleCardProps[]
+  recentToolItems: [ToolCardProps, ToolCardProps, ToolCardProps]
   sdkCardItems: [
     SDKCardProps,
     SDKCardProps,
@@ -41,20 +45,21 @@ export interface GettingStartedPageProps {
     SDKCardProps,
     SDKCardProps
   ]
-  recentArticleItems: FeaturedArticleCardProps[]
-  recentToolItems: [ToolCardProps, ToolCardProps, ToolCardProps]
-  contentNavigationListItems: ContentNavigationListProps
 }
 
 export function GettingStartedPage({
+  contentNavigationListItems,
+  discordUrl,
+  discourseUrl,
   editPageUrl,
+  githubUrl,
   landingHeaderItems,
-  linkCard3ColumnItems,
   linkCard2ColumnItems,
-  sdkCardItems,
+  linkCard3ColumnItems,
   recentArticleItems,
   recentToolItems,
-  contentNavigationListItems,
+  sdkCardItems,
+  twitterUrl,
 }: GettingStartedPageProps) {
   return (
     <PageBackground gradient="getting-started">
@@ -65,9 +70,11 @@ export function GettingStartedPage({
             buttonUrl={landingHeaderItems.buttonUrl}
             callout={landingHeaderItems.callout}
             description={landingHeaderItems.description}
+            discordUrl={discordUrl}
             editPageUrl={editPageUrl}
-            title={landingHeaderItems.title}
+            githubUrl={githubUrl}
             imageSrc={landingHeaderItems.imageSrc}
+            title={landingHeaderItems.title}
           />
         </PageSection>
         <PageSection sectionId="first-steps">
@@ -160,7 +167,12 @@ export function GettingStartedPage({
           />
         </PageSection>
       </PageSections>
-      <SocialLinksSignup />
+      <SocialLinksSignup
+        discordUrl={discordUrl}
+        discourseUrl={discourseUrl}
+        githubUrl={githubUrl}
+        twitterUrl={twitterUrl}
+      />
     </PageBackground>
   )
 }

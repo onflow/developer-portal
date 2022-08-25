@@ -3,7 +3,7 @@ import mime from "mime-types"
 import { fileTypeFromBuffer } from "file-type"
 import { downloadFileByPath } from "~/cms"
 import { NotFoundError } from "../../cms/errors/not-found-error"
-import { findDocCollection } from "../../constants/collections.server"
+import { findDocCollection } from "../../cms/collections.server"
 
 export const loader: LoaderFunction = async ({ params }) => {
   const path = params["*"]

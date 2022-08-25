@@ -1,0 +1,74 @@
+{
+  "source": {
+    "owner": "onflow",
+    "name": "flow",
+    "branch": "master",
+    "rootPath": "docs/content/core-contracts/"
+  },
+  "manifest": {
+    "displayName": "Core Contracts",
+    "sidebars": {
+      "": [
+        {
+          "title": "Flow Core Contracts",
+          "items": [
+            {
+              "title": "Introduction",
+              "href": ""
+            }
+          ]
+        },
+        {
+          "title": "Core Contracts",
+          "items": [
+            {
+              "title": "Fungible Token",
+              "href": "fungible-token"
+            },
+            {
+              "title": "Flow Token",
+              "href": "flow-token"
+            },
+            {
+              "title": "Flow Fees",
+              "href": "flow-fees"
+            },
+            {
+              "title": "Service Account",
+              "href": "service-account"
+            },
+            {
+              "title": "Staking Table",
+              "href": "staking-contract-reference"
+            },
+            {
+              "title": "Epoch Contracts",
+              "href": "epoch-contract-reference"
+            }
+          ]
+        },
+        {
+          "title": "Other Important Contracts",
+          "items": [
+            {
+              "title": "Locked Tokens",
+              "href": "locked-tokens"
+            },
+            {
+              "title": "Staking Collection",
+              "href": "staking-collection"
+            },
+            {
+              "title": "Non-Fungible Token",
+              "href": "non-fungible-token"
+            },
+            {
+              "title": "NFT Metadata",
+              "href": "nft-metadata"
+            }
+          ]
+        }
+      ]
+    }
+  }
+}

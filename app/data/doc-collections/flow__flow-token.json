@@ -1,0 +1,62 @@
+{
+  "source": {
+    "owner": "onflow",
+    "name": "flow",
+    "branch": "master",
+    "rootPath": "docs/content/flow-token/"
+  },
+  "manifest": {
+    "displayName": "Flow Token",
+    "sidebars": {
+      "": [
+        {
+          "title": "Flow Token",
+          "items": [
+            {
+              "title": "Introduction",
+              "href": ""
+            }
+          ]
+        },
+        {
+          "title": "Overview",
+          "items": [
+            {
+              "title": "Flow Wallets",
+              "href": "available-wallets"
+            },
+            {
+              "title": "For Contributors",
+              "href": "earn"
+            },
+            {
+              "title": "Key Concepts",
+              "href": "concepts"
+            },
+            {
+              "title": "For Backers",
+              "href": "backers"
+            },
+            {
+              "title": "Claiming FLOW Tokens",
+              "href": "delivery"
+            },
+            {
+              "title": "Token Recipient FAQs",
+              "href": "faq"
+            }
+          ]
+        },
+        {
+          "title": "Token Delivery",
+          "items": [
+            {
+              "title": "Locked/Leased FLOW Account Setup",
+              "href": "locked-account-setup"
+            }
+          ]
+        }
+      ]
+    }
+  }
+}

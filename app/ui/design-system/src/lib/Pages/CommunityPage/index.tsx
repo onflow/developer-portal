@@ -1,60 +1,60 @@
 import { ToolsAndConcepts, UpcomingEvents } from "../../Components"
 import { ButtonLink } from "../../Components/Button"
-// import CommunityMembers, {
-//   CommunityMembersProps,
-// } from "../../Components/CommunityMembers"
-// import FeaturedArticleSlider, {
-//   FeaturedArticleSliderProps,
-// } from "../../Components/FeaturedArticleSlider"
-import { getCommunitySections } from "~/constants/landingPages/communitySections"
-import { DISCOURSE_URL } from "../../../../../../constants"
 import CommunityImage from "../../../../images/page/community.png"
 import { CommunityMembersProps } from "../../Components/CommunityMembers"
 import {
   ContentNavigationList,
   ContentNavigationListProps,
 } from "../../Components/ContentNavigationList"
-import { FeaturedArticleSliderProps } from "../../Components/FeaturedArticleSlider"
 import Flips, { FlipsProps } from "../../Components/Flips"
 import ForumCell, { ForumCellProps } from "../../Components/ForumCell"
 import { HeaderWithLink } from "../../Components/HeaderWithLink"
 import { LandingHeader } from "../../Components/LandingHeader"
-import { LandingPageSecondaryNav } from "../../Components/LandingPageSecondaryNav"
+import {
+  LandingPageSecondaryNav,
+  LandingPageSecondaryNavProps,
+} from "../../Components/LandingPageSecondaryNav"
 import ProjectCards, { ProjectCardsProps } from "../../Components/ProjectCards"
 import { ToolsAndConceptsProps } from "../../Components/ToolsAndConcepts"
 import { UpcomingEventsProps } from "../../Components/UpcomingEvents"
 import PageBackground from "../shared/PageBackground"
 import PageSection from "../shared/PageSection"
 import PageSections from "../shared/PageSections"
+import { Article } from "../../interfaces"
 
 export type CommunityPageProps = FlipsProps &
   ProjectCardsProps &
-  FeaturedArticleSliderProps &
   ToolsAndConceptsProps & {
-    editPageUrl?: string
-    communityMembers: CommunityMembersProps
-    upcomingEvents: UpcomingEventsProps
+    articles?: Article[]
+    communityMembers?: CommunityMembersProps
     contentNavigationListItems: ContentNavigationListProps
+    discordUrl: string
+    discourseUrl: string
+    editPageUrl?: string
     forumTopics: ForumCellProps[]
+    secondaryNavSections: LandingPageSecondaryNavProps["sections"]
+    upcomingEvents: UpcomingEventsProps
   }
 
 export default function CommunityPage({
-  editPageUrl,
-  openFlips,
-  goodPlacesToStartFlips,
-  // communityMembers,
-  projects,
-  upcomingEvents,
   // articles,
-  tools,
+  // communityMembers,
   contentNavigationListItems,
+  discordUrl,
+  discourseUrl,
+  editPageUrl,
   forumTopics,
+  githubUrl,
+  goodPlacesToStartFlips,
+  openFlips,
+  projects,
+  secondaryNavSections,
+  tools,
+  upcomingEvents,
 }: CommunityPageProps) {
   return (
     <PageBackground gradient="community">
-      <LandingPageSecondaryNav
-        sections={getCommunitySections(upcomingEvents.events.length > 0)}
-      />
+      <LandingPageSecondaryNav sections={secondaryNavSections} />
       <PageSections>
         <PageSection className="pt-0 pb-0">
           <LandingHeader
@@ -62,9 +62,11 @@ export default function CommunityPage({
             buttonUrl="https://flow.com/ecosystemsupport"
             callout="The Flow Ecosystem Fund"
             description="Our $725 Million Flow Ecosystem Fund is designed to hypercharge innovation and growth across the Flow community."
+            discordUrl={discordUrl}
             editPageUrl={editPageUrl}
-            title="Community"
+            githubUrl={githubUrl}
             imageSrc={CommunityImage}
+            title="Community"
           />
         </PageSection>
         {upcomingEvents.events.length > 0 && (
@@ -98,9 +100,10 @@ export default function CommunityPage({
         </PageSection> */}
         <PageSection sectionId="flips">
           <Flips
-            openFlips={openFlips}
+            githubUrl={githubUrl}
             goodPlacesToStartFlips={goodPlacesToStartFlips}
             headerLink="flips"
+            openFlips={openFlips}
           />
         </PageSection>
         <PageSection sectionId="featured-initiatives">
@@ -123,7 +126,7 @@ export default function CommunityPage({
               </HeaderWithLink>
               <ButtonLink
                 rightIcon="right"
-                href={DISCOURSE_URL}
+                href={discourseUrl}
                 variant="secondary"
                 className="ml-4 hidden md:flex"
               >

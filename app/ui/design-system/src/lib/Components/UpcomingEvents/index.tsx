@@ -1,5 +1,5 @@
 import { useMemo, useState } from "react"
-import { OFFICE_HOURS_EVENT_TYPE } from "~/component-data/Events"
+import { OFFICE_HOURS_EVENT_TYPE } from "~/data/events"
 import { ButtonLink } from "../Button"
 import { EventCard, EventCardList, EventCardProps } from "../EventCard"
 import { EventCardSmall } from "../EventCardSmall"
