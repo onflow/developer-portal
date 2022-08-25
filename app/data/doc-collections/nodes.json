@@ -17,13 +17,13 @@
               "href": ""
             },
             {
-              "title": "Node Setup",
-              "href": "node-operation/node-setup"
-            },
-            {
               "title": "Node Roles",
               "href": "node-operation/node-roles"
             },
+            {
+              "title": "Node Setup",
+              "href": "node-operation/node-setup"
+            },            
             {
               "title": "Operator FAQs",
               "href": "node-operation/faq"
