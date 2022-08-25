@@ -68,6 +68,13 @@
             {
               "title": "Upcoming Sporks",
               "href": "/network/flow-mainnet"
+            },
+            {
+              "title": "Access API",
+              "href": "access-api"
+            },
+            { "title": "Access API rate limits",
+              "href": "access-api-rate-limits"
             }
           ]
         }
