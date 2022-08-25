@@ -1,8 +1,6 @@
 import { endOfWeek } from "date-fns"
-import { useState } from "react"
 import { ReactComponent as ChevronLeftIcon } from "../../../../images/arrows/chevron-left"
 import {
-  Callout,
   NetworkDetailsCard,
   Pagination,
   SocialLinksSignup,
@@ -23,15 +21,13 @@ import { SocialLinksSignupProps } from "../../Components/SocialLinksSignup"
 export type NetworkDetailPageProps = SocialLinksSignupProps & {
   featuredArticle: Article
   networkName: string
-  networkStatuses: StatuspageApiResponse[]
+  status?: StatuspageApiResponse
   pastSporks: SporksCardProps[]
+  networks: Array<{
+    link: string
+    name: string
+  }>
 }
-
-export const getNetworkNameFromParam = (param: string) =>
-  param
-    .split("-")
-    .map((name) => name.slice(0, 1).toUpperCase() + name.slice(1))
-    .join(" ")
 
 const NetworkDetailPage = ({
   discordUrl,
@@ -39,21 +35,11 @@ const NetworkDetailPage = ({
   featuredArticle,
   githubUrl,
   networkName,
-  networkStatuses,
+  networks,
   pastSporks,
+  status,
   twitterUrl,
 }: NetworkDetailPageProps) => {
-  const convertedName = getNetworkNameFromParam(networkName)
-  const defaultIndex = networkStatuses.findIndex((object) => {
-    return object.name === convertedName
-  })
-  const [selectedNetworkIndex, setSelectedNetworkIndex] = useState(defaultIndex)
-  const tabs = networkStatuses.map((network: StatuspageApiResponse) => ({
-    name: network.name,
-    link: `/network/${network.name.replace(" ", "-").toLowerCase()}`,
-  }))
-  const currentNetwork = networkStatuses[selectedNetworkIndex]
-
   return (
     <PageBackground>
       <PageSections divided={false}>
@@ -66,15 +52,13 @@ const NetworkDetailPage = ({
               <ChevronLeftIcon /> Network
             </AppLink>
           </div>
-          <TabMenu tabs={tabs} onTabChange={setSelectedNetworkIndex} centered />
+          <TabMenu tabs={networks} centered />
           <div className="text-h3 md:text-h1 mt-16 mb-14 pl-4 md:text-center md:text-5xl">
-            {currentNetwork?.name}
+            {networkName}
           </div>
           <NetworkDetailsCard
             status={
-              currentNetwork?.status === "operational"
-                ? "Healthy"
-                : "Under Maintenance"
+              status?.status === "operational" ? "Healthy" : "Under Maintenance"
             }
             statusLink="https://status.onflow.org"
             version="33"
@@ -93,7 +77,7 @@ const NetworkDetailPage = ({
               Upcoming Spork
             </HeaderWithLink>
             <SporksCard
-              heading={currentNetwork?.name || ""}
+              heading={networkName}
               timestamp={endOfWeek(new Date()).toString()}
               sporkMetadata={{
                 accessNode: "access-001.mainnet15.nodes.onflow.org:9000",
@@ -139,7 +123,7 @@ const NetworkDetailPage = ({
             </div>
           </div>
         </PageSection>
-        <PageSection>
+        {/* <PageSection>
           <div className="container">
             <Callout
               heading="Spork FAQ"
@@ -148,7 +132,7 @@ const NetworkDetailPage = ({
               ctaLink="https://flow.com"
             />
           </div>
-        </PageSection>
+        </PageSection> */}
       </PageSections>
       <SocialLinksSignup
         discordUrl={discordUrl}
