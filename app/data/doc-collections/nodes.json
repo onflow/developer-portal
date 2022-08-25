@@ -73,7 +73,8 @@
               "title": "Access API",
               "href": "access-api"
             },
-            { "title": "Access API rate limits",
+            { 
+               "title": "Access API rate limits",
               "href": "access-api-rate-limits"
             }
           ]
