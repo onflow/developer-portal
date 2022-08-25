@@ -45,11 +45,9 @@ export async function getMdxPage(
   {
     source,
     path,
-    isTrusted,
   }: {
     source: DocCollectionSource
     path: string
-    isTrusted: boolean
   },
   options: CachifiedOptions
 ): Promise<MdxPage | null> {
@@ -70,7 +68,6 @@ export async function getMdxPage(
         fileOrDirPath: path,
         file: result.file,
         files: result.files,
-        isTrusted,
         options,
       }).catch((err) => {
         console.error(`Failed to get a fresh value for mdx:`, {
@@ -143,14 +140,12 @@ async function compileMdxCached({
   fileOrDirPath,
   file,
   files,
-  isTrusted,
   options,
 }: {
   source: DocCollectionSource
   fileOrDirPath: string
   file: GitHubTextFile
   files: Array<GitHubTextFile>
-  isTrusted: boolean
   options: CachifiedOptions
 }) {
   const key = documentCompiledKey(source, fileOrDirPath)
@@ -161,11 +156,7 @@ async function compileMdxCached({
     key,
     checkValue: checkCompiledValue,
     getFreshValue: async () => {
-      const compiledPage = await compileMdx<MdxPage["frontmatter"]>(
-        file,
-        files,
-        isTrusted
-      )
+      const compiledPage = await compileMdx<MdxPage["frontmatter"]>(file, files)
       return compiledPage
     },
   })

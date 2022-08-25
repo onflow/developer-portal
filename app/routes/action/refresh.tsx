@@ -94,7 +94,6 @@ export const action: ActionFunction = async ({ request }) => {
         {
           source: contentSpec.source,
           path: contentPath,
-          isTrusted: true,
         },
         { forceFresh: true }
       )

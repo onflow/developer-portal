@@ -96,7 +96,6 @@
     "react-top-loading-bar": "^2.1.0",
     "reading-time": "^1.5.0",
     "redoc": "^2.0.0-rc.72",
-    "rehype-sanitize": "^5.0.1",
     "remark-gfm": "^3.0.1",
     "remark-slug": "^7.0.1",
     "remix-utils": "^3.3.0",

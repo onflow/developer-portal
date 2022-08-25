@@ -42,7 +42,6 @@ export const loader: LoaderFunction = async ({ params, request }) => {
       {
         source: data.source,
         path: data.contentPath,
-        isTrusted: true,
       },
       { request, forceFresh: process.env.FORCE_REFRESH === "true" }
     )

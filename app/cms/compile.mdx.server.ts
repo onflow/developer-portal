@@ -5,11 +5,9 @@ import { bundleMDX } from "mdx-bundler"
 import path from "node:path"
 import type TPQueue from "p-queue"
 import calculateReadingTime from "reading-time"
-import rehypeSanitize, { defaultSchema } from "rehype-sanitize"
 import type * as U from "unified"
 import { visit } from "unist-util-visit"
 import type { GitHubTextFile } from "./github.server"
-import { HIGHLIGHT_LANGUAGES } from "./utils/constants"
 import { markdownToToc } from "./utils/generate-toc"
 
 if (process.platform === "win32") {
@@ -81,38 +79,17 @@ const removeMdxMarkerPlugin = () => (tree: H.Root) => {
   })
 }
 
-const rehypePlugins = (isTrusted: boolean = false): U.PluggableList => {
-  const plugins: U.PluggableList = [
-    removePreContainerDivs,
-    removeMdxMarkerPlugin,
-  ]
-
-  if (!isTrusted) {
-    plugins.push([
-      rehypeSanitize,
-      {
-        ...defaultSchema,
-        attributes: {
-          ...defaultSchema.attributes,
-          code: [
-            ...(defaultSchema?.attributes?.code || []),
-            [
-              "className",
-              ...HIGHLIGHT_LANGUAGES.map((name) => `language-${name}`),
-            ],
-          ],
-        },
-      },
-    ])
-  }
-
-  return plugins
+const removeExcludedContent = () => (tree: H.Root) => {
+  visit(tree, function visitor(node: H.Node, index, parent) {
+    if ("data" in node && node.data && "_mdxExplicitJsx" in node.data) {
+      delete node.data._mdxExplicitJsx
+    }
+  })
 }
 
 async function compileMdx<FrontmatterType extends Record<string, unknown>>(
   source: GitHubTextFile,
-  files: Array<GitHubTextFile>,
-  isTrusted: boolean = false
+  files: Array<GitHubTextFile>
 ) {
   const { default: remarkSlug } = await import("remark-slug")
   const { default: gfm } = await import("remark-gfm")
@@ -140,7 +117,9 @@ async function compileMdx<FrontmatterType extends Record<string, unknown>>(
         ]
         options.rehypePlugins = [
           ...(options.rehypePlugins ?? []),
-          ...rehypePlugins(isTrusted),
+          removePreContainerDivs,
+          removeMdxMarkerPlugin,
+          removeExcludedContent,
         ]
 
         return options
