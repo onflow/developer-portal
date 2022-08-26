@@ -1,14 +1,16 @@
-import remarkEmbedder from "@remark-embedder/core"
+import remarkEmbedder, { RemarkEmbedderOptions } from "@remark-embedder/core"
 import oembedTransformer from "@remark-embedder/transformer-oembed"
-import type * as H from "hast"
 import { bundleMDX } from "mdx-bundler"
 import path from "node:path"
 import type TPQueue from "p-queue"
 import calculateReadingTime from "reading-time"
 import type * as U from "unified"
-import { visit } from "unist-util-visit"
 import type { GitHubTextFile } from "./github.server"
-import { markdownToToc } from "./utils/generate-toc"
+import { generateToc, TocItem } from "./rehype-plugins/generateToc"
+import { removeExcludedContent } from "./rehype-plugins/removeExcludedContent"
+import { removeMdxMarker } from "./rehype-plugins/removeMdxMarker"
+import { removePreContainerDivs } from "./rehype-plugins/removePreContainerDivs"
+import { replaceNonStandardReactAttributes } from "./rehype-plugins/replaceNonStandardReactAttributes"
 
 if (process.platform === "win32") {
   process.env.ESBUILD_BINARY_PATH = path.resolve(
@@ -26,67 +28,6 @@ function handleEmbedderError({ url }: { url: string }) {
   return `<p>Error embedding <a href="${url}">${url}</a>.`
 }
 
-function removePreContainerDivs() {
-  return async function preContainerDivsTransformer(tree: H.Root) {
-    visit(
-      tree,
-      { type: "element", tagName: "pre" },
-      function visitor(node, index, parent) {
-        if (parent?.type !== "element") return
-        if (parent.tagName !== "div") return
-        if (parent.children.length !== 1 && index === 0) return
-        Object.assign(parent, node)
-      }
-    )
-  }
-}
-
-const remarkPlugins: U.PluggableList = [
-  [
-    // @ts-expect-error 🤷‍♂️
-    remarkEmbedder,
-    {
-      handleError: handleEmbedderError,
-      transformers: [oembedTransformer],
-    },
-  ],
-]
-
-/**
- *
- * Unmarks any nodes that have the `_mdxExplicitJsx` flag set.
- * This allows us to override built-in HTML elements. For example if
- * a MDX file contains:
- *
- * ```mdx
- * <div><img src="./some-image.png"></div>
- * ```
- *
- * These elements will not normally be modifiable by the custom component
- * substitution map we pass as a prop (which is rather confusing and not
- * clear from the docs).
- *
- * @see {@link https://github.com/kentcdodds/mdx-bundler/issues/160#issuecomment-1140526121}
- * @see {@link https://github.com/mdx-js/mdx/pull/2052}
- * @see {@link https://github.com/kentcdodds/mdx-bundler/issues/160}
- * @see {@link https://github.com/kentcdodds/mdx-bundler#component-substitution}
- */
-const removeMdxMarkerPlugin = () => (tree: H.Root) => {
-  visit(tree, function visitor(node: H.Node, index, parent) {
-    if ("data" in node && node.data && "_mdxExplicitJsx" in node.data) {
-      delete node.data._mdxExplicitJsx
-    }
-  })
-}
-
-const removeExcludedContent = () => (tree: H.Root) => {
-  visit(tree, function visitor(node: H.Node, index, parent) {
-    if ("data" in node && node.data && "_mdxExplicitJsx" in node.data) {
-      delete node.data._mdxExplicitJsx
-    }
-  })
-}
-
 async function compileMdx<FrontmatterType extends Record<string, unknown>>(
   source: GitHubTextFile,
   files: Array<GitHubTextFile>
@@ -95,6 +36,7 @@ async function compileMdx<FrontmatterType extends Record<string, unknown>>(
   const { default: gfm } = await import("remark-gfm")
 
   const rootDir = path.posix.dirname(source.path)
+  const toc = [] as TocItem[]
 
   try {
     const { frontmatter, code } = await bundleMDX({
@@ -113,20 +55,28 @@ async function compileMdx<FrontmatterType extends Record<string, unknown>>(
           ...(options.remarkPlugins ?? []),
           gfm,
           remarkSlug,
-          ...remarkPlugins,
+          [
+            remarkEmbedder,
+            {
+              handleError: handleEmbedderError,
+              transformers: [oembedTransformer],
+            },
+          ] as U.Pluggable<RemarkEmbedderOptions[]>,
         ]
         options.rehypePlugins = [
           ...(options.rehypePlugins ?? []),
           removePreContainerDivs,
-          removeMdxMarkerPlugin,
+          removeMdxMarker,
+          replaceNonStandardReactAttributes,
           removeExcludedContent,
+          generateToc(toc, { maxDepth: 2 }),
         ]
 
         return options
       },
     })
+
     const readTime = calculateReadingTime(source.textContent)
-    const toc = markdownToToc(source.textContent)
 
     return {
       code,
