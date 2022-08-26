@@ -168,10 +168,7 @@ async function compileMdxCached({
 }
 
 function stripExtension(href: string) {
-  const stripped = href
-    .replace(/(.md|.mdx)#/, "")
-    .replace(/(.md|.mdx)?/, "")
-    .replace(/(.md|.mdx)$/, "")
+  const stripped = href.replace(/(.md|.mdx)/, "")
   return stripped
 }
 
