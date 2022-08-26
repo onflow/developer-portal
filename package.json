@@ -11,7 +11,7 @@
     "dev": "run-p dev:*",
     "dev:css": "yarn generate:css --watch",
     "dev:remix": "remix dev",
-    "dev:svg": "chokidar --silent --initial \"./app/ui/design-system/images/**/*.svg\" -c \"yarn svgr --silent --template svgr/template.js --filename-case kebab --out-dir ./app/ui/design-system/images ./app/ui/design-system/images\"",
+    "dev:svg": "chokidar --silent --initial \"./app/ui/design-system/images/**/*.svg\" -c \"yarn svgr --silent --template svgr/template.js --filename-case kebab --out-dir ./app/ui/design-system/images ./app/ui/design-system/images && touch /tmp/svgs-generated\"",
     "format:app": "prettier --write app",
     "format:check:app": "prettier --check app",
     "generate:css": "postcss ./app/ui/design-system/styles/main.css -o app/main.css",
