@@ -9,7 +9,14 @@ type HeadingType = "h1" | "h2" | "h3" | "h4" | "h5" | "h6"
 export type HeadingProps = React.DetailedHTMLProps<
   React.HTMLAttributes<HTMLHeadingElement>,
   HTMLHeadingElement
-> & { type?: HeadingType }
+> & {
+  type?: HeadingType
+
+  /**
+   * An explicit "slug" to use for referencing/linking to this heading
+   */
+  "data-slug"?: string
+}
 
 const headingClasses = {
   h1: "text-4xl mb-4 font-bold",
@@ -21,18 +28,22 @@ const headingClasses = {
 }
 
 export function Heading({
-  type = "h1",
   children,
   className,
+  "data-slug": slug,
+  id,
+  type = "h1",
   ...props
 }: HeadingProps) {
   const text = typeof children === "string" ? children : ""
-  const anchor = GithubSlugger.slug(text)
+
+  const anchor = id || slug || GithubSlugger.slug(text)
 
   return createElement(
     type,
     {
       ...props,
+      id: anchor,
       className: clsx(
         "mt-6 font-semibold scroll-offset",
         headingClasses[type],
@@ -40,7 +51,7 @@ export function Heading({
       ),
     },
     <div className="group -ml-11 flex items-center">
-      <div className="relative" style={{ top: -NAV_HEIGHT }} id={anchor} />
+      <div className="relative" style={{ top: -NAV_HEIGHT }} />
       <a
         href={`#${anchor}`}
         title={text}
