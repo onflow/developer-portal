@@ -53,17 +53,32 @@ services:
   app-css:
     <<: *app-defaults
     command: ["yarn", "run", "dev:css"]
+    healthcheck:
+      # service is healthy once main.css has been generated
+      test: bash  -c "[ -f /opt/next-docs/app/main.css ]"
+      interval: 10s
+      retries: 5
+      start_period: 5s
     # postcss exits without an stdin
     # See: https://github.com/postcss/postcss-cli/pull/424
     tty: true
     depends_on:
-      - app-yarn
+      app-yarn:
+        condition: service_completed_successfully
   # Watches for SVG changes and recreates their components as needed.
   app-svg:
     <<: *app-defaults
     command: ["yarn", "run", "dev:svg"]
+    healthcheck:
+      # "dev:svg" executes "touch /tmp/svgs-generated" after each run, so we
+      # check that this file has been updated within the last 1 minute
+      test: test `find /tmp/svgs-generated -type f -mmin -1`
+      interval: 5s
+      retries: 5
+      start_period: 15s
     depends_on:
-      - app-yarn  # should probably use some sort of "wait-for" here instead.
+      app-yarn:
+        condition: service_completed_successfully
   # The main application
   app:
     <<: *app-defaults
@@ -72,11 +87,23 @@ services:
       - "3000:3000" # Web app port
       - "8002:8002" # Websocket for live-reload
     depends_on:
-      - app-css
-      - app-svg
+      app-css:
+        condition: service_healthy
+      app-svg:
+        condition: service_healthy
   storybook:
     <<: *app-defaults
     profiles: ["storybook"]
-    command: ["yarn", "run", "start-storybook", "-p", "6006", "--quiet", "--no-open", "--disable-telemetry"]
+    command:
+      [
+        "yarn",
+        "run",
+        "start-storybook",
+        "-p",
+        "6006",
+        "--quiet",
+        "--no-open",
+        "--disable-telemetry",
+      ]
     ports:
       - "6006:6006"
