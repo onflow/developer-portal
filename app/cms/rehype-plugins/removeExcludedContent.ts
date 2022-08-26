@@ -1,18 +1,21 @@
 import type * as H from "hast"
-import { MdxJsxFlowElement } from "mdast-util-mdx-jsx"
 import { filter } from "unist-util-filter"
 import { EXCLUDE_CONTENT_CLASS_NAME } from "../utils/constants"
+import { isMdxJsxFlowElement } from "./utils"
 
 /**
  * Removes any JSX element nodes that have a className which includes the
- *  `EXCLUDE_CONTENT_CLASS_NAME` value.
+ *  `EXCLUDE_CONTENT_CLASS_NAME` value, and anything wrapped in an
+ * `<omit>` element.
  */
 export const removeExcludedContent = () => (tree: H.Root) =>
   filter(tree, (node) => {
-    if (node.type === "mdxJsxFlowElement") {
-      const mdxNode = node as MdxJsxFlowElement
+    if (isMdxJsxFlowElement(node)) {
+      if (node.name === "omit") {
+        return false
+      }
 
-      return !mdxNode.attributes.some(
+      return !node.attributes.some(
         (attribute) =>
           attribute.type === "mdxJsxAttribute" &&
           attribute.name === "className" &&

@@ -1,9 +1,8 @@
-import { MdxJsxFlowElement } from "mdast-util-mdx-jsx"
 import type * as H from "hast"
-
-import { visit } from "unist-util-visit"
 import Slugger from "github-slugger"
 import { toString } from "hast-util-to-string"
+import { visit } from "unist-util-visit"
+import { isElement, isMdxJsxFlowElement } from "./utils"
 
 export type TocItem = {
   title: string
@@ -21,14 +20,6 @@ export type GenerateTocOptions = {
 const slugs = new Slugger()
 
 const HEADER_TAGNAME_REGEXP = /^h([1-6])$/i
-
-function isElement(node: H.Node): node is H.Element {
-  return node.type === "element"
-}
-
-function isMdxJsxFlowElement(node: H.Node): node is MdxJsxFlowElement {
-  return node.type === "mdxJsxFlowElement"
-}
 
 /**
  * Attempts to locate any explicit `id` attribute set on a node.
