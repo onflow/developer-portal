@@ -2,7 +2,7 @@ import { ReactComponent as CadenceIcon } from "../../../../images/tools/tool-cad
 import { ReactComponent as CadenceGradientIcon } from "../../../../images/tools/tool-cadence-gradient"
 import { ReactComponent as CliIcon } from "../../../../images/tools/tool-cli"
 import { ReactComponent as CliGradientIcon } from "../../../../images/tools/tool-cli-gradient"
-import { ReactComponent as DefaultIcon } from "../../../../images/tools/tool-default"
+import { ReactComponent as DefaultIcon } from "../../../../images/tools/tool-default-override"
 import { ReactComponent as EmulatorIcon } from "../../../../images/tools/tool-emulator"
 import { ReactComponent as EmulatorGradientIcon } from "../../../../images/tools/tool-emulator-gradient"
 import { ReactComponent as FclIcon } from "../../../../images/tools/tool-fcl"
