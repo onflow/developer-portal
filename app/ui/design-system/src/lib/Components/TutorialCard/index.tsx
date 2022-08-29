@@ -3,21 +3,30 @@ import { forwardRef } from "react"
 import { ReactComponent as CalendarIcon } from "../../../../images/action/date-calendar"
 import { ReactComponent as UserIcon } from "../../../../images/arrows/user"
 import { ReactComponent as TutorialIcon } from "../../../../images/content/drafting-tools"
-import DefaultImage from "../../../../images/misc/article-default"
 import { User } from "../../interfaces"
 import Tag from "../Tag"
+import { TutorialCardIconType, TUTORIAL_CARD_ICONS } from "./icons"
 
-export type TutorialCardProps = {
+export type TutorialCardPropsImageUri = {
+  author?: User
   className?: string
-  heading: string
-  tags: string[]
   description: string
+  heading: string
+  imageUri?: string
   lastUpdated?: string
   level?: string
-  imageUri?: any
   link: string
-  author?: User
+  tags: string[]
 }
+
+export type TutorialCardPropsImagePreset = TutorialCardPropsImageUri & {
+  imageUri: never
+  imageType: TutorialCardIconType
+}
+
+export type TutorialCardProps =
+  | TutorialCardPropsImagePreset
+  | TutorialCardPropsImageUri
 
 const TutorialCard = forwardRef<HTMLAnchorElement, TutorialCardProps>(
   (
@@ -28,12 +37,17 @@ const TutorialCard = forwardRef<HTMLAnchorElement, TutorialCardProps>(
       description,
       lastUpdated,
       level,
-      imageUri = DefaultImage,
       link,
       author,
+      ...props
     },
     ref
   ) => {
+    const imageUri =
+      ("imageType" in props
+        ? TUTORIAL_CARD_ICONS[props.imageType]
+        : props.imageUri) || TUTORIAL_CARD_ICONS.default
+
     return (
       // TODO: switch to AppLink
       <a

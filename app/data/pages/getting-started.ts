@@ -1,5 +1,3 @@
-import CadenceIcon from "~/ui/design-system/images/tools/tool-cadence.svg"
-import FCLIcon from "~/ui/design-system/images/tools/tool-fcl.svg"
 import { ContentNavigationListProps } from "~/ui/design-system/src/lib/Components/ContentNavigationList"
 import { FeaturedArticleCardProps } from "~/ui/design-system/src/lib/Components/FeaturedArticleCard"
 import { LandingHeaderProps } from "~/ui/design-system/src/lib/Components/LandingHeader"
@@ -147,14 +145,14 @@ export const linkCard2ColumnItems: LinkCard2ColumnProps = {
       description:
         "Cadence is a resource-oriented programming language that introduces new features to smart contract programming.",
       href: "/cadence",
-      icon: CadenceIcon,
+      iconType: "cadence",
     },
     {
       title: "Flow Client Library",
       description:
         "The Flow Client Library (FCL) JS is a package used to interact with user wallets, dapps, and the blockchain.",
       href: "/tools/fcl-js",
-      icon: FCLIcon,
+      iconType: "fcl",
     },
   ],
 }

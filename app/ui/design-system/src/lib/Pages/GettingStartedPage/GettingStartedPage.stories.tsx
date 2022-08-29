@@ -1,9 +1,5 @@
 import { Meta, Story } from "@storybook/react"
 import { GettingStartedPage, GettingStartedPageProps } from "."
-import { ReactComponent as CadenceIcon } from "../../../../images/tools/tool-cadence"
-import { ReactComponent as FCLIcon } from "../../../../images/tools/tool-fcl"
-
-import { svgToDataUri } from "../../Components/LinkCard2Column/LinkCard2Column.stories"
 
 export const Icon1 = () => (
   <svg
@@ -100,10 +96,16 @@ export const Icon3 = () => (
 )
 
 const gettingStartedPageData = {
+  discordUrl: "https://onflow.org/discord",
+  discourseUrl: "https://forum.onflow.org/",
+  githubUrl: "https://github.com/onflow",
+  twitterUrl: "https://twitter.com/flow_blockchain",
   landingHeaderItems: {
     buttonText: "Button Text",
     buttonUrl: "#changeme",
     callout: "Featured callout here two lines",
+    discordUrl: "https://onflow.org/discord",
+    githubUrl: "https://github.com/onflow",
     description:
       "Lorem ipsum dolor sit amet proin gravida lorem ipsum dolor sit.",
     title: "Getting Started",
@@ -206,14 +208,14 @@ const gettingStartedPageData = {
         description:
           "A package used to interact with user wallets and the Flow blockchain.",
         href: "https://www.onflow.org",
-        icon: svgToDataUri(<CadenceIcon />),
+        iconType: "cadence",
       },
       {
         title: "Flow Client Library",
         description:
           "A package used to interact with user wallets and the Flow blockchain.",
         href: "#create-non-fungible-token",
-        icon: svgToDataUri(<FCLIcon />),
+        iconType: "fcl",
       },
     ],
   },

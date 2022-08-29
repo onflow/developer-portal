@@ -3,44 +3,47 @@ import { ReactComponent as ExternalLinkIcon } from "../../../../images/content/e
 import AppLink from "../AppLink"
 import { isLinkExternal } from "../../utils/isLinkExternal"
 import { LinkCard2ColumnItemContainer } from "./LinkCard2ColumnItemContainer"
+import { LinkCardIconType, LINK_CARD_ICONS } from "./icons"
 
 export type LinkCard2ColumnItemBaseProps = {
   description: string
-  icon?: string
+  iconType?: LinkCardIconType
   iconAltText?: string
   title: string
+  homePage?: boolean
 }
 
-export type LinkCard2ColumnItemSingleLinkProps =
-  LinkCard2ColumnItemBaseProps & {
+export type LinkCard2ColumnItemSingleLinkProps = {
+  href: string
+  links?: never
+}
+
+export type LinkCard2ColumnItemMultipleLinksProps = {
+  href?: never
+  links?: Array<{
     href: string
-    links?: never
-    homePage?: boolean
-  }
+    title: string
+  }>
+}
 
-export type LinkCard2ColumnItemMultipleLinksProps =
-  LinkCard2ColumnItemBaseProps & {
-    href?: never
-    links?: Array<{
-      href: string
-      title: string
-    }>
-    homePage?: boolean
-  }
-
-export type LinkCard2ColumnItemProps =
+export type LinkCard2ColumnItemLinkProps =
   | LinkCard2ColumnItemSingleLinkProps
   | LinkCard2ColumnItemMultipleLinksProps
+
+export type LinkCard2ColumnItemProps = LinkCard2ColumnItemBaseProps &
+  LinkCard2ColumnItemLinkProps
 
 export function LinkCard2ColumnItem({
   description,
   href,
-  icon,
   iconAltText = "",
   links,
   title,
   homePage,
+  iconType,
 }: LinkCard2ColumnItemProps) {
+  const icon = iconType ? LINK_CARD_ICONS[iconType] : undefined
+
   return (
     <LinkCard2ColumnItemContainer
       href={links?.length ? undefined : href}

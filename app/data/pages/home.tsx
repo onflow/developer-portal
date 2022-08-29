@@ -6,8 +6,6 @@ import {
   LinkCard3ColumnItems,
 } from "~/ui/design-system/src"
 import { ContentNavigationListProps } from "~/ui/design-system/src/lib/Components/ContentNavigationList"
-import PlaygroundIcon from "../../ui/design-system/images/misc/playground-default.png"
-import FCLIcon from "../../ui/design-system/images/tools/tool-fcl.svg"
 import { metadata } from "../metadata"
 
 const homepageStartProjectData: LinkCard2ColumnProps = {
@@ -24,13 +22,13 @@ const homepageStartProjectData: LinkCard2ColumnProps = {
       description:
         "Build a front-end and run your first transactions on the Flow blockchain within minutes.",
       href: "/tools/fcl-js/tutorials/flow-app-quickstart/",
-      icon: FCLIcon,
+      iconType: "fcl",
     },
     {
       title: "Learn Smart Contracts",
       description:
         "A series of tutorials that explain how to build your first smart contracts with our programming language, Cadence.",
-      icon: PlaygroundIcon,
+      iconType: "playground",
       links: [
         {
           href: "/cadence/tutorial/02-hello-world/",

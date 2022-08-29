@@ -1,19 +1,9 @@
 import { Meta, Story } from "@storybook/react"
-import { renderToStaticMarkup } from "react-dom/server"
 import { LinkCard2Column, LinkCard2ColumnProps } from "."
-import { ReactComponent as CadenceIcon } from "../../../../images/tools/tool-cadence-gradient"
-
-export const svgToDataUri = (
-  element: Parameters<typeof renderToStaticMarkup>[0]
-) => {
-  const svgString = encodeURIComponent(renderToStaticMarkup(element))
-  return `data:image/svg+xml,${svgString}`
-}
 
 export default {
   component: LinkCard2Column,
   title: "Components/LinkCard2Column",
-  excludeStories: ["svgToDataUri"],
   parameters: {
     layout: "centered",
   },
@@ -37,13 +27,13 @@ Default.args = {
       description:
         "A package used to interact with user wallets and the Flow blockchain.",
       href: "https://www.onflow.org",
-      icon: svgToDataUri(<CadenceIcon />),
+      iconType: "cadence",
     },
     {
       title: "Internal single link example",
       description: "This is an example of an item with a single internal link.",
       href: "#create-non-fungible-token",
-      icon: "https://avatars.githubusercontent.com/u/62387156?s=64&v=4",
+      iconType: "fcl",
     },
     {
       title: "Create Non Fungible Token",
