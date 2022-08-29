@@ -1,6 +1,5 @@
 import { FeaturedArticleCardProps } from "~/ui/design-system/src/lib/Components/FeaturedArticleCard"
 import { TutorialCardProps } from "~/ui/design-system/src/lib/Components/TutorialCard"
-import CodeIcon from "~/ui/design-system/images/content/code.svg"
 
 export const redSquirrelGetStartedArticle: TutorialCardProps = {
   heading: "Getting started on Flow with a RedSquirrel NFT",
@@ -66,7 +65,7 @@ export const FCLQuickstartNuxtJs: TutorialCardProps = {
   tags: ["quickstart", "beginner"],
   description: `Everything you need to build a web3 project with the Vue, NuxtJS, and the Flow Client Library (FCL).`,
   link: "https://github.com/brunogonzales/fcl-nuxt-starter",
-  imageUri: CodeIcon,
+  imageType: "code",
 }
 
 export const FCLQuickstartSvelteKit: TutorialCardProps = {
@@ -74,7 +73,7 @@ export const FCLQuickstartSvelteKit: TutorialCardProps = {
   tags: ["quickstart", "beginner"],
   description: `Everything you need to build a web3 project with Svelte, SvelteKit and the Flow Client Library (FCL).`,
   link: "https://github.com/muttoni/fcl-sveltekit-quickstart",
-  imageUri: CodeIcon,
+  imageType: "code",
 }
 
 export const flowNFTPetStore: TutorialCardProps = {
