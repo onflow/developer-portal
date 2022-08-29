@@ -10,10 +10,13 @@ assignees: 10thfloor
 ⚠️ Important ⚠️
 Issues related to dead links will be closed if submitted to this repository.
 
-** This repository does not contain and documentation! Instead it pull content from other repositories in the `github.com/onflow` org. **
-
 If you've found a dead link, you'll need to report it in the repository that maintains the documentation you are using. 
 
+** This repository does not contain documentation! 
+Instead it pulls content from other repositories in the `github.com/onflow` org. **
+
+
+Here are the repositories we are currently integrating, you'll need to create your issue there:
 github.com/onflow/cadence
 
 github.com/onflow/core-contracts
