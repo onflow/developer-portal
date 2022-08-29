@@ -1,5 +1,4 @@
 import {
-  // AnnouncementCard,
   NetworkCard,
   // NetworkDiscordCard,
   SocialLinksSignup,
@@ -8,19 +7,23 @@ import { AnnouncementCardProps } from "../../Components/AnnouncementCard"
 import { FeaturedArticle } from "../../Components/FeaturedArticleSlider"
 // import { HeaderWithLink } from "../../Components/HeaderWithLink"
 import { NetworkDiscordCardProps } from "../../Components/NetworkDiscordCard"
-import { Article, StatuspageApiResponse } from "../../interfaces"
+import { SocialLinksSignupProps } from "../../Components/SocialLinksSignup"
+import { Article } from "../../interfaces"
+import { dateYYYYMMDD } from "../../utils/dates"
 import PageBackground from "../shared/PageBackground"
 import PageSection from "../shared/PageSection"
 import PageSections from "../shared/PageSections"
-import { dateYYYYMMDD } from "../../utils/dates"
-import { SocialLinksSignupProps } from "../../Components/SocialLinksSignup"
 
 export type NetworkPageProps = SocialLinksSignupProps & {
   announcementCards?: AnnouncementCardProps[]
   discordNetworkCards?: NetworkDiscordCardProps[]
   featuredArticle: Article
-  networkStatuses: StatuspageApiResponse[]
-  pastSporks: any
+  networks: Array<{
+    lastSporkDate?: string
+    link: string
+    name: string
+    status?: string
+  }>
 }
 
 const NetworkPage = ({
@@ -28,8 +31,7 @@ const NetworkPage = ({
   discourseUrl,
   featuredArticle,
   githubUrl,
-  networkStatuses,
-  pastSporks,
+  networks,
   twitterUrl,
 }: NetworkPageProps) => (
   <PageBackground gradient="network">
@@ -38,25 +40,22 @@ const NetworkPage = ({
         <div className="container">
           <h1 className="text-h1 pt-28 md:pt-[212px]">Network status</h1>
           <div className="mt-20 flex flex-col gap-4 md:gap-6">
-            {networkStatuses.map(({ name, status }: StatuspageApiResponse) => {
-              const convertedName: string = name.split(" ")[1]!.toLowerCase()
-              return (
-                <div key={name}>
-                  <NetworkCard
-                    networkName={name}
-                    status={
-                      status === "operational" ? "Healthy" : "Under Maintenance"
-                    }
-                    version="33"
-                    lastSporkDate={dateYYYYMMDD(
-                      pastSporks[convertedName][0].timestamp
-                    )}
-                    nextSporkDate="TBD"
-                    link={`/network/${name.toLowerCase().replace(" ", "-")}`}
-                  />
-                </div>
-              )
-            })}
+            {networks.map(({ name, lastSporkDate, link, status }) => (
+              <div key={name}>
+                <NetworkCard
+                  networkName={name}
+                  status={
+                    status === "operational" ? "Healthy" : "Under Maintenance"
+                  }
+                  version="33"
+                  lastSporkDate={
+                    lastSporkDate ? dateYYYYMMDD(lastSporkDate) : ""
+                  }
+                  nextSporkDate="TBD"
+                  link={`/network/${name.toLowerCase().replace(" ", "-")}`}
+                />
+              </div>
+            ))}
           </div>
         </div>
       </PageSection>
