@@ -397,7 +397,7 @@ export const redirects = {
   "/vscode-extension/en/": "",
   "/concepts": "/learn/concepts",
   "/faq/backers": "/flow/faq",
-  "/status": "",
+  "/status": "/network",
   "/emulator/CONTRIBUTING/": "",
   "/flow-port/staking-guide": "/nodes/flow-port/staking-guide",
   "/fcl/reference/proving-authentication":
