@@ -52,6 +52,7 @@ export const redirects = {
   "/vscode-extension/": "/tools/vscode-extension",
   "/tools/vscode-cadence": "/tools/vscode-extension",
   "/staking/technical-overview/": "/nodes/staking/technical-overview",
+  "/staking/technical-overview": "/nodes/staking/technical-overview",
   "/node-operation/past-sporks/": "/nodes/node-operation/past-sporks",
   "/staking/schedule/": "/nodes/staking/schedule",
   "/nodes/node-operation/staking/technical-overview":
