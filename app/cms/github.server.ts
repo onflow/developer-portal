@@ -204,7 +204,7 @@ export const downloadMarkdown = async (
   path: string
 ) => {
   console.log(
-    `Downloading ${source.owner}/${source.name}/${source.branch}/${source.rootPath}/${path}`
+    `Downloading ${source.owner}/${source.name}/${source.branch}/${source.rootPath}${path}`
   )
 
   const match = await getMarkdownFile(source, path)

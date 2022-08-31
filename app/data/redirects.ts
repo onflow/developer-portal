@@ -54,6 +54,8 @@ export const redirects = {
   "/staking/technical-overview/": "/nodes/staking/technical-overview",
   "/node-operation/past-sporks/": "/nodes/node-operation/past-sporks",
   "/staking/schedule/": "/nodes/staking/schedule",
+  "/nodes/node-operation/staking/technical-overview":
+    "/nodes/staking/technical-overview",
   "/flow-token/delivery/": "/flow/flow-token/delivery",
   "/flow-cli/create-accounts/": "/tools/flow-cli/create-accounts",
   "/fcl/flow-app-quickstart/": "/tools/fcl-js/tutorials/flow-app-quickstart",
@@ -70,7 +72,7 @@ export const redirects = {
   "/node-operation/node-bootstrap/": "/nodes/node-operation/node-bootstrap",
   "/node-operation/node-bootstrap": "/nodes/node-operation/node-bootstrap",
   "/node-operation/": "/node-operation",
-  "/http-api/": "/http-api",
+  "/http-api": "/http-api/",
   "/staking/rewards/": "/nodes/staking/schedule",
   "/dapp-development/smart-contracts/":
     "/flow/dapp-development/smart-contracts",
@@ -322,7 +324,6 @@ export const redirects = {
   "/docs/cadence-json-spec.md": "",
   "/token/staking/locked/transactions/": "",
   "/fusd": "",
-  "/http-api": "",
   "/flow-js-testing/examples/": "",
   "/cadence/access-control/": "/cadence/language/access-control",
   "/templates/cadence/": "",
