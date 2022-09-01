@@ -2,6 +2,7 @@ import type { ActionFunction } from "@remix-run/node"
 import { json, redirect } from "@remix-run/node"
 import { getMdxPage } from "~/cms/utils/mdx"
 // import { getRequiredServerEnvVar } from "~/utils/cms/helpers";
+import * as Sentry from "@sentry/node"
 import { redisCache } from "~/cms/redis.server"
 import { findDocCollection } from "~/cms/collections.server"
 import { recordRefreshEventInMixpanel } from "~/utils/mixpanel.server"
@@ -90,17 +91,22 @@ export const action: ActionFunction = async ({ request }) => {
         )
       }
 
-      void getMdxPage(
-        {
-          source: contentSpec.source,
-          path: contentPath,
-        },
-        { forceFresh: true }
-      )
+      try {
+        void getMdxPage(
+          {
+            source: contentSpec.source,
+            path: contentPath,
+          },
+          { forceFresh: true }
+        )
+      } catch (e) {
+        Sentry.captureException(e)
+      }
     }
 
     setShaInRedis()
     recordRefreshEventInMixpanel(body)
+    Sentry.captureMessage(JSON.stringify(body))
     return json({
       message: "Refreshing cache for content paths",
       repo: body.repo,
