@@ -7,7 +7,7 @@ kill_timeout = 5
 processes = []
 
 [env]
-  ORIGIN="https://developers.onflow.org"
+  ORIGIN="https://developers.flow.com"
   ALGOLIA_APP_ID="DKF9ZIO5WM"
   ALGOLIA_API_KEY="d53324bc00b550f87f608c2c56636bc6"
   ALGOLIA_INDEX_NAME="crawler_Flow Docs"
