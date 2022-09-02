@@ -1,7 +1,8 @@
 import { posix } from "path"
-import { getRequiredServerEnvVar } from "~/cms/helpers"
 import { docCollections } from "~/data/doc-collections"
+import { networks } from "../data/networks"
 import { SidebarItem } from "../ui/design-system/src/lib/Components/InternalSidebar"
+import { ORIGIN } from "../utils/env.server"
 
 type Entry = { pathname: string }
 
@@ -31,9 +32,7 @@ const getSidebarUrls = (path: string, sidebar: SidebarItem[]): string[] => {
 // pages defined in app/routes
 const STATIC_ROUTES = [
   "/",
-  "/action",
   "/community",
-  "/concepts",
   "/getting-started",
   "/http-api",
   "/learn",
@@ -45,7 +44,7 @@ const STATIC_ROUTES = [
 export const loader = () => {
   // For internal pages, obtain a list of known URLs from the sidebar
   // definitions.
-  const internalUrls = Object.entries(docCollections).flatMap(
+  const docsUrls = Object.entries(docCollections).flatMap(
     ([rootPath, { manifest }]) => {
       if (!("sidebars" in manifest)) {
         return []
@@ -56,16 +55,14 @@ export const loader = () => {
     }
   )
 
-  const paths = new Set([...STATIC_ROUTES, ...internalUrls])
+  const networkUrls = networks.map(({ urlPath }) => `network/${urlPath}`)
+
+  const paths = new Set([...STATIC_ROUTES, ...networkUrls, ...docsUrls])
   const entries = [...paths].map((pathname) => ({ pathname }))
-  const origin: string = getRequiredServerEnvVar(
-    "ORIGIN",
-    `http://localhost:3000`
-  )
 
   const content = `
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
-  ${entries.map((entry) => entryNode(entry, origin)).join("")}
+  ${entries.map((entry) => entryNode(entry, ORIGIN)).join("")}
 </urlset>
   `
 
