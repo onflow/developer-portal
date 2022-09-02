@@ -1,4 +1,4 @@
-import { LoaderFunction, MetaFunction } from "@remix-run/node"
+import { LinksFunction, LoaderFunction, MetaFunction } from "@remix-run/node"
 import { useLoaderData } from "@remix-run/react"
 import {
   contentNavigationListItems,
@@ -18,13 +18,17 @@ import {
   Icon2,
   Icon3,
 } from "~/ui/design-system/src/lib/Pages/GettingStartedPage/GettingStartedPage.stories"
-import { getMetaTitle } from "~/utils/seo"
+import { getCanonicalLinkDescriptor, getMetaTitle } from "~/utils/seo.server"
 import { refreshTools } from "../cms/tools.server"
 import { externalLinks } from "../data/external-links"
 
 export const meta: MetaFunction = () => ({
   title: getMetaTitle("Getting Started"),
 })
+
+export const links: LinksFunction = () => [
+  getCanonicalLinkDescriptor("/getting-started"),
+]
 
 export type LoaderData = Omit<GettingStartedPageProps, "linkCard3ColumnItems">
 

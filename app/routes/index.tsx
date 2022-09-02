@@ -1,4 +1,4 @@
-import { LoaderFunction } from "@remix-run/node"
+import { LinksFunction, LoaderFunction } from "@remix-run/node"
 import { useLoaderData } from "@remix-run/react"
 import { fetchFlips } from "~/cms/utils/fetch-flips"
 import { allEvents } from "~/data/events"
@@ -20,6 +20,7 @@ import {
   httpSDK,
   overflowTool,
 } from "../data/tools"
+import { getCanonicalLinkDescriptor } from "../utils/seo.server"
 
 export type LoaderData = Omit<HomePageProps, "threeColumnItems">
 
@@ -54,6 +55,8 @@ export const loader: LoaderFunction = async (): Promise<LoaderData> => {
     editPageUrl,
   }
 }
+
+export const links: LinksFunction = () => [getCanonicalLinkDescriptor("")]
 
 export default function Index() {
   const data = useLoaderData<LoaderData>()

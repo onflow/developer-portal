@@ -7,6 +7,6 @@ export function temporarilyRedirectToComingSoon() {
   const isPreview = process.env.INCOMPLETE_PAGE_BEHAVIOR === "preview" // allow envs like staging to preview incomplete pages
 
   if (!isPreview) {
-    throw redirect(`/coming-soon`)
+    throw redirect("/coming-soon")
   }
 }

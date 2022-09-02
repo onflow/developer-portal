@@ -1,4 +1,4 @@
-function getEnv() {
+export function getEnv() {
   return {
     BOT_DISCORD_TOKEN: process.env.BOT_DISCORD_TOKEN,
     BOT_GITHUB_TOKEN: process.env.BOT_GITHUB_TOKEN,
@@ -14,22 +14,35 @@ function getEnv() {
   }
 }
 
-type ENV = ReturnType<typeof getEnv>
+export type ENV = ReturnType<typeof getEnv>
+
+function getFallbackOrigin() {
+  switch (process.env.NODE_ENV) {
+    case "production": {
+      return "https://developers.flow.com"
+    }
+    default: {
+      return "https://localhost:3000"
+    }
+  }
+}
+
+export const ORIGIN = process.env.ORIGIN || getFallbackOrigin()
 
 /**
  * these values are exposed on window, don't put secrets here
  */
-function getPublicEnv() {
+export function getPublicEnv() {
   return {
     NODE_ENV: process.env.NODE_ENV,
     /**
      * the url origin, e.g. https://developers.onflow.org or http://localhost:3000
      */
-    ORIGIN: process.env.ORIGIN,
+    ORIGIN: process.env.ORIGIN || getFallbackOrigin(),
   }
 }
 
-type PUBLIC_ENV = ReturnType<typeof getPublicEnv>
+export type PUBLIC_ENV = ReturnType<typeof getPublicEnv>
 
 // App puts these on
 declare global {
@@ -39,6 +52,3 @@ declare global {
     ENV: PUBLIC_ENV
   }
 }
-
-export { getEnv, getPublicEnv }
-export type { ENV, PUBLIC_ENV }

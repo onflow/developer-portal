@@ -1,4 +1,4 @@
-import { LoaderFunction, MetaFunction } from "@remix-run/node"
+import { LinksFunction, LoaderFunction, MetaFunction } from "@remix-run/node"
 import { useLoaderData } from "@remix-run/react"
 // import { fetchDiscordAnnouncements } from "~/cms/utils/fetch-discord"
 import { fetchNetworkStatus } from "~/cms/utils/fetch-network-status"
@@ -7,7 +7,7 @@ import { featuredArticle } from "~/data/pages/network"
 import NetworkPage, {
   NetworkPageProps,
 } from "~/ui/design-system/src/lib/Pages/NetworkPage"
-import { getMetaTitle } from "~/utils/seo"
+import { getCanonicalLinkDescriptor, getMetaTitle } from "~/utils/seo.server"
 import { externalLinks } from "../../data/external-links"
 import { networks } from "../../data/networks"
 
@@ -36,6 +36,10 @@ export const loader: LoaderFunction = async (): Promise<LoaderData> => {
     })),
   }
 }
+
+export const links: LinksFunction = () => [
+  getCanonicalLinkDescriptor("/network"),
+]
 
 export default function Page() {
   const data = useLoaderData<LoaderData>()

@@ -1,6 +1,5 @@
-import { MetaFunction } from "@remix-run/node"
+import { LinksFunction, LoaderFunction, MetaFunction } from "@remix-run/node"
 import { useLoaderData } from "@remix-run/react"
-import { LoaderFunction } from "@remix-run/server-runtime"
 import { fetchLatestTopics } from "~/cms/utils/fetch-discourse-api"
 import { fetchFlips } from "~/cms/utils/fetch-flips"
 import {
@@ -14,7 +13,7 @@ import {
 import CommunityPage, {
   CommunityPageProps,
 } from "~/ui/design-system/src/lib/Pages/CommunityPage"
-import { getMetaTitle } from "~/utils/seo"
+import { getCanonicalLinkDescriptor, getMetaTitle } from "~/utils/seo.server"
 import { refreshTools } from "../cms/tools.server"
 import { externalLinks } from "../data/external-links"
 
@@ -44,6 +43,10 @@ export const loader: LoaderFunction = async (): Promise<LoaderData> => {
     upcomingEvents,
   }
 }
+
+export const links: LinksFunction = () => [
+  getCanonicalLinkDescriptor("/community"),
+]
 
 export default function Page() {
   const data = useLoaderData<LoaderData>()
