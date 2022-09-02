@@ -1,13 +1,18 @@
 // This route is only for tracking events for Google Analytics. This page should not be discoverable by the navigation.
-import type { ActionFunction } from "@remix-run/node"
+import type { ActionFunction, LinksFunction } from "@remix-run/node"
 import { json } from "@remix-run/node"
 import { Form } from "@remix-run/react"
 import type { SyntheticEvent } from "react"
 import * as gtag from "~/utils/gtags.client"
+import { getCanonicalLinkDescriptor } from "../utils/seo.server"
 
 export const action: ActionFunction = () => {
   return json({})
 }
+
+export const links: LinksFunction = () => [
+  getCanonicalLinkDescriptor("/contact"),
+]
 
 export default function Contact() {
   const handleSubmit = (e: SyntheticEvent<HTMLFormElement>) => {

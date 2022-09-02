@@ -1,20 +1,24 @@
 import { json, LoaderFunction, MetaFunction } from "@remix-run/node"
 import { useCatch, useLoaderData, useLocation } from "@remix-run/react"
 import nodePath from "path"
+import { DynamicLinksFunction } from "remix-utils"
 import { SidebarItemList } from "~/ui/design-system/src/lib/Components/InternalSidebar"
 import { MdxPage } from "../../../cms"
-import { NotFoundError } from "../../../cms/errors/not-found-error"
-import { getMdxPage, useMdxComponent } from "../../../cms/utils/mdx"
 import {
   findDocCollection,
   findDocManifest,
 } from "../../../cms/collections.server"
+import { NotFoundError } from "../../../cms/errors/not-found-error"
+import { getMdxPage, useMdxComponent } from "../../../cms/utils/mdx"
 import AppLink from "../../../ui/design-system/src/lib/Components/AppLink"
 import { ErrorPage } from "../../../ui/design-system/src/lib/Components/ErrorPage"
 import { InternalUrlContext } from "../../../ui/design-system/src/lib/Components/InternalUrlContext"
 import { InternalPageContent } from "../../../ui/design-system/src/lib/Pages/InternalPage/InternalPageContent"
 import logger from "../../../utils/logging.server"
-import { getSocialMetas } from "../../../utils/seo"
+import {
+  getCanonicalLinkDescriptor,
+  getSocialMetas,
+} from "../../../utils/seo.server"
 
 type LoaderData = {
   page: MdxPage
@@ -94,6 +98,11 @@ export const meta: MetaFunction = ({ data, location }) => {
     url: typedData?.url ?? "",
   })
 }
+
+const dynamicLinks: DynamicLinksFunction<LoaderData> = ({ data }) =>
+  data.url ? [getCanonicalLinkDescriptor(data.url)] : []
+
+export const handle = { dynamicLinks }
 
 export default () => {
   const { sidebar, page, pageBasePath } = useLoaderData<LoaderData>()
