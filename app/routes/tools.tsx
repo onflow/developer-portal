@@ -1,7 +1,7 @@
-import { LoaderFunction, MetaFunction } from "@remix-run/node"
+import { LinksFunction, LoaderFunction, MetaFunction } from "@remix-run/node"
 import { useLoaderData } from "@remix-run/react"
 import { data as staticData } from "~/data/pages/tools"
-import { getMetaTitle } from "~/utils/seo"
+import { getCanonicalLinkDescriptor, getMetaTitle } from "~/utils/seo.server"
 import { refreshTools } from "../cms/tools.server"
 import ToolsPage, {
   ToolsPageProps,
@@ -23,6 +23,8 @@ export const loader: LoaderFunction = async (): Promise<ToolsPageProps> => {
   )
   return staticData
 }
+
+export const links: LinksFunction = () => [getCanonicalLinkDescriptor("/tools")]
 
 export default function Page() {
   const data = useLoaderData<ToolsPageProps>()

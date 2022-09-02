@@ -1,4 +1,6 @@
+import { LinkDescriptor } from "@remix-run/node"
 import { metadata } from "~/data/metadata"
+import { ORIGIN } from "./env.server"
 
 export function getSocialMetas({
   url,
@@ -34,3 +36,8 @@ export function getSocialMetas({
 
 export const getMetaTitle = (title?: string) =>
   [title, metadata.defaultPageTitle].filter(Boolean).join(" | ")
+
+export const getCanonicalLinkDescriptor = (path: string): LinkDescriptor => ({
+  rel: "canonical",
+  href: new URL(path, ORIGIN).href,
+})

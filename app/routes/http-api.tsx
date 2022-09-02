@@ -1,7 +1,9 @@
-import { MetaFunction } from "@remix-run/node"
+import { LinksFunction, MetaFunction } from "@remix-run/node"
 import { RedocStandalone } from "redoc"
 import { Theme, useTheme } from "~/cms/utils/theme.provider"
 import { ClientOnly } from "remix-utils"
+import { getCanonicalLinkDescriptor } from "../utils/seo.server"
+
 
 export const meta: MetaFunction = () => {
   return {
@@ -10,6 +12,10 @@ export const meta: MetaFunction = () => {
     "twitter:url": "https://twitter.com/flow_blockchain",
   }
 }
+
+export const links: LinksFunction = () => [
+  getCanonicalLinkDescriptor("/http-api"),
+]
 
 export default function Page() {
   const [theme] = useTheme()

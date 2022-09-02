@@ -1,4 +1,4 @@
-import { LoaderFunction, MetaFunction } from "@remix-run/node"
+import { LinksFunction, LoaderFunction, MetaFunction } from "@remix-run/node"
 import { useLoaderData } from "@remix-run/react"
 import {
   allTutorials,
@@ -16,12 +16,14 @@ import {
   LearnPage,
   LearnPageProps,
 } from "~/ui/design-system/src/lib/Pages/LearnPage"
-import { getMetaTitle } from "~/utils/seo"
+import { getCanonicalLinkDescriptor, getMetaTitle } from "~/utils/seo.server"
 import { externalLinks } from "../data/external-links"
 
 export const meta: MetaFunction = () => ({
   title: getMetaTitle("Learn"),
 })
+
+export const links: LinksFunction = () => [getCanonicalLinkDescriptor("/learn")]
 
 export type LoaderData = Omit<LearnPageProps, "threeColumnItems">
 

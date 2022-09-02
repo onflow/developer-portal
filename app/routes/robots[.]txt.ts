@@ -1,19 +1,14 @@
 import { LoaderFunction } from "@remix-run/node"
-import { getRequiredServerEnvVar } from "~/cms/helpers"
+import { ORIGIN } from "../utils/env.server"
 
 export const loader: LoaderFunction = () => {
-  let origin: string = getRequiredServerEnvVar(
-    "ORIGIN",
-    `http://localhost:3000`
-  )
-
-  const sitemapUrl = new URL(`/sitemap.xml`, origin)
-
+  const sitemapUrl = new URL(`/sitemap.xml`, ORIGIN)
   const robotsTxt = `# Algolia-Crawler-Verif: 98E1096D4FD67E70
 
 User-agent: *
-Allow: /
 Sitemap: ${sitemapUrl}
+Disallow: /_meta
+Disallow: /action
 `
 
   return new Response(robotsTxt, {

@@ -1,15 +1,15 @@
 import { LoaderFunction, MetaFunction } from "@remix-run/node"
 import { useLoaderData } from "@remix-run/react"
+import { DynamicLinksFunction, json } from "remix-utils"
 import { fetchNetworkStatus } from "~/cms/utils/fetch-network-status"
 import { fetchSporks } from "~/cms/utils/fetch-sporks"
 import { featuredArticle } from "~/data/pages/network"
-import { getMetaTitle } from "~/utils/seo"
 import NetworkDetailPage, {
   NetworkDetailPageProps,
 } from "~/ui/design-system/src/lib/Pages/NetworkDetailPage"
+import { getCanonicalLinkDescriptor, getMetaTitle } from "~/utils/seo.server"
 import { externalLinks } from "../../data/external-links"
 import { networks } from "../../data/networks"
-import { json } from "remix-utils"
 
 export const meta: MetaFunction = ({ params }) => ({
   title: getMetaTitle(
@@ -17,7 +17,9 @@ export const meta: MetaFunction = ({ params }) => ({
   ),
 })
 
-export type LoaderData = NetworkDetailPageProps
+export type LoaderData = NetworkDetailPageProps & {
+  urlPath: string
+}
 
 export const loader: LoaderFunction = async ({
   params,
@@ -40,6 +42,7 @@ export const loader: LoaderFunction = async ({
     discourseUrl: externalLinks.discourse,
     featuredArticle,
     githubUrl: externalLinks.github,
+    urlPath: `/network/${networkName}`,
     networkName: network.title,
     networks: networks.map(({ title, urlPath }) => ({
       name: title,
@@ -50,6 +53,12 @@ export const loader: LoaderFunction = async ({
     twitterUrl: externalLinks.twitter,
   }
 }
+
+const dynamicLinks: DynamicLinksFunction<LoaderData> = ({ data }) => [
+  getCanonicalLinkDescriptor(data.urlPath),
+]
+
+export const handle = { dynamicLinks }
 
 export default function Page() {
   const data = useLoaderData<LoaderData>()

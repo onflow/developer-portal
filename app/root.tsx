@@ -1,10 +1,11 @@
-import type {
+import {
+  json,
   LinkDescriptor,
   LinksFunction,
   LoaderFunction,
   MetaFunction,
+  redirect,
 } from "@remix-run/node"
-import { json, redirect } from "@remix-run/node"
 import {
   Links,
   LiveReload,
@@ -16,12 +17,10 @@ import {
   useLocation,
   useTransition,
 } from "@remix-run/react"
-
-import LoadingBar from "react-top-loading-bar"
-import { ClientOnly } from "remix-utils"
-
 import clsx from "clsx"
 import { useCallback, useEffect, useRef } from "react"
+import LoadingBar from "react-top-loading-bar"
+import { ClientOnly, DynamicLinks } from "remix-utils"
 import { getRequiredServerEnvVar } from "~/cms/helpers"
 import {
   Theme,
@@ -37,14 +36,13 @@ import { NavigationBar } from "~/ui/design-system/src/lib/Components/NavigationB
 import { getPublicEnv, PUBLIC_ENV } from "~/utils/env.server"
 import * as gtag from "~/utils/gtags.client"
 import { getThemeSession } from "~/utils/theme.server"
+import { returnRedirectForRoute } from "./cms/utils/return-redirect-for-route"
+import { externalLinks } from "./data/external-links"
 import styles from "./main.css"
 import AppLink from "./ui/design-system/src/lib/Components/AppLink"
 import { SearchProps } from "./ui/design-system/src/lib/Components/Search"
-import { getMetaTitle, getSocialMetas } from "./utils/seo"
-
-import { returnRedirectForRoute } from "./cms/utils/return-redirect-for-route"
+import { getMetaTitle, getSocialMetas } from "./utils/seo.server"
 import { useElementScrollRestoration } from "./utils/useElementScrollRestoration"
-import { externalLinks } from "./data/external-links"
 
 const fontPreloads = [
   "/fonts/acumin-pro/AcuminPro-Regular.otf",
@@ -179,6 +177,7 @@ function App() {
     >
       <head>
         <Meta />
+        <DynamicLinks />
         <Links />
         <ThemeHead ssrTheme={Boolean(data.theme)} />
       </head>
