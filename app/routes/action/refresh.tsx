@@ -16,7 +16,7 @@ export type Body = {
   commitSha?: string
   repo: string
   contentPaths: string
-  contributions: Contribution[]
+  contributions?: Contribution[]
 }
 
 export const commitShaKey = `meta:last-refresh-commit-sha`

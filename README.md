@@ -37,7 +37,7 @@ Storybook: http://localhost:6006/ (if started using `--profile storybook`)
 
 - Remove all cache data from Redis:
 
-  `docker compose run cache redis-cli -h cache -a flow_docs FLUSHALL`
+  `docker compose exec cache redis-cli -h cache -a flow_docs FLUSHALL`
 
 - Ensure node_modules is up-to-date.
 
