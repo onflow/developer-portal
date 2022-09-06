@@ -4,7 +4,6 @@ import { Theme, useTheme } from "~/cms/utils/theme.provider"
 import { ClientOnly } from "remix-utils"
 import { getCanonicalLinkDescriptor } from "../utils/seo.server"
 
-
 export const meta: MetaFunction = () => {
   return {
     description: "Open API documentation for the Flow Access Node HTTP API.",
