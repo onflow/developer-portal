@@ -15,6 +15,8 @@ import { InternalUrlContext } from "../../../ui/design-system/src/lib/Components
 import { InternalPageContent } from "../../../ui/design-system/src/lib/Pages/InternalPage/InternalPageContent"
 import logger from "../../../utils/logging.server"
 import { getSocialMetas } from "../../../utils/seo"
+import { cachified } from "~/cms/cache.server"
+import { redisCache } from "~/cms/redis.server"
 
 type LoaderData = {
   page: MdxPage
@@ -36,6 +38,12 @@ export const loader: LoaderFunction = async ({ params, request }) => {
   if (!data || !manifest) {
     throw json({ status: "noRepo" }, { status: 404 })
   }
+  const FOUROHFOUR_CACHE_PATH = `notfound:${data.contentPath}`
+  const cached404 = await redisCache.get(FOUROHFOUR_CACHE_PATH)
+
+  if (cached404) {
+    throw json({ status: "noPage" }, { status: 404 })
+  }
 
   try {
     const page = await getMdxPage(
@@ -47,6 +55,21 @@ export const loader: LoaderFunction = async ({ params, request }) => {
     )
 
     if (!page) {
+      // Cache things here is we attempted to get the page from github but were unsuccessfull.
+      // If a request is made for this page again, we get it from the cache and skip
+      // attempting to get the value from GitHub.
+
+      await cachified({
+        cache: redisCache,
+        // 30 days
+        maxAge: 2592000,
+        forceFresh: false,
+        key: FOUROHFOUR_CACHE_PATH,
+        getFreshValue: () => {
+          return new Promise(() => data.contentPath)
+        },
+      })
+
       throw json({ status: "noPage" }, { status: 404 })
     }
 
