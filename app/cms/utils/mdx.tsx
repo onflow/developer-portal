@@ -24,6 +24,7 @@ import {
 import { DocCollectionSource } from "../../cms/doc-collections.server"
 import { InternalImg } from "../../ui/design-system/src/lib/Components/InternalImg/InternalImg"
 import { documentCompiledKey, documentDownloadKey } from "../cache-keys.server"
+import { NotFoundError } from "../errors/not-found-error"
 import { returnRedirectForRoute } from "./return-redirect-for-route"
 import { Theme, useTheme } from "./theme.provider"
 import { stripExtension } from "../../ui/design-system/src/lib/utils/stripExtension"
@@ -62,28 +63,37 @@ export async function getMdxPage(
     key,
     checkValue: checkCompiledValue,
     getFreshValue: async () => {
-      const result = await downloadMarkdownCached(source, path, options)
+      try {
+        const result = await downloadMarkdownCached(source, path, options)
+        if (result == null) return null
 
-      const compiledPage = await compileMdxCached({
-        source,
-        fileOrDirPath: path,
-        file: result.file,
-        files: result.files,
-        options,
-      }).catch((err) => {
-        console.error(`Failed to get a fresh value for mdx:`, {
+        const compiledPage = await compileMdxCached({
           source,
-          path,
+          fileOrDirPath: path,
+          file: result.file,
+          files: result.files,
+          options,
+        }).catch((err) => {
+          console.error(`Failed to get a fresh value for mdx:`, {
+            source,
+            path,
+          })
+          return Promise.reject(err)
         })
-        return Promise.reject(err)
-      })
 
-      return compiledPage
-        ? {
-            ...compiledPage,
-            origin: result.file,
-          }
-        : null
+        return compiledPage
+          ? {
+              ...compiledPage,
+              origin: result.file,
+            }
+          : null
+      } catch (er) {
+        if (er instanceof NotFoundError) {
+          return null
+        } else {
+          throw er
+        }
+      }
     },
   })
 
@@ -111,10 +121,6 @@ async function downloadMarkdownCached(
         return `value is not an object`
       }
 
-      if (value === null) {
-        return `value is null`
-      }
-
       // TODO: better validation!
 
       // const download = value as Record<string, unknown>
@@ -127,12 +133,19 @@ async function downloadMarkdownCached(
 
       return true
     },
-    getFreshValue: async () => downloadMarkdown(source, fileOrDirPath),
+    getFreshValue: async () => {
+      try {
+        return await downloadMarkdown(source, fileOrDirPath)
+      } catch (er) {
+        if (er instanceof NotFoundError) {
+          return null
+        } else {
+          throw er
+        }
+      }
+    },
   })
-  // if there isn't any content, remove it from the cache
-  if (!downloaded.file) {
-    void redisCache.del(key)
-  }
+
   return downloaded
 }
 
