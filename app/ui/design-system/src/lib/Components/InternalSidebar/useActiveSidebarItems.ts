@@ -1,7 +1,7 @@
 import { useLocation } from "@remix-run/react"
 import { useContext } from "react"
 import { isSidebarLinkItem, SidebarItem, SidebarLinkItem } from "."
-import { stripTrailingSlahes } from "../../utils/stripTrailingSlahes"
+import { stripTrailingSlashes } from "../../utils/stripTrailingSlashes"
 import { titleFromHref } from "../../utils/titleFromHref"
 import { InternalSidebarUrlContext } from "./InternalSidebarUrlContext"
 
@@ -17,14 +17,14 @@ export const flattenItems = (items?: SidebarItem[]): SidebarItem[] =>
  */
 export const useActiveSidebarItems = (items: SidebarItem[]) => {
   const location = useLocation()
-  const path = stripTrailingSlahes(location.pathname)
+  const path = stripTrailingSlashes(location.pathname)
   const sidebarBasePath = useContext(InternalSidebarUrlContext)
 
   const linkItems =
     flattenItems(items).filter<SidebarLinkItem>(isSidebarLinkItem)
 
   const resolvedLinkItems = linkItems.map((item) => ({
-    href: stripTrailingSlahes(`${sidebarBasePath}${item.href}`),
+    href: stripTrailingSlashes(`${sidebarBasePath}${item.href}`),
     title: item.title || titleFromHref(item.href),
   }))
 

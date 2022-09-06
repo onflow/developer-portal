@@ -1,6 +1,6 @@
 import { useMemo } from "react"
 import { isLinkExternal } from "./isLinkExternal"
-import { stripTrailingSlahes } from "./stripTrailingSlahes"
+import { stripTrailingSlashes } from "./stripTrailingSlashes"
 
 // This is used so we have a valid base URL (which requires and origin),
 // but we strip it out anyway so the actual host name and scheme don't really
@@ -33,6 +33,6 @@ export const useResolvedUrl = (
     const resolved = url.toString().substring(url.origin.length)
 
     return options?.stripTrailingSlash
-      ? stripTrailingSlahes(resolved)
+      ? stripTrailingSlashes(resolved)
       : resolved
   }, [basePath, href, options?.stripTrailingSlash])

@@ -19,6 +19,7 @@ import {
   getCanonicalLinkDescriptor,
   getSocialMetas,
 } from "../../../utils/seo.server"
+import { stripExtension } from "../../../ui/design-system/src/lib/utils/stripExtension"
 
 type LoaderData = {
   page: MdxPage
@@ -58,7 +59,10 @@ export const loader: LoaderFunction = async ({ params, request }) => {
       data.collectionRootPath,
       page.origin.relativePath
     )
-    const pageBasePath = nodePath.posix.dirname(path) + "/"
+    const pageBasePath =
+      nodePath.posix.dirname(path) +
+      "/" +
+      nodePath.posix.basename(stripExtension(path))
 
     let payload: LoaderData = {
       sidebar: manifest.sidebar,
@@ -106,6 +110,7 @@ export const handle = { dynamicLinks }
 
 export default () => {
   const { sidebar, page, pageBasePath } = useLoaderData<LoaderData>()
+
   const MDXContent = useMdxComponent(page)
 
   return (

@@ -10,7 +10,7 @@ export const stripSlahes = (input: string) =>
 /**
  * Strips trailing slashes from a string.
  */
-export const stripTrailingSlahes = (input: string) => input.replace(/\/+$/, "")
+export const stripTrailingSlashes = (input: string) => input.replace(/\/+$/, "")
 
 /**
  * Strips starting slashes from a string.

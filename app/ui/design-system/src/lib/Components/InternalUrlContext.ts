@@ -11,6 +11,7 @@ export const InternalUrlContext = createContext("/")
  */
 export const useInternalUrl = (href: string) => {
   const basePath = useContext(InternalUrlContext)
+
   return useResolvedUrl(href, basePath)
 }
 

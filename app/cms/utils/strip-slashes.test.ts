@@ -2,7 +2,7 @@ import { expect, test, describe } from "vitest"
 import {
   stripSlahes,
   stripStartingSlahes,
-  stripTrailingSlahes,
+  stripTrailingSlashes,
 } from "./strip-slashes"
 
 describe("stripSlahes", () => {
@@ -41,16 +41,16 @@ describe("stripStartingSlahes", () => {
   })
 })
 
-describe("stripTrailingSlahes", () => {
+describe("stripTrailingSlashes", () => {
   test("Single trailing slashes", () => {
-    expect(stripTrailingSlahes("foo/")).toEqual("foo")
+    expect(stripTrailingSlashes("foo/")).toEqual("foo")
   })
 
   test("Multiple trailing slashes", () => {
-    expect(stripTrailingSlahes("foo////")).toEqual("foo")
+    expect(stripTrailingSlashes("foo////")).toEqual("foo")
   })
 
   test("Intermediate slashes", () => {
-    expect(stripTrailingSlahes("//foo/bar//bazz//")).toEqual("//foo/bar//bazz")
+    expect(stripTrailingSlashes("//foo/bar//bazz//")).toEqual("//foo/bar//bazz")
   })
 })
