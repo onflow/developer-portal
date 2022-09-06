@@ -3,7 +3,7 @@ import { Outlet, useLoaderData } from "@remix-run/react"
 import { join } from "path"
 import invariant from "tiny-invariant"
 import removeMDorMDXFileExtension from "~/cms/utils/strip-extension"
-import { stripTrailingSlahes } from "../../cms/utils/strip-slashes"
+import { stripTrailingSlashes } from "../../cms/utils/strip-slashes"
 import {
   DocCollectionInfo,
   DocManifest,
@@ -33,7 +33,7 @@ export const loader: LoaderFunction = async ({ params, request }) => {
 
   if (path?.endsWith("/")) {
     // For consistency, strip trailing slashes from all URLs.
-    return redirect(join("/", stripTrailingSlahes(path)), 302)
+    return redirect(join("/", stripTrailingSlashes(path)), 302)
   }
 
   if (path?.endsWith("md") || path?.endsWith("mdx")) {

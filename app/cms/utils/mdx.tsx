@@ -26,6 +26,7 @@ import { InternalImg } from "../../ui/design-system/src/lib/Components/InternalI
 import { documentCompiledKey, documentDownloadKey } from "../cache-keys.server"
 import { returnRedirectForRoute } from "./return-redirect-for-route"
 import { Theme, useTheme } from "./theme.provider"
+import { stripExtension } from "../../ui/design-system/src/lib/utils/stripExtension"
 
 type CachifiedOptions = {
   forceFresh?: boolean | string
@@ -165,11 +166,6 @@ async function compileMdxCached({
     void redisCache.del(key)
   }
   return page
-}
-
-function stripExtension(href: string) {
-  const stripped = href.replace(/(.md|.mdx)/, "")
-  return stripped
 }
 
 function GetMdxComponents(theme: Theme) {
