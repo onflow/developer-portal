@@ -51,7 +51,7 @@ export const loader: LoaderFunction = async ({ params, request }) => {
     )
 
     if (!page) {
-      throw json({ status: "noPage" }, { status: 404 })
+      throw new NotFoundError("")
     }
 
     const path = nodePath.posix.resolve(
@@ -99,8 +99,9 @@ export const meta: MetaFunction = ({ data, location }) => {
   })
 }
 
-const dynamicLinks: DynamicLinksFunction<LoaderData> = ({ data }) =>
-  data.url ? [getCanonicalLinkDescriptor(data.url)] : []
+const dynamicLinks: DynamicLinksFunction<LoaderData | null> = ({ data }) => {
+  return data?.url ? [getCanonicalLinkDescriptor(data.url)] : []
+}
 
 export const handle = { dynamicLinks }
 
