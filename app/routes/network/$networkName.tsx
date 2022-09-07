@@ -1,11 +1,12 @@
 import {
   HtmlMetaDescriptor,
+  json,
   LinkDescriptor,
-  LoaderFunction,
+  LoaderArgs,
   MetaFunction,
 } from "@remix-run/node"
 import { useLoaderData } from "@remix-run/react"
-import { DynamicLinksFunction, json } from "remix-utils"
+import { DynamicLinksFunction } from "remix-utils"
 import { fetchNetworkStatus } from "~/cms/utils/fetch-network-status"
 import { fetchSporks } from "~/cms/utils/fetch-sporks"
 import { featuredArticle } from "~/data/pages/network"
@@ -28,9 +29,7 @@ export type LoaderData = NetworkDetailPageProps & {
   urlPath: string
 }
 
-export const loader: LoaderFunction = async ({
-  params,
-}): Promise<LoaderData> => {
+export const loader = async ({ params }: LoaderArgs) => {
   const { networkName } = params
 
   if (!networkName) throw new Error("Missing network name")
@@ -44,7 +43,7 @@ export const loader: LoaderFunction = async ({
   const status = networkStatuses.find(({ id }) => id === network.componentId)
   const pastSporks = sporks.pastSporks[network.id] || []
 
-  return {
+  return json<LoaderData>({
     discordUrl: externalLinks.discord,
     discourseUrl: externalLinks.discourse,
     featuredArticle,
@@ -62,11 +61,11 @@ export const loader: LoaderFunction = async ({
     status,
     twitterUrl: externalLinks.twitter,
     urlPath: `/network/${networkName}`,
-  }
+  })
 }
 
 export default function Page() {
-  const data = useLoaderData<LoaderData>()
+  const data = useLoaderData<typeof loader>()
 
   return (
     <NetworkDetailPage

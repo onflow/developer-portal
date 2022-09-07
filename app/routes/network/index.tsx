@@ -1,7 +1,7 @@
 import {
   HtmlMetaDescriptor,
+  json,
   LinkDescriptor,
-  LoaderFunction,
   MetaFunction,
 } from "@remix-run/node"
 import { useLoaderData } from "@remix-run/react"
@@ -28,11 +28,11 @@ export type LoaderData = NetworkPageProps & {
   meta: HtmlMetaDescriptor
 }
 
-export const loader: LoaderFunction = async (): Promise<LoaderData> => {
+export const loader = async () => {
   const networkStatuses = await fetchNetworkStatus()
   const { pastSporks } = await fetchSporks()
 
-  return {
+  return json<LoaderData>({
     discordUrl: externalLinks.discord,
     discourseUrl: externalLinks.discourse,
     featuredArticle,
@@ -49,11 +49,11 @@ export const loader: LoaderFunction = async (): Promise<LoaderData> => {
         ?.status,
     })),
     twitterUrl: externalLinks.twitter,
-  }
+  })
 }
 
 export default function Page() {
-  const data = useLoaderData<LoaderData>()
+  const data = useLoaderData<typeof loader>()
 
   return (
     <NetworkPage

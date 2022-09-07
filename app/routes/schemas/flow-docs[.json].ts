@@ -1,7 +1,7 @@
+import { json } from "@remix-run/node"
 import schema from "~/data/doc-collection-manifest-schema.json"
-import { json, LoaderFunction } from "@remix-run/node"
 
-export const loader: LoaderFunction = async ({ request }) => {
+export const loader = async () => {
   return json(schema, {
     status: 200,
     headers: {

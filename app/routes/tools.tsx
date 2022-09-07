@@ -1,7 +1,7 @@
 import {
   HtmlMetaDescriptor,
+  json,
   LinkDescriptor,
-  LoaderFunction,
   MetaFunction,
 } from "@remix-run/node"
 import { useLoaderData } from "@remix-run/react"
@@ -24,7 +24,7 @@ export type LoaderData = ToolsPageProps & {
   meta: HtmlMetaDescriptor
 }
 
-export const loader: LoaderFunction = async (): Promise<LoaderData> => {
+export const loader = async () => {
   await refreshTools(
     ...staticData.apisAndServices,
     ...staticData.explorers,
@@ -32,17 +32,17 @@ export const loader: LoaderFunction = async (): Promise<LoaderData> => {
     ...staticData.tools,
     ...staticData.wallets
   )
-  return {
+  return json<LoaderData>({
     ...staticData,
     links: [getCanonicalLinkDescriptor("/tools")],
     meta: {
       title: getMetaTitle("Tools"),
     },
-  }
+  })
 }
 
 export default function Page() {
-  const data = useLoaderData<LoaderData>()
+  const data = useLoaderData<typeof loader>()
 
   return (
     <ToolsPage

@@ -1,15 +1,15 @@
-import { json, LoaderFunction, redirect } from "@remix-run/node"
+import { json, LoaderArgs, redirect } from "@remix-run/node"
 import { Outlet, useLoaderData } from "@remix-run/react"
 import { join } from "path"
 import invariant from "tiny-invariant"
 import removeMDorMDXFileExtension from "~/cms/utils/strip-extension"
-import { stripTrailingSlashes } from "../../cms/utils/strip-slashes"
 import {
   DocCollectionInfo,
   DocManifest,
   findDocCollection,
   findDocManifest,
 } from "../../cms/collections.server"
+import { stripTrailingSlashes } from "../../cms/utils/strip-slashes"
 import { SIDEBAR_DROPDOWN_MENU } from "../../data/sidebar-dropdown-menu"
 import AppLink from "../../ui/design-system/src/lib/Components/AppLink"
 import { ErrorPage } from "../../ui/design-system/src/lib/Components/ErrorPage"
@@ -28,7 +28,7 @@ type LoaderData = Pick<
   remoteRepoError?: string
 }
 
-export const loader: LoaderFunction = async ({ params, request }) => {
+export const loader = async ({ params, request }: LoaderArgs) => {
   const path = params["*"]
 
   if (path?.endsWith("/")) {
@@ -64,7 +64,7 @@ export const loader: LoaderFunction = async ({ params, request }) => {
     )
   }
 
-  let payload: LoaderData = {
+  return json<LoaderData>({
     sidebar: docManifest.sidebar,
     sidebarRootPath: docManifest.sidebarRootPath,
     displayName: docManifest.displayName,
@@ -75,13 +75,11 @@ export const loader: LoaderFunction = async ({ params, request }) => {
       process.env.NODE_ENV === "development"
         ? docManifest.remoteRepoError
         : undefined,
-  }
-
-  return json(payload)
+  })
 }
 
 export default () => {
-  const data = useLoaderData<LoaderData>()
+  const data = useLoaderData<typeof loader>()
 
   return (
     <InternalSidebarUrlContext.Provider

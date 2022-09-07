@@ -1,9 +1,8 @@
-import type { ActionFunction } from "@remix-run/node"
-import { json, redirect } from "@remix-run/node"
+import { ActionArgs, json, redirect } from "@remix-run/node"
 import { getMdxPage } from "~/cms/utils/mdx"
 // import { getRequiredServerEnvVar } from "~/utils/cms/helpers";
-import { redisCache } from "~/cms/redis.server"
 import { findDocCollection } from "~/cms/collections.server"
+import { redisCache } from "~/cms/redis.server"
 import { recordRefreshEventInMixpanel } from "~/utils/mixpanel.server"
 
 export interface Contribution {
@@ -21,7 +20,7 @@ export type Body = {
 
 export const commitShaKey = `meta:last-refresh-commit-sha`
 
-export const action: ActionFunction = async ({ request }) => {
+export const action = async ({ request }: ActionArgs) => {
   // Everything in this function is fire and forget, so we don't need to await
   // anything.
 

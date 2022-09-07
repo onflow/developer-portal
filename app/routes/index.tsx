@@ -1,4 +1,4 @@
-import { LinkDescriptor, LoaderFunction } from "@remix-run/node"
+import { json, LinkDescriptor } from "@remix-run/node"
 import { useLoaderData } from "@remix-run/react"
 import { DynamicLinksFunction } from "remix-utils"
 import { fetchFlips } from "~/cms/utils/fetch-flips"
@@ -27,7 +27,7 @@ export type LoaderData = Omit<HomePageProps, "threeColumnItems"> & {
   links: LinkDescriptor[]
 }
 
-export const loader: LoaderFunction = async (): Promise<LoaderData> => {
+export const loader = async () => {
   const tools = [
     httpSDK,
     goSDK,
@@ -42,7 +42,7 @@ export const loader: LoaderFunction = async (): Promise<LoaderData> => {
     await refreshTools(...tools),
   ])
 
-  return {
+  return json<LoaderData>({
     discordUrl: externalLinks.discord,
     discourseUrl: externalLinks.discourse,
     twitterUrl: externalLinks.twitter,
@@ -57,7 +57,7 @@ export const loader: LoaderFunction = async (): Promise<LoaderData> => {
     tools,
     upcomingEvents: allEvents,
     editPageUrl,
-  }
+  })
 }
 
 export const handle: {
@@ -65,7 +65,7 @@ export const handle: {
 } = { dynamicLinks: ({ data }) => data.links }
 
 export default function Index() {
-  const data = useLoaderData<LoaderData>()
+  const data = useLoaderData<typeof loader>()
 
   return (
     <HomePage
