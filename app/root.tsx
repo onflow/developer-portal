@@ -2,7 +2,7 @@ import {
   json,
   LinkDescriptor,
   LinksFunction,
-  LoaderFunction,
+  LoaderArgs,
   MetaFunction,
   redirect,
 } from "@remix-run/node"
@@ -89,7 +89,7 @@ export type LoaderData = {
   url: string
 }
 
-export const loader: LoaderFunction = async ({ request }) => {
+export const loader = async ({ request }: LoaderArgs) => {
   const themeSession = await getThemeSession(request)
 
   const redirectPath = returnRedirectForRoute(new URL(request.url).pathname)
@@ -153,7 +153,7 @@ function App() {
   const scrollContainerRef = useRef<HTMLDivElement>(null)
   useElementScrollRestoration(scrollContainerRef)
 
-  const data = useLoaderData<LoaderData>()
+  const data = useLoaderData<typeof loader>()
 
   const [theme, setTheme] = useTheme()
   const toggleTheme = useCallback(() => {
@@ -227,7 +227,7 @@ function App() {
 }
 
 export default function AppWithProviders() {
-  const data = useLoaderData<LoaderData>()
+  const data = useLoaderData<typeof loader>()
 
   return (
     <ThemeProvider specifiedTheme={data.theme}>

@@ -2,7 +2,7 @@ import {
   HtmlMetaDescriptor,
   json,
   LinkDescriptor,
-  LoaderFunction,
+  LoaderArgs,
   MetaFunction,
 } from "@remix-run/node"
 import { useCatch, useLoaderData, useLocation } from "@remix-run/react"
@@ -42,7 +42,7 @@ type LoaderData = {
   url: string
 }
 
-export const loader: LoaderFunction = async ({ params, request }) => {
+export const loader = async ({ params, request }: LoaderArgs) => {
   let path = params["*"]
 
   if (!path) {
@@ -82,7 +82,7 @@ export const loader: LoaderFunction = async ({ params, request }) => {
     const description =
       page.frontmatter?.description || "Flow Developer Documentation"
 
-    const payload: LoaderData = {
+    return json<LoaderData>({
       links: [getCanonicalLinkDescriptor(request.url)],
       meta: getSocialMetas({
         title,
@@ -94,8 +94,7 @@ export const loader: LoaderFunction = async ({ params, request }) => {
       pageBasePath,
       sidebar: manifest.sidebar,
       url: request.url,
-    }
-    return json(payload)
+    })
   } catch (e) {
     if (e instanceof NotFoundError) {
       throw json({ status: "noPage" }, { status: 404 })
@@ -108,7 +107,7 @@ export const loader: LoaderFunction = async ({ params, request }) => {
 }
 
 export default () => {
-  const { sidebar, page, pageBasePath } = useLoaderData<LoaderData>()
+  const { sidebar, page, pageBasePath } = useLoaderData<typeof loader>()
 
   const MDXContent = useMdxComponent(page)
 

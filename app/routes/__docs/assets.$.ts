@@ -1,11 +1,11 @@
-import { LoaderFunction } from "@remix-run/node"
-import mime from "mime-types"
+import { LoaderArgs } from "@remix-run/node"
 import { fileTypeFromBuffer } from "file-type"
+import mime from "mime-types"
 import { downloadFileByPath } from "~/cms"
-import { NotFoundError } from "../../cms/errors/not-found-error"
 import { findDocCollection } from "../../cms/collections.server"
+import { NotFoundError } from "../../cms/errors/not-found-error"
 
-export const loader: LoaderFunction = async ({ params }) => {
+export const loader = async ({ params }: LoaderArgs) => {
   const path = params["*"]
 
   if (!path) {

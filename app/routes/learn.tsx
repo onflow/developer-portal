@@ -1,4 +1,4 @@
-import { LinkDescriptor, LoaderFunction, MetaFunction } from "@remix-run/node"
+import { json, LinkDescriptor, MetaFunction } from "@remix-run/node"
 import { HtmlMetaDescriptor, useLoaderData } from "@remix-run/react"
 import { DynamicLinksFunction } from "remix-utils"
 import {
@@ -31,29 +31,30 @@ export type LoaderData = Omit<LearnPageProps, "threeColumnItems"> & {
   meta: HtmlMetaDescriptor
 }
 
-export const loader: LoaderFunction = (): LoaderData => ({
-  allTutorials,
-  architectureTutorials,
-  discordUrl: externalLinks.discord,
-  discourseUrl: externalLinks.discourse,
-  cadenceHref,
-  cadenceTutorials,
-  contentNavigationListItems,
-  editPageUrl,
-  githubUrl: externalLinks.github,
-  links: [getCanonicalLinkDescriptor("/learn")],
-  meta: {
-    title: getMetaTitle("Learn"),
-  },
-  nftTutorials,
-  secondaryNavSections,
-  twitterUrl: externalLinks.twitter,
-  videos,
-  youtubeHref,
-})
+export const loader = () =>
+  json<LoaderData>({
+    allTutorials,
+    architectureTutorials,
+    discordUrl: externalLinks.discord,
+    discourseUrl: externalLinks.discourse,
+    cadenceHref,
+    cadenceTutorials,
+    contentNavigationListItems,
+    editPageUrl,
+    githubUrl: externalLinks.github,
+    links: [getCanonicalLinkDescriptor("/learn")],
+    meta: {
+      title: getMetaTitle("Learn"),
+    },
+    nftTutorials,
+    secondaryNavSections,
+    twitterUrl: externalLinks.twitter,
+    videos,
+    youtubeHref,
+  })
 
 export default function Page() {
-  const data = useLoaderData<LoaderData>()
+  const data = useLoaderData<typeof loader>()
 
   return (
     <LearnPage

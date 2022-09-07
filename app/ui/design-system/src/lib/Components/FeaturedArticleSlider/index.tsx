@@ -9,17 +9,12 @@ export type FeaturedArticleSliderProps = CarouselProps & {
 }
 
 export const FeaturedArticle = ({
-  // @ts-expect-error please fix
   heading,
-  // @ts-expect-error please fix
   description,
-  // @ts-expect-error please fix
   ctaLink,
-  // @ts-expect-error please fix
   ctaText,
-  // @ts-expect-error please fix
   imageUrl,
-}) => (
+}: Article) => (
   <div className="flex min-h-fit flex-col-reverse overflow-hidden rounded-2xl bg-white dark:bg-primary-gray-dark md:min-h-[30rem] md:flex-row">
     <div className="min-w-[50%] self-center py-10 pl-6 pr-6 md:pr-32 md:pl-20">
       <h3 className="text-h3">{heading}</h3>

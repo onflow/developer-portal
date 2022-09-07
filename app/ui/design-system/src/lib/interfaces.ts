@@ -30,7 +30,7 @@ export interface Article {
   description: string
   ctaText: string
   ctaLink: string
-  imageUrl: any
+  imageUrl: string
 }
 
 export interface User {
