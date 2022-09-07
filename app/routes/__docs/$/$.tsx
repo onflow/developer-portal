@@ -1,4 +1,10 @@
-import { json, LoaderFunction, MetaFunction } from "@remix-run/node"
+import {
+  HtmlMetaDescriptor,
+  json,
+  LinkDescriptor,
+  LoaderFunction,
+  MetaFunction,
+} from "@remix-run/node"
 import { useCatch, useLoaderData, useLocation } from "@remix-run/react"
 import nodePath from "path"
 import { DynamicLinksFunction } from "remix-utils"
@@ -14,17 +20,25 @@ import AppLink from "../../../ui/design-system/src/lib/Components/AppLink"
 import { ErrorPage } from "../../../ui/design-system/src/lib/Components/ErrorPage"
 import { InternalUrlContext } from "../../../ui/design-system/src/lib/Components/InternalUrlContext"
 import { InternalPageContent } from "../../../ui/design-system/src/lib/Pages/InternalPage/InternalPageContent"
+import { stripExtension } from "../../../ui/design-system/src/lib/utils/stripExtension"
 import logger from "../../../utils/logging.server"
 import {
   getCanonicalLinkDescriptor,
   getSocialMetas,
 } from "../../../utils/seo.server"
-import { stripExtension } from "../../../ui/design-system/src/lib/utils/stripExtension"
+
+export const handle: {
+  dynamicLinks: DynamicLinksFunction<LoaderData>
+} = { dynamicLinks: ({ data }) => data.links }
+
+export const meta: MetaFunction = ({ data }: { data: LoaderData }) => data.meta
 
 type LoaderData = {
+  links: LinkDescriptor[]
+  meta: HtmlMetaDescriptor
   page: MdxPage
-  sidebar: SidebarItemList | undefined
   pageBasePath: string
+  sidebar: SidebarItemList | undefined
   url: string
 }
 
@@ -64,10 +78,21 @@ export const loader: LoaderFunction = async ({ params, request }) => {
       "/" +
       nodePath.posix.basename(stripExtension(path))
 
-    let payload: LoaderData = {
-      sidebar: manifest.sidebar,
+    const title = page.frontmatter?.title || "Flow Developer Documentation"
+    const description =
+      page.frontmatter?.description || "Flow Developer Documentation"
+
+    const payload: LoaderData = {
+      links: [getCanonicalLinkDescriptor(request.url)],
+      meta: getSocialMetas({
+        title,
+        description,
+        url: request.url,
+        image: `https://flow-og-image.vercel.app/**${title}**%20${description}.png?theme=light&md=1&fontSize=100px&images=https%3A%2F%2Fstorage.googleapis.com%2Fflow-resources%2Fdocumentation-assets%2Fflow-docs.png&widths=auto&heights=350"`,
+      }),
       page,
       pageBasePath,
+      sidebar: manifest.sidebar,
       url: request.url,
     }
     return json(payload)
@@ -81,33 +106,6 @@ export const loader: LoaderFunction = async ({ params, request }) => {
     throw json({ status: "mdxError", error: e }, { status: 500 })
   }
 }
-
-export const meta: MetaFunction = ({ data, location }) => {
-  const typedData = data as LoaderData | undefined
-  if (typedData && typedData.page) {
-    const title =
-      typedData.page.frontmatter?.title || "Flow Developer Documentation"
-    const description = typedData.page.frontmatter?.description || ""
-
-    return getSocialMetas({
-      title,
-      description: description || "Flow Developer Documentation",
-      url: typedData.url,
-      image: `https://flow-og-image.vercel.app/**${title}**%20${description}.png?theme=light&md=1&fontSize=100px&images=https%3A%2F%2Fstorage.googleapis.com%2Fflow-resources%2Fdocumentation-assets%2Fflow-docs.png&widths=auto&heights=350"`,
-    })
-  }
-
-  return getSocialMetas({
-    title: "Flow Developer Portal",
-    url: typedData?.url ?? "",
-  })
-}
-
-const dynamicLinks: DynamicLinksFunction<LoaderData | null> = ({ data }) => {
-  return data?.url ? [getCanonicalLinkDescriptor(data.url)] : []
-}
-
-export const handle = { dynamicLinks }
 
 export default () => {
   const { sidebar, page, pageBasePath } = useLoaderData<LoaderData>()

@@ -1,20 +1,32 @@
-import { LinksFunction, MetaFunction } from "@remix-run/node"
+import {
+  HtmlMetaDescriptor,
+  LinkDescriptor,
+  LoaderFunction,
+} from "@remix-run/node"
 import { RedocStandalone } from "redoc"
+import { ClientOnly, DynamicLinksFunction } from "remix-utils"
 import { Theme, useTheme } from "~/cms/utils/theme.provider"
-import { ClientOnly } from "remix-utils"
 import { getCanonicalLinkDescriptor } from "../utils/seo.server"
 
-export const meta: MetaFunction = () => {
-  return {
-    description: "Open API documentation for the Flow Access Node HTTP API.",
-    "twitter:handle": "flow_blockchain",
-    "twitter:url": "https://twitter.com/flow_blockchain",
-  }
+export const handle: {
+  dynamicLinks: DynamicLinksFunction<LoaderData>
+} = { dynamicLinks: ({ data }) => data.links }
+
+export type LoaderData = {
+  links: LinkDescriptor[]
+  meta: HtmlMetaDescriptor
 }
 
-export const links: LinksFunction = () => [
-  getCanonicalLinkDescriptor("/http-api"),
-]
+export const loader: LoaderFunction = (): LoaderData => {
+  return {
+    links: [getCanonicalLinkDescriptor("/http-api")],
+    meta: {
+      description: "Open API documentation for the Flow Access Node HTTP API.",
+      "twitter:handle": "flow_blockchain",
+      "twitter:url": "https://twitter.com/flow_blockchain",
+    },
+  }
+}
 
 export default function Page() {
   const [theme] = useTheme()
