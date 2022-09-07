@@ -1,6 +1,5 @@
 import { PushEvent, WebhookEvent } from "@octokit/webhooks-types"
-import type { ActionFunction } from "@remix-run/node" // or cloudflare/deno
-import { json } from "@remix-run/node" // or cloudflare/deno
+import { ActionArgs, json } from "@remix-run/node" // or cloudflare/deno
 import crypto from "crypto"
 import { del } from "~/cms"
 import { pushEventCacheKeysToInvalidate } from "~/cms/github-webhook.server"
@@ -8,7 +7,7 @@ import { pushEventCacheKeysToInvalidate } from "~/cms/github-webhook.server"
 /**
  * @see https://remix.run/docs/en/v1/guides/resource-routes#webhooks
  */
-export const action: ActionFunction = async ({ request }) => {
+export const action = async ({ request }: ActionArgs) => {
   if (request.method !== "POST") {
     return json({ message: "Method not allowed" }, 405)
   }

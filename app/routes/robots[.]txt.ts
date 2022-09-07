@@ -1,7 +1,6 @@
-import { LoaderFunction } from "@remix-run/node"
 import { ORIGIN } from "../utils/env.server"
 
-export const loader: LoaderFunction = () => {
+export const loader = () => {
   const sitemapUrl = new URL(`/sitemap.xml`, ORIGIN)
   const robotsTxt = `# Algolia-Crawler-Verif: 98E1096D4FD67E70
 

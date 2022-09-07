@@ -1,7 +1,6 @@
-import { LoaderFunction } from "@remix-run/node"
 import { useLoaderData } from "@remix-run/react"
 
-export const loader: LoaderFunction = async () => {
+export const loader = async () => {
   return {
     NODE_ENV: process.env.NODE_ENV,
     GIT_SHA: process.env.GIT_SHA,
@@ -9,7 +8,7 @@ export const loader: LoaderFunction = async () => {
 }
 
 export default function Version() {
-  const data = useLoaderData()
+  const data = useLoaderData<typeof loader>()
 
   return (
     <div className="prose mx-auto dark:prose-invert">

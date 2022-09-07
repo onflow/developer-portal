@@ -1,8 +1,4 @@
-import {
-  HtmlMetaDescriptor,
-  LinkDescriptor,
-  LoaderFunction,
-} from "@remix-run/node"
+import { HtmlMetaDescriptor, json, LinkDescriptor } from "@remix-run/node"
 import { RedocStandalone } from "redoc"
 import { ClientOnly, DynamicLinksFunction } from "remix-utils"
 import { Theme, useTheme } from "~/cms/utils/theme.provider"
@@ -17,15 +13,15 @@ export type LoaderData = {
   meta: HtmlMetaDescriptor
 }
 
-export const loader: LoaderFunction = (): LoaderData => {
-  return {
+export const loader = () => {
+  return json<LoaderData>({
     links: [getCanonicalLinkDescriptor("/http-api")],
     meta: {
       description: "Open API documentation for the Flow Access Node HTTP API.",
       "twitter:handle": "flow_blockchain",
       "twitter:url": "https://twitter.com/flow_blockchain",
     },
-  }
+  })
 }
 
 export default function Page() {

@@ -1,17 +1,12 @@
 // This route is only for tracking events for Google Analytics. This page should not be discoverable by the navigation.
-import type {
-  ActionFunction,
-  LinkDescriptor,
-  LoaderFunction,
-} from "@remix-run/node"
-import { json } from "@remix-run/node"
+import { json, LinkDescriptor } from "@remix-run/node"
 import { Form } from "@remix-run/react"
 import type { SyntheticEvent } from "react"
 import { DynamicLinksFunction } from "remix-utils"
 import * as gtag from "~/utils/gtags.client"
 import { getCanonicalLinkDescriptor } from "../utils/seo.server"
 
-export const action: ActionFunction = () => {
+export const action = () => {
   return json({})
 }
 
@@ -23,10 +18,10 @@ export type LoaderData = {
   links: LinkDescriptor[]
 }
 
-export const loader: LoaderFunction = (): LoaderData => {
-  return {
+export const loader = () => {
+  return json<LoaderData>({
     links: [getCanonicalLinkDescriptor("/contact")],
-  }
+  })
 }
 
 export default function Contact() {

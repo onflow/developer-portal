@@ -1,17 +1,18 @@
 // This route is only for testing API functionalities. This page should not be discoverable by the navigation.
-import type { LoaderFunction } from "@remix-run/node"
+import { json } from "@remix-run/node"
 import { useLoaderData } from "@remix-run/react"
 import { fetchFlips } from "~/cms/utils/fetch-flips"
-import { FlipsProps } from "~/ui/design-system/src/lib/Components/Flips"
 
-type LoaderData = FlipsProps
+type LoaderData = Awaited<ReturnType<typeof fetchFlips>>
 
-export const loader: LoaderFunction = async () => {
-  return fetchFlips()
+export const loader = async () => {
+  const data = await fetchFlips()
+  return json<LoaderData>(data)
 }
 
 export default function Flips() {
-  const { openFlips, goodPlacesToStartFlips }: LoaderData = useLoaderData()
+  const { openFlips, goodPlacesToStartFlips } = useLoaderData<typeof loader>()
+
   return (
     <div>
       <h1>FLIPS</h1>

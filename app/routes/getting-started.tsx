@@ -1,7 +1,7 @@
 import {
   HtmlMetaDescriptor,
+  json,
   LinkDescriptor,
-  LoaderFunction,
   MetaFunction,
 } from "@remix-run/node"
 import { useLoaderData } from "@remix-run/react"
@@ -42,10 +42,10 @@ export type LoaderData = Omit<
   meta: HtmlMetaDescriptor
 }
 
-export const loader: LoaderFunction = async (): Promise<LoaderData> => {
+export const loader = async () => {
   await refreshTools(...recentToolItems, ...sdkCardItems)
 
-  return {
+  return json<LoaderData>({
     contentNavigationListItems,
     discordUrl: externalLinks.discord,
     discourseUrl: externalLinks.discourse,
@@ -61,11 +61,11 @@ export const loader: LoaderFunction = async (): Promise<LoaderData> => {
     recentToolItems,
     sdkCardItems,
     twitterUrl: externalLinks.twitter,
-  }
+  })
 }
 
 export default function Page() {
-  const data = useLoaderData<LoaderData>()
+  const data = useLoaderData<typeof loader>()
 
   return (
     <GettingStartedPage

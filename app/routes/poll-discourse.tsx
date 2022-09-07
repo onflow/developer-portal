@@ -1,18 +1,19 @@
 // This route is only for testing Discourse API functionalities. This page should not be discoverable by the navigation.
+import { json } from "@remix-run/node"
 import { useFetcher, useLoaderData } from "@remix-run/react"
-import { useEffect, useState } from "react"
-import {
-  fetchLatestTopics,
-  fetchBreakingChangesTopics,
-  fetchMainnetSporkTopics,
-  Topic,
-} from "~/cms/utils/fetch-discourse-api"
 import { formatDistance } from "date-fns"
+import { useEffect, useState } from "react"
 import {
   ABOUT_THIS_CATEGORY_BREAKING_CHANGES,
   ABOUT_THIS_CATEGORY_SPORK,
   POLLING_INTERVAL_FIVE_SECONDS,
 } from "~/cms/utils/constants"
+import {
+  fetchBreakingChangesTopics,
+  fetchLatestTopics,
+  fetchMainnetSporkTopics,
+  Topic,
+} from "~/cms/utils/fetch-discourse-api"
 import { ForumCellProps } from "~/ui/design-system/src/lib/Components/ForumCell"
 
 type LoaderData = {
@@ -36,22 +37,23 @@ function sortTopics(topics: Topic[], removeCategoryId: number) {
   return sorted
 }
 
-export async function loader(): Promise<LoaderData> {
+export const loader = async () => {
   const latestTopics = await fetchLatestTopics()
   const breakingChangesTopics = await fetchBreakingChangesTopics()
   const mainnetSporkTopics = await fetchMainnetSporkTopics()
-  return {
+
+  return json<LoaderData>({
     latestTopics: latestTopics,
     breakingChanges: sortTopics(
       breakingChangesTopics,
       ABOUT_THIS_CATEGORY_BREAKING_CHANGES
     ),
     sporks: sortTopics(mainnetSporkTopics, ABOUT_THIS_CATEGORY_SPORK),
-  }
+  })
 }
 
 export default function () {
-  const data = useLoaderData<LoaderData>()
+  const data = useLoaderData<typeof loader>()
   const [discourseData, setDiscourseData] = useState(data)
 
   // Whenever the loader gives us new data(for example, after a form submission), update our `data` state.
