@@ -7,6 +7,7 @@ import {
   redirect,
 } from "@remix-run/node"
 import {
+  HtmlMetaDescriptor,
   Links,
   LiveReload,
   Meta,
@@ -77,20 +78,14 @@ export const links: LinksFunction = () => {
   ]
 }
 
-export const meta: MetaFunction = ({ data, location }) => ({
-  ...getSocialMetas({
-    title: getMetaTitle(),
-    url: data?.url ?? "",
-  }),
-  charset: "utf-8",
-  viewport: "width=device-width,initial-scale=1",
-})
+export const meta: MetaFunction = ({ data }: { data: LoaderData }) => data.meta
 
 export type LoaderData = {
-  theme: Theme | null
-  gaTrackingId: string | undefined
-  ENV: PUBLIC_ENV
   algolia?: SearchProps
+  ENV: PUBLIC_ENV
+  gaTrackingId: string | undefined
+  meta: HtmlMetaDescriptor
+  theme: Theme | null
   url: string
 }
 
@@ -119,10 +114,14 @@ export const loader: LoaderFunction = async ({ request }) => {
   }
 
   return json<LoaderData>({
-    theme: themeSession.getTheme(),
-    gaTrackingId: process.env.GA_TRACKING_ID,
-    ENV: getPublicEnv(),
     algolia,
+    ENV: getPublicEnv(),
+    gaTrackingId: process.env.GA_TRACKING_ID,
+    meta: getSocialMetas({
+      title: getMetaTitle(),
+      url: request.url,
+    }),
+    theme: themeSession.getTheme(),
     url: request.url,
   })
 }
@@ -176,6 +175,8 @@ function App() {
       className={clsx("h-full min-h-full overflow-hidden", theme ?? "")}
     >
       <head>
+        <meta charSet="utf-8" />
+        <meta name="viewport" content="width=device-width,initial-scale=1" />
         <Meta />
         <DynamicLinks />
         <Links />

@@ -1,5 +1,6 @@
-import { LinksFunction, LoaderFunction, MetaFunction } from "@remix-run/node"
-import { useLoaderData } from "@remix-run/react"
+import { LinkDescriptor, LoaderFunction, MetaFunction } from "@remix-run/node"
+import { HtmlMetaDescriptor, useLoaderData } from "@remix-run/react"
+import { DynamicLinksFunction } from "remix-utils"
 import {
   allTutorials,
   architectureTutorials,
@@ -19,13 +20,16 @@ import {
 import { getCanonicalLinkDescriptor, getMetaTitle } from "~/utils/seo.server"
 import { externalLinks } from "../data/external-links"
 
-export const meta: MetaFunction = () => ({
-  title: getMetaTitle("Learn"),
-})
+export const handle: {
+  dynamicLinks: DynamicLinksFunction<LoaderData>
+} = { dynamicLinks: ({ data }) => data.links }
 
-export const links: LinksFunction = () => [getCanonicalLinkDescriptor("/learn")]
+export const meta: MetaFunction = ({ data }: { data: LoaderData }) => data.meta
 
-export type LoaderData = Omit<LearnPageProps, "threeColumnItems">
+export type LoaderData = Omit<LearnPageProps, "threeColumnItems"> & {
+  links: LinkDescriptor[]
+  meta: HtmlMetaDescriptor
+}
 
 export const loader: LoaderFunction = (): LoaderData => ({
   allTutorials,
@@ -37,6 +41,10 @@ export const loader: LoaderFunction = (): LoaderData => ({
   contentNavigationListItems,
   editPageUrl,
   githubUrl: externalLinks.github,
+  links: [getCanonicalLinkDescriptor("/learn")],
+  meta: {
+    title: getMetaTitle("Learn"),
+  },
   nftTutorials,
   secondaryNavSections,
   twitterUrl: externalLinks.twitter,

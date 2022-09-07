@@ -1,5 +1,6 @@
-import { LinksFunction, LoaderFunction } from "@remix-run/node"
+import { LinkDescriptor, LoaderFunction } from "@remix-run/node"
 import { useLoaderData } from "@remix-run/react"
+import { DynamicLinksFunction } from "remix-utils"
 import { fetchFlips } from "~/cms/utils/fetch-flips"
 import { allEvents } from "~/data/events"
 import { HomePage, HomePageProps } from "~/ui/design-system/src/"
@@ -22,7 +23,9 @@ import {
 } from "../data/tools"
 import { getCanonicalLinkDescriptor } from "../utils/seo.server"
 
-export type LoaderData = Omit<HomePageProps, "threeColumnItems">
+export type LoaderData = Omit<HomePageProps, "threeColumnItems"> & {
+  links: LinkDescriptor[]
+}
 
 export const loader: LoaderFunction = async (): Promise<LoaderData> => {
   const tools = [
@@ -50,13 +53,16 @@ export const loader: LoaderFunction = async (): Promise<LoaderData> => {
       githubUrl: externalLinks.github,
     },
     githubUrl: externalLinks.github,
+    links: [getCanonicalLinkDescriptor("/")],
     tools,
     upcomingEvents: allEvents,
     editPageUrl,
   }
 }
 
-export const links: LinksFunction = () => [getCanonicalLinkDescriptor("")]
+export const handle: {
+  dynamicLinks: DynamicLinksFunction<LoaderData>
+} = { dynamicLinks: ({ data }) => data.links }
 
 export default function Index() {
   const data = useLoaderData<LoaderData>()

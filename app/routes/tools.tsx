@@ -1,5 +1,11 @@
-import { LinksFunction, LoaderFunction, MetaFunction } from "@remix-run/node"
+import {
+  HtmlMetaDescriptor,
+  LinkDescriptor,
+  LoaderFunction,
+  MetaFunction,
+} from "@remix-run/node"
 import { useLoaderData } from "@remix-run/react"
+import { DynamicLinksFunction } from "remix-utils"
 import { data as staticData } from "~/data/pages/tools"
 import { getCanonicalLinkDescriptor, getMetaTitle } from "~/utils/seo.server"
 import { refreshTools } from "../cms/tools.server"
@@ -7,13 +13,18 @@ import ToolsPage, {
   ToolsPageProps,
 } from "../ui/design-system/src/lib/Pages/ToolsPage"
 
-export const meta: MetaFunction = () => ({
-  title: getMetaTitle("Tools"),
-})
+export const handle: {
+  dynamicLinks: DynamicLinksFunction<LoaderData>
+} = { dynamicLinks: ({ data }) => data.links }
 
-export type LoaderData = ToolsPageProps
+export const meta: MetaFunction = ({ data }: { data: LoaderData }) => data.meta
 
-export const loader: LoaderFunction = async (): Promise<ToolsPageProps> => {
+export type LoaderData = ToolsPageProps & {
+  links: LinkDescriptor[]
+  meta: HtmlMetaDescriptor
+}
+
+export const loader: LoaderFunction = async (): Promise<LoaderData> => {
   await refreshTools(
     ...staticData.apisAndServices,
     ...staticData.explorers,
@@ -21,13 +32,17 @@ export const loader: LoaderFunction = async (): Promise<ToolsPageProps> => {
     ...staticData.tools,
     ...staticData.wallets
   )
-  return staticData
+  return {
+    ...staticData,
+    links: [getCanonicalLinkDescriptor("/tools")],
+    meta: {
+      title: getMetaTitle("Tools"),
+    },
+  }
 }
 
-export const links: LinksFunction = () => [getCanonicalLinkDescriptor("/tools")]
-
 export default function Page() {
-  const data = useLoaderData<ToolsPageProps>()
+  const data = useLoaderData<LoaderData>()
 
   return (
     <ToolsPage

@@ -1,5 +1,11 @@
-import { LinksFunction, LoaderFunction, MetaFunction } from "@remix-run/node"
+import {
+  HtmlMetaDescriptor,
+  LinkDescriptor,
+  LoaderFunction,
+  MetaFunction,
+} from "@remix-run/node"
 import { useLoaderData } from "@remix-run/react"
+import { DynamicLinksFunction } from "remix-utils"
 import {
   contentNavigationListItems,
   editPageUrl,
@@ -22,31 +28,39 @@ import { getCanonicalLinkDescriptor, getMetaTitle } from "~/utils/seo.server"
 import { refreshTools } from "../cms/tools.server"
 import { externalLinks } from "../data/external-links"
 
-export const meta: MetaFunction = () => ({
-  title: getMetaTitle("Getting Started"),
-})
+export const handle: {
+  dynamicLinks: DynamicLinksFunction<LoaderData>
+} = { dynamicLinks: ({ data }) => data.links }
 
-export const links: LinksFunction = () => [
-  getCanonicalLinkDescriptor("/getting-started"),
-]
+export const meta: MetaFunction = ({ data }: { data: LoaderData }) => data.meta
 
-export type LoaderData = Omit<GettingStartedPageProps, "linkCard3ColumnItems">
+export type LoaderData = Omit<
+  GettingStartedPageProps,
+  "linkCard3ColumnItems"
+> & {
+  links: LinkDescriptor[]
+  meta: HtmlMetaDescriptor
+}
 
 export const loader: LoaderFunction = async (): Promise<LoaderData> => {
   await refreshTools(...recentToolItems, ...sdkCardItems)
 
   return {
-    editPageUrl,
-    githubUrl: externalLinks.github,
+    contentNavigationListItems,
     discordUrl: externalLinks.discord,
     discourseUrl: externalLinks.discourse,
-    twitterUrl: externalLinks.twitter,
+    editPageUrl,
+    githubUrl: externalLinks.github,
     landingHeaderItems,
+    linkCard2ColumnItems,
+    links: [getCanonicalLinkDescriptor("/getting-started")],
+    meta: {
+      title: getMetaTitle("Getting Started"),
+    },
     recentArticleItems,
     recentToolItems,
-    contentNavigationListItems,
     sdkCardItems,
-    linkCard2ColumnItems,
+    twitterUrl: externalLinks.twitter,
   }
 }
 

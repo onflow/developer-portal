@@ -37,7 +37,6 @@ const STATIC_ROUTES = [
   "/http-api",
   "/learn",
   "/network",
-  "/sdks",
   "/tools",
 ]
 
