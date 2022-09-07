@@ -109,7 +109,7 @@ export function InternalPageContainer({
         {sidebarItems && (
           <Transition
             as="div"
-            className="fixed bottom-0 left-0 right-0 z-40 bg-white dark:bg-black md:hidden"
+            className="fixed bottom-0 left-0 right-0 z-40 overflow-y-scroll bg-white dark:bg-black md:hidden"
             style={{
               top: subnavRect ? subnavRect.top : 0,
             }}
