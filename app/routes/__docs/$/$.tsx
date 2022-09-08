@@ -83,7 +83,7 @@ export const loader = async ({ params, request }: LoaderArgs) => {
       page.frontmatter?.description || "Flow Developer Documentation"
 
     return json<LoaderData>({
-      links: [getCanonicalLinkDescriptor(request.url)],
+      links: [getCanonicalLinkDescriptor(path)],
       meta: getSocialMetas({
         title,
         description,
