@@ -39,11 +39,9 @@ export function Autocomplete({
   const autocomplete = useMemo(
     () =>
       createAutocomplete<HitType, Event, MouseEvent, globalThis.KeyboardEvent>({
-        detachedMediaQuery: "",
         autoFocus: true,
-        onStateChange({ state }) {
-          setAutocompleteState(state)
-        },
+        defaultActiveItemId: 0,
+        detachedMediaQuery: "",
         // @ts-expect-error
         getSources() {
           return [
@@ -74,6 +72,9 @@ export function Autocomplete({
             },
           ]
         },
+        onStateChange({ state }) {
+          setAutocompleteState(state)
+        },
       }),
     [indexName, searchClient]
   )
@@ -91,7 +92,19 @@ export function Autocomplete({
       {/* @ts-expect-error */}
       <form
         className="relative flex h-full flex-col"
-        {...autocomplete.getFormProps({ inputElement: inputRef.current })}
+        {...autocomplete.getFormProps({
+          inputElement: inputRef.current,
+          onKeyDown: (e: KeyboardEvent<HTMLImageElement>) => {
+            // This prevents the autocomplete search popup from closing
+            // when the enter key is pressed if there are no search results.
+            if (
+              e.key === "Enter" &&
+              autocompleteState?.collections?.[0]?.items.length === 0
+            ) {
+              e.preventDefault()
+            }
+          },
+        })}
       >
         <button onClick={closeDialog} className="absolute h-full w-full" />
         <div className="relative flex min-h-0 items-center">
