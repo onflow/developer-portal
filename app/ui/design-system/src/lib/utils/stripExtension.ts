@@ -1,1 +1,1 @@
-export const stripExtension = (href: string) => href.replace(/(.md|.mdx)/, "")
+export const stripExtension = (href: string) => href.replace(/(.mdx?)/, "")
