@@ -20,7 +20,6 @@ import AppLink from "../../../ui/design-system/src/lib/Components/AppLink"
 import { ErrorPage } from "../../../ui/design-system/src/lib/Components/ErrorPage"
 import { InternalUrlContext } from "../../../ui/design-system/src/lib/Components/InternalUrlContext"
 import { InternalPageContent } from "../../../ui/design-system/src/lib/Pages/InternalPage/InternalPageContent"
-import { stripExtension } from "../../../ui/design-system/src/lib/utils/stripExtension"
 import logger from "../../../utils/logging.server"
 import {
   getCanonicalLinkDescriptor,
@@ -37,7 +36,7 @@ type LoaderData = {
   links: LinkDescriptor[]
   meta: HtmlMetaDescriptor
   page: MdxPage
-  pageBasePath: string
+  resolvedPath: string
   sidebar: SidebarItemList | undefined
   url: string
 }
@@ -69,21 +68,22 @@ export const loader = async ({ params, request }: LoaderArgs) => {
       throw new NotFoundError("")
     }
 
-    const path = nodePath.posix.resolve(
+    const parsedPath = nodePath.posix.parse(page.origin.relativePath)
+
+    // This removes the extension (`name` is the filename without extension)
+    const relativePath = nodePath.posix.join(parsedPath.dir, parsedPath.name)
+
+    const resolvedPath = nodePath.posix.resolve(
       data.collectionRootPath,
-      page.origin.relativePath
+      relativePath
     )
-    const pageBasePath =
-      nodePath.posix.dirname(path) +
-      "/" +
-      nodePath.posix.basename(stripExtension(path))
 
     const title = page.frontmatter?.title || "Flow Developer Documentation"
     const description =
       page.frontmatter?.description || "Flow Developer Documentation"
 
     return json<LoaderData>({
-      links: [getCanonicalLinkDescriptor(path)],
+      links: [getCanonicalLinkDescriptor(resolvedPath)],
       meta: getSocialMetas({
         title,
         description,
@@ -91,7 +91,7 @@ export const loader = async ({ params, request }: LoaderArgs) => {
         image: `https://flow-og-image.vercel.app/**${title}**%20${description}.png?theme=light&md=1&fontSize=100px&images=https%3A%2F%2Fstorage.googleapis.com%2Fflow-resources%2Fdocumentation-assets%2Fflow-docs.png&widths=auto&heights=350"`,
       }),
       page,
-      pageBasePath,
+      resolvedPath,
       sidebar: manifest.sidebar,
       url: request.url,
     })
@@ -107,12 +107,12 @@ export const loader = async ({ params, request }: LoaderArgs) => {
 }
 
 export default () => {
-  const { sidebar, page, pageBasePath } = useLoaderData<typeof loader>()
+  const { sidebar, page, resolvedPath } = useLoaderData<typeof loader>()
 
   const MDXContent = useMdxComponent(page)
 
   return (
-    <InternalUrlContext.Provider value={pageBasePath}>
+    <InternalUrlContext.Provider value={resolvedPath}>
       <InternalPageContent
         sidebarItems={sidebar}
         editPageUrl={page.origin.html_url || undefined}
