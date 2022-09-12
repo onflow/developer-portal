@@ -2,7 +2,8 @@ import { Body, Contribution } from "~/routes/action/refresh"
 import mixpanel from "mixpanel"
 import { getRequiredServerEnvVar } from "~/cms/helpers"
 
-mixpanel.init(getRequiredServerEnvVar("MIXPANEL_DOCSITE_PROJECT_TOKEN"))
+const mpToken = getRequiredServerEnvVar("MIXPANEL_DOCSITE_PROJECT_TOKEN")
+mixpanel.init(mpToken)
 
 /**
  * Format and send event data for Mixpanel to ingest
@@ -30,5 +31,7 @@ export const recordRefreshEventInMixpanel = (eventData: Body) => {
     },
   ]
 
-  mixpanel.track("Documents Updated", mixpanelData)
+  if (mpToken !== "idk") {
+    mixpanel.track("Documents Updated", mixpanelData)
+  }
 }
