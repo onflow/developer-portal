@@ -23,6 +23,10 @@ import {
 } from "../data/tools"
 import { getCanonicalLinkDescriptor } from "../utils/seo.server"
 
+export const handle: {
+  dynamicLinks: DynamicLinksFunction<LoaderData>
+} = { dynamicLinks: ({ data }) => data?.links || [] }
+
 export type LoaderData = Omit<HomePageProps, "threeColumnItems"> & {
   links: LinkDescriptor[]
 }
@@ -59,10 +63,6 @@ export const loader = async () => {
     editPageUrl,
   })
 }
-
-export const handle: {
-  dynamicLinks: DynamicLinksFunction<LoaderData>
-} = { dynamicLinks: ({ data }) => data.links }
 
 export default function Index() {
   const data = useLoaderData<typeof loader>()

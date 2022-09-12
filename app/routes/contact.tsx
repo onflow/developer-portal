@@ -12,7 +12,7 @@ export const action = () => {
 
 export const handle: {
   dynamicLinks: DynamicLinksFunction<LoaderData>
-} = { dynamicLinks: ({ data }) => data.links }
+} = { dynamicLinks: ({ data }) => data?.links || [] }
 
 export type LoaderData = {
   links: LinkDescriptor[]

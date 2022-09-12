@@ -1,4 +1,9 @@
-import { HtmlMetaDescriptor, json, LinkDescriptor } from "@remix-run/node"
+import {
+  HtmlMetaDescriptor,
+  json,
+  LinkDescriptor,
+  MetaFunction,
+} from "@remix-run/node"
 import { RedocStandalone } from "redoc"
 import { ClientOnly, DynamicLinksFunction } from "remix-utils"
 import { Theme, useTheme } from "~/cms/utils/theme.provider"
@@ -6,7 +11,10 @@ import { getCanonicalLinkDescriptor } from "../utils/seo.server"
 
 export const handle: {
   dynamicLinks: DynamicLinksFunction<LoaderData>
-} = { dynamicLinks: ({ data }) => data.links }
+} = { dynamicLinks: ({ data }) => data?.links || [] }
+
+export const meta: MetaFunction = ({ data }: { data: LoaderData }) =>
+  data?.meta || {}
 
 export type LoaderData = {
   links: LinkDescriptor[]
