@@ -2,8 +2,10 @@ import { Body, Contribution } from "~/routes/action/refresh"
 import mixpanel from "mixpanel"
 import { getRequiredServerEnvVar } from "~/cms/helpers"
 
+const mpTokenInvalid = "idk" // <-- This should be the value set for the MIXPANEL_DOCSITE_PROJECT_TOKEN
+// env var in environments where we want to disable tracking.
 const mpToken = getRequiredServerEnvVar("MIXPANEL_DOCSITE_PROJECT_TOKEN")
-mixpanel.init(mpToken)
+if (mpToken !== mpTokenInvalid) mixpanel.init(mpToken)
 
 /**
  * Format and send event data for Mixpanel to ingest
@@ -31,7 +33,6 @@ export const recordRefreshEventInMixpanel = (eventData: Body) => {
     },
   ]
 
-  if (mpToken !== "idk") {
+  if (mpToken !== mpTokenInvalid)
     mixpanel.track("Documents Updated", mixpanelData)
-  }
 }
