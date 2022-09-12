@@ -25,9 +25,10 @@ import { externalLinks } from "../data/external-links"
 
 export const handle: {
   dynamicLinks: DynamicLinksFunction<LoaderData>
-} = { dynamicLinks: ({ data }) => data.links }
+} = { dynamicLinks: ({ data }) => data?.links || [] }
 
-export const meta: MetaFunction = ({ data }: { data: LoaderData }) => data.meta
+export const meta: MetaFunction = ({ data }: { data: LoaderData }) =>
+  data?.meta || {}
 
 export type LoaderData = CommunityPageProps & {
   links: LinkDescriptor[]

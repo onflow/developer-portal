@@ -78,7 +78,8 @@ export const links: LinksFunction = () => {
   ]
 }
 
-export const meta: MetaFunction = ({ data }: { data: LoaderData }) => data.meta
+export const meta: MetaFunction = ({ data }: { data: LoaderData }) =>
+  data?.meta || {}
 
 export type LoaderData = {
   algolia?: SearchProps

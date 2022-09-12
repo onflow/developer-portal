@@ -15,9 +15,10 @@ import ToolsPage, {
 
 export const handle: {
   dynamicLinks: DynamicLinksFunction<LoaderData>
-} = { dynamicLinks: ({ data }) => data.links }
+} = { dynamicLinks: ({ data }) => data?.links || [] }
 
-export const meta: MetaFunction = ({ data }: { data: LoaderData }) => data.meta
+export const meta: MetaFunction = ({ data }: { data: LoaderData }) =>
+  data?.meta || {}
 
 export type LoaderData = ToolsPageProps & {
   links: LinkDescriptor[]
