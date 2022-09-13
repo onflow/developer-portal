@@ -33,6 +33,9 @@ export const recordRefreshEventInMixpanel = (eventData: Body) => {
     },
   ]
 
+  console.log("Got contribution event:", process.env.NODE_ENV, mixpanelData)
+
   if (mpToken !== mpTokenInvalid)
-    mixpanel.track("Documents Updated", mixpanelData)
+    console.log("Sending data to Mixpanel:", mixpanelData)
+  mixpanel.track("Documents Updated", mixpanelData)
 }
