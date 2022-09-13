@@ -12,15 +12,15 @@ Disallow: /action
 `
 
   if (process.env.NODE_ENV !== "production") {
-    let robotsTxt = `# Algolia-Crawler-Verif: 98E1096D4FD67E70
+    robotsTxt = `# Algolia-Crawler-Verif: 98E1096D4FD67E70
 
-  User-agent: Algolia Crawler
-  Sitemap: ${sitemapUrl}
-  Allow: /
+User-agent: Algolia Crawler
+Sitemap: ${sitemapUrl}
+Allow: /
 
-  User-agent: *
-  Disallow: /
-  `
+User-agent: *
+Disallow: /
+`
   }
 
   return new Response(robotsTxt, {
