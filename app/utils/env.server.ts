@@ -14,6 +14,8 @@ export function getEnv() {
   }
 }
 
+export const ENABLE_PREVIEWS = process.env.ENABLE_PREVIEWS === "true"
+
 export type ENV = ReturnType<typeof getEnv>
 
 function getFallbackOrigin() {

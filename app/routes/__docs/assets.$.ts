@@ -4,8 +4,9 @@ import mime from "mime-types"
 import { downloadFileByPath } from "~/cms"
 import { findDocCollection } from "../../cms/collections.server"
 import { NotFoundError } from "../../cms/errors/not-found-error"
+import { ENABLE_PREVIEWS } from "../../utils/env.server"
 
-export const loader = async ({ params }: LoaderArgs) => {
+export const loader = async ({ params, request }: LoaderArgs) => {
   const path = params["*"]
 
   if (!path) {
@@ -21,10 +22,17 @@ export const loader = async ({ params }: LoaderArgs) => {
     })
   }
 
+  const url = new URL(request.url)
+  const preview =
+    (ENABLE_PREVIEWS && url.searchParams.get("preview")) || undefined
+
   try {
     // TODO: cache this!
     const buffer = await downloadFileByPath(
-      contentSpec.source,
+      {
+        ...contentSpec.source,
+        branch: preview || contentSpec.source.branch,
+      },
       contentSpec.contentPath
     )
 

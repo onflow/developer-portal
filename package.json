@@ -73,6 +73,7 @@
     "colorette": "^2.0.19",
     "date-fns": "^2.28.0",
     "discord.js": "^12",
+    "errorish": "^1.0.0",
     "file-type": "^17.1.6",
     "github-slugger": "^1.4.0",
     "hast-util-to-string": "^2.0.0",

@@ -269,7 +269,7 @@ function getCommits(repo: Repo, path: string, perPage?: number) {
   return octokit.rest.repos.listCommits({
     owner: repo.owner,
     repo: repo.name,
-    ref: repo.branch,
+    sha: repo.branch,
     path,
     per_page: perPage,
   })

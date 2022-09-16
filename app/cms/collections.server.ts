@@ -1,12 +1,13 @@
 import Ajv from "ajv"
+import { ensure as ensureError } from "errorish"
+import { RequestError } from "@octokit/request-error"
 import { posix } from "node:path"
 import invariant from "tiny-invariant"
 import { cachified, downloadFileByPath, redisCache } from "~/cms"
 import manifestSchema from "~/data/doc-collection-manifest-schema.json"
 import { InternalLandingHeaderProps } from "~/ui/design-system/src/lib/Components/InternalLandingHeader"
 import { SidebarItemList } from "~/ui/design-system/src/lib/Components/InternalSidebar"
-import { findMostSpecificPath } from "./utils/find-most-specific-path"
-import { stripSlahes } from "./utils/strip-slashes"
+import { docCollections } from "../data/doc-collections"
 import {
   DocCollection,
   DocCollectionManifest,
@@ -14,7 +15,8 @@ import {
   JSON_MANIFEST_FILENAME,
   manifestCacheKey,
 } from "./doc-collections.server"
-import { docCollections } from "../data/doc-collections"
+import { findMostSpecificPath } from "./utils/find-most-specific-path"
+import { stripSlahes } from "./utils/strip-slashes"
 
 export const collectionPaths = Object.keys(docCollections)
 
@@ -57,6 +59,12 @@ export const findDocCollection = (
   }
 }
 
+export type RemoteRepoErrorType = "FileNotFound" | "RefNotFound" | "Unknown"
+
+export type RemoteRepoError = {
+  type: RemoteRepoErrorType
+  message: string
+}
 /**
  * similar to a DocCollectionManifest but for a specific doc, i.e. the sidebar
  * will only be the relevant sidebar, not all the sidebars
@@ -64,27 +72,32 @@ export const findDocCollection = (
 export type DocManifest = {
   displayName: string
   header: InternalLandingHeaderProps | undefined
-  sidebar: SidebarItemList | undefined
-  sidebarRootPath: string | undefined
   redirect: string | undefined
 
   /**
    * any errors with the remote repos flow-doc.json, including not found, json
    * syntax errors, schema validation errors, etc
    */
-  remoteRepoError: string | undefined
+  remoteRepoError: RemoteRepoError | undefined
+  sidebar: SidebarItemList | undefined
+  sidebarRootPath: string | undefined
+  source: DocCollectionSource
+}
+
+export type FindDocManifestOptions = {
+  forceFresh?: boolean
+  ref?: string
+  request?: Request
 }
 
 export async function findDocManifest(
   path: string,
-  options?: {
-    request?: Request
-  }
+  options?: FindDocManifestOptions
 ): Promise<DocManifest | undefined> {
   const docCollection = findDocCollection(path)
   if (!docCollection) return
 
-  const { collectionRootPath, contentPath } = docCollection
+  const { collectionRootPath, contentPath, source } = docCollection
 
   const collectionPath = findMostSpecificPath(path, collectionPaths)
 
@@ -94,7 +107,10 @@ export async function findDocManifest(
 
   const fetchRemoteManifest = async (): Promise<DocCollectionManifest> => {
     const buffer = await downloadFileByPath(
-      docCollection.source,
+      {
+        ...source,
+        branch: options?.ref || source.branch,
+      },
       JSON_MANIFEST_FILENAME
     )
 
@@ -128,24 +144,39 @@ export async function findDocManifest(
 
   const [remoteManifest, error] = await cachified({
     cache: redisCache,
-    key: manifestCacheKey(docCollection.source),
+    key: manifestCacheKey({
+      ...docCollection.source,
+      branch: options?.ref || docCollection.source.branch,
+    }),
+    forceFresh: options?.forceFresh === true,
     getFreshValue: async (): Promise<
-      [DocCollectionManifest | null] | [null, string]
+      [DocCollectionManifest | null] | [null, RemoteRepoError]
     > => {
       try {
         const result = await fetchRemoteManifest()
         return [result]
-      } catch (er: any) {
-        const isGithub404 = er.status === 404
-        if (isGithub404) {
-          return [null]
-        }
-        let message =
-          er.message ||
-          (er.status != null && `failed with status ${er.status}`) ||
-          "unknown"
+      } catch (caughtError: unknown) {
+        const error = ensureError(caughtError)
 
-        return [null, message]
+        if (error instanceof RequestError && error.status === 404) {
+          return [
+            null,
+            {
+              type: error.message.startsWith("No commit found for the ref")
+                ? "RefNotFound"
+                : "FileNotFound",
+              message: error.message,
+            },
+          ]
+        }
+
+        return [
+          null,
+          {
+            type: "Unknown",
+            message: error.message,
+          },
+        ]
       }
     },
     maxAge: 1000 * 60 * 60 * 24 * 30,
@@ -172,14 +203,12 @@ export async function findDocManifest(
 
   return {
     displayName: manifest.displayName,
-
     header: manifest.headers?.[contentPath],
-
-    sidebar:
-      sidebarPath !== undefined ? manifest.sidebars![sidebarPath] : undefined,
-
-    sidebarRootPath,
     redirect: resolvePath(redirectPath),
     remoteRepoError: error ?? undefined,
+    sidebar:
+      sidebarPath !== undefined ? manifest.sidebars![sidebarPath] : undefined,
+    sidebarRootPath,
+    source,
   }
 }
