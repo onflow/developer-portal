@@ -35,7 +35,7 @@ x-app-defaults: &app-defaults
   volumes:
     - .:/opt/next-docs
     - ./package.json:/opt/next-docs/package.json
-    - ./package-lock.json:/opt/next-docs/package-lock.json
+    - ./yarn.lock:/opt/next-docs/yarn.lock
     - node_modules:/opt/next-docs/node_modules
 
 services:
