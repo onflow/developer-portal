@@ -101,7 +101,7 @@ export default () => {
       }}
     >
       {data.preview && (
-        <div className="fixed top-0 left-0 right-0 z-50 bg-rose-300 text-center text-sm dark:bg-rose-400 ">
+        <div className="fixed top-0 left-0 right-0 z-50 bg-cyan-300 text-center text-sm dark:bg-cyan-600 ">
           Previewing:{" "}
           <a
             href={`https://github.com/${data.source.owner}/${data.source.name}/tree/${data.preview}`}
