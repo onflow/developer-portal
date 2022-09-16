@@ -113,7 +113,7 @@ export default () => {
   const MDXContent = useMdxComponent(page)
 
   return (
-    <InternalUrlContext.Provider value={resolvedPath}>
+    <InternalUrlContext.Provider value={{ basePath: resolvedPath }}>
       <InternalPageContent
         sidebarItems={sidebar}
         editPageUrl={page.origin.html_url || undefined}

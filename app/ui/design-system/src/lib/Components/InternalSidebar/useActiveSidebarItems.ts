@@ -3,6 +3,7 @@ import { useContext } from "react"
 import { isSidebarLinkItem, SidebarItem, SidebarLinkItem } from "."
 import { stripTrailingSlashes } from "../../utils/stripTrailingSlashes"
 import { titleFromHref } from "../../utils/titleFromHref"
+import { resolveUrl } from "../../utils/useResolvedUrl"
 import { InternalSidebarUrlContext } from "./InternalSidebarUrlContext"
 
 /**
@@ -18,17 +19,20 @@ export const flattenItems = (items?: SidebarItem[]): SidebarItem[] =>
 export const useActiveSidebarItems = (items: SidebarItem[]) => {
   const location = useLocation()
   const path = stripTrailingSlashes(location.pathname)
-  const sidebarBasePath = useContext(InternalSidebarUrlContext)
+  const { basePath, searchParams } = useContext(InternalSidebarUrlContext)
 
   const linkItems =
     flattenItems(items).filter<SidebarLinkItem>(isSidebarLinkItem)
 
   const resolvedLinkItems = linkItems.map((item) => ({
-    href: stripTrailingSlashes(`${sidebarBasePath}${item.href}`),
+    href: resolveUrl(item.href, basePath, { searchParams }),
+    path: stripTrailingSlashes(`${basePath}${item.href}`),
     title: item.title || titleFromHref(item.href),
   }))
 
-  const activeIndex = resolvedLinkItems.findIndex(({ href }) => href === path)
+  const activeIndex = resolvedLinkItems.findIndex(
+    (resolved) => resolved.path === path
+  )
 
   return {
     previous: activeIndex > 0 ? resolvedLinkItems[activeIndex - 1] : undefined,

@@ -1,3 +1,6 @@
 import { createContext } from "react"
+import { InternalUrlContextValue } from "../InternalUrlContext"
 
-export const InternalSidebarUrlContext = createContext<string>("undefined")
+export const InternalSidebarUrlContext = createContext<InternalUrlContextValue>(
+  {}
+)

@@ -83,7 +83,7 @@ export default () => {
 
   return (
     <InternalSidebarUrlContext.Provider
-      value={data.sidebarRootPath || data.collectionRootPath}
+      value={{ basePath: data.sidebarRootPath || data.collectionRootPath }}
     >
       <InternalPageContainer
         additionalBreadrumbs={[

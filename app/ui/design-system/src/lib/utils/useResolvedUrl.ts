@@ -1,5 +1,6 @@
 import { useMemo } from "react"
 import { isLinkExternal } from "./isLinkExternal"
+import { stripLeadingSlashes } from "./stripLeadingSlashes"
 import { stripTrailingSlashes } from "./stripTrailingSlashes"
 
 // This is used so we have a valid base URL (which requires and origin),
@@ -9,6 +10,28 @@ const PLACEHOLDER_ORIGIN = "https://placeholder"
 
 export interface UseResolvedUrlOptions {
   stripTrailingSlash?: boolean
+  searchParams?: Record<string, string>
+}
+
+export const resolveUrl = (
+  href: string,
+  basePath: string = "",
+  options?: UseResolvedUrlOptions
+) => {
+  const url = new URL(
+    href,
+    `${PLACEHOLDER_ORIGIN}/${stripLeadingSlashes(basePath)}`
+  )
+
+  if (options?.searchParams) {
+    Object.entries(options?.searchParams).forEach(([name, value]) => {
+      url.searchParams.set(name, value)
+    })
+  }
+
+  const resolved = url.toString().substring(url.origin.length)
+
+  return options?.stripTrailingSlash ? stripTrailingSlashes(resolved) : resolved
 }
 
 /**
@@ -17,7 +40,7 @@ export interface UseResolvedUrlOptions {
  */
 export const useResolvedUrl = (
   href: string,
-  basePath: string,
+  basePath: string = "",
   options?: UseResolvedUrlOptions
 ) =>
   useMemo(() => {
@@ -25,14 +48,5 @@ export const useResolvedUrl = (
       return href
     }
 
-    const url = new URL(
-      href,
-      `${PLACEHOLDER_ORIGIN}${basePath.startsWith("/") ? "" : "/"}${basePath}`
-    )
-
-    const resolved = url.toString().substring(url.origin.length)
-
-    return options?.stripTrailingSlash
-      ? stripTrailingSlashes(resolved)
-      : resolved
-  }, [basePath, href, options?.stripTrailingSlash])
+    return resolveUrl(href, basePath, options)
+  }, [basePath, href, options])
