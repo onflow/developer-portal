@@ -372,6 +372,22 @@ const flowserTool: Tool = {
   description: `Flowser lets you inspect the current state of any flow blockchain network emulator, testnet, and mainnet.`,
 }
 
+const flowRunnerTool: Tool = {
+  repo: {
+    name: "flow-runner",
+    owner: "prpatel05",
+  },
+  title: "Flow Runner",
+  authorIcon: "https://avatars.githubusercontent.com/u/2936161?v=4",
+  authorName: "prpatel05",
+  tags: ["GUI", "cadence", "browser"],
+  link: "https://github.com/prpatel05/flow-runner",
+  stars: 0,
+  iconSrc: CodeIcon,
+  description:
+    "Run Cadence scripts and transactions directly from your browser!",
+}
+
 // Explorers
 const flowScanTool: Tool = {
   title: "Flowscan",
@@ -551,6 +567,7 @@ const fionaWallet: Tool = {
 export {
   flowserTool,
   overflowTool,
+  flowRunnerTool,
   dotNetSDK,
   swiftSDK,
   rustSDK,
