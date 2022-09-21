@@ -9,7 +9,6 @@ import flow__flow_token from "./flow__flow-token.json"
 import flow__fusd from "./flow__fusd.json"
 import flow__nft_marketplace from "./flow__nft-marketplace.json"
 import flow__nft_storefront from "./flow__nft-storefront.json"
-import flow__fungible_tokens from "./flow__fungible-tokens.json"
 import flow from "./flow.json"
 import learn__concepts from "./learn__concepts.json"
 import learn__kitty_items from "./learn__kitty-items.json"
@@ -53,7 +52,6 @@ export const docCollections = {
   "flow/flow-ft": flow__flow_ft,
   "flow/flow-nft": flow__flow_nft,
   "flow/flow-token": flow__flow_token,
-  // "flow/fungible-tokens": flow__fungible_tokens,
   "flow/fusd": flow__fusd,
   "flow/nft-marketplace": flow__nft_marketplace,
   "flow/nft-storefront": flow__nft_storefront,
