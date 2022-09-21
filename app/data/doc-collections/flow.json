@@ -38,6 +38,10 @@
           "title": "Building Your Dapp",
           "items": [
             {
+              "title": "Launch a Fungible Token on Flow",
+              "href": "dapp-development/fungible-tokens"
+            },
+            {
               "title": "Flow FAQ",
               "href": "faq"
             },

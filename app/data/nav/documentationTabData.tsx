@@ -190,6 +190,10 @@ const dappDevelomentSection: Section = {
       title: "Developer Onboarding Guide",
       href: "https://flow-partner-dev-hub.vercel.app",
     },
+    {
+      title: "Launch a Fungible Token Guide",
+      href: "/flow/dapp-development/fungible-tokens",
+    },
   ],
   icon: <UsecasesIcon height="1.5em" width="1.5em" />,
 }

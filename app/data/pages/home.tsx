@@ -91,9 +91,9 @@ const homepageThreeColumnData: LinkCard3ColumnItems = [
         tags: ["accounts", "signing"],
       },
       {
-        title: "Deploy your project",
-        href: "tools/flow-cli/deploy-project-contracts/",
-        tags: ["cli", "tutorial"],
+        title: "Launch a Fungible Token on Flow",
+        href: "/flow/dapp-development/fungible-tokens",
+        tags: ["overview", "guide"],
       },
       {
         title: "View more learning resources",
