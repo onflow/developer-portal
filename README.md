@@ -31,7 +31,11 @@ Storybook: http://localhost:6006/ (if started using `--profile storybook`)
 
 #### Useful docker commands and tips
 
+Use the first version of the commands below if the your compose environment and container are running. Use the second version if the environment is not up or if you want to run them in a new container (this may leave orphan containers running if you run `docker compose down`).
+
 - Connect to Redis via `redis-cli`:
+
+  `docker compose exec cache redis-cli -h cache -a flow_docs`
 
   `docker compose run cache redis-cli -h cache -a flow_docs`
 
@@ -39,7 +43,11 @@ Storybook: http://localhost:6006/ (if started using `--profile storybook`)
 
   `docker compose exec cache redis-cli -h cache -a flow_docs FLUSHALL`
 
+  `docker compose run cache redis-cli -h cache -a flow_docs FLUSHALL`
+
 - Ensure node_modules is up-to-date.
+
+  `docker compose restart app-yarn` ()
 
   `docker compose run app-yarn`
 
