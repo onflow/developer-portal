@@ -430,4 +430,5 @@ export const redirects = {
   "/flow-go-sdk/creating-accounts/https:/flow-view-source.com/testnet/tx/39cf6fa96bd8be8ae24f2f2f574895444f0a40e762e8a9410bf1814668cf6feb/":
     "",
   "/cadence/tutorial/01-first-steps/": "/cadence/tutorial",
+  "/flow/dapp-development/fungible-tokens": "/flow/fungible-tokens",
 } as Record<string, string>

@@ -92,7 +92,7 @@ const homepageThreeColumnData: LinkCard3ColumnItems = [
       },
       {
         title: "Launch a Fungible Token on Flow",
-        href: "/flow/dapp-development/fungible-tokens",
+        href: "/flow/fungible-tokens",
         tags: ["overview", "guide"],
       },
       {

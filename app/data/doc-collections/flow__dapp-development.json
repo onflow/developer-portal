@@ -22,10 +22,6 @@
           "title": "Building Your Dapp",
           "items": [
             {
-              "title": "Launch a Fungible Token on Flow",
-              "href": "fungible-tokens"
-            },
-            {
               "title": "Anatomy of a Flow Dapp",
               "href": "flow-dapp-anatomy"
             },

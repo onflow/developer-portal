@@ -192,7 +192,7 @@ const dappDevelomentSection: Section = {
     },
     {
       title: "Launch a Fungible Token (Guide)",
-      href: "/flow/dapp-development/fungible-tokens",
+      href: "/flow/fungible-tokens",
     },
   ],
   icon: <UsecasesIcon height="1.5em" width="1.5em" />,
