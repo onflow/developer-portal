@@ -37,6 +37,18 @@ export const previewLinksOnCheckRun = async ({
 }: EmitterWebhookEvent<"check_run"> & {
   octokit: InstanceType<typeof Octokit>
 }) => {
+  if (payload.check_run.name !== CHECK_RUN_NAME) {
+    logger.trace(
+      `Ignoring unknown Github webhook "check_run": ${payload.check_run.name}`
+    )
+    return
+  }
+
+  if (String(payload.check_run.app.id) !== process.env.GITHUB_APP_ID) {
+    logger.trace('Ignoring Github webhook "check_run" for unknown app.')
+    return
+  }
+
   if (payload.action !== "created" && payload.action !== "rerequested") {
     logger.debug(
       `Ignoring Github webhook "check_run" action "${payload.action}"`
