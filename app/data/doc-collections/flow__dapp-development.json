@@ -23,7 +23,7 @@
           "items": [
             {
               "title": "Launch a Fungible Token on Flow",
-              "href": "dapp-development/fungible-tokens"
+              "href": "fungible-tokens"
             },
             {
               "title": "Anatomy of a Flow Dapp",
