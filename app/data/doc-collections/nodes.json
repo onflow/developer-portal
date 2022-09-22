@@ -71,11 +71,11 @@
             },
             {
               "title": "Past Spork Info",
-              "href": "/network/flow-mainnet"
+              "href": "/flow-mainnet"
             },
             {
               "title": "Upcoming Sporks",
-              "href": "/network/flow-mainnet"
+              "href": "/flow-mainnet"
             }
           ]
         }

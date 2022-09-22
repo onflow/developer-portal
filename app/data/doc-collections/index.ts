@@ -54,7 +54,6 @@ export const docCollections = {
   "flow/flow-token": flow__flow_token,
   "flow/fusd": flow__fusd,
   "flow/nft-marketplace": flow__nft_marketplace,
-  "flow/nft-storefront": flow__nft_storefront,
   flow: flow,
   "learn/concepts": learn__concepts,
   "learn/kitty-items": learn__kitty_items,
