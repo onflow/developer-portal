@@ -20,6 +20,7 @@ import AppLink from "../../../ui/design-system/src/lib/Components/AppLink"
 import { ErrorPage } from "../../../ui/design-system/src/lib/Components/ErrorPage"
 import { InternalUrlContext } from "../../../ui/design-system/src/lib/Components/InternalUrlContext"
 import { InternalPageContent } from "../../../ui/design-system/src/lib/Pages/InternalPage/InternalPageContent"
+import { ENABLE_PREVIEWS } from "../../../utils/env.server"
 import logger from "../../../utils/logging.server"
 import {
   getCanonicalLinkDescriptor,
@@ -37,6 +38,7 @@ type LoaderData = {
   links: LinkDescriptor[]
   meta: HtmlMetaDescriptor
   page: MdxPage
+  preview?: string
   resolvedPath: string
   sidebar: SidebarItemList | undefined
   url: string
@@ -45,12 +47,19 @@ type LoaderData = {
 export const loader = async ({ params, request }: LoaderArgs) => {
   let path = params["*"]
 
+  const url = new URL(request.url)
+  const preview =
+    (ENABLE_PREVIEWS && url.searchParams.get("preview")) || undefined
+
   if (!path) {
     throw json({ status: "noRepo" }, { status: 404 })
   }
 
   const data = findDocCollection(path)
-  const manifest = await findDocManifest(path, { request })
+  const manifest = await findDocManifest(path, {
+    request,
+    ref: preview || undefined,
+  })
 
   if (!data || !manifest) {
     throw json({ status: "noRepo" }, { status: 404 })
@@ -59,10 +68,13 @@ export const loader = async ({ params, request }: LoaderArgs) => {
   try {
     const page = await getMdxPage(
       {
-        source: data.source,
+        source: {
+          ...data.source,
+          branch: preview || data.source.branch,
+        },
         path: data.contentPath,
       },
-      { request, forceFresh: process.env.FORCE_REFRESH === "true" }
+      { request, forceFresh: process.env.FORCE_REFRESH === "true" || !!preview }
     )
 
     if (!page) {
@@ -84,7 +96,7 @@ export const loader = async ({ params, request }: LoaderArgs) => {
       page.frontmatter?.description || "Flow Developer Documentation"
 
     return json<LoaderData>({
-      links: [getCanonicalLinkDescriptor(resolvedPath)],
+      links: preview ? [] : [getCanonicalLinkDescriptor(resolvedPath)],
       meta: getSocialMetas({
         title,
         description,
@@ -95,6 +107,7 @@ export const loader = async ({ params, request }: LoaderArgs) => {
       resolvedPath,
       sidebar: manifest.sidebar,
       url: request.url,
+      preview,
     })
   } catch (e) {
     if (e instanceof NotFoundError) {
@@ -108,12 +121,16 @@ export const loader = async ({ params, request }: LoaderArgs) => {
 }
 
 export default () => {
-  const { sidebar, page, resolvedPath } = useLoaderData<typeof loader>()
+  const { sidebar, page, resolvedPath, preview } =
+    useLoaderData<typeof loader>()
+  const searchParams = preview ? { preview } : undefined
 
   const MDXContent = useMdxComponent(page)
 
   return (
-    <InternalUrlContext.Provider value={resolvedPath}>
+    <InternalUrlContext.Provider
+      value={{ basePath: resolvedPath, searchParams }}
+    >
       <InternalPageContent
         sidebarItems={sidebar}
         editPageUrl={page.origin.html_url || undefined}

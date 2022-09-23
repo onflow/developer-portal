@@ -9,6 +9,8 @@ User-agent: *
 Sitemap: ${sitemapUrl}
 Disallow: /_meta
 Disallow: /action
+Disallow: /*?preview=*
+Disallow: /*&preview=*
 `
 
   if (process.env.NODE_ENV !== "production") {
@@ -16,7 +18,10 @@ Disallow: /action
 
 User-agent: Algolia Crawler
 Sitemap: ${sitemapUrl}
-Allow: /
+Disallow: /_meta
+Disallow: /action
+Disallow: /*?preview=*
+Disallow: /*&preview=*
 
 User-agent: *
 Disallow: /
