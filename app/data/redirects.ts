@@ -431,4 +431,6 @@ export const redirects = {
     "",
   "/cadence/tutorial/01-first-steps/": "/cadence/tutorial",
   "/flow/dapp-development/fungible-tokens": "/flow/fungible-tokens",
+  "/core-contracts/epoch-contract-reference":
+    "/flow/core-contracts/epoch-contract-reference",
 } as Record<string, string>
