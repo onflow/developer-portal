@@ -1,4 +1,4 @@
-import { octokit } from "~/cms/github.server"
+import { octokit } from "./octokit.server"
 import { cachified } from "../cache.server"
 import { redisCache } from "../redis.server"
 

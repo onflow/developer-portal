@@ -1,13 +1,13 @@
 /// <reference types="node" />
 
-import { throttling } from "@octokit/plugin-throttling"
-import { Octokit as createOctokit } from "@octokit/rest"
 import { posix } from "node:path"
 import { DocCollectionSource } from "../cms/doc-collections.server"
-import logger from "../utils/logging.server"
 import { InvalidPathError } from "./errors/invalid-path-error"
 import { NotFoundError } from "./errors/not-found-error"
 import { UnknownEncoding } from "./errors/unknown-encoding"
+import { downloadFile } from "./github/download-file"
+import { fetchDirectoryContent } from "./github/fetch-directory-content"
+import { octokit } from "./github/octokit.server"
 import { Repo } from "./types"
 
 // Ignore github.com commiter https://github.com/web-flow
@@ -18,38 +18,12 @@ const WEB_FLOW_GITHUB_ACCOUNT_ID = 19864447
  */
 const MARKDOWN_EXTENSIONS = ["md", "mdx"]
 
-const Octokit = createOctokit.plugin(throttling)
-
-type ThrottleOptions = {
-  method: string
-  url: string
-  request: { retryCount: number }
-}
-
-export const octokit = new Octokit({
-  auth: process.env["BOT_GITHUB_TOKEN"],
-  log: logger,
-  throttle: {
-    onRateLimit: (retryAfter: number, options: ThrottleOptions) => {
-      octokit.log.warn(
-        `Request quota exhausted for request ${options.method} ${options.url}. Retrying after ${retryAfter} seconds.`
-      )
-
-      return true
-    },
-    onAbuseLimit: (retryAfter: number, options: ThrottleOptions) => {
-      // does not retry, only logs a warning
-      octokit.log.warn(
-        `Abuse detected for request ${options.method} ${options.url}`
-      )
-    },
-  },
-})
-
 /**
  * An item returned from the directory listing of a Github repo
  */
-export type GitHubItem = Awaited<ReturnType<typeof getDirectoryContent>>[number]
+export type GitHubItem = Awaited<
+  ReturnType<typeof fetchDirectoryContent>
+>[number]
 
 export type AttributionData = {
   lastCommit: {
@@ -107,7 +81,7 @@ const findGitHubItem = (
  * Finds a markdown file matching the given name from a list of `GitHubItem`s
  */
 const findMarkdownFile = (
-  entries: Awaited<ReturnType<typeof getDirectoryContent>>,
+  entries: Awaited<ReturnType<typeof fetchDirectoryContent>>,
   name: string
 ) => {
   for (const ext of MARKDOWN_EXTENSIONS) {
@@ -166,7 +140,12 @@ const getMarkdownFile = async (source: DocCollectionSource, path: string) => {
     )
   }
 
-  const directoryEntries = await getDirectoryContent(source, absoluteDir)
+  const directoryEntries = await fetchDirectoryContent({
+    owner: source.owner,
+    repo: source.name,
+    ref: source.branch,
+    path: absoluteDir,
+  })
 
   const fileMatch = findMarkdownFile(directoryEntries, base || "index")
 
@@ -185,10 +164,12 @@ const getMarkdownFile = async (source: DocCollectionSource, path: string) => {
 
   if (directoryMatch?.type === "dir") {
     // A directory was found, see if it contains an index file
-    const subDirectoryEntries = await getDirectoryContent(
-      source,
-      directoryMatch.path
-    )
+    const subDirectoryEntries = await fetchDirectoryContent({
+      owner: source.owner,
+      repo: source.name,
+      ref: source.branch,
+      path: directoryMatch.path,
+    })
     return findMarkdownFile(subDirectoryEntries, "index")
   }
 }
@@ -323,45 +304,10 @@ export async function downloadFileByPath(
 ) {
   const resolvedPath = posix.join(source.rootPath, path)
 
-  const { data } = await octokit.repos.getContent({
+  return downloadFile({
     owner: source.owner,
     repo: source.name,
     ref: source.branch,
     path: resolvedPath,
   })
-
-  if (Array.isArray(data)) {
-    throw new NotFoundError(
-      resolvedPath,
-      `Path was a directory, but expected a file: ${resolvedPath}`
-    )
-  }
-
-  if (!("encoding" in data)) {
-    throw new NotFoundError(
-      resolvedPath,
-      `Content (of type ${data.type}, at URL ${data.url}), does not specify an encoding: ${resolvedPath}`
-    )
-  }
-
-  if (!Buffer.isEncoding(data.encoding)) {
-    throw new UnknownEncoding(data.url, data.encoding)
-  }
-
-  return Buffer.from(data.content, data.encoding)
-}
-
-/**
- * Fetches the content of a directory within a Github repo.
- */
-const getDirectoryContent = async (repo: Repo, path: string) => {
-  const { data } = await octokit.repos.getContent({
-    owner: repo.owner,
-    repo: repo.name,
-    ref: repo.branch,
-    path,
-  })
-
-  // If the result wasn't an array, then the path was not a directory.
-  return Array.isArray(data) ? data : []
 }

@@ -1,7 +1,7 @@
 export class UnknownEncoding extends Error {
   constructor(
     public readonly path: string,
-    public readonly encoding: string,
+    public readonly encoding: string | undefined,
     message?: string
   ) {
     super(message ?? `Unknown encoding "${path}" for "${path}"`)

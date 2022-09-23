@@ -1,6 +1,6 @@
 import { Tool } from "../data/tools"
-import { fetchRepo } from "./utils/fetch-repo"
-import { fetchBranch } from "./utils/fetch-branch"
+import { fetchRepo } from "./github/fetch-repo"
+import { fetchBranch } from "./github/fetch-branch"
 import logger from "../utils/logging.server"
 
 type ToolStats = Partial<Pick<Tool, "authorIcon" | "stars" | "lastCommit">>

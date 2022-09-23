@@ -1,7 +1,7 @@
 import { cachified } from "../cache.server"
 import { redisCache } from "../redis.server"
 import { SporksCardProps } from "~/ui/design-system/src/lib/Components/SporksCard"
-import { octokit } from "~/cms/github.server"
+import { octokit } from "~/cms/github/octokit.server"
 
 export const fetchSporks = async () => {
   return await cachified({
