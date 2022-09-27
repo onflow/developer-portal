@@ -34,6 +34,13 @@ if (!missingKeys.length) {
     Octokit,
   })
 
+  appInstance.octokit.hook.before("request", (...args) => {
+    console.log("before request:\r\b", JSON.stringify(args, undefined, 2))
+  })
+  appInstance.octokit.hook.after("request", (...args) => {
+    console.log("after request:\r\n", JSON.stringify(args, undefined, 2))
+  })
+
   // This allows us to export app but still get detailed typing on appInstance
   // without having to explicitly define it above (we can just use type `App`)
   app = appInstance
