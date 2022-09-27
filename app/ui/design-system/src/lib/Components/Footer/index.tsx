@@ -68,8 +68,8 @@ const footerSections = [
         text: "Developer Grants",
       },
       {
-        link: "/community/bounties",
-        text: "Bug Bounties",
+        link: "https://flow.com/flow-responsible-disclosure",
+        text: "Responsible Disclosure",
       },
       {
         link: "https://forum.onflow.org/",
