@@ -1,3 +1,4 @@
+import { inspect } from "util"
 import { App } from "@octokit/app"
 import logger from "../../utils/logging.server"
 import { Octokit } from "./octokit.server"
@@ -6,21 +7,6 @@ import {
   previewLinksOnCheckRun,
   previewLinksOnCheckSuite,
 } from "./webhook-preview-links"
-
-function safeCycles() {
-  const seen: any[] = []
-  return function (key: any, val: any) {
-    if (!val || typeof val !== "object") {
-      return val
-    }
-    // Watch out for Window host objects that are trickier to handle.
-    if (val instanceof Window || seen.indexOf(val) !== -1) {
-      return "[Circular]"
-    }
-    seen.push(val)
-    return val
-  }
-}
 
 const {
   ENABLE_PREVIEWS,
@@ -53,25 +39,22 @@ if (!missingKeys.length) {
     Octokit,
   })
 
-  logger.info(
-    "Octokit App created:\r\n",
-    JSON.stringify(appInstance, safeCycles(), 2)
-  )
+  logger.info("Octokit App created:\r\n", inspect(appInstance))
 
   logger.info("Octokit installations:\r\n")
   appInstance.eachInstallation((i) => {
     logger.info(
       `Installation ${i.installation.id}:\r\n`,
-      JSON.stringify(i.installation, safeCycles(), 2)
+      inspect(i.installation)
     )
   })
   logger.info("-----\r\n")
 
   appInstance.octokit.hook.before("request", (...args) => {
-    logger.info("before request:\r\b", JSON.stringify(args, safeCycles(), 2))
+    logger.info("before request:\r\b", inspect(args))
   })
   appInstance.octokit.hook.after("request", (...args) => {
-    logger.info("after request:\r\n", JSON.stringify(args, safeCycles(), 2))
+    logger.info("after request:\r\n", inspect(args))
   })
 
   // This allows us to export app but still get detailed typing on appInstance

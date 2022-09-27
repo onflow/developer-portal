@@ -80,11 +80,11 @@ export const action = async ({ request }: ActionArgs) => {
       name,
       payload: body,
     })
-    .catch((error) => {
-      logger.error(`Github webhook "${name}" failed`, error)
-    })
     .then(() => {
       logger.info(`Github webhook "${name}" completed`)
+    })
+    .catch((error) => {
+      logger.error(`Github webhook "${name}" failed`, error)
     })
 
   return json({ success: true }, 200)

@@ -3,23 +3,9 @@ import { EmitterWebhookEvent } from "@octokit/webhooks"
 import logger from "../../utils/logging.server"
 import { getPreviewLinkSummary } from "../preview-links.server"
 import { ensure } from "errorish"
+import { inspect } from "util"
 
 const CHECK_RUN_NAME = "Developer Portal Preview Links"
-
-function safeCycles() {
-  const seen: any[] = []
-  return function (key: any, val: any) {
-    if (!val || typeof val !== "object") {
-      return val
-    }
-    // Watch out for Window host objects that are trickier to handle.
-    if (val instanceof Window || seen.indexOf(val) !== -1) {
-      return "[Circular]"
-    }
-    seen.push(val)
-    return val
-  }
-}
 
 export const previewLinksOnCheckSuite = async ({
   payload,
@@ -37,8 +23,8 @@ export const previewLinksOnCheckSuite = async ({
   logger.info(
     `Creating ${payload.action} check run for check suite ${payload.check_suite.id}`
   )
-  logger.info("payload: \r\n", JSON.stringify(payload, safeCycles(), 2))
-  logger.info("octokit: \r\n", JSON.stringify(octokit, safeCycles(), 2))
+  logger.info("payload: \r\n", inspect(payload))
+  logger.info("octokit: \r\n", inspect(octokit))
 
   const result = await octokit.checks.create({
     owner: payload.repository.owner.login,
@@ -75,8 +61,8 @@ export const previewLinksOnCheckRun = async ({
     return
   }
 
-  logger.info("payload: \r\n", JSON.stringify(payload, safeCycles(), 2))
-  logger.info("octokit: \r\n", JSON.stringify(octokit, safeCycles(), 2))
+  logger.info("payload: \r\n", inspect(payload))
+  logger.info("octokit: \r\n", inspect(octokit))
 
   if (payload.action === "created") {
     logger.info(`Running check run ${payload.check_run.id}`)
