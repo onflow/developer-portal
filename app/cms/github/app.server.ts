@@ -39,6 +39,10 @@ const missingKeys = Object.entries({
 
 export let app: App | undefined
 
+logger.info(
+  `app.server.ts executing with GITHUB_APP_ID ${GITHUB_APP_ID} (${typeof GITHUB_APP_ID})`
+)
+
 if (!missingKeys.length) {
   const appInstance = new App({
     appId: GITHUB_APP_ID!,
@@ -49,25 +53,25 @@ if (!missingKeys.length) {
     Octokit,
   })
 
-  console.log(
+  logger.info(
     "Octokit App created:\r\n",
     JSON.stringify(appInstance, safeCycles(), 2)
   )
 
-  console.log("Octokit installations:\r\n")
+  logger.info("Octokit installations:\r\n")
   appInstance.eachInstallation((i) => {
-    console.log(
+    logger.info(
       `Installation ${i.installation.id}:\r\n`,
       JSON.stringify(i.installation, safeCycles(), 2)
     )
   })
-  console.log("-----\r\n")
+  logger.info("-----\r\n")
 
   appInstance.octokit.hook.before("request", (...args) => {
-    console.log("before request:\r\b", JSON.stringify(args, safeCycles(), 2))
+    logger.info("before request:\r\b", JSON.stringify(args, safeCycles(), 2))
   })
   appInstance.octokit.hook.after("request", (...args) => {
-    console.log("after request:\r\n", JSON.stringify(args, safeCycles(), 2))
+    logger.info("after request:\r\n", JSON.stringify(args, safeCycles(), 2))
   })
 
   // This allows us to export app but still get detailed typing on appInstance

@@ -37,8 +37,8 @@ export const previewLinksOnCheckSuite = async ({
   logger.info(
     `Creating ${payload.action} check run for check suite ${payload.check_suite.id}`
   )
-  console.log("payload: \r\n", JSON.stringify(payload, safeCycles(), 2))
-  console.log("octokit: \r\n", JSON.stringify(octokit, safeCycles(), 2))
+  logger.info("payload: \r\n", JSON.stringify(payload, safeCycles(), 2))
+  logger.info("octokit: \r\n", JSON.stringify(octokit, safeCycles(), 2))
 
   await octokit.checks.create({
     owner: payload.repository.owner.login,
