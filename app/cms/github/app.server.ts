@@ -78,6 +78,10 @@ if (!missingKeys.length) {
   // without having to explicitly define it above (we can just use type `App`)
   app = appInstance
 
+  appInstance.webhooks.onError((event) => {
+    logger.error("Webhook error", event)
+  })
+
   appInstance.webhooks.on("push", invalidateCacheOnPush)
 
   if (ENABLE_PREVIEWS === "true") {

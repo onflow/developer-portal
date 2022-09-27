@@ -40,12 +40,14 @@ export const previewLinksOnCheckSuite = async ({
   logger.info("payload: \r\n", JSON.stringify(payload, safeCycles(), 2))
   logger.info("octokit: \r\n", JSON.stringify(octokit, safeCycles(), 2))
 
-  await octokit.checks.create({
+  const result = await octokit.checks.create({
     owner: payload.repository.owner.login,
     repo: payload.repository.name,
     name: CHECK_RUN_NAME,
     head_sha: payload.check_suite.head_sha,
   })
+
+  logger.trace("check created!", result)
 }
 
 export const previewLinksOnCheckRun = async ({
@@ -72,6 +74,9 @@ export const previewLinksOnCheckRun = async ({
     )
     return
   }
+
+  logger.info("payload: \r\n", JSON.stringify(payload, safeCycles(), 2))
+  logger.info("octokit: \r\n", JSON.stringify(octokit, safeCycles(), 2))
 
   if (payload.action === "created") {
     logger.info(`Running check run ${payload.check_run.id}`)
