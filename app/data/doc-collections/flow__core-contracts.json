@@ -22,6 +22,10 @@
           "title": "Core Contracts",
           "items": [
             {
+              "title": "NFT Storefront",
+              "href": "nft-storefront"
+            },
+            {
               "title": "Fungible Token",
               "href": "fungible-token"
             },
