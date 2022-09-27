@@ -7,6 +7,21 @@ import {
   previewLinksOnCheckSuite,
 } from "./webhook-preview-links"
 
+function safeCycles() {
+  const seen: any[] = []
+  return function (key: any, val: any) {
+    if (!val || typeof val !== "object") {
+      return val
+    }
+    // Watch out for Window host objects that are trickier to handle.
+    if (val instanceof Window || seen.indexOf(val) !== -1) {
+      return "[Circular]"
+    }
+    seen.push(val)
+    return val
+  }
+}
+
 const {
   ENABLE_PREVIEWS,
   GITHUB_APP_ID,
@@ -34,11 +49,25 @@ if (!missingKeys.length) {
     Octokit,
   })
 
+  console.log(
+    "Octokit App created:\r\n",
+    JSON.stringify(appInstance, safeCycles(), 2)
+  )
+
+  console.log("Octokit installations:\r\n")
+  appInstance.eachInstallation((i) => {
+    console.log(
+      `Installation ${i.installation.id}:\r\n`,
+      JSON.stringify(i.installation, safeCycles(), 2)
+    )
+  })
+  console.log("-----\r\n")
+
   appInstance.octokit.hook.before("request", (...args) => {
-    console.log("before request:\r\b", JSON.stringify(args, undefined, 2))
+    console.log("before request:\r\b", JSON.stringify(args, safeCycles(), 2))
   })
   appInstance.octokit.hook.after("request", (...args) => {
-    console.log("after request:\r\n", JSON.stringify(args, undefined, 2))
+    console.log("after request:\r\n", JSON.stringify(args, safeCycles(), 2))
   })
 
   // This allows us to export app but still get detailed typing on appInstance

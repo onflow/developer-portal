@@ -6,6 +6,21 @@ import { ensure } from "errorish"
 
 const CHECK_RUN_NAME = "Developer Portal Preview Links"
 
+function safeCycles() {
+  const seen: any[] = []
+  return function (key: any, val: any) {
+    if (!val || typeof val !== "object") {
+      return val
+    }
+    // Watch out for Window host objects that are trickier to handle.
+    if (val instanceof Window || seen.indexOf(val) !== -1) {
+      return "[Circular]"
+    }
+    seen.push(val)
+    return val
+  }
+}
+
 export const previewLinksOnCheckSuite = async ({
   payload,
   octokit,
@@ -22,6 +37,8 @@ export const previewLinksOnCheckSuite = async ({
   logger.info(
     `Creating ${payload.action} check run for check suite ${payload.check_suite.id}`
   )
+  console.log("payload: \r\n", JSON.stringify(payload, safeCycles(), 2))
+  console.log("octokit: \r\n", JSON.stringify(octokit, safeCycles(), 2))
 
   await octokit.checks.create({
     owner: payload.repository.owner.login,
