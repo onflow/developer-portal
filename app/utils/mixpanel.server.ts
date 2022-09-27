@@ -4,8 +4,9 @@ import { getRequiredServerEnvVar } from "~/cms/helpers"
 
 const mpTokenInvalid = "idk" // <-- This should be the value set for the MIXPANEL_DOCSITE_PROJECT_TOKEN
 // env var in environments where we want to disable tracking.
+
 const mpToken = getRequiredServerEnvVar("MIXPANEL_DOCSITE_PROJECT_TOKEN")
-if (mpToken !== mpTokenInvalid) mixpanel.init(mpToken)
+if (mpToken && mpToken !== mpTokenInvalid) mixpanel.init(mpToken)
 
 /**
  * Format and send event data for Mixpanel to ingest
