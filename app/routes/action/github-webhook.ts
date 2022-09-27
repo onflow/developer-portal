@@ -1,3 +1,4 @@
+import { inspect } from "util"
 import { emitterEventNames, EmitterWebhookEventName } from "@octokit/webhooks"
 import { ActionArgs, json } from "@remix-run/node" // or cloudflare/deno
 import { app } from "../../cms/github/app.server"
@@ -84,7 +85,15 @@ export const action = async ({ request }: ActionArgs) => {
       logger.info(`Github webhook "${name}" completed`)
     })
     .catch((error) => {
-      logger.error(`Github webhook "${name}" failed`, error)
+      logger.error(
+        `Github webhook "${name}" failed`,
+        inspect(error, {
+          showHidden: true,
+          depth: null,
+          colors: true,
+          getters: true,
+        })
+      )
     })
 
   return json({ success: true }, 200)

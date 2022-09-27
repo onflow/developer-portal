@@ -21,7 +21,7 @@ function createRedisClient(name: "primaryClient", url: string): Redis {
   let client = global[name]
   if (!client) {
     const dbURL = new URL(url)
-    console.log(`Setting up redis client to ${dbURL.host}`)
+    console.log(`Setting up redis client: ${dbURL.host}`)
     const connectOptions: { tls?: { ca: Buffer } } = {}
 
     if (url.startsWith("rediss:")) {
