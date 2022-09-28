@@ -25,6 +25,8 @@ const missingKeys = Object.entries({
 export let app: App | undefined
 
 if (!missingKeys.length) {
+  logger.info(`Initializing Github App with App ID: ${GITHUB_APP_ID}`)
+
   const appInstance = new App({
     appId: GITHUB_APP_ID!,
     privateKey: GITHUB_APP_PRIVATE_KEY!,

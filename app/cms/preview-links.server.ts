@@ -107,7 +107,10 @@ export const getPreviewLinkSummary = async (
   const urls = collectionFiles.map(
     ({ baseUrl, filename, relativeFilename }) => ({
       filename,
-      url: posix.join(ORIGIN, baseUrl!, stripExtension(relativeFilename!)),
+      url: new URL(
+        posix.join(baseUrl!, stripExtension(relativeFilename!)),
+        ORIGIN
+      ).href,
     })
   )
 

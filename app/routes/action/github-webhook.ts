@@ -13,6 +13,9 @@ export const action = async ({ request }: ActionArgs) => {
   }
 
   if (request.method !== "POST") {
+    logger.debug(
+      `Github webhook received with unexpected method "${request.method}"`
+    )
     return json({ message: "Method not allowed" }, 405)
   }
 
@@ -29,29 +32,57 @@ export const action = async ({ request }: ActionArgs) => {
   const name = request.headers.get("x-github-event")
   const signature = request.headers.get("x-hub-signature-256")
 
+  logger.trace(`Github webhook "${name}" received`, {
+    body,
+    id,
+    name,
+    signature,
+  })
+
   logger.trace(`Github webhook "${name}" received`, body)
 
   if (!id) {
+    logger.debug("Github webhook missing x-github-delivery header")
     return json({ message: "Missing x-github-delivery header" }, 400)
   }
 
   if (!name) {
+    logger.debug("Github webhook missing x-github-event header")
     return json({ message: "Missing x-github-event header" }, 400)
   }
 
   if (!emitterEventNames.includes(name as EmitterWebhookEventName)) {
+    logger.debug(
+      `Github webhook received with unknown x-github-event value: ${name}`
+    )
     return json({ message: `Unknown event name`, name }, 400)
   }
 
   if (!signature) {
-    return json({ message: "Missing x-hub-signature-256" }, 400)
+    logger.debug(
+      `Github webhook received with Missing x-hub-signature-256 header: ${name}`
+    )
+    return json({ message: "Missing x-hub-signature-256 header" }, 400)
   }
 
   const verified = await app.webhooks.verify(body, signature)
 
   if (!verified) {
+    logger.debug(`Github webhook "${name}" not verified - signature invalid`, {
+      body,
+      id,
+      name,
+      signature,
+    })
     return json({ message: "Signature invalid" }, 401)
   }
+
+  logger.trace(`Processing verified Github webhook "${name}"`, {
+    body,
+    id,
+    name,
+    signature,
+  })
 
   // fire and forget
   app.webhooks
@@ -61,11 +92,11 @@ export const action = async ({ request }: ActionArgs) => {
       name,
       payload: body,
     })
-    .catch((error) => {
-      logger.error(`Github webhook "${name}" failed`, error)
-    })
     .then(() => {
       logger.info(`Github webhook "${name}" completed`)
+    })
+    .catch((error) => {
+      logger.error(`Github webhook "${name}" failed`, error)
     })
 
   return json({ success: true }, 200)
