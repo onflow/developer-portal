@@ -1,5 +1,6 @@
 import { CheckRunEvent, Repository } from "@octokit/webhooks-types"
 import { posix } from "node:path"
+import { stripTrailingSlash } from "redoc"
 import { stripExtension } from "~/ui/design-system/src/lib/utils/stripExtension"
 import { docCollections } from "../data/doc-collections"
 import { ORIGIN } from "../utils/env.server"
@@ -107,7 +108,9 @@ export const getPreviewLinkSummary = async (
   const urls = collectionFiles.map(
     ({ baseUrl, filename, relativeFilename }) => ({
       filename,
-      url: posix.join(ORIGIN, baseUrl!, stripExtension(relativeFilename!)),
+      url:
+        stripTrailingSlash(ORIGIN) +
+        posix.join("/", baseUrl!, stripExtension(relativeFilename!)),
     })
   )
 
