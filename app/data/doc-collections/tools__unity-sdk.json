@@ -1,0 +1,25 @@
+{
+    "source": {
+      "owner": "onflow",
+      "name": "flow",
+      "branch": "master",
+      "rootPath": "docs/content/unity-sdk/"
+    },
+    "manifest": {
+      "displayName": "Flow Unity SDK",
+      "sidebars": {
+        "": [
+          {
+            "title": "Flow Unity SDK",
+            "items": [
+              {
+                "title": "Coming Soon",
+                "href": ""
+              }
+            ]
+          }
+        ]
+      }
+    }
+  }
+  
