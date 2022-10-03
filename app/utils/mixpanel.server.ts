@@ -10,7 +10,7 @@ const mpToken = getRequiredServerEnvVar("MIXPANEL_DOCSITE_PROJECT_TOKEN")
  * @param eventData Object containing merge event data
  */
 export const recordRefreshEventInMixpanel = (eventData: {
-  pusher: string
+  user: string
   ref: string
   repo: { name: string }
   updatedFiles: string[]

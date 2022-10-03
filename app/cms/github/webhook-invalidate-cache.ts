@@ -11,7 +11,7 @@ export const invalidateCacheOnPush = (event: EmitterWebhookEvent<"push">) => {
   )
   const keyCount = cacheKeysToInvalidate.size
 
-  const { pusher, ref, repository } = event.payload
+  const { sender, ref, repository } = event.payload
 
   const allChangedFiles = event.payload.commits.flatMap((commit) => [
     ...commit.added,
@@ -20,7 +20,7 @@ export const invalidateCacheOnPush = (event: EmitterWebhookEvent<"push">) => {
   ])
 
   recordRefreshEventInMixpanel({
-    pusher: pusher.username!,
+    user: sender.login,
     ref,
     repo: {
       name: repository.name,
