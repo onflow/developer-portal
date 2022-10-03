@@ -5,12 +5,12 @@ import { recordRefreshEventInMixpanel } from "~/utils/mixpanel.server"
 import { del } from "../redis.server"
 
 export const invalidateCacheOnPush = (event: EmitterWebhookEvent<"push">) => {
+  const { sender, ref, repository, commits } = event.payload
+
   const { cacheKeysToInvalidate } = pushEventCacheKeysToInvalidate(
     event.payload
   )
   const keyCount = cacheKeysToInvalidate.size
-
-  const { sender, ref, repository, commits } = event.payload
 
   const allChangedFiles = commits.flatMap((commit) => [
     ...commit.added,
