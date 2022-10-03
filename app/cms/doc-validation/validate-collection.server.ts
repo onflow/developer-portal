@@ -8,12 +8,12 @@ import { DocCollection } from "../doc-collections/types"
 import { downloadFile } from "../github/download-file"
 import { MARKDOWN_EXTENSION_FILTER } from "../github/filter-file-name-has-markdown-extension"
 import { LinkItem } from "../rehype-plugins/extractLinks"
-import { stripTrailingSlashes } from "../utils/strip-slashes"
+import { stripSlahes } from "../utils/strip-slashes"
 
 const PLACEHOLDER_ORIGIN = "https://example.com"
 
 const normalizeRelativeUrl = (path: string) =>
-  stripTrailingSlashes(stripMarkdownExtension(path.toLowerCase()))
+  stripSlahes(stripMarkdownExtension(path.toLowerCase()))
 
 export type FileValidationResult =
   | {
@@ -111,6 +111,8 @@ export const validateCollection = async (
     const invalidLinks = links
       .filter(({ href }) => !isLinkExternal(href))
       .filter(({ href }) => !href.toLowerCase().startsWith("mailto:"))
+      // Ignore hash links for now - we'll add support for these later.
+      .filter(({ href }) => !href.startsWith("#"))
       .filter(({ href }) => {
         // This ensures we strip out any query strings or hashes (we can
         // verify hashes another time)
@@ -120,7 +122,7 @@ export const validateCollection = async (
         // the source's root path (which we cannot "break out" of)
         const resolved = posix.resolve("/", rootRelativePath, pathname)
 
-        return !relativeFileUrls.includes(resolved)
+        return !relativeFileUrls.includes(normalizeRelativeUrl(resolved))
       }) as LinkItem[]
 
     if (invalidLinks.length > 0) {
