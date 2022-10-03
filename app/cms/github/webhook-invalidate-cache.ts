@@ -3,7 +3,6 @@ import logger from "../../utils/logging.server"
 import { pushEventCacheKeysToInvalidate } from "../github-webhook.server"
 import { recordRefreshEventInMixpanel } from "~/utils/mixpanel.server"
 import { del } from "../redis.server"
-import { commitShaKey } from "~/routes/action/refresh"
 
 export const invalidateCacheOnPush = (event: EmitterWebhookEvent<"push">) => {
   const { cacheKeysToInvalidate } = pushEventCacheKeysToInvalidate(

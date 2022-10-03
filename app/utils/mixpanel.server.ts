@@ -1,4 +1,3 @@
-import { Body, Contribution } from "~/routes/action/refresh"
 import mixpanel from "mixpanel"
 import { getRequiredServerEnvVar } from "~/cms/helpers"
 
