@@ -14,9 +14,9 @@ export const recordRefreshEventInMixpanel = (eventData: {
   repo: { name: string; owner: string }
   updatedFiles: string[]
 }) => {
-  mixpanel.init(mpToken, { debug: true })
+  const mp = mixpanel.init(mpToken, { debug: true })
   console.log("Got contribution event")
 
   console.log("Sending data to Mixpanel:")
-  mixpanel.track("documents_updated", eventData)
+  mp.track("documents_updated", eventData)
 }
