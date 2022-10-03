@@ -24,6 +24,7 @@ export const invalidateCacheOnPush = (event: EmitterWebhookEvent<"push">) => {
     ref,
     repo: {
       name: repository.name,
+      owner: repository.owner.login,
     },
     updatedFiles: allChangedFiles,
   })

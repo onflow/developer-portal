@@ -12,7 +12,7 @@ const mpToken = getRequiredServerEnvVar("MIXPANEL_DOCSITE_PROJECT_TOKEN")
 export const recordRefreshEventInMixpanel = (eventData: {
   user: string
   ref: string
-  repo: { name: string }
+  repo: { name: string; owner: string }
   updatedFiles: string[]
 }) => {
   mixpanel.init(mpToken, { debug: true })
