@@ -100,6 +100,7 @@ export const action = async ({ request }: ActionArgs) => {
 
     setShaInRedis()
     recordRefreshEventInMixpanel(body)
+
     return json({
       message: "Refreshing cache for content paths",
       repo: body.repo,
