@@ -6,6 +6,7 @@ import type TPQueue from "p-queue"
 import calculateReadingTime from "reading-time"
 import type * as U from "unified"
 import type { GitHubTextFile } from "./github.server"
+import { extractLinks, LinkItem } from "./rehype-plugins/extractLinks"
 import { generateToc, TocItem } from "./rehype-plugins/generateToc"
 import { removeExcludedContent } from "./rehype-plugins/removeExcludedContent"
 import { removeMdxMarker } from "./rehype-plugins/removeMdxMarker"
@@ -29,14 +30,15 @@ function handleEmbedderError({ url }: { url: string }) {
 }
 
 async function compileMdx<FrontmatterType extends Record<string, unknown>>(
-  source: GitHubTextFile,
-  files: Array<GitHubTextFile>
+  source: Pick<GitHubTextFile, "path" | "textContent">,
+  files: Array<Pick<GitHubTextFile, "path" | "textContent">>
 ) {
   const { default: remarkSlug } = await import("remark-slug")
   const { default: gfm } = await import("remark-gfm")
 
   const rootDir = path.posix.dirname(source.path)
   const toc = [] as TocItem[]
+  const links = [] as LinkItem[]
 
   try {
     const { frontmatter, code } = await bundleMDX({
@@ -70,6 +72,7 @@ async function compileMdx<FrontmatterType extends Record<string, unknown>>(
           replaceNonStandardReactAttributes,
           removeExcludedContent,
           generateToc(toc, { maxDepth: 2 }),
+          extractLinks(links),
         ]
 
         return options
@@ -82,6 +85,7 @@ async function compileMdx<FrontmatterType extends Record<string, unknown>>(
       code,
       readTime,
       frontmatter: frontmatter as FrontmatterType,
+      links,
       toc,
     }
   } catch (error: unknown) {
@@ -164,7 +168,9 @@ type MdxPage = {
    */
   frontmatter: MdxFrontmatter
 
-  toc?: any
+  links: LinkItem[]
+
+  toc?: TocItem[]
 }
 
 /**

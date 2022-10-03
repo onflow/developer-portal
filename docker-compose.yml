@@ -32,6 +32,8 @@ x-app-defaults: &app-defaults
     SHELL: /bin/bash
     PORT: 3000
     REMIX_DEV_SERVER_WS_PORT: 8002
+    LOG_LEVEL: "debug"
+    ENABLE_CONTENT_CHECKER: "true"
   volumes:
     - .:/opt/next-docs
     - ./package.json:/opt/next-docs/package.json

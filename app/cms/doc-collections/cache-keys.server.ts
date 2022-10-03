@@ -1,4 +1,4 @@
-import type { DocCollectionSource } from "~/cms/doc-collections.server"
+import type { DocCollectionSource } from "~/cms/doc-collections/types"
 
 export const documentCompiledKey = (
   source: DocCollectionSource,

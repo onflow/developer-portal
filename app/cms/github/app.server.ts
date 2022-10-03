@@ -1,18 +1,19 @@
 import { App } from "@octokit/app"
+import { ENABLE_CONTENT_CHECKER, ENABLE_PREVIEWS } from "../../utils/env.server"
 import logger from "../../utils/logging.server"
-import { Octokit } from "./octokit.server"
-import { invalidateCacheOnPush } from "./webhook-invalidate-cache"
+import {
+  contentCheckOnCheckRun,
+  contentCheckOnCheckSuite,
+} from "../doc-validation/webhook-content-check.server"
 import {
   previewLinksOnCheckRun,
   previewLinksOnCheckSuite,
-} from "./webhook-preview-links"
+} from "../previews/webhook-preview-links.server"
+import { Octokit } from "./octokit.server"
+import { invalidateCacheOnPush } from "./webhook-invalidate-cache"
 
-const {
-  ENABLE_PREVIEWS,
-  GITHUB_APP_ID,
-  GITHUB_APP_PRIVATE_KEY,
-  GITHUB_APP_WEBHOOK_SECRET,
-} = process.env
+const { GITHUB_APP_ID, GITHUB_APP_PRIVATE_KEY, GITHUB_APP_WEBHOOK_SECRET } =
+  process.env
 
 const missingKeys = Object.entries({
   GITHUB_APP_ID,
@@ -42,15 +43,17 @@ if (!missingKeys.length) {
 
   appInstance.webhooks.on("push", invalidateCacheOnPush)
 
-  if (ENABLE_PREVIEWS === "true") {
+  if (ENABLE_PREVIEWS) {
     appInstance.webhooks.on("check_suite", previewLinksOnCheckSuite)
     appInstance.webhooks.on("check_run", previewLinksOnCheckRun)
   }
-} else {
-  const message = `Github app not created because the following environment variables are missing: ${missingKeys.join(
-    ", "
-  )}`
 
+  if (ENABLE_CONTENT_CHECKER) {
+    appInstance.webhooks.on("check_suite", contentCheckOnCheckSuite)
+    appInstance.webhooks.on("check_run", contentCheckOnCheckRun)
+  }
+} else {
+  const message = `Github app not created because the following environment variables are missing: ${missingKeys}. Github webhooks will be ignored.`
   if (process.env.NODE_ENV === "production") {
     logger.error(message)
   } else {
