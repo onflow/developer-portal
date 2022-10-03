@@ -19,7 +19,7 @@ export const getAnnotations = (
               end_line: link.position.start.line,
               end_column: link.position.end.column,
               annotation_level: "failure",
-              message: "Invalid link",
+              message: link.hint || "Invalid link",
             })
           }
         })

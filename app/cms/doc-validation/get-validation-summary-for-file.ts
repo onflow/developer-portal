@@ -20,6 +20,11 @@ export const getValidationSummaryForFile = (result: FileValidationResult) => {
         if (link.position) {
           info += ` (Ln ${link.position.start.line}, Col ${link.position.start.column})`
         }
+
+        if (link.hint) {
+          info += `\r\n\r\n    > ${link.hint}`
+        }
+
         return info
       })
 
