@@ -10,9 +10,9 @@ export const invalidateCacheOnPush = (event: EmitterWebhookEvent<"push">) => {
   )
   const keyCount = cacheKeysToInvalidate.size
 
-  const { sender, ref, repository } = event.payload
+  const { sender, ref, repository, commits } = event.payload
 
-  const allChangedFiles = event.payload.commits.flatMap((commit) => [
+  const allChangedFiles = commits.flatMap((commit) => [
     ...commit.added,
     ...commit.removed,
     ...commit.modified,
