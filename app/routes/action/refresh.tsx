@@ -3,7 +3,6 @@ import { getMdxPage } from "~/cms/utils/mdx"
 // import { getRequiredServerEnvVar } from "~/utils/cms/helpers";
 import { findDocCollection } from "~/cms/collections.server"
 import { redisCache } from "~/cms/redis.server"
-import { recordRefreshEventInMixpanel } from "~/utils/mixpanel.server"
 
 export interface Contribution {
   contributor: string
