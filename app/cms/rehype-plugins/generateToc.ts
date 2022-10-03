@@ -2,7 +2,12 @@ import type * as H from "hast"
 import Slugger from "github-slugger"
 import { toString } from "hast-util-to-string"
 import { visit } from "unist-util-visit"
-import { isElement, isMdxJsxFlowElement } from "./utils"
+import {
+  isElement,
+  isMdxJsxFlowElement,
+  findNodeId,
+  findTagName,
+} from "./utils"
 
 export type TocItem = {
   title: string
@@ -20,39 +25,6 @@ export type GenerateTocOptions = {
 const slugs = new Slugger()
 
 const HEADER_TAGNAME_REGEXP = /^h([1-6])$/i
-
-/**
- * Attempts to locate any explicit `id` attribute set on a node.
- */
-const findId = (node: H.Node) => {
-  if (isMdxJsxFlowElement(node)) {
-    // Check for an explicit JSX `id=` attribute
-    const idAttribute = node.attributes.find(
-      (attr) => attr.type === "mdxJsxAttribute" && attr.name === "id"
-    )
-
-    if (typeof idAttribute?.value === "string") {
-      return idAttribute.value
-    }
-  }
-
-  if (
-    isElement(node) &&
-    node.properties &&
-    "id" in node.properties &&
-    node.properties.id &&
-    !Array.isArray(node.properties.id)
-  ) {
-    // Check for an explicit HTML `id=` attribute
-    return String(node.properties.id)
-  }
-
-  // Check for `hProperties` from <https://github.com/syntax-tree/mdast-util-to-hast>
-  const id = (node.data?.hProperties as any)?.id
-  if (typeof id === "string") {
-    return id
-  }
-}
 
 /**
  * Generates a table of contents from any `<h# />` elements in the AST.
@@ -78,7 +50,7 @@ export const generateToc =
         return
       }
 
-      const tagName = isElement(node) ? node.tagName : node.name
+      const tagName = findTagName(node)
 
       if (!tagName) {
         // Not a node type we care about or can identify
@@ -100,7 +72,7 @@ export const generateToc =
       }
 
       const title = toString(node)
-      const id = findId(node)
+      const id = findNodeId(node)
       const slug = slugs.slug(id || title)
 
       toc.push({ title, hash: `#${slug}` })

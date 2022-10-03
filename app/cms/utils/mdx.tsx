@@ -21,13 +21,16 @@ import {
   LargeVideoCard,
   StaticCheckbox,
 } from "~/ui/design-system"
-import { DocCollectionSource } from "../../cms/doc-collections.server"
 import { InternalImg } from "../../ui/design-system/src/lib/Components/InternalImg/InternalImg"
-import { documentCompiledKey, documentDownloadKey } from "../cache-keys.server"
+import { stripMarkdownExtension } from "../../ui/design-system/src/lib/utils/stripMarkdownExtension"
+import {
+  documentCompiledKey,
+  documentDownloadKey,
+} from "../doc-collections/cache-keys.server"
+import { DocCollectionSource } from "../doc-collections/types"
 import { NotFoundError } from "../errors/not-found-error"
 import { returnRedirectForRoute } from "./return-redirect-for-route"
 import { Theme, useTheme } from "./theme.provider"
-import { stripExtension } from "../../ui/design-system/src/lib/utils/stripExtension"
 
 type CachifiedOptions = {
   forceFresh?: boolean | string
@@ -188,7 +191,7 @@ function GetMdxComponents(theme: Theme) {
       return (
         <InternalContentLink
           {...rest}
-          href={stripExtension(returnRedirectForRoute(href) ?? href)}
+          href={stripMarkdownExtension(returnRedirectForRoute(href) ?? href)}
           className="not-prose"
         />
       )

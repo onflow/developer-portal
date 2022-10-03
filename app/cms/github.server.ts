@@ -1,11 +1,10 @@
 /// <reference types="node" />
 
 import { posix } from "node:path"
-import { DocCollectionSource } from "../cms/doc-collections.server"
+import { DocCollectionSource } from "./doc-collections/types"
 import { InvalidPathError } from "./errors/invalid-path-error"
 import { NotFoundError } from "./errors/not-found-error"
 import { UnknownEncoding } from "./errors/unknown-encoding"
-import { downloadFile } from "./github/download-file"
 import { fetchDirectoryContent } from "./github/fetch-directory-content"
 import { octokit } from "./github/octokit.server"
 import { Repo } from "./types"
@@ -292,22 +291,4 @@ async function getAttributionData(repo: Repo, path: string) {
   }
 
   return attributionData
-}
-
-/**
- * Downloads a file from a Github source by a path that is relative to the
- * `source.rootPath`
- */
-export async function downloadFileByPath(
-  source: DocCollectionSource,
-  path: string
-) {
-  const resolvedPath = posix.join(source.rootPath, path)
-
-  return downloadFile({
-    owner: source.owner,
-    repo: source.name,
-    ref: source.branch,
-    path: resolvedPath,
-  })
 }

@@ -1,13 +1,6 @@
-import { Repo } from "../cms/types"
-import { InternalLandingHeaderProps } from "../ui/design-system/src/lib/Components/InternalLandingHeader"
-import { SidebarItemList } from "../ui/design-system/src/lib/Components/InternalSidebar"
-
-export const JSON_MANIFEST_FILENAME = "flow-docs.json"
-
-export function manifestCacheKey(source: DocCollectionSource): string {
-  return [`manifest`, source.owner, source.name, source.branch].join(":")
-}
-
+import { Repo } from "../types"
+import { InternalLandingHeaderProps } from "../../ui/design-system/src/lib/Components/InternalLandingHeader"
+import { SidebarItemList } from "../../ui/design-system/src/lib/Components/InternalSidebar"
 /**
  * Represents the source location for a collection of documents.
  */
