@@ -79,8 +79,11 @@ export function getDocumentPathsForPR(event: PushEvent): PathsResult {
       allChangedFiles
     )
 
+    if (documentPaths.length === 0) {
+      continue
+    }
+
     for (let path of documentPaths) {
-      let isIndex = path.endsWith("index.md") || path.endsWith("index.mdx")
       let urlPath = path.slice(docCollection.source.rootPath.length)
       urlPath = urlPath.replace(/\.[^/.]+$/, "")
       updatedDocuments.add(urlPath)
