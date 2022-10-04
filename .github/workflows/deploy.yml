@@ -144,7 +144,7 @@ jobs:
           notification_title: "{workflow} {job} {status_message}"
           message_format: "{emoji} *{workflow}* {job} {status_message}"
         env:
-          SLACK_WEBHOOK_URL: ${{ secrets.SLACK_WEBHOOK_ENDPOINT }}
+          SLACK_WEBHOOK_URL: ${{ secrets.SLACK_WEBHOOK_ENDPOINT_MAIN_CHANNEL }}
 
   deploy-production:
     name: Deploy Production
@@ -164,5 +164,5 @@ jobs:
           notification_title: "{workflow} {job} {status_message}"
           message_format: "{emoji} *{workflow}* {job} {status_message}"
         env:
-          SLACK_WEBHOOK_URL: ${{ secrets.SLACK_WEBHOOK_ENDPOINT }}
+          SLACK_WEBHOOK_URL: ${{ secrets.SLACK_WEBHOOK_ENDPOINT_MAIN_CHANNEL }}
 
