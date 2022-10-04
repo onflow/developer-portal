@@ -1,5 +1,6 @@
 import mixpanel from "mixpanel"
 import { getRequiredServerEnvVar } from "~/cms/helpers"
+import { PathsResult } from "~/cms/github-webhook.server"
 
 const mpToken = getRequiredServerEnvVar("MIXPANEL_DOCSITE_PROJECT_TOKEN")
 
@@ -12,7 +13,7 @@ export const recordRefreshEventInMixpanel = (eventData: {
   user: string
   ref: string
   repo: { name: string; owner: string }
-  updatedFiles: string[]
+  updatedDocuments: string[]
 }) => {
   const mp = mixpanel.init(mpToken, { debug: true })
   console.log("Got contribution event")

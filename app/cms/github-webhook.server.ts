@@ -1,4 +1,5 @@
 import { PushEvent, Commit } from "@octokit/webhooks-types"
+import { EmitterWebhookEvent } from "@octokit/webhooks"
 import { posix } from "node:path"
 import invariant from "tiny-invariant"
 import { JSON_MANIFEST_FILENAME } from "./doc-collections/constants"
@@ -14,7 +15,7 @@ type ProcessResult = {
   cacheKeysToInvalidate: Set<string>
 }
 
-type PathsResult = {
+export type PathsResult = {
   updatedDocuments: Set<string>
 }
 
