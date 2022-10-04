@@ -73,6 +73,7 @@ export function getDocumentPathsForPR(event: PushEvent): PathsResult {
 
   for (let docCollection of matchingDocCollections) {
     const allChangedFiles = getChangedFilesFromCommits(event.commits)
+
     const documentPaths = getPathsOfDocumentsFromChanges(
       docCollection,
       allChangedFiles
@@ -83,9 +84,7 @@ export function getDocumentPathsForPR(event: PushEvent): PathsResult {
     }
 
     for (let path of documentPaths) {
-      let urlPath = path.slice(docCollection.source.rootPath.length)
-      urlPath = urlPath.replace(/\.[^/.]+$/, "")
-      updatedDocuments.add(urlPath)
+      updatedDocuments.add(path)
     }
   }
 
