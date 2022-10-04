@@ -27,6 +27,15 @@ jobs:
         run: yarn install
       - name: Formatting
         run: yarn format:check:app
+      - uses: ravsamhq/notify-slack-action@v2
+        if: always()
+        with:
+          status: ${{ job.status }}
+          notification_title: "{workflow} {status_message}"
+          message_format: "{emoji} *{workflow}* {status_message}"
+          notify_when: "failure"
+        env:
+          SLACK_WEBHOOK_URL: ${{ secrets.SLACK_WEBHOOK_ENDPOINT }}
 
   lint:
     name: ESLint
@@ -40,6 +49,15 @@ jobs:
         run: yarn install
       - name: Eslint
         run: yarn lint
+      - uses: ravsamhq/notify-slack-action@v2
+        if: always()
+        with:
+          status: ${{ job.status }}
+          notification_title: "{workflow} {status_message}"
+          message_format: "{emoji} *{workflow}* {status_message}"
+          notify_when: "failure"
+        env:
+          SLACK_WEBHOOK_URL: ${{ secrets.SLACK_WEBHOOK_ENDPOINT }}
 
   vitest:
     name: Vitest
@@ -52,6 +70,15 @@ jobs:
       - name: Install modules
         run: yarn install
       - run: yarn test
+      - uses: ravsamhq/notify-slack-action@v2
+        if: always()
+        with:
+          status: ${{ job.status }}
+          notification_title: "{workflow} {status_message}"
+          message_format: "{emoji} *{workflow}* {status_message}"
+          notify_when: "failure"
+        env:
+          SLACK_WEBHOOK_URL: ${{ secrets.SLACK_WEBHOOK_ENDPOINT }}
 
   typecheck:
     name: TypeScript
@@ -67,6 +94,15 @@ jobs:
         run: yarn build:0-svg
       - name: Typescript
         run: yarn typecheck
+      - uses: ravsamhq/notify-slack-action@v2
+        if: always()
+        with:
+          status: ${{ job.status }}
+          notification_title: "{workflow} {status_message}"
+          message_format: "{emoji} *{workflow}* {status_message}"
+          notify_when: "failure"
+        env:
+          SLACK_WEBHOOK_URL: ${{ secrets.SLACK_WEBHOOK_ENDPOINT }}
 
   build:
     name: Build
@@ -80,6 +116,15 @@ jobs:
         run: yarn install
       - name: Build
         run: yarn build
+      - uses: ravsamhq/notify-slack-action@v2
+        if: always()
+        with:
+          status: ${{ job.status }}
+          notification_title: "{workflow} {status_message}"
+          message_format: "{emoji} *{workflow}* {status_message}"
+          notify_when: "failure"
+        env:
+          SLACK_WEBHOOK_URL: ${{ secrets.SLACK_WEBHOOK_ENDPOINT }}
 
   deploy:
     name: Deploy Staging
@@ -96,8 +141,8 @@ jobs:
         if: always()
         with:
           status: ${{ job.status }}
-          notification_title: "{workflow} to staging has {status_message}"
-          message_format: "{emoji} *{workflow}* {status_message} in <{repo_url}|{repo}>"
+          notification_title: "{workflow} {status_message}"
+          message_format: "{emoji} *{workflow}* {status_message}"
         env:
           SLACK_WEBHOOK_URL: ${{ secrets.SLACK_WEBHOOK_ENDPOINT }}
 
@@ -116,8 +161,8 @@ jobs:
         if: always()
         with:
           status: ${{ job.status }}
-          notification_title: "{workflow} to production has {status_message}"
-          message_format: "{emoji} *{workflow}* {status_message} in <{repo_url}|{repo}>"
+          notification_title: "{workflow} {status_message}"
+          message_format: "{emoji} *{workflow}* {status_message}"
         env:
           SLACK_WEBHOOK_URL: ${{ secrets.SLACK_WEBHOOK_ENDPOINT }}
 
