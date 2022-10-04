@@ -1,6 +1,5 @@
 import mixpanel from "mixpanel"
 import { getRequiredServerEnvVar } from "~/cms/helpers"
-import { PathsResult } from "~/cms/github-webhook.server"
 
 const mpToken = getRequiredServerEnvVar("MIXPANEL_DOCSITE_PROJECT_TOKEN")
 
