@@ -1,12 +1,13 @@
 import { PushEvent } from "@octokit/webhooks-types"
 import { posix } from "node:path"
 import invariant from "tiny-invariant"
-import {
-  JSON_MANIFEST_FILENAME,
-  manifestCacheKey,
-} from "~/cms/doc-collections.server"
+import { JSON_MANIFEST_FILENAME } from "./doc-collections/constants"
+import { getManifestCacheKey } from "~/cms/doc-collections/get-manifest-cache-key"
 import { docCollections } from "~/data/doc-collections"
-import { documentCompiledKey, documentDownloadKey } from "./cache-keys.server"
+import {
+  documentCompiledKey,
+  documentDownloadKey,
+} from "./doc-collections/cache-keys.server"
 
 type ProcessResult = {
   docCollectionStatus: "match" | "not-found"
@@ -53,7 +54,7 @@ export function pushEventCacheKeysToInvalidate(
     )
 
     if (allChangedFiles.includes(manifestPath)) {
-      keysToInvalidate.add(manifestCacheKey(docCollection.source))
+      keysToInvalidate.add(getManifestCacheKey(docCollection.source))
     }
 
     let documentPaths = allChangedFiles.filter((path) => {

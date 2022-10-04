@@ -1,12 +1,14 @@
-import { Octokit } from "./octokit.server"
 import { EmitterWebhookEvent } from "@octokit/webhooks"
-import logger from "../../utils/logging.server"
-import { getPreviewLinkSummary } from "../preview-links.server"
 import { ensure } from "errorish"
+import logger from "../../utils/logging.server"
+import { Octokit } from "../github/octokit.server"
+import { getAnnotations } from "./get-annotations.server"
+import { getValidationSummaryForCheckRun } from "./get-validation-summary-for-check-run.server"
+import { validateChangesForCheckRun } from "./validate-for-check-run"
 
-const CHECK_RUN_NAME = "Developer Portal Preview Links"
+const CHECK_RUN_NAME = "Developer Portal Content Check"
 
-export const previewLinksOnCheckSuite = async ({
+export const contentCheckOnCheckSuite = async ({
   payload,
   octokit,
 }: EmitterWebhookEvent<"check_suite"> & {
@@ -20,7 +22,7 @@ export const previewLinksOnCheckSuite = async ({
   }
 
   logger.info(
-    `Creating ${payload.action} check run for check suite ${payload.check_suite.id}`
+    `Creating ${payload.action} check run "${CHECK_RUN_NAME}" for check suite ${payload.check_suite.id}`
   )
 
   await octokit.checks.create({
@@ -31,7 +33,7 @@ export const previewLinksOnCheckSuite = async ({
   })
 }
 
-export const previewLinksOnCheckRun = async ({
+export const contentCheckOnCheckRun = async ({
   payload,
   octokit,
 }: EmitterWebhookEvent<"check_run"> & {
@@ -57,7 +59,9 @@ export const previewLinksOnCheckRun = async ({
   }
 
   if (payload.action === "created") {
-    logger.info(`Running check run ${payload.check_run.id}`)
+    logger.info(
+      `Running check run #${payload.check_run.id} (${payload.check_run.name})`
+    )
     await octokit.checks.update({
       owner: payload.repository.owner.login,
       repo: payload.repository.name,
@@ -66,19 +70,30 @@ export const previewLinksOnCheckRun = async ({
       started_at: new Date().toISOString(),
     })
 
-    let summary: string = ""
+    let output:
+      | { summary: string; title: string; annotations?: Array<any> }
+      | undefined
     let conclusion = "neutral"
 
     try {
-      summary = await getPreviewLinkSummary(
+      const result = await validateChangesForCheckRun(
         payload.repository,
         payload.check_run
       )
+      const summary = getValidationSummaryForCheckRun(result)
+      output = {
+        title: summary.title,
+        summary: summary.summary,
+        // Github supports a max of 50 annotations.
+        annotations: getAnnotations(result).slice(0, 49),
+      }
     } catch (error) {
-      logger.error("Generating preview links failed", error)
-      summary = `Generating preview links failed\r\n\r\n${
-        ensure(error).message
-      }`
+      logger.error("Validating check run failed", error)
+      const { message } = ensure(error)
+      output = {
+        title: "Unable to validate links",
+        summary: `Validting links failed: ${message}`,
+      }
     } finally {
       await octokit.checks.update({
         owner: payload.repository.owner.login,
@@ -87,7 +102,7 @@ export const previewLinksOnCheckRun = async ({
         status: "completed",
         completed_at: new Date().toISOString(),
         conclusion,
-        output: { summary, title: CHECK_RUN_NAME },
+        output,
       })
     }
   }

@@ -1,8 +1,8 @@
 import { LoaderArgs } from "@remix-run/node"
 import { fileTypeFromBuffer } from "file-type"
 import mime from "mime-types"
-import { downloadFileByPath } from "~/cms"
 import { findDocCollection } from "../../cms/collections.server"
+import { downloadFileFromSource } from "../../cms/doc-collections/download-file-from-source"
 import { NotFoundError } from "../../cms/errors/not-found-error"
 import { ENABLE_PREVIEWS } from "../../utils/env.server"
 
@@ -28,7 +28,7 @@ export const loader = async ({ params, request }: LoaderArgs) => {
 
   try {
     // TODO: cache this!
-    const buffer = await downloadFileByPath(
+    const buffer = await downloadFileFromSource(
       {
         ...contentSpec.source,
         branch: preview || contentSpec.source.branch,

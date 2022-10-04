@@ -27,6 +27,8 @@ function getLogger() {
 
   const levelIndex = LOG_LEVELS.indexOf(level)
 
+  console.log(`Creating logger with log level ${level} (${levelIndex})`)
+
   return LOG_LEVELS.reduce(
     (logger, level) => ({
       ...logger,

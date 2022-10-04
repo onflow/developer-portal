@@ -28,7 +28,13 @@
     "test:e2e:run": "cross-env PORT=8811 start-server-and-test start:mocks http://localhost:8811 \"npx cypress run\"",
     "lint": "eslint --ext .js,.jsx,.ts,.tsx --max-warnings 0 app",
     "prepare": "husky install",
-    "jsonschema": "typescript-json-schema tsconfig.json DocCollectionManifest --include app/cms/doc-collections.server.ts -o app/data/doc-collection-manifest-schema.json"
+    "jsonschema": "typescript-json-schema tsconfig.json DocCollectionManifest --include app/cms/doc-collections.server.ts -o app/data/doc-collection-manifest-schema.json",
+    "docker:up": "docker compose up",
+    "docker:down": "docker compose down",
+    "docker:logs": "docker compose logs",
+    "docker:yarn": "docker compose restart app-yarn",
+    "docker:redis-cli": "docker compose exec cache redis-cli -h cache -a flow_docs",
+    "docker:flush-cache": "docker compose exec cache redis-cli -h cache -a flow_docs FLUSHALL"
   },
   "lint-staged": {
     "*.{js,jsx,ts,tsx}": "eslint --fix",
@@ -90,6 +96,7 @@
     "mobx": "^6.6.1",
     "msw": "^0.44.0",
     "p-queue": "^7.2.0",
+    "pluralize": "^8.0.0",
     "postcss-url": "^10.1.3",
     "prism-react-renderer": "^1.3.3",
     "react": "^17.0.2",
@@ -138,6 +145,7 @@
     "@testing-library/user-event": "^14.2.1",
     "@types/lodash.debounce": "^4.0.7",
     "@types/mime-types": "^2.1.1",
+    "@types/pluralize": "^0.0.29",
     "@types/react": "^17.0.45",
     "@types/react-dom": "^17.0.17",
     "@vitejs/plugin-react": "^2.0.0",

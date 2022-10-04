@@ -3,7 +3,7 @@ import { ensure as ensureError } from "errorish"
 import { RequestError } from "@octokit/request-error"
 import { posix } from "node:path"
 import invariant from "tiny-invariant"
-import { cachified, downloadFileByPath, redisCache } from "~/cms"
+import { cachified, redisCache } from "~/cms"
 import manifestSchema from "~/data/doc-collection-manifest-schema.json"
 import { InternalLandingHeaderProps } from "~/ui/design-system/src/lib/Components/InternalLandingHeader"
 import { SidebarItemList } from "~/ui/design-system/src/lib/Components/InternalSidebar"
@@ -12,11 +12,12 @@ import {
   DocCollection,
   DocCollectionManifest,
   DocCollectionSource,
-  JSON_MANIFEST_FILENAME,
-  manifestCacheKey,
-} from "./doc-collections.server"
+} from "./doc-collections/types"
+import { JSON_MANIFEST_FILENAME } from "./doc-collections/constants"
 import { findMostSpecificPath } from "./utils/find-most-specific-path"
 import { stripSlahes } from "./utils/strip-slashes"
+import { getManifestCacheKey } from "./doc-collections/get-manifest-cache-key"
+import { downloadFileFromSource } from "./doc-collections/download-file-from-source"
 
 export const collectionPaths = Object.keys(docCollections)
 
@@ -106,7 +107,7 @@ export async function findDocManifest(
   }
 
   const fetchRemoteManifest = async (): Promise<DocCollectionManifest> => {
-    const buffer = await downloadFileByPath(
+    const buffer = await downloadFileFromSource(
       {
         ...source,
         branch: options?.ref || source.branch,
@@ -144,7 +145,7 @@ export async function findDocManifest(
 
   const [remoteManifest, error] = await cachified({
     cache: redisCache,
-    key: manifestCacheKey({
+    key: getManifestCacheKey({
       ...docCollection.source,
       branch: options?.ref || docCollection.source.branch,
     }),

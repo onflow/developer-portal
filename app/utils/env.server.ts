@@ -15,6 +15,8 @@ export function getEnv() {
 }
 
 export const ENABLE_PREVIEWS = process.env.ENABLE_PREVIEWS === "true"
+export const ENABLE_CONTENT_CHECKER =
+  process.env.ENABLE_CONTENT_CHECKER === "true"
 
 export type ENV = ReturnType<typeof getEnv>
 
