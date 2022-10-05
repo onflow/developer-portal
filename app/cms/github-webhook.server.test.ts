@@ -1,4 +1,7 @@
-import { pushEventCacheKeysToInvalidate } from "./github-webhook.server"
+import {
+  pushEventCacheKeysToInvalidate,
+  getDocumentPathsForPR,
+} from "./github-webhook.server"
 
 let exampleEvent: any = {
   ref: "refs/heads/json-manifest-valid",
@@ -209,4 +212,51 @@ test("doesn't return keys when branch doesn't match", () => {
 
   const result = pushEventCacheKeysToInvalidate(event)
   expect(result.docCollectionStatus).toBe("not-found")
+})
+
+test("returns paths for documents modified by the PR", () => {
+  const docs = new Set()
+
+  const changes = [
+    "docs/content/dapp-development/index.md",
+    "docs/content/dapp-development/in-dapp-payments.mdx",
+    "src/code/file.js",
+  ]
+
+  // expect changes to include only files in docs folder.
+  changes.slice(0, -1).forEach((c) => docs.add(c))
+
+  const event: any = {
+    ...exampleEvent,
+    commits: [
+      {
+        added: [],
+        removed: [],
+        modified: changes,
+      },
+    ],
+  }
+
+  const result = getDocumentPathsForPR(event)
+  expect(result.updatedDocuments).toStrictEqual(docs)
+})
+
+test("returns empty set when no docs changes are found", () => {
+  const docs = new Set()
+
+  const changes = ["src/code/file.js", "src/code/another-file.js"]
+
+  const event: any = {
+    ...exampleEvent,
+    commits: [
+      {
+        added: [],
+        removed: [],
+        modified: changes,
+      },
+    ],
+  }
+
+  const result = getDocumentPathsForPR(event)
+  expect(result.updatedDocuments).toStrictEqual(docs)
 })
