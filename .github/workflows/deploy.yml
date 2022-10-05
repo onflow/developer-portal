@@ -31,7 +31,7 @@ jobs:
         if: always()
         with:
           status: ${{ job.status }}
-          notification_title: "{workflow} {job} {status_message}"
+          notification_title: "Developer Portal Build Failiure"
           message_format: "{emoji} *{workflow}* {job} {status_message}"
           notify_when: "failure"
         env:
@@ -53,7 +53,7 @@ jobs:
         if: always()
         with:
           status: ${{ job.status }}
-          notification_title: "{workflow} {job} {status_message}"
+          notification_title: "Developer Portal Build Failiure"
           message_format: "{emoji} *{workflow}* {job} {status_message}"
           notify_when: "failure"
         env:
@@ -74,7 +74,7 @@ jobs:
         if: always()
         with:
           status: ${{ job.status }}
-          notification_title: "{workflow} {job} {status_message}"
+          notification_title: "Developer Portal Build Failiure"
           message_format: "{emoji} *{workflow}* {job} {status_message}"
           notify_when: "failure"
         env:
@@ -98,7 +98,7 @@ jobs:
         if: always()
         with:
           status: ${{ job.status }}
-          notification_title: "{workflow} {job} {status_message}"
+          notification_title: "Developer Portal Build Failiure"
           message_format: "{emoji} *{workflow}* {job} {status_message}"
           notify_when: "failure"
         env:
@@ -120,7 +120,7 @@ jobs:
         if: always()
         with:
           status: ${{ job.status }}
-          notification_title: "{workflow} {job} {status_message}"
+          notification_title: "Developer Portal Build Failiure"
           message_format: "{emoji} *{workflow}* {job} {status_message}"
           notify_when: "failure"
         env:
@@ -141,8 +141,8 @@ jobs:
         if: always()
         with:
           status: ${{ job.status }}
-          notification_title: "{workflow} {job} {status_message}"
-          message_format: "{emoji} *{workflow}* {job} {status_message}"
+          notification_title: "Staging Deployment"
+          message_format: "{emoji} *{workflow}* to staging {status_message}"
         env:
           SLACK_WEBHOOK_URL: ${{ secrets.SLACK_WEBHOOK_ENDPOINT_MAIN_CHANNEL }}
 
@@ -161,8 +161,8 @@ jobs:
         if: always()
         with:
           status: ${{ job.status }}
-          notification_title: "{workflow} {job} {status_message}"
-          message_format: "{emoji} *{workflow}* {job} {status_message}"
+          notification_title: "Production Deployment"
+          message_format: "{emoji} *{workflow}* to production {status_message}"
         env:
           SLACK_WEBHOOK_URL: ${{ secrets.SLACK_WEBHOOK_ENDPOINT_MAIN_CHANNEL }}
 
