@@ -1,6 +1,7 @@
-import { octokit } from "./octokit.server"
 import { cachified } from "../cache.server"
+import { directoryListKey } from "../doc-collections/cache-keys.server"
 import { redisCache } from "../redis.server"
+import { octokit } from "./octokit.server"
 
 export type FetchDirectoryContentOptions = {
   owner: string
@@ -24,7 +25,7 @@ export const fetchDirectoryContent = async ({
     // a refresh it doesn't always refresh every single entry.
     maxAge: 1000 * 60 * 60 * 24 + Math.random() * 1000 * 60,
     forceFresh: process.env.FORCE_REFRESH === "true",
-    key: `github-dir-list:${owner}:${repo}:${ref}:${path}`,
+    key: directoryListKey({ owner, repo, ref, path }),
     getFreshValue: async () => {
       const { data } = await octokit.repos.getContent({
         owner,

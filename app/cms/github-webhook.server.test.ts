@@ -1,6 +1,6 @@
 import {
-  pushEventCacheKeysToInvalidate,
   getDocumentPathsForPR,
+  pushEventCacheKeysToInvalidate,
 } from "./github-webhook.server"
 
 let exampleEvent: any = {
@@ -53,7 +53,7 @@ test("it returns document cache keys when document are modified", () => {
 
   const result = pushEventCacheKeysToInvalidate(event)
 
-  const keyPrefix = [
+  const docCollectionKey = [
     `onflow`,
     `mock-developer-doc`,
     `json-manifest-valid`,
@@ -62,10 +62,11 @@ test("it returns document cache keys when document are modified", () => {
 
   expect(result.cacheKeysToInvalidate).toEqual(
     new Set([
-      `${keyPrefix}:faq:compiled`,
-      `${keyPrefix}:faq:downloaded`,
-      `${keyPrefix}:foobar:compiled`,
-      `${keyPrefix}:foobar:downloaded`,
+      `github-dir-list:${docCollectionKey}`,
+      `${docCollectionKey}:faq:compiled`,
+      `${docCollectionKey}:faq:downloaded`,
+      `${docCollectionKey}:foobar:compiled`,
+      `${docCollectionKey}:foobar:downloaded`,
     ])
   )
 })
@@ -83,7 +84,7 @@ test("it returns special paths for index documents", () => {
   }
 
   const result = pushEventCacheKeysToInvalidate(event)
-  const keyPrefix = [
+  const docCollectionKey = [
     `onflow`,
     `mock-developer-doc`,
     `json-manifest-valid`,
@@ -92,14 +93,15 @@ test("it returns special paths for index documents", () => {
 
   expect(result.cacheKeysToInvalidate).toEqual(
     new Set([
-      `${keyPrefix}:index:compiled`,
-      `${keyPrefix}:index:downloaded`,
-      `${keyPrefix}::compiled`,
-      `${keyPrefix}::downloaded`,
-      `${keyPrefix}:foo/index:compiled`,
-      `${keyPrefix}:foo/index:downloaded`,
-      `${keyPrefix}:foo:compiled`,
-      `${keyPrefix}:foo:downloaded`,
+      `github-dir-list:${docCollectionKey}`,
+      `${docCollectionKey}:index:compiled`,
+      `${docCollectionKey}:index:downloaded`,
+      `${docCollectionKey}::compiled`,
+      `${docCollectionKey}::downloaded`,
+      `${docCollectionKey}:foo/index:compiled`,
+      `${docCollectionKey}:foo/index:downloaded`,
+      `${docCollectionKey}:foo:compiled`,
+      `${docCollectionKey}:foo:downloaded`,
     ])
   )
 })
@@ -124,17 +126,18 @@ test("it returns keys for the onflow repoo", () => {
   }
 
   const result = pushEventCacheKeysToInvalidate(event)
-  const keyPrefix = `onflow:flow:master:docs/content/dapp-development/`
+  const docCollectionKey = `onflow:flow:master:docs/content/dapp-development/`
 
   expect(result.docCollectionStatus).toBe("match")
   expect(result.cacheKeysToInvalidate).toEqual(
     new Set([
-      `${keyPrefix}::compiled`,
-      `${keyPrefix}::downloaded`,
-      `${keyPrefix}:index:compiled`,
-      `${keyPrefix}:index:downloaded`,
-      `${keyPrefix}:in-dapp-payments:compiled`,
-      `${keyPrefix}:in-dapp-payments:downloaded`,
+      `${docCollectionKey}::compiled`,
+      `${docCollectionKey}::downloaded`,
+      `${docCollectionKey}:index:compiled`,
+      `${docCollectionKey}:index:downloaded`,
+      `${docCollectionKey}:in-dapp-payments:compiled`,
+      `${docCollectionKey}:in-dapp-payments:downloaded`,
+      `github-dir-list:${docCollectionKey}`,
     ])
   )
 })

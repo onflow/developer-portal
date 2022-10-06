@@ -1,13 +1,14 @@
-import { PushEvent, Commit } from "@octokit/webhooks-types"
+import { Commit, PushEvent } from "@octokit/webhooks-types"
 import { posix } from "node:path"
 import invariant from "tiny-invariant"
-import { JSON_MANIFEST_FILENAME } from "./doc-collections/constants"
 import { getManifestCacheKey } from "~/cms/doc-collections/get-manifest-cache-key"
 import { docCollections } from "~/data/doc-collections"
 import {
+  directoryListKey,
   documentCompiledKey,
   documentDownloadKey,
 } from "./doc-collections/cache-keys.server"
+import { JSON_MANIFEST_FILENAME } from "./doc-collections/constants"
 
 type ProcessResult = {
   docCollectionStatus: "match" | "not-found"
@@ -121,6 +122,15 @@ export function pushEventCacheKeysToInvalidate(
     )
 
     for (let path of documentPaths) {
+      keysToInvalidate.add(
+        directoryListKey({
+          owner: docCollection.source.owner,
+          repo: docCollection.source.name,
+          ref: docCollection.source.branch,
+          path: docCollection.source.rootPath,
+        })
+      )
+
       let isIndex = path.endsWith("index.md") || path.endsWith("index.mdx")
       let urlPath = path.slice(docCollection.source.rootPath.length)
 
