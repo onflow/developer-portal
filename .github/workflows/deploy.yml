@@ -148,7 +148,7 @@ jobs:
           status: ${{ job.status }}
           notification_title: "Deploying `${{ github.ref_name }}` to Staging"
           message_format: "{emoji} *{workflow}* to staging {status_message}"
-          footer: "<{run_url}|View Run>"
+          footer: "<{run_url}|View Run> | <https://flow-docs-staging.fly.dev>"
         env:
           SLACK_WEBHOOK_URL: ${{ secrets.SLACK_WEBHOOK_ENDPOINT_MAIN_CHANNEL }}
 
@@ -169,7 +169,7 @@ jobs:
           status: ${{ job.status }}
           notification_title: "Deploying `${{ github.ref_name }}` to Production"
           message_format: "{emoji} *{workflow}* to production {status_message}"
-          footer: "<{run_url}|View Run>"
+          footer: "<{run_url}|View Run> | <https://developers.flow.com>"
         env:
           SLACK_WEBHOOK_URL: ${{ secrets.SLACK_WEBHOOK_ENDPOINT_MAIN_CHANNEL }}
 
