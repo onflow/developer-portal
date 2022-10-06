@@ -9,6 +9,7 @@ import {
   documentDownloadKey,
 } from "./doc-collections/cache-keys.server"
 import { JSON_MANIFEST_FILENAME } from "./doc-collections/constants"
+import { stripSlahes } from "./utils/strip-slashes"
 
 type ProcessResult = {
   docCollectionStatus: "match" | "not-found"
@@ -127,7 +128,7 @@ export function pushEventCacheKeysToInvalidate(
           owner: docCollection.source.owner,
           repo: docCollection.source.name,
           ref: docCollection.source.branch,
-          path: docCollection.source.rootPath,
+          path: posix.resolve("/", stripSlahes(docCollection.source.rootPath)),
         })
       )
 
@@ -136,7 +137,7 @@ export function pushEventCacheKeysToInvalidate(
           owner: docCollection.source.owner,
           repo: docCollection.source.name,
           ref: docCollection.source.branch,
-          path: posix.dirname(path),
+          path: posix.resolve("/", posix.dirname(path)),
         })
       )
 

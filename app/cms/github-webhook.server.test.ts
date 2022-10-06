@@ -62,7 +62,7 @@ test("it returns document cache keys when document are modified", () => {
 
   expect(result.cacheKeysToInvalidate).toEqual(
     new Set([
-      `github-dir-list:${docCollectionKey}`,
+      `github-dir-list:onflow:mock-developer-doc:json-manifest-valid:/docs`,
       `${docCollectionKey}:faq:compiled`,
       `${docCollectionKey}:faq:downloaded`,
       `${docCollectionKey}:foobar:compiled`,
@@ -93,7 +93,8 @@ test("it returns special paths for index documents", () => {
 
   expect(result.cacheKeysToInvalidate).toEqual(
     new Set([
-      `github-dir-list:${docCollectionKey}`,
+      `github-dir-list:onflow:mock-developer-doc:json-manifest-valid:/docs`,
+      `github-dir-list:onflow:mock-developer-doc:json-manifest-valid:/docs/foo`,
       `${docCollectionKey}:index:compiled`,
       `${docCollectionKey}:index:downloaded`,
       `${docCollectionKey}::compiled`,
@@ -137,7 +138,7 @@ test("it returns keys for the onflow repoo", () => {
       `${docCollectionKey}:index:downloaded`,
       `${docCollectionKey}:in-dapp-payments:compiled`,
       `${docCollectionKey}:in-dapp-payments:downloaded`,
-      `github-dir-list:${docCollectionKey}`,
+      `github-dir-list:onflow:flow:master:/docs/content/dapp-development`,
     ])
   )
 })
