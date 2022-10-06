@@ -13,6 +13,8 @@ export const recordRefreshEventInMixpanel = (eventData: {
   ref: string
   repo: { name: string; owner: string }
   updatedDocuments: string[]
+  totalDocsUpdated: number
+  env: string
 }) => {
   const mp = mixpanel.init(mpToken, { debug: true })
   console.log("Got contribution event")

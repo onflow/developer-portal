@@ -17,6 +17,7 @@ export const invalidateCacheOnPush = (event: EmitterWebhookEvent<"push">) => {
 
   if (keyCount > 0) {
     const { updatedDocuments } = getDocumentPathsForPR(event.payload)
+    const docsList = Array.from(updatedDocuments)
 
     recordRefreshEventInMixpanel({
       user: sender.login,
@@ -25,7 +26,9 @@ export const invalidateCacheOnPush = (event: EmitterWebhookEvent<"push">) => {
         name: repository.name,
         owner: repository.owner.login,
       },
-      updatedDocuments: Array.from(updatedDocuments),
+      updatedDocuments: docsList,
+      totalDocsUpdated: docsList.length,
+      env: process.env.NODE_ENV,
     })
 
     logger.info(
