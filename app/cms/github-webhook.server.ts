@@ -131,6 +131,15 @@ export function pushEventCacheKeysToInvalidate(
         })
       )
 
+      keysToInvalidate.add(
+        directoryListKey({
+          owner: docCollection.source.owner,
+          repo: docCollection.source.name,
+          ref: docCollection.source.branch,
+          path: posix.dirname(path),
+        })
+      )
+
       let isIndex = path.endsWith("index.md") || path.endsWith("index.mdx")
       let urlPath = path.slice(docCollection.source.rootPath.length)
 
