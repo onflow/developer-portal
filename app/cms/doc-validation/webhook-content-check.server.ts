@@ -87,6 +87,7 @@ export const contentCheckOnCheckRun = async ({
         // Github supports a max of 50 annotations.
         annotations: getAnnotations(result).slice(0, 49),
       }
+      conclusion = summary.conclusion
     } catch (error) {
       logger.error("Validating check run failed", error)
       const { message } = ensure(error)

@@ -1,43 +1,53 @@
 import { Repository } from "@octokit/webhooks-types"
-import { ensure as ensureError } from "errorish"
-import { posix } from "node:path"
-import { isLinkExternal } from "~/ui/design-system/src/lib/utils/isLinkExternal"
-import { stripMarkdownExtension } from "~/ui/design-system/src/lib/utils/stripMarkdownExtension"
+import { ensure, ensure as ensureError } from "errorish"
 import { compileMdx } from "../compile.mdx.server"
 import { DocCollection } from "../doc-collections/types"
 import { downloadFile } from "../github/download-file"
 import { MARKDOWN_EXTENSION_FILTER } from "../github/filter-file-name-has-markdown-extension"
 import { LinkItem } from "../rehype-plugins/extractLinks"
-import { stripSlahes } from "../utils/strip-slashes"
-
-const PLACEHOLDER_ORIGIN = "https://example.com"
-
-const normalizeRelativeUrl = (path: string) =>
-  stripSlahes(stripMarkdownExtension(path.toLowerCase()))
+import {
+  isValidatedLinkFailure,
+  isValidatedLinkWarning,
+  ValidatedLink,
+  validateLink,
+} from "./validate-link"
+import { normalizeRelativeUrl } from "./validate-link-internal"
 
 export type InvalidLinkItem = LinkItem & { hint?: string }
 
-type TestableLinkItem = LinkItem & { normalized: string; isValid: boolean }
+export type FileValidationStatus =
+  /** Failed to download file from github */
+  | "download-error"
+  /** Compilation step failed */
+  | "compile-error"
+  /** The validation itself failed to run */
+  | "validation-error"
+  /** Failed validation */
+  | "failure"
+  /** Passed validation with warnings */
+  | "warning"
+  /** Passed validation */
+  | "ok"
+
+export type FileValidationStatusError = Extract<
+  FileValidationStatus,
+  "download-error" | "compile-error" | "validation-error"
+>
+export type FileValidationStatusComplete = Extract<
+  FileValidationStatus,
+  "failure" | "warning" | "ok"
+>
 
 export type FileValidationResult =
   | {
       file: string
-      status: "download-error"
+      status: FileValidationStatusError
       error: Error
     }
   | {
       file: string
-      status: "compile-error"
-      error: Error
-    }
-  | {
-      file: string
-      status: "link-error"
-      invalidLinks: InvalidLinkItem[]
-    }
-  | {
-      file: string
-      status: "ok"
+      status: FileValidationStatusComplete
+      links: ValidatedLink[]
     }
 
 export const validateCollection = async (
@@ -59,7 +69,7 @@ export const validateCollection = async (
 
   // Converts the list of markdown files into their relative URLs (relative to
   // the source's `rootParth`)
-  const relativeFileUrls = markdownFiles.map((file) =>
+  const validRelativeFileUrls = markdownFiles.map((file) =>
     normalizeRelativeUrl(file.substring(rootPath.length))
   )
 
@@ -88,98 +98,81 @@ export const validateCollection = async (
     )
   )
 
-  return compiled.map((result, index) => {
-    const file = markdownFiles[index]!
+  const results = await Promise.allSettled(
+    compiled.map<Promise<FileValidationResult>>(
+      async (compileResult, index) => {
+        const file = markdownFiles[index]!
 
-    if (result.status === "rejected") {
-      return {
-        file,
-        status: "compile-error",
-        error: ensureError(result.reason),
-      }
-    }
+        if (compileResult.status === "rejected") {
+          return {
+            file,
+            status: "compile-error",
+            error: ensureError(compileResult.reason),
+          }
+        }
 
-    if (result.value instanceof Error) {
-      return {
-        file,
-        status: "download-error",
-        error: result.value,
-      }
-    }
+        if (compileResult.value instanceof Error) {
+          return {
+            file,
+            status: "download-error",
+            error: compileResult.value,
+          }
+        }
 
-    const filePath = markdownFiles[index]!
-    const rootRelativePath = filePath.substring(rootPath.length)
+        const rootRelativePath = file.substring(rootPath.length)
 
-    const { links } = result.value
+        const { links } = compileResult.value
+        // const batches = links.
 
-    const invalidLinks = links
-      .filter(({ href }) => !isLinkExternal(href))
-      .filter(({ href }) => !href.toLowerCase().startsWith("mailto:"))
-      // Ignore hash links for now - we'll add support for these later.
-      .filter(({ href }) => !href.startsWith("#"))
-      .map<TestableLinkItem>((link) => {
-        // This ensures we strip out any query strings or hashes (we can
-        // verify hashes another time)
-        const { pathname } = new URL(link.href, PLACEHOLDER_ORIGIN)
+        const validatedLinksSettled = await Promise.allSettled(
+          links.map((link) =>
+            validateLink(link, {
+              rootRelativePath,
+              validRelativeFileUrls,
+              collection,
+            })
+          )
+        )
 
-        // resolve the path relative to the file's root path, but excluding
-        // the source's root path (which we cannot "break out" of)
-        const resolved = posix.resolve("/", rootRelativePath, pathname)
-        const normalized = normalizeRelativeUrl(resolved)
+        const validatedLinks = validatedLinksSettled.map<ValidatedLink>(
+          (validateResult, validatedLinksIndex) =>
+            validateResult.status === "fulfilled"
+              ? validateResult.value
+              : {
+                  // The validation itself threw an unexpected error.
+                  ...links[validatedLinksIndex]!,
+                  type: "unknown",
+                  result: "unknown",
+                  hint: `Could not validate: ${
+                    ensure(validateResult.reason).message
+                  }`,
+                }
+        )
+
+        let status: FileValidationStatusComplete = "ok"
+
+        if (validatedLinks.filter(isValidatedLinkFailure).length > 0) {
+          status = "failure"
+        } else if (validatedLinks.filter(isValidatedLinkWarning).length > 0) {
+          status = "warning"
+        }
 
         return {
-          ...link,
-          normalized,
-          isValid: relativeFileUrls.includes(normalizeRelativeUrl(resolved)),
+          file,
+          status,
+          links: validatedLinks,
         }
-      })
-      .filter((link) => !link.isValid)
-      .map<InvalidLinkItem>((link) => ({
-        href: link.href,
-        position: link.position,
-        hint: getInvalidLinkHint(link, {
-          localFileUrls: relativeFileUrls,
-          collection,
-        }),
-      }))
-
-    if (invalidLinks.length > 0) {
-      return {
-        file,
-        status: "link-error",
-        invalidLinks,
       }
-    }
+    )
+  )
 
-    return {
-      file,
-      status: "ok",
-    }
-  })
-}
-
-type GetInvalidLinkHintOptions = {
-  localFileUrls: string[]
-  collection: DocCollection
-}
-
-/**
- * Tries to make an educated guess about what the user was trying to link to and/or offer some additional guidance about how to correct the link.
- */
-function getInvalidLinkHint(
-  { href }: TestableLinkItem,
-  { localFileUrls, collection }: GetInvalidLinkHintOptions
-): string | undefined {
-  const possibleUrl = localFileUrls.find((url) => href.includes(url))
-  if (possibleUrl) {
-    return `Did you mean \`${possibleUrl}\`?`
-  }
-
-  if (href.startsWith("/")) {
-    const { rootPath } = collection.source
-    const strippedHref = stripSlahes(href)
-    return `This looks like an absolute path. If you are linking to a relative file in the same doc collection (within \`${rootPath}\`) then you should use a relative path (Maybe you meant \`${strippedHref}\`?). If you're referencing a link external to this doc collection (outside of \`${rootPath}\`) you should use an absolute URL (Maybe you meant \`https://developers.flow.com/${strippedHref}\`?)`
-  }
-
-  return undefined
+  return results.map((result, index) =>
+    result.status === "fulfilled"
+      ? result.value
+      : {
+          error: result.reason,
+          file: markdownFiles[index]!,
+          status: "validation-error",
+        }
+  )
 }

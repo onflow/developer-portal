@@ -1,6 +1,7 @@
 import pluralize from "pluralize"
 import { getValidationSummaryForFile } from "./get-validation-summary-for-file"
 import { validateChangesForCheckRun } from "./validate-for-check-run"
+import { isValidatedLinkFailure, isValidatedLinkWarning } from "./validate-link"
 
 export const getValidationSummaryForCheckRun = (
   validation: Awaited<ReturnType<typeof validateChangesForCheckRun>>
@@ -8,9 +9,12 @@ export const getValidationSummaryForCheckRun = (
   const counts = {
     compileErrors: 0,
     downloadErrors: 0,
-    linkErrors: 0,
-    invalidLinks: 0,
+    validationErrors: 0,
+    failures: 0,
+    warnings: 0,
     ok: 0,
+    linkFailures: 0,
+    linkWarnings: 0,
   }
 
   validation.forEach(({ files }) => {
@@ -23,9 +27,19 @@ export const getValidationSummaryForCheckRun = (
         counts.downloadErrors += 1
       }
 
-      if (file.status === "link-error") {
-        counts.linkErrors += 1
-        counts.invalidLinks += file.invalidLinks.length
+      if (file.status === "validation-error") {
+        counts.validationErrors += 1
+      }
+
+      if (file.status === "failure") {
+        counts.failures += 1
+        counts.linkFailures += file.links.filter(isValidatedLinkFailure).length
+        counts.linkWarnings += file.links.filter(isValidatedLinkWarning).length
+      }
+
+      if (file.status === "warning") {
+        counts.warnings += 1
+        counts.linkWarnings += file.links.filter(isValidatedLinkWarning).length
       }
 
       if (file.status === "ok") {
@@ -34,25 +48,38 @@ export const getValidationSummaryForCheckRun = (
     })
   })
 
-  const fileErrors =
-    counts.compileErrors + counts.downloadErrors + counts.linkErrors
+  const failedFiles =
+    counts.compileErrors +
+    counts.downloadErrors +
+    counts.validationErrors +
+    counts.failures
 
   let title = "No problems found"
+  let conclusion = "success"
 
-  if (fileErrors > 0) {
-    title = `${fileErrors} ${pluralize("error", fileErrors)} found`
+  if (failedFiles > 0) {
+    conclusion = "failure"
+    title = `Errors found in ${failedFiles} ${pluralize("files", failedFiles)}`
 
-    if (counts.invalidLinks > 0) {
-      title += ` (${counts.invalidLinks} invalid ${pluralize(
+    if (counts.linkFailures > 0) {
+      title += ` (${counts.linkFailures} invalid ${pluralize(
         "link",
-        counts.invalidLinks
+        counts.linkFailures
       )})`
     }
+  } else if (counts.warnings > 0) {
+    title = `Warnings found in ${counts.warnings} ${pluralize(
+      "files",
+      counts.warnings
+    )}`
+    conclusion = "neutral"
   }
 
   return {
     ...counts,
+    conclusion,
     title,
+    status: "",
     summary: validation
       .map(
         ({ collection, files }) => `
