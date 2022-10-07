@@ -10,6 +10,7 @@ import {
   findDocManifest,
   RemoteRepoError,
 } from "../../cms/collections.server"
+import { returnRedirectForRoute } from "../../cms/utils/return-redirect-for-route"
 import { stripTrailingSlashes } from "../../cms/utils/strip-slashes"
 import { SIDEBAR_DROPDOWN_MENU } from "../../data/sidebar-dropdown-menu"
 import AppLink from "../../ui/design-system/src/lib/Components/AppLink"
@@ -36,6 +37,12 @@ export const loader = async ({ params, request }: LoaderArgs) => {
   const path = params["*"]
 
   const url = new URL(request.url)
+
+  const redirectPath = returnRedirectForRoute(url.pathname)
+  if (redirectPath) {
+    return redirect(redirectPath, 301)
+  }
+
   const preview =
     (ENABLE_PREVIEWS && url.searchParams.get("preview")) || undefined
 
