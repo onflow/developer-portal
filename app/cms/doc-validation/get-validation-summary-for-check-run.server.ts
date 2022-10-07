@@ -1,7 +1,7 @@
 import pluralize from "pluralize"
 import { getValidationSummaryForFile } from "./get-validation-summary-for-file"
 import { validateChangesForCheckRun } from "./validate-for-check-run"
-import { isValidatedLinkFailure, isValidatedLinkWarning } from "./validate-link"
+import { isValidatedUrlFailure, isValidatedUrlWarning } from "./validate-url"
 
 export const getValidationSummaryForCheckRun = (
   validation: Awaited<ReturnType<typeof validateChangesForCheckRun>>
@@ -13,8 +13,8 @@ export const getValidationSummaryForCheckRun = (
     failures: 0,
     warnings: 0,
     ok: 0,
-    linkFailures: 0,
-    linkWarnings: 0,
+    urlFailures: 0,
+    urlWarnings: 0,
   }
 
   validation.forEach(({ files }) => {
@@ -33,13 +33,13 @@ export const getValidationSummaryForCheckRun = (
 
       if (file.status === "failure") {
         counts.failures += 1
-        counts.linkFailures += file.links.filter(isValidatedLinkFailure).length
-        counts.linkWarnings += file.links.filter(isValidatedLinkWarning).length
+        counts.urlFailures += file.urls.filter(isValidatedUrlFailure).length
+        counts.urlWarnings += file.urls.filter(isValidatedUrlWarning).length
       }
 
       if (file.status === "warning") {
         counts.warnings += 1
-        counts.linkWarnings += file.links.filter(isValidatedLinkWarning).length
+        counts.urlWarnings += file.urls.filter(isValidatedUrlWarning).length
       }
 
       if (file.status === "ok") {
@@ -61,10 +61,10 @@ export const getValidationSummaryForCheckRun = (
     conclusion = "failure"
     title = `Errors found in ${failedFiles} ${pluralize("files", failedFiles)}`
 
-    if (counts.linkFailures > 0) {
-      title += ` (${counts.linkFailures} invalid ${pluralize(
+    if (counts.urlFailures > 0) {
+      title += ` (${counts.urlFailures} invalid ${pluralize(
         "link",
-        counts.linkFailures
+        counts.urlFailures
       )})`
     }
   } else if (counts.warnings > 0) {

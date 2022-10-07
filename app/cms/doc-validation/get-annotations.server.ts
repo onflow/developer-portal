@@ -1,17 +1,17 @@
 import { GithubAnnotation } from "../github/types"
 import { validateChangesForCheckRun } from "./validate-for-check-run"
 import {
-  isValidatedLinkFailure,
-  isValidatedLinkSuccess,
-  isValidatedLinkWarning,
-  ValidatedLink,
-} from "./validate-link"
+  isValidatedUrlFailure,
+  isValidatedUrlSuccess,
+  isValidatedUrlWarning,
+  ValidatedUrl,
+} from "./validate-url"
 
-const getAnnotationLevel = (result: ValidatedLink) => {
-  if (isValidatedLinkFailure(result)) {
+const getAnnotationLevel = (result: ValidatedUrl) => {
+  if (isValidatedUrlFailure(result)) {
     return "failure"
   }
-  if (isValidatedLinkWarning(result)) {
+  if (isValidatedUrlWarning(result)) {
     return "warning"
   }
 
@@ -27,16 +27,16 @@ export const getAnnotations = (
   validation.reduce((annotations, { files }) => {
     files.forEach((file) => {
       if (file.status === "failure" || file.status === "warning") {
-        file.links.forEach((link) => {
-          if (link.position && !isValidatedLinkSuccess(link)) {
+        file.urls.forEach((url) => {
+          if (url.position && !isValidatedUrlSuccess(url)) {
             annotations.push({
               path: file.file,
-              start_line: link.position.start.line,
-              start_column: link.position.start.column,
-              end_line: link.position.start.line,
-              end_column: link.position.end.column,
-              annotation_level: getAnnotationLevel(link),
-              message: link.hint || link.result,
+              start_line: url.position.start.line,
+              start_column: url.position.start.column,
+              end_line: url.position.start.line,
+              end_column: url.position.end.column,
+              annotation_level: getAnnotationLevel(url),
+              message: url.hint || url.result,
             })
           }
         })

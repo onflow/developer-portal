@@ -1,7 +1,7 @@
 import { ensure } from "errorish"
 import linkCheck, { LinkCheckResult } from "link-check"
-import { LinkItem } from "../rehype-plugins/extractLinks"
-import { ValidatedLink, ValidateLinkContext } from "./validate-link"
+import { UrlItem } from "../rehype-plugins/extractUrls"
+import { ValidatedUrl, ValidateUrlContext } from "./validate-url"
 
 /**
  * An array of RegExp's to match against a URL's hostname
@@ -20,10 +20,10 @@ const shouldIgnore = (href: string) => {
   return false
 }
 
-export const validateLinkExternal = async (
-  item: LinkItem,
-  _: ValidateLinkContext
-): Promise<ValidatedLink> => {
+export const validateUrlExternal = async (
+  item: UrlItem,
+  _: ValidateUrlContext
+): Promise<ValidatedUrl> => {
   const { href } = item
 
   if (shouldIgnore(href)) {

@@ -3,17 +3,17 @@ import { ensure, ensure as ensureError } from "errorish"
 import { compileMdx } from "../compile.mdx.server"
 import { DocCollection } from "../doc-collections/types"
 import { downloadFile } from "../github/download-file"
-import { MARKDOWN_EXTENSION_FILTER } from "../github/filter-file-name-has-markdown-extension"
-import { LinkItem } from "../rehype-plugins/extractLinks"
+import { filterHasMarkdownExtension } from "../github/filter-file-name-has-markdown-extension"
+import { UrlItem } from "../rehype-plugins/extractUrls"
 import {
-  isValidatedLinkFailure,
-  isValidatedLinkWarning,
-  ValidatedLink,
-  validateLink,
-} from "./validate-link"
-import { normalizeRelativeUrl } from "./validate-link-internal"
+  isValidatedUrlFailure,
+  isValidatedUrlWarning,
+  ValidatedUrl,
+  validateUrl,
+} from "./validate-url"
+import { normalizeRelativeUrl } from "./validate-url-internal"
 
-export type InvalidLinkItem = LinkItem & { hint?: string }
+export type InvalidLinkItem = UrlItem & { hint?: string }
 
 export type FileValidationStatus =
   /** Failed to download file from github */
@@ -47,7 +47,7 @@ export type FileValidationResult =
   | {
       file: string
       status: FileValidationStatusComplete
-      links: ValidatedLink[]
+      urls: ValidatedUrl[]
     }
 
 export const validateCollection = async (
@@ -63,13 +63,13 @@ export const validateCollection = async (
     file.toLowerCase().startsWith(rootPath.toLowerCase())
   )
 
-  const markdownFiles = collectionFiles.filter((file) =>
-    MARKDOWN_EXTENSION_FILTER.test(file)
-  )
+  const markdownFiles = collectionFiles.filter(filterHasMarkdownExtension)
 
-  // Converts the list of markdown files into their relative URLs (relative to
-  // the source's `rootParth`)
-  const validRelativeFileUrls = markdownFiles.map((file) =>
+  // Converts the list of files into their relative URLs (relative to
+  // the source's `rootParth`). Markdown files will have their extensions
+  // stripped, other files are still valid as assets as long as their
+  // extension is included (i.e. images, binaries, etc)
+  const validRelativeFileUrls = collectionFiles.map((file) =>
     normalizeRelativeUrl(file.substring(rootPath.length))
   )
 
@@ -121,12 +121,11 @@ export const validateCollection = async (
 
         const rootRelativePath = file.substring(rootPath.length)
 
-        const { links } = compileResult.value
-        // const batches = links.
+        const { urls } = compileResult.value
 
-        const validatedLinksSettled = await Promise.allSettled(
-          links.map((link) =>
-            validateLink(link, {
+        const validatedUrlsSettled = await Promise.allSettled(
+          urls.map((url) =>
+            validateUrl(url, {
               rootRelativePath,
               validRelativeFileUrls,
               collection,
@@ -134,13 +133,13 @@ export const validateCollection = async (
           )
         )
 
-        const validatedLinks = validatedLinksSettled.map<ValidatedLink>(
-          (validateResult, validatedLinksIndex) =>
+        const validatedUrls = validatedUrlsSettled.map<ValidatedUrl>(
+          (validateResult, validatedUrlIndex) =>
             validateResult.status === "fulfilled"
               ? validateResult.value
               : {
                   // The validation itself threw an unexpected error.
-                  ...links[validatedLinksIndex]!,
+                  ...urls[validatedUrlIndex]!,
                   type: "unknown",
                   result: "unknown",
                   hint: `Could not validate: ${
@@ -151,16 +150,16 @@ export const validateCollection = async (
 
         let status: FileValidationStatusComplete = "ok"
 
-        if (validatedLinks.filter(isValidatedLinkFailure).length > 0) {
+        if (validatedUrls.filter(isValidatedUrlFailure).length > 0) {
           status = "failure"
-        } else if (validatedLinks.filter(isValidatedLinkWarning).length > 0) {
+        } else if (validatedUrls.filter(isValidatedUrlWarning).length > 0) {
           status = "warning"
         }
 
         return {
           file,
           status,
-          links: validatedLinks,
+          urls: validatedUrls,
         }
       }
     )
