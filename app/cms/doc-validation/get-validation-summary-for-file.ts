@@ -1,5 +1,10 @@
 import pluralize from "pluralize"
 import { FileValidationResult } from "./validate-collection.server"
+import {
+  isValidatedLinkFailure,
+  isValidatedLinkSuccess,
+  isValidatedLinkWarning,
+} from "./validate-link"
 
 /**
  * Gets the validation summary for a single file.
@@ -13,24 +18,44 @@ export const getValidationSummaryForFile = (result: FileValidationResult) => {
     case "download-error": {
       return `- ⛔ ${file} - Download failed: ${result.error.message}`
     }
-    case "link-error": {
-      const count = result.invalidLinks.length
-      const invalidLinkSummaries = result.invalidLinks.map((link) => {
-        let info = `  - \`${link.href}\``
-        if (link.position) {
-          info += ` (Ln ${link.position.start.line}, Col ${link.position.start.column})`
-        }
+    case "validation-error": {
+      return `- ❓ ${file} - Validation failed: ${result.error.message}`
+    }
+    case "warning":
+    case "failure": {
+      const failCount = result.links.filter(isValidatedLinkFailure).length
+      const warnCount = result.links.filter(isValidatedLinkWarning).length
 
-        if (link.hint) {
-          info += `\r\n\r\n    > ${link.hint}`
-        }
+      const unsuccessfulSummaries = result.links
+        .map((link) => {
+          if (isValidatedLinkSuccess(link)) {
+            return false
+          }
 
-        return info
-      })
+          const icon = isValidatedLinkFailure(link) ? "❗" : "?"
+          let info = `  - ${icon} \`${link.href}\``
+
+          if (link.position) {
+            info += ` (Ln ${link.position.start.line}, Col ${link.position.start.column})`
+          }
+
+          if (link.hint) {
+            info += `\r\n\r\n    > ${link.hint}`
+          }
+
+          return info
+        })
+        .filter((summary) => !!summary)
+
+      const icon = failCount > 0 ? "❌" : "⚠️"
+      const titles = [
+        failCount && `${pluralize("invalid link", failCount, true)} found`,
+        warnCount && pluralize("link warning", warnCount, true),
+      ].filter((title) => !!title)
 
       return [
-        `- ⚠️ ${file} - ${count} invalid ${pluralize("link", count)} found`,
-        ...invalidLinkSummaries,
+        `- ${icon} ${file} - ${titles.join(",  ")}`,
+        ...unsuccessfulSummaries,
       ].join("\r\n")
     }
     case "ok": {
