@@ -13,8 +13,30 @@
           "title": "Flow Unity SDK",
           "items": [
             {
-              "title": "Coming Soon",
+              "title": "Introduction",
               "href": ""
+            }
+          ]
+        },
+        {
+          "title": "Usage Guides",
+          "items": [
+            {
+              "title": "FlowControl Tools",
+              "href": "guides/flow-control"
+            },
+            {
+              "title": "Flow SDK UI Examples",
+              "href": "guides/ui-usage"
+            }
+          ]
+        },
+        {
+          "title": "Tutorials",
+          "items": [
+            {
+              "title": "Build a Sample Application",
+              "href": "guides/flow-control"
             }
           ]
         }
