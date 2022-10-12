@@ -1,6 +1,7 @@
 import { Repository } from "@octokit/webhooks-types"
 import { ensure, ensure as ensureError } from "errorish"
 import { compileMdx } from "../compile.mdx.server"
+import { fetchRemoteManifest } from "../doc-collections/fetch-remote-manifest"
 import { DocCollection } from "../doc-collections/types"
 import { downloadFile } from "../github/download-file"
 import { filterHasMarkdownExtension } from "../github/filter-file-name-has-markdown-extension"
@@ -50,18 +51,93 @@ export type FileValidationResult =
       urls: ValidatedUrl[]
     }
 
-export const validateCollection = async (
-  collection: DocCollection,
-  files: string[],
-  repo: Repository,
+export type ValidateCollectionOptions = {
+  /**
+   * The DocCollection to validate.
+   */
+  collection: DocCollection
+
+  /**
+   * All the files that exist within the collection, specified as
+   * their complete path within the repo (in other words, these paths include
+   * the `rootPath` of the collection's `source`.
+   */
+  files: string[]
+
+  /* *
+   *  An array of files that have been removed from the collection. This is used
+   *  to validate that redirects have been put in place for any removed files.
+   *  These are specified as their complete path within the repo (in the same
+   *  way `files` is specified).
+   */
+  filesRemoved?: string[]
+
+  /**
+   * The github repo to validate against (this _may_ be different from the
+   * collection's `source` when validating a different fork, but in most cases
+   * these will be the same repo)
+   */
+  repo: Repository
+
+  /**
+   * The SHA of the branch to validate against within the `repo`.
+   */
   sha: string
-): Promise<FileValidationResult[]> => {
+}
+
+export const validateCollection = async ({
+  collection,
+  files,
+  filesRemoved,
+  repo,
+  sha,
+}: ValidateCollectionOptions): Promise<FileValidationResult[]> => {
   const { rootPath } = collection.source
 
   // All files should be within the rootPath of the collection
   const collectionFiles = files.filter((file) =>
     file.toLowerCase().startsWith(rootPath.toLowerCase())
   )
+
+  const removedFiles = filesRemoved
+    ?.filter((file) => file.toLowerCase().startsWith(rootPath.toLowerCase()))
+    // Make sure no removed files actually exist in the `files` collection still
+    .filter((path) => files.includes(path))
+
+  let removedResults = [] as FileValidationResult[]
+
+  if (removedFiles?.length) {
+    try {
+      const remoteManifest = await fetchRemoteManifest({
+        owner: repo.owner.login,
+        name: repo.name,
+        branch: sha,
+        rootPath,
+      })
+
+      const normalizedRedirects = Object.values(
+        remoteManifest.redirects || {}
+      ).map((redirectFrom) => normalizeRelativeUrl(redirectFrom))
+
+      removedResults = removedFiles.map<FileValidationResult>((file) => {
+        const url = normalizeRelativeUrl(file.substring(rootPath.length))
+        const hasRedirect = normalizedRedirects.includes(url)
+
+        // TODO: return something that makes sense here and that we can
+        // then use in `getValidationSummaryForCheckRun` to generate some
+        // meaningful information for the user.
+        return {
+          file,
+          status: hasRedirect ? "ok" : "failure",
+          urls: [],
+          // error: "",
+        }
+      })
+    } catch (error) {
+      // TODO: populate removedResults in a way that we can inform the user
+      // that no remote manifest was found (or it was unreadable)
+    }
+  }
 
   const markdownFiles = collectionFiles.filter(filterHasMarkdownExtension)
 
@@ -165,13 +241,15 @@ export const validateCollection = async (
     )
   )
 
-  return results.map((result, index) =>
-    result.status === "fulfilled"
-      ? result.value
-      : {
-          error: result.reason,
-          file: markdownFiles[index]!,
-          status: "validation-error",
-        }
-  )
+  return results
+    .map((result, index) =>
+      result.status === "fulfilled"
+        ? result.value
+        : ({
+            error: result.reason,
+            file: markdownFiles[index]!,
+            status: "validation-error",
+          } as FileValidationResult)
+    )
+    .concat(removedResults)
 }

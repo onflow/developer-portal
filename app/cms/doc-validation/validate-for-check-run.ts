@@ -47,6 +47,12 @@ export const validateChangesForCheckRun = async (
     )
   )
 
+  const removedFiles = changedFiles
+    .filter(({ status }) => status === "removed" || status === "renamed")
+    .map(({ status, filename, previous_filename }) =>
+      status === "removed" ? previous_filename! : filename
+    )
+
   const {
     data: { tree },
   } = await fetchTree({
@@ -56,35 +62,32 @@ export const validateChangesForCheckRun = async (
     recursive: true,
   })
 
-  const filesByCollectionMap = tree.reduce((prev, current) => {
-    const collectionTuple = changedCollections.find(([, { source }]) =>
-      current.path?.toLowerCase().startsWith(source.rootPath.toLowerCase())
-    )
+  const currentFiles = tree
+    .map(({ path }) => path)
+    .filter((path) => !!path) as string[]
 
-    if (!collectionTuple) {
-      // The file doesn't belong to a collection that has been changed, so
-      // ignore it.
-      return prev
-    }
-
-    const [collectionBasePath, collection] = collectionTuple
-
-    prev[collectionBasePath] = prev[collectionBasePath] || {
+  const filesByCollection = changedCollections.map(([_, collection]) => {
+    const rootPath = collection.source.rootPath.toLowerCase()
+    return {
       collection,
-      files: [] as string[],
+      files: currentFiles.filter((path) =>
+        path.toLowerCase().startsWith(rootPath)
+      ),
+      filesRemoved: removedFiles.filter((path) =>
+        path.toLowerCase().startsWith(rootPath)
+      ),
     }
-    prev[collectionBasePath]!.files.push(current.path!)
-
-    return prev
-  }, {} as Record<string, { collection: DocCollection; files: string[] }>)
-
-  const filesByCollection = Object.values(filesByCollectionMap).filter(
-    ({ files }) => files.length > 0
-  )
+  })
 
   const results = await Promise.all(
-    filesByCollection.map(({ collection, files }) =>
-      validateCollection(collection, files, repo, checkRun.head_sha)
+    filesByCollection.map(({ collection, files, filesRemoved }) =>
+      validateCollection({
+        collection,
+        files,
+        filesRemoved,
+        repo,
+        sha: checkRun.head_sha,
+      })
     )
   )
 
