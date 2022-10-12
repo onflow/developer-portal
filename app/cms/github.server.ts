@@ -154,7 +154,6 @@ const getMarkdownFile = async (source: DocCollectionSource, path: string) => {
 
   if (!base) {
     // If there was no filename provided then the request was for the root
-    // TODO: finish this comment.
     throw new NotFoundError(path)
   }
 
