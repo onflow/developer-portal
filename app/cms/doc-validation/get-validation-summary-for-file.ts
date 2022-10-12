@@ -1,10 +1,10 @@
 import pluralize from "pluralize"
 import { FileValidationResult } from "./validate-collection.server"
 import {
-  isValidatedLinkFailure,
-  isValidatedLinkSuccess,
-  isValidatedLinkWarning,
-} from "./validate-link"
+  isValidatedUrlFailure,
+  isValidatedUrlSuccess,
+  isValidatedUrlWarning,
+} from "./validate-url"
 
 /**
  * Gets the validation summary for a single file.
@@ -23,24 +23,24 @@ export const getValidationSummaryForFile = (result: FileValidationResult) => {
     }
     case "warning":
     case "failure": {
-      const failCount = result.links.filter(isValidatedLinkFailure).length
-      const warnCount = result.links.filter(isValidatedLinkWarning).length
+      const failCount = result.urls.filter(isValidatedUrlFailure).length
+      const warnCount = result.urls.filter(isValidatedUrlWarning).length
 
-      const unsuccessfulSummaries = result.links
-        .map((link) => {
-          if (isValidatedLinkSuccess(link)) {
+      const unsuccessfulSummaries = result.urls
+        .map((url) => {
+          if (isValidatedUrlSuccess(url)) {
             return false
           }
 
-          const icon = isValidatedLinkFailure(link) ? "❗" : "?"
-          let info = `  - ${icon} \`${link.href}\``
+          const icon = isValidatedUrlFailure(url) ? "❗" : "?"
+          let info = `  - ${icon} \`${url.href}\``
 
-          if (link.position) {
-            info += ` (Ln ${link.position.start.line}, Col ${link.position.start.column})`
+          if (url.position) {
+            info += ` (Ln ${url.position.start.line}, Col ${url.position.start.column})`
           }
 
-          if (link.hint) {
-            info += `\r\n\r\n    > ${link.hint}`
+          if (url.hint) {
+            info += `\r\n\r\n    > ${url.hint}`
           }
 
           return info

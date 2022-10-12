@@ -6,7 +6,7 @@ import type TPQueue from "p-queue"
 import calculateReadingTime from "reading-time"
 import type * as U from "unified"
 import type { GitHubTextFile } from "./github.server"
-import { extractLinks, LinkItem } from "./rehype-plugins/extractLinks"
+import { extractUrls, UrlItem } from "./rehype-plugins/extractUrls"
 import { generateToc, TocItem } from "./rehype-plugins/generateToc"
 import { removeExcludedContent } from "./rehype-plugins/removeExcludedContent"
 import { removeMdxMarker } from "./rehype-plugins/removeMdxMarker"
@@ -38,7 +38,7 @@ async function compileMdx<FrontmatterType extends Record<string, unknown>>(
 
   const rootDir = path.posix.dirname(source.path)
   const toc = [] as TocItem[]
-  const links = [] as LinkItem[]
+  const urls = [] as UrlItem[]
 
   try {
     const { frontmatter, code } = await bundleMDX({
@@ -72,7 +72,7 @@ async function compileMdx<FrontmatterType extends Record<string, unknown>>(
           replaceNonStandardReactAttributes,
           removeExcludedContent,
           generateToc(toc, { maxDepth: 2 }),
-          extractLinks(links),
+          extractUrls(urls),
         ]
 
         return options
@@ -85,7 +85,7 @@ async function compileMdx<FrontmatterType extends Record<string, unknown>>(
       code,
       readTime,
       frontmatter: frontmatter as FrontmatterType,
-      links,
+      urls,
       toc,
     }
   } catch (error: unknown) {
@@ -168,7 +168,7 @@ type MdxPage = {
    */
   frontmatter: MdxFrontmatter
 
-  links: LinkItem[]
+  urls: UrlItem[]
 
   toc?: TocItem[]
 }

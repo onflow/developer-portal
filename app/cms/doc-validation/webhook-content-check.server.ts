@@ -92,8 +92,8 @@ export const contentCheckOnCheckRun = async ({
       logger.error("Validating check run failed", error)
       const { message } = ensure(error)
       output = {
-        title: "Unable to validate links",
-        summary: `Validting links failed: ${message}`,
+        title: "Unable to validate URLs",
+        summary: `Validting URLs failed: ${message}`,
       }
     } finally {
       await octokit.checks.update({
