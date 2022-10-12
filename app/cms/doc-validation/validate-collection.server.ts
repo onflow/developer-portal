@@ -4,7 +4,7 @@ import { compileMdx } from "../compile.mdx.server"
 import { fetchRemoteManifest } from "../doc-collections/fetch-remote-manifest"
 import { DocCollection } from "../doc-collections/types"
 import { downloadFile } from "../github/download-file"
-import { filterHasMarkdownExtension } from "../github/filter-file-name-has-markdown-extension"
+import { filterFileNameHasMarkdownExtension } from "../github/filter-file-name-has-markdown-extension"
 import { UrlItem } from "../rehype-plugins/extractUrls"
 import {
   isValidatedUrlFailure,
@@ -139,7 +139,9 @@ export const validateCollection = async ({
     }
   }
 
-  const markdownFiles = collectionFiles.filter(filterHasMarkdownExtension)
+  const markdownFiles = collectionFiles.filter((filename) =>
+    filterFileNameHasMarkdownExtension({ filename })
+  )
 
   // Converts the list of files into their relative URLs (relative to
   // the source's `rootParth`). Markdown files will have their extensions

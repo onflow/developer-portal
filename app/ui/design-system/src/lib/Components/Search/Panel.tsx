@@ -57,7 +57,7 @@ export function Panel({
                   })
                   const selected = itemProps["aria-selected"]
                   return (
-                    // @ts-expect-error: TODO: Short description of the error
+                    // @ts-expect-error
                     <li
                       key={index}
                       className={clsx("divided-item-selectable", {

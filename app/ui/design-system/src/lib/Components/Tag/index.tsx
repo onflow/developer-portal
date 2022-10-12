@@ -1,5 +1,3 @@
-// TODO: Merge with Tag in pr #1
-
 import clsx from "clsx"
 
 export type TagProps = {
