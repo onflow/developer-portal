@@ -548,6 +548,15 @@ const ledgerWallet: Tool = {
     "The hardware wallet to secure, buy, exchange, and grow your crypto assets",
 }
 
+const nufiWallet: Tool = {
+  title: "NuFi",
+  tags: ["web", "extension", "wallet", "non-custodial"],
+  link: "https://nu.fi/",
+  iconSrc: "https://nu.fi/resources/nufi-logo-round-bg-dark.svg",
+  description:
+    "Flow's only non-custodial wallet with staking, NFT gallery, dApp connector and Ledger HW support.",
+}
+
 const lilicoWallet: Tool = {
   title: "Lilico",
   tags: ["web", "extension", "wallet", "non-custodial"],
@@ -603,6 +612,7 @@ export {
   bloctoWallet,
   dapperWallet,
   ledgerWallet,
+  nufiWallet,
   lilicoWallet,
   fionaWallet,
 }
