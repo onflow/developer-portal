@@ -160,14 +160,6 @@ export function InternalPageContainer({
           {children}
         </div>
       </div>
-      {remoteRepoError != null && (
-        <div className="px-3 text-sm">
-          <details>
-            <summary>Docs configuration error</summary>
-            <pre>Error: {remoteRepoError}</pre>
-          </details>
-        </div>
-      )}
     </InternalPageEditUrlContext.Provider>
   )
 }
