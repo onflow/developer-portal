@@ -3,6 +3,7 @@ import { TutorialCardProps } from "~/ui/design-system/src/lib/Components/Tutoria
 import {
   accessControlCadence,
   cadenceAtAGlance,
+  playgroundTutorials,
   FCLQuickstartNextJs,
   FCLQuickstartNuxtJs,
   FCLQuickstartSvelteKit,
@@ -26,6 +27,7 @@ import { metadata } from "../metadata"
 
 export const cadenceTutorials: TutorialCardProps[] = [
   cadenceAtAGlance,
+  playgroundTutorials,
   organizingCadenceTutorial,
   learnCadenceVideoSeries,
   zeroToJacobFlow,

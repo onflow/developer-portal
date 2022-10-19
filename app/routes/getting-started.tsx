@@ -86,9 +86,9 @@ export default function Page() {
             icon: <Icon1 />,
             links: [
               {
-                title: "Hello, World on Flow!",
-                href: "/cadence/tutorial/02-hello-world/",
-                tags: ["cadence", "playground"],
+                title: "Flow Playground Web IDE",
+                href: "https://play.flow.com",
+                tags: ["cadence", "dev", "all-levels"],
               },
               {
                 title: "Javascript Quickstart",
