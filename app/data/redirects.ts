@@ -1,4 +1,5 @@
 export const redirects = {
+  "/community/bounties": "https://flow.com/flow-responsible-disclosure",
   "/flow-token/available-wallets/": "/flow/flow-token/available-wallets",
   "/staking/": "/nodes/staking",
   "/cadence/tutorial/04-non-fungible-tokens/":
@@ -93,7 +94,7 @@ export const redirects = {
   "/flow-cli/execute-scripts/": "/tools/flow-cli/execute-scripts",
   "/fcl/reference/proving-authentication/":
     "/tools/fcl-js/reference/proving-authentication",
-  "/bounties/": "/community/bounties",
+  "/bounties/": "https://flow.com/flow-responsible-disclosure",
   "/core-contracts/fungible-token/": "/flow/core-contracts/fungible-token",
   "/staking/epoch-terminology/": "/nodes/staking/epoch-terminology",
   "/dapp-development/flow-dapp-anatomy/":
@@ -175,7 +176,8 @@ export const redirects = {
   "/docs/getting-started-1/": "/getting-started",
   "/flow-token/earn/": "/flow/flow-token/earn",
   "/flow-go-sdk/querying-transactions/": "/tools/flow-go-sdk",
-  "/bounties/responsible-disclosure/": "/flow/bounties/responsible-disclosure",
+  "/bounties/responsible-disclosure/":
+    "https://flow.com/flow-responsible-disclosure",
   "/core-contracts/flow-fees/": "/flow/core-contracts/flow-fees",
   "/kitty-items/start/": "/learn/kitty-items/start",
   "/intro/playground-manual/": "/flow/intro/playground-manual",

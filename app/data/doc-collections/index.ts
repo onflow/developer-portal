@@ -1,5 +1,4 @@
 import cadence from "./cadence.json"
-import community__bounties from "./community__bounties.json"
 import flow__core_contracts from "./flow__core-contracts.json"
 import flow__dapp_development from "./flow__dapp-development.json"
 import flow__faq from "./flow__faq.json"
@@ -45,7 +44,6 @@ export const testCollections = {
 export const docCollections = {
   ...(includeTestingDocCollections ? testCollections : {}),
   cadence,
-  "community/bounties": community__bounties,
   "flow/core-contracts": flow__core_contracts,
   "flow/dapp-development": flow__dapp_development,
   "flow/faq": flow__faq,

@@ -109,7 +109,7 @@ export const grantsSection: Section = {
     },
     {
       title: "Bug Bounty Program",
-      href: "/community/bounties",
+      href: "https://flow.com/flow-responsible-disclosure",
     },
     {
       title: "FLIP Fest (past)",
