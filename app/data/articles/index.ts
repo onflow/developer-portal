@@ -140,6 +140,15 @@ export const revolutionizeSmartContractProgramming: TutorialCardProps = {
   lastUpdated: "6/04/2022",
 }
 
+export const playgroundTutorials: TutorialCardProps = {
+  heading: "Flow Playground Tutorials",
+  tags: ["tutorial", "beginner", "cadence"],
+  description: `Learn to use Cadence using the Flow Playgound Web IDE`,
+  link: "https://developers.flow.com/cadence/tutorial/01-first-steps",
+  imageUri: "https://miro.medium.com/max/1400/1*WGxn8AZj-gZXd_vipdBxSg.png",
+  lastUpdated: "17/10/2022",
+}
+
 export const cadenceAtAGlance: TutorialCardProps = {
   heading: "Cadence at a Glance",
   tags: ["article", "cadence"],
