@@ -167,6 +167,10 @@ const dappDevelomentSection: Section = {
   title: "Developing Dapps",
   subSections: [
     {
+      title: "Flow Playground IDE",
+      href: "https://play.flow.com",
+    },
+    {
       title: "Testnet Quickstart",
       href: "/tools/fcl-js/tutorials/flow-app-quickstart",
     },
@@ -279,6 +283,10 @@ const cadenceResourceSection: Section = {
   ],
   title: "Cadence Resources",
   subSections: [
+    {
+      title: "Flow Playground IDE",
+      href: "https://play.flow.com",
+    },
     {
       title: "Cadence Cookbook",
       href: "https://open-cadence.onflow.org/",
