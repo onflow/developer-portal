@@ -2,7 +2,7 @@
   "source": {
     "owner": "onflow",
     "name": "fcl-dev-wallet",
-    "branch": "master",
+    "branch": "main",
     "rootPath": "docs/"
   },
   "manifest": {
