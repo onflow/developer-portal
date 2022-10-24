@@ -1,0 +1,31 @@
+{
+  "source": {
+    "owner": "onflow",
+    "name": "flow",
+    "branch": "master",
+    "rootPath": "docs/content/contributors/"
+  },
+  "manifest": {
+    "displayName": "Contributing Content to the Developer Portal",
+    "redirects": {
+      "": "portal-overview"
+    },
+    "sidebars": {
+      "": [
+        {
+          "title": "Guides",
+          "items": [
+            {
+              "title": "Portal Overview",
+              "href": "portal-overview"
+            },
+            {
+              "title": "Contribution Guidelines",
+              "href": "contribution-guidelines"
+            }
+          ]
+        }
+      ]
+    }
+  }
+}
