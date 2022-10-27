@@ -341,6 +341,19 @@ const phpSDK: Tool = {
 }
 
 // Community Tools
+const niftoryTool: Tool = {
+  repo: {
+    name: "niftory",
+    owner: "niftory",
+  },
+  title: "Niftory",
+  tags: ["api", "graphql", "hosted"],
+  link: "https://www.niftory.com/",
+  iconSrc:
+    "https://www.gitbook.com/cdn-cgi/image/width=40,height=40,fit=contain,dpr=2,format=auto/https%3A%2F%2F3595744636-files.gitbook.io%2F~%2Ffiles%2Fv0%2Fb%2Fgitbook-x-prod.appspot.com%2Fo%2Fcollections%252FclIQYZoyHeuXbkEoeS0N%252Ficon%252Fl85XoAUq99rpOulJCFqu%252Fniftory-sq_icon-azF5SY.png%3Falt%3Dmedia%26token%3D03613aae-415f-41b4-9c7e-e5988177e095",
+  description: `Blazing-fast GraphQL APIs to query/mint/airdrop NFTs, create custodial wallets, handle user auth, and more!`,
+}
+
 const overflowTool: Tool = {
   repo: {
     name: "overflow",
@@ -615,4 +628,5 @@ export {
   nufiWallet,
   lilicoWallet,
   fionaWallet,
+  niftoryTool,
 }
