@@ -42,6 +42,7 @@ import {
   swiftSDK,
   vsCodeTool,
   walletApiTool,
+  niftoryTool,
 } from "../tools"
 
 export const data: ToolsPageProps = {
@@ -49,6 +50,7 @@ export const data: ToolsPageProps = {
   discordUrl: externalLinks.discord,
   tools: [
     cliTool,
+    niftoryTool,
     emulatorTool,
     jsTestingLibTool,
     overflowTool,
