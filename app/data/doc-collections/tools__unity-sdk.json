@@ -15,6 +15,10 @@
             {
               "title": "Introduction",
               "href": ""
+            },
+            {
+              "title": "API Reference",
+              "href": "api-reference"
             }
           ]
         },
@@ -26,17 +30,25 @@
               "href": "guides/flow-control"
             },
             {
-              "title": "Flow SDK UI Examples",
-              "href": "guides/ui-usage"
+              "title": "Dev Wallet",
+              "href": "guides/dev-wallet"
             }
           ]
         },
         {
-          "title": "Tutorials",
+          "title": "Sample Projects",
           "items": [
             {
-              "title": "Build a Sample Application",
-              "href": "guides/flow-words"
+              "title": "Quickstart Demo",
+              "href": "samples/quickstart"
+            },
+            {
+              "title": "Flow SDK Usage Demo",
+              "href": "samples/ui-usage"
+            },
+            {
+              "title": "Flow Words Game Tutorial",
+              "href": "samples/flow-words-tutorial"
             }
           ]
         }
