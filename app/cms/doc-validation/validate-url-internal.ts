@@ -18,6 +18,17 @@ export const validateUrlInternal = async (
 
   const { rootRelativePath, validRelativeFileUrls } = context
 
+  // We need to extract the current directory of the incoming file for validation,
+  // in order to correctly validate relative links in the form of ./page.md
+  // that are not relative to the root folder. (They are relative to their containing folder).
+  let containingFolder: string = ""
+  // rootRelativePath is the full path to the document containing the link being validated.
+  const pathSegments = rootRelativePath.split("/")
+  pathSegments.pop() // Remove the filename, we only want the path of the containing folder.
+  if (pathSegments[0])
+    // If the first element of the array after split is not '' then are not relative to the root.
+    containingFolder = pathSegments.join("/") + "/" // Re-add the trailing slash
+
   // This ensures we strip out any query strings or hashes (we can
   // verify hashes another time)
   const { pathname } = new URL(href, PLACEHOLDER_ORIGIN)
@@ -30,7 +41,9 @@ export const validateUrlInternal = async (
   return {
     ...item,
     type: "internal",
-    result: validRelativeFileUrls.includes(normalizedHref) ? "ok" : "invalid",
+    result: validRelativeFileUrls.includes(containingFolder + normalizedHref)
+      ? "ok"
+      : "invalid",
     hint: getInternalLinkHint(item, { ...context, normalizedHref }),
   }
 }
