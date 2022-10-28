@@ -49,7 +49,7 @@ export const event = ({
   })
 }
 
-export const reportWebVitals = (vitals: Metric) => {
+export const reportWebVitalsToGA = (vitals: Metric) => {
   // Assumes the global `gtag()` function exists, see:
   // https://developers.google.com/analytics/devguides/collection/ga4
   window.gtag("event", vitals.name, {
@@ -58,4 +58,8 @@ export const reportWebVitals = (vitals: Metric) => {
     metric_id: vitals.id, // Needed to aggregate events.
     metric_value: vitals.value, // Raw value from the report.
   })
+
+  if (window.ENV.LOG_WEB_VITALS) {
+    console.log(vitals)
+  }
 }
