@@ -26,7 +26,8 @@ export const validateUrlInternal = async (
   const pathSegments = rootRelativePath.split("/")
   pathSegments.pop() // Remove the filename, we only want the path of the containing folder.
   if (pathSegments[0])
-    // If the first element of the array after split is not '' then are not relative to the root.
+    // If the first element of the array after split is not '' then we are not relative to the root.
+    // and we must reconstruct the relative path so we can check it against validRelativeFileUrls
     containingFolder = pathSegments.join("/") + "/" // Re-add the trailing slash
 
   // This ensures we strip out any query strings or hashes (we can
@@ -38,12 +39,14 @@ export const validateUrlInternal = async (
   const resolved = posix.resolve("/", rootRelativePath, pathname)
   const normalizedHref = normalizeRelativeUrl(resolved)
 
+  const validInternalURL = validRelativeFileUrls.includes(
+    containingFolder + normalizedHref
+  )
+
   return {
     ...item,
     type: "internal",
-    result: validRelativeFileUrls.includes(containingFolder + normalizedHref)
-      ? "ok"
-      : "invalid",
+    result: validInternalURL ? "ok" : "invalid",
     hint: getInternalLinkHint(item, { ...context, normalizedHref }),
   }
 }
