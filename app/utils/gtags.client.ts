@@ -1,3 +1,5 @@
+import { Metric } from "web-vitals"
+
 declare global {
   interface Window {
     gtag: (
@@ -44,5 +46,16 @@ export const event = ({
     event_category: category,
     event_label: label,
     value: value,
+  })
+}
+
+export const reportWebVitals = (vitals: Metric) => {
+  // Assumes the global `gtag()` function exists, see:
+  // https://developers.google.com/analytics/devguides/collection/ga4
+  window.gtag("event", vitals.name, {
+    ...vitals,
+    value: vitals.delta, // Use `delta` so the value can be summed
+    metric_id: vitals.id, // Needed to aggregate events.
+    metric_value: vitals.value, // Raw value from the report.
   })
 }
