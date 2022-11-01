@@ -1,0 +1,8 @@
+{
+    "source": {
+      "owner": "onflow",
+      "name": "cadence-style-guide",
+      "branch": "main",
+      "rootPath": "docs/"
+    }
+}
