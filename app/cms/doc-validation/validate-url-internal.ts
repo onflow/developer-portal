@@ -15,12 +15,12 @@ export const validateUrlInternal = async (
   context: ValidateUrlContext
 ): Promise<ValidatedUrl> => {
   const { href } = item
-
   const { rootRelativePath, validRelativeFileUrls } = context
+  const hrefRelativeDepth = href.match(/\.\.\//g)?.length || 0
+  const maxDepth = ""
 
   // We need to extract the current directory of the incoming file for validation,
-  // in order to correctly validate relative links in the form of ./page.md
-  // that are not relative to the root folder. (They are relative to their containing folder).
+  // in order to correctly validate relative links.
   let containingFolder: string = ""
   const pathSegments = rootRelativePath.split("/")
   pathSegments.pop() // Remove the filename, we only want the path of the containing folder.
@@ -31,8 +31,12 @@ export const validateUrlInternal = async (
     containingFolder ? `/${containingFolder}` : "",
     href
   )
+
   const normalizedHref = normalizeRelativeUrl(resolved)
+
+  // Cleanup the URL for validation; removes hashes, validating hases is currently out-of-scope.
   const { pathname } = new URL(normalizedHref, PLACEHOLDER_ORIGIN)
+
   const validInternalURL = validRelativeFileUrls.includes(
     pathname.replace(/^\/+/g, "") // Remove leading slash.
   )
