@@ -43,6 +43,7 @@ export function getPublicEnv() {
      * the url origin, e.g. https://developers.onflow.org or http://localhost:3000
      */
     ORIGIN: process.env.ORIGIN || getFallbackOrigin(),
+    LOG_WEB_VITALS: process.env.LOG_WEB_VITALS,
   }
 }
 
