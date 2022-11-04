@@ -1,5 +1,4 @@
 import cadence from "./cadence.json"
-import cadence__styleguide from "./cadence__styleguide.json"
 import flow__core_contracts from "./flow__core-contracts.json"
 import flow__developer_portal from "./flow__developer-portal.json"
 import flow__dapp_development from "./flow__dapp-development.json"
@@ -46,7 +45,6 @@ export const testCollections = {
 export const docCollections = {
   ...(includeTestingDocCollections ? testCollections : {}),
   cadence,
-  "cadence/style-guide": cadence__styleguide,
   "flow/core-contracts": flow__core_contracts,
   "flow/developer-portal": flow__developer_portal,
   "flow/dapp-development": flow__dapp_development,
