@@ -1,0 +1,11 @@
+{
+  "source": {
+    "owner": "onflow",
+    "name": "cadence-style-guide",
+    "branch": "main",
+    "rootPath": "docs/"
+  },
+  "manifest": {
+    "displayName": "Cadence Style Guide"
+  }
+}
