@@ -1,27 +1,27 @@
 {
-    "source": {
-        "owner": "onflow",
-        "name": "cadence-style-guide",
-        "branch": "main",
-        "rootPath": "docs/"
+  "source": {
+    "owner": "onflow",
+    "name": "cadence-style-guide",
+    "branch": "main",
+    "rootPath": "docs/"
+  },
+  "manifest": {
+    "displayName": "Style Guides and Development Tips",
+    "redirects": {
+      "": "project-development-tips"
     },
-    "manifest": {
-        "displayName": "Style Guides and Development Tips",
-        "redirects": {
-            "": "project-development-tips"
-        },
-        "sidebars": {
-            "": [
-                {
-                    "title": "Style Guides and Development Tips",
-                    "items": [
-                        {
-                            "title": "Smart Contract Project Development Standards",
-                            "href": "project-development-tips"
-                        }
-                    ]
-                }
-            ]
+    "sidebars": {
+      "": [
+        {
+          "title": "Style Guides and Development Tips",
+          "items": [
+            {
+              "title": "Smart Contract Project Development Standards",
+              "href": "project-development-tips"
+            }
+          ]
         }
+      ]
     }
+  }
 }
