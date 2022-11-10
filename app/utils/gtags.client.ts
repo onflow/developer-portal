@@ -1,3 +1,5 @@
+import { Metric } from "web-vitals"
+
 declare global {
   interface Window {
     gtag: (
@@ -45,4 +47,19 @@ export const event = ({
     event_label: label,
     value: value,
   })
+}
+
+export const reportWebVitalsToGA = (vitals: Metric) => {
+  if (window.ENV.NODE_ENV === "production") {
+    window.gtag("event", vitals.name, {
+      ...vitals,
+      value: vitals.delta, // Use `delta` so the value can be summed
+      metric_id: vitals.id, // Needed to aggregate events.
+      metric_value: vitals.value, // Raw value from the report.
+    })
+  }
+
+  if (window.ENV.LOG_WEB_VITALS) {
+    console.log(vitals)
+  }
 }
