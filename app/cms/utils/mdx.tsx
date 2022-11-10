@@ -21,6 +21,7 @@ import {
   LargeVideoCard,
   StaticCheckbox,
 } from "~/ui/design-system"
+import { isLinkExternal } from "../../ui/design-system/src/lib/utils/isLinkExternal"
 import { InternalImg } from "../../ui/design-system/src/lib/Components/InternalImg/InternalImg"
 import { stripMarkdownExtension } from "../../ui/design-system/src/lib/utils/stripMarkdownExtension"
 import {
@@ -188,10 +189,13 @@ function GetMdxComponents(theme: Theme) {
   return {
     a: (props: LinkProps & { href: string }) => {
       const { href, ...rest } = props
+      let normalizedHref = returnRedirectForRoute(href) ?? href
+      if (!isLinkExternal(normalizedHref))
+        normalizedHref = stripMarkdownExtension(normalizedHref)
       return (
         <InternalContentLink
           {...rest}
-          href={stripMarkdownExtension(returnRedirectForRoute(href) ?? href)}
+          href={normalizedHref}
           className="not-prose"
         />
       )
