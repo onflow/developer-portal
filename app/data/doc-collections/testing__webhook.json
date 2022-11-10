@@ -1,14 +1,14 @@
 {
-    "source": {
-      "owner": "gradiented",
-      "name": "test-portal-webhook",
-      "branch": "main",
-      "rootPath": "docs/"
-    },
-    "manifest": {
-      "displayName": "Testing Portal Webhooks",
-      "sidebars": {
-        "": []
-      }
+  "source": {
+    "owner": "gradiented",
+    "name": "test-portal-webhook",
+    "branch": "main",
+    "rootPath": "docs/"
+  },
+  "manifest": {
+    "displayName": "Testing Portal Webhooks",
+    "sidebars": {
+      "": []
     }
   }
+}
