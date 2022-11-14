@@ -1,23 +1,19 @@
-import Ajv from "ajv"
-import { ensure as ensureError } from "errorish"
 import { RequestError } from "@octokit/request-error"
+import { ensure as ensureError } from "errorish"
 import { posix } from "node:path"
-import invariant from "tiny-invariant"
 import { cachified, redisCache } from "~/cms"
-import manifestSchema from "~/data/doc-collection-manifest-schema.json"
 import { InternalLandingHeaderProps } from "~/ui/design-system/src/lib/Components/InternalLandingHeader"
 import { SidebarItemList } from "~/ui/design-system/src/lib/Components/InternalSidebar"
 import { docCollections } from "../data/doc-collections"
+import { fetchRemoteManifest } from "./doc-collections/fetch-remote-manifest"
+import { getManifestCacheKey } from "./doc-collections/get-manifest-cache-key"
 import {
   DocCollection,
   DocCollectionManifest,
   DocCollectionSource,
 } from "./doc-collections/types"
-import { JSON_MANIFEST_FILENAME } from "./doc-collections/constants"
 import { findMostSpecificPath } from "./utils/find-most-specific-path"
 import { stripSlahes } from "./utils/strip-slashes"
-import { getManifestCacheKey } from "./doc-collections/get-manifest-cache-key"
-import { downloadFileFromSource } from "./doc-collections/download-file-from-source"
 
 export const collectionPaths = Object.keys(docCollections)
 
@@ -106,43 +102,6 @@ export async function findDocManifest(
     return
   }
 
-  const fetchRemoteManifest = async (): Promise<DocCollectionManifest> => {
-    const buffer = await downloadFileFromSource(
-      {
-        ...source,
-        branch: options?.ref || source.branch,
-      },
-      JSON_MANIFEST_FILENAME
-    )
-
-    const text = buffer.toString()
-
-    let data: unknown
-    try {
-      data = JSON.parse(text)
-    } catch (er) {
-      throw new Error(`Invalid json`)
-    }
-
-    const ajv = new Ajv()
-    const validate = ajv.compile(manifestSchema)
-    const isValid = validate(data)
-
-    if (!isValid) {
-      const { errors } = validate
-      if (errors && errors.length > 0) {
-        const [firstError] = errors
-        invariant(firstError)
-        const dataPath = firstError.schemaPath || `root`
-        const message = firstError.message || `(unknown)`
-        throw new Error(`Validation error: ${dataPath} ${message}`)
-      }
-      throw new Error(`Validation error: no context from ajv about this error`)
-    }
-
-    return data as DocCollectionManifest
-  }
-
   const [remoteManifest, error] = await cachified({
     cache: redisCache,
     key: getManifestCacheKey({
@@ -154,7 +113,10 @@ export async function findDocManifest(
       [DocCollectionManifest | null] | [null, RemoteRepoError]
     > => {
       try {
-        const result = await fetchRemoteManifest()
+        const result = await fetchRemoteManifest({
+          ...source,
+          branch: options?.ref || source.branch,
+        })
         return [result]
       } catch (caughtError: unknown) {
         const error = ensureError(caughtError)

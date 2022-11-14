@@ -19,6 +19,7 @@ import nodes from "./nodes.json"
 import testing__mock_developer_doc_json_manifest_schema_error from "./testing__mock-developer-doc-json-manifest-schema-error.json"
 import testing__mock_developer_doc_json_valid from "./testing__mock-developer-doc-json-valid.json"
 import testing__mock_developer_doc_syntax_error from "./testing__mock-developer-doc-syntax-error.json"
+import testing__webhook from "./testing__webhook.json"
 import tools__emulator from "./tools__emulator.json"
 import tools__fcl_dev_wallet from "./tools__fcl-dev-wallet.json"
 import tools__fcl_js from "./tools__fcl-js.json"
@@ -41,6 +42,7 @@ export const testCollections = {
     testing__mock_developer_doc_json_valid,
   "testing/mock_developer_doc_syntax_error":
     testing__mock_developer_doc_syntax_error,
+  "testing/webhook": testing__webhook,
 }
 
 export const docCollections = {

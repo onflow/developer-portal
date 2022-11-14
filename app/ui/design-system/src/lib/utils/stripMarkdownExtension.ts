@@ -1,2 +1,6 @@
-export const stripMarkdownExtension = (href: string) =>
-  href?.replace(/(.mdx?)/, "")
+export const stripMarkdownExtension = (href: string) => {
+  if (!/^https?:\/\//.test(href)) {
+    return href?.replace(/(.mdx?)/, "")
+  }
+  return href
+}

@@ -17,6 +17,8 @@ export const getValidationSummaryForCheckRun = (
     urlWarnings: 0,
   }
 
+  // TODO: add support for missing redirect errors.
+
   validation.forEach(({ files }) => {
     files.forEach((file) => {
       if (file.status === "compile-error") {

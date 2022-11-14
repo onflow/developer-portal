@@ -15,22 +15,35 @@ export const validateUrlInternal = async (
   context: ValidateUrlContext
 ): Promise<ValidatedUrl> => {
   const { href } = item
-
   const { rootRelativePath, validRelativeFileUrls } = context
 
-  // This ensures we strip out any query strings or hashes (we can
-  // verify hashes another time)
-  const { pathname } = new URL(href, PLACEHOLDER_ORIGIN)
+  // TODO: Still need to handle relative links that point outside of the root folder.
 
-  // resolve the path relative to the file's root path, but excluding
-  // the source's root path (which we cannot "break out" of)
-  const resolved = posix.resolve("/", rootRelativePath, pathname)
+  // We need to extract the current directory of the incoming file for validation,
+  // in order to correctly validate relative links.
+  const pathSegments = rootRelativePath.split("/")
+  pathSegments.pop() // Remove the filename, we only want the path of the containing folder.
+  let containingFolder = pathSegments.join("/")
+
+  const resolved = posix.resolve(
+    "/",
+    containingFolder ? `/${containingFolder}` : "",
+    href
+  )
+
   const normalizedHref = normalizeRelativeUrl(resolved)
+
+  // Cleanup the URL for validation; removes hashes, validating hases is currently out-of-scope.
+  const { pathname } = new URL(normalizedHref, PLACEHOLDER_ORIGIN)
+
+  const validInternalURL = validRelativeFileUrls.includes(
+    pathname.replace(/^\/+/g, "") // Remove leading slash.
+  )
 
   return {
     ...item,
     type: "internal",
-    result: validRelativeFileUrls.includes(normalizedHref) ? "ok" : "invalid",
+    result: validInternalURL ? "ok" : "invalid",
     hint: getInternalLinkHint(item, { ...context, normalizedHref }),
   }
 }
