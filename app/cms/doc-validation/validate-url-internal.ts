@@ -17,10 +17,6 @@ export const validateUrlInternal = async (
   const { href } = item
   const { rootRelativePath, validRelativeFileUrls } = context
 
-  let currentDepthFromRoot = 0
-  let hrefRelativeDepth = href.match(/\.\.\//g)?.length || 0
-  let maxDepth = 0
-
   // TODO: Still need to handle relative links that point outside of the root folder.
 
   // We need to extract the current directory of the incoming file for validation,
