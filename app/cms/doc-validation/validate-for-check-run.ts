@@ -84,7 +84,13 @@ export const validateChangesForCheckRun = async (
 
   const results = await Promise.all(
     filesByCollection.map(({ collection, files }) =>
-      validateCollection(collection, files, repo, checkRun.head_sha)
+      validateCollection({
+        collection,
+        files,
+        filesRemoved: [],
+        repo,
+        sha: checkRun.head_sha,
+      })
     )
   )
 
