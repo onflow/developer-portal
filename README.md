@@ -102,12 +102,9 @@ Commits pushed to the `main` branch are automatically deployed to staging. Commi
 
 Recommended workflow to promote changes from `main` (staging) to production is:
 
-```bash
-git fetch
-git switch production
-git reset --hard origin/main
-git push --force
-```
+- Create a PR, production branch is locked down and a reviewer is required
+- Test in staging when a PR is merged to `main` branch and deployed.
+- Likewise, Test when PR is merged to `production` and deployed.
 
 ### Deployment takes forever or fails due to memory errors
 
