@@ -98,6 +98,10 @@ export const governanceSection: Section = {
       href: "https://testnet.flowscan.org/",
     },
     {
+      title: "Sandboxnet Explorer",
+      href: "https://sandboxnet.flowscan.org/",
+    },
+    {
       title: "Mainnet Explorer",
       href: "https://flowscan.org/",
     },
