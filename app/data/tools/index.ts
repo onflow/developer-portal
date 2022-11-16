@@ -498,22 +498,6 @@ const flowMarketplaceMonitorTool: Tool = {
     "An AWS Cloudformation stack that listens to Flow events and stores them for querying.",
 }
 
-const alchemyAccessTool: Tool = {
-  title: "Alchemy HTTP API",
-  tags: ["api", "hosted", "monitoring"],
-  link: "https://docs.alchemy.com/flow/",
-  iconSrc: "https://res.cloudinary.com/apideck/icons/alchemy",
-  description: `An API for the Flow Access Node and provides dashboard tools for debugging and monitoring.`,
-}
-
-const alchemyNFTTool: Tool = {
-  title: "Alchemy Flow NFT API",
-  tags: ["api", "hosted", "nfts"],
-  link: "https://docs.alchemy.com/flow/documentation/flow-nft-apis",
-  iconSrc: "https://res.cloudinary.com/apideck/icons/alchemy",
-  description: `A NFT API to retrieve on and off chain metadata for all NFTs of a given account and more.`,
-}
-
 const graffleTool: Tool = {
   title: "Graffle",
   tags: ["api", "hosted", "webhooks"],
@@ -614,8 +598,6 @@ export {
   eventIndexingTool,
   accountApiTool,
   flowMarketplaceMonitorTool,
-  alchemyAccessTool,
-  alchemyNFTTool,
   intellijTool,
   vsCodeTool,
   commandLineLinter,

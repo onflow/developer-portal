@@ -4,8 +4,6 @@ import { metadata } from "../metadata"
 
 import {
   accountApiTool,
-  alchemyAccessTool,
-  alchemyNFTTool,
   bigDipperTool,
   bloctoWallet,
   cadutTool,
@@ -90,8 +88,6 @@ export const data: ToolsPageProps = {
     eventIndexingTool,
     accountApiTool,
     flowMarketplaceMonitorTool,
-    alchemyAccessTool,
-    alchemyNFTTool,
     graffleTool,
   ],
   explorers: [flowScanTool, flowViewSourceTool, bigDipperTool],
