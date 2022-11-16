@@ -133,24 +133,24 @@ const liveNetworksSection: Section = {
   title: "Testnet & Mainnet",
   subSections: [
     {
-      title: "Sandboxnet Account Creation & Faucet",
-      href: "https://sandboxnet-faucet.flow.com/",
-    },
-    {
       title: "Testnet Account Creation & Faucet",
       href: "https://testnet-faucet.onflow.org/",
+    },
+    {
+      title: "Sandboxnet Account Creation & Faucet",
+      href: "https://sandboxnet-faucet.flow.com/",
     },
     {
       title: "Mainnet Account Creation",
       href: "/flow/dapp-development/mainnet-account-setup",
     },
     {
-      title: "Sandboxnet Explorer",
-      href: "https://sandboxnet.flowscan.org/",
-    },
-    {
       title: "Testnet Explorer",
       href: "https://testnet.flowscan.org/",
+    },
+    {
+      title: "Sandboxnet Explorer",
+      href: "https://sandboxnet.flowscan.org/",
     },
     {
       title: "Mainnet Explorer",
