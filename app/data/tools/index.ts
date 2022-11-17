@@ -103,7 +103,7 @@ const cdcWebpackPlugin: Tool = {
     name: "cadence-webpack-plugin",
     owner: "agencyenterprise",
   },
-  title: "Cadence Linter",
+  title: "Cadence Webpack Plugin",
   authorIcon: "https://avatars.githubusercontent.com/u/831220?s=200&v=4",
   authorName: "agencyenterprise",
   tags: ["javascript", "webpack", "cadence"],
