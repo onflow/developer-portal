@@ -36,6 +36,10 @@
             {
               "title": "Storing Data",
               "href": "storage"
+            },
+            {
+              "title": "Network",
+              "href": "networks"
             }
           ]
         }
