@@ -25,12 +25,6 @@ export type Network = {
 }
 
 export const networks: Network[] = [
-  // {
-  //   componentId: "fqvhhbc3hdw8",
-  //   id: "mainnet",
-  //   title: "Flow Mainnet",
-  //   urlPath: "flow-mainnet",
-  // },
   {
     componentId: "nfr4t4jf0jw5",
     id: "mainnet-core-components",
