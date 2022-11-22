@@ -37,6 +37,12 @@ export const networks: Network[] = [
     title: "Flow Testnet",
     urlPath: "flow-testnet",
   },
+  {
+    componentId: "t5a0m8q0qn4t",
+    id: "Sandboxnet",
+    title: "Flow Sandboxnet",
+    urlPath: "flow-sandboxnet",
+  },
   // Exclude canarynet for now until we have sporks data.
   // {
   //   componentId: "s4z9n7p9pm3s",
