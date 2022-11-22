@@ -25,11 +25,23 @@ export type Network = {
 }
 
 export const networks: Network[] = [
+  // {
+  //   componentId: "fqvhhbc3hdw8",
+  //   id: "mainnet",
+  //   title: "Flow Mainnet",
+  //   urlPath: "flow-mainnet",
+  // },
   {
-    componentId: "fqvhhbc3hdw8",
-    id: "mainnet",
-    title: "Flow Mainnet",
-    urlPath: "flow-mainnet",
+    componentId: "nfr4t4jf0jw5",
+    id: "mainnet-core-components",
+    title: "Flow Mainnet Core Components",
+    urlPath: "flow-mainnet-core-components",
+  },
+  {
+    componentId: "xmgzlt62mtg4",
+    id: "mainnet-access-apis",
+    title: "Flow Mainnet Access APIs",
+    urlPath: "flow-mainnet-access-apis",
   },
   {
     componentId: "g9d7vtywpdfq",
@@ -38,10 +50,16 @@ export const networks: Network[] = [
     urlPath: "flow-testnet",
   },
   {
-    componentId: "t5a0m8q0qn4t",
-    id: "Sandboxnet",
-    title: "Flow Sandboxnet",
-    urlPath: "flow-sandboxnet",
+    componentId: "1zmp931swvcs",
+    id: "sandboxnet-core-components",
+    title: "Flow Sandboxnet Core Components",
+    urlPath: "flow-sandboxnet-core-components",
+  },
+  {
+    componentId: "xc3zrll5td5p",
+    id: "sandboxnet-access-apis",
+    title: "Flow Sandboxnet Access APIs",
+    urlPath: "flow-sandboxnet-access-apis",
   },
   // Exclude canarynet for now until we have sporks data.
   // {
