@@ -45,7 +45,7 @@ export function InternalLandingHeader({
           <div className="mb-4 hidden text-2xl font-bold md:block">
             Getting Started
           </div>
-          <div className="flex flex-col gap-10 md:flex-row">
+          <div className="w-90 flex flex-col gap-10 overflow-scroll md:flex-row">
             {headerCards.map((headerCard, index) => (
               <InternalLandingHeaderCard key={index} {...headerCard} />
             ))}
