@@ -29,8 +29,16 @@
               "href": "access-api"
             },
             {
-              "title": "Access API rate limits",
+              "title": "Access API Rate Limits",
               "href": "access-api-rate-limits"
+            },
+            {
+              "title": "Archive Access API",
+              "href": "archive-access-api"
+            },
+            {
+              "title": "Archive Access API Rate Limits",
+              "href": "archive-api-rate-limits"
             },
             {
               "title": "Operator FAQs",
@@ -71,11 +79,11 @@
             },
             {
               "title": "Past Spork Info",
-              "href": "/flow-mainnet"
+              "href": "node-operation/past-sporks"
             },
             {
               "title": "Upcoming Sporks",
-              "href": "/flow-mainnet"
+              "href": "node-operation/upcoming-sporks"
             }
           ]
         }

@@ -6,6 +6,7 @@ import ToolTestingIconSrc from "~/ui/design-system/images/tools/tool-testing.svg
 import ToolVsCodeIconSrc from "~/ui/design-system/images/tools/tool-vscode.svg"
 import ToolPortIconSrc from "~/ui/design-system/images/tools/tool-port.svg"
 import CodeIcon from "~/ui/design-system/images/tools/tool-default.svg"
+import ToolDapperSelfCustody from "~/ui/design-system/images/tools/tool-dapper-self-custody.svg"
 
 // TODO: Move somewhere else!
 export type Tool = SDKCardProps & {
@@ -78,7 +79,8 @@ const intellijTool: Tool = {
   tags: ["documentation"],
   link: "https://github.com/cadence-tools/cadence-for-intellij-platform",
   stars: 6,
-  iconSrc: CodeIcon,
+  iconSrc:
+    "https://upload.wikimedia.org/wikipedia/commons/thumb/9/9c/IntelliJ_IDEA_Icon.svg/1024px-IntelliJ_IDEA_Icon.svg.png",
   description:
     "Support for Cadence, the resource-oriented smart contract language of Flow, in Intellij Platform IDEs.",
 }
@@ -103,7 +105,7 @@ const cdcWebpackPlugin: Tool = {
     name: "cadence-webpack-plugin",
     owner: "agencyenterprise",
   },
-  title: "Cadence Linter",
+  title: "Cadence Webpack Plugin",
   authorIcon: "https://avatars.githubusercontent.com/u/831220?s=200&v=4",
   authorName: "agencyenterprise",
   tags: ["javascript", "webpack", "cadence"],
@@ -354,6 +356,21 @@ const niftoryTool: Tool = {
   description: `Blazing-fast GraphQL APIs to query/mint/airdrop NFTs, create custodial wallets, handle user auth, and more!`,
 }
 
+const flowviewTool: Tool = {
+  repo: {
+    name: "flowview",
+    owner: "flowview",
+  },
+  authorIcon: "https://avatars.githubusercontent.com/u/102154433?s=200&v=4",
+  authorName: "33 Labs",
+  stars: 5,
+  title: "Flowview",
+  tags: ["explorer", "GUI"],
+  link: "https://www.flowview.app/",
+  iconSrc: "https://www.flowview.app/_next/image?url=%2Flogo.png&w=640&q=75",
+  description: `An interactive view to visualize and inspect storage on Flow Accounts`,
+}
+
 const overflowTool: Tool = {
   repo: {
     name: "overflow",
@@ -554,6 +571,15 @@ const nufiWallet: Tool = {
     "Flow's only non-custodial wallet with staking, NFT gallery, dApp connector and Ledger HW support.",
 }
 
+const dapperSelfCustodyWallet: Tool = {
+  title: "Dapper Self Custody (BETA)",
+  tags: ["wallet", "non-custodial", "mobile", "ios", "android"],
+  link: "https://www.meetdapper.com/dapper-self-custody",
+  iconSrc: ToolDapperSelfCustody,
+  description:
+    "A mobile self custody wallet to help you explore the world of Flow",
+}
+
 const lilicoWallet: Tool = {
   title: "Lilico",
   tags: ["web", "extension", "wallet", "non-custodial"],
@@ -611,4 +637,6 @@ export {
   lilicoWallet,
   fionaWallet,
   niftoryTool,
+  flowviewTool,
+  dapperSelfCustodyWallet,
 }

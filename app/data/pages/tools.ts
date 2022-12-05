@@ -41,6 +41,8 @@ import {
   vsCodeTool,
   walletApiTool,
   niftoryTool,
+  flowviewTool,
+  dapperSelfCustodyWallet,
 } from "../tools"
 
 export const data: ToolsPageProps = {
@@ -51,8 +53,9 @@ export const data: ToolsPageProps = {
     niftoryTool,
     emulatorTool,
     jsTestingLibTool,
-    overflowTool,
+    flowviewTool,
     flowserTool,
+    overflowTool,
     cadutTool,
     faucetTool,
     intellijTool,
@@ -68,6 +71,7 @@ export const data: ToolsPageProps = {
     nufiWallet,
     lilicoWallet,
     fionaWallet,
+    dapperSelfCustodyWallet,
   ],
   sdks: [
     httpSDK,
