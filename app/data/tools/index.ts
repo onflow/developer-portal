@@ -6,7 +6,6 @@ import ToolTestingIconSrc from "~/ui/design-system/images/tools/tool-testing.svg
 import ToolVsCodeIconSrc from "~/ui/design-system/images/tools/tool-vscode.svg"
 import ToolPortIconSrc from "~/ui/design-system/images/tools/tool-port.svg"
 import CodeIcon from "~/ui/design-system/images/tools/tool-default.svg"
-import ToolDapperSelfCustody from "~/ui/design-system/images/tools/tool-dapper-self-custody.svg"
 
 // TODO: Move somewhere else!
 export type Tool = SDKCardProps & {
