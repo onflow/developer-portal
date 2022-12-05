@@ -368,7 +368,7 @@ const flowviewTool: Tool = {
   tags: ["explorer", "GUI"],
   link: "https://www.flowview.app/",
   iconSrc: "https://www.flowview.app/_next/image?url=%2Flogo.png&w=640&q=75",
-  description: `An interactive view to visualize  Flow Accounts`,
+  description: `An interactive view to visualize and inspect storage on Flow Accounts`,
 }
 
 const overflowTool: Tool = {
