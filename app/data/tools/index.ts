@@ -6,7 +6,6 @@ import ToolTestingIconSrc from "~/ui/design-system/images/tools/tool-testing.svg
 import ToolVsCodeIconSrc from "~/ui/design-system/images/tools/tool-vscode.svg"
 import ToolPortIconSrc from "~/ui/design-system/images/tools/tool-port.svg"
 import CodeIcon from "~/ui/design-system/images/tools/tool-default.svg"
-import ToolDapperSelfCustody from "~/ui/design-system/images/tools/tool-dapper-self-custody.svg"
 
 // TODO: Move somewhere else!
 export type Tool = SDKCardProps & {
@@ -575,7 +574,8 @@ const dapperSelfCustodyWallet: Tool = {
   title: "Dapper Self Custody (BETA)",
   tags: ["wallet", "non-custodial", "mobile", "ios", "android"],
   link: "https://www.meetdapper.com/dapper-self-custody",
-  iconSrc: ToolDapperSelfCustody,
+  iconSrc:
+    "https://raw.githubusercontent.com/onflow/developer-portal/6d1dd866e38b0d37ea54d5c66892dedc3664a3de/app/ui/design-system/images/tools/tool-dapper-self-custody.svg",
   description:
     "A mobile self custody wallet to help you explore the world of Flow",
 }
