@@ -36,6 +36,22 @@
             {
               "title": "Storing Data",
               "href": "storage"
+            },
+            {
+              "title": "Networks",
+              "href": "networks"
+            },
+            {
+              "title": "Accessing Testnet",
+              "href": "accessing-testnet"
+            },
+            {
+              "title": "Accessing Sandboxnet",
+              "href": "accessing-sandboxnet"
+            },
+            {
+              "title": "Accessing Mainnet",
+              "href": "accessing-mainnet"
             }
           ]
         }

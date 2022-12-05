@@ -358,6 +358,8 @@ export const redirects = {
     "/flow/core-contracts/non-fungible-token",
   "/staking/staking-options": "/nodes/staking/staking-options",
   "/concepts/accessing-testnet": "/learn/concepts/accessing-testnet",
+  "/concepts/accessing-sandboxnet": "/learn/concepts/accessing-sandboxnet",
+  "/concepts/accessing-mainnet": "/learn/concepts/accessing-mainnet",
   "/concepts/transaction-signing": "/learn/concepts/transaction-signing",
   "/staking/epoch-terminology": "/nodes/staking/epoch-terminology",
   "/flow-cli/get-accounts": "/tools/flow-cli/get-accounts",
