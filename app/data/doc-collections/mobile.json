@@ -1,59 +1,53 @@
 {
-    "source": {
-        "owner": "onflow",
-        "name": "mobile-docs",
-        "branch": "master",
-        "rootPath": "docs/"
+  "source": {
+    "owner": "onflow",
+    "name": "mobile-docs",
+    "branch": "master",
+    "rootPath": "docs/"
+  },
+  "manifest": {
+    "displayName": "Mobile",
+    "headers": {
+      "": {
+        "icon": "cadence",
+        "title": "Flow Mobile",
+        "description": "Flow Mobile docs section",
+        "headerCards": [
+          {
+            "title": "Why Use Cadence?",
+            "tags": ["reference", "patterns"],
+            "description": "Learn the main benefits of using Cadence for smart contract development.",
+            "href": "/cadence/why"
+          },
+          {
+            "title": "Hello World Tutorial",
+            "tags": ["tutorial", "playground"],
+            "description": "Write and deploy your first smart contract within minutes on our Playground.",
+            "href": "/cadence/tutorial/02-hello-world"
+          }
+        ]
+      }
     },
-    "manifest": {
-        "displayName": "Mobile",
-        "headers": {
-            "": {
-                "icon": "cadence",
-                "title": "Flow Mobile",
-                "description": "Flow Mobile docs section",
-                "headerCards": [
-                    {
-                        "title": "Why Use Cadence?",
-                        "tags": [
-                            "reference",
-                            "patterns"
-                        ],
-                        "description": "Learn the main benefits of using Cadence for smart contract development.",
-                        "href": "/cadence/why"
-                    },
-                    {
-                        "title": "Hello World Tutorial",
-                        "tags": [
-                            "tutorial",
-                            "playground"
-                        ],
-                        "description": "Write and deploy your first smart contract within minutes on our Playground.",
-                        "href": "/cadence/tutorial/02-hello-world"
-                    }
-                ]
+    "sidebars": {
+      "": [
+        {
+          "title": "Developer Guides",
+          "items": [
+            {
+              "title": "Introduction to Cadence",
+              "href": ""
+            },
+            {
+              "title": "Cadence Design Patterns",
+              "href": "design-patterns"
+            },
+            {
+              "title": "Contract Upgrades with Incompatible Changes",
+              "href": "contract-upgrades"
             }
-        },
-        "sidebars": {
-            "": [
-                {
-                    "title": "Developer Guides",
-                    "items": [
-                        {
-                            "title": "Introduction to Cadence",
-                            "href": ""
-                        },
-                        {
-                            "title": "Cadence Design Patterns",
-                            "href": "design-patterns"
-                        },
-                        {
-                            "title": "Contract Upgrades with Incompatible Changes",
-                            "href": "contract-upgrades"
-                        }
-                    ]
-                }
-            ]
+          ]
         }
+      ]
     }
+  }
 }
