@@ -7,17 +7,12 @@ import {
 } from "../webhook-content-check.server"
 import { Octokit } from "../../github/octokit.server"
 import { CheckRunEvent, CheckSuiteEvent } from "@octokit/webhooks-types"
-import * as fs from "fs"
 
 import CheckSuiteRequestedPayload from "./fixtures/check_suite_fcl.requested.json"
 import CheckRunCreatedPayload from "./fixtures/check_run_fcl.created.json"
-import CheckSuiteCompletedPayload from "./fixtures/check_suite_fcl.completed.json"
-import CheckRunCompletedPayload from "./fixtures/check_run_fcl.completed.json"
-import CheckSuiteRerequestedPayload from "./fixtures/check_suite_fcl.requested.json"
 
 import GetPrResponse from "./fixtures/get_PR_response.json"
 import GetTreeResponse from "./fixtures/get_tree_response.json"
-import GetFileResponse from "./fixtures/get_file_response.json"
 
 // Name of the repo to be appended on URL
 const repoName = "fcl-js"
@@ -32,10 +27,10 @@ const prId = "1505"
 const gitTreeId = "0d41854e6313b56bca34abe9e081df17a484ef5c"
 
 // URl-encoded file name to be downloaded
-const fileName = "docs%2Findex.md"
+//const fileName = "docs%2Findex.md"
 
 // path to an output file to print patch requests. These are what Github receive from the App to display on the PR
-const outputFile = "./patch_requests.txt"
+//const outputFile = "./patch_requests.txt"
 
 export const restHandlers = [
   // Github endpoint to create a check run from a check suite requested call from Github
