@@ -27,6 +27,10 @@ const footerSections = [
         text: "Cadence",
       },
       {
+        link: "/mobile",
+        text: "Mobile",
+      },
+      {
         link: "/tools/fcl-js/",
         text: "FCL",
       },
