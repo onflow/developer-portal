@@ -2,7 +2,7 @@
   "source": {
     "owner": "onflow",
     "name": "mobile-docs",
-    "branch": "master",
+    "branch": "main",
     "rootPath": "docs/"
   },
   "manifest": {
