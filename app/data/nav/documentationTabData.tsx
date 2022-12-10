@@ -199,8 +199,8 @@ const dappDevelomentSection: Section = {
       href: "https://github.com/ph0ph0/Get-The-Flow-Down",
     },
     {
-      title: "Developer Onboarding Guide",
-      href: "https://flow-partner-dev-hub.vercel.app",
+      title: "Flow Mobile Native",
+      href: "/mobile",
     },
     {
       title: "Launch a Fungible Token (Guide)",
