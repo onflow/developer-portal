@@ -73,6 +73,11 @@ export type ValidateCollectionOptions = {
   filesRemoved?: string[]
 
   /**
+   * An array of files to validate
+   */
+  filesToValidate: string[]
+
+  /**
    * The github repo to validate against (this _may_ be different from the
    * collection's `source` when validating a different fork, but in most cases
    * these will be the same repo)
@@ -89,6 +94,7 @@ export const validateCollection = async ({
   collection,
   files,
   filesRemoved,
+  filesToValidate,
   repo,
   sha,
 }: ValidateCollectionOptions): Promise<FileValidationResult[]> => {
@@ -139,7 +145,8 @@ export const validateCollection = async ({
     }
   }
 
-  const markdownFiles = collectionFiles.filter((filename) =>
+  // Only validate markdown files
+  const markdownFiles = filesToValidate.filter((filename) =>
     filterFileNameHasMarkdownExtension({ filename })
   )
 
