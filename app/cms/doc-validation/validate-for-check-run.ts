@@ -34,16 +34,16 @@ export const validateChangesForCheckRun = async (
     return []
   }
 
-  const changedFiles = (await fetchChangedFilesForCheckRun(repo, checkRun)).map(
-    (f) => f.filename
-  )
+  const changedFiles = await fetchChangedFilesForCheckRun(repo, checkRun)
 
   // We only care about collections in which we've changed files within
   // it's `rootPath`, so filter out any collections that are in the same
   // repo but in a collection that hasn't been touched.
   const changedCollections = repoCollections.filter(([a, collection]) =>
-    changedFiles.some((file) =>
-      file.toLowerCase().startsWith(collection.source.rootPath.toLowerCase())
+    changedFiles.some(({ filename }) =>
+      filename
+        .toLowerCase()
+        .startsWith(collection.source.rootPath.toLowerCase())
     )
   )
 
@@ -88,7 +88,6 @@ export const validateChangesForCheckRun = async (
         collection,
         files,
         filesRemoved: [],
-        filesToValidate: changedFiles,
         repo,
         sha: checkRun.head_sha,
       })

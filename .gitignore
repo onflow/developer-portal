@@ -62,5 +62,3 @@ package-lock.json
 .eslintcache
 .env.staging
 .env.production
-
-.yarn/
