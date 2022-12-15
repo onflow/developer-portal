@@ -7,9 +7,6 @@
   },
   "manifest": {
     "displayName": "Mobile",
-    "redirects": {
-      "": "index"
-    },
     "headers": {
       "": {
         "icon": "cadence",
