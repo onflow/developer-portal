@@ -97,7 +97,7 @@ beforeAll(() => {
 
   // Environment variables for testing. GITHUB_APP_ID is a set value. BOT_GITHUB_TOKEN is your github personal access token
   process.env.GITHUB_APP_ID = "230821"
-  process.env.BOT_GITHUB_TOKEN = "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"
+  process.env.BOT_GITHUB_TOKEN = ""
 })
 
 afterAll(() => {
