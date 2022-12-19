@@ -13,6 +13,7 @@ import CheckRunCreatedPayload from "./fixtures/check_run_fcl.created.json"
 
 import GetPrResponse from "./fixtures/get_PR_response.json"
 import GetTreeResponse from "./fixtures/get_tree_response.json"
+import GetFileResponse from "./fixtures/get_file_response.json"
 
 // Name of the repo to be appended on URL
 const repoName = "fcl-js"
@@ -27,7 +28,7 @@ const prId = "1505"
 const gitTreeId = "0d41854e6313b56bca34abe9e081df17a484ef5c"
 
 // URl-encoded file name to be downloaded
-//const fileName = "docs%2Findex.md"
+const fileName = "docs%2Findex.md"
 
 // path to an output file to print patch requests. These are what Github receive from the App to display on the PR
 //const outputFile = "./patch_requests.txt"
@@ -71,12 +72,12 @@ export const restHandlers = [
   ),
 
   // Github endpoint to download content of a file
-  // rest.get(
-  //   `https://api.github.com/repos/onflow/${repoName}/contents/${fileName}`,
-  //   (req, res, ctx) => {
-  //     return res(ctx.json(GetFileResponse))
-  //   }
-  // ),
+  rest.get(
+    `https://api.github.com/repos/onflow/${repoName}/contents/${fileName}`,
+    (req, res, ctx) => {
+      return res(ctx.json(GetFileResponse))
+    }
+  ),
 ]
 
 // Setup msw server to mock requests
@@ -91,8 +92,8 @@ beforeAll(() => {
   // fs.truncateSync("helloworld.txt", 0)
 
   // Sets server to listen mode. 'error' does not allow any unmocked traffic pass through. 'bypass' does the opposite.
-  server.listen({ onUnhandledRequest: "bypass" })
-  // server.listen({ onUnhandledRequest: "error" })
+  // server.listen({ onUnhandledRequest: "bypass" })
+  server.listen({ onUnhandledRequest: "error" })
 
   // Environment variables for testing. GITHUB_APP_ID is a set value. BOT_GITHUB_TOKEN is your github personal access token
   process.env.GITHUB_APP_ID = "230821"
