@@ -40,10 +40,10 @@ export const restHandlers = [
   rest.patch(
     "https://api.github.com/repos/onflow/fcl-js/check-runs/9925474144",
     async (req, res, ctx) => {
-      let reqBody = await req.json()
-      reqBody = JSON.stringify(reqBody, null, 2)
+      // let reqBody = await req.json()
+      // reqBody = JSON.stringify(reqBody, null, 2)
 
-      fs.appendFileSync("helloworld.txt", reqBody)
+      // fs.appendFileSync("helloworld.txt", reqBody)
 
       return res()
     }
@@ -77,7 +77,7 @@ const env = process.env
 
 // Start server before all tests
 beforeAll(() => {
-  fs.truncateSync("helloworld.txt", 0)
+  // fs.truncateSync("helloworld.txt", 0)
   server.listen({ onUnhandledRequest: "bypass" })
   process.env.GITHUB_APP_ID = "230821"
   process.env.BOT_GITHUB_TOKEN = "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"
