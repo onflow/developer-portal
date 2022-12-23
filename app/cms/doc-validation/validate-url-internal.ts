@@ -8,7 +8,7 @@ import { ValidatedUrl, ValidateUrlContext } from "./validate-url"
 const PLACEHOLDER_ORIGIN = "https://example.com"
 
 export const normalizeRelativeUrl = (path: string) =>
-  stripSlahes(stripMarkdownExtension(path.toLowerCase()))
+  stripSlahes(path.toLowerCase())
 
 export const validateUrlInternal = async (
   item: UrlItem,
@@ -44,7 +44,9 @@ export const validateUrlInternal = async (
     ...item,
     type: "internal",
     result: validInternalURL ? "ok" : "invalid",
-    hint: getInternalLinkHint(item, { ...context, normalizedHref }),
+    hint: validInternalURL
+      ? ""
+      : getInternalLinkHint(item, { ...context, normalizedHref }),
   }
 }
 

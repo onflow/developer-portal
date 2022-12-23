@@ -114,22 +114,19 @@ afterEach(() => server.resetHandlers())
 it("Test post", async () => {
   // Print server handlers to debug and make sure all handlers are registered
   // server.printHandlers()
-
-  let octokit = new Octokit()
-
-  let e: CheckSuiteEvent = CheckSuiteRequestedPayload as CheckSuiteEvent
-  await contentCheckOnCheckSuite({
-    payload: e,
-    octokit: octokit,
-    id: "test",
-    name: "check_suite",
-  })
-
-  let ev: CheckRunEvent = CheckRunCreatedPayload as CheckRunEvent
-  await contentCheckOnCheckRun({
-    payload: ev,
-    octokit: octokit,
-    id: "test",
-    name: "check_run",
-  })
+  // let octokit = new Octokit()
+  // let e: CheckSuiteEvent = CheckSuiteRequestedPayload as CheckSuiteEvent
+  // await contentCheckOnCheckSuite({
+  //   payload: e,
+  //   octokit: octokit,
+  //   id: "test",
+  //   name: "check_suite",
+  // })
+  // let ev: CheckRunEvent = CheckRunCreatedPayload as CheckRunEvent
+  // await contentCheckOnCheckRun({
+  //   payload: ev,
+  //   octokit: octokit,
+  //   id: "test",
+  //   name: "check_run",
+  // })
 }, 15000)

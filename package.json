@@ -51,9 +51,6 @@
       "node_modules/(?!@ngrx|(?!deck.gl)|ng-dynamic)"
     ]
   },
-  "resolutions": {
-    "redoc/**/colorette": "^2.0.19"
-  },
   "dependencies": {
     "@algolia/autocomplete-core": "^1.7.1",
     "@algolia/autocomplete-js": "^1.7.1",
