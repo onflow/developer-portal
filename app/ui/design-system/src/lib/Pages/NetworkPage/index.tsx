@@ -52,7 +52,7 @@ const NetworkPage = ({
                     lastSporkDate ? dateYYYYMMDD(lastSporkDate) : ""
                   }
                   nextSporkDate="TBD"
-                  link={`/network/${name.toLowerCase().replace(" ", "-")}`}
+                  link={link}
                 />
               </div>
             ))}
