@@ -160,4 +160,4 @@ export {
   contentNavigationListItems,
 }
 
-export const editPageUrl = `${metadata.githubRepoBaseUrl}/blob/main/app/data/pages/home.ts`
+export const editPageUrl = `${metadata.githubRepoBaseUrl}/blob/main/app/data/pages/home.tsx`
