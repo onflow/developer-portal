@@ -142,7 +142,7 @@ const footerSections = [
         text: "Past Sporks",
       },
       {
-        link: "/network/flow-mainnet",
+        link: "/nodes/node-operation/upcoming-sporks",
         text: "Upcoming Sporks",
       },
       {
