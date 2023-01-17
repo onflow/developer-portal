@@ -1,4 +1,4 @@
-import { NavLink } from "@remix-run/react"
+import { NavLink, Link } from "@remix-run/react"
 import clsx from "clsx"
 import {
   InternalSidebarDropdownMenu,
@@ -6,6 +6,9 @@ import {
 } from "../InternalSidebarDropdownMenu"
 import { useResolvedSidebarUrl } from "./useResolvedSidebarUrl"
 import { titleFromHref } from "../../utils/titleFromHref"
+import { isLinkExternal } from "../../utils/isLinkExternal"
+import ExternalLinkIcon from "../InternalContentLink/ExternalLinkIcon"
+import AppLink from "../AppLink"
 
 export interface SidebarItemBase {
   items?: SidebarItemList
@@ -32,8 +35,19 @@ export type InternalSidebarProps = {
 }
 
 const InternalSidebarLinkItem = ({ item }: { item: SidebarLinkItem }) => {
+  const isExternal = isLinkExternal(item.href)
   const resolvedHref = useResolvedSidebarUrl(item.href)
 
+  if (isExternal) {
+    return (
+      <AppLink
+        to={resolvedHref}
+        className="flex truncate py-1 hover:text-primary-blue dark:hover:text-blue-hover-dark"
+      >
+        {item.title} <ExternalLinkIcon className="pl-1" stroke="white" />
+      </AppLink>
+    )
+  }
   return (
     <NavLink
       to={resolvedHref}
