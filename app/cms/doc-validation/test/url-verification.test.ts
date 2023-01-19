@@ -48,6 +48,18 @@ const testUrls: TestUrl[] = [
     urlItem: {
       attributeName: "test",
       tagName: "test",
+      href: "example.png",
+      position: undefined,
+    },
+    result: {
+      type: "external",
+      result: "ignored",
+    },
+  },
+  {
+    urlItem: {
+      attributeName: "test",
+      tagName: "test",
       href: "/flow",
       position: undefined,
     },
@@ -86,6 +98,7 @@ it("Test urls", async () => {
   // TODO: spin up mock http server to test validating urls.
   testUrls.forEach(async (item) => {
     const urlResult = await validateUrl(item.urlItem as UrlItem, context)
+    console.log("testing urls", urlResult)
     expect(item.result.type).equal(urlResult.type)
     expect(item.result.result).equal(urlResult.result)
   })
