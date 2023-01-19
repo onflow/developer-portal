@@ -4,6 +4,11 @@ import * as Sentry from "@sentry/node"
 import "@sentry/tracing"
 import { renderToString } from "react-dom/server"
 import { getRequiredGlobalEnvVar } from "./cms/helpers"
+import Hotjar from "@hotjar/browser"
+
+const hotjarVersion = 6
+
+Hotjar.init(parseInt(process.env.HOTJAR_SITE_ID ?? ""), hotjarVersion)
 
 Sentry.init({
   ...(process.env.SENTRY_DSN && { dsn: process.env.SENTRY_DSN }),

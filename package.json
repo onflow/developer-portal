@@ -59,6 +59,7 @@
     "@algolia/autocomplete-js": "^1.7.1",
     "@floating-ui/react-dom": "^0.7.1",
     "@headlessui/react": "^1.6.4",
+    "@hotjar/browser": "^1.0.6",
     "@octokit/app": "^13.0.8",
     "@octokit/core": "^4.0.5",
     "@octokit/plugin-throttling": "^4.3.0",
