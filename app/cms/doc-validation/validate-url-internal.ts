@@ -1,6 +1,5 @@
 import { distance } from "fastest-levenshtein"
 import { posix } from "node:path"
-import { useInternalAssetUrl } from "~/ui/design-system/src/lib/Components/InternalUrlContext"
 import { isAssetReference } from "~/ui/design-system/src/lib/utils/isAssetReference"
 import { stripMarkdownExtension } from "../../ui/design-system/src/lib/utils/stripMarkdownExtension"
 import { UrlItem } from "../rehype-plugins/extractUrls"
