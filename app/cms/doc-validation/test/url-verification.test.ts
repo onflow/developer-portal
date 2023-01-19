@@ -48,6 +48,18 @@ const testUrls: TestUrl[] = [
     urlItem: {
       attributeName: "test",
       tagName: "test",
+      href: "example.png",
+      position: undefined,
+    },
+    result: {
+      type: "external",
+      result: "ignored",
+    },
+  },
+  {
+    urlItem: {
+      attributeName: "test",
+      tagName: "test",
       href: "/flow",
       position: undefined,
     },
