@@ -2544,6 +2544,11 @@
   resolved "https://registry.npmjs.org/@headlessui/react/-/react-1.6.4.tgz"
   integrity sha512-0yqz1scwbFtwljmbbKjXsSGl5ABEYNICVHZnMCWo0UtOZodo2Tpu94uOVgCRjRZ77l2WcTi2S0uidINDvG7lsA==
 
+"@hotjar/browser@^1.0.6":
+  version "1.0.6"
+  resolved "https://registry.yarnpkg.com/@hotjar/browser/-/browser-1.0.6.tgz#5e1c9a2b0c7c21d65acb741b76c39ed81eaa4e5f"
+  integrity sha512-yq8pFrCk/pGe1LeI9kgd4NZNI3C8eQlck+ISmWnL3T8RtN/YYEmzDFEZ1AFZ9GGAbxyxG6xUdaL3/S7sOSqeCQ==
+
 "@humanwhocodes/config-array@^0.9.2":
   version "0.9.5"
   resolved "https://registry.npmjs.org/@humanwhocodes/config-array/-/config-array-0.9.5.tgz"
