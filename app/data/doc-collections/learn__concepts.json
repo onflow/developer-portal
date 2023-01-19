@@ -30,6 +30,10 @@
               "href": "transaction-signing"
             },
             {
+              "title": "Transaction Lifecycle",
+              "href": "transaction-lifecycle"
+            },
+            {
               "title": "Segmented Transaction Fees",
               "href": "variable-transaction-fees"
             },
