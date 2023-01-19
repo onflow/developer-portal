@@ -4,8 +4,11 @@ import { stripMarkdownExtension } from "../../ui/design-system/src/lib/utils/str
 import { UrlItem } from "../rehype-plugins/extractUrls"
 import { stripSlahes } from "../utils/strip-slashes"
 import { ValidatedUrl, ValidateUrlContext } from "./validate-url"
+import { validateUrlExternal } from "./validate-url-external"
 
 const PLACEHOLDER_ORIGIN = "https://example.com"
+const SITE_ROOT =
+  process.env.SITE_ROOT_ORIGIN || "https://flow-docs-staging.fly.dev"
 
 export const normalizeRelativeUrl = (path: string) =>
   stripSlahes(stripMarkdownExtension(path.toLowerCase()))
@@ -17,8 +20,15 @@ export const validateUrlInternal = async (
   const { href } = item
   const { rootRelativePath, validRelativeFileUrls } = context
 
-  // TODO: Still need to handle relative links that point outside of the root folder.
-
+  // Still need to handle relative links that point outside of the root folder.
+  if (href.startsWith("/")) {
+    const targetUrl = `${SITE_ROOT}${href}`
+    const checkItem = {
+      ...item,
+      href: targetUrl,
+    }
+    return validateUrlExternal(checkItem, context)
+  }
   // We need to extract the current directory of the incoming file for validation,
   // in order to correctly validate relative links.
   const pathSegments = rootRelativePath.split("/")
