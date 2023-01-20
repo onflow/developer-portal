@@ -33,7 +33,7 @@ const devToArgs: ProjectCardProps = {
 
 const emeraldDAO: ProjectCardProps = {
   projectImage:
-    "https://pbs.twimg.com/profile_banners/1458578264306462723/1638906249/1500x500",
+    "https://www.ecdao.org/wp-content/uploads/2022/08/EC-Education.svg",
   heading: "Emerald City",
   description: "The first DAO built on the Flow Blockchain",
   tags: ["DAO"],
@@ -113,7 +113,7 @@ const flowBuildspace: ProjectCardProps = {
   author: {
     name: "Buildspace",
     profileImage:
-      "https://pbs.twimg.com/profile_images/1422256068554641413/iR0aoxSO_400x400.jpg",
+      "https://img.api.cryptorank.io/coins/150x150.buildspace1668414728723.png",
   },
   numStars: 0,
   twitterLink: "https://twitter.com/_buildspace",

@@ -6,24 +6,37 @@
     "rootPath": "docs/"
   },
   "manifest": {
+    "$schema": "https://developers.flow.com/schemas/flow-docs.json",
     "displayName": "Mobile",
     "headers": {
       "": {
         "icon": "cadence",
-        "title": "Flow Mobile",
-        "description": "Flow Mobile docs section",
+        "title": "Mobile",
+        "description": "Build secure native mobile applications with best-in-class user experience on Flow",
         "headerCards": [
           {
-            "title": "Why Use Cadence?",
-            "tags": ["reference", "patterns"],
-            "description": "Learn the main benefits of using Cadence for smart contract development.",
-            "href": "/cadence/why"
+            "title": "Mobile development environment",
+            "tags": ["guide", "local-development"],
+            "description": "Set up your local development environment",
+            "href": "/mobile/guides/development-environment"
           },
           {
-            "title": "Hello World Tutorial",
-            "tags": ["tutorial", "playground"],
-            "description": "Write and deploy your first smart contract within minutes on our Playground.",
-            "href": "/cadence/tutorial/02-hello-world"
+            "title": "Kotlin FCL SDK",
+            "tags": ["sdk", "fcl", "android"],
+            "description": "Use the FCL Kotlin SDK",
+            "href": "https://github.com/outblock/fcl-android"
+          },
+          {
+            "title": "Swift FCL SDK",
+            "tags": ["sdk", "fcl", "ios"],
+            "description": "Use the FCL Swift SDK",
+            "href": "https://github.com/outblock/fcl-swift"
+          },
+          {
+            "title": "Swift Flow Access node SDK",
+            "tags": ["sdk", "access node", "ios"],
+            "description": "Use the Swift Access Node SDK",
+            "href": "https://github.com/outblock/flow-swift"
           }
         ]
       }
@@ -31,19 +44,45 @@
     "sidebars": {
       "": [
         {
+          "title": "Overview",
+          "items": [
+            {
+              "title": "Getting Started",
+              "href": "/mobile/get-started"
+            }
+          ]
+        },
+        {
           "title": "Developer Guides",
           "items": [
             {
-              "title": "Introduction to Cadence",
-              "href": ""
+              "title": "Development environment",
+              "href": "/mobile/guides/development-environment"
             },
             {
-              "title": "Cadence Design Patterns",
-              "href": "design-patterns"
+              "title": "User management",
+              "href": "/mobile/guides/user-management"
             },
             {
-              "title": "Contract Upgrades with Incompatible Changes",
-              "href": "contract-upgrades"
+              "title": "On-chain interactions",
+              "href": "/mobile/guides/onchain-interactions"
+            }
+          ]
+        },
+        {
+          "title": "References",
+          "items": [
+            {
+              "title": "Kotlin FCL SDK",
+              "href": "https://github.com/outblock/fcl-android"
+            },
+            {
+              "title": "Swift FCL SDK",
+              "href": "https://github.com/outblock/fcl-swift"
+            },
+            {
+              "title": "Swift Access Node SDK",
+              "href": "https://github.com/outblock/flow-swift"
             }
           ]
         }
