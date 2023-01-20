@@ -143,7 +143,7 @@ export const projects: Array<ProjectCardProps> = [
     author: {
       name: "Buildspace",
       profileImage:
-        "https://pbs.twimg.com/profile_images/1422256068554641413/iR0aoxSO_400x400.jpg",
+        "https://img.api.cryptorank.io/coins/150x150.buildspace1668414728723.png",
     },
     numStars: 0,
     twitterLink: "https://twitter.com/_buildspace",
