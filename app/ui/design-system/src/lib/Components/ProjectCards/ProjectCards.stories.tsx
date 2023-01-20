@@ -33,7 +33,7 @@ const devToArgs: ProjectCardProps = {
 
 const emeraldDAO: ProjectCardProps = {
   projectImage:
-    "https://pbs.twimg.com/profile_banners/1458578264306462723/1638906249/1500x500",
+    "https://www.ecdao.org/wp-content/uploads/2022/08/EC-Education.svg",
   heading: "Emerald City",
   description: "The first DAO built on the Flow Blockchain",
   tags: ["DAO"],
