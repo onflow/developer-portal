@@ -16,40 +16,25 @@
         "headerCards": [
           {
             "title": "Mobile development environment",
-            "tags": [
-              "guide",
-              "local-development"
-            ],
+            "tags": ["guide", "local-development"],
             "description": "Set up your local development environment",
             "href": "/mobile/guides/development-environment"
           },
           {
             "title": "Kotlin FCL SDK",
-            "tags": [
-              "sdk",
-              "fcl",
-              "android"
-            ],
+            "tags": ["sdk", "fcl", "android"],
             "description": "Use the FCL Kotlin SDK",
             "href": "https://github.com/outblock/fcl-android"
           },
           {
             "title": "Swift FCL SDK",
-            "tags": [
-              "sdk",
-              "fcl",
-              "ios"
-            ],
+            "tags": ["sdk", "fcl", "ios"],
             "description": "Use the FCL Swift SDK",
             "href": "https://github.com/outblock/fcl-swift"
           },
           {
             "title": "Swift Flow Access node SDK",
-            "tags": [
-              "sdk",
-              "access node",
-              "ios"
-            ],
+            "tags": ["sdk", "access node", "ios"],
             "description": "Use the Swift Access Node SDK",
             "href": "https://github.com/outblock/flow-swift"
           }
