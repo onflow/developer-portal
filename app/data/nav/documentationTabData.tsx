@@ -272,7 +272,7 @@ const cadenceConceptsSection: Section = {
     },
     {
       title: "Solidity to Cadence",
-      href: "/cadence/msg-sender",
+      href: "/cadence/solidity-to-cadence",
     },
     {
       title: "Core Contracts",
