@@ -271,7 +271,7 @@ const cadenceConceptsSection: Section = {
       href: "/concepts/accounts-and-keys",
     },
     {
-      title: "Solidity to Cadence",
+      title: "Guide for Solidity Developers",
       href: "/cadence/solidity-to-cadence",
     },
     {
