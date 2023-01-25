@@ -28,21 +28,15 @@ const homepageStartProjectData: LinkCard2ColumnProps = {
       title: "Learn Smart Contracts",
       description:
         "A series of tutorials that explain how to build your first smart contracts with our programming language, Cadence.",
+      href: "/cadence/tutorial/01-first-steps",
       iconType: "playground",
-      links: [
-        {
-          href: "/cadence/tutorial/02-hello-world/",
-          title: "Hello, World!",
-        },
-        {
-          href: "/cadence/tutorial/05-non-fungible-tokens-1/",
-          title: "NFTs",
-        },
-        {
-          href: "/cadence/tutorial/07-marketplace-setup/",
-          title: "Marketplaces",
-        },
-      ],
+    },
+    {
+      title: "Build Mobile Applications",
+      description:
+        "Build secure native mobile applications with best-in-class user experience on Flow.",
+      href: "/moible",
+      iconType: "cadence",
     },
   ],
 }
