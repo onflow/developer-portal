@@ -32,10 +32,10 @@ const homepageStartProjectData: LinkCard2ColumnProps = {
       iconType: "playground",
     },
     {
-      title: "Build Mobile Applications",
+      title: "Build Mobile Native dApps",
       description:
-        "Build secure native mobile applications with best-in-class user experience on Flow.",
-      href: "/moible",
+        "Building seamless, user-friendly decentralized apps for mobile on Flow blockchain.",
+      href: "/mobile",
       iconType: "cadence",
     },
   ],
