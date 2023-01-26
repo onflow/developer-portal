@@ -54,10 +54,6 @@
               "href": "node-operation/node-bootstrap"
             },
             {
-              "title": "Node Provisioning",
-              "href": "node-operation/node-provisioning"
-            },
-            {
               "title": "Node Migration",
               "href": "node-operation/node-migration"
             },
