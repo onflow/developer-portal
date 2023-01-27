@@ -4,9 +4,11 @@ import { onCLS, onFID, onLCP, onFCP, onINP, onTTFB } from "web-vitals"
 import { reportWebVitalsToGA } from "./utils/gtags.client"
 import Hotjar from "@hotjar/browser"
 
-const hotjarVersion = 6
-const hotjarsiteid = 3324806
-Hotjar.init(hotjarsiteid, hotjarVersion)
+if (process.env.NODE_ENV === "production") {
+  const hotjarVersion = 6
+  const hotjarsiteid = 3324806
+  Hotjar.init(hotjarsiteid, hotjarVersion)
+}
 
 // TODO: Figure out why this is necessary only for these 3 images.
 // Possibly related to: https://github.com/remix-run/remix/issues/3414
