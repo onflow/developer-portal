@@ -49,7 +49,7 @@ export const testCollections = {
 export const docCollections = {
   ...(includeTestingDocCollections ? testCollections : {}),
   cadence,
-  mobile,
+  mobile: mobile,
   "cadence/style-guide": cadence__styleguide,
   "flow/core-contracts": flow__core_contracts,
   "flow/developer-portal": flow__developer_portal,

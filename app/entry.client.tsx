@@ -18,6 +18,7 @@ require("./ui/design-system/images/tools/tool-cli.svg")
 require("./ui/design-system/images/tools/tool-testing.svg")
 require("./ui/design-system/images/tools/tool-vscode.svg")
 require("./ui/design-system/images/tools/tool-port.svg")
+require("./ui/design-system/images/tools/tool-mobile.svg")
 
 hydrate(<RemixBrowser />, document)
 
