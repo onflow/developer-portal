@@ -36,7 +36,7 @@ const homepageStartProjectData: LinkCard2ColumnProps = {
       description:
         "Building seamless, user-friendly decentralized apps for mobile on Flow blockchain.",
       href: "/mobile",
-      iconType: "cadence",
+      iconType: "mobile",
     },
   ],
 }

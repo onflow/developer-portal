@@ -12,6 +12,8 @@ import { ReactComponent as TestingIcon } from "../../../../images/tools/tool-tes
 import { ReactComponent as TestingGradientIcon } from "../../../../images/tools/tool-testing-gradient"
 import { ReactComponent as VsCodeIcon } from "../../../../images/tools/tool-vscode"
 import { ReactComponent as VsCodeGradientIcon } from "../../../../images/tools/tool-vscode-gradient"
+import { ReactComponent as FlowMobileIcon } from "../../../../images/tools/tool-mobile"
+import { ReactComponent as FlowMobileGradientIcon } from "../../../../images/tools/tool-mobile-gradient"
 
 export interface InternaSidebarDropdownMenuIcon {
   primary: React.FunctionComponent
@@ -52,6 +54,10 @@ export const SIDEBAR_DROPDOWN_ICONS = {
     primary: VsCodeIcon,
     gradient: VsCodeGradientIcon,
   } as InternaSidebarDropdownMenuIcon,
+  "flow-mobile": {
+    primary: FlowMobileIcon,
+    gradient: FlowMobileGradientIcon,
+  },
 } as const
 
 export type InternaSidebarDropdownMenuIconType =

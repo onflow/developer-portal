@@ -10,7 +10,7 @@
     "displayName": "Mobile",
     "headers": {
       "": {
-        "icon": "cadence",
+        "icon": "mobile",
         "title": "Mobile",
         "description": "Build secure native mobile applications with best-in-class user experience on Flow",
         "headerCards": [
