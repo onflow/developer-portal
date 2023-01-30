@@ -32,7 +32,7 @@ export const SIDEBAR_DROPDOWN_MENU: InternaSidebarDropdownMenuGroup[] = [
       {
         title: "Flow Mobile",
         href: "/mobile",
-        icon: "default",
+        icon: "flow-mobile",
       },
       {
         title: "Concepts & Guides",

@@ -8,6 +8,7 @@ import {
 const TOOL_GRADIENT_CLASSES: Record<InternaLandingHeaderIconType, string> = {
   cadence: "tool-gradient-cadence",
   "fcl-js": "tool-gradient-fcl",
+  mobile: "tool-gradient-mobile",
 }
 
 export type InternalLandingHeaderProps = {
