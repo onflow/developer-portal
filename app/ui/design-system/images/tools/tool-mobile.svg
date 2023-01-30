@@ -29,9 +29,8 @@
 <stop offset="1" stop-color="white" stop-opacity="0"/>
 </linearGradient>
 <linearGradient id="paint0_linear_126_44422" x1="16.8089" y1="7.0191" x2="40.8217" y2="50.9809" gradientUnits="userSpaceOnUse">
-<stop stop-color="white" stop-opacity="0.01"/>
-<stop offset="0.12833" stop-color="#00FF12"/>
-<stop offset="1" stop-color="#08C466"/>
+<stop stop-color="#00FF94"/>
+<stop offset="1" stop-color="#00330E"/>
 </linearGradient>
 <clipPath id="clip0_126_44434">
 <rect width="41.7452" height="44.7006" fill="white" transform="translate(7.94269 6.64968)"/>
