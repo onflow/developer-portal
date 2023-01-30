@@ -57,12 +57,7 @@
 }
 
 .tool-gradient-mobile {
-  background: linear-gradient(
-    226.27deg,
-    rgba(77, 21, 252, 0.0001) -36.23%,
-    #b834c8 -19.53%,
-    #5221d6 87.57%
-  );
+  background: linear-gradient(226.27deg, rgb(0, 51, 14), rgb(0, 255, 148));
 }
 .internal-landing-card-green-bg {
   background: linear-gradient(
