@@ -27,6 +27,15 @@
           ]
         },
         {
+          "title": "Getting Started",
+          "items": [
+            {
+              "title": "CLI Super Commands",
+              "href": "super-commands"
+            }
+          ]
+        },
+        {
           "title": "Keys",
           "items": [
             {
