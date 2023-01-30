@@ -12,9 +12,10 @@ Sentry.init({
   environment: getRequiredGlobalEnvVar("SENTRY_ENV", "development"),
 })
 
-const hotjarVersion = 6
-
-Hotjar.init(parseInt(process.env.HOTJAR_SITE_ID ?? ""), hotjarVersion)
+if (process.env.NODE_ENV === "production") {
+  const hotjarVersion = 6
+  Hotjar.init(parseInt(process.env.HOTJAR_SITE_ID ?? ""), hotjarVersion)
+}
 
 export default function handleRequest(
   request: Request,
