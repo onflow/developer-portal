@@ -147,3 +147,16 @@ fly secrets set BOT_GITHUB_TOKEN=github_pat_11A...MVuk -a flow-docs-staging
 ```
 
 - This will trigger staging content checker webhook to be deployed using the new BOT_GITHUB_TOKEN value
+
+## Adding Menu/Landing Images
+
+1. There are 4 icons needed
+
+- Landing (only needed if cms doc collection has it's own landing page like Cadence and Mobile)
+- Image files go in app/ui/design-system/images/ directory
+- Dropdown Menu icon named as "xxx-sm.svg"
+- Menu icon, shows what section the user is on "xxxx.svg" like tool-cadence.svg, tool-mobile.svg
+- Landing page icon like tool-cadence-landing.svg, configuration is located in `app/ui/design-system/src/lib/Components/InternalLandingHeader/icons.ts`
+
+2. Images are svg so they can scale
+3. Light and Dark theme changes the svg's backgrounds
