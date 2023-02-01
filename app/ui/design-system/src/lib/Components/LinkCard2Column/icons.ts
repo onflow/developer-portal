@@ -1,13 +1,11 @@
-import PlaygroundIcon from "~/ui/design-system/images/misc/playground-default.png"
-import FCLIcon from "~/ui/design-system/images/tools/tool-fcl.svg"
-import CadenceIcon from "~/ui/design-system/images/tools/tool-cadence.svg"
-import MobileIcon from "~/ui/design-system/images/tools/tool-mobile.svg"
+import LearnIcon from "~/ui/design-system/images/page/flow-learn-icon.svg"
+import QuickstartIcon from "~/ui/design-system/images/page/flow-quickstart-icon.svg"
+import DocumentationIcon from "~/ui/design-system/images/page/flow-documentation-icon.svg"
 
 export const LINK_CARD_ICONS = {
-  cadence: CadenceIcon,
-  fcl: FCLIcon,
-  playground: PlaygroundIcon,
-  mobile: MobileIcon,
+  learn: LearnIcon,
+  quickstart: QuickstartIcon,
+  documentation: DocumentationIcon,
 } as const
 
-export type LinkCardIconType = keyof typeof LINK_CARD_ICONS
+export type LinkCardIconType = string

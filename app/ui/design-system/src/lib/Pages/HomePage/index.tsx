@@ -47,6 +47,28 @@ const HomePage = ({
   twitterUrl,
   upcomingEvents,
 }: HomePageProps) => {
+  const homepageStart = [
+    {
+      title: "Learn Flow",
+      description:
+        "Dive into Flow key concepts through tutorials, guides and examples",
+      href: "/learn",
+      iconType: "learn",
+    },
+    {
+      title: "Flow Quickstarts",
+      description: "Run your first Flow dApp in just a few clicks",
+      href: "/tools/fcl-js/tutorials/flow-app-quickstart/",
+      iconType: "quickstart",
+    },
+    {
+      title: "Documentation",
+      description: "All the developer resources you need to build on Flow",
+      href: "/tools",
+      iconType: "documentation",
+    },
+  ]
+
   return (
     <PageBackground gradient="home">
       <LandingHeaderHome
@@ -57,7 +79,7 @@ const HomePage = ({
         tag="onflow"
         title="Developer Portal"
       />
-      <LinkCard2Column {...startProjectItems} homePage={true} />
+      <LinkCard2Column items={homepageStart} homePage={true} />
       <LinkCard3Column items={threeColumnItems} topRounded={false} />
       <PageSections>
         <PageSection className="pt-0" />
