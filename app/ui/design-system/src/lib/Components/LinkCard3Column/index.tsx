@@ -1,4 +1,5 @@
 import clsx from "clsx"
+import { useEffect } from "react"
 import { ReactComponent as ChevronRight } from "../../../../images/arrows/chevron-right"
 import { ReactComponent as ExternalLinkIcon } from "../../../../images/content/external-link"
 import { isLinkExternal } from "../../utils/isLinkExternal"
@@ -50,37 +51,41 @@ export function LinkCard3Column({
     }
   )
 
-  const getTitle = () => {
-    switch (activeTab) {
+  const getTabData = (tab: string) => {
+    switch (tab) {
       case "learn":
-        return " Learn Flow"
+        return {
+          title: "Learn Flow",
+          link: "/learn",
+          items: learnContent,
+        }
       case "quickstart":
-        return " Flow Quickstarts"
+        return {
+          title: "Flow Quickstarts",
+          link: "/tools/fcl-js/tutorials/flow-app-quickstart",
+          items: quickstartContent,
+        }
       case "documentation":
-        return " Documentation"
+        return {
+          title: "Documentation",
+          link: "/tools",
+          items: documentationContent,
+        }
       default:
         throw new Error("active tab not recognized")
     }
   }
+  let currentTab = getTabData(activeTab)
 
-  const getContent = () => {
-    switch (activeTab) {
-      case "learn":
-        return learnContent
-      case "quickstart":
-        return quickstartContent
-      case "documentation":
-        return documentationContent
-      default:
-        throw new Error("active tab not recognized")
-    }
-  }
+  useEffect(() => {
+    currentTab = getTabData(activeTab)
+  }, [activeTab])
 
   return (
     <div className="container">
       <div className={classes}>
         <a
-          href="/tools"
+          href={currentTab.link}
           key={`${activeTab}-header`}
           className={clsx(
             " mx-4 mt-4 rounded-lg px-6 pt-4 hover:bg-primary-gray-50 dark:hover:bg-primary-gray-400 md:row-start-1",
@@ -92,7 +97,7 @@ export function LinkCard3Column({
         >
           <h5 className="text-h5 mb-2 flex flex-col items-start justify-start">
             <HomepageStartItemIcons icon={activeTab} />
-            {getTitle()}
+            {currentTab.title}
           </h5>
         </a>
         {items.map((item, index) => (
