@@ -3,12 +3,13 @@ import { ReactComponent as ChevronRight } from "../../../../images/arrows/chevro
 import { ReactComponent as ExternalLinkIcon } from "../../../../images/content/external-link"
 import { isLinkExternal } from "../../utils/isLinkExternal"
 import AppLink from "../AppLink"
-import { ButtonLink } from "../Button"
-import { HeaderWithLink } from "../HeaderWithLink"
+import {
+  HomepageStartItemIcons,
+  HomepageStartItemIconsProps,
+} from "../HomepageStartItem/HomepageStartIcons"
 import Tag from "../Tag"
 
 export type LinkCard3ColumnItemProps = {
-  description: string
   icon?: React.ReactNode
   title: string
   links: Array<{
@@ -27,9 +28,18 @@ export type LinkCard3ColumnItems = [
 export type LinkCard3ColumnProps = {
   items: LinkCard3ColumnItems
   topRounded?: boolean
+  activeTab: string
+  icon: HomepageStartItemIconsProps
+  title: string
 }
 
+// content coming from Dmitrii next PR
+const learnContent: LinkCard3ColumnItemProps[] = []
+const quickstartContent: LinkCard3ColumnItemProps[] = []
+const documentationContent: LinkCard3ColumnItemProps[] = []
+
 export function LinkCard3Column({
+  activeTab,
   items,
   topRounded = true,
 }: LinkCard3ColumnProps) {
@@ -40,42 +50,51 @@ export function LinkCard3Column({
     }
   )
 
+  const getTitle = () => {
+    switch (activeTab) {
+      case "learn":
+        return " Learn Flow"
+      case "quickstart":
+        return " Flow Quickstarts"
+      case "documentation":
+        return " Documentation"
+      default:
+        throw new Error("active tab not recognized")
+    }
+  }
+
+  const getContent = () => {
+    switch (activeTab) {
+      case "learn":
+        return learnContent
+      case "quickstart":
+        return quickstartContent
+      case "documentation":
+        return documentationContent
+      default:
+        throw new Error("active tab not recognized")
+    }
+  }
+
   return (
     <div className="container">
-      <div className="flex items-center justify-between">
-        <div className="mb-2">
-          <HeaderWithLink className="text-h2 mb-2" headerLink={"overview"}>
-            Overview
-          </HeaderWithLink>
-          <p>Core concepts and tools you'll need to get building on Flow</p>
-        </div>
-      </div>
       <div className={classes}>
-        {items.map((item, index) => (
-          <div
-            key={`${item.title}-header`}
-            className={clsx("px-10 pt-16 md:row-start-1", {
-              "row-start-1": index === 0,
-              "row-start-3": index === 1,
-              "row-start-5": index === 2,
-              "grid-column-start-1": index === 0,
-              "grid-column-start-2": index === 1,
-              "grid-column-start-3": index === 2,
-            })}
-          >
-            <h5 className="text-h5 mb-2 flex items-center">
-              {item.icon && (
-                <span className="mr-2 max-w-[36px] text-primary-gray-300 dark:text-primary-gray-50">
-                  {item.icon}
-                </span>
-              )}
-              {item.title}
-            </h5>
-            <p className="mb-2 text-primary-gray-300 dark:text-primary-gray-50">
-              {item.description}
-            </p>
-          </div>
-        ))}
+        <a
+          href="/tools"
+          key={`${activeTab}-header`}
+          className={clsx(
+            " mx-4 mt-4 rounded-lg px-6 pt-4 hover:bg-primary-gray-50 dark:hover:bg-primary-gray-400 md:row-start-1",
+            {
+              "row-start-1": true,
+              "grid-column-start-1": true,
+            }
+          )}
+        >
+          <h5 className="text-h5 mb-2 flex flex-col items-start justify-start">
+            <HomepageStartItemIcons icon={activeTab} />
+            {getTitle()}
+          </h5>
+        </a>
         {items.map((item, index) => (
           <div
             key={`${item.title}-content`}

@@ -1,7 +1,7 @@
 import {
   Flips,
   LandingHeaderHome,
-  LinkCard2Column,
+  HomepageStartList,
   LinkCard3Column,
   SocialLinksSignup,
   ToolsAndConcepts,
@@ -11,7 +11,6 @@ import {
   ContentNavigationList,
   ContentNavigationListProps,
 } from "../../Components/ContentNavigationList"
-import { ContentNavigationProps } from "../../Components/ContentNavigation"
 import { FlipsProps } from "../../Components/Flips"
 import { LinkCard2ColumnProps } from "../../Components/LinkCard2Column"
 import { LinkCard3ColumnItems } from "../../Components/LinkCard3Column"
@@ -22,6 +21,7 @@ import { UpcomingEventsProps } from "../../Components/UpcomingEvents"
 import PageBackground from "../shared/PageBackground"
 import PageSection from "../shared/PageSection"
 import PageSections from "../shared/PageSections"
+import { useState } from "react"
 
 export type HomePageProps = SocialLinksSignupProps & {
   concepts?: TutorialCardProps[]
@@ -47,26 +47,7 @@ const HomePage = ({
   twitterUrl,
   upcomingEvents,
 }: HomePageProps) => {
-  const homepageHeaderItems: ContentNavigationProps[] = [
-    {
-      title: "Learn Flow",
-      text: "Dive into Flow key concepts through tutorials, guides, and examples",
-      link: "/learn",
-      icon: "get-started",
-    },
-    {
-      title: "Flow Quickstarts",
-      text: "Run your frist Flow dApp in just a few clicks",
-      link: "/learn",
-      icon: "get-started",
-    },
-    {
-      title: "Documentation",
-      text: "All the developer resources you need to build on Flow",
-      link: "/tools",
-      icon: "tools",
-    },
-  ]
+  const [activeTab, setActiveTab] = useState("learn")
 
   return (
     <PageBackground gradient="home">
@@ -78,15 +59,14 @@ const HomePage = ({
         tag="onflow"
         title="Developer Portal"
       />
-      <ContentNavigationList
-        header="Start Building Today"
-        contentNavigationItems={homepageHeaderItems}
-        headerLink="start-building-today"
-      />
+      <HomepageStartList setActiveTab={setActiveTab} />
       <PageSections>
-        <PageSection className="pt-0" />
         <PageSection sectionId="browse-by-topic">
-          <LinkCard3Column items={threeColumnItems} topRounded={true} />
+          <LinkCard3Column
+            activeTab={activeTab}
+            items={threeColumnItems}
+            topRounded={true}
+          />
         </PageSection>
         <PageSection sectionId="sdks-and-tools">
           <ToolsAndConcepts
