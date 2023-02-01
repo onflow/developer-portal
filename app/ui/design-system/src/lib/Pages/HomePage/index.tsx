@@ -11,6 +11,7 @@ import {
   ContentNavigationList,
   ContentNavigationListProps,
 } from "../../Components/ContentNavigationList"
+import { ContentNavigationProps } from "../../Components/ContentNavigation"
 import { FlipsProps } from "../../Components/Flips"
 import { LinkCard2ColumnProps } from "../../Components/LinkCard2Column"
 import { LinkCard3ColumnItems } from "../../Components/LinkCard3Column"
@@ -41,12 +42,32 @@ const HomePage = ({
   editPageUrl,
   flips,
   githubUrl,
-  startProjectItems,
   threeColumnItems,
   tools,
   twitterUrl,
   upcomingEvents,
 }: HomePageProps) => {
+  const homepageHeaderItems: ContentNavigationProps[] = [
+    {
+      title: "Learn Flow",
+      text: "Dive into Flow key concepts through tutorials, guides, and examples",
+      link: "/learn",
+      icon: "get-started",
+    },
+    {
+      title: "Flow Quickstarts",
+      text: "Run your frist Flow dApp in just a few clicks",
+      link: "/learn",
+      icon: "get-started",
+    },
+    {
+      title: "Documentation",
+      text: "All the developer resources you need to build on Flow",
+      link: "/tools",
+      icon: "tools",
+    },
+  ]
+
   return (
     <PageBackground gradient="home">
       <LandingHeaderHome
@@ -57,10 +78,16 @@ const HomePage = ({
         tag="onflow"
         title="Developer Portal"
       />
-      <LinkCard2Column {...startProjectItems} homePage={true} />
-      <LinkCard3Column items={threeColumnItems} topRounded={false} />
+      <ContentNavigationList
+        header="Start Building Today"
+        contentNavigationItems={homepageHeaderItems}
+        headerLink="start-building-today"
+      />
       <PageSections>
         <PageSection className="pt-0" />
+        <PageSection sectionId="browse-by-topic">
+          <LinkCard3Column items={threeColumnItems} topRounded={true} />
+        </PageSection>
         <PageSection sectionId="sdks-and-tools">
           <ToolsAndConcepts
             tools={tools}

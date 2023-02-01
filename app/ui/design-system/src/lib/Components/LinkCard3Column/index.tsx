@@ -3,6 +3,8 @@ import { ReactComponent as ChevronRight } from "../../../../images/arrows/chevro
 import { ReactComponent as ExternalLinkIcon } from "../../../../images/content/external-link"
 import { isLinkExternal } from "../../utils/isLinkExternal"
 import AppLink from "../AppLink"
+import { ButtonLink } from "../Button"
+import { HeaderWithLink } from "../HeaderWithLink"
 import Tag from "../Tag"
 
 export type LinkCard3ColumnItemProps = {
@@ -32,7 +34,7 @@ export function LinkCard3Column({
   topRounded = true,
 }: LinkCard3ColumnProps) {
   const classes = clsx(
-    "grid grid-cols-1 pb-8 bg-white rounded-lg gap-x-4 dark:bg-primary-gray-dark md:grid-cols-3 md:flex-row md:px-10",
+    "grid grid-cols-1 pb-8 bg-white mt-2 rounded-lg gap-x-4 dark:bg-primary-gray-dark md:grid-cols-3 md:flex-row md:px-10",
     {
       "rounded-tr-none rounded-tl-none": !topRounded,
     }
@@ -40,6 +42,14 @@ export function LinkCard3Column({
 
   return (
     <div className="container">
+      <div className="flex items-center justify-between">
+        <div className="mb-2">
+          <HeaderWithLink className="text-h2 mb-2" headerLink={"overview"}>
+            Overview
+          </HeaderWithLink>
+          <p>Core concepts and tools you'll need to get building on Flow</p>
+        </div>
+      </div>
       <div className={classes}>
         {items.map((item, index) => (
           <div
