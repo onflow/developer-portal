@@ -2,10 +2,10 @@ import {
   Flips,
   LandingHeaderHome,
   HomepageStartList,
-  LinkCard3Column,
   SocialLinksSignup,
   ToolsAndConcepts,
   UpcomingEvents,
+  HomepageOverview,
 } from "../../Components"
 import {
   ContentNavigationList,
@@ -66,7 +66,7 @@ const HomePage = ({
       />
       <PageSections>
         <PageSection sectionId="browse-by-topic">
-          <LinkCard3Column
+          <HomepageOverview
             activeTab={activeTab}
             items={threeColumnItems}
             topRounded={true}

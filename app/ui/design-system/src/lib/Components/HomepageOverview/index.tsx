@@ -3,11 +3,12 @@ import { ReactComponent as ChevronRight } from "../../../../images/arrows/chevro
 import { ReactComponent as ExternalLinkIcon } from "../../../../images/content/external-link"
 import { isLinkExternal } from "../../utils/isLinkExternal"
 import AppLink from "../AppLink"
+import { HomepageStartItemIcons } from "../HomepageStartItem/HomepageStartIcons"
 import Tag from "../Tag"
 
-export type LinkCard3ColumnItemProps = {
-  description: string
+export type HomepageOverviewItemProps = {
   icon?: React.ReactNode
+  description: string
   title: string
   links: Array<{
     href: string
@@ -16,56 +17,84 @@ export type LinkCard3ColumnItemProps = {
   }>
 }
 
-export type LinkCard3ColumnItems = [
-  LinkCard3ColumnItemProps,
-  LinkCard3ColumnItemProps,
-  LinkCard3ColumnItemProps
+export type HomepageOverviewItems = [
+  HomepageOverviewItemProps,
+  HomepageOverviewItemProps,
+  HomepageOverviewItemProps
 ]
 
-export type LinkCard3ColumnProps = {
-  items: LinkCard3ColumnItems
+export type HomepageOverviewProps = {
+  items: HomepageOverviewItems
   topRounded?: boolean
 }
 
-export function LinkCard3Column({
+export type ActiveTabProps = {
+  activeTab?: string
+}
+
+// content coming from Dmitrii next PR
+const learnContent: any = []
+const quickstartContent: any = []
+const documentationContent: any = []
+
+export function HomepageOverview({
+  activeTab = "learn",
   items,
   topRounded = true,
-}: LinkCard3ColumnProps) {
+}: HomepageOverviewProps & ActiveTabProps) {
   const classes = clsx(
-    "grid grid-cols-1 pb-8 bg-white rounded-lg gap-x-4 dark:bg-primary-gray-dark md:grid-cols-3 md:flex-row md:px-10",
+    "grid grid-cols-1 pb-8 bg-white mt-2 rounded-lg gap-x-4 dark:bg-primary-gray-dark md:grid-cols-3 md:flex-row md:px-10",
     {
       "rounded-tr-none rounded-tl-none": !topRounded,
     }
   )
 
+  const getTabData = (tab: string) => {
+    switch (tab) {
+      case "learn":
+        return {
+          title: "Learn Flow",
+          link: "/learn",
+          items: learnContent,
+        }
+      case "quickstart":
+        return {
+          title: "Flow Quickstarts",
+          link: "/tools/fcl-js/tutorials/flow-app-quickstart",
+          items: quickstartContent,
+        }
+      case "documentation":
+        return {
+          title: "Documentation",
+          link: "/tools",
+          items: documentationContent,
+        }
+      default:
+        throw new Error("active tab not recognized")
+    }
+  }
+
+  const currentTab = getTabData(activeTab)
+
   return (
     <div className="container">
       <div className={classes}>
-        {items.map((item, index) => (
-          <div
-            key={`${item.title}-header`}
-            className={clsx("px-10 pt-16 md:row-start-1", {
-              "row-start-1": index === 0,
-              "row-start-3": index === 1,
-              "row-start-5": index === 2,
-              "grid-column-start-1": index === 0,
-              "grid-column-start-2": index === 1,
-              "grid-column-start-3": index === 2,
-            })}
-          >
-            <h5 className="text-h5 mb-2 flex items-center">
-              {item.icon && (
-                <span className="mr-2 max-w-[36px] text-primary-gray-300 dark:text-primary-gray-50">
-                  {item.icon}
-                </span>
-              )}
-              {item.title}
-            </h5>
-            <p className="mb-2 text-primary-gray-300 dark:text-primary-gray-50">
-              {item.description}
-            </p>
-          </div>
-        ))}
+        <a
+          href={currentTab.link}
+          key={`${activeTab}-header`}
+          className={clsx(
+            " mx-4 mt-4 rounded-lg px-6 pt-4 hover:bg-primary-gray-50 dark:hover:bg-primary-gray-400 md:row-start-1",
+            {
+              "row-start-1": true,
+              "grid-column-start-1": true,
+            }
+          )}
+        >
+          <h5 className="text-h5 mb-2 flex flex-col items-start justify-start">
+            <HomepageStartItemIcons icon={activeTab} />
+            {currentTab.title}
+          </h5>
+        </a>
         {items.map((item, index) => (
           <div
             key={`${item.title}-content`}
