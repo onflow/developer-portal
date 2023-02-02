@@ -1,0 +1,144 @@
+import clsx from "clsx"
+import { ReactComponent as ChevronRight } from "../../../../images/arrows/chevron-right"
+import { ReactComponent as ExternalLinkIcon } from "../../../../images/content/external-link"
+import { isLinkExternal } from "../../utils/isLinkExternal"
+import AppLink from "../AppLink"
+import { HomepageStartItemIcons } from "../HomepageStartItem/HomepageStartIcons"
+import Tag from "../Tag"
+
+export type HomepageOverviewItemProps = {
+  icon?: React.ReactNode
+  description: string
+  title: string
+  links: Array<{
+    href: string
+    title: string
+    tags?: string[]
+  }>
+}
+
+export type HomepageOverviewItems = [
+  HomepageOverviewItemProps,
+  HomepageOverviewItemProps,
+  HomepageOverviewItemProps
+]
+
+export type HomepageOverviewProps = {
+  items: HomepageOverviewItems
+  topRounded?: boolean
+}
+
+export type ActiveTabProps = {
+  activeTab?: string
+}
+
+// content coming from Dmitrii next PR
+const learnContent: any = []
+const quickstartContent: any = []
+const documentationContent: any = []
+
+export function HomepageOverview({
+  activeTab = "learn",
+  items,
+  topRounded = true,
+}: HomepageOverviewProps & ActiveTabProps) {
+  const classes = clsx(
+    "grid grid-cols-1 pb-8 bg-white mt-2 rounded-lg gap-x-4 dark:bg-primary-gray-dark md:grid-cols-3 md:flex-row md:px-10",
+    {
+      "rounded-tr-none rounded-tl-none": !topRounded,
+    }
+  )
+
+  const getTabData = (tab: string) => {
+    switch (tab) {
+      case "learn":
+        return {
+          title: "Learn Flow",
+          link: "/learn",
+          items: learnContent,
+        }
+      case "quickstart":
+        return {
+          title: "Flow Quickstarts",
+          link: "/tools/fcl-js/tutorials/flow-app-quickstart",
+          items: quickstartContent,
+        }
+      case "documentation":
+        return {
+          title: "Documentation",
+          link: "/tools",
+          items: documentationContent,
+        }
+      default:
+        throw new Error("active tab not recognized")
+    }
+  }
+
+  const currentTab = getTabData(activeTab)
+
+  return (
+    <div className="container">
+      <div className={classes}>
+        <a
+          href={currentTab.link}
+          key={`${activeTab}-header`}
+          className={clsx(
+            " mx-4 mt-4 rounded-lg px-6 pt-4 hover:bg-primary-gray-50 dark:hover:bg-primary-gray-400 md:row-start-1",
+            {
+              "row-start-1": true,
+              "grid-column-start-1": true,
+            }
+          )}
+        >
+          <h5 className="text-h5 mb-2 flex flex-col items-start justify-start">
+            <HomepageStartItemIcons icon={activeTab} />
+            {currentTab.title}
+          </h5>
+        </a>
+        {items.map((item, index) => (
+          <div
+            key={`${item.title}-content`}
+            className={clsx(
+              "divide-y divide-primary-gray-100 px-6 dark:divide-primary-gray-400 md:row-start-2 md:pb-8",
+              {
+                "row-start-2": index === 0,
+                "row-start-4": index === 1,
+                "row-start-6": index === 2,
+              }
+            )}
+          >
+            {item.links?.map((link) => (
+              <div key={link.title} className="divided-item-hover">
+                <AppLink
+                  className="link-card-3-column-link group flex flex-col rounded-lg px-4 hover:bg-primary-gray-50 dark:hover:bg-primary-gray-400"
+                  to={link.href}
+                >
+                  <span className="display-block py-4">
+                    <div className="flex justify-between">
+                      {link.title}
+                      <div>
+                        {isLinkExternal(link.href) ? (
+                          // "artificial" centering due to viewbox adding padding
+                          <div className="pr-[3px] pt-[2px]">
+                            <ExternalLinkIcon />
+                          </div>
+                        ) : (
+                          <ChevronRight />
+                        )}
+                      </div>
+                    </div>
+                    <div>
+                      {link.tags?.map((tag) => (
+                        <Tag key={tag} name={tag} />
+                      ))}
+                    </div>
+                  </span>
+                </AppLink>
+              </div>
+            ))}
+          </div>
+        ))}
+      </div>
+    </div>
+  )
+}
