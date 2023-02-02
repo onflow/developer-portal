@@ -1,13 +1,9 @@
 import clsx from "clsx"
-import { useEffect } from "react"
 import { ReactComponent as ChevronRight } from "../../../../images/arrows/chevron-right"
 import { ReactComponent as ExternalLinkIcon } from "../../../../images/content/external-link"
 import { isLinkExternal } from "../../utils/isLinkExternal"
 import AppLink from "../AppLink"
-import {
-  HomepageStartItemIcons,
-  HomepageStartItemIconsProps,
-} from "../HomepageStartItem/HomepageStartIcons"
+import { HomepageStartItemIcons } from "../HomepageStartItem/HomepageStartIcons"
 import Tag from "../Tag"
 
 export type LinkCard3ColumnItemProps = {
@@ -30,14 +26,12 @@ export type LinkCard3ColumnProps = {
   items: LinkCard3ColumnItems
   topRounded?: boolean
   activeTab: string
-  icon: HomepageStartItemIconsProps
-  title: string
 }
 
 // content coming from Dmitrii next PR
-const learnContent: LinkCard3ColumnItemProps[] = []
-const quickstartContent: LinkCard3ColumnItemProps[] = []
-const documentationContent: LinkCard3ColumnItemProps[] = []
+const learnContent: any = []
+const quickstartContent: any = []
+const documentationContent: any = []
 
 export function LinkCard3Column({
   activeTab,
@@ -75,11 +69,8 @@ export function LinkCard3Column({
         throw new Error("active tab not recognized")
     }
   }
-  let currentTab = getTabData(activeTab)
 
-  useEffect(() => {
-    currentTab = getTabData(activeTab)
-  }, [activeTab])
+  const currentTab = getTabData(activeTab)
 
   return (
     <div className="container">
