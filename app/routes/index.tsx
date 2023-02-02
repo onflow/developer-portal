@@ -51,7 +51,7 @@ export const loader = async () => {
     discourseUrl: externalLinks.discourse,
     twitterUrl: externalLinks.twitter,
     contentNavigationListItems,
-    startProjectItems: homepageStartProjectData,
+    homepageStartProjectData: homepageStartProjectData,
     flips: {
       ...flips,
       githubUrl: externalLinks.github,
@@ -75,7 +75,7 @@ export default function Index() {
       editPageUrl={data.editPageUrl}
       flips={data.flips}
       githubUrl={externalLinks.github}
-      startProjectItems={data.startProjectItems}
+      homepageStartProjectData={data.homepageStartProjectData}
       threeColumnItems={homepageThreeColumnData}
       tools={data.tools}
       twitterUrl={externalLinks.twitter}

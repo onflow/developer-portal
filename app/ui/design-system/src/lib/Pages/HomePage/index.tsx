@@ -1,18 +1,17 @@
 import {
   Flips,
   LandingHeaderHome,
-  LinkCard2Column,
-  LinkCard3Column,
+  HomepageStartList,
   SocialLinksSignup,
   ToolsAndConcepts,
   UpcomingEvents,
+  HomepageOverview,
 } from "../../Components"
 import {
   ContentNavigationList,
   ContentNavigationListProps,
 } from "../../Components/ContentNavigationList"
 import { FlipsProps } from "../../Components/Flips"
-import { LinkCard2ColumnProps } from "../../Components/LinkCard2Column"
 import { LinkCard3ColumnItems } from "../../Components/LinkCard3Column"
 import { SocialLinksSignupProps } from "../../Components/SocialLinksSignup"
 import { ToolCardProps } from "../../Components/ToolCard"
@@ -21,13 +20,15 @@ import { UpcomingEventsProps } from "../../Components/UpcomingEvents"
 import PageBackground from "../shared/PageBackground"
 import PageSection from "../shared/PageSection"
 import PageSections from "../shared/PageSections"
+import { useState } from "react"
+import { HomepageStartItemProps } from "../../Components/HomepageStartItem"
 
 export type HomePageProps = SocialLinksSignupProps & {
   concepts?: TutorialCardProps[]
+  homepageStartProjectData: HomepageStartItemProps[]
   contentNavigationListItems: ContentNavigationListProps
   editPageUrl?: string
   flips: FlipsProps
-  startProjectItems: LinkCard2ColumnProps
   threeColumnItems: LinkCard3ColumnItems
   tools: ToolCardProps[]
   upcomingEvents: UpcomingEventsProps
@@ -35,39 +36,19 @@ export type HomePageProps = SocialLinksSignupProps & {
 
 const HomePage = ({
   concepts,
+  homepageStartProjectData,
   contentNavigationListItems,
   discordUrl,
   discourseUrl,
   editPageUrl,
   flips,
   githubUrl,
-  startProjectItems,
   threeColumnItems,
   tools,
   twitterUrl,
   upcomingEvents,
 }: HomePageProps) => {
-  const homepageStart = [
-    {
-      title: "Learn Flow",
-      description:
-        "Dive into Flow key concepts through tutorials, guides and examples",
-      href: "/learn",
-      iconType: "learn",
-    },
-    {
-      title: "Flow Quickstarts",
-      description: "Run your first Flow dApp in just a few clicks",
-      href: "/tools/fcl-js/tutorials/flow-app-quickstart/",
-      iconType: "quickstart",
-    },
-    {
-      title: "Documentation",
-      description: "All the developer resources you need to build on Flow",
-      href: "/tools",
-      iconType: "documentation",
-    },
-  ]
+  const [activeTab, setActiveTab] = useState("learn")
 
   return (
     <PageBackground gradient="home">
@@ -79,10 +60,18 @@ const HomePage = ({
         tag="onflow"
         title="Developer Portal"
       />
-      <LinkCard2Column items={homepageStart} homePage={true} />
-      <LinkCard3Column items={threeColumnItems} topRounded={false} />
+      <HomepageStartList
+        items={homepageStartProjectData}
+        setActiveTab={setActiveTab}
+      />
       <PageSections>
-        <PageSection className="pt-0" />
+        <PageSection sectionId="browse-by-topic">
+          <HomepageOverview
+            activeTab={activeTab}
+            items={threeColumnItems}
+            topRounded={true}
+          />
+        </PageSection>
         <PageSection sectionId="sdks-and-tools">
           <ToolsAndConcepts
             tools={tools}
