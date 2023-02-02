@@ -8,6 +8,7 @@ import Tag from "../Tag"
 
 export type LinkCard3ColumnItemProps = {
   icon?: React.ReactNode
+  description: string
   title: string
   links: Array<{
     href: string
@@ -25,7 +26,10 @@ export type LinkCard3ColumnItems = [
 export type LinkCard3ColumnProps = {
   items: LinkCard3ColumnItems
   topRounded?: boolean
-  activeTab: string
+}
+
+export type ActiveTabProps = {
+  activeTab?: string
 }
 
 // content coming from Dmitrii next PR
@@ -34,10 +38,10 @@ const quickstartContent: any = []
 const documentationContent: any = []
 
 export function LinkCard3Column({
-  activeTab,
+  activeTab = "learn",
   items,
   topRounded = true,
-}: LinkCard3ColumnProps) {
+}: LinkCard3ColumnProps & ActiveTabProps) {
   const classes = clsx(
     "grid grid-cols-1 pb-8 bg-white mt-2 rounded-lg gap-x-4 dark:bg-primary-gray-dark md:grid-cols-3 md:flex-row md:px-10",
     {

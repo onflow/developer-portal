@@ -12,7 +12,6 @@ import {
   ContentNavigationListProps,
 } from "../../Components/ContentNavigationList"
 import { FlipsProps } from "../../Components/Flips"
-import { LinkCard2ColumnProps } from "../../Components/LinkCard2Column"
 import { LinkCard3ColumnItems } from "../../Components/LinkCard3Column"
 import { SocialLinksSignupProps } from "../../Components/SocialLinksSignup"
 import { ToolCardProps } from "../../Components/ToolCard"
@@ -22,13 +21,14 @@ import PageBackground from "../shared/PageBackground"
 import PageSection from "../shared/PageSection"
 import PageSections from "../shared/PageSections"
 import { useState } from "react"
+import { HomepageStartItemProps } from "../../Components/HomepageStartItem"
 
 export type HomePageProps = SocialLinksSignupProps & {
   concepts?: TutorialCardProps[]
+  homepageStartProjectData: HomepageStartItemProps[]
   contentNavigationListItems: ContentNavigationListProps
   editPageUrl?: string
   flips: FlipsProps
-  startProjectItems: LinkCard2ColumnProps
   threeColumnItems: LinkCard3ColumnItems
   tools: ToolCardProps[]
   upcomingEvents: UpcomingEventsProps
@@ -36,6 +36,7 @@ export type HomePageProps = SocialLinksSignupProps & {
 
 const HomePage = ({
   concepts,
+  homepageStartProjectData,
   contentNavigationListItems,
   discordUrl,
   discourseUrl,
@@ -59,7 +60,10 @@ const HomePage = ({
         tag="onflow"
         title="Developer Portal"
       />
-      <HomepageStartList setActiveTab={setActiveTab} />
+      <HomepageStartList
+        items={homepageStartProjectData}
+        setActiveTab={setActiveTab}
+      />
       <PageSections>
         <PageSection sectionId="browse-by-topic">
           <LinkCard3Column
