@@ -1,29 +1,25 @@
+import AppLink from "../AppLink"
 import {
   HomepageStartItemIcons,
   HomepageStartItemIconsProps,
 } from "./HomepageStartIcons"
 
-export type HomepageTabCTAProps = {
-  setActiveTab: (arg0: string) => void
-}
-
 export type HomepageStartItemProps = {
   title: string
   text: string
-  tab: string
+  link: string
 } & HomepageStartItemIconsProps
 
 export function HomepageStartItem({
   title,
   text,
-  tab,
+  link,
   icon,
-  setActiveTab,
-}: HomepageStartItemProps & HomepageTabCTAProps) {
+}: HomepageStartItemProps) {
   return (
-    <button
+    <AppLink
       className="flex cursor-pointer gap-6 rounded-lg bg-primary-gray-100/40 py-10 pl-10 pr-7 text-gray-700 hover:bg-primary-gray-100/75"
-      onClick={() => setActiveTab(tab)}
+      to={link}
     >
       <div className="flex min-w-0 grow flex-col items-start justify-start">
         <div className="mb-3 text-primary-gray-400 dark:text-primary-gray-100">
@@ -34,6 +30,6 @@ export function HomepageStartItem({
         </div>
         <div className="text-start dark:text-primary-gray-100">{text}</div>
       </div>
-    </button>
+    </AppLink>
   )
 }
