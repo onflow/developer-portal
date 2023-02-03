@@ -12,10 +12,6 @@ import {
   ContentNavigationListProps,
 } from "../../Components/ContentNavigationList"
 import { FlipsProps } from "../../Components/Flips"
-import {
-  LinkCard3Column,
-  LinkCard3ColumnItems,
-} from "../../Components/LinkCard3Column"
 import { SocialLinksSignupProps } from "../../Components/SocialLinksSignup"
 import { ToolCardProps } from "../../Components/ToolCard"
 import { TutorialCardProps } from "../../Components/TutorialCard"
@@ -24,6 +20,7 @@ import PageBackground from "../shared/PageBackground"
 import PageSection from "../shared/PageSection"
 import PageSections from "../shared/PageSections"
 import { HomepageStartItemProps } from "../../Components/HomepageStartItem"
+import { HomepageBrowseItemProps } from "../../Components/HomepageBrowse"
 
 export type HomePageProps = SocialLinksSignupProps & {
   concepts?: TutorialCardProps[]
@@ -31,7 +28,7 @@ export type HomePageProps = SocialLinksSignupProps & {
   contentNavigationListItems: ContentNavigationListProps
   editPageUrl?: string
   flips: FlipsProps
-  threeColumnItems: LinkCard3ColumnItems
+  threeColumnItems: HomepageBrowseItemProps[]
   tools: ToolCardProps[]
   upcomingEvents: UpcomingEventsProps
 }
