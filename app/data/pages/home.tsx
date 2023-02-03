@@ -9,19 +9,19 @@ const homepageStartProjectData: HomepageStartItemProps[] = [
   {
     title: "Learn Flow",
     text: "Dive into Flow key concepts through tutorials, guides, and examples",
-    tab: "learn",
+    link: "/learn/concepts",
     icon: "learn",
   },
   {
     title: "Flow Quickstarts",
     text: "Run your frist Flow dApp in just a few clicks",
-    tab: "quickstart",
+    link: "/tools/fcl-js/tutorials/flow-app-quickstart",
     icon: "quickstart",
   },
   {
     title: "Documentation",
     text: "All the developer resources you need to build on Flow",
-    tab: "documentation",
+    link: "/cadence",
     icon: "documentation",
   },
 ]
@@ -82,6 +82,60 @@ const homepageThreeColumnData: any = [
   },
   {
     title: "Smart Contracts",
+    description:
+      "Use Cadence to interact with and create smart contracts on chain.",
+    icon: <SDKIcon height="1.5em" width="1.5em" />,
+    links: [
+      {
+        title: "Why Cadence?",
+        href: "https://medium.com/coinmonks/how-cadence-and-flow-will-revolutionize-smart-contract-programming-607bd05b49b",
+        tags: ["blog"],
+      },
+      {
+        title: "Resource oriented programming",
+        href: "/cadence#intuiting-ownership-with-resources",
+        tags: ["overview"],
+      },
+      {
+        title: "Cadence cookbook",
+        href: "https://open-cadence.onflow.org/",
+        tags: ["samples", "playground"],
+      },
+      {
+        title: "View all Cadence content",
+        href: "/cadence/",
+      },
+    ],
+  },
+  {
+    title: "Smart Contracts2",
+    description:
+      "Use Cadence to interact with and create smart contracts on chain.",
+    icon: <SDKIcon height="1.5em" width="1.5em" />,
+    links: [
+      {
+        title: "Why Cadence?",
+        href: "https://medium.com/coinmonks/how-cadence-and-flow-will-revolutionize-smart-contract-programming-607bd05b49b",
+        tags: ["blog"],
+      },
+      {
+        title: "Resource oriented programming",
+        href: "/cadence#intuiting-ownership-with-resources",
+        tags: ["overview"],
+      },
+      {
+        title: "Cadence cookbook",
+        href: "https://open-cadence.onflow.org/",
+        tags: ["samples", "playground"],
+      },
+      {
+        title: "View all Cadence content",
+        href: "/cadence/",
+      },
+    ],
+  },
+  {
+    title: "Smart Contracts3",
     description:
       "Use Cadence to interact with and create smart contracts on chain.",
     icon: <SDKIcon height="1.5em" width="1.5em" />,

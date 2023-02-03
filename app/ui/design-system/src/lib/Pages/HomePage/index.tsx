@@ -5,14 +5,13 @@ import {
   SocialLinksSignup,
   ToolsAndConcepts,
   UpcomingEvents,
-  HomepageOverview,
+  HomepageBrowse,
 } from "../../Components"
 import {
   ContentNavigationList,
   ContentNavigationListProps,
 } from "../../Components/ContentNavigationList"
 import { FlipsProps } from "../../Components/Flips"
-import { LinkCard3ColumnItems } from "../../Components/LinkCard3Column"
 import { SocialLinksSignupProps } from "../../Components/SocialLinksSignup"
 import { ToolCardProps } from "../../Components/ToolCard"
 import { TutorialCardProps } from "../../Components/TutorialCard"
@@ -20,8 +19,8 @@ import { UpcomingEventsProps } from "../../Components/UpcomingEvents"
 import PageBackground from "../shared/PageBackground"
 import PageSection from "../shared/PageSection"
 import PageSections from "../shared/PageSections"
-import { useState } from "react"
 import { HomepageStartItemProps } from "../../Components/HomepageStartItem"
+import { HomepageBrowseItemProps } from "../../Components/HomepageBrowse"
 
 export type HomePageProps = SocialLinksSignupProps & {
   concepts?: TutorialCardProps[]
@@ -29,7 +28,7 @@ export type HomePageProps = SocialLinksSignupProps & {
   contentNavigationListItems: ContentNavigationListProps
   editPageUrl?: string
   flips: FlipsProps
-  threeColumnItems: LinkCard3ColumnItems
+  threeColumnItems: HomepageBrowseItemProps[]
   tools: ToolCardProps[]
   upcomingEvents: UpcomingEventsProps
 }
@@ -48,8 +47,6 @@ const HomePage = ({
   twitterUrl,
   upcomingEvents,
 }: HomePageProps) => {
-  const [activeTab, setActiveTab] = useState("learn")
-
   return (
     <PageBackground gradient="home">
       <LandingHeaderHome
@@ -60,17 +57,10 @@ const HomePage = ({
         tag="onflow"
         title="Developer Portal"
       />
-      <HomepageStartList
-        items={homepageStartProjectData}
-        setActiveTab={setActiveTab}
-      />
+      <HomepageStartList items={homepageStartProjectData} />
       <PageSections>
         <PageSection sectionId="browse-by-topic">
-          <HomepageOverview
-            activeTab={activeTab}
-            items={threeColumnItems}
-            topRounded={true}
-          />
+          <HomepageBrowse items={threeColumnItems} topRounded={true} />
         </PageSection>
         <PageSection sectionId="sdks-and-tools">
           <ToolsAndConcepts
