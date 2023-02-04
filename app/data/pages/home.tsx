@@ -134,33 +134,6 @@ const homepageThreeColumnData: any = [
       },
     ],
   },
-  {
-    title: "Smart Contracts3",
-    description:
-      "Use Cadence to interact with and create smart contracts on chain.",
-    icon: <SDKIcon height="1.5em" width="1.5em" />,
-    links: [
-      {
-        title: "Why Cadence?",
-        href: "https://medium.com/coinmonks/how-cadence-and-flow-will-revolutionize-smart-contract-programming-607bd05b49b",
-        tags: ["blog"],
-      },
-      {
-        title: "Resource oriented programming",
-        href: "/cadence#intuiting-ownership-with-resources",
-        tags: ["overview"],
-      },
-      {
-        title: "Cadence cookbook",
-        href: "https://open-cadence.onflow.org/",
-        tags: ["samples", "playground"],
-      },
-      {
-        title: "View all Cadence content",
-        href: "/cadence/",
-      },
-    ],
-  },
 ]
 
 const contentNavigationListItems: ContentNavigationListProps = {
