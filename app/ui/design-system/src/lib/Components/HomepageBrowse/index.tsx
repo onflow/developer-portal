@@ -23,7 +23,7 @@ export function HomepageBrowse({
   topRounded = true,
 }: HomepageBrowseProps) {
   const classes = clsx(
-    "grid grid-cols-1 pb-4 bg-white rounded-lg gap-x-4 dark:bg-primary-gray-dark md:grid-cols-5 md:flex-row md:px-10",
+    "grid grid-cols-1 pb-4 bg-white rounded-lg gap-x-4 dark:bg-primary-gray-dark md:grid-cols-4 md:flex-row md:px-10",
     {
       "rounded-tr-none rounded-tl-none": !topRounded,
     }
