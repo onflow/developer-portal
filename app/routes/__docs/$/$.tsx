@@ -186,12 +186,6 @@ export function CatchBoundary() {
       )
   }
 
-  if (caught.status === 405) {
-    // There is a IT ticket to filter POST traffic #SRE-BR00006732
-    console.log("Post request caused error, Not Supported method")
-    return null
-  }
-
   throw new Error(`Unhandled error: ${caught.status}`)
 }
 
