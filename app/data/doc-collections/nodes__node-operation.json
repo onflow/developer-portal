@@ -38,6 +38,10 @@
               "href": "node-bootstrap"
             },
             {
+              "title": "Node Provisioning",
+              "href": "node-provisioning"
+            },
+            {
               "title": "Node Migration",
               "href": "node-migration"
             },
