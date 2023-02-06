@@ -78,7 +78,7 @@ export const loader = async ({ params, request }: LoaderArgs) => {
   if (docManifest.remoteRepoError) {
     console.log(
       `Remote repository has invalid manifest`,
-      `${collection.source.owner}/${collection.source.name}`,
+      `${collection.source.owner}/${collection.source.name}/${collection.source.rootPath}`,
       docManifest.remoteRepoError
     )
   }
