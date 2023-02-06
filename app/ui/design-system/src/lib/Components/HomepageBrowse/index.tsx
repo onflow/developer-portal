@@ -1,5 +1,9 @@
 import clsx from "clsx"
+import { ReactComponent as ChevronRight } from "../../../../images/arrows/chevron-right"
+import { ReactComponent as ExternalLinkIcon } from "../../../../images/content/external-link"
+import { isLinkExternal } from "../../utils/isLinkExternal"
 import AppLink from "../AppLink"
+import Tag from "../Tag"
 import { HeaderWithLink } from "../HeaderWithLink"
 
 export type HomepageBrowseItemProps = {
@@ -23,7 +27,7 @@ export function HomepageBrowse({
   topRounded = true,
 }: HomepageBrowseProps) {
   const classes = clsx(
-    "grid grid-cols-1 pb-4 bg-white rounded-lg gap-x-4 dark:bg-primary-gray-dark md:grid-cols-4 md:flex-row md:px-10",
+    "grid grid-cols-1 pb-8 bg-white rounded-lg gap-x-4 dark:bg-primary-gray-dark md:grid-cols-3 md:flex-row md:px-10",
     {
       "rounded-tr-none rounded-tl-none": !topRounded,
     }
@@ -47,13 +51,9 @@ export function HomepageBrowse({
               "row-start-1": index === 0,
               "row-start-3": index === 1,
               "row-start-5": index === 2,
-              "row-start-7": index === 3,
-              "row-start-9": index === 4,
               "grid-column-start-1": index === 0,
               "grid-column-start-2": index === 1,
               "grid-column-start-3": index === 2,
-              "grid-column-start-4": index === 3,
-              "grid-column-start-5": index === 4,
             })}
           >
             <h6 className="text-h6 mb-1 flex items-center">
@@ -75,8 +75,6 @@ export function HomepageBrowse({
                 "row-start-2": index === 0,
                 "row-start-4": index === 1,
                 "row-start-6": index === 2,
-                "row-start-8": index === 3,
-                "row-start-10": index === 4,
               }
             )}
           >
@@ -86,7 +84,26 @@ export function HomepageBrowse({
                   className=" link-card-3-column-link group flex flex-col rounded-lg px-4 text-sm hover:bg-primary-gray-50 dark:hover:bg-primary-gray-400"
                   to={link.href}
                 >
-                  <span className="display-block py-4">{link.title}</span>
+                  <span className="display-block py-4">
+                    <div className="flex justify-between">
+                      {link.title}
+                      <div>
+                        {isLinkExternal(link.href) ? (
+                          // "artificial" centering due to viewbox adding padding
+                          <div className="pr-[3px] pt-[2px]">
+                            <ExternalLinkIcon />
+                          </div>
+                        ) : (
+                          <ChevronRight />
+                        )}
+                      </div>
+                    </div>
+                    <div>
+                      {link.tags?.map((tag) => (
+                        <Tag key={tag} name={tag} />
+                      ))}
+                    </div>
+                  </span>
                 </AppLink>
               </div>
             ))}
