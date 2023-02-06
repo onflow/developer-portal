@@ -1,19 +1,17 @@
 import {
   Flips,
   LandingHeaderHome,
-  LinkCard2Column,
-  LinkCard3Column,
+  HomepageStartList,
   SocialLinksSignup,
   ToolsAndConcepts,
   UpcomingEvents,
+  HomepageBrowse,
 } from "../../Components"
 import {
   ContentNavigationList,
   ContentNavigationListProps,
 } from "../../Components/ContentNavigationList"
 import { FlipsProps } from "../../Components/Flips"
-import { LinkCard2ColumnProps } from "../../Components/LinkCard2Column"
-import { LinkCard3ColumnItems } from "../../Components/LinkCard3Column"
 import { SocialLinksSignupProps } from "../../Components/SocialLinksSignup"
 import { ToolCardProps } from "../../Components/ToolCard"
 import { TutorialCardProps } from "../../Components/TutorialCard"
@@ -21,27 +19,29 @@ import { UpcomingEventsProps } from "../../Components/UpcomingEvents"
 import PageBackground from "../shared/PageBackground"
 import PageSection from "../shared/PageSection"
 import PageSections from "../shared/PageSections"
+import { HomepageStartItemProps } from "../../Components/HomepageStartItem"
+import { HomepageBrowseItemProps } from "../../Components/HomepageBrowse"
 
 export type HomePageProps = SocialLinksSignupProps & {
   concepts?: TutorialCardProps[]
+  homepageStartProjectData: HomepageStartItemProps[]
   contentNavigationListItems: ContentNavigationListProps
   editPageUrl?: string
   flips: FlipsProps
-  startProjectItems: LinkCard2ColumnProps
-  threeColumnItems: LinkCard3ColumnItems
+  threeColumnItems: HomepageBrowseItemProps[]
   tools: ToolCardProps[]
   upcomingEvents: UpcomingEventsProps
 }
 
 const HomePage = ({
   concepts,
+  homepageStartProjectData,
   contentNavigationListItems,
   discordUrl,
   discourseUrl,
   editPageUrl,
   flips,
   githubUrl,
-  startProjectItems,
   threeColumnItems,
   tools,
   twitterUrl,
@@ -57,10 +57,11 @@ const HomePage = ({
         tag="onflow"
         title="Developer Portal"
       />
-      <LinkCard2Column {...startProjectItems} homePage={true} />
-      <LinkCard3Column items={threeColumnItems} topRounded={false} />
+      <HomepageStartList items={homepageStartProjectData} />
       <PageSections>
-        <PageSection className="pt-0" />
+        <PageSection sectionId="browse-by-topic">
+          <HomepageBrowse items={threeColumnItems} topRounded={true} />
+        </PageSection>
         <PageSection sectionId="sdks-and-tools">
           <ToolsAndConcepts
             tools={tools}
