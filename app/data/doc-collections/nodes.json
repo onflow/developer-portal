@@ -17,6 +17,10 @@
               "href": ""
             },
             {
+              "title": "Access Node Setup",
+              "href": "node-operation/access-node-setup"
+            },
+            {
               "title": "Node Setup",
               "href": "node-operation/node-setup"
             },
