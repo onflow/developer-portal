@@ -44,6 +44,7 @@ import AppLink from "./ui/design-system/src/lib/Components/AppLink"
 import { SearchProps } from "./ui/design-system/src/lib/Components/Search"
 import { getMetaTitle, getSocialMetas } from "./utils/seo.server"
 import { useElementScrollRestoration } from "./utils/useElementScrollRestoration"
+import Hotjar from "@hotjar/browser"
 
 const fontPreloads = [
   "/fonts/acumin-pro/AcuminPro-Regular.otf",
@@ -113,6 +114,12 @@ export const loader = async ({ request }: LoaderArgs) => {
       indexName: getRequiredServerEnvVar("ALGOLIA_INDEX_NAME"),
     }
   }
+
+  //if (process.env.NODE_ENV === "production") {
+  const hotjarVersion = 6
+  const hotjarsiteid = Number(process.env.HOTJAR_SITE_ID)
+  Hotjar.init(hotjarsiteid, hotjarVersion)
+  //}
 
   return json<LoaderData>({
     algolia,
