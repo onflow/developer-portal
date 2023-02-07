@@ -33,6 +33,7 @@ import tools__unity_sdk from "./tools__unity-sdk.json"
 import learn from "./learn.json"
 import quickstart from "./quickstart.json"
 import documentation from "./documentation.json"
+import tools from "./tools.json"
 
 const includeTestingDocCollections =
   process.env.TESTING_DOC_COLLECTIONS === "include" ||
@@ -82,4 +83,5 @@ export const docCollections = {
   learn: learn,
   quickstart: quickstart,
   documentation: documentation,
+  tools: tools,
 }
