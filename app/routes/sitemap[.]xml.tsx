@@ -35,7 +35,6 @@ const STATIC_ROUTES = [
   "/community",
   "/getting-started",
   "/http-api",
-  "/learn",
   "/network",
   "/tools",
 ]

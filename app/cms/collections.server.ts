@@ -148,6 +148,7 @@ export async function findDocManifest(
 
   const manifest = remoteManifest ?? docCollection.staticManifest
 
+  console.log("manifest", manifest, docCollection)
   const sidebarPath = manifest.sidebars
     ? findMostSpecificPath(contentPath, Object.keys(manifest.sidebars))
     : undefined

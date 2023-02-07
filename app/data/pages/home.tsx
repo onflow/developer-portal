@@ -9,19 +9,19 @@ const homepageStartProjectData: HomepageStartItemProps[] = [
   {
     title: "Learn Flow",
     text: "Dive into Flow key concepts through tutorials, guides, and examples",
-    link: "/learn/concepts",
+    link: "/learn",
     icon: "learn",
   },
   {
     title: "Flow Quickstarts",
     text: "Run your frist Flow dApp in just a few clicks",
-    link: "/tools/fcl-js/tutorials/flow-app-quickstart",
+    link: "/quickstart",
     icon: "quickstart",
   },
   {
     title: "Documentation",
     text: "All the developer resources you need to build on Flow",
-    link: "/cadence",
+    link: "/documentation",
     icon: "documentation",
   },
 ]
