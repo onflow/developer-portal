@@ -1,33 +1,33 @@
 {
-    "source": {
-      "owner": "onflow",
-      "name": "flow",
-      "branch": "master",
-      "rootPath": "docs/content/documentation"
-    },
-    "manifest": {
-        "displayName": "Documentation",
-        "sidebars": {
-          "": [
+  "source": {
+    "owner": "onflow",
+    "name": "flow",
+    "branch": "master",
+    "rootPath": "docs/content/documentation"
+  },
+  "manifest": {
+    "displayName": "Documentation",
+    "sidebars": {
+      "": [
+        {
+          "title": "Documentation",
+          "items": [
             {
-              "title": "Documentation",
-              "items": [
-                {
-                  "title": "Overview",
-                  "href": "index"
-                }
-              ]
-            },
+              "title": "Overview",
+              "href": "index"
+            }
+          ]
+        },
+        {
+          "title": "Another Section",
+          "items": [
             {
-              "title": "Another Section",
-              "items": [
-                {
-                  "title": "Overview",
-                  "href": "index"
-                }
-              ]
-            }        
+              "title": "Overview",
+              "href": "index"
+            }
           ]
         }
-      }
+      ]
+    }
+  }
 }
