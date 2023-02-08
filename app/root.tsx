@@ -115,11 +115,11 @@ export const loader = async ({ request }: LoaderArgs) => {
     }
   }
 
-  //if (process.env.NODE_ENV === "production") {
-  const hotjarVersion = 6
-  const hotjarsiteid = Number(process.env.HOTJAR_SITE_ID)
-  Hotjar.init(hotjarsiteid, hotjarVersion)
-  //}
+  if (process.env.NODE_ENV === "production") {
+    const hotjarVersion = 6
+    const hotjarsiteid = Number(process.env.HOTJAR_SITE_ID)
+    Hotjar.init(hotjarsiteid, hotjarVersion)
+  }
 
   return json<LoaderData>({
     algolia,
