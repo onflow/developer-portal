@@ -36,7 +36,6 @@ const STATIC_ROUTES = [
   "/getting-started",
   "/http-api",
   "/network",
-  "/tools",
 ]
 
 export const loader = () => {
