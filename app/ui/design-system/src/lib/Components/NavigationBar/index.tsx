@@ -20,7 +20,7 @@ export type NavigationBarProps = {
   algolia?: SearchProps
 }
 
-export const NAV_HEIGHT = 90
+export const NAV_HEIGHT = 110
 
 export function NavigationBar({
   menuItems,
