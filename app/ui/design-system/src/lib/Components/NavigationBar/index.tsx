@@ -1,6 +1,7 @@
 import { Transition } from "@headlessui/react"
 import { useLocation } from "@remix-run/react"
 import { Fragment, useEffect, useState } from "react"
+import SvgChevronRight from "~/ui/design-system/images/arrows/chevron-right"
 import flowDocsLogoDark from "../../../../images/logos/flow-docs-logo-dark.png"
 import flowDocsLogoDark2X from "../../../../images/logos/flow-docs-logo-dark@2x.png"
 import flowDocsLogoLight from "../../../../images/logos/flow-docs-logo-light.png"
@@ -37,49 +38,70 @@ export function NavigationBar({
   return (
     <nav
       style={{ height: NAV_HEIGHT, minHeight: NAV_HEIGHT }}
-      className="z-40 flex items-center bg-white p-4 text-primary-gray-400 dark:bg-black dark:text-white lg:px-8"
+      className="z-40 flex flex-col dark:bg-black dark:text-white"
     >
-      <div className="flex items-center">
-        <AppLink to="/" className="mr-4 w-full py-2 hover:opacity-75">
+      <div className="flex w-full items-center justify-center bg-black px-4 text-white dark:bg-white dark:text-black">
+        <AppLink
+          to="https://hackathon.flow.com/"
+          className=" flex flex-row items-center justify-center py-1 hover:opacity-75"
+        >
           <img
-            src={flowDocsLogoLight}
-            srcSet={`${flowDocsLogoLight}, ${flowDocsLogoLight2X} 2x`}
-            alt="Flow Developers"
-            className="hidden w-full dark:block"
+            src={
+              "https://assets-global.website-files.com/5f734f4dbd95382f4fdfa0ea/63e254beeb2edc54cc059acc_hackathon-logo.d4db7683-p-500.png"
+            }
+            alt="Flow Hackaton"
+            className="mr-4 max-h-12"
           />
-          <img
-            src={flowDocsLogoDark}
-            srcSet={`${flowDocsLogoDark}, ${flowDocsLogoDark2X} 2x`}
-            alt="Flow Developers"
-            className="block w-full dark:hidden"
-          />
+          <div className="relative top-2 pr-4">
+            Build the future of web3 at the upcoming Flow Hackaton (Feb 21-26).
+            Over $500,000 in prizes. Register Now
+          </div>
+          <SvgChevronRight className="relative top-2" />
         </AppLink>
       </div>
-      <div className="mt-1 flex flex-1 justify-end">
-        {!!algolia && (
-          <div className="mr-4 flex items-center">
-            <Search {...algolia} />
-          </div>
-        )}
-        <DesktopMenu menuItems={menuItems} />
-        <ul className="flex items-center">
-          <li className="flex items-center whitespace-nowrap border-l border-primary-gray-100 pl-4 dark:border-primary-gray-400">
-            <button
-              type="button"
-              onClick={() => onDarkModeToggle()}
-              className="hover:text-primary-blue dark:hover:text-blue-hover-dark"
-            >
-              <ModeDark className="dark:hidden" />
-              <ModeLight className="hidden dark:block dark:text-[#FFE68D] dark:hover:text-white" />
-            </button>
-          </li>
-          <li className="main-nav-mobile-menu-toggle pl-4">
-            <MobileMenuToggleButton
-              isOpen={isMobileNavOpen}
-              onOpenChanged={(open) => setMobileNavOpen(open)}
+      <div className="flex items-center bg-white px-4 pb-1 text-primary-gray-400 dark:bg-black dark:text-white">
+        <div className="flex items-center">
+          <AppLink to="/" className="mr-4 w-full py-2 hover:opacity-75">
+            <img
+              src={flowDocsLogoLight}
+              srcSet={`${flowDocsLogoLight}, ${flowDocsLogoLight2X} 2x`}
+              alt="Flow Developers"
+              className="hidden w-full dark:block"
             />
-          </li>
-        </ul>
+            <img
+              src={flowDocsLogoDark}
+              srcSet={`${flowDocsLogoDark}, ${flowDocsLogoDark2X} 2x`}
+              alt="Flow Developers"
+              className="block w-full dark:hidden"
+            />
+          </AppLink>
+        </div>
+        <div className="mt-1 flex flex-1 justify-end">
+          {!!algolia && (
+            <div className="mr-4 flex items-center">
+              <Search {...algolia} />
+            </div>
+          )}
+          <DesktopMenu menuItems={menuItems} />
+          <ul className="flex items-center">
+            <li className="flex items-center whitespace-nowrap border-l border-primary-gray-100 pl-4 dark:border-primary-gray-400">
+              <button
+                type="button"
+                onClick={() => onDarkModeToggle()}
+                className="hover:text-primary-blue dark:hover:text-blue-hover-dark"
+              >
+                <ModeDark className="dark:hidden" />
+                <ModeLight className="hidden dark:block dark:text-[#FFE68D] dark:hover:text-white" />
+              </button>
+            </li>
+            <li className="main-nav-mobile-menu-toggle pl-4">
+              <MobileMenuToggleButton
+                isOpen={isMobileNavOpen}
+                onOpenChanged={(open) => setMobileNavOpen(open)}
+              />
+            </li>
+          </ul>
+        </div>
       </div>
       <Transition
         as={Fragment}
