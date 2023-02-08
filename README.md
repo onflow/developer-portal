@@ -79,6 +79,8 @@ Use the first version of the commands below if the your compose environment and 
 
 - Any new environemnt variable added to `.env` should also be added to the `docker-compose.yml`
 
+- Environment variables are handled different in remax apps, see documentation here https://remix.run/docs/en/v1/guides/envvars
+
 ## Documentation Sources
 
 The doc site pull the markdown files existing in various `onflow` repositories. To see the Github Actions that triggers processing of the markdown files (i.e. refreshing cache), go to any of the repos and click on the `Actions` tab.
