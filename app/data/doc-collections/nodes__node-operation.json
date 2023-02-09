@@ -50,6 +50,10 @@
               "href": "node-migration"
             },
             {
+              "title": "Byzantine Node Attack Response",
+              "href": "byzantine-node-attack-response"
+            },
+            {
               "title": "Machine Accounts for Existing Node Operators",
               "href": "machine-existing-operator"
             },
