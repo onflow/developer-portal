@@ -1,5 +1,6 @@
 import LandingImage from "../../../../images/misc/landing-home.png"
 import LandingImage2x from "../../../../images/misc/landing-home@2x.png"
+import { ButtonLink } from "../Button"
 import { LandingPageLinks } from "../LandingPageLinks"
 
 export type LandingHeaderHomeProps = {
@@ -32,9 +33,12 @@ export function LandingHeaderHome({
         <h1 className="text-h1 mb-6 max-w-full overflow-hidden text-ellipsis !text-4xl md:!text-7xl ">
           {title}
         </h1>
-        <div className="max-w-[400px] text-xl font-semibold text-primary-gray-400 dark:text-primary-gray-50">
+        <div className="mb-4 max-w-[400px] text-xl font-semibold text-primary-gray-400 dark:text-primary-gray-50">
           {description}
         </div>
+        <ButtonLink variant="primary" href="https://play.flow.com">
+          Try Cadence
+        </ButtonLink>
       </div>
       <div className="pr-0 md:ml-auto md:mr-14 md:pl-4">
         <img
