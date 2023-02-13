@@ -1,0 +1,58 @@
+{
+  "source": {
+    "owner": "onflow",
+    "name": "account-linking-docs",
+    "branch": "main",
+    "rootPath": "docs/"
+  },
+  "manifest": {
+    "$schema": "https://developers.flow.com/schemas/flow-docs.json",
+    "displayName": "Account Linking",
+    "headers": {
+      "": {
+        "icon": "cadence",
+        "title": "Account Linking",
+        "description": "Create superior user experiences through Hybrid Custody on Flow"
+      }
+    },
+    "sidebars": {
+      "": [
+        {
+          "title": "Overview",
+          "items": [
+            {
+              "title": "Getting Started",
+              "href": "/account-linking/get-started"
+            }
+          ]
+        },
+        {
+          "title": " Developer Guides",
+          "items": [
+            {
+              "title": "Account Model & Implementation",
+              "href": "/account-linking/guides/account-model"
+            },
+            {
+              "title": "Linking Accounts",
+              "href": "/account-linking/guides/linking-accounts"
+            },
+            {
+              "title": "Walletless Onboarding",
+              "href": "/account-linking/guides/walletless-onboarding"
+            }
+          ]
+        },
+        {
+          "title": "References",
+          "items": [
+            {
+              "title": "Account Model Contracts",
+              "href": "https://github.com/onflow/sc-eng-gaming"
+            }
+          ]
+        }
+      ]
+    }
+  }
+}
