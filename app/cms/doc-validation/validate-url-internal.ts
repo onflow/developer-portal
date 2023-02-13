@@ -1,11 +1,15 @@
 import { distance } from "fastest-levenshtein"
 import { posix } from "node:path"
+import { isAssetReference } from "~/ui/design-system/src/lib/utils/isAssetReference"
 import { stripMarkdownExtension } from "../../ui/design-system/src/lib/utils/stripMarkdownExtension"
 import { UrlItem } from "../rehype-plugins/extractUrls"
 import { stripSlahes } from "../utils/strip-slashes"
 import { ValidatedUrl, ValidateUrlContext } from "./validate-url"
+import { validateUrlExternal } from "./validate-url-external"
 
 const PLACEHOLDER_ORIGIN = "https://example.com"
+const SITE_ROOT =
+  process.env.SITE_ROOT_ORIGIN || "https://flow-docs-staging.fly.dev"
 
 export const normalizeRelativeUrl = (path: string) =>
   stripSlahes(stripMarkdownExtension(path.toLowerCase()))
@@ -17,7 +21,26 @@ export const validateUrlInternal = async (
   const { href } = item
   const { rootRelativePath, validRelativeFileUrls } = context
 
-  // TODO: Still need to handle relative links that point outside of the root folder.
+  // relative links as absolute links by adding root website for testing validity of url.
+  if (href.startsWith("/")) {
+    const targetUrl = `${SITE_ROOT}${href}`
+    const checkItem = {
+      ...item,
+      href: targetUrl,
+    }
+    return validateUrlExternal(checkItem, context)
+  }
+
+  // assets check exist
+  // TODO: need to get redirect url then add 'assets' in url in order to fo correct check
+  if (isAssetReference(href)) {
+    return {
+      ...item,
+      type: "external",
+      result: "ignored",
+      hint: "Asset checks are ignored",
+    }
+  }
 
   // We need to extract the current directory of the incoming file for validation,
   // in order to correctly validate relative links.

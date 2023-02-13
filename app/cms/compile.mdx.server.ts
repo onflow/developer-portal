@@ -35,6 +35,7 @@ async function compileMdx<FrontmatterType extends Record<string, unknown>>(
 ) {
   const { default: remarkSlug } = await import("remark-slug")
   const { default: gfm } = await import("remark-gfm")
+  const { default: rComment } = await import("remark-comment")
 
   const rootDir = path.posix.dirname(source.path)
   const toc = [] as TocItem[]
@@ -57,6 +58,7 @@ async function compileMdx<FrontmatterType extends Record<string, unknown>>(
           ...(options.remarkPlugins ?? []),
           gfm,
           remarkSlug,
+          rComment,
           [
             remarkEmbedder,
             {

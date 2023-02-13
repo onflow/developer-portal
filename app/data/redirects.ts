@@ -208,6 +208,7 @@ export const redirects = {
   "/staking/staking-options/": "/nodes/staking/staking-options",
   "/flow-go-sdk/signing-transactions/": "/learn/concepts/transaction-signing",
   "/flow-cli/decode-keys/": "/tools/flow-cli/decode-keys",
+  "/flow-cli/super-commands/": "/tools/flow-cli/super-commands",
   "/flow-go-sdk/transfer-flow/": "/tools/flow-go-sdk",
   "/intro/glossary/": "/flow/intro/glossary",
   "/flow-cli/complex-transactions/": "/tools/flow-cli/complex-transactions",

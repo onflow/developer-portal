@@ -17,6 +17,10 @@
               "href": ""
             },
             {
+              "title": "Access Node Setup",
+              "href": "access-node-setup"
+            },
+            {
               "title": "Node Setup",
               "href": "node-setup"
             },
@@ -38,8 +42,16 @@
               "href": "node-bootstrap"
             },
             {
+              "title": "Node Provisioning",
+              "href": "node-provisioning"
+            },
+            {
               "title": "Node Migration",
               "href": "node-migration"
+            },
+            {
+              "title": "Byzantine Node Attack Response",
+              "href": "byzantine-node-attack-response"
             },
             {
               "title": "Machine Accounts for Existing Node Operators",

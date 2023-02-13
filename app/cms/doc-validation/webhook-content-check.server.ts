@@ -71,21 +71,29 @@ export const contentCheckOnCheckRun = async ({
     })
 
     let output:
-      | { summary: string; title: string; annotations?: Array<any> }
+      | {
+          summary: string
+          title: string
+          annotations?: Array<any>
+          text?: string
+        }
       | undefined
     let conclusion = "neutral"
-
+    let text = "" // used for diagnosing errors
     try {
+      text = "validate Changes For Check Run"
       const result = await validateChangesForCheckRun(
         payload.repository,
         payload.check_run
       )
+      text = "get Validation Summary For Check Run"
       const summary = getValidationSummaryForCheckRun(result)
       output = {
         title: summary.title,
         summary: summary.summary,
         // Github supports a max of 50 annotations.
         annotations: getAnnotations(result).slice(0, 49),
+        text,
       }
       conclusion = summary.conclusion
     } catch (error) {
@@ -94,6 +102,7 @@ export const contentCheckOnCheckRun = async ({
       output = {
         title: "Unable to validate URLs",
         summary: `Validting URLs failed: ${message}`,
+        text: String(error),
       }
     } finally {
       await octokit.checks.update({

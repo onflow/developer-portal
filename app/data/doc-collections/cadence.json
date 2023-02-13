@@ -26,9 +26,9 @@
             "href": "/cadence/language"
           },
           {
-            "title": "Solidity to Cadence Intro",
+            "title": "Guide for Solidity developers",
             "tags": ["guide", "patterns"],
-            "description": "Learn the key differences in the account models between Solidity and Cadence.",
+            "description": "Comprehensive guide to assist Solidity developers who are learning Cadence.",
             "href": "/cadence/msg-sender"
           }
         ]
@@ -60,16 +60,12 @@
               "href": "anti-patterns"
             },
             {
-              "title": "msg․sender Considered Harmful",
-              "href": "msg-sender"
+              "title": "Guide for Solidity Developers",
+              "href": "solidity-to-cadence"
             },
             {
               "title": "Measuring Time in Cadence",
               "href": "measuring-time"
-            },
-            {
-              "title": "Migration Guide",
-              "href": "migration-guide"
             },
             {
               "title": "JSON-Cadence Data Interchange Format",

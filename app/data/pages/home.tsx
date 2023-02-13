@@ -1,53 +1,32 @@
 import { ReactComponent as EcosystemIcon } from "~/ui/design-system/images/content/ecosystem"
 import { ReactComponent as SDKIcon } from "~/ui/design-system/images/content/sdk"
 import { ReactComponent as UseCaseIcon } from "~/ui/design-system/images/content/use-cases"
-import {
-  LinkCard2ColumnProps,
-  LinkCard3ColumnItems,
-} from "~/ui/design-system/src"
 import { ContentNavigationListProps } from "~/ui/design-system/src/lib/Components/ContentNavigationList"
+import { HomepageStartItemProps } from "~/ui/design-system/src/lib/Components/HomepageStartItem"
 import { metadata } from "../metadata"
 
-const homepageStartProjectData: LinkCard2ColumnProps = {
-  buttonText: "Get started",
-  buttonUrl: "/getting-started",
-  description: `Building on Flow is easy.
-      Start building now on web3 with the power of resource-oriented programming, multi-node architecture,
-      and a host of other features and tooling to make your dapp development easy and efficient.`,
-  title: "Start Your Project",
-  tags: ["onflow"],
-  items: [
-    {
-      title: "Flow Quickstart",
-      description:
-        "Build a front-end and run your first transactions on the Flow blockchain within minutes.",
-      href: "/tools/fcl-js/tutorials/flow-app-quickstart/",
-      iconType: "fcl",
-    },
-    {
-      title: "Learn Smart Contracts",
-      description:
-        "A series of tutorials that explain how to build your first smart contracts with our programming language, Cadence.",
-      iconType: "playground",
-      links: [
-        {
-          href: "/cadence/tutorial/02-hello-world/",
-          title: "Hello, World!",
-        },
-        {
-          href: "/cadence/tutorial/05-non-fungible-tokens-1/",
-          title: "NFTs",
-        },
-        {
-          href: "/cadence/tutorial/07-marketplace-setup/",
-          title: "Marketplaces",
-        },
-      ],
-    },
-  ],
-}
+const homepageStartProjectData: HomepageStartItemProps[] = [
+  {
+    title: "Learn Flow",
+    text: "Dive into Flow key concepts through tutorials, guides, and examples",
+    link: "/learn",
+    icon: "learn",
+  },
+  {
+    title: "Flow Quickstarts",
+    text: "Run your frist Flow dApp in just a few clicks",
+    link: "/quickstart",
+    icon: "quickstart",
+  },
+  {
+    title: "Documentation",
+    text: "All the developer resources you need to build on Flow",
+    link: "/documentation",
+    icon: "documentation",
+  },
+]
 
-const homepageThreeColumnData: LinkCard3ColumnItems = [
+const homepageThreeColumnData: any = [
   {
     title: "Quickstarts",
     description:
@@ -160,4 +139,4 @@ export {
   contentNavigationListItems,
 }
 
-export const editPageUrl = `${metadata.githubRepoBaseUrl}/blob/main/app/data/pages/home.ts`
+export const editPageUrl = `${metadata.githubRepoBaseUrl}/blob/main/app/data/pages/home.tsx`

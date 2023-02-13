@@ -79,6 +79,8 @@ Use the first version of the commands below if the your compose environment and 
 
 - Any new environemnt variable added to `.env` should also be added to the `docker-compose.yml`
 
+- Environment variables are handled different in remax apps, see documentation here https://remix.run/docs/en/v1/guides/envvars
+
 ## Documentation Sources
 
 The doc site pull the markdown files existing in various `onflow` repositories. To see the Github Actions that triggers processing of the markdown files (i.e. refreshing cache), go to any of the repos and click on the `Actions` tab.
@@ -125,3 +127,38 @@ If deploys fail to go out, and the github actions hang indefinitely, a workaroun
 
 1. Re-run the build by going to the latest commit on the appropriate branch, clicking "Re-run jobs", and then "Re-run failed jobs"
 1. Build should succeed
+
+## fly.io configuration and needed updates
+
+1. "Bad Credentials" error
+
+- This occurs when the personal access token used expires
+- Create a new personal access token with a long expiration and update fly.io
+- User will need to be in `Flow Docs` organization on fly.io (Put in a IT ticket to get access if needed)
+- Need to install fly.io tools `brew install flyctl` more info: https://fly.io/docs/hands-on/install-flyctl/
+- List secrets for flow-docs-staging
+
+```
+ fly secrets list -a flow-docs-staging
+```
+
+- Update bot github token with new access token from a user that is in onFlow organization
+
+```
+fly secrets set BOT_GITHUB_TOKEN=github_pat_11A...MVuk -a flow-docs-staging
+```
+
+- This will trigger staging content checker webhook to be deployed using the new BOT_GITHUB_TOKEN value
+
+## Adding Menu/Landing Images
+
+1. There are 4 icons needed
+
+- Landing (only needed if cms doc collection has it's own landing page like Cadence and Mobile)
+- Image files go in app/ui/design-system/images/ directory
+- Dropdown Menu icon named as "xxx-sm.svg"
+- Menu icon, shows what section the user is on "xxxx.svg" like tool-cadence.svg, tool-mobile.svg
+- Landing page icon like tool-cadence-landing.svg, configuration is located in `app/ui/design-system/src/lib/Components/InternalLandingHeader/icons.ts`
+
+2. Images are svg so they can scale
+3. Light and Dark theme changes the svg's backgrounds

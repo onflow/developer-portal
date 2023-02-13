@@ -4,12 +4,18 @@ import * as Sentry from "@sentry/node"
 import "@sentry/tracing"
 import { renderToString } from "react-dom/server"
 import { getRequiredGlobalEnvVar } from "./cms/helpers"
+import Hotjar from "@hotjar/browser"
 
 Sentry.init({
   ...(process.env.SENTRY_DSN && { dsn: process.env.SENTRY_DSN }),
   tracesSampleRate: 0.3,
   environment: getRequiredGlobalEnvVar("SENTRY_ENV", "development"),
 })
+
+if (process.env.NODE_ENV === "production") {
+  const hotjarVersion = 6
+  Hotjar.init(parseInt(process.env.HOTJAR_SITE_ID ?? ""), hotjarVersion)
+}
 
 export default function handleRequest(
   request: Request,

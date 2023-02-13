@@ -89,6 +89,16 @@ export const validateUrl = async (
     }
   }
 
+  // TODO: in order to support change dir a level up, need to have access
+  // to all collections in doc-collections
+  if (href.startsWith("..")) {
+    return {
+      ...item,
+      type: "internal",
+      result: "ignored",
+    }
+  }
+
   if (isLinkExternal(href)) {
     return validateUrlExternal(item, context)
   }

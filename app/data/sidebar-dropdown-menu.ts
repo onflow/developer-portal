@@ -30,9 +30,9 @@ export const SIDEBAR_DROPDOWN_MENU: InternaSidebarDropdownMenuGroup[] = [
     items: [
       { title: "Cadence", href: "/cadence", icon: "cadence" },
       {
-        title: "Kitty Items",
-        href: "/learn/kitty-items",
-        icon: "default",
+        title: "Flow Mobile",
+        href: "/mobile",
+        icon: "flow-mobile",
       },
       {
         title: "Concepts & Guides",
