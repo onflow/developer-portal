@@ -13,7 +13,8 @@
         "icon": "cadence",
         "title": "Account Linking",
         "description": "Create superior user experiences through Hybrid Custody on Flow"
-      }
+      },
+      "headerCards": []
     },
     "sidebars": {
       "": [
