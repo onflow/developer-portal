@@ -24,15 +24,15 @@
           "items": [
             {
               "title": "Account Model & Implementation",
-              "href": "/account-linking/account-model"
+              "href": "/account-linking/guides/account-model"
             },
             {
               "title": "Linking Accounts",
-              "href": "/account-linking/linking-accounts"
+              "href": "/account-linking/guides/linking-accounts"
             },
             {
               "title": "Walletless Onboarding",
-              "href": "/account-linking/walletless-onboarding"
+              "href": "/account-linking/guides/walletless-onboarding"
             }
           ]
         },
