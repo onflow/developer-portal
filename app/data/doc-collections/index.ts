@@ -34,6 +34,7 @@ import learn from "./learn.json"
 import quickstart from "./quickstart.json"
 import documentation from "./documentation.json"
 import tools from "./tools.json"
+import account_linking from "./account-linking.json"
 
 const includeTestingDocCollections =
   process.env.TESTING_DOC_COLLECTIONS === "include" ||
@@ -84,4 +85,5 @@ export const docCollections = {
   quickstart: quickstart,
   documentation: documentation,
   tools: tools,
+  accountLinking: account_linking,
 }
