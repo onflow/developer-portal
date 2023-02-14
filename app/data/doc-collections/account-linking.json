@@ -8,6 +8,33 @@
   "manifest": {
     "$schema": "https://developers.flow.com/schemas/flow-docs.json",
     "displayName": "Account Linking",
+    "headers": {
+      "": {
+        "icon": "cadence",
+        "title": "Account Linking",
+        "description": "Create superior user experiences through Hybrid Custody on Flow",
+        "headerCards": [
+          {
+            "title": "Explore walletless onboarding",
+            "tags": ["guide", "account-linking"],
+            "description": "Learn how to build a walletless onboarding experience in your app",
+            "href": "/account-linking/guides/walletless-onboarding"
+          },
+          {
+            "title": "Account Model Contracts",
+            "tags": ["smart-contracts", "account-linking"],
+            "description": "Smart contracts for account model",
+            "href": "https://github.com/onflow/sc-eng-gaming"
+          },
+          {
+            "title": "Walletless Onboarding Demo Apps",
+            "tags": ["demo-apps", "account-linking"],
+            "description": "Demo apps for walletless omboarding flow",
+            "href": "https://github.com/onflow/sc-eng-gaming"
+          }
+        ]
+      }
+    },
     "sidebars": {
       "": [
         {
