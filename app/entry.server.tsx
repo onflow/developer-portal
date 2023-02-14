@@ -23,6 +23,11 @@ export default function handleRequest(
   responseHeaders: Headers,
   remixContext: EntryContext
 ) {
+  if (request.method === "POST") {
+    // post request are not supported
+    return new Response("<!DOCTYPE html />", { status: 404 })
+  }
+
   const markup = renderToString(
     <RemixServer context={remixContext} url={request.url} />
   )
