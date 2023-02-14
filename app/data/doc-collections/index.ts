@@ -85,5 +85,5 @@ export const docCollections = {
   quickstart: quickstart,
   documentation: documentation,
   tools: tools,
-  accountLinking: account_linking,
+  "account-linking": account_linking,
 }
