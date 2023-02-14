@@ -1,3 +1,4 @@
+import React from "react"
 import { Meta, Story } from "@storybook/react"
 import { NavigationBar, NavigationBarProps } from "."
 import { ReactComponent as EcosystemIcon } from "../../../../images/content/ecosystem"
