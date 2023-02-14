@@ -15,10 +15,10 @@
         "description": "Build secure native mobile applications with best-in-class user experience on Flow",
         "headerCards": [
           {
-            "title": "Mobile development environment",
+            "title": "Build with the Sample iOS App: Monster Maker",
             "tags": ["guide", "local-development"],
-            "description": "Set up your local development environment",
-            "href": "/mobile/guides/development-environment"
+            "description": "Make a Monster NFT and learn iOS app development on Flow at the same time",
+            "href": "/mobile/guides/monster-maker"
           },
           {
             "title": "Kotlin FCL SDK",
@@ -56,21 +56,13 @@
           "title": "Developer Guides",
           "items": [
             {
-              "title": "Development environment",
-              "href": "/mobile/guides/development-environment"
-            },
-            {
-              "title": "User management",
-              "href": "/mobile/guides/user-management"
-            },
-            {
-              "title": "On-chain interactions",
-              "href": "/mobile/guides/onchain-interactions"
+              "title": "iOS Sample Project: Monster Maker ",
+              "href": "/mobile/guides/monster-maker"
             }
           ]
         },
         {
-          "title": "References",
+          "title": "External References",
           "items": [
             {
               "title": "Kotlin FCL SDK",
