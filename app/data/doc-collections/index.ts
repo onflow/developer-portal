@@ -30,6 +30,7 @@ import tools__flow_go_sdk from "./tools__flow-go-sdk.json"
 import tools__flow_js_testing from "./tools__flow-js-testing.json"
 import tools__vscode_extension from "./tools__vscode-extension.json"
 import tools__unity_sdk from "./tools__unity-sdk.json"
+import account_linking from "./account-linking.json"
 
 const includeTestingDocCollections =
   process.env.TESTING_DOC_COLLECTIONS === "include" ||
@@ -76,4 +77,5 @@ export const docCollections = {
   "tools/flow-js-testing": tools__flow_js_testing,
   "tools/vscode-extension": tools__vscode_extension,
   "tools/unity-sdk": tools__unity_sdk,
+  accountLinking: account_linking,
 }
