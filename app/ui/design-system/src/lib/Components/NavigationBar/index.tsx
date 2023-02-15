@@ -49,11 +49,11 @@ export function NavigationBar({
             src={
               "https://assets-global.website-files.com/5f734f4dbd95382f4fdfa0ea/63e254beeb2edc54cc059acc_hackathon-logo.d4db7683-p-500.png"
             }
-            alt="Flow Hackaton"
+            alt="Flow Hackathon"
             className="mr-4 max-h-12"
           />
           <div className="relative top-2 pr-4">
-            Build the future of web3 at the upcoming Flow Hackaton (Feb 21-26).
+            Build the future of web3 at the upcoming Flow Hackathon (Feb 21-26).
             Over $500,000 in prizes. Register Now
           </div>
           <SvgChevronRight className="relative top-2" />
