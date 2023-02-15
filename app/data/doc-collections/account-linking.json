@@ -12,23 +12,38 @@
       "": {
         "icon": "cadence",
         "title": "Account Linking",
-        "description": "Create superior user experiences through Hybrid Custody on Flow"
+        "description": "Create superior onboarding experiences that enable real ownership and self-sovereignty on Flow",
+        "headerCards": [
+          {
+            "title": "Account Model",
+            "tags": ["guide", "account-linking"],
+            "description": "Learn about the account model enables through Account Linking",
+            "href": "/account-linking/guides/account-model"
+          },
+          {
+            "title": "Explore walletless onboarding",
+            "tags": ["guide", "account-linking"],
+            "description": "Learn how to build a walletless onboarding experience in your app",
+            "href": "/account-linking/guides/walletless-onboarding"
+          },
+          {
+            "title": "Child Account Contract",
+            "tags": ["smart-contracts", "account-linking"],
+            "description": "Smart contract for Child Account on testnet",
+            "href": "https://f.dnz.dev/0x1b655847a90e644a/ChildAccount"
+          }
+        ]
       }
     },
     "sidebars": {
       "": [
         {
-          "title": "Overview",
-          "items": [
-            {
-              "title": "Getting Started",
-              "href": "/account-linking/get-started"
-            }
-          ]
-        },
-        {
           "title": " Developer Guides",
           "items": [
+            {
+              "title": "Account Linking Overview",
+              "href": ""
+            },
             {
               "title": "Account Model & Implementation",
               "href": "/account-linking/guides/account-model"
@@ -47,8 +62,8 @@
           "title": "References",
           "items": [
             {
-              "title": "Account Model Contracts",
-              "href": "https://github.com/onflow/sc-eng-gaming"
+              "title": "Child Account Contract",
+              "href": "https://f.dnz.dev/0x1b655847a90e644a/ChildAccount"
             }
           ]
         }
