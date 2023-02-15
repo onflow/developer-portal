@@ -1,4 +1,5 @@
 import { Meta, Story } from "@storybook/react"
+import React from "react"
 import { NavigationBar, NavigationBarProps } from "."
 import { ReactComponent as EcosystemIcon } from "../../../../images/content/ecosystem"
 import { ReactComponent as SDKIcon } from "../../../../images/content/sdk"
