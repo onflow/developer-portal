@@ -49,7 +49,7 @@ export function NavigationBar({
             src={
               "https://assets-global.website-files.com/5f734f4dbd95382f4fdfa0ea/63e254beeb2edc54cc059acc_hackathon-logo.d4db7683-p-500.png"
             }
-            alt="Flow Hackaton"
+            alt="Flow Hackathon"
             className="mr-4 max-h-12"
           />
           <div className="relative top-2 pr-4">
