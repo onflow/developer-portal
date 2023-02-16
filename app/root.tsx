@@ -105,6 +105,11 @@ export const loader = async ({ request }: LoaderArgs) => {
     })
   }
 
+  if (process.env.NODE_ENV === "production") {
+    const hotjarVersion = 6
+    Hotjar.init(parseInt(process.env.HOTJAR_SITE_ID ?? ""), hotjarVersion)
+  }
+
   let algolia: SearchProps | undefined = undefined
 
   if (process.env.ALGOLIA_APP_ID) {
