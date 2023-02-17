@@ -1,9 +1,9 @@
 {
   "source": {
     "owner": "onflow",
-    "name": "account-linking-docs",
-    "branch": "main",
-    "rootPath": "docs/"
+    "name": "flow",
+    "branch": "master",
+    "rootPath": "docs/content/account-linking/"
   },
   "manifest": {
     "$schema": "https://developers.flow.com/schemas/flow-docs.json",
