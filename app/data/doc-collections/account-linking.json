@@ -21,10 +21,16 @@
             "href": "/account-linking/guides/account-model"
           },
           {
-            "title": "Explore walletless onboarding",
+            "title": "Explore Walletless Onboarding",
             "tags": ["guide", "account-linking"],
             "description": "Learn how to build a walletless onboarding experience in your app",
             "href": "/account-linking/guides/walletless-onboarding"
+          },
+          {
+            "title": "Walletless Onboarding Example",
+            "tags": ["sample", "account-linking"],
+            "description": "Learn how to build a walletless onboarding experience in your app",
+            "href": "https://github.com/onflow/walletless-arcade-example"
           },
           {
             "title": "Child Account Contract",
@@ -61,6 +67,10 @@
         {
           "title": "References",
           "items": [
+            {
+              "title": "Walletless Onboarding Sample Apps",
+              "href": "https://github.com/onflow/walletless-arcade-example"
+            },
             {
               "title": "Child Account Contract",
               "href": "https://f.dnz.dev/0x1b655847a90e644a/ChildAccount"
