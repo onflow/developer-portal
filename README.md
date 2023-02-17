@@ -162,3 +162,4 @@ fly secrets set BOT_GITHUB_TOKEN=github_pat_11A...MVuk -a flow-docs-staging
 
 2. Images are svg so they can scale
 3. Light and Dark theme changes the svg's backgrounds
+4. For landing page images need to add the name to schema `app/data/doc-collection-manifest-schema.json` so that flow-docs.json validation passes
