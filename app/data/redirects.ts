@@ -14,7 +14,8 @@ export const redirects = {
   "/flow-cli/install/": "/tools/flow-cli/install",
   "/flow-port/": "/nodes/flow-port",
   "/flow-port": "/nodes/flow-port",
-  "/access-api/": "/flow/access-api/",
+  "/access-api/": "/nodes/access-api/",
+  "/flow/access-api/": "/nodes/access-api/",
   "/fcl/": "/tools/fcl-js",
   "/cadence/tutorial/03-fungible-tokens/":
     "/cadence/tutorial/06-fungible-tokens",
