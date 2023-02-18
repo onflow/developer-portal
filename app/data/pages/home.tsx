@@ -14,7 +14,7 @@ const homepageStartProjectData: HomepageStartItemProps[] = [
   },
   {
     title: "Flow Quickstarts",
-    text: "Run your frist Flow dApp in just a few clicks",
+    text: "Run your first Flow dApp in just a few clicks",
     link: "/quickstart",
     icon: "quickstart",
   },
