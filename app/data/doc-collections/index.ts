@@ -35,6 +35,7 @@ import quickstart from "./quickstart.json"
 import documentation from "./documentation.json"
 import tools from "./tools.json"
 import account_linking from "./account-linking.json"
+import nft_catalog from "./tools__nft-catalog.json"
 
 const includeTestingDocCollections =
   process.env.TESTING_DOC_COLLECTIONS === "include" ||
@@ -81,6 +82,7 @@ export const docCollections = {
   "tools/flow-js-testing": tools__flow_js_testing,
   "tools/vscode-extension": tools__vscode_extension,
   "tools/unity-sdk": tools__unity_sdk,
+  "tools/nft-catelog": nft_catalog,
   learn: learn,
   quickstart: quickstart,
   documentation: documentation,

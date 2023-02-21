@@ -1,0 +1,20 @@
+{
+    "source": {
+      "owner": "onflow",
+      "name": "nft-catalog",
+      "branch": "main",
+      "rootPath": "docs/"
+    },
+    "manifest": {
+      "displayName": "NFT Catalog",
+      "sidebars": {
+        "": [
+          {
+            "title": "Overview",
+            "items": []
+          }          
+        ]
+      }
+    }
+  }
+  
