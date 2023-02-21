@@ -78,6 +78,6 @@ export const docCollections = {
   "tools/flow-js-testing": tools__flow_js_testing,
   "tools/vscode-extension": tools__vscode_extension,
   "tools/unity-sdk": tools__unity_sdk,
-  "tools/nft-catelog": nft_catalog,
+  "tools/nft-catalog": nft_catalog,
   "account-linking": account_linking,
 }
