@@ -53,8 +53,8 @@ export function NavigationBar({
             className="mr-4 max-h-12"
           />
           <div className="relative top-2 pr-4">
-            Build the future of web3 at the upcoming Flow Hackathon (Feb 21-26).
-            Over $500,000 in prizes. Register Now
+            Build the future of web3 at the Flow Hackathon (Feb 21-26). Over
+            $500,000 in prizes. Register Now
           </div>
           <SvgChevronRight className="relative top-2" />
         </AppLink>
