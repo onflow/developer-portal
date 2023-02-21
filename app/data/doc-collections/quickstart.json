@@ -6,7 +6,7 @@
     "rootPath": "docs/content/quickstart"
   },
   "manifest": {
-    "displayName": "quickstart",
+    "displayName": "Quickstart",
     "sidebars": {
       "": [
         {
