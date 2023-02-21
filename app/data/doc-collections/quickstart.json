@@ -6,11 +6,11 @@
     "rootPath": "docs/content/quickstart"
   },
   "manifest": {
-    "displayName": "quickstart",
+    "displayName": "Quickstart",
     "sidebars": {
       "": [
         {
-          "title": "Documentation",
+          "title": "Quickstart",
           "items": [
             {
               "title": "Overview",
