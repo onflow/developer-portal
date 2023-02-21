@@ -10,15 +10,6 @@ export type UseInternalBreadcrumbsOptions = {
   }
 
   /**
-   * An array of additional possible breadcrumnbs. If any match the
-   * `activeItem` they will be included.
-   */
-  additionalitems?: Array<{
-    href: string
-    title: string
-  }>
-
-  /**
    * THe name to display in the breadcrumbs for the current collection
    */
   collectionDisplayName: string
@@ -35,7 +26,6 @@ export type UseInternalBreadcrumbsOptions = {
  */
 export const useInternalBreadcrumbs = ({
   activeItem,
-  additionalitems,
   collectionDisplayName,
   collectionRootPath,
 }: UseInternalBreadcrumbsOptions) =>
@@ -45,13 +35,6 @@ export const useInternalBreadcrumbs = ({
       { href: collectionRootPath, title: collectionDisplayName },
     ]
 
-    // Add any additional items that match the active item.
-    additionalitems?.forEach((item) => {
-      if (activeItem?.href?.startsWith(item.href)) {
-        breadcrumbs.push(item)
-      }
-    })
-
     // Make sure items are sorted from least-specific to most-specific
     breadcrumbs.sort((a, b) => a.href.length - b.href.length)
 
@@ -60,4 +43,4 @@ export const useInternalBreadcrumbs = ({
     }
 
     return breadcrumbs
-  }, [activeItem, additionalitems, collectionDisplayName, collectionRootPath])
+  }, [activeItem, collectionDisplayName, collectionRootPath])
