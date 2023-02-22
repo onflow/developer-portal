@@ -30,11 +30,11 @@ import tools__flow_go_sdk from "./tools__flow-go-sdk.json"
 import tools__flow_js_testing from "./tools__flow-js-testing.json"
 import tools__vscode_extension from "./tools__vscode-extension.json"
 import tools__unity_sdk from "./tools__unity-sdk.json"
+import account_linking from "./account-linking.json"
 import learn from "./learn.json"
 import quickstart from "./quickstart.json"
 import documentation from "./documentation.json"
 import tools from "./tools.json"
-import account_linking from "./account-linking.json"
 
 const includeTestingDocCollections =
   process.env.TESTING_DOC_COLLECTIONS === "include" ||
@@ -55,35 +55,35 @@ export const docCollections = {
   ...(includeTestingDocCollections ? testCollections : {}),
   cadence,
   mobile: mobile,
-  "cadence/style-guide": cadence__styleguide,
-  "flow/core-contracts": flow__core_contracts,
-  "flow/developer-portal": flow__developer_portal,
-  "flow/dapp-development": flow__dapp_development,
-  "flow/faq": flow__faq,
-  "flow/flow-ft": flow__flow_ft,
-  "flow/flow-nft": flow__flow_nft,
-  "flow/flow-token": flow__flow_token,
-  "flow/fusd": flow__fusd,
-  "flow/nft-marketplace": flow__nft_marketplace,
+  "style-guide": cadence__styleguide,
+  "core-contracts": flow__core_contracts,
+  "developer-portal": flow__developer_portal,
+  "dapp-development": flow__dapp_development,
+  faq: flow__faq,
+  "flow-ft": flow__flow_ft,
+  "flow-nft": flow__flow_nft,
+  "flow-token": flow__flow_token,
+  fusd: flow__fusd,
+  "nft-marketplace": flow__nft_marketplace,
   flow: flow,
-  "learn/concepts": learn__concepts,
-  "learn/kitty-items": learn__kitty_items,
-  "nodes/flow-port": nodes__flow_port,
-  "nodes/node-operation": nodes__node_operation,
-  "nodes/staking": nodes__staking,
+  concepts: learn__concepts,
+  "kitty-items": learn__kitty_items,
+  "flow-port": nodes__flow_port,
+  "node-operation": nodes__node_operation,
+  staking: nodes__staking,
   nodes: nodes,
-  "tools/emulator": tools__emulator,
-  "tools/fcl-dev-wallet": tools__fcl_dev_wallet,
-  "tools/fcl-js": tools__fcl_js,
-  "tools/flow-cadut": tools__flow_cadut,
-  "tools/flow-cli": tools__flow_cli,
-  "tools/flow-go-sdk": tools__flow_go_sdk,
-  "tools/flow-js-testing": tools__flow_js_testing,
-  "tools/vscode-extension": tools__vscode_extension,
-  "tools/unity-sdk": tools__unity_sdk,
+  emulator: tools__emulator,
+  "fcl-dev-wallet": tools__fcl_dev_wallet,
+  "fcl-js": tools__fcl_js,
+  "flow-cadut": tools__flow_cadut,
+  "flow-cli": tools__flow_cli,
+  "flow-go-sdk": tools__flow_go_sdk,
+  "flow-js-testing": tools__flow_js_testing,
+  "vscode-extension": tools__vscode_extension,
+  "unity-sdk": tools__unity_sdk,
+  "account-linking": account_linking,
   learn: learn,
   quickstart: quickstart,
-  documentation: documentation,
   tools: tools,
-  "account-linking": account_linking,
+  documentation: documentation,
 }
