@@ -21,10 +21,7 @@ import {
   useResizeObserver,
   UseResizeObserverCallback,
 } from "../../utils/useResizeObserver"
-import {
-  useInternalBreadcrumbs,
-  UseInternalBreadcrumbsOptions,
-} from "./useInternalBreadcrumbs"
+import { useInternalBreadcrumbs } from "./useInternalBreadcrumbs"
 
 export type InternalPageProps = React.PropsWithChildren<{
   /**
