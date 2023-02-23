@@ -6,12 +6,61 @@
     "rootPath": "docs/"
   },
   "manifest": {
-    "displayName": "NFT Catalog",
+    "$schema": "https://developers.flow.com/schemas/flow-docs.json",
+    "displayName": "Flow Catalog",
+    "redirects": {
+      "": "overview"
+    },
+    "headers": {
+      "": {
+        "icon": "cadence",
+        "title": "Flow Catalog",
+        "description": "The NFT Catalog is an on chain registry listing NFT collections that exists on Flow which adhere to the NFT metadata standard. This empowers dApp developers to easily build on top of and discover interoperable NFT collections on Flow.",
+        "headerCards": [
+          {
+            "title": "Overview",
+            "tags": ["setup", "guide"],
+            "description": "Overview of the Flow Catalog.",
+            "href": "overview"
+          },
+          {
+            "title": "NPM",
+            "tags": ["setup", "guide"],
+            "description": "A tutorial that will help get you integrated with the Flow Catalog via an NPM module.",
+            "href": "npm"
+          },
+          {
+            "title": "Cadence Generation",
+            "tags": ["guide"],
+            "description": "A guide on leveraging the Flow Catalog to generate Cadence code for your NFT collection.",
+            "href": "cadence-generation"
+          }
+        ]
+      }
+    },
     "sidebars": {
       "": [
         {
-          "title": "Overview",
-          "items": []
+          "title": "Flow Catalog",
+          "items": [
+            {
+              "title": "Overview",
+              "href": "overview"
+            }
+          ]
+        },
+        {
+          "title": "Reference",
+          "items": [
+            {
+              "title": "NPM",
+              "href": "npm"
+            },
+            {
+              "title": "Cadence Generation",
+              "href": "cadence-generation"
+            }
+          ]
         }
       ]
     }
