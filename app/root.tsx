@@ -105,9 +105,9 @@ export const loader = async ({ request }: LoaderArgs) => {
     })
   }
 
-  if (process.env.NODE_ENV === "production") {
+  if (process.env.NODE_ENV === "production" && process.env.HOTJAR_SITE_ID) {
     const hotjarVersion = 6
-    Hotjar.init(parseInt(process.env.HOTJAR_SITE_ID ?? ""), hotjarVersion)
+    Hotjar.init(parseInt(process.env.HOTJAR_SITE_ID), hotjarVersion)
   }
 
   let algolia: SearchProps | undefined = undefined
