@@ -35,7 +35,6 @@ import learn from "./learn.json"
 import quickstart from "./quickstart.json"
 import documentation from "./documentation.json"
 import tools from "./tools.json"
-import account_linking from "./account-linking.json"
 import nft_catalog from "./tools__nft-catalog.json"
 
 const includeTestingDocCollections =
@@ -88,6 +87,5 @@ export const docCollections = {
   quickstart: quickstart,
   tools: tools,
   "tools/nft-catalog": nft_catalog,
-  "account-linking": account_linking,
   documentation: documentation,
 }
