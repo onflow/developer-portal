@@ -15,7 +15,7 @@ declare global {
  * https://developers.google.com/analytics/devguides/collection/gtagjs/pages
  */
 export const pageview = (url: string, trackingId: string) => {
-  if (!window.gtag) {
+  if (!window?.gtag) {
     console.warn(
       "window.gtag is not defined. This could mean your google anylatics script has not loaded on the page yet."
     )
@@ -36,7 +36,7 @@ export const event = ({
   label,
   value,
 }: Record<string, string>) => {
-  if (!window.gtag) {
+  if (!window?.gtag) {
     console.warn(
       "window.gtag is not defined. This could mean your google anylatics script has not loaded on the page yet."
     )
@@ -50,7 +50,7 @@ export const event = ({
 }
 
 export const reportWebVitalsToGA = (vitals: Metric) => {
-  if (process.env.NODE_ENV === "production") {
+  if (process.env.NODE_ENV === "production" && window?.gtag) {
     window.gtag("event", vitals.name, {
       ...vitals,
       value: vitals.delta, // Use `delta` so the value can be summed
