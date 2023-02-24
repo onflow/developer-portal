@@ -6,11 +6,11 @@
     "rootPath": "docs/content/learn"
   },
   "manifest": {
-    "displayName": "learn",
+    "displayName": "Learn",
     "sidebars": {
       "": [
         {
-          "title": "Documentation",
+          "title": "Learn",
           "items": [
             {
               "title": "Overview",

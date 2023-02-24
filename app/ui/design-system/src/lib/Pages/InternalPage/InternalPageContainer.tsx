@@ -15,14 +15,9 @@ import {
   UseResizeObserverCallback,
 } from "../../utils/useResizeObserver"
 import { InternalPageEditUrlContext } from "./InternalPageEditUrlContext"
-import {
-  useInternalBreadcrumbs,
-  UseInternalBreadcrumbsOptions,
-} from "./useInternalBreadcrumbs"
+import { useInternalBreadcrumbs } from "./useInternalBreadcrumbs"
 
 export type InternalPageContainerProps = React.PropsWithChildren<{
-  additionalBreadrumbs?: UseInternalBreadcrumbsOptions["additionalitems"]
-
   /**
    * THe name to display in the breadcrumbs for the current collection
    */
@@ -52,7 +47,6 @@ export type InternalPageContainerProps = React.PropsWithChildren<{
 }>
 
 export function InternalPageContainer({
-  additionalBreadrumbs,
   children,
   collectionDisplayName,
   collectionRootPath,
@@ -67,7 +61,6 @@ export function InternalPageContainer({
   const { active } = useActiveSidebarItems(sidebarItems || [])
   const breadcrumbs = useInternalBreadcrumbs({
     activeItem: active,
-    additionalitems: additionalBreadrumbs,
     collectionDisplayName,
     collectionRootPath,
   })
