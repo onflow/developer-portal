@@ -1,5 +1,6 @@
 import { ReactComponent as ChevronRight } from "../../../../images/arrows/chevron-right"
 import AppLink from "../AppLink"
+import { useResolvedSidebarUrl } from "../InternalSidebar/useResolvedSidebarUrl"
 import Tag from "../Tag"
 
 export type InternalLandingHeaderCardProps = {
@@ -15,10 +16,11 @@ export function InternalLandingHeaderCard({
   description,
   href,
 }: InternalLandingHeaderCardProps) {
+  const resolvedHref = useResolvedSidebarUrl(href)
   return (
     <AppLink
       className="group flex min-h-[9rem] flex-1 flex-row rounded-2xl bg-white px-6 py-5 dark:bg-black"
-      to={href}
+      to={resolvedHref}
     >
       <div className="pr-2">
         <div className="flex flex-col md:flex-col-reverse">
