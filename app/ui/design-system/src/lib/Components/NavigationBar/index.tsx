@@ -1,7 +1,6 @@
 import { Transition } from "@headlessui/react"
 import { useLocation } from "@remix-run/react"
 import { Fragment, useEffect, useState } from "react"
-import SvgChevronRight from "../../../../images/arrows/chevron-right"
 import flowDocsLogoDark from "../../../../images/logos/flow-docs-logo-dark.png"
 import flowDocsLogoDark2X from "../../../../images/logos/flow-docs-logo-dark@2x.png"
 import flowDocsLogoLight from "../../../../images/logos/flow-docs-logo-light.png"
@@ -21,7 +20,7 @@ export type NavigationBarProps = {
   algolia?: SearchProps
 }
 
-export const NAV_HEIGHT = 110
+export const NAV_HEIGHT = 70
 
 export function NavigationBar({
   menuItems,
@@ -40,25 +39,6 @@ export function NavigationBar({
       style={{ height: NAV_HEIGHT, minHeight: NAV_HEIGHT }}
       className="z-40 flex flex-col dark:bg-black dark:text-white"
     >
-      <div className="flex w-full items-center justify-center bg-black px-4 text-white dark:bg-white dark:text-black">
-        <AppLink
-          to="https://hackathon.flow.com/"
-          className=" flex flex-row items-center justify-center py-1 hover:opacity-75"
-        >
-          <img
-            src={
-              "https://assets-global.website-files.com/5f734f4dbd95382f4fdfa0ea/63e254beeb2edc54cc059acc_hackathon-logo.d4db7683-p-500.png"
-            }
-            alt="Flow Hackathon"
-            className="mr-4 max-h-12"
-          />
-          <div className="relative top-2 pr-4">
-            Build the future of web3 at the Flow Hackathon (Feb 21-26). Over
-            $500,000 in prizes. Register Now
-          </div>
-          <SvgChevronRight className="relative top-2" />
-        </AppLink>
-      </div>
       <div className="flex items-center bg-white px-4 pb-1 text-primary-gray-400 dark:bg-black dark:text-white">
         <div className="flex items-center">
           <AppLink to="/" className="mr-4 w-full py-2 hover:opacity-75">
