@@ -1,7 +1,6 @@
 import { Transition } from "@headlessui/react"
 import { useLocation } from "@remix-run/react"
 import { Fragment, useEffect, useState } from "react"
-import SvgChevronRight from "../../../../images/arrows/chevron-right"
 import flowDocsLogoDark from "../../../../images/logos/flow-docs-logo-dark.png"
 import flowDocsLogoDark2X from "../../../../images/logos/flow-docs-logo-dark@2x.png"
 import flowDocsLogoLight from "../../../../images/logos/flow-docs-logo-light.png"
