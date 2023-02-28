@@ -8,6 +8,9 @@
   "manifest": {
     "$schema": "https://developers.flow.com/schemas/flow-docs.json",
     "displayName": "Flow NFT Catalog",
+    "redirects": {
+      "": "overview"
+    },
     "headers": {
       "": {
         "icon": "cadence",
