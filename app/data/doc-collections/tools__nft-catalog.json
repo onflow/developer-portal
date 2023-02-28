@@ -1,9 +1,9 @@
 {
   "source": {
     "owner": "onflow",
-    "name": "nft-catalog",
-    "branch": "main",
-    "rootPath": "docs/"
+    "name": "flow",
+    "branch": "master",
+    "rootPath": "docs/content/nft-catalog/"
   },
   "manifest": {
     "$schema": "https://developers.flow.com/schemas/flow-docs.json",
