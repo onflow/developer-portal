@@ -43,6 +43,7 @@ import {
   niftoryTool,
   flowviewTool,
   dapperSelfCustodyWallet,
+  unitySDK,
 } from "../tools"
 
 export const data: ToolsPageProps = {
@@ -86,6 +87,7 @@ export const data: ToolsPageProps = {
     swiftSDK,
     rustSDK,
     elixirSDK,
+    unitySDK,
   ],
   apisAndServices: [
     walletApiTool,
