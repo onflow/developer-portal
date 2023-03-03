@@ -286,7 +286,7 @@ const elixirSDK: Tool = {
     name: "on_flow",
     owner: "nkezhaya",
   },
-  title: "Elixer SDK",
+  title: "Elixir SDK",
   authorIcon: "https://avatars.githubusercontent.com/u/20113?s=48&v=4",
   authorName: "nkezhaya",
   tags: ["documentation"],
