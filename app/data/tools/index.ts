@@ -596,6 +596,21 @@ const fionaWallet: Tool = {
   description: "Safely store and stake your Flow tokens with Finoa",
 }
 
+const unitySDK: Tool = {
+  repo: {
+    name: "UnityFlowSDK",
+    owner: "onflow",
+  },
+  title: "Unity SDK",
+  authorIcon: "https://avatars.githubusercontent.com/u/62387156?s=64&v=4",
+  authorName: "onflow",
+  tags: ["documentation"],
+  link: "/tools/unity-sdk",
+  stars: 4,
+  iconSrc:
+    "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/unity/unity-original.svg",
+}
+
 export {
   flowserTool,
   overflowTool,
@@ -639,4 +654,5 @@ export {
   niftoryTool,
   flowviewTool,
   dapperSelfCustodyWallet,
+  unitySDK,
 }
