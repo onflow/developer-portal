@@ -32,7 +32,7 @@ export function InternalPageContent({
   toc,
 }: InternalPageContentProps) {
   useProvideInternalPageEditUrl(editPageUrl)
-  const { previous, next } = useActiveSidebarItems(sidebarItems || [])
+  const { previous, next } = useActiveSidebarItems(sidebarItems || [], true)
   const subnavRef = useRef<HTMLDivElement>(null)
   const [subnavRect, setSubnavRect] = useState<DOMRect>()
   const resizeObserverCallback = useCallback<UseResizeObserverCallback>(() => {
