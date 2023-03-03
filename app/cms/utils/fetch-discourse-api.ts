@@ -160,12 +160,12 @@ const formatLatestFiveTopics = async (topics: Topic[]) => {
   const props = await Promise.all(formattedTopics)
   return props
 }
-const fetchDiscourse = (url: string) => {
+const fetchDiscourse = <T>(url: string) => {
   return fetch(url, {
     headers: {
       "Content-Type": "application/json",
     },
-  }).then((response) => response.json())
+  }).then((response) => response.json() as Promise<T>)
 }
 
 async function fetchCategoryById(id: number) {
