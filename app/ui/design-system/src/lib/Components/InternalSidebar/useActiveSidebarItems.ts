@@ -13,6 +13,11 @@ import { isLinkExternal } from "../../utils/isLinkExternal"
 export const flattenItems = (items?: SidebarItem[]): SidebarItem[] =>
   items?.flatMap(({ items, ...rest }) => [rest, ...flattenItems(items)]) || []
 
+interface ILinkItems {
+  href: string
+  path: string
+  title: string
+}
 /**
  * Finds the current active sidebar item, and the previous and next items
  * relative to the active item.
@@ -28,20 +33,21 @@ export const useActiveSidebarItems = (
   const linkItems =
     flattenItems(items).filter<SidebarLinkItem>(isSidebarLinkItem)
 
-  const resolvedLinkItems = linkItems
-    .map((item) => {
-      if (hideExternal && isLinkExternal(item.href)) {
-        return undefined
-      }
-      return {
+  const resolvedLinkItems = linkItems.reduce<ILinkItems[]>((acc, item) => {
+    if (hideExternal && isLinkExternal(item.href)) {
+      return acc
+    }
+    return [
+      ...acc,
+      {
         href: isLinkExternal(item.href)
           ? item.href
           : resolveUrl(item.href, basePath, { searchParams }),
         path: stripTrailingSlashes(`${basePath}${item.href}`),
         title: item.title || titleFromHref(item.href),
-      }
-    })
-    .filter(Boolean)
+      },
+    ]
+  }, [])
 
   const activeIndex = resolvedLinkItems.findIndex(
     (resolved) => resolved.path === path
