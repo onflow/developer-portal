@@ -148,6 +148,7 @@
     "@testing-library/jest-dom": "^5.16.4",
     "@testing-library/react": "^13.3.0",
     "@testing-library/user-event": "^14.2.1",
+    "@total-typescript/ts-reset": "0.3.7",
     "@types/lodash.debounce": "^4.0.7",
     "@types/mime-types": "^2.1.1",
     "@types/pluralize": "^0.0.29",

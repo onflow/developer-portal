@@ -13,6 +13,18 @@ export const fetchSporks = async () => {
   })
 }
 
+type SporkNetwork = "mainnet" | "sandboxnet" | "testnet"
+interface ISpork {
+  id: number
+  name: string
+  sporkTime: string
+  accessNodes: string[]
+  rootHeight: string
+  rootParentId: string
+  rootStateCommitment: string
+  gitCommitHash: string
+}
+
 export const fetchFreshSporks = async () => {
   const getSporks = async () => {
     const sporks: any = await octokit
@@ -27,30 +39,30 @@ export const fetchFreshSporks = async () => {
   }
 
   const sporksResponse = await getSporks()
-  const parsedResponse = JSON.parse(
-    Buffer.from(sporksResponse.content, "base64").toString()
+  const parsedResponse = (
+    JSON.parse(Buffer.from(sporksResponse.content, "base64").toString()) as {
+      networks: Record<SporkNetwork, Record<string, ISpork>>
+    }
   ).networks
 
-  const pastSporks = Object.keys(parsedResponse).reduce(
-    (acc: any, curr: any) => {
-      const normalized: SporksCardProps[] = Object.keys(
-        parsedResponse[curr]
-      ).map((spork) => ({
-        heading: parsedResponse[curr][spork].name,
-        timestamp: parsedResponse[curr][spork].sporkTime,
-        sporkMetadata: {
-          accessNode: parsedResponse[curr][spork].accessNodes.join(", "),
-          date: parsedResponse[curr][spork].sporkTime,
-          rootHeight: parsedResponse[curr][spork].rootHeight,
-          rootParentId: parsedResponse[curr][spork].rootParentId,
-          rootStateCommit: parsedResponse[curr][spork].rootStateCommitment,
-          gitCommit: parsedResponse[curr][spork].gitCommitHash,
-        },
-      }))
+  const pastSporks = Object.entries(parsedResponse).reduce(
+    (acc: Record<string, SporksCardProps[]>, [curr, currentNetwork]) => {
+      const normalized: SporksCardProps[] = Object.values(currentNetwork).map(
+        (currentSpork) => ({
+          heading: currentSpork.name,
+          timestamp: currentSpork.sporkTime,
+          sporkMetadata: {
+            accessNode: currentSpork.accessNodes.join(", "),
+            date: currentSpork.sporkTime,
+            rootHeight: currentSpork.rootHeight,
+            rootParentId: currentSpork.rootParentId,
+            rootStateCommit: currentSpork.rootStateCommitment,
+            gitCommit: currentSpork.gitCommitHash,
+          },
+        })
+      )
 
-      acc[curr] = normalized
-
-      return acc
+      return { ...acc, [curr]: normalized }
     },
     {}
   )
