@@ -13,7 +13,7 @@ export type Body = {
   keys: Array<string>
   commitSha?: string
   repo: string
-  contentPaths: string
+  contentPaths: string | string[]
   contributions?: Contribution[]
 }
 
@@ -61,7 +61,7 @@ export const action = async ({ request }: ActionArgs) => {
     console.log("Refreshing content...")
 
     const refreshingContentPaths: [string?] = []
-    const paths: string[] = body.contentPaths[0].split(" ")
+    const paths: string[] = body.contentPaths[0]?.split(" ") ?? []
     for (const contentPath of paths) {
       if (typeof contentPath !== "string") {
         return json(
