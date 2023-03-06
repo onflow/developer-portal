@@ -40,6 +40,10 @@ export const sdkSection: Section = {
       href: `/http-api`,
     },
     {
+      title: "Unity SDK",
+      href: `/tools/unity-sdk`,
+    },
+    {
       title: "JVM/Kotlin",
       href: "https://github.com/onflow/flow-jvm-sdk",
     },
