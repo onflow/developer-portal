@@ -43,6 +43,7 @@ export interface GettingStartedPageProps extends SocialLinksSignupProps {
     SDKCardProps,
     SDKCardProps,
     SDKCardProps,
+    SDKCardProps,
     SDKCardProps
   ]
 }
