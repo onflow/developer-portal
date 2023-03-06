@@ -19,6 +19,7 @@ import {
   overflowTool,
   pythonSDK,
   swiftSDK,
+  unitySDK,
 } from "../../data/tools"
 import { externalLinks } from "../external-links"
 import { metadata } from "../metadata"
@@ -163,8 +164,9 @@ export const sdkCardItems: [
   SDKCardProps,
   SDKCardProps,
   SDKCardProps,
+  SDKCardProps,
   SDKCardProps
-] = [httpSDK, fclSDK, goSDK, pythonSDK, swiftSDK, jvmSDK]
+] = [httpSDK, fclSDK, goSDK, unitySDK, pythonSDK, swiftSDK, jvmSDK]
 
 export const contentNavigationListItems: ContentNavigationListProps = {
   header: "Explore More Content",

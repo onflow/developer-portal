@@ -78,6 +78,7 @@ export const data: ToolsPageProps = {
     httpSDK,
     fclSDK,
     goSDK,
+    unitySDK,
     pythonSDK,
     jvmSDK,
     rubySDK,
@@ -87,7 +88,6 @@ export const data: ToolsPageProps = {
     swiftSDK,
     rustSDK,
     elixirSDK,
-    unitySDK,
   ],
   apisAndServices: [
     walletApiTool,
