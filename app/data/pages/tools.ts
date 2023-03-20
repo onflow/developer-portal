@@ -4,7 +4,7 @@ import { metadata } from "../metadata"
 
 import {
   accountApiTool,
-  bigDipperTool,
+  // bigDipperTool,
   bloctoWallet,
   cadutTool,
   cdcWebpackPlugin,
