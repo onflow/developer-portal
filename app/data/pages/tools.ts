@@ -4,7 +4,7 @@ import { metadata } from "../metadata"
 
 import {
   accountApiTool,
-  bigDipperTool,
+  // bigDipperTool,
   bloctoWallet,
   cadutTool,
   cdcWebpackPlugin,
@@ -96,7 +96,7 @@ export const data: ToolsPageProps = {
     flowMarketplaceMonitorTool,
     graffleTool,
   ],
-  explorers: [flowScanTool, flowViewSourceTool, bigDipperTool],
+  explorers: [flowScanTool, flowViewSourceTool /*, bigDipperTool*/],
   contentNavigationListItems: {
     contentNavigationItems: [
       {
