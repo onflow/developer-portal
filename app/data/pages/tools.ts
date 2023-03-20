@@ -96,7 +96,7 @@ export const data: ToolsPageProps = {
     flowMarketplaceMonitorTool,
     graffleTool,
   ],
-  explorers: [flowScanTool, flowViewSourceTool, bigDipperTool],
+  explorers: [flowScanTool, flowViewSourceTool /*, bigDipperTool*/],
   contentNavigationListItems: {
     contentNavigationItems: [
       {
