@@ -1,11 +1,12 @@
 export const redirects = {
+  "/account-linking": "/hybrid-custody",
   "/account-linking/": "/hybrid-custody/",
-  "/account-linking/guides/account-model/":
-    "/hybrid-custody/guides/account-model/",
-  "/account-linking/guides/linking-accounts/":
-    "/hybrid-custody/guides/linking-accounts/",
-  "/account-linking/guides/walletless-onboarding/":
-    "/hybrid-custody/guides/walletless-onboarding/",
+  "/account-linking/guides/account-model":
+    "/hybrid-custody/guides/account-model",
+  "/account-linking/guides/linking-accounts":
+    "/hybrid-custody/guides/linking-accounts",
+  "/account-linking/guides/walletless-onboarding":
+    "/hybrid-custody/guides/walletless-onboarding",
   "/community/bounties": "https://flow.com/flow-responsible-disclosure",
   "/flow-token/available-wallets/": "/flow/flow-token/available-wallets",
   "/staking/": "/nodes/staking",
