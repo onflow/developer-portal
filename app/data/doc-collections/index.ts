@@ -31,6 +31,7 @@ import tools__flow_js_testing from "./tools__flow-js-testing.json"
 import tools__vscode_extension from "./tools__vscode-extension.json"
 import tools__unity_sdk from "./tools__unity-sdk.json"
 import account_linking from "./account-linking.json"
+import hybrid_custody from "./hybrid-custody.json"
 import learn from "./learn.json"
 import quickstart from "./quickstart.json"
 import documentation from "./documentation.json"
@@ -83,6 +84,7 @@ export const docCollections = {
   "vscode-extension": tools__vscode_extension,
   "unity-sdk": tools__unity_sdk,
   "account-linking": account_linking,
+  "hybrid-custody": hybrid_custody,
   learn: learn,
   quickstart: quickstart,
   tools: tools,
