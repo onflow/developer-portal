@@ -1,5 +1,6 @@
 export const redirects = {
   "/account-linking/": "/hybrid-custody/",
+  "/account-linking": "/hybrid-custody/",
   "/account-linking/guides/account-model/":
     "/hybrid-custody/guides/account-model/",
   "/account-linking/guides/linking-accounts/":
