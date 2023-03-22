@@ -4,7 +4,7 @@
   }
 
   & table {
-    @apply block overflow-x-auto whitespace-nowrap rounded-md border-0;
+    @apply block overflow-x-auto rounded-md border-0;
     border-collapse: separate;
     border-spacing: 0;
     position: relative;
