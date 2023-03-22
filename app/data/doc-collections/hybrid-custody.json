@@ -61,6 +61,10 @@
             {
               "title": "Hybrid Custody Account Model",
               "href": "/hybrid-custody/guides/account-model"
+            },
+            {
+              "title": "Account Abstraction Overview",
+              "href": "/hybrid-custody/guides/account-abstraction"
             }
           ]
         },
