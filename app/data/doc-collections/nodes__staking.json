@@ -77,6 +77,10 @@
             {
               "title": "Staking Collection Guide",
               "href": "staking-collection"
+            },
+            {
+              "title": "Querying Staking rewards",
+              "href": "staking-rewards"
             }
           ]
         },
