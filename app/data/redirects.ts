@@ -202,6 +202,7 @@ export const redirects = {
     "/flow/dapp-development/contract-testing",
   "/staking/staking-collection/": "/nodes/staking/staking-collection",
   "/staking/staking-collection": "/nodes/staking/staking-collection",
+  "/staking/staking-rewards": "/nodes/staking/staking-rewards",
   "/fcl/packages/fcl/CHANGELOG": "/tools/fcl-js",
   "/flow-cli/send-signed-transactions/": "/tools/flow-cli/sign-transactions",
   "/flow-go-sdk/building-transactions/": "/tools/flow-go-sdk",
