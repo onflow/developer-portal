@@ -611,6 +611,20 @@ const unitySDK: Tool = {
     "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/unity/unity-original.svg",
 }
 
+const easiGen: Tool = {
+  repo: {
+    name: "easinteraction-for-cadence",
+    owner: "LemonNekoGH",
+  },
+  title: "Easinteraction",
+  authorIcon: "https://avatars.githubusercontent.com/u/17664845",
+  authorName: "LemonNeko",
+  tags: ["Go", "Cadence", "Code generation"],
+  link: "https://github.com/LemonNekoGH/easinteraction-for-cadence",
+  stars: 5,
+  iconSrc: ToolCliIconSrc,
+}
+
 export {
   flowserTool,
   overflowTool,
@@ -654,4 +668,5 @@ export {
   flowviewTool,
   dapperSelfCustodyWallet,
   unitySDK,
+  easiGen,
 }
