@@ -623,6 +623,8 @@ const easiGen: Tool = {
   link: "https://github.com/LemonNekoGH/easinteraction-for-cadence",
   stars: 5,
   iconSrc: ToolCliIconSrc,
+  description:
+    "A golang code generator for easier interaction with Cadence contract",
 }
 
 export {
