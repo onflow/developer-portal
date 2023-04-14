@@ -44,6 +44,7 @@ import {
   flowviewTool,
   dapperSelfCustodyWallet,
   unitySDK,
+  easiGen,
 } from "../tools"
 
 export const data: ToolsPageProps = {
@@ -64,6 +65,7 @@ export const data: ToolsPageProps = {
     commandLineLinter,
     cdcWebpackPlugin,
     graffleTool,
+    easiGen,
   ],
   wallets: [
     bloctoWallet,
