@@ -31,8 +31,8 @@ import tools__flow_js_testing from "./tools__flow-js-testing.json"
 import tools__vscode_extension from "./tools__vscode-extension.json"
 import tools__unity_sdk from "./tools__unity-sdk.json"
 import account_linking from "./account-linking.json"
-import hybrid_custody from "./hybrid-custody.json"
 import nft_catalog from "./tools__nft-catalog.json"
+import hybrid_custody from "./hybrid-custody.json"
 
 const includeTestingDocCollections =
   process.env.TESTING_DOC_COLLECTIONS === "include" ||
