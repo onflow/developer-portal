@@ -1,7 +1,6 @@
 import { Transition } from "@headlessui/react"
 import { useLocation } from "@remix-run/react"
 import { Fragment, useEffect, useState } from "react"
-import { ReactComponent as SvgDocument } from "../../../../images/content/external-link"
 import flowDocsLogoDark from "../../../../images/logos/flow-docs-logo-dark.png"
 import flowDocsLogoDark2X from "../../../../images/logos/flow-docs-logo-dark@2x.png"
 import flowDocsLogoLight from "../../../../images/logos/flow-docs-logo-light.png"
@@ -21,7 +20,7 @@ export type NavigationBarProps = {
   algolia?: SearchProps
 }
 
-export const NAV_HEIGHT = 110
+export const NAV_HEIGHT = 70
 
 export function NavigationBar({
   menuItems,
@@ -40,18 +39,6 @@ export function NavigationBar({
       style={{ height: NAV_HEIGHT, minHeight: NAV_HEIGHT }}
       className="z-40 flex flex-col dark:bg-black dark:text-white"
     >
-      <div className="flex w-full items-center justify-center bg-black p-2 text-white dark:bg-white dark:text-black">
-        <AppLink
-          to="https://onflow.github.io/docs"
-          className=" flex flex-row items-center justify-center py-1 hover:opacity-75"
-        >
-          <div className="relative top-2 pr-4">
-            We are simplifying the Flow docs Developer Portal. Check out the
-            soon to be released website, currently in beta.
-          </div>
-          <SvgDocument className="relative top-2" />
-        </AppLink>
-      </div>
       <div className="flex items-center bg-white px-4 pb-1 text-primary-gray-400 dark:bg-black dark:text-white">
         <div className="flex items-center">
           <AppLink to="/" className="mr-4 w-full py-2 hover:opacity-75">
