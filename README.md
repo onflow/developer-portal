@@ -51,6 +51,18 @@ Use the first version of the commands below if the your compose environment and 
 
   `docker compose run app-yarn`
 
+#### Remote Redis cache
+
+- Connect to redis cache server to run operations on the cache:
+
+  `redis-cli -h <server, see in crediental management system> -p <port> --tls --cacert <cert.pem in cred. mgmt system>` ()
+
+  `redis-cli auth <password>`
+
+- Flush all keys from cache:
+
+  `FLUSHALL`
+
 #### Running services locally outside of Docker
 
 1. Add the `.env` file to the project root.
